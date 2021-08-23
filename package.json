@@ -2,9 +2,9 @@
   "name": "tailwind-jit",
   "private": true,
   "dependencies": {
-    "@rails/ujs": "7.0.0-alpha",
-    "@rails/activestorage": "7.0.0-alpha",
-    "@rails/actioncable": "7.0.0-alpha"
+    "@rails/ujs": "6.1.4-1",
+    "@rails/activestorage": "6.1.4-1",
+    "@rails/actioncable": "6.1.4-1"
   },
   "version": "0.1.0"
 }
