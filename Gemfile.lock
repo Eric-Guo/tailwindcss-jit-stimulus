@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: b12ecb3f21882e0476ca676e1054e94ebcc7f95e
+  revision: 0a8a0c8fc99f26f7b739f9b1b559fbda78b6be23
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha)
@@ -143,7 +143,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.1)
+    rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
     rake (13.0.6)
     regexp_parser (2.1.1)
