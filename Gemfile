@@ -1,9 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.2"
+ruby "~> 3.0.2"
 
-gem "rails", path: '/usr/local/lib/ruby/gems/3.0.0/gems'
+# bundle config local.rails /Users/guochunzhong/git/oss/rails
+gem "rails", git: 'https://gitee.com/Eric-Guo/Rails.git', branch: :eric_read
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
@@ -26,7 +27,8 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling "console" anywhere in the code.
-  gem "web-console", github: "rails/web-console"
+  # bundle config local.web-console /Users/guochunzhong/git/oss/web-console
+  gem "web-console", git: 'https://github.com/rails/web-console.git', branch: :master
   # Display speed badge on every html page with SQL times and flame graphs.
   # Note: Interferes with etag cache testing. Can be configured to work on production: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   # gem "rack-mini-profiler", "~> 2.0"
