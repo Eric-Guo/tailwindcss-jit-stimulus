@@ -1,0 +1,10 @@
+{
+  "name": "tailwind-jit",
+  "private": true,
+  "dependencies": {
+    "@rails/ujs": "7.0.0-alpha",
+    "@rails/activestorage": "7.0.0-alpha",
+    "@rails/actioncable": "7.0.0-alpha"
+  },
+  "version": "0.1.0"
+}
