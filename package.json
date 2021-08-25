@@ -6,7 +6,7 @@
     "@rails/actioncable": "^6.1.4-1",
     "@rails/activestorage": "^6.1.4-1",
     "@rails/ujs": "^6.1.4-1",
-    "@rails/webpacker": "^6.0.0-rc.1",
+    "@rails/webpacker": "^6.0.0-rc.5",
     "autoprefixer": "^10",
     "css-loader": "^6.2.0",
     "css-minimizer-webpack-plugin": "^3.0.2",
@@ -24,7 +24,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "@webpack-cli/serve": "^1.5.2",
-    "webpack-dev-server": "~> 3.11"
+    "webpack-dev-server": "^4.0.0"
   },
   "babel": {
     "presets": [

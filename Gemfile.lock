@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: 0a8a0c8fc99f26f7b739f9b1b559fbda78b6be23
+  revision: 0afe99501a729f73648b5a09ab7b80b3484e7368
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha)
@@ -167,7 +167,7 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (>= 3.0, < 4.0)
-    webpacker (6.0.0.rc.1)
+    webpacker (6.0.0.rc.5)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
