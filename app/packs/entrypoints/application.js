@@ -5,6 +5,8 @@
 
 import "@fontsource/montserrat";
 
+require.context('../images', true)
+
 import "stylesheets/application.css"
 
 import mrujs from "mrujs";

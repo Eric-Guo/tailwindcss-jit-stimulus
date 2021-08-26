@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TailwindJit</title>
+    <title>天华材料库</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="renderer" content="webkit">
@@ -11,8 +11,7 @@
     <%= stylesheet_pack_tag 'application', media: "all", "data-turbo-track" => "reload" %>
     <%= javascript_pack_tag "application", "data-turbo-track" => "reload" %>
   </head>
-
-  <body>
+  <body class="min-h-screen bg-white">
     <% flash.each do |type, message| %>
       <% if type == "alert" %>
         <div class="w-full fixed z-50" style="background-color: #e02424">
