@@ -1312,6 +1312,18 @@ async@^2.6.2:
   dependencies:
     lodash "^4.17.14"
 
+autoprefixer@^10:
+  version "10.3.2"
+  resolved "https://registry.nlark.com/autoprefixer/download/autoprefixer-10.3.2.tgz#836e4b4f59eb6876c41012c1c937be74035f3ec8"
+  integrity sha1-g25LT1nraHbEEBLByTe+dANfPsg=
+  dependencies:
+    browserslist "^4.16.8"
+    caniuse-lite "^1.0.30001251"
+    colorette "^1.3.0"
+    fraction.js "^4.1.1"
+    normalize-range "^0.1.2"
+    postcss-value-parser "^4.1.0"
+
 autoprefixer@^9.6.1:
   version "9.8.6"
   resolved "https://registry.nlark.com/autoprefixer/download/autoprefixer-9.8.6.tgz#3b73594ca1bf9266320c5acf1588d74dea74210f"
@@ -2300,6 +2312,11 @@ forwarded@0.2.0:
   version "0.2.0"
   resolved "https://registry.nlark.com/forwarded/download/forwarded-0.2.0.tgz#2269936428aad4c15c7ebe9779a84bf0b2a81811"
   integrity sha1-ImmTZCiq1MFcfr6XeahL8LKoGBE=
+
+fraction.js@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.nlark.com/fraction.js/download/fraction.js-4.1.1.tgz?cache=0&sync_timestamp=1621848730310&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ffraction.js%2Fdownload%2Ffraction.js-4.1.1.tgz#ac4e520473dae67012d618aab91eda09bcb400ff"
+  integrity sha1-rE5SBHPa5nAS1hiquR7aCby0AP8=
 
 fresh@0.5.2:
   version "0.5.2"
