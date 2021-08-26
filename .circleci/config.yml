@@ -1,0 +1,66 @@
+---
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:3.0.2-node-browsers
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
+          NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+
+    working_directory: ~/tailwind-jit
+    steps:
+      - checkout
+
+      # Which version of bundler? should keep same as Gemfile.lock
+      - run:
+          name: install bundler v2.2.26
+          command: gem install bundler:2.2.26 && bundle -v
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - tailwind-bundle-v2-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      # Store bundle cache
+      - save_cache:
+          key: tailwind-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Only necessary if app uses webpacker or yarn in some other way
+      - restore_cache:
+          keys:
+            - tailwind-yarn-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      - save_cache:
+          key: tailwind-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      - run:
+          command: |
+            google-chrome --version
+            chromedriver --version
+          name: Check install
+
+      # run tests!
+      - run:
+          name: run tests
+          command: RAILS_ENV=test; bin/rails test

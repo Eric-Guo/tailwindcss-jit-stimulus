@@ -28,7 +28,7 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling "console" anywhere in the code.
   # bundle config local.web-console /Users/guochunzhong/git/oss/web-console
-  gem "web-console", git: 'https://github.com/rails/web-console.git', branch: :master
+  gem "web-console"
   # Display speed badge on every html page with SQL times and flame graphs.
   # Note: Interferes with etag cache testing. Can be configured to work on production: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   # gem "rack-mini-profiler", "~> 2.0"
@@ -39,6 +39,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", ">= 3.26"
+  gem "rexml" # required by selenium-webdriver
   gem "selenium-webdriver"
   # Easy installation and use of web drivers to run system tests with browsers
   gem "webdrivers"
