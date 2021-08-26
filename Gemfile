@@ -41,6 +41,11 @@ group :development do
   # Speed up rails commands in dev on slow machines / big apps. See: https://github.com/rails/spring
   # gem "spring"
 
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma'
+
   gem 'tidewave'
 end
 

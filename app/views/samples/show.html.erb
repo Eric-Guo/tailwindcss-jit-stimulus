@@ -1,0 +1,149 @@
+<header class="border-b-2 border-gray-100 border-solid">
+  <nav class="flex items-center justify-center p-4 sm:px-6 lg:px-8" aria-label="Global">
+    <div class="w-0 flex-1 flex justify-begin">
+      <a href="#" class="inline">
+        <span class="sr-only">天华</span>
+        <%= render partial: 'shared/logo', locals: { className: 'mt-1' } -%>
+      </a>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+      </svg>
+    </div>
+    <div>
+      <a href="#" class="font-medium text-black text-2xl">天华建造研究中心</a>
+    </div>
+    <div class="w-0 flex-1 text-black flex justify-end">
+      <svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+  </nav>
+</header>
+
+<main class="flex flex-row px-40 py-8">
+  <section class="w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl flex flex-col">
+    <p class="mx-4">首页 > 石材 > 花岗岩 > 黄金麻 > 黄金麻样品</p>
+    <%# 产品样品 %>
+    <div class="mx-4 mt-6">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">产品样品</span><span class="text-xl font-light">Samples</span>
+    </div>
+    <div class="mx-4 mt-10 flex gap-4">
+      <img class="w-96 h-96" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
+      <div class="ml-4">
+        <h2 class="my-4 text-2xl font-medium">黄金麻（样品）：</h2>
+        <dl class="block w-96">
+            <dt class="my-1.5 inline-block w-1/2">样品编号：</dt>
+            <dd class="my-1.5 inline w-1/2">xxxxxxx</dd>
+
+            <dt class="my-1.5 inline-block w-1/2">价格：</dt>
+            <dd class="my-1.5 inline w-1/2">100-350/㎡</dd>
+
+            <dt class="my-1.5 inline-block w-1/2">产品/二级分类名称：</dt>
+            <dd class="my-1.5 inline w-1/2">黄金麻</dd>
+
+            <dt class="my-1.5 inline-block w-1/2">产品/二级分类编号：</dt>
+            <dd class="my-1.5 inline w-1/2">xxxxx</dd>
+
+            <dt class="my-1.5 inline-block w-1/2">色系：</dt>
+            <dd class="my-1.5 inline w-1/2">黄色</dd>
+
+            <dt class="my-1.5 inline-block w-1/2">色号：</dt>
+            <dd class="my-1.5 inline w-1/2">xxxx</dd>
+
+            <dt class="my-1.5 inline-block w-1/2">产品规格/型号：</dt>
+            <dd class="my-1.5 inline w-1/2">30*30CM</dd>
+
+            <dt class="my-1.5 inline-block w-1/2">表面效果：</dt>
+            <dd class="my-1.5 inline w-1/2">荔枝面</dd>
+
+            <dt class="my-1.5 inline-block w-1/2">存储位置：</dt>
+            <dd class="my-1.5 inline w-1/2">A-3-25</dd>
+        </dl>
+      </div>
+    </div>
+
+    <%# 厂家信息 %>
+    <div class="mx-4 mt-6">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">厂家信息</span><span class="text-xl font-light">Information</span>
+    </div>
+    <div class="mx-4 mt-8 flex">
+      <div class="p-6 border border-gray-300 border-solid">
+        <img class="w-48" src="<%= image_pack_path('static/logo-1-1.jpg') -%>" alt="">
+      </div>
+      <div class="py-10">
+        <div class="m-4 grid grid-cols-3 gap-6">
+          <dl class="border-l border-gray-300 border-solid pl-3 py1">
+            <dt class="text-gray-700">厂家名称</dt>
+            <dd class="">东利石材</dd>
+          </dl>
+          <dl class="border-l border-gray-300 border-solid pl-3 py1">
+            <dt class="text-gray-700">联系人</dt>
+            <dd class="">XXX</dd>
+          </dl>
+          <dl class="border-l border-gray-300 border-solid pl-3 py1">
+            <dt class="text-gray-700">邮箱</dt>
+            <dd class="">xxx@sample.com</dd>
+          </dl>
+          <dl class="border-l border-gray-300 border-solid pl-3 py1">
+            <dt class="text-gray-700">厂家地址</dt>
+            <dd class="">广东</dd>
+          </dl>
+          <dl class="border-l border-gray-300 border-solid pl-3 py1">
+            <dt class="text-gray-700">联系电话</dt>
+            <dd class="">XXX-12342837</dd>
+          </dl>
+          <dl class="border-l border-gray-300 border-solid pl-3 py1">
+            <dt class="text-gray-700">是否愿意送样</dt>
+            <dd class="">否</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <%# 附件下载 %>
+    <div class="mx-4 mt-6">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">附件下载</span><span class="text-xl font-light">Download</span>
+    </div>
+    <div class="mx-4 mt-8 grid grid-cols-5 gap-4">
+      <% %w[下载全部 公司介绍 相关证书 产品图册 工艺节点 监测报告 CAD BIM 三视图 其他].each do |word| %>
+      <a class="p-4 shadow font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+        <%= word %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 float-right" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+        </svg>
+      </a>
+      <% end %>
+    </div>
+
+    <%# 所属案例 %>
+    <div class="mx-4 mt-6">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">所属案例</span><span class="text-xl font-light">Projects</span>
+    </div>
+
+  </section>
+
+  <%# 其他样品 %>
+  <section class="flex-auto">
+    <div class="mx-4 mt-12">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">其他样品</span><span class="text-xl font-light">Other Samples</span>
+    </div>
+
+    <% (1..4).each do |i| %>
+      <div class="mx-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> flex">
+        <img class="w-52" src="<%= image_pack_path("static/sample_side_p#{i}.jpg") -%>" alt="">
+        <div class="flex flex-col justify-end mx-4">
+          <h2 class="text-xl mb-2">黄金麻（样品）</h2>
+          <p class="text-gray-600">样品编号：xxxx</p>
+          <p class="text-gray-600">表面工艺：xxxxxxxxxxxxxxxxxxxxx</p>
+          <p class="text-gray-600">色系：黄色</p>
+          <p class="text-gray-600">厂家：xxxxxxxxx</p>
+        </div>
+      </div>
+    <% end %>
+  </section>
+</main>
+
+<%= render partial: 'shared/footer', locals: { } -%>
