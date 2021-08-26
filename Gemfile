@@ -36,6 +36,11 @@ group :development do
   # gem "rack-mini-profiler", "~> 2.0"
   # Speed up rails commands in dev on slow machines / big apps. See: https://github.com/rails/spring
   # gem "spring"
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma'
 end
 
 group :test do
