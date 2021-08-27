@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: ad0af376114e0f63e0a40212e0932316dd14ea42
+  revision: 7ef60b1c97d11eace53e3fa1b2217b3fa80f9852
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha)
