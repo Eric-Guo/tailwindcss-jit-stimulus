@@ -982,6 +982,13 @@
   resolved "https://registry.npm.taobao.org/@stimulus/webpack-helpers/download/@stimulus/webpack-helpers-2.0.0.tgz#54296d2a2dffd4f962d2e802d99a3fdd84b8845f"
   integrity sha1-VCltKi3/1Pli0ugC2Zo/3YS4hF8=
 
+"@tailwindcss/forms@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.nlark.com/@tailwindcss/forms/download/@tailwindcss/forms-0.3.3.tgz#a29d22668804f3dae293dcadbef1aa6315c45b64"
+  integrity sha1-op0iZogE89rik9ytvvGqYxXEW2Q=
+  dependencies:
+    mini-svg-data-uri "^1.2.3"
+
 "@trysound/sax@0.1.1":
   version "0.1.1"
   resolved "https://registry.npm.taobao.org/@trysound/sax/download/@trysound/sax-0.1.1.tgz#3348564048e7a2d7398c935d466c0414ebb6a669"
@@ -3049,6 +3056,11 @@ mini-css-extract-plugin@^2.2.0:
   integrity sha1-SMttK+qPqes2cJhW4ANmLuuz65I=
   dependencies:
     schema-utils "^3.1.0"
+
+mini-svg-data-uri@^1.2.3:
+  version "1.3.3"
+  resolved "https://registry.nlark.com/mini-svg-data-uri/download/mini-svg-data-uri-1.3.3.tgz#91d2c09f45e056e5e1043340b8b37ba7b50f4fac"
+  integrity sha1-kdLAn0XgVuXhBDNAuLN7p7UPT6w=
 
 minimalistic-assert@^1.0.0:
   version "1.0.1"
