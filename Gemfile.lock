@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: 09907a881a6d566096e968eaced25c60a9a0545d
+  revision: 224deac15da3d4a7ca1971b09717eb1f17472e17
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha)
@@ -118,9 +118,9 @@ GEM
     mini_mime (1.1.1)
     minitest (5.14.4)
     nio4r (2.5.8)
-    nokogiri (1.12.3-x86_64-darwin)
+    nokogiri (1.12.4-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.12.3-x86_64-linux)
+    nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
     public_suffix (4.0.6)
     puma (5.4.0)

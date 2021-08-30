@@ -580,7 +580,7 @@
 
 "@babel/plugin-transform-function-name@^7.14.5":
   version "7.14.5"
-  resolved "https://registry.nlark.com/@babel/plugin-transform-function-name/download/@babel/plugin-transform-function-name-7.14.5.tgz#e81c65ecb900746d7f31802f6bed1f52d915d6f2"
+  resolved "https://registry.nlark.com/@babel/plugin-transform-function-name/download/@babel/plugin-transform-function-name-7.14.5.tgz?cache=0&sync_timestamp=1623280395990&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fplugin-transform-function-name%2Fdownload%2F%40babel%2Fplugin-transform-function-name-7.14.5.tgz#e81c65ecb900746d7f31802f6bed1f52d915d6f2"
   integrity sha1-6Bxl7LkAdG1/MYAva+0fUtkV1vI=
   dependencies:
     "@babel/helper-function-name" "^7.14.5"
@@ -1021,9 +1021,9 @@
   integrity sha1-l+3JA36gw4WFMgsolk3eOznkZg0=
 
 "@types/node@*":
-  version "16.7.5"
-  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.7.5.tgz#96142b243977b03d99c338fdb09241d286102711"
-  integrity sha1-lhQrJDl3sD2Zwzj9sJJB0oYQJxE=
+  version "16.7.6"
+  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.7.6.tgz?cache=0&sync_timestamp=1630253006705&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-16.7.6.tgz#8666478db8095aa66e25b7e469f3e7b53ea2855e"
+  integrity sha1-hmZHjbgJWqZuJbfkafPntT6ihV4=
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -1699,9 +1699,9 @@ cookie@0.4.0:
   integrity sha1-vrQ35wIrO21JAZ0IhmUwPr6cFLo=
 
 core-js-compat@^3.14.0, core-js-compat@^3.16.0:
-  version "3.16.3"
-  resolved "https://registry.nlark.com/core-js-compat/download/core-js-compat-3.16.3.tgz?cache=0&sync_timestamp=1629836276545&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js-compat%2Fdownload%2Fcore-js-compat-3.16.3.tgz#ae12a6e20505a1d79fbd16b6689dfc77fc989114"
-  integrity sha1-rhKm4gUFodefvRa2aJ38d/yYkRQ=
+  version "3.16.4"
+  resolved "https://registry.nlark.com/core-js-compat/download/core-js-compat-3.16.4.tgz?cache=0&sync_timestamp=1630249101142&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js-compat%2Fdownload%2Fcore-js-compat-3.16.4.tgz#cf28abe0e45a43645b04b2c1a073efa03d0b3b26"
+  integrity sha1-zyir4ORaQ2RbBLLBoHPvoD0LOyY=
   dependencies:
     browserslist "^4.16.8"
     semver "7.0.0"
@@ -2045,9 +2045,9 @@ domelementtype@^2.0.1, domelementtype@^2.2.0:
   integrity sha1-mgtsJ4LtahxzI9QiZxg9+b2LHVc=
 
 domhandler@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.nlark.com/domhandler/download/domhandler-4.2.0.tgz#f9768a5f034be60a89a27c2e4d0f74eba0d8b059"
-  integrity sha1-+XaKXwNL5gqJonwuTQ9066DYsFk=
+  version "4.2.2"
+  resolved "https://registry.nlark.com/domhandler/download/domhandler-4.2.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fdomhandler%2Fdownload%2Fdomhandler-4.2.2.tgz#e825d721d19a86b8c201a35264e226c678ee755f"
+  integrity sha1-6CXXIdGahrjCAaNSZOImxnjudV8=
   dependencies:
     domelementtype "^2.2.0"
 
@@ -2282,9 +2282,9 @@ finalhandler@~1.1.2:
     unpipe "~1.0.0"
 
 find-cache-dir@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.nlark.com/find-cache-dir/download/find-cache-dir-3.3.1.tgz?cache=0&sync_timestamp=1618847023946&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ffind-cache-dir%2Fdownload%2Ffind-cache-dir-3.3.1.tgz#89b33fad4a4670daa94f855f7fbe31d6d84fe880"
-  integrity sha1-ibM/rUpGcNqpT4Vff74x1thP6IA=
+  version "3.3.2"
+  resolved "https://registry.nlark.com/find-cache-dir/download/find-cache-dir-3.3.2.tgz#b30c5b6eff0730731aea9bbd9dbecbd80256d64b"
+  integrity sha1-swxbbv8HMHMa6pu9nb7L2AJW1ks=
   dependencies:
     commondir "^1.0.1"
     make-dir "^3.0.2"
@@ -3360,7 +3360,7 @@ path-parse@^1.0.6:
 
 path-to-regexp@0.1.7:
   version "0.1.7"
-  resolved "https://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-0.1.7.tgz?cache=0&sync_timestamp=1601400247487&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpath-to-regexp%2Fdownload%2Fpath-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
+  resolved "https://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
   integrity sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
 
 path-type@^4.0.0:
