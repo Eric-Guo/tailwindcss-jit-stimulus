@@ -11,36 +11,36 @@
     <div class="mx-4 mt-4 flex gap-4">
       <img class="w-80 h-80" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
       <div class="ml-4 relative">
-        <h2 class="text-xl font-medium">黄金麻（样品）：</h2>
+        <h2 class="text-xl font-medium"><%= @sample.material.name -%></h2>
         <dl class="absolute bottom-0 w-120 text-sm">
             <dt class="mt-2 inline-block w-1/2">样品编号：</dt>
-            <dd class="mt-2 inline">xxxxxxx</dd>
+            <dd class="mt-2 inline"><%= @sample.no %></dd>
 
             <dt class="mt-2 inline-block w-1/2">价格：</dt>
-            <dd class="mt-2 inline">100-350/㎡</dd>
+            <dd class="mt-2 inline"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</dd>
 
             <dt class="mt-2 inline-block w-1/2">产品/二级分类名称：</dt>
-            <dd class="mt-2 inline">黄金麻</dd>
+            <dd class="mt-2 inline"><%= @sample.material.name -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">产品/二级分类编号：</dt>
-            <dd class="mt-2 inline">xxxxx</dd>
+            <dd class="mt-2 inline"><%= @sample.material.no -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">色系：</dt>
-            <dd class="mt-2 inline">黄色</dd>
+            <dd class="mt-2 inline"><%= @sample.material.color -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">色号：</dt>
-            <dd class="mt-2 inline">xxxx</dd>
+            <dd class="mt-2 inline"><%= @sample.color_code -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">产品规格/型号：</dt>
-            <dd class="mt-2 inline">30*30CM</dd>
+            <dd class="mt-2 inline"><%= @sample.spec_model -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">表面效果：</dt>
-            <dd class="mt-2 inline">荔枝面</dd>
+            <dd class="mt-2 inline"><%= @sample.surface_effect&.description -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">存储位置：</dt>
             <dd class="mt-2 inline" data-controller="modal" data-modal-allow-background-close="true">
               <a href="#" data-action="click->modal#open">
-                <span class="underline">A-3-25</span>
+                <span class="underline"><%= @sample.position -%></span>
               </a>
               <!-- Modal Container -->
               <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
@@ -51,7 +51,7 @@
                     <div class="p-8">
                       <figure>
                         <img src="<%= image_pack_path('static/sample_location.png') -%>" alt="">
-                        <figcaption class="text-center mt-2">样板位置: A-3-25</figcaption>
+                        <figcaption class="text-center mt-2">样板位置: <%= @sample.position -%></figcaption>
                       </figure>
                     </div>
                   </div>
@@ -74,28 +74,28 @@
       </div>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
         <dt class="text-gray-400">厂家名称</dt>
-        <dd class="">东利石材</dd>
+        <dd class=""><%= @sample.manufacturer&.name -%></dd>
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
         <dt class="text-gray-400">联系人</dt>
-        <dd class="">XXX</dd>
+        <dd class=""><%= @sample.manufacturer&.contact -%></dd>
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
         <dt class="text-gray-400">邮箱</dt>
-        <dd class="">xxx@sample.com</dd>
+        <dd class=""><%= @sample.manufacturer&.website -%></dd>
       </dl>
       <dl></dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
         <dt class="text-gray-400">厂家地址</dt>
-        <dd class="">广东</dd>
+        <dd class=""><%= @sample.manufacturer&.location -%></dd>
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
         <dt class="text-gray-400">联系电话</dt>
-        <dd class="">XXX-12342837</dd>
+        <dd class=""><%= @sample.manufacturer&.contact_information -%></dd>
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
         <dt class="text-gray-400">是否愿意送样</dt>
-        <dd class="">否</dd>
+        <dd class=""><%= @sample.manufacturer&.is_allow -%></dd>
       </dl>
       <dl></dl>
     </div>
