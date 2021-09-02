@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: a4572b036953b1235a23c676ee1e753cc26eb75f
+  revision: 1c54444d0ecef091c5290e783689f8210b7b5635
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha)
@@ -61,7 +61,7 @@ GIT
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-      zeitwerk (~> 2.5.0.beta2)
+      zeitwerk (~> 2.5.0.beta3)
     rails (7.0.0.alpha)
       actioncable (= 7.0.0.alpha)
       actionmailbox (= 7.0.0.alpha)
@@ -174,7 +174,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.0.beta2)
+    zeitwerk (2.5.0.beta3)
 
 PLATFORMS
   x86_64-darwin-19

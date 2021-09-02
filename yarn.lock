@@ -897,7 +897,7 @@
 
 "@fullhuman/postcss-purgecss@^4.0.3":
   version "4.0.3"
-  resolved "https://registry.nlark.com/@fullhuman/postcss-purgecss/download/@fullhuman/postcss-purgecss-4.0.3.tgz#55d71712ec1c7a88e0d1ba5f10ce7fb6aa05beb4"
+  resolved "https://registry.npm.taobao.org/@fullhuman/postcss-purgecss/download/@fullhuman/postcss-purgecss-4.0.3.tgz#55d71712ec1c7a88e0d1ba5f10ce7fb6aa05beb4"
   integrity sha1-VdcXEuwceojg0bpfEM5/tqoFvrQ=
   dependencies:
     purgecss "^4.0.3"
@@ -1711,9 +1711,9 @@ cookie@0.4.0:
   integrity sha1-vrQ35wIrO21JAZ0IhmUwPr6cFLo=
 
 core-js-compat@^3.14.0, core-js-compat@^3.16.0:
-  version "3.16.4"
-  resolved "https://registry.nlark.com/core-js-compat/download/core-js-compat-3.16.4.tgz?cache=0&sync_timestamp=1630249101142&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js-compat%2Fdownload%2Fcore-js-compat-3.16.4.tgz#cf28abe0e45a43645b04b2c1a073efa03d0b3b26"
-  integrity sha1-zyir4ORaQ2RbBLLBoHPvoD0LOyY=
+  version "3.17.1"
+  resolved "https://registry.nlark.com/core-js-compat/download/core-js-compat-3.17.1.tgz?cache=0&sync_timestamp=1630527381639&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js-compat%2Fdownload%2Fcore-js-compat-3.17.1.tgz#a0264ed6712affb3334c56f6a6159f20aedad56b"
+  integrity sha1-oCZO1nEq/7MzTFb2phWfIK7a1Ws=
   dependencies:
     browserslist "^4.16.8"
     semver "7.0.0"
@@ -2078,9 +2078,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.811:
-  version "1.3.825"
-  resolved "https://registry.nlark.com/electron-to-chromium/download/electron-to-chromium-1.3.825.tgz?cache=0&sync_timestamp=1630447407696&other_urls=https%3A%2F%2Fregistry.nlark.com%2Felectron-to-chromium%2Fdownload%2Felectron-to-chromium-1.3.825.tgz#5d361eeaaf591bb2ce06cfeff86354b429d662b8"
-  integrity sha1-XTYe6q9ZG7LOBs/v+GNUtCnWYrg=
+  version "1.3.827"
+  resolved "https://registry.nlark.com/electron-to-chromium/download/electron-to-chromium-1.3.827.tgz#c725e8db8c5be18b472a919e5f57904512df0fc1"
+  integrity sha1-xyXo24xb4YtHKpGeX1eQRRLfD8E=
 
 emojis-list@^3.0.0:
   version "3.0.0"
@@ -3056,9 +3056,9 @@ mimic-fn@^3.1.0:
   integrity sha1-ZXVRRbvz42lUuUnBZFBCdFHVynQ=
 
 mini-css-extract-plugin@^2.2.0:
-  version "2.2.1"
-  resolved "https://registry.nlark.com/mini-css-extract-plugin/download/mini-css-extract-plugin-2.2.1.tgz#a44bbfc8ede9211f31474b91c4e8863bf52dd294"
-  integrity sha1-pEu/yO3pIR8xR0uRxOiGO/Ut0pQ=
+  version "2.2.2"
+  resolved "https://registry.nlark.com/mini-css-extract-plugin/download/mini-css-extract-plugin-2.2.2.tgz#df22f16bf43173050c6d652fa7d035318c310e04"
+  integrity sha1-3yLxa/QxcwUMbWUvp9A1MYwxDgQ=
   dependencies:
     schema-utils "^3.1.0"
 
