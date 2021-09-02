@@ -1,34 +1,56 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby ">= 3.1"
-gem "rbs", "< 4.2" # require by Ruby 3.2
-gem "parallel", "< 2.0"
+ruby ">= 3.0"
+gem "ffi", "~> 1.16.0"
 
 gem "rails", "~> 7.2.3.1"
-gem "minitest", "< 6" # rails 7.2 not support minitest 6.0.1
+gem "benchmark" # required by rails for Ruby 3.5
+gem "nokogiri", "~> 1.17.2"
+gem "net-http", "~> 0.4.1"
+gem "net-imap", "~> 0.4.18"
+gem "zeitwerk", "~> 2.6.18" # Support ruby 3.0
+gem "mutex_m"
+gem "bigdecimal"
 
 gem "mysql2"
-gem "sqlite3"
 
 # Use Puma as the app server
 gem 'puma'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "shakapacker", "~> 8.4.0"
-gem "rack-proxy", "~> 0.8" # after shakapacker v10.3.2 can remove this line
+gem "shakapacker", "~> 8.1"
+
 gem "turbo-rails"
 
 gem "browser", "< 6", require: "browser/browser" # support ruby 3.0
 
+gem 'kaminari'
+
+gem 'rubyzip'
+
+gem "http"
+# bundle config local.wechat /Users/guochunzhong/git/oss/wechat/
+gem 'wechat', git: 'https://git.thape.com.cn/Eric-Guo/wechat.git', branch: :main
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
-# Use Active Model has_secure_password
-# gem "bcrypt", "~> 3.1.7"
+
+gem 'devise'
+gem 'omniauth_openid_connect'
+gem 'omniauth', '~> 1.9' # lock above omniauth version
+gem 'jwt'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem "jbuilder"
 
 # Use Active Storage variant
 # gem "image_processing", "~> 1.2"
 
+# markdown
+gem 'redcarpet'
+gem 'coderay'
+
 group :development, :test do
+  # Call "debugger" anywhere in the code to stop execution and get a debugger console
   gem "debug"
 end
 
@@ -45,16 +67,18 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano3-puma'
+  gem 'capistrano3-puma', '~> 6.2.0'
 
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
   gem 'tidewave'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara'
-  # Selenium Manager handles browser drivers without the webdrivers gem.
-  gem "selenium-webdriver", "~> 4.26.0"
+  gem 'capybara', '>= 3.39'
+  gem 'selenium-webdriver', '~> 4.26.0'
+  gem 'rexml' # required by selenium-webdriver
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
