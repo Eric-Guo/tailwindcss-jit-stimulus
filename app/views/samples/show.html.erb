@@ -24,10 +24,10 @@
 </header>
 
 <main class="flex flex-row px-40 py-8">
-  <section class="w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl flex flex-col">
+  <section class="w-full mr-12 max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl flex flex-col">
     <p class="mx-4">首页 > 石材 > 花岗岩 > 黄金麻 > 黄金麻样品</p>
     <%# 产品样品 %>
-    <div class="mx-4 mt-6">
+    <div class="mx-4 mt-10">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">产品样品</span><span class="text-xl font-light">Samples</span>
     </div>
     <div class="mx-4 mt-10 flex gap-4">
@@ -66,10 +66,10 @@
     </div>
 
     <%# 厂家信息 %>
-    <div class="mx-4 mt-6">
+    <div class="mx-4 mt-16">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">厂家信息</span><span class="text-xl font-light">Information</span>
     </div>
-    <div class="mx-4 mt-8 flex">
+    <div class="mx-4 mt-10 flex">
       <div class="p-6 border border-gray-300 border-solid">
         <img class="w-48" src="<%= image_pack_path('static/logo-1-1.jpg') -%>" alt="">
       </div>
@@ -104,10 +104,10 @@
     </div>
 
     <%# 附件下载 %>
-    <div class="mx-4 mt-6">
+    <div class="mx-4 mt-16">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">附件下载</span><span class="text-xl font-light">Download</span>
     </div>
-    <div class="mx-4 mt-8 grid grid-cols-5 gap-4">
+    <div class="mx-4 mt-10 grid grid-cols-5 gap-4">
       <% %w[下载全部 公司介绍 相关证书 产品图册 工艺节点 监测报告 CAD BIM 三视图 其他].each do |word| %>
       <a class="p-4 shadow font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
         <%= word %>
@@ -119,15 +119,35 @@
     </div>
 
     <%# 所属案例 %>
-    <div class="mx-4 mt-6">
+    <div class="mx-4 mt-16">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">所属案例</span><span class="text-xl font-light">Projects</span>
     </div>
 
+    <div class="mx-4 mt-10 grid grid-cols-3 gap-8">
+      <div>
+        <img class="w-full my-3" src="<%= image_pack_path('static/project_new_g3.jpg') -%>" alt="">
+        <h3 class="text-xl font-medium">沈阳国际软件园</h3>
+        <p class="mt-1">辽宁省沈阳市</p>
+        <p class="mt-1">上海天华/建筑十所</p>
+      </div>
+      <div>
+        <img class="w-full my-3" src="<%= image_pack_path('static/project_new_g4.jpg') -%>" alt="">
+        <h3 class="text-xl font-medium">华润宁波万象汇</h3>
+        <p class="mt-1">浙江省宁波市</p>
+        <p class="mt-1">上海天华/公建一所（总）</p>
+      </div>
+      <div>
+        <img class="w-full my-3" src="<%= image_pack_path('static/project_new_g5.jpg') -%>" alt="">
+        <h3 class="text-xl font-medium">龙湖·中铁建·云璟</h3>
+        <p class="mt-1">辽宁省沈阳市</p>
+        <p class="mt-1">上海天华/建筑四所</p>
+      </div>
+    </div>
   </section>
 
   <%# 其他样品 %>
   <section class="flex-auto">
-    <div class="mx-4 mt-12">
+    <div class="mx-4 mt-16">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">其他样品</span><span class="text-xl font-light">Other Samples</span>
     </div>
 
