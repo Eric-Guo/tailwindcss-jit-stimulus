@@ -1,27 +1,4 @@
-<header class="border-b-2 border-gray-100 border-solid">
-  <nav class="flex items-center justify-center p-4 sm:px-6 lg:px-8" aria-label="Global">
-    <div class="w-0 flex-1 flex justify-begin">
-      <a href="#" class="inline">
-        <span class="sr-only">天华</span>
-        <%= render partial: 'shared/logo', locals: { className: 'mt-1' } -%>
-      </a>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-      </svg>
-    </div>
-    <div>
-      <a href="#" class="font-medium text-black text-2xl">天华建造研究中心</a>
-    </div>
-    <div class="w-0 flex-1 text-black flex justify-end">
-      <svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    </div>
-  </nav>
-</header>
+<%= render partial: 'shared/header', locals: { } -%>
 
 <main class="flex flex-row px-40 py-8">
   <section class="w-full mr-12 max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl flex flex-col">
