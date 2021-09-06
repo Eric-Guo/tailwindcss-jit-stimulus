@@ -103,18 +103,28 @@
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">材料产品详情</span><span class="text-xl font-light">Material Details</span>
     </div>
     <div class="mx-4 my-8 text-lg text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid">
-      <h2 class="w-32 py-6 bg-gray-200 text-black font-medium text-right pr-6">色系</h2>
-      <p class="w-32 py-6">全部</p>
-      <p class="w-32 py-6">白色系</p>
-      <p class="w-32 py-6">灰色系</p>
-      <p class="w-32 py-6">黑色系</p>
-      <p class="w-32 py-6">
+      <h2 class="w-30 py-6 bg-gray-200 text-black font-medium text-right pr-6">色系</h2>
+      <p class="w-30 py-6">全部</p>
+      <p class="w-30 py-6">白色系</p>
+      <p class="w-30 py-6">灰色系</p>
+      <p class="w-30 py-6">黑色系</p>
+      <p class="w-30 py-6">
         <span class="px-5 py-3 rounded-full font-medium bg-gray-200 text-black">
           黄色系
         </span>
       </p>
-      <p class="w-32 py-6">红色系</p>
-      <p class="w-32 py-6">棕色系</p>
+      <p class="w-30 py-6">红色系</p>
+      <p class="w-30 py-6">棕色系</p>
+    </div>
+
+    <div class="mx-4 mt-10 mb-4 flex gap-2.5">
+      <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
+        <% pic_url = "static/new_mat_g#{i+1}.jpg" -%>
+        <div class="border border-gray-200 border-solid">
+          <img class="mx-auto w-28 h-28" src="<%= image_pack_path(pic_url) -%>" alt="">
+          <h3 class="text-center my-2"><%= name -%></h3>
+        </div>
+      <% end %>
     </div>
   </section>
 </main>
