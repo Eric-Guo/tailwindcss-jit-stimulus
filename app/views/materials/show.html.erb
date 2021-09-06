@@ -168,7 +168,89 @@
       </div>
     </div>
 
+    <%# 实际应用 材料样品 %>
+    <div class="flex justify-between">
+      <div class="flex-grow">
+        <div class="mx-4 mt-10 mb-4 border-b-2 border-gray-200 border-solid pb-3">
+          <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">实际应用</span><span class="text-xl font-light">Application</span>
+        </div>
+
+        <div class="mx-4 bg-gray-200">
+          <h5 class="py-6 text-lg font-medium text-center">佳兆业中山樾伴山花园</h5>
+          <div class="mx-12">
+            <img class="w-full" src="<%= image_pack_path('static/application_big_pic.jpg') -%>" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="flex-grow">
+        <div class="mx-4 mt-10 mb-4 border-b-2 border-gray-200 border-solid pb-3">
+          <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材料样品</span><span class="text-xl font-light">Samples</span>
+        </div>
+
+        <div class="mx-4 bg-gray-200">
+          <h5 class="py-6 text-lg font-medium text-center">实体材料库库存信息</h5>
+          <div class="mx-3">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    样品编号
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    色系
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    样品规格、型号
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    表面工艺
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    剩余库存
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    存放位置
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    厂商
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <% (1..7).each do %>
+                  <tr>
+                    <td class="p-2 text-center border whitespace-nowrap text-xs font-medium">
+                      A07010-32
+                    </td>
+                    <td class="p-2 text-center border whitespace-nowrap text-xs">
+                      黄色系
+                    </td>
+                    <td class="p-2 text-center border whitespace-nowrap text-xs">
+                      30cmx30cm
+                    </td>
+                    <td class="p-2 text-center border whitespace-nowrap text-xs">
+                      哑光
+                    </td>
+                    <td class="p-2 text-center border whitespace-nowrap text-xs">
+
+                    </td>
+                    <td class="p-2 text-center border whitespace-nowrap text-xs">
+
+                    </td>
+                    <td class="p-2 text-center border whitespace-nowrap text-xs">
+                      正金石材
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
+
 </main>
 
 <%= render partial: 'shared/footer', locals: { } -%>
