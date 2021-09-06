@@ -13,6 +13,9 @@ module.exports = {
       screens: {
         '3xl': '1850px',
       },
+      spacing: {
+        '30': '7.5rem',
+      },
       gridTemplateColumns: {
         // Simple 20 column grid
         '20': 'repeat(20, minmax(0, 1fr))',
