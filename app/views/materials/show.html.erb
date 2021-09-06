@@ -175,10 +175,17 @@
           <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">实际应用</span><span class="text-xl font-light">Application</span>
         </div>
 
-        <div class="mx-4 bg-gray-200">
-          <h5 class="py-6 text-lg font-medium text-center">佳兆业中山樾伴山花园</h5>
+        <div class="mx-4 py-4 bg-gray-200">
+          <h5 class="pb-3 text-lg font-medium text-center">佳兆业中山樾伴山花园</h5>
           <div class="mx-12">
             <img class="w-full" src="<%= image_pack_path('static/application_big_pic.jpg') -%>" alt="">
+            <div class="flex gap-3 mt-3">
+              <img class="w-16" src="<%= image_pack_path('static/application_pic_g1.jpg') -%>" alt="">
+              <img class="w-16" src="<%= image_pack_path('static/application_pic_g2.jpg') -%>" alt="">
+              <img class="w-16" src="<%= image_pack_path('static/application_pic_g3.jpg') -%>" alt="">
+              <img class="w-16" src="<%= image_pack_path('static/application_pic_g4.jpg') -%>" alt="">
+              <img class="w-16" src="<%= image_pack_path('static/application_pic_g5.jpg') -%>" alt="">
+            </div>
           </div>
         </div>
       </div>
@@ -187,8 +194,8 @@
           <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材料样品</span><span class="text-xl font-light">Samples</span>
         </div>
 
-        <div class="mx-4 bg-gray-200">
-          <h5 class="py-6 text-lg font-medium text-center">实体材料库库存信息</h5>
+        <div class="mx-4 py-4 bg-gray-200">
+          <h5 class="pb-3 text-lg font-medium text-center">实体材料库库存信息</h5>
           <div class="mx-3">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
@@ -217,7 +224,7 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <% (1..7).each do %>
+                <% (1..10).each do %>
                   <tr>
                     <td class="p-2 text-center border whitespace-nowrap text-xs font-medium">
                       A07010-32
@@ -245,6 +252,7 @@
               </tbody>
             </table>
           </div>
+          <p class="mx-2 mt-6 mb-3">实体材料库地址：上海市徐汇区漕河泾科汇大厦11F</p>
         </div>
       </div>
     </div>
