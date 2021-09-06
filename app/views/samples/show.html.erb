@@ -101,7 +101,7 @@
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">所属案例</span><span class="text-xl font-light">Projects</span>
     </div>
 
-    <div class="mx-4 mt-10 grid grid-cols-3 gap-8">
+    <div class="mx-4 mt-10 mb-4 grid grid-cols-3 gap-8">
       <div>
         <img class="w-full my-3" src="<%= image_pack_path('static/project_new_g3.jpg') -%>" alt="">
         <h3 class="text-xl font-medium">沈阳国际软件园</h3>
@@ -130,7 +130,7 @@
     </div>
 
     <% (1..4).each do |i| %>
-      <div class="mx-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> flex">
+      <div class="mx-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> mb-4 flex">
         <img class="w-52" src="<%= image_pack_path("static/sample_side_p#{i}.jpg") -%>" alt="">
         <div class="flex flex-col justify-end mx-4">
           <h2 class="text-xl mb-2">黄金麻（样品）</h2>
