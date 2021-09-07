@@ -923,13 +923,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@rails/activestorage@^6.1.4-1":
-  version "6.1.4-1"
-  resolved "https://registry.nlark.com/@rails/activestorage/download/@rails/activestorage-6.1.4-1.tgz#5088854f536716c54566b530a97491d4b885528f"
-  integrity sha1-UIiFT1NnFsVFZrUwqXSR1LiFUo8=
-  dependencies:
-    spark-md5 "^3.0.0"
-
 "@rails/ujs@^6.1.4-1":
   version "6.1.4-1"
   resolved "https://registry.nlark.com/@rails/ujs/download/@rails/ujs-6.1.4-1.tgz#37507fe288a1c7c3a593602aa4dea42e5cb5797f"
@@ -1028,9 +1021,9 @@
   integrity sha1-l+3JA36gw4WFMgsolk3eOznkZg0=
 
 "@types/node@*":
-  version "16.7.12"
-  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.7.12.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-16.7.12.tgz#4e30f80bfa9983fbc3b55875c0522da0303f4e95"
-  integrity sha1-TjD4C/qZg/vDtVh1wFItoDA/TpU=
+  version "16.7.13"
+  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.7.13.tgz#86fae356b03b5a12f2506c6cf6cd9287b205973f"
+  integrity sha1-hvrjVrA7WhLyUGxs9s2Sh7IFlz8=
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -4450,11 +4443,6 @@ source-map@~0.7.2:
   version "0.7.3"
   resolved "https://registry.npm.taobao.org/source-map/download/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
   integrity sha1-UwL4FpAxc1ImVECS5kmB91F1A4M=
-
-spark-md5@^3.0.0:
-  version "3.0.2"
-  resolved "https://registry.nlark.com/spark-md5/download/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
-  integrity sha1-eVLEoweENHq87nMmjkc7nAFn4/w=
 
 spdy-transport@^3.0.0:
   version "3.0.0"

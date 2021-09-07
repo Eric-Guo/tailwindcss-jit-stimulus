@@ -6,7 +6,6 @@
 import "@fontsource/montserrat";
 
 import Rails from "@rails/ujs"
-import * as ActiveStorage from "@rails/activestorage"
 
 import "stylesheets/application.css"
 
@@ -14,7 +13,6 @@ import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 
 Rails.start()
-ActiveStorage.start()
 
 const application = Application.start()
 const context = require.context("../controllers", true, /\.js$/)
