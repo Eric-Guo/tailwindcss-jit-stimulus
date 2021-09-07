@@ -923,11 +923,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@rails/actioncable@^6.1.4-1":
-  version "6.1.4-1"
-  resolved "https://registry.nlark.com/@rails/actioncable/download/@rails/actioncable-6.1.4-1.tgz#69982e7f352d732f71fda0cc01b7ba8269c9945b"
-  integrity sha1-aZgufzUtcy9x/aDMAbe6gmnJlFs=
-
 "@rails/activestorage@^6.1.4-1":
   version "6.1.4-1"
   resolved "https://registry.nlark.com/@rails/activestorage/download/@rails/activestorage-6.1.4-1.tgz#5088854f536716c54566b530a97491d4b885528f"

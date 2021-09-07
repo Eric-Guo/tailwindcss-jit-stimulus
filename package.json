@@ -4,7 +4,6 @@
   "dependencies": {
     "@fontsource/montserrat": "^4.5.1",
     "@fullhuman/postcss-purgecss": "^4.0.3",
-    "@rails/actioncable": "^6.1.4-1",
     "@rails/activestorage": "^6.1.4-1",
     "@rails/ujs": "^6.1.4-1",
     "@rails/webpacker": "^6.0.0-rc.5",
