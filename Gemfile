@@ -11,7 +11,9 @@ gem "sqlite3", "~> 1.4"
 # Use Puma as the app server
 gem "puma", "~> 5.0"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "~> 6.0.0.rc.1"
+gem "webpacker", "~> 6.0.0.rc.5"
+
+gem "browser"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 # Use Active Model has_secure_password
