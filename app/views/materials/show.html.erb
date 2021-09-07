@@ -374,6 +374,22 @@
         </div>
       </div>
     </div>
+
+    <%# 源文件 %>
+    <div class="mx-4 mt-10 mb-4 border-b-2 border-gray-200 border-solid pb-3">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">源文件</span><span class="text-xl font-light">Files</span>
+    </div>
+    <div class="mx-4 my-2 grid grid-cols-6 gap-1.5">
+      <% %w[安装方式.dwg 安装方式.pdf 接缝.dwg].each do |word| %>
+        <a class="p-4 shadow font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+          <%= word %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 float-right" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+          </svg>
+        </a>
+      <% end %>
+    </div>
+
   </section>
 
 </main>
