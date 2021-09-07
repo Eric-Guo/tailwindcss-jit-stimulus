@@ -395,10 +395,15 @@
     <div class="mx-4 mt-10 mb-4 border-b-2 border-gray-200 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材质贴图</span><span class="text-xl font-light">Texture</span>
     </div>
-    <div class="mx-4 my-2 grid grid-cols-6 gap-1.5">
+    <div class="mx-4 my-6 grid grid-cols-6 gap-1.5">
       <% (1..6).each do |i| %>
         <img class="w-full object-fill" src="<%= image_pack_path("static/texture_t#{i}.jpg") -%>" alt="">
       <% end %>
+    </div>
+
+    <%# 厂家信息 %>
+    <div class="mx-4 mt-10 mb-4 border-b-2 border-gray-200 border-solid pb-3">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">厂家信息</span><span class="text-xl font-light">Manufacturer</span>
     </div>
 
   </section>
