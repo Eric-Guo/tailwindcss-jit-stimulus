@@ -1,1 +1,54 @@
-<h1 class="font-bold text-5xl text-center text-purple-600" data-controller="hello" data-hello-target="output">Hello World!</h1>
+<div class="flex flex-col gap-y-2 text-white">
+  <header class="flex-auto relative pb-20">
+    <div class="absolute inset-0">
+      <img class="w-full h-80 object-cover" src="<%= image_pack_path('static/home-background.jpg') -%>" alt="">
+      <div class="absolute inset-0 bg-gradient-to-t from-gray-100 to-gray-400 mix-blend-multiply" aria-hidden="true"></div>
+    </div>
+
+    <div class="relative mt-28 mx-auto px-4 text-white">
+      <h2 class="text-2xl">Welcome!</h2>
+      <h1 class="mt-3 text-4xl font-bold">天华线上材料库</h1>
+      <p class="mt-4 text-lg">TIANHUA Online Material Library</p>
+    </div>
+  </header>
+
+  <div class="flex-auto">
+    <div class="relative">
+      <img class="w-full" src="<%= image_pack_path('static/material_background.jpg') -%>" alt="">
+      <div class="absolute top-4 left-8 border-b-2 border-gray-100 border-solid">
+        <span class="text-2xl mr-2">材料</span><span class="text-xl">Materials</span>
+      </div>
+      <div class="absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%);">
+        <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
+          收录有 <span class="text-4xl 2xl:text-5xl">100</span> 多种材料
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="flex-auto">
+    <div class="relative">
+      <img class="w-full" src="<%= image_pack_path('static/project_background.jpg') -%>" alt="">
+      <div class="absolute top-4 left-8 border-b-2 border-gray-100 border-solid">
+        <span class="text-2xl mr-2">案例</span><span class="text-xl">Projects</span>
+      </div>
+      <div class="absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%);">
+        <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
+          收录有 <span class="text-4xl 2xl:text-5xl">500</span> 多个案例
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="flex-auto">
+    <div class="relative">
+      <img class="w-full" src="<%= image_pack_path('static/manufacturer_background.jpg') -%>" alt="">
+      <div class="absolute top-4 left-8 border-b-2 border-gray-100 border-solid">
+        <span class="text-2xl mr-2">供应商</span><span class="text-xl">Manufacturer</span>
+      </div>
+      <div class="absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%);">
+        <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
+          收录有 <span class="text-4xl 2xl:text-5xl">50</span> 多个材料供应商
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
