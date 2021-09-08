@@ -897,7 +897,7 @@
 
 "@fullhuman/postcss-purgecss@^4.0.3":
   version "4.0.3"
-  resolved "https://registry.npm.taobao.org/@fullhuman/postcss-purgecss/download/@fullhuman/postcss-purgecss-4.0.3.tgz#55d71712ec1c7a88e0d1ba5f10ce7fb6aa05beb4"
+  resolved "https://registry.nlark.com/@fullhuman/postcss-purgecss/download/@fullhuman/postcss-purgecss-4.0.3.tgz#55d71712ec1c7a88e0d1ba5f10ce7fb6aa05beb4"
   integrity sha1-VdcXEuwceojg0bpfEM5/tqoFvrQ=
   dependencies:
     purgecss "^4.0.3"
