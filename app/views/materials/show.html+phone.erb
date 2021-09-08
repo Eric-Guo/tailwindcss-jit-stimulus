@@ -1,14 +1,27 @@
 <%# 材料产品详情 %>
-<div class="bg-white text-black text-xs p-3">
-  <span class="px-1 py-3 font-medium">色系</span>
-  <span class="px-1 py-3">白色系</span>
-  <span class="px-1 py-3">灰色系</span>
-  <span class="px-1 py-3">黑色系</span>
-  <span class="px-1 py-3">
-    <span class="px-3 py-1 rounded-full font-medium bg-gray-200 text-black">
-      黄色系
+<div class="bg-white text-black text-xs m-1.5 p-1.5">
+  <div class="my-2">
+    <span class="px-1 font-medium">色系</span>
+    <span class="px-1">白色系</span>
+    <span class="px-1">灰色系</span>
+    <span class="px-1">黑色系</span>
+    <span class="px-1">
+      <span class="px-3 py-1 rounded-full font-medium bg-gray-200">
+        黄色系
+      </span>
     </span>
-  </span>
-  <span class="px-1 py-3">红色系</span>
-  <span class="px-1 py-3">棕色系</span>
+    <span class="px-1">红色系</span>
+    <span class="px-1">棕色系</span>
+  </div>
+  <div class="my-2 overscroll-x-auto overflow-x-auto shadow">
+    <div class="flex flex-nowrap min-w-max">
+      <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
+        <% pic_url = "static/new_mat_g#{i+1}.jpg" -%>
+        <div class="mx-px first:mx-px w-20 border border-gray-200 border-solid">
+          <img class="w-full object-contain" src="<%= image_pack_path(pic_url) -%>" alt="">
+          <h3 class="text-center my-2 whitespace-nowrap"><%= name -%></h3>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
