@@ -1,5 +1,5 @@
 <%# 材料产品详情 %>
-<div class="bg-white text-black text-xs m-1.5 p-1.5">
+<div class="bg-white text-black text-xs m-1.5 px-1.5 py-2.5">
   <div class="my-2">
     <span class="font-medium pr-1">色系</span>
     <span class="px-1">白色系</span>
@@ -13,7 +13,7 @@
     <span class="px-1">红色系</span>
     <span class="px-1">棕色系</span>
   </div>
-  <div class="my-2 overscroll-x-auto overflow-x-auto shadow">
+  <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
     <div class="flex flex-nowrap min-w-max">
       <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
         <% pic_url = "static/new_mat_g#{i+1}.jpg" -%>
@@ -25,7 +25,7 @@
     </div>
   </div>
 </div>
-<div class="bg-white text-black text-xs m-1.5 p-1.5">
+<div class="bg-white text-black text-xs m-1.5 px-1.5 py-2.5">
   <div class="my-2 flex">
     <img class="w-40 h-40" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
     <dl class="block mx-3 my-1.5">
@@ -45,5 +45,18 @@
         <span class="font-medium">是</span>
       </p>
     </dl>
+  </div>
+  <h5 class="text-base mt-4">表面效果：</h5>
+  <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
+    <div class="flex flex-nowrap min-w-max">
+      <% %w[光面 亚光 火烧 荔枝 剁斧 仿古 蘑菇 拉槽].each_with_index do |name, i| %>
+        <div class="relative">
+          <img class="mx-px first:mx-px w-16 object-fill" src="<%= image_pack_path("static/new_mat_g#{i+1}.jpg") -%>" alt="">
+          <p class="absolute left-1/2 bottom-0 text-white text-center text-sm font-medium whitespace-nowrap" style="transform: translate(-50%, 0);">
+              <%= name -%>
+          </p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
