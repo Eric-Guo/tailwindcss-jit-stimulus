@@ -5,6 +5,9 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
   ],
+  corePlugins: {
+    gap: true, // have to disable for wechat/qq browser, as it not supported yet.
+  },
   theme: {
     extend: {
       fontFamily: {
