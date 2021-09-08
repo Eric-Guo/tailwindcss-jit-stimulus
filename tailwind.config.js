@@ -6,7 +6,7 @@ module.exports = {
     './app/javascript/**/*.js',
   ],
   corePlugins: {
-    gap: false, // have to disable for wechat/qq browser, as it not supported yet.
+    gap: true, // have to disable for wechat/qq browser, as it not supported yet.
   },
   theme: {
     extend: {
