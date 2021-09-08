@@ -61,17 +61,69 @@
     </div>
   </div>
 </div>
-<div class="bg-white text-black text-xs m-1 px-1.5 py-2.5">
-  <h5 class="text-base font-medium m-2">安装施工要点</h5>
-  <p class="m-2">黄金麻是沉积岩，强度低、 吸水率高、 耐候性差，本不是石材幕墙面板的最佳用材，但砂岩的独有质感、 颜色和风格，使得建筑师又很喜欢将它们用作石材幕墙。 由千其结构松散，比重较轻，干挂板一般厚度控制在30mm厚以上，以保证安装安全。 另外尽量做防水、 防污处理。</p>
-  <h5 class="text-base font-medium m-2 mt-4">可定制效果</h5>
-  <p class="m-2">涂装型板是在表面通过涂装和模具压印出不同颜色凹凸及肌理的装饰型板，可以形成仿木、 仿石材、 仿清水等各种纹理效果的装饰型板。</p>
+<div class="bg-white text-black text-xs m-1 px-1.5 py-2">
+  <h5 class="text-base font-medium my-2">安装施工要点</h5>
+  <p class="my-2">黄金麻是沉积岩，强度低、 吸水率高、 耐候性差，本不是石材幕墙面板的最佳用材，但砂岩的独有质感、 颜色和风格，使得建筑师又很喜欢将它们用作石材幕墙。 由千其结构松散，比重较轻，干挂板一般厚度控制在30mm厚以上，以保证安装安全。 另外尽量做防水、 防污处理。</p>
+  <h5 class="text-base font-medium my-2 mt-4">可定制效果</h5>
+  <p class="my-2">涂装型板是在表面通过涂装和模具压印出不同颜色凹凸及肌理的装饰型板，可以形成仿木、 仿石材、 仿清水等各种纹理效果的装饰型板。</p>
 </div>
 
 <%# 实际应用 %>
-<div class="bg-white text-black text-xs m-1 px-1.5 py-2.5">
-  <h5 class="text-base font-medium m-2">实际应用</h5>
-  <div class="m-2">
+<div class="bg-white text-black text-xs m-1 px-1.5 py-2">
+  <h5 class="text-base font-medium my-2">实际应用</h5>
+  <div class="my-2">
     <img class="w-full" src="<%= image_pack_path('static/application_big_pic.jpg') -%>" alt="">
   </div>
+</div>
+
+<%# 材料样品 %>
+<div class="bg-white text-black text-xs m-1 px-1.5 py-2">
+  <h5 class="text-base font-medium my-1">材料样品</h5>
+</div>
+<div class="m-2">
+  <table class="min-w-full divide-y divide-gray-300">
+    <thead class="">
+      <tr>
+        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+          样品编号
+        </th>
+        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+          色系
+        </th>
+        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+          样品规格、型号
+        </th>
+        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+          表面工艺
+        </th>
+        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+          剩余库存
+        </th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-300">
+      <% (1..4).each do %>
+        <tr>
+          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs font-medium">
+            A07010-32
+          </td>
+          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+            黄色系
+          </td>
+          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+            30cmx30cm
+          </td>
+          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+            哑光
+          </td>
+          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <p class="m-2 text-sm">实体材料库地址：上海市徐汇区漕河泾科汇大厦11F</p>
+</div>
+<div class="bg-white text-black text-xs m-1 px-1.5 py-2.5">
 </div>
