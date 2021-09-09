@@ -1021,9 +1021,9 @@
   integrity sha1-l+3JA36gw4WFMgsolk3eOznkZg0=
 
 "@types/node@*":
-  version "16.7.13"
-  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.7.13.tgz#86fae356b03b5a12f2506c6cf6cd9287b205973f"
-  integrity sha1-hvrjVrA7WhLyUGxs9s2Sh7IFlz8=
+  version "16.9.0"
+  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.9.0.tgz#d9512fe037472dcb58931ce19f837348db828a62"
+  integrity sha1-2VEv4DdHLctYkxzhn4NzSNuCimI=
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -2071,9 +2071,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.830:
-  version "1.3.832"
-  resolved "https://registry.nlark.com/electron-to-chromium/download/electron-to-chromium-1.3.832.tgz?cache=0&sync_timestamp=1631052257734&other_urls=https%3A%2F%2Fregistry.nlark.com%2Felectron-to-chromium%2Fdownload%2Felectron-to-chromium-1.3.832.tgz#b947205525a7825eff9b39566140d5471241c244"
-  integrity sha1-uUcgVSWngl7/mzlWYUDVRxJBwkQ=
+  version "1.3.833"
+  resolved "https://registry.nlark.com/electron-to-chromium/download/electron-to-chromium-1.3.833.tgz#e1394eb32ab8a9430ffd7d5adf632ce6c3b05e18"
+  integrity sha1-4TlOsyq4qUMP/X1a32Ms5sOwXhg=
 
 emojis-list@^3.0.0:
   version "3.0.0"
@@ -2823,9 +2823,9 @@ isobject@^3.0.1:
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
 jest-worker@^27.0.2, jest-worker@^27.0.6:
-  version "27.1.0"
-  resolved "https://registry.nlark.com/jest-worker/download/jest-worker-27.1.0.tgz?cache=0&sync_timestamp=1630058492341&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fjest-worker%2Fdownload%2Fjest-worker-27.1.0.tgz#65f4a88e37148ed984ba8ca8492d6b376938c0aa"
-  integrity sha1-ZfSojjcUjtmEuoyoSS1rN2k4wKo=
+  version "27.1.1"
+  resolved "https://registry.nlark.com/jest-worker/download/jest-worker-27.1.1.tgz?cache=0&sync_timestamp=1631095956510&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fjest-worker%2Fdownload%2Fjest-worker-27.1.1.tgz#eb5f05c4657fdcb702c36c48b20d785bd4599378"
+  integrity sha1-618FxGV/3LcCw2xIsg14W9RZk3g=
   dependencies:
     "@types/node" "*"
     merge-stream "^2.0.0"
@@ -4603,9 +4603,9 @@ svgo@^2.3.0:
     stable "^0.1.8"
 
 tailwindcss@^2.2.10:
-  version "2.2.11"
-  resolved "https://registry.nlark.com/tailwindcss/download/tailwindcss-2.2.11.tgz#da8a1d90aec279bbdf69150598869fccf82c1fe2"
-  integrity sha1-2oodkK7CebvfaRUFmIafzPgsH+I=
+  version "2.2.14"
+  resolved "https://registry.nlark.com/tailwindcss/download/tailwindcss-2.2.14.tgz#7f71ce6783a5e9768bd0e2ad1cb48eefba42e2ca"
+  integrity sha1-f3HOZ4Ol6XaL0OKtHLSO77pC4so=
   dependencies:
     arg "^5.0.1"
     bytes "^3.0.0"
@@ -4966,9 +4966,9 @@ wrappy@1:
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
 ws@^8.1.0:
-  version "8.2.1"
-  resolved "https://registry.nlark.com/ws/download/ws-8.2.1.tgz?cache=0&sync_timestamp=1630167206236&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fws%2Fdownload%2Fws-8.2.1.tgz#bdd92b3c56fdb47d2379b5ae534281922cc5bd12"
-  integrity sha1-vdkrPFb9tH0jebWuU0KBkizFvRI=
+  version "8.2.2"
+  resolved "https://registry.nlark.com/ws/download/ws-8.2.2.tgz?cache=0&sync_timestamp=1631130656602&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fws%2Fdownload%2Fws-8.2.2.tgz#ca684330c6dd6076a737250ed81ac1606cb0a63e"
+  integrity sha1-ymhDMMbdYHanNyUO2BrBYGywpj4=
 
 xtend@^4.0.2:
   version "4.0.2"
