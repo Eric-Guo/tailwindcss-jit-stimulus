@@ -1,0 +1,48 @@
+<%# 样品名称 %>
+<div class="bg-white text-black m-1 px-1.5 py-2.5">
+  <div class="my-1 flex">
+    <img class="w-44 h-44" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
+    <dl class="block mx-2">
+      <h3 class="text-base mb-2 font-medium">黄金麻（样品）</h3>
+      <p class="text-xs">样品编号：
+        <span class="font-medium">A07010</span>
+      </p>
+      <p class="text-xs">价格区间：
+        <span class="font-medium">100-350/㎡</span>
+      </p>
+      <p class="text-xs">产品/二级分类名称：
+        <span class="font-medium">黄金麻</span>
+      </p>
+      <p class="text-xs">产品/二级分类编号：
+        <span class="font-medium">A07013</span>
+      </p>
+      <p class="text-xs">色系：
+        <span class="font-medium">黄色</span>
+      </p>
+      <p class="text-xs">色号：
+        <span class="font-medium">868688</span>
+      </p>
+      <p class="text-xs">产品规格/型号：
+        <span class="font-medium">30*30 cm</span>
+      </p>
+      <p class="text-xs">表面效果：
+        <span class="font-medium">荔枝面</span>
+      </p>
+      <p class="text-xs">储存位置：
+        <span class="font-medium">A-3-25</span>
+      </p>
+    </dl>
+  </div>
+  <h5 class="text-base mt-4">其他样品：</h5>
+  <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
+    <div class="flex flex-nowrap min-w-max">
+      <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
+        <% pic_url = "static/new_mat_g#{i+1}.jpg" -%>
+        <div class="mx-px first:mx-px w-16">
+          <img class="w-full object-contain" src="<%= image_pack_path(pic_url) -%>" alt="">
+          <h3 class="text-center text-xs my-2 whitespace-nowrap"><%= name -%></h3>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
