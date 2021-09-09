@@ -33,7 +33,7 @@
       </p>
     </dl>
   </div>
-  <h5 class="text-base mt-4">其他样品：</h5>
+  <h5 class="text-base mt-4">其他样品</h5>
   <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
     <div class="flex flex-nowrap min-w-max">
       <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
@@ -45,4 +45,24 @@
       <% end %>
     </div>
   </div>
+</div>
+
+<%# 厂家信息 %>
+<div class="bg-white text-black m-1 px-1.5 py-2">
+  <h5 class="text-base font-medium my-2">厂家信息</h5>
+
+  <div class="flex bg-gray-200 border border-gray-200 border-solid px-1 my-3">
+    <div class="flex justify-center items-center px-2 py-3">
+      <img class="w-full border border-gray-300 border-solid" src="<%= image_pack_path('static/logo-1-1.jpg') -%>" alt="">
+    </div>
+    <div class="px-2 py-3">
+      <h5 class="text-base font-medium mb-2">东丽石材</h5>
+      <p class="text-xs text-gray-700">联系人：13717634543</p>
+      <p class="text-xs text-gray-700">邮箱：564738476@qq.com</p>
+      <p class="text-xs text-gray-700">厂家地址：山东</p>
+      <p class="text-xs text-gray-700">联系电话：65383736</p>
+      <p class="text-xs text-gray-700">是否愿意提供材料样品：是</p>
+    </div>
+  </div>
+
 </div>
