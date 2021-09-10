@@ -8,8 +8,8 @@ gem "parallel", "< 2.0"
 gem "rails", "~> 7.2.3.1"
 gem "minitest", "< 6" # rails 7.2 not support minitest 6.0.1
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3"
+gem "mysql2"
+
 # Use Puma as the app server
 gem 'puma'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

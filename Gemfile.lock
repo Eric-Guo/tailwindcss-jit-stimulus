@@ -76,12 +76,31 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
+    airbrussh (1.6.2)
+      sshkit (>= 1.6.1, != 1.7.0)
     base64 (0.3.0)
     benchmark (0.5.0)
     bigdecimal (4.1.2)
     bindex (0.8.1)
     browser (5.3.1)
     builder (3.3.0)
+    capistrano (3.20.1)
+      airbrussh (>= 1.0.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (2.2.0)
+      capistrano (~> 3.1)
+    capistrano-rails (1.7.0)
+      capistrano (~> 3.1)
+      capistrano-bundler (>= 1.1, < 3)
+    capistrano-rbenv (2.2.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
+    capistrano3-puma (8.1.0)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (>= 6.1, < 9.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -127,6 +146,8 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (5.27.0)
+    mysql2 (0.5.7)
+      bigdecimal
     net-imap (0.6.6)
       date
       net-protocol
@@ -134,8 +155,13 @@ GEM
       net-protocol
     net-protocol (0.3.0)
       timeout
+    net-scp (4.1.0)
+      net-ssh (>= 2.6.5, < 8.0.0)
+    net-sftp (4.0.0)
+      net-ssh (>= 5.0.0, < 8.0.0)
     net-smtp (0.5.1)
       net-protocol
+    net-ssh (7.3.3)
     nio4r (2.7.5)
     nokogiri (1.19.4)
       mini_portile2 (~> 2.8.2)
@@ -150,6 +176,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-gnu)
       racc (~> 1.4)
+    ostruct (0.6.3)
     package_json (0.2.0)
     parallel (1.28.0)
     pp (0.6.4)
@@ -230,12 +257,13 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    sqlite3 (2.9.6-aarch64-linux-gnu)
-    sqlite3 (2.9.6-arm-linux-gnu)
-    sqlite3 (2.9.6-arm64-darwin)
-    sqlite3 (2.9.6-x86-linux-gnu)
-    sqlite3 (2.9.6-x86_64-darwin)
-    sqlite3 (2.9.6-x86_64-linux-gnu)
+    sshkit (1.25.1)
+      base64
+      logger
+      net-scp (>= 1.1.2)
+      net-sftp (>= 2.1.2)
+      net-ssh (>= 2.8.0)
+      ostruct
     thor (1.5.0)
     tidewave (0.9.0)
       rack (>= 2.0)
@@ -272,9 +300,14 @@ PLATFORMS
 
 DEPENDENCIES
   browser (< 6)
+  capistrano
+  capistrano-rails
+  capistrano-rbenv
+  capistrano3-puma
   capybara
   debug
   minitest (< 6)
+  mysql2
   parallel (< 2.0)
   puma
   rack-proxy (~> 0.8)
@@ -282,7 +315,6 @@ DEPENDENCIES
   rbs (< 4.2)
   selenium-webdriver (~> 4.26.0)
   shakapacker (~> 8.4.0)
-  sqlite3
   tidewave
   turbo-rails
   tzinfo-data
