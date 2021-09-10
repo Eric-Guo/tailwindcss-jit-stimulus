@@ -5,8 +5,7 @@ ruby "~> 3.0"
 
 gem "rails", "~> 7.1.2"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+gem "mysql2"
 # Use Puma as the app server
 gem 'puma'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
