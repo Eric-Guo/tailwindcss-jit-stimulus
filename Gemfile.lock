@@ -112,6 +112,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
+    mysql2 (0.5.3)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
@@ -166,7 +167,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    sqlite3 (1.4.2)
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
@@ -210,11 +210,11 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-puma
   capybara
+  mysql2
   puma
   rails (~> 7.0.0)
   rexml
   selenium-webdriver
-  sqlite3 (~> 1.4)
   turbo-rails
   tzinfo-data
   web-console
