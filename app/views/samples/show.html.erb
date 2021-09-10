@@ -5,8 +5,8 @@
 <main class="flex flex-row pl-40 pr-44">
   <section class="w-full mr-6 max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl flex flex-col">
     <%# 产品样品 %>
-    <div class="mx-4 mt-7">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">产品样品</span><span class="text-xl font-light">Samples</span>
+    <div class="mx-4 mt-7 mb-4 border-b-2 border-gray-200 border-solid pb-3">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">产品样品</span><span class="text-xl font-light">Samples</span>
     </div>
     <div class="mx-4 mt-10 flex gap-4">
       <img class="w-80 h-80" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
@@ -44,8 +44,8 @@
     </div>
 
     <%# 厂家信息 %>
-    <div class="mx-4 mt-16">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">厂家信息</span><span class="text-xl font-light">Information</span>
+    <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-200 border-solid pb-3">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">厂家信息</span><span class="text-xl font-light">Information</span>
     </div>
     <div class="mx-4 mt-10 flex">
       <div class="p-6 border border-gray-300 border-solid flex items-center">
@@ -82,8 +82,8 @@
     </div>
 
     <%# 附件下载 %>
-    <div class="mx-4 mt-16">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">附件下载</span><span class="text-xl font-light">Download</span>
+    <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-200 border-solid pb-3">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">附件下载</span><span class="text-xl font-light">Download</span>
     </div>
     <div class="mx-4 mt-10 grid grid-cols-5 gap-4">
       <% %w[下载全部 公司介绍 相关证书 产品图册 工艺节点 监测报告 CAD BIM 三视图 其他].each do |word| %>
@@ -97,8 +97,8 @@
     </div>
 
     <%# 所属案例 %>
-    <div class="mx-4 mt-16">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">所属案例</span><span class="text-xl font-light">Projects</span>
+    <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-200 border-solid pb-3">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">所属案例</span><span class="text-xl font-light">Projects</span>
     </div>
 
     <div class="mx-4 mt-10 mb-4 grid grid-cols-3 gap-8">
@@ -125,8 +125,8 @@
 
   <%# 其他样品 %>
   <section class="flex-auto">
-    <div class="mx-4 mt-7">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid pb-3">其他样品</span><span class="text-xl font-light">Other Samples</span>
+    <div class="mx-4 mt-7 mb-4 border-b-2 border-gray-200 border-solid pb-3">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">其他样品</span><span class="text-xl font-light">Other Samples</span>
     </div>
 
     <% (1..4).each do |i| %>
