@@ -1,3 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.shadow-tw {
+  box-shadow: 0px 0px 20px 0px rgba(204, 204, 204, 0.3);
+}
