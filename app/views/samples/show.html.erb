@@ -11,7 +11,7 @@
     <div class="mx-4 mt-10 flex gap-4">
       <img class="w-80 h-80" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
       <div class="ml-4 relative">
-        <h2 class="text-2xl font-medium">黄金麻（样品）：</h2>
+        <h2 class="text-xl font-medium">黄金麻（样品）：</h2>
         <dl class="absolute bottom-0 w-80 text-sm">
             <dt class="mt-2 inline-block w-1/2">样品编号：</dt>
             <dd class="mt-2 inline w-1/2">xxxxxxx</dd>
@@ -49,10 +49,10 @@
     </div>
     <div class="mx-4 mt-10 flex">
       <div class="p-6 border border-gray-300 border-solid flex items-center">
-        <img class="w-48" src="<%= image_pack_path('static/logo-1-1.jpg') -%>" alt="">
+        <img class="w-40" src="<%= image_pack_path('static/logo-1-1.jpg') -%>" alt="">
       </div>
       <div class="py-10">
-        <div class="m-4 grid grid-cols-3 gap-6">
+        <div class="m-4 grid grid-cols-3 gap-y-8 gap-x-16">
           <dl class="border-l border-gray-300 border-solid pl-3 py1">
             <dt class="text-gray-700">厂家名称</dt>
             <dd class="">东利石材</dd>
@@ -133,11 +133,11 @@
       <div class="mx-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> mb-4 flex">
         <img class="w-48" src="<%= image_pack_path("static/sample_side_p#{i}.jpg") -%>" alt="">
         <div class="flex flex-col justify-end mx-4">
-          <h2 class="text-xl mb-2">黄金麻（样品）</h2>
-          <p class="text-gray-600">样品编号：xxxx</p>
-          <p class="text-gray-600">表面工艺：xxxxxxx</p>
-          <p class="text-gray-600">色系：黄色</p>
-          <p class="text-gray-600">厂家：xxxxxx</p>
+          <h2 class="text-base mb-2">黄金麻（样品）</h2>
+          <p class="mt-1 text-xs text-gray-400">样品编号：xxxx</p>
+          <p class="mt-1 text-xs text-gray-400">表面工艺：xxxxxxx</p>
+          <p class="mt-1 text-xs text-gray-400">色系：黄色</p>
+          <p class="mt-1 text-xs text-gray-400">厂家：xxxxxx</p>
         </div>
       </div>
     <% end %>
