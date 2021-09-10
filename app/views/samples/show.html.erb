@@ -8,7 +8,7 @@
     <div class="mx-4 mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">产品样品</span><span class="text-xl font-light">Samples</span>
     </div>
-    <div class="mx-4 mt-10 flex gap-4">
+    <div class="mx-4 mt-4 flex gap-4">
       <img class="w-80 h-80" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
       <div class="ml-4 relative">
         <h2 class="text-xl font-medium">黄金麻（样品）：</h2>
@@ -47,11 +47,11 @@
     <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">厂家信息</span><span class="text-xl font-light">Information</span>
     </div>
-    <div class="mx-4 mt-10 flex">
-      <div class="p-6 border border-gray-300 border-solid flex items-center">
+    <div class="mx-4 mt-4 flex">
+      <div class="w-52 h-52 p-6 border border-gray-300 border-solid flex items-center">
         <img class="w-40" src="<%= image_pack_path('static/logo-1-1.jpg') -%>" alt="">
       </div>
-      <div class="py-10">
+      <div class="py-8">
         <div class="m-4 grid grid-cols-3 gap-y-8 gap-x-18">
           <dl class="border-l border-gray-300 border-solid pl-3 py1">
             <dt class="text-gray-700">厂家名称</dt>
@@ -85,7 +85,7 @@
     <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">附件下载</span><span class="text-xl font-light">Download</span>
     </div>
-    <div class="mx-4 mt-10 grid grid-cols-5 gap-4">
+    <div class="mx-4 mt-4 grid grid-cols-5 gap-4">
       <% %w[下载全部 公司介绍 相关证书 产品图册 工艺节点 监测报告 CAD BIM 三视图 其他].each do |word| %>
       <a class="p-4 shadow font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
         <%= word %>
@@ -101,7 +101,7 @@
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">所属案例</span><span class="text-xl font-light">Projects</span>
     </div>
 
-    <div class="mx-4 mt-10 mb-4 grid grid-cols-3 gap-8">
+    <div class="mx-4 mt-4 mb-16 grid grid-cols-3 gap-8">
       <div>
         <img class="w-full my-3" src="<%= image_pack_path('static/project_new_g3.jpg') -%>" alt="">
         <h3 class="text-xl font-medium">沈阳国际软件园</h3>
