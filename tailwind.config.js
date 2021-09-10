@@ -16,6 +16,9 @@ module.exports = {
       colors: {
         'black': '#101820',
       },
+      gap: {
+        '18': '4.5rem',
+      },
       screens: {
         '3xl': '1850px',
       },
