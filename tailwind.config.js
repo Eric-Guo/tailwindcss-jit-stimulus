@@ -13,6 +13,9 @@ module.exports = {
       fontFamily: {
         sans: ['Montserrat', 'Source Han Sans', 'Source Han Sans SC', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', 'sans-serif'],
       },
+      colors: {
+        'black': '#101820',
+      }
       screens: {
         '3xl': '1850px',
       },
