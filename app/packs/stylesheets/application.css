@@ -2,8 +2,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.shadow-tw {
+.shadow-tw-light {
   box-shadow: 0px 0px 20px 0px rgba(204, 204, 204, 0.3);
+}
+
+.shadow-tw-dark {
+  box-shadow: 0px 0px 10px 0px rgba(158, 158, 158, 0.3);
 }
 
 .text-black-6c {

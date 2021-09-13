@@ -9,6 +9,7 @@ gem "rails", "~> 7.2.3.1"
 gem "minitest", "< 6" # rails 7.2 not support minitest 6.0.1
 
 gem "mysql2"
+gem "sqlite3"
 
 # Use Puma as the app server
 gem 'puma'
