@@ -6,6 +6,7 @@ ruby "~> 3.0.2"
 gem "rails", "~> 7.0.0"
 
 gem "mysql2"
+gem "sqlite3"
 # Use Puma as the app server
 gem 'puma'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

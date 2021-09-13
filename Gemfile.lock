@@ -167,6 +167,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sqlite3 (1.4.2)
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
@@ -215,6 +216,7 @@ DEPENDENCIES
   rails (~> 7.0.0)
   rexml
   selenium-webdriver
+  sqlite3
   turbo-rails
   tzinfo-data
   web-console
