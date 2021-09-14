@@ -1,6 +1,6 @@
 <%= render partial: 'shared/header', locals: { } -%>
 
-<div class="relative mt-6 max-w-4xl mx-auto px-4 pb-16 xl:pb-20 2xl:pb-24">
+<div class="relative mt-6 max-w-4xl mx-auto px-4 pb-8">
   <%= form_with url: root_path, method: :get do |f| %>
     <label for="search-box" class="sr-only">搜索</label>
     <span class="absolute inset-y-0 pl-4 pt-3">
@@ -11,6 +11,13 @@
     <input id="search-box" type="text" placeholder="黄金麻/镀膜玻璃/PC板/项目名称/天华项目编号"
       class="block w-full pl-12 pr-5 py-3 rounded-full border-2 border-gray-300 border-solid text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-500 focus:border-gray-500 focus:ring-offset-gray-500">
   <% end %>
+</div>
+
+<div class="mx-4 xl:mx-6 2xl:mx-8 mb-4 border-b-2 border-gray-100 border-solid pb-3 text-center text-lg">
+  <span class="mx-3 border-b-2 border-gray-900 border-solid font-medium" style="padding-bottom: 0.9rem">材料 （30）</span>
+  <span class="mx-3">案例 （60）</span>
+  <span class="mx-3">供应商 （7）</span>
+  <span class="mx-3">新闻 （0）</span>
 </div>
 
 <%= render partial: 'shared/footer', locals: { } -%>
