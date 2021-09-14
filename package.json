@@ -17,14 +17,14 @@
     "postcss-loader": "^6.1.1",
     "postcss-preset-env": "^6.7.0",
     "stimulus": "^2.0.0",
-    "tailwindcss": "^2.2.10",
-    "webpack": "^5.51.2",
+    "tailwindcss": "^2.2.15",
+    "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0"
   },
   "version": "0.1.0",
   "devDependencies": {
     "@webpack-cli/serve": "^1.5.2",
-    "webpack-dev-server": "^4.0.0"
+    "webpack-dev-server": "^4.2.1"
   },
   "babel": {
     "presets": [
