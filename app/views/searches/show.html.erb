@@ -20,4 +20,24 @@
   <span class="mx-3">新闻 （0）</span>
 </div>
 
+<%# 材料 %>
+<div class="mx-4 grid grid-cols-8 gap-2">
+  <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻 黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
+    <div>
+      <% pic_url = "static/new_mat_g#{(i % 8)+1}.jpg" -%>
+      <div class="">
+        <img class="mx-auto w-full" src="<%= image_pack_path(pic_url) -%>" alt="">
+        <h3 class="text-center my-2 font-medium"><%= name -%></h3>
+        <h4 class="text-center my-2 text-sm text-gray-400">石材</h4>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%# 案例 %>
+
+<%# 供应商 %>
+
+<%# 新闻 %>
+
 <%= render partial: 'shared/footer', locals: { } -%>
