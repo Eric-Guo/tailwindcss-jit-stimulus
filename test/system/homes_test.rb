@@ -4,6 +4,6 @@ class HomesTest < ApplicationSystemTestCase
   test "visiting the root" do
     visit root_url
     wait_for_stimulus_loading
-    assert_selector "h1", text: "Hello, Stimulus!"
+    assert_selector "h2", text: "Welcome to"
   end
 end
