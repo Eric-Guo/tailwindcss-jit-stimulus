@@ -20,8 +20,8 @@ jobs:
 
       # Which version of bundler? should keep same as Gemfile.lock
       - run:
-          name: install bundler v2.2.26
-          command: gem install bundler:2.2.26 && bundle -v
+          name: install bundler v2.2.27
+          command: gem install bundler:2.2.27 && bundle -v
 
       # Restore bundle cache
       - restore_cache:
