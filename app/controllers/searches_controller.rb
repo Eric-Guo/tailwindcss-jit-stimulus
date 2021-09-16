@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
+  before_action :set_q_params
+
   def show
-    redirect_to material_search_path
+    redirect_to material_search_path(q: params[:q])
   end
 
   def material
@@ -15,5 +17,11 @@ class SearchesController < ApplicationController
   end
 
   def news
+  end
+
+  private
+
+  def set_q_params
+    @q = params[:q]
   end
 end
