@@ -27,9 +27,6 @@
 
   <div class="mt-8 xl:mt-10 max-w-4xl flex flex-row gap-x-8 mx-auto px-6 text-white">
     <div class="border-b-2 border-gray-100 border-solid pb-1">
-      <span class="text-2xl mr-2">全部</span><span class="text-xl">All</span>
-    </div>
-    <div>
       <span class="text-2xl mr-2">材料</span><span class="text-xl">Materials</span>
     </div>
     <div>
@@ -38,10 +35,13 @@
     <div>
       <span class="text-2xl mr-2">供应商</span><span class="text-xl">Manufacturer</span>
     </div>
+    <div>
+      <span class="text-2xl mr-2">新闻</span><span class="text-xl">News</span>
+    </div>
   </div>
 
   <div class="relative mt-6 max-w-4xl mx-auto px-4 pb-20 xl:pb-32 2xl:pb-40">
-    <%= form_with url: search_path, method: :get do |f| %>
+    <%= form_with url: material_search_path, method: :get do |f| %>
       <label for="search-box" class="sr-only">搜索</label>
       <span class="absolute inset-y-0 pl-4 pt-3">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
