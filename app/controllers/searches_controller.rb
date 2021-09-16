@@ -3,10 +3,6 @@
 class SearchesController < ApplicationController
   before_action :set_q_params
 
-  def show
-    redirect_to material_search_path(q: params[:q])
-  end
-
   def material
   end
 
