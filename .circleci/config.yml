@@ -64,3 +64,8 @@ jobs:
       - run:
           name: run tests
           command: RAILS_ENV=test; bin/rails test
+
+      # run integration tests!
+      - run:
+          name: run integration tests
+          command: RAILS_ENV=test; bin/rails test:system

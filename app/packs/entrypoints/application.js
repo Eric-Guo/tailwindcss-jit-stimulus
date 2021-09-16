@@ -18,6 +18,8 @@ mrujs.start();
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 
-const application = Application.start()
+const stimulus = Application.start()
 const context = require.context("../controllers", true, /\.js$/)
-application.load(definitionsFromContext(context))
+stimulus.load(definitionsFromContext(context))
+
+window.Stimulus = stimulus;
