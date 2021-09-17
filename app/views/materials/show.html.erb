@@ -121,7 +121,7 @@
       <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
         <% pic_url = "static/new_mat_g#{i+1}.jpg" -%>
         <div class="border border-gray-200 border-solid">
-          <img class="mx-auto w-28 h-28" src="<%= image_pack_path(pic_url) -%>" alt="">
+          <img class="mx-auto w-24 h-24" src="<%= image_pack_path(pic_url) -%>" alt="">
           <h3 class="text-center my-2 text-sm"><%= name -%></h3>
         </div>
       <% end %>
@@ -134,8 +134,8 @@
 
     <div class="mx-4 flex gap-20">
       <div>
-        <img class="w-80 h-80" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
-        <dl class="block w-80 mt-2 text-lg">
+        <img class="w-72 h-72" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
+        <dl class="block w-72 mt-2 text-lg">
           <dt class="my-1 inline-block w-1/2">色系：</dt>
           <dd class="my-1 inline-block text-right" style="width: 48%">黄色</dd>
 
@@ -161,10 +161,10 @@
             </div>
           <% end %>
         </div>
-        <h5 class="text-lg font-medium mt-8 mb-4">安装施工要点：</h5>
-        <p class="text-sm">黄金麻是沉积岩，强度低、 吸水率高、 耐候性差，本不是石材幕墙面板的最佳用材，但砂岩的独有质感、 颜色和风格，使得建筑师又很喜欢将它们用作石材幕墙。 由千其结构松散，比重较轻，干挂板一般厚度控制在30mm厚以上，以保证安装安全。 另外尽量做防水、 防污处理。</p>
-        <h5 class="text-lg font-medium mt-8 mb-4">可定制效果：</h5>
-        <p class="text-sm">涂装型板是在表面通过涂装和模具压印出不同颜色凹凸及肌理的装饰型板，可以形成仿木、 仿石材、 仿清水等各种纹理效果的装饰型板。</p>
+        <h5 class="text-lg font-medium mt-14 mb-3">安装施工要点：</h5>
+        <p class="text-sm text-justify">黄金麻是沉积岩，强度低、 吸水率高、 耐候性差，本不是石材幕墙面板的最佳用材，但砂岩的独有质感、 颜色和风格，使得建筑师又很喜欢将它们用作石材幕墙。 由千其结构松散，比重较轻，干挂板一般厚度控制在30mm厚以上，以保证安装安全。 另外尽量做防水、 防污处理。</p>
+        <h5 class="text-lg font-medium mt-14 mb-3">可定制效果：</h5>
+        <p class="text-sm text-justify">涂装型板是在表面通过涂装和模具压印出不同颜色凹凸及肌理的装饰型板，可以形成仿木、 仿石材、 仿清水等各种纹理效果的装饰型板。</p>
       </div>
     </div>
 
