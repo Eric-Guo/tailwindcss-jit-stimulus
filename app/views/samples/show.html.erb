@@ -54,28 +54,28 @@
         </div>
       </div>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
-        <dt class="text-gray-700">厂家名称</dt>
+        <dt class="text-gray-400">厂家名称</dt>
         <dd class="">东利石材</dd>
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
-        <dt class="text-gray-700">联系人</dt>
+        <dt class="text-gray-400">联系人</dt>
         <dd class="">XXX</dd>
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
-        <dt class="text-gray-700">邮箱</dt>
+        <dt class="text-gray-400">邮箱</dt>
         <dd class="">xxx@sample.com</dd>
       </dl>
       <dl></dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
-        <dt class="text-gray-700">厂家地址</dt>
+        <dt class="text-gray-400">厂家地址</dt>
         <dd class="">广东</dd>
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
-        <dt class="text-gray-700">联系电话</dt>
+        <dt class="text-gray-400">联系电话</dt>
         <dd class="">XXX-12342837</dd>
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
-        <dt class="text-gray-700">是否愿意送样</dt>
+        <dt class="text-gray-400">是否愿意送样</dt>
         <dd class="">否</dd>
       </dl>
       <dl></dl>
@@ -125,7 +125,7 @@
 
   <%# 其他样品 %>
   <section class="flex-auto">
-    <div class="mx-4 mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <div class="ml-12 mr-4 mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">其他样品</span><span class="text-xl font-light">Other Samples</span>
 <svg class="h-6 w-6 float-right mt-1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
   <path d="M511.936 61.568a448 448 0 0 0-447.552 447.552 448 448 0 0 0 447.552 447.552 448 448 0 0 0 447.552-447.552A448 448 0 0 0 511.936 61.568z m0 831.104a384 384 0 0 1-383.552-383.552 384 384 0 0 1 383.552-383.552 384 384 0 0 1 383.552 383.552 383.936 383.936 0 0 1-383.552 383.552z" p-id="2135"></path>
@@ -138,8 +138,8 @@
     </div>
 
     <% (1..4).each do |i| %>
-      <div class="mx-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> mb-4 flex">
-        <img class="w-1/2" src="<%= image_pack_path("static/sample_side_p#{i}.jpg") -%>" alt="">
+      <div class="ml-12 mr-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> mb-4 flex">
+        <img class="w-2/5" src="<%= image_pack_path("static/sample_side_p#{i}.jpg") -%>" alt="">
         <div class="flex flex-col justify-end mx-4">
           <h2 class="text-base mb-2">黄金麻（样品）</h2>
           <p class="mt-1 text-xs text-gray-400">样品编号：xxxx</p>
