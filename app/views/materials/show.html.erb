@@ -12,7 +12,7 @@
       </svg>
     </h2>
     <div class="mx-4">
-      <div class="bg-gray-100 py-3 pl-5 text-gray-500 text-lg">
+      <div class="bg-gray-100 py-3 pl-5 text-gray-400 text-lg">
         <h3 class="my-2">
           <span>
             石灰石/青石
@@ -102,19 +102,19 @@
     <div class="mx-4 mt-10 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid border-solid" style="padding-bottom: 0.9rem">材料产品详情</span><span class="text-xl font-light">Material Details</span>
     </div>
-    <div class="mx-4 my-4 text-lg text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid">
-      <h2 class="w-30 py-6 bg-gray-100 text-black-6c font-medium text-right pr-6">色系</h2>
-      <p class="w-30 py-6">全部</p>
-      <p class="w-30 py-6">白色系</p>
-      <p class="w-30 py-6">灰色系</p>
-      <p class="w-30 py-6">黑色系</p>
-      <p class="w-30 py-6">
-        <span class="px-5 py-3 rounded-full font-medium bg-gray-100 text-black-6c">
+    <div class="mx-4 my-4 text-sm text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid">
+      <h2 class="w-24 py-4 bg-gray-100 text-black-6c font-medium text-right pr-6">色系</h2>
+      <p class="w-24 py-4">全部</p>
+      <p class="w-24 py-4">白色系</p>
+      <p class="w-24 py-4">灰色系</p>
+      <p class="w-24 py-4">黑色系</p>
+      <p class="w-24 py-4">
+        <span class="px-5 py-2 rounded-full font-medium bg-gray-100 text-black-6c">
           黄色系
         </span>
       </p>
-      <p class="w-30 py-6">红色系</p>
-      <p class="w-30 py-6">棕色系</p>
+      <p class="w-24 py-4">红色系</p>
+      <p class="w-24 py-4">棕色系</p>
     </div>
 
     <div class="mx-4 flex gap-3">
@@ -122,7 +122,7 @@
         <% pic_url = "static/new_mat_g#{i+1}.jpg" -%>
         <div class="border border-gray-200 border-solid">
           <img class="mx-auto w-28 h-28" src="<%= image_pack_path(pic_url) -%>" alt="">
-          <h3 class="text-center my-2"><%= name -%></h3>
+          <h3 class="text-center my-2 text-sm"><%= name -%></h3>
         </div>
       <% end %>
     </div>
