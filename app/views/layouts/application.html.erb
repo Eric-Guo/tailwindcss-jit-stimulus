@@ -11,7 +11,7 @@
     <%= stylesheet_pack_tag 'application', media: "all", "data-turbo-track" => "reload" %>
     <%= javascript_pack_tag "application", "data-turbo-track" => "reload" %>
   </head>
-  <body class="text-black min-h-screen <%= @browser.mobile? ? 'bg-gray-200' : 'bg-white' -%>">
+  <body class="flex flex-col text-black min-h-screen <%= @browser.mobile? ? 'bg-gray-200' : 'bg-white' -%>">
     <% flash.each do |type, message| %>
       <% if type == "alert" %>
         <div class="w-full fixed z-50" style="background-color: #e02424">
@@ -19,10 +19,10 @@
         </div>
       <% end %>
     <% end %>
-    <main>
+    <main class="block flex-auto">
       <%= yield %>
     </main>
-    <footer class="bg-black py-6 text-white text-base">
+    <footer class="bottom-0 bg-black py-6 text-white text-base">
       <nav class="flex items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
         <div class="w-0 flex-1">
           <p>联系我们：建筑委</p>
