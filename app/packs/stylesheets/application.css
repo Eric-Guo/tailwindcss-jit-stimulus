@@ -13,3 +13,7 @@
 .text-black-6c {
   color: rgba(16, 24, 32);
 }
+
+.active-search {
+  @apply border-b-2 border-gray-100 border-solid pb-1;
+}
