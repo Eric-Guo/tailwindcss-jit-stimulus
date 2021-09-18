@@ -20,11 +20,11 @@
 </div>
 
 <%# 材料 %>
-<div class="mx-4 xl:mx-6 2xl:mx-8 mb-16 grid grid-cols-8 gap-1.5">
+<div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-8 gap-1.5">
   <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻 黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
     <div>
       <% pic_url = "static/new_mat_g#{(i % 8)+1}.jpg" -%>
-      <div class="mt-4">
+      <div>
         <img class="mx-auto w-full" src="<%= image_pack_path(pic_url) -%>" alt="">
         <h3 class="text-center mt-2 font-medium"><%= name -%></h3>
         <h4 class="text-center text-sm text-gray-400">石材</h4>
