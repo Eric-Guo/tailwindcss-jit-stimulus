@@ -897,7 +897,7 @@
 
 "@fullhuman/postcss-purgecss@^4.0.3":
   version "4.0.3"
-  resolved "https://registry.nlark.com/@fullhuman/postcss-purgecss/download/@fullhuman/postcss-purgecss-4.0.3.tgz#55d71712ec1c7a88e0d1ba5f10ce7fb6aa05beb4"
+  resolved "https://registry.npm.taobao.org/@fullhuman/postcss-purgecss/download/@fullhuman/postcss-purgecss-4.0.3.tgz#55d71712ec1c7a88e0d1ba5f10ce7fb6aa05beb4"
   integrity sha1-VdcXEuwceojg0bpfEM5/tqoFvrQ=
   dependencies:
     purgecss "^4.0.3"
@@ -1506,9 +1506,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001252, caniuse-lite@^1.0.30001254:
-  version "1.0.30001258"
-  resolved "https://registry.nlark.com/caniuse-lite/download/caniuse-lite-1.0.30001258.tgz#b604eed80cc54a578e4bf5a02ae3ed49f869d252"
-  integrity sha1-tgTu2AzFSleOS/WgKuPtSfhp0lI=
+  version "1.0.30001259"
+  resolved "https://registry.nlark.com/caniuse-lite/download/caniuse-lite-1.0.30001259.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcaniuse-lite%2Fdownload%2Fcaniuse-lite-1.0.30001259.tgz#ae21691d3da9c4be6144403ac40f71d9f6efd790"
+  integrity sha1-riFpHT2pxL5hREA6xA9x2fbv15A=
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -4650,9 +4650,9 @@ terser-webpack-plugin@^5.1.3, terser-webpack-plugin@^5.1.4:
     terser "^5.7.2"
 
 terser@^5.7.2:
-  version "5.8.0"
-  resolved "https://registry.nlark.com/terser/download/terser-5.8.0.tgz?cache=0&sync_timestamp=1631536996643&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fterser%2Fdownload%2Fterser-5.8.0.tgz#c6d352f91aed85cc6171ccb5e84655b77521d947"
-  integrity sha1-xtNS+Rrthcxhccy16EZVt3Uh2Uc=
+  version "5.9.0"
+  resolved "https://registry.nlark.com/terser/download/terser-5.9.0.tgz#47d6e629a522963240f2b55fcaa3c99083d2c351"
+  integrity sha1-R9bmKaUiljJA8rVfyqPJkIPSw1E=
   dependencies:
     commander "^2.20.0"
     source-map "~0.7.2"
