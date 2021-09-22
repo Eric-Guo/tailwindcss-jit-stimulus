@@ -24,7 +24,15 @@ window.Stimulus = Application.start()
 const context = require.context("../controllers", true, /\.js$/)
 stimulus.load(definitionsFromContext(context))
 
-import { Slideover } from "tailwindcss-stimulus-components"
+// Import and register all TailwindCSS Components
+import { Alert, Autosave, Dropdown, Modal, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
+stimulus.register('alert', Alert)
+stimulus.register('autosave', Autosave)
+stimulus.register('dropdown', Dropdown)
+stimulus.register('modal', Modal)
+stimulus.register('tabs', Tabs)
+stimulus.register('popover', Popover)
+stimulus.register('toggle', Toggle)
 stimulus.register('slideover', Slideover)
 
 window.Stimulus = stimulus;
