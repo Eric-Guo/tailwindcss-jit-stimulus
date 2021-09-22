@@ -5,7 +5,7 @@
         <span class="sr-only">天华</span>
         <%= render partial: 'shared/logo', locals: { className: 'mt-1' } -%>
       <% end %>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline ml-4 mt-px text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg data-action="click->slideover#toggle" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline ml-4 mt-px text-white cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
       </svg>
     </div>
