@@ -1,10 +1,13 @@
 <header style="background-image: url(<%= image_pack_path('static/home-background.jpg') -%>);background-repeat: no-repeat;background-size: cover;">
   <nav class="flex items-center justify-center p-4 sm:px-6 lg:px-8" aria-label="Global">
-    <div class="w-0 flex-1">
-      <%= link_to root_path, class: 'text-white' do %>
+    <div class="w-0 flex-1 flex justify-begin inline">
+      <%= link_to root_path, class: 'text-white inline' do %>
         <span class="sr-only">天华</span>
-        <%= render partial: 'shared/logo', locals: { className: '' } -%>
+        <%= render partial: 'shared/logo', locals: { className: 'mt-1' } -%>
       <% end %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline ml-4 mt-px text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+      </svg>
     </div>
     <div>
       <a href="#" class="font-medium text-white text-3xl">天华建造研究中心</a>
@@ -18,7 +21,6 @@
       </svg>
     </div>
   </nav>
-
   <div class="mt-20 xl:mt-28 2xl:mt-32 max-w-4xl mx-auto px-4 text-white">
     <h2 class="text-4xl">Welcome!</h2>
     <h1 class="mt-3 text-5xl font-medium">天华线上材料库</h1>
