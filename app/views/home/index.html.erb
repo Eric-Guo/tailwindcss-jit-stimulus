@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <div class="relative mt-10 max-w-4xl mx-auto px-4 pb-16">
+  <div class="relative mt-10 max-w-4xl mx-auto px-4 pb-0">
     <%= form_with url: material_search_path, method: :get, id: 'search-form' do |f| %>
       <label for="search-box" class="sr-only">搜索</label>
       <span class="absolute inset-y-0 pl-4 pt-4 cursor-pointer" onclick="document.getElementById('search-form').submit();">
@@ -54,8 +54,9 @@
       <%= text_field_tag :q, nil, placeholder: '黄金麻/镀膜玻璃/PC板', class: 'block w-full pl-12 pr-5 py-3 rounded-full bg-transparent border-4 border-white text-base text-white placeholder-white focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-white focus:border-white focus:ring-offset-white', id: 'search-box', autocomplete: "off" -%>
     <% end %>
   </div>
-  <div class="text-center pt-12 pb-20">
-    <a class="text-2xl text-white font-medium border-b-2 border-gray-100 border-solid pb-1">
+  <div class="text-center pt-20 pb-32">
+    <a class="text-2xl text-white font-medium border-b-2 border-gray-100 border-solid pb-1"
+      href="mailto:architectonic@thape.com.cn?subject=天华材料库需求登记">
       <span class="text-xl mr-2">需求登记</span><span class="text-lg">Your demand</span>
     </a>
   </div>
@@ -65,7 +66,7 @@
   <div class="flex-auto">
     <div class="relative">
       <img class="w-full" src="<%= image_pack_path('static/material_background.jpg') -%>" alt="">
-      <div class="absolute top-4 left-8 border-b-2 border-gray-100 border-solid">
+      <div class="absolute top-4 left-5 border-b-2 border-gray-100 border-solid">
         <span class="text-2xl mr-2">材料</span><span class="text-xl">Materials</span>
       </div>
       <div class="absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%);">
@@ -78,7 +79,7 @@
   <div class="flex-auto">
     <div class="relative">
       <img class="w-full" src="<%= image_pack_path('static/project_background.jpg') -%>" alt="">
-      <div class="absolute top-4 left-8 border-b-2 border-gray-100 border-solid">
+      <div class="absolute top-4 left-5 border-b-2 border-gray-100 border-solid">
         <span class="text-2xl mr-2">案例</span><span class="text-xl">Projects</span>
       </div>
       <div class="absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%);">
@@ -91,7 +92,7 @@
   <div class="flex-auto">
     <div class="relative">
       <img class="w-full" src="<%= image_pack_path('static/manufacturer_background.jpg') -%>" alt="">
-      <div class="absolute top-4 left-8 border-b-2 border-gray-100 border-solid">
+      <div class="absolute top-4 left-5 border-b-2 border-gray-100 border-solid">
         <span class="text-2xl mr-2">供应商</span><span class="text-xl">Manufacturer</span>
       </div>
       <div class="absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%);">
