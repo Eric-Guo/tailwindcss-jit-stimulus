@@ -17,3 +17,7 @@
 .active-search {
   @apply border-b-2 border-gray-100 border-solid pb-1;
 }
+
+.more-btn {
+  @apply float-right py-1 px-2 border border-black font-medium rounded-full text-black bg-gray-50 shadow-sm active:bg-gray-800 hover:bg-black focus:text-black hover:text-white focus:text-white transition duration-150 ease-in-out leading-snug;
+}
