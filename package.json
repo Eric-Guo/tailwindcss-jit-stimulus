@@ -4,6 +4,8 @@
   "dependencies": {
     "@fontsource/montserrat": "^4.5.1",
     "@fullhuman/postcss-purgecss": "^4.0.3",
+    "@hotwired/stimulus": "^3.0.0",
+    "@hotwired/stimulus-webpack-helpers": "^1.0.1",
     "@hotwired/turbo": "^7.0.0-rc.3",
     "@rails/webpacker": "^6.0.0-rc.5",
     "@tailwindcss/forms": "^0.3.3",
@@ -17,7 +19,6 @@
     "postcss-import": "^14.0.2",
     "postcss-loader": "^6.1.1",
     "postcss-preset-env": "^6.7.0",
-    "stimulus": "^2.0.0",
     "tailwindcss": "^2.2.15",
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0"

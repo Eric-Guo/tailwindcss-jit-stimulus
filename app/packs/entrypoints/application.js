@@ -15,11 +15,9 @@ window.Turbo = Turbo;
 
 mrujs.start();
 
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
+import { Application } from "@hotwired/stimulus"
+import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
 
-const stimulus = Application.start()
+window.Stimulus = Application.start()
 const context = require.context("../controllers", true, /\.js$/)
-stimulus.load(definitionsFromContext(context))
-
-window.Stimulus = stimulus;
+Stimulus.load(definitionsFromContext(context))
