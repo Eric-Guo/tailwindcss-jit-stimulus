@@ -903,9 +903,9 @@
     purgecss "^4.0.3"
 
 "@hotwired/turbo@^7.0.0-rc.3":
-  version "7.0.0-rc.3"
-  resolved "https://registry.nlark.com/@hotwired/turbo/download/@hotwired/turbo-7.0.0-rc.3.tgz#f31289fc185e09524445471d1b46b59cac0f99cb"
-  integrity sha1-8xKJ/BheCVJERUcdG0a1nKwPmcs=
+  version "7.0.0-rc.5"
+  resolved "https://registry.npmmirror.com/@hotwired/turbo/download/@hotwired/turbo-7.0.0-rc.5.tgz#a49f0a41e0f698f5da65c70e8b822d30f303e3b6"
+  integrity sha1-pJ8KQeD2mPXaZccOi4ItMPMD47Y=
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -930,7 +930,7 @@
 
 "@rails/webpacker@^6.0.0-rc.5":
   version "6.0.0-rc.5"
-  resolved "https://registry.nlark.com/@rails/webpacker/download/@rails/webpacker-6.0.0-rc.5.tgz#496466b331f3673cf73149d1e3bbc39dce3e1020"
+  resolved "https://registry.npmmirror.com/@rails/webpacker/download/@rails/webpacker-6.0.0-rc.5.tgz#496466b331f3673cf73149d1e3bbc39dce3e1020"
   integrity sha1-SWRmszHzZzz3MUnR47vDnc4+ECA=
   dependencies:
     "@babel/core" "^7.15.0"
@@ -1506,9 +1506,11 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001259:
-  version "1.0.30001259"
-  resolved "https://registry.nlark.com/caniuse-lite/download/caniuse-lite-1.0.30001259.tgz?cache=0&sync_timestamp=1632203439345&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcaniuse-lite%2Fdownload%2Fcaniuse-lite-1.0.30001259.tgz#ae21691d3da9c4be6144403ac40f71d9f6efd790"
-  integrity sha1-riFpHT2pxL5hREA6xA9x2fbv15A=
+  version "1.0.30001260"
+  resolved "https://registry.npmmirror.com/caniuse-lite/download/caniuse-lite-1.0.30001260.tgz?cache=0&sync_timestamp=1632380029403&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcaniuse-lite%2Fdownload%2Fcaniuse-lite-1.0.30001260.tgz#e3be3f34ddad735ca4a2736fa9e768ef34316270"
+  integrity sha1-474/NN2tc1ykonNvqedo7zQxYnA=
+  dependencies:
+    nanocolors "^0.1.0"
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -1602,13 +1604,13 @@ color@^4.0.1:
     color-string "^1.6.0"
 
 colord@^2.0.1, colord@^2.6:
-  version "2.7.0"
-  resolved "https://registry.nlark.com/colord/download/colord-2.7.0.tgz#706ea36fe0cd651b585eb142fe64b6480185270e"
-  integrity sha1-cG6jb+DNZRtYXrFC/mS2SAGFJw4=
+  version "2.8.0"
+  resolved "https://registry.npmmirror.com/colord/download/colord-2.8.0.tgz?cache=0&sync_timestamp=1632420899303&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcolord%2Fdownload%2Fcolord-2.8.0.tgz#64fb7aa03de7652b5a39eee50271a104c2783b12"
+  integrity sha1-ZPt6oD3nZStaOe7lAnGhBMJ4OxI=
 
-colorette@^1.2.1, colorette@^1.2.2, colorette@^1.4.0:
+colorette@^1.2.1, colorette@^1.2.2:
   version "1.4.0"
-  resolved "https://registry.npmmirror.com/colorette/download/colorette-1.4.0.tgz?cache=0&sync_timestamp=1632318058325&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcolorette%2Fdownload%2Fcolorette-1.4.0.tgz#5190fbb87276259a86ad700bff2c6d6faa3fca40"
+  resolved "https://registry.npmmirror.com/colorette/download/colorette-1.4.0.tgz?cache=0&sync_timestamp=1632420307949&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcolorette%2Fdownload%2Fcolorette-1.4.0.tgz#5190fbb87276259a86ad700bff2c6d6faa3fca40"
   integrity sha1-UZD7uHJ2JZqGrXAL/yxtb6o/ykA=
 
 commander@^2.20.0:
@@ -2071,9 +2073,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.846:
-  version "1.3.847"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.3.847.tgz#d3184fec571dae68f502720dbb74572cd0012414"
-  integrity sha1-0xhP7Fcdrmj1AnINu3RXLNABJBQ=
+  version "1.3.849"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.3.849.tgz#45a65a392565abc5b864624b9753393336426f4b"
+  integrity sha1-RaZaOSVlq8W4ZGJLl1M5MzZCb0s=
 
 emojis-list@^3.0.0:
   version "3.0.0"
@@ -3146,10 +3148,10 @@ multicast-dns@^6.0.1:
     dns-packet "^1.3.1"
     thunky "^1.0.2"
 
-nanocolors@^0.1.5:
-  version "0.1.6"
-  resolved "https://registry.nlark.com/nanocolors/download/nanocolors-0.1.6.tgz#bc2350d3edfdbfadd7ac018c855ae7c13905a6ad"
-  integrity sha1-vCNQ0+39v63XrAGMhVrnwTkFpq0=
+nanocolors@^0.1.0, nanocolors@^0.1.12, nanocolors@^0.1.5:
+  version "0.1.12"
+  resolved "https://registry.npmmirror.com/nanocolors/download/nanocolors-0.1.12.tgz?cache=0&sync_timestamp=1632383384131&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fnanocolors%2Fdownload%2Fnanocolors-0.1.12.tgz#8577482c58cbd7b5bb1681db4cf48f11a87fd5f6"
+  integrity sha1-hXdILFjL17W7FoHbTPSPEah/1fY=
 
 nanoid@^3.1.25:
   version "3.1.25"
@@ -4518,7 +4520,7 @@ stable@^0.1.8:
 
 stimulus@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.nlark.com/stimulus/download/stimulus-2.0.0.tgz#713c8b91a72ef90914b90955f0e705f004403047"
+  resolved "https://registry.npmmirror.com/stimulus/download/stimulus-2.0.0.tgz#713c8b91a72ef90914b90955f0e705f004403047"
   integrity sha1-cTyLkacu+QkUuQlV8OcF8ARAMEc=
   dependencies:
     "@stimulus/core" "^2.0.0"
@@ -4540,7 +4542,7 @@ string_decoder@~1.1.1:
 
 strip-ansi@^7.0.0:
   version "7.0.1"
-  resolved "https://registry.nlark.com/strip-ansi/download/strip-ansi-7.0.1.tgz?cache=0&sync_timestamp=1631350330859&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fstrip-ansi%2Fdownload%2Fstrip-ansi-7.0.1.tgz#61740a08ce36b61e50e65653f07060d000975fb2"
+  resolved "https://registry.npmmirror.com/strip-ansi/download/strip-ansi-7.0.1.tgz#61740a08ce36b61e50e65653f07060d000975fb2"
   integrity sha1-YXQKCM42th5Q5lZT8HBg0ACXX7I=
   dependencies:
     ansi-regex "^6.0.1"
@@ -4587,16 +4589,16 @@ supports-color@^8.0.0:
     has-flag "^4.0.0"
 
 svgo@^2.3.0:
-  version "2.6.1"
-  resolved "https://registry.nlark.com/svgo/download/svgo-2.6.1.tgz?cache=0&sync_timestamp=1631746807730&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsvgo%2Fdownload%2Fsvgo-2.6.1.tgz#60b613937e0081028cffc2369090e366b08f1f0e"
-  integrity sha1-YLYTk34AgQKM/8I2kJDjZrCPHw4=
+  version "2.7.0"
+  resolved "https://registry.npmmirror.com/svgo/download/svgo-2.7.0.tgz?cache=0&sync_timestamp=1632433127001&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fsvgo%2Fdownload%2Fsvgo-2.7.0.tgz#e164cded22f4408fe4978f082be80159caea1e2d"
+  integrity sha1-4WTN7SL0QI/kl48IK+gBWcrqHi0=
   dependencies:
     "@trysound/sax" "0.2.0"
-    colorette "^1.4.0"
     commander "^7.2.0"
     css-select "^4.1.3"
     css-tree "^1.1.3"
     csso "^4.2.0"
+    nanocolors "^0.1.12"
     stable "^0.1.8"
 
 tailwindcss@^2.2.15:

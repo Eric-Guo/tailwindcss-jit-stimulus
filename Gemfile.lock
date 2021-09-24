@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: 1056e3f26a1657feab13d0c094ba097c54aa0d4a
+  revision: 16087e1e6e970601a84a4e749f84d83e5abb1a30
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha2)
@@ -154,7 +154,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     thor (1.1.0)
-    turbo-rails (0.7.14)
+    turbo-rails (0.7.15)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -202,4 +202,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.2.27
+   2.2.28
