@@ -21,18 +21,18 @@ import { Application } from "@hotwired/stimulus"
 import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
 
 window.Stimulus = Application.start()
-const context = require.context("../controllers", true, /\.js$/)
-stimulus.load(definitionsFromContext(context))
 
 // Import and register all TailwindCSS Components
-import { Alert, Autosave, Dropdown, Modal, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
-stimulus.register('alert', Alert)
-stimulus.register('autosave', Autosave)
-stimulus.register('dropdown', Dropdown)
-stimulus.register('modal', Modal)
-stimulus.register('tabs', Tabs)
-stimulus.register('popover', Popover)
-stimulus.register('toggle', Toggle)
-stimulus.register('slideover', Slideover)
+import tailwindcssStimulusComponents from "tailwindcss-stimulus-components/dist/tailwindcss-stimulus-components.modern"
+Stimulus.register('alert', tailwindcssStimulusComponents.Alert)
+Stimulus.register('autosave', tailwindcssStimulusComponents.Autosave)
+Stimulus.register('dropdown', tailwindcssStimulusComponents.Dropdown)
+Stimulus.register('modal', tailwindcssStimulusComponents.Modal)
+Stimulus.register('tabs', tailwindcssStimulusComponents.Tabs)
+Stimulus.register('popover', tailwindcssStimulusComponents.Popover)
+Stimulus.register('toggle', tailwindcssStimulusComponents.Toggle)
+Stimulus.register('slideover', tailwindcssStimulusComponents.Slideover)
 
-window.Stimulus = stimulus;
+const context = require.context("../controllers", true, /\.js$/)
+Stimulus.load(definitionsFromContext(context))
+
