@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: 9caf76522d800d77980e3e0919361172f738eec4
+  revision: b3897cfa35dc68e829c0f8f25f5b4d421b3f992a
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha2)
@@ -82,7 +82,7 @@ GIT
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
-      zeitwerk (~> 2.5.0.beta4)
+      zeitwerk (~> 2.5.0.beta5)
 
 GEM
   remote: https://rubygems.org/
@@ -177,7 +177,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.0.beta4)
+    zeitwerk (2.5.0.beta5)
 
 PLATFORMS
   x86_64-darwin-19
