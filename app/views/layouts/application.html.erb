@@ -54,19 +54,28 @@
       </div>
     </main>
 
-    <footer class="bottom-0 bg-black py-6 text-white text-base">
-      <nav class="flex items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
-        <div class="w-0 flex-1">
-          <p>联系我们：建筑委</p>
-          <p>电话：xxxxxxxxxx 邮箱：xxx@thape.com.cn</p>
-        </div>
-        <div>
-          <a href="#" class="font-medium">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</a>
-        </div>
-        <div class="w-0 flex-1 flex justify-end">
-          <p>友情链接：<span class="mx-4">建筑委</span><span class="mx-4">材料在线</span><span class="mx-4">阿奇找找</span></p>
-        </div>
-      </nav>
-    </footer>
+    <% if @browser.mobile? %>
+      <footer class="bg-gray-800 text-white text-xs p-4">
+        <p class="my-1">联系我们：建筑委</p>
+        <p class="my-1">电话：xxxxxxxxxx 邮箱：xxx@thape.com.cn</p>
+        <p class="mb-1 mt-4">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</p>
+        <p class="my-1">友情链接：<span class="mx-1">建筑委</span><span class="mx-1">材料在线</span><span class="mx-1">阿奇找找</span></p>
+      </footer>
+    <% else %>
+      <footer class="bottom-0 bg-black py-6 text-white text-base">
+        <nav class="flex items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
+          <div class="w-0 flex-1">
+            <p>联系我们：建筑委</p>
+            <p>电话：xxxxxxxxxx 邮箱：xxx@thape.com.cn</p>
+          </div>
+          <div>
+            <a href="#" class="font-medium">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</a>
+          </div>
+          <div class="w-0 flex-1 flex justify-end">
+            <p>友情链接：<span class="mx-4">建筑委</span><span class="mx-4">材料在线</span><span class="mx-4">阿奇找找</span></p>
+          </div>
+        </nav>
+      </footer>
+    <% end %>
   </body>
 </html>
