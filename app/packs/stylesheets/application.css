@@ -21,3 +21,8 @@
 .more-btn {
   @apply float-right py-1 px-2.5 border border-black font-medium text-sm rounded-full text-black bg-gray-50 shadow-sm active:bg-gray-800 hover:bg-black focus:text-black hover:text-white focus:text-white transition duration-150 ease-in-out leading-snug;
 }
+
+.more-btn-sm {
+  @apply float-right py-0.5 px-2 border border-black font-medium text-xs rounded-full text-black bg-gray-50 shadow-sm active:bg-gray-800 hover:bg-black focus:text-black hover:text-white focus:text-white transition duration-150 ease-in-out leading-snug;
+}
+
