@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: 461c78675e18f554a2415350c9bb78c652533f8e
+  revision: 9d2ce9dcd58471434f4e235c85e9febd8ee2abf2
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha2)
@@ -202,4 +202,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.2.28
+   2.2.29
