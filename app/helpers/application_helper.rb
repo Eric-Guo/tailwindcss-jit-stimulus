@@ -6,4 +6,9 @@ module ApplicationHelper
       image_pack_path(fallback_path)
     end
   end
+
+  def get_first_url(paths)
+   "https://m-thtri.thape.com.cn/api/#{paths[0]}"
+  end
+
 end
