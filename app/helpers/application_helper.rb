@@ -10,5 +10,4 @@ module ApplicationHelper
   def get_first_url(paths)
    "https://m-thtri.thape.com.cn/api/#{paths[0]}"
   end
-
 end
