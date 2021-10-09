@@ -115,31 +115,32 @@
       <% end %>
     </div>
 
-    <%# 所属案例 %>
+    <%# 所属案例  %>
+    <section class="flex-auto">
+
     <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <svg class="h-6 w-6 float-right mt-1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+          <path d="M511.936 61.568a448 448 0 0 0-447.552 447.552 448 448 0 0 0 447.552 447.552 448 448 0 0 0 447.552-447.552A448 448 0 0 0 511.936 61.568z m0 831.104a384 384 0 0 1-383.552-383.552 384 384 0 0 1 383.552-383.552 384 384 0 0 1 383.552 383.552 383.936 383.936 0 0 1-383.552 383.552z" p-id="2135"></path>
+          <path d="M386.112 278.784a31.872 31.872 0 0 1 44.992-0.32l207.104 207.168c6.464 6.4 9.28 14.912 8.96 23.424a30.912 30.912 0 0 1-8.96 23.616L431.04 739.84c-12.224 12.352-32.384 12.224-44.864-0.256s-12.608-32.64-0.384-44.992l185.408-185.408-185.344-185.472a31.744 31.744 0 0 1 0.256-44.928z" p-id="2136"></path>
+        </svg>
+        <svg class="h-6 w-6 float-right mt-1 mr-1 lg:mr-2 xl:mr-3" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+          <path d="M511.936 61.568a448 448 0 0 0-447.552 447.552 448 448 0 0 0 447.552 447.552 448 448 0 0 0 447.552-447.552A448 448 0 0 0 511.936 61.568z m0 831.104a384 384 0 0 1-383.552-383.552 384 384 0 0 1 383.552-383.552 384 384 0 0 1 383.552 383.552 383.936 383.936 0 0 1-383.552 383.552z" p-id="2277"></path>
+          <path d="M637.76 278.784a31.872 31.872 0 0 0-44.992-0.32L385.6 485.632a30.912 30.912 0 0 0-8.96 23.424 31.36 31.36 0 0 0 8.96 23.616l207.168 207.168c12.224 12.352 32.384 12.224 44.864-0.256s12.608-32.64 0.384-44.992L452.608 509.184l185.344-185.408a31.744 31.744 0 0 0-0.192-44.992z" p-id="2278"></path>
+        </svg>
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">所属案例</span><span class="text-xl font-light">Projects</span>
     </div>
 
     <div class="mx-4 mt-4 mb-16 grid grid-cols-3 gap-8">
+    <% @cases.each do |myCase| %>
       <div>
-        <img class="w-full my-3" src="<%= image_pack_path('static/project_new_g3.jpg') -%>" alt="">
-        <h3 class="text-base font-medium">沈阳国际软件园</h3>
-        <p class="text-sm mt-1">辽宁省沈阳市</p>
-        <p class="text-sm mt-1">上海天华/建筑十所</p>
+        <img class="w-full my-3" src="<%= get_first_url(myCase.live_photos) -%>" alt="">
+        <h3 class="text-base font-medium"><%= myCase.project_name -%></h3>
+        <p class="text-sm mt-1"><%= myCase.project_location -%></p>
+        <p class="text-sm mt-1"><%= myCase.design_unit -%></p>
       </div>
-      <div>
-        <img class="w-full my-3" src="<%= image_pack_path('static/project_new_g4.jpg') -%>" alt="">
-        <h3 class="text-xl font-medium">华润宁波万象汇</h3>
-        <p class="text-sm mt-1">浙江省宁波市</p>
-        <p class="text-sm mt-1">上海天华/公建一所（总）</p>
-      </div>
-      <div>
-        <img class="w-full my-3" src="<%= image_pack_path('static/project_new_g5.jpg') -%>" alt="">
-        <h3 class="text-base font-medium">龙湖·中铁建·云璟</h3>
-        <p class="text-sm mt-1">辽宁省沈阳市</p>
-        <p class="text-sm mt-1">上海天华/建筑四所</p>
-      </div>
+    <% end %>
     </div>
+    </section>
   </section>
 
   <%# 其他样品 %>
