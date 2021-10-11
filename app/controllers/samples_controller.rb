@@ -8,6 +8,6 @@ class SamplesController < ApplicationController
     case_ids = CasesMaterial.where(type: 1, sample_id: @sample.id).pluck(:case_id)
     @cases = Cases.where(id: case_ids)
 
-    # 其他样品
+    @other_samples = Sample.where.not(id: @sample.id).limit(4)
   end
 end

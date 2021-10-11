@@ -157,15 +157,15 @@
 </svg>
     </div>
 
-    <% (1..4).each do |i| %>
+    <% @other_samples.each_with_index do |other_sample, i| %>
       <div class="mr-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> mb-4 flex">
-        <img class="w-1/2" src="<%= image_pack_path("static/sample_side_p#{i}.jpg") -%>" alt="">
+        <img class="w-1/2" src="<%= image_pack_path("static/sample_side_p#{i+1}.jpg") -%>" alt="">
         <div class="flex flex-col justify-end mx-4">
           <h2 class="text-base mb-2">黄金麻（样品）</h2>
-          <p class="mt-1 text-xs text-gray-400">样品编号：xxxx</p>
-          <p class="mt-1 text-xs text-gray-400">表面工艺：xxxxxxx</p>
-          <p class="mt-1 text-xs text-gray-400">色系：黄色</p>
-          <p class="mt-1 text-xs text-gray-400">厂家：xxxxxx</p>
+          <p class="mt-1 text-xs text-gray-400">样品编号：<%= other_sample.no -%></p>
+          <p class="mt-1 text-xs text-gray-400">表面效果：<%= other_sample.surface_effect&.description -%></p>
+          <p class="mt-1 text-xs text-gray-400">色系：<%= other_sample.material&.color -%></p>
+          <p class="mt-1 text-xs text-gray-400">厂家：<%= other_sample.manufacturer&.name -%></p>
         </div>
       </div>
     <% end %>
