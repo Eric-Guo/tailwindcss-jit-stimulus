@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "v5", limit: 100
   end
 
+  create_table "case_material_color_systems", primary_key: ["cases_material_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "cases_material_id", null: false, unsigned: true
+    t.bigint "color_systems_id", null: false, unsigned: true
+  end
+
+  create_table "case_material_surface_effects", primary_key: ["cases_material_id", "surface_effect_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "cases_material_id", null: false, unsigned: true
+    t.bigint "surface_effect_id", null: false, unsigned: true
+  end
+
   create_table "cases", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -121,6 +131,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.bigint "manufacturer_id", unsigned: true
     t.bigint "surface_effect_id", unsigned: true
     t.bigint "color_system_id", unsigned: true
+    t.bigint "material_id", unsigned: true
+    t.bigint "sample_id", unsigned: true
     t.index ["deleted_at"], name: "idx_cases_material_deleted_at"
   end
 
@@ -190,6 +202,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "su_picture"
     t.text "practice_details"
     t.text "source_file"
+    t.string "color_systems", limit: 191
     t.index ["deleted_at"], name: "idx_cl_material_products_deleted_at"
     t.index ["material_id"], name: "idx_cl_material_products_material_id", unique: true
   end
@@ -349,6 +362,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "email", limit: 191
     t.string "legal", limit: 191
     t.string "position", limit: 191
+    t.string "cases", limit: 191
     t.index ["deleted_at"], name: "idx_manufacturers_deleted_at"
   end
 
@@ -383,6 +397,11 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "material_ones", primary_key: ["material_id", "one_by_one_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "material_id", null: false, unsigned: true
     t.bigint "one_by_one_id", null: false, unsigned: true
+  end
+
+  create_table "material_product_color_systems", primary_key: ["material_product_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "material_product_id", null: false, unsigned: true
+    t.bigint "color_systems_id", null: false, unsigned: true
   end
 
   create_table "material_product_practical_applications", primary_key: ["material_product_id", "practical_applications_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -437,6 +456,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.bigint "sys_user_id", unsigned: true
     t.bigint "cl_online_id", unsigned: true
     t.string "source", limit: 191
+    t.bigint "display"
     t.index ["deleted_at"], name: "idx_materials_deleted_at"
   end
 
@@ -496,7 +516,39 @@ ActiveRecord::Schema.define(version: 0) do
     t.bigint "display", comment: "是否显示 1 or 0"
     t.bigint "color_system_id", comment: "色系", unsigned: true
     t.string "qr_code", limit: 191
+    t.string "aq_online_id", limit: 191
+    t.string "visual", limit: 191
+    t.string "genus", limit: 191
+    t.string "species", limit: 191
+    t.bigint "brand_id", unsigned: true
+    t.string "origin", limit: 191
+    t.string "feature", limit: 191
+    t.string "technology", limit: 191
+    t.string "properties", limit: 191
+    t.string "application_site", limit: 191
+    t.string "model", limit: 191
+    t.string "price_unit", limit: 191
     t.index ["deleted_at"], name: "idx_sample_deleted_at"
+  end
+
+  create_table "sample_color_systems", primary_key: ["sample_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "sample_id", null: false, unsigned: true
+    t.bigint "color_systems_id", null: false, unsigned: true
+  end
+
+  create_table "sample_enclosures", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "deleted_at"
+    t.bigint "sample_id", unsigned: true
+    t.string "path", limit: 191
+    t.string "name", limit: 191
+    t.index ["deleted_at"], name: "idx_sample_enclosures_deleted_at"
+  end
+
+  create_table "sample_surface_effects", primary_key: ["sample_id", "surface_effect_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "sample_id", null: false, unsigned: true
+    t.bigint "surface_effect_id", null: false, unsigned: true
   end
 
   create_table "sections", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
