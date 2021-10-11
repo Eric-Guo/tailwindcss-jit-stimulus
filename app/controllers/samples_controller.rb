@@ -8,6 +8,16 @@ class SamplesController < ApplicationController
     case_ids = CasesMaterial.where(type: 1, sample_id: @sample.id).pluck(:case_id)
     @cases = Cases.where(id: case_ids)
 
-    @other_samples = Sample.where.not(id: @sample.id).limit(4)
+    @other_samples = Sample.where.not(id: @sample.id).limit(2)
+  end
+
+  def next_other_samples
+    @sample = Sample.find_by!(no: params[:id])
+    @other_samples = Sample.where.not(id: @sample.id).limit(2).offset(2)
+  end
+
+  def prev_other_samples
+    @sample = Sample.find_by!(no: params[:id])
+    @other_samples = Sample.where.not(id: @sample.id).limit(2)
   end
 end
