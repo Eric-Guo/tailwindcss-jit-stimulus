@@ -1,0 +1,24 @@
+<section class="flex-auto">
+  <div class="mr-4 mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">其他样品</span><span class="text-xl font-light">Other Samples</span>
+    <%= link_to next_other_samples_sample_path(id: sample.no) do %>
+      <img class="h-6 w-6 float-right mt-1" src="<%= image_pack_path('static/arrow_right.svg') -%>" alt="">
+    <% end %>
+    <%= link_to prev_other_samples_sample_path(id: sample.no) do %>
+      <img class="h-6 w-6 float-right mt-1 mr-1 lg:mr-2 xl:mr-3" src="<%= image_pack_path('static/arrow_left.svg') -%>" alt="">
+    <% end %>
+  </div>
+
+  <% other_samples.each_with_index do |other_sample, i| %>
+    <div class="mr-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> mb-4 flex">
+      <img class="w-1/2" src="<%= image_pack_path("static/sample_side_p#{i+1}.jpg") -%>" alt="">
+      <div class="flex flex-col justify-end mx-4">
+        <h2 class="text-base mb-2">黄金麻（样品）</h2>
+        <p class="mt-1 text-xs text-gray-400">样品编号：<%= other_sample.no -%></p>
+        <p class="mt-1 text-xs text-gray-400">表面效果：<%= other_sample.surface_effect&.description -%></p>
+        <p class="mt-1 text-xs text-gray-400">色系：<%= other_sample.material&.color -%></p>
+        <p class="mt-1 text-xs text-gray-400">厂家：<%= other_sample.manufacturer&.name -%></p>
+      </div>
+    </div>
+  <% end %>
+</section>
