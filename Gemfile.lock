@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: 9d2ce9dcd58471434f4e235c85e9febd8ee2abf2
+  revision: 1ed1408d9492a5058b34615fe40607b077ee2cf4
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha2)
@@ -75,7 +75,6 @@ GIT
       activesupport (= 7.0.0.alpha2)
       bundler (>= 1.15.0)
       railties (= 7.0.0.alpha2)
-      sprockets-rails (>= 2.0.0)
     railties (7.0.0.alpha2)
       actionpack (= 7.0.0.alpha2)
       activesupport (= 7.0.0.alpha2)
@@ -116,7 +115,7 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
     method_source (1.0.0)
-    mini_mime (1.1.1)
+    mini_mime (1.1.2)
     minitest (5.14.4)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
@@ -145,13 +144,6 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    sprockets (4.0.2)
-      concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
-    sprockets-rails (3.2.2)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
-      sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     thor (1.1.0)
     turbo-rails (0.8.1)
