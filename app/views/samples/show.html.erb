@@ -131,14 +131,14 @@
     </div>
 
     <div class="mx-4 mt-4 mb-16 grid grid-cols-3 gap-8">
-    <% @cases.each do |myCase| %>
-      <div>
-        <img class="w-full my-3" src="<%= get_first_url(myCase.live_photos) -%>" alt="">
-        <h3 class="text-base font-medium"><%= myCase.project_name -%></h3>
-        <p class="text-sm mt-1"><%= myCase.project_location -%></p>
-        <p class="text-sm mt-1"><%= myCase.design_unit -%></p>
-      </div>
-    <% end %>
+      <% @cases.each do |project_case| %>
+        <div>
+          <img class="w-full my-3" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
+          <h3 class="text-base font-medium"><%= project_case.project_name -%></h3>
+          <p class="text-sm mt-1"><%= project_case.project_location -%></p>
+          <p class="text-sm mt-1"><%= project_case.design_unit -%></p>
+        </div>
+      <% end %>
     </div>
     </section>
   </section>
