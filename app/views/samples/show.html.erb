@@ -38,7 +38,26 @@
             <dd class="mt-2 inline">荔枝面</dd>
 
             <dt class="mt-2 inline-block w-1/2">存储位置：</dt>
-            <dd class="mt-2 inline">A-3-25</dd>
+            <dd class="mt-2 inline" data-controller="modal" data-modal-allow-background-close="true">
+              <a href="#" data-action="click->modal#open">
+                <span class="underline">A-3-25</span>
+              </a>
+              <!-- Modal Container -->
+              <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
+                <!-- Modal Inner Container -->
+                <div class="max-h-screen w-full max-w-7xl relative">
+                  <!-- Modal Card -->
+                  <div class="m-1 bg-white rounded shadow">
+                    <div class="p-8">
+                      <figure>
+                        <img src="<%= image_pack_path('static/sample_location.png') -%>" alt="">
+                        <figcaption class="text-center mt-2">样板位置: A-3-25</figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </dd>
         </dl>
       </div>
     </div>
