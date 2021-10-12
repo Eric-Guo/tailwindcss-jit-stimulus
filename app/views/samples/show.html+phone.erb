@@ -28,9 +28,26 @@
       <p class="text-xs whitespace-nowrap">表面效果：
         <span class="font-medium">荔枝面</span>
       </p>
-      <p class="text-xs whitespace-nowrap">储存位置：
-        <span class="font-medium">A-3-25</span>
-      </p>
+      <div class="text-xs whitespace-nowrap" data-controller="modal" data-modal-allow-background-close="true">储存位置：
+        <a href="#" data-action="click->modal#open">
+          <span class="font-medium underline">A-3-25</span>
+        </a>
+        <!-- Modal Container -->
+        <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
+          <!-- Modal Inner Container -->
+          <div class="max-h-screen w-full max-w-7xl relative">
+            <!-- Modal Card -->
+            <div class="m-1 bg-white rounded shadow">
+              <div class="p-8">
+                <figure>
+                  <img src="<%= image_pack_path('static/sample_location.png') -%>" alt="">
+                  <figcaption class="text-center mt-2">样板位置: A-3-25</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </dl>
   </div>
   <h5 class="text-base mt-4">其他样品</h5>
