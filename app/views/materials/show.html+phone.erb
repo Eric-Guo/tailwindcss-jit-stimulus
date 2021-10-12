@@ -1,7 +1,7 @@
 <%# 材料产品详情 %>
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2.5">
   <div class="my-2">
-    <span class="font-medium px-1 text-gray-400">色系</span>
+    <span class="font-medium px-1 text-gray-400">色系 ：</span>
     <span class="px-1">白色系</span>
     <span class="px-1">灰色系</span>
     <span class="px-1">黑色系</span>
@@ -77,60 +77,62 @@
 </div>
 
 <%# 材料样品 %>
-<div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2">
-  <h5 class="inline text-base font-medium my-1">材料样品</h5>
-  <a class="more-btn-sm inline" href="<%= root_path -%>">MORE+</a>
-</div>
-<div class="m-2">
-  <table class="min-w-full divide-y divide-gray-300">
-    <thead class="">
-      <tr>
-        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-          样品编号
-        </th>
-        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-          色系
-        </th>
-        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-          样品规格、型号
-        </th>
-        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-          表面工艺
-        </th>
-        <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-          剩余库存
-        </th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-300">
-      <% (1..4).each do %>
-        <tr>
-          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs font-medium">
-            A07010-32
-          </td>
-          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
-            黄色系
-          </td>
-          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
-            30cmx30cm
-          </td>
-          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
-            哑光
-          </td>
-          <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+<div class="bg-white mx-1 px-1 pb-5 mt-1">
+  <div class="text-black-6c text-xs px-0.5 py-2">
+    <h5 class="inline text-base font-medium my-1">材料样品</h5>
+    <a class="more-btn-sm inline" href="<%= root_path -%>">MORE+</a>
+  </div>
+  <div class="px-0.5">
+    <div class="bg-gray-200 w-full overflow-hidden">
+      <table class="w-full divide-y divide-gray-300 box-border">
+        <thead class="">
+          <tr>
+            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+              样品编号
+            </th>
+            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+              色系
+            </th>
+            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+              样品规格、型号
+            </th>
+            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+              表面工艺
+            </th>
+            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+              剩余库存
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-300">
+          <% (1..4).each do %>
+            <tr>
+              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs font-medium">
+                A07010-32
+              </td>
+              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+                黄色系
+              </td>
+              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+                30cmx30cm
+              </td>
+              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+                哑光
+              </td>
+              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
 
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <p class="m-2 text-sm">实体材料库地址：上海市徐汇区漕河泾科汇大厦11F</p>
-</div>
-<div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2.5">
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <p class="p-2 text-sm">实体材料库地址：上海市徐汇区漕河泾科汇大厦11F</p>
+    </div>
+  </div>
 </div>
 
 <%# 产品案例 %>
-<div class="bg-white text-black-6c text-xs px-1.5 py-2 mt-2">
+<div class="bg-white text-black-6c text-xs px-1.5 py-2 mt-1 mx-1">
   <h5 class="inline text-base font-medium m-1">产品案例</h5>
   <a class="more-btn-sm inline" href="<%= root_path -%>">MORE+</a>
   <div class="mt-1 grid grid-cols-2 gap-y-2">
