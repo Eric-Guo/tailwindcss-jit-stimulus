@@ -1,0 +1,42 @@
+@charset "utf8";
+
+.sidebar {
+  width: 960px;
+  height: 100%;
+}
+
+.sidebar-nav-container {
+  width: 320px;
+  background-color: #636363;
+  padding: 106px 30px 40px 40px;
+}
+
+.sidebar-nav {
+  width: 100%;
+}
+
+.sidebar-nav-item {
+  margin-top: 38px;
+  width: 100%;
+}
+
+.sidebar-nav-item:first-child {
+  margin-top: 0px;
+}
+
+.sidebar-nav-item-content {
+  margin-right: 38px;
+}
+
+.sidebar-nav-item-icon {
+  width: 12px;
+}
+
+.sidebar-border {
+  position: absolute;
+  top: 106px;
+  bottom: 40px;
+  right: 0;
+  width: 1px;
+  background: #A7A7A7;
+}
