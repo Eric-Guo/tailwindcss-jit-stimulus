@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: 1ed1408d9492a5058b34615fe40607b077ee2cf4
+  revision: ec0ab3e7b225d2277b24a3b8a004116592817055
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha2)
@@ -79,7 +79,7 @@ GIT
       actionpack (= 7.0.0.alpha2)
       activesupport (= 7.0.0.alpha2)
       method_source
-      rake (>= 0.13)
+      rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5.0.beta5)
 
@@ -123,7 +123,7 @@ GEM
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     public_suffix (4.0.6)
-    puma (5.5.0)
+    puma (5.5.2)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
