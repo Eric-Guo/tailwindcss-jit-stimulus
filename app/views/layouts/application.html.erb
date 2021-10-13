@@ -31,21 +31,77 @@
       <div id="sidebar">
         <div data-slideover-target="overlay" class="fixed inset-0 flex z-40 transition-opacity ease-linear duration-300 opacity-0 hidden">
           <div class="fixed inset-0">
-            <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
+            <div class="absolute inset-0" style="background: rgba(0, 0, 0, 0.6);"></div>
           </div>
-          <div id="slideover-target" data-slideover-target="menu" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-800 transition ease-in-out duration-300 transform -translate-x-full hidden">
-            <div class="absolute top-0 right-0 -mr-14 p-1">
-              <button data-action="slideover#toggle" class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600" aria-label="Close sidebar">
-                <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+          <div id="slideover-target" data-slideover-target="menu" class="sidebar relative flex-none flex transition ease-in-out duration-300 transform -translate-x-full hidden">
+            <div class="relative flex sidebar-nav-container">
+              <%# 关闭按钮 %>
+              <button data-action="slideover#toggle" class="absolute top-1 left-0 flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600" aria-label="Close sidebar">
+                <svg class="h-10 w-10 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
               </button>
+              <%# 一级菜单 %>
+              <nav class="sidebar-nav">
+                <div class="text-white text-opacity-60 flex justify-between items-center sidebar-nav-item">
+                  <div class="sidebar-nav-item-content truncate">
+                    <span class="text-2xl">材料</span>
+                    <span class="text-lg">Materials</span>
+                  </div>
+                  <div class="sidebar-nav-item-icon">
+                    <svg viewBox="0 0 1024 1024" width="100%" height="1em">
+                      <path fill="currentColor" d="M250.595556 184.888889a92.529778 92.529778 0 0 1 0.284444-129.991111 92.529778 92.529778 0 0 1 130.844444-0.853334l391.395556 391.68a92.188444 92.188444 0 0 1 0 130.56L381.44 967.964444a92.529778 92.529778 0 0 1-131.128889-130.56l326.826667-326.257777L250.595556 184.888889z"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="text-white text-opacity-60 truncate sidebar-nav-item">
+                  <div class="sidebar-nav-item-content truncate">
+                    <span class="text-2xl">案例</span>
+                    <span class="text-lg">Projects</span>
+                  </div>
+                </div>
+                <div class="text-white text-opacity-60 truncate sidebar-nav-item">
+                  <div class="sidebar-nav-item-content truncate">
+                    <span class="text-2xl">供应商</span>
+                    <span class="text-lg">Manufacturer</span>
+                  </div>
+                </div>
+                <div class="text-white text-opacity-60 truncate sidebar-nav-item">
+                  <div class="sidebar-nav-item-content truncate">
+                    <span class="text-2xl">需求登记</span>
+                    <span class="text-lg">Your Demandasdasdasdasd</span>
+                  </div>
+                </div>
+              </nav>
+              <div class="sidebar-border"></div>
+              <div class="absolute text-white text-sm" style="left: 40px; bottom: 40px;">
+                <div>联系方式 Contact</div>
+                <div class="mt-4 flex items-center">
+                  <svg class="text-base" viewBox="0 0 1024 1024" width="1em" height="1em">
+                    <path fill="currentColor" d="M165.003636 95.557818a139.636364 139.636364 0 0 1 189.905455 32.698182l88.157091 118.714182a132.980364 132.980364 0 0 1-7.842909 168.168727l-14.708364 16.360727a23.272727 23.272727 0 0 0-2.583273 27.624728 344.785455 344.785455 0 0 0 53.969455 68.584727c22.690909 22.155636 54.714182 47.429818 95.883636 75.543273a23.272727 23.272727 0 0 0 29.626182-2.792728 250.647273 250.647273 0 0 1 62.487273-45.940363c53.992727-27.997091 124.974545 12.637091 239.290182 115.712l14.196363 12.939636a139.706182 139.706182 0 0 1 9.541818 196.165818l-5.98109 6.609455c-30.068364 32.791273-56.692364 55.482182-81.384728 68.328727-48.593455 25.250909-65.768727 29.928727-121.157818 30.464l-14.661818 0.046546c-95.813818-0.046545-285.835636-101.073455-433.966546-254.999273C104.866909 562.571636 48.267636 458.379636 32.023273 316.741818c-8.378182-77.730909 30.999273-153.018182 83.828363-188.253091z m115.153455 88.203637a46.545455 46.545455 0 0 0-63.301818-10.891637l-49.338182 33.047273c-25.204364 16.802909-47.406545 59.275636-42.961455 100.514909 13.102545 114.362182 56.948364 198.539636 191.674182 341.387636l16.616727 17.408c132.096 137.285818 299.822545 226.443636 366.941091 226.466909 46.778182 0.046545 53.620364-0.162909 80.104728-13.474909l12.730181-6.516363c11.357091-5.934545 26.996364-18.734545 45.847273-38.167273l9.658182-10.286545 5.585455-6.167273a46.545455 46.545455 0 0 0-3.258182-65.326546c-50.315636-46.149818-91.042909-78.592-121.390546-96.977454-13.242182-8.029091-23.761455-12.916364-30.882909-14.824727l-0.372363-0.093091-2.187637 1.233454a156.904727 156.904727 0 0 0-26.251636 19.316364l-10.030546 9.588363a116.363636 116.363636 0 0 1-144.011636 10.14691c-45.312-30.929455-81.408-59.415273-108.450909-85.783273a437.713455 437.713455 0 0 1-68.561455-86.970182 116.363636 116.363636 0 0 1 12.962909-138.100364l14.708364-16.360727a39.889455 39.889455 0 0 0 2.350546-50.455273z m341.504 53.201454c90.926545 17.733818 154.856727 88.482909 171.589818 181.922909a46.545455 46.545455 0 1 1-91.648 16.407273c-10.216727-57.064727-46.219636-96.907636-97.745454-106.961455a46.545455 46.545455 0 0 1 17.803636-91.368727z m3.584-206.708364c186.507636 32.977455 319.581091 175.197091 357.655273 368.29091a46.545455 46.545455 0 1 1-91.345455 18.01309c-30.906182-156.858182-135.517091-268.637091-282.530909-294.632727a46.545455 46.545455 0 0 1 16.221091-91.671273z"></path>
+                  </svg>
+                  <span class="ml-1">电话 Phone</span>
+                </div>
+                <div>xxxxxxxxxxxxx</div>
+                <div class="mt-4 flex items-center">
+                  <svg class="text-base" viewBox="0 0 1024 1024" version="1.1" width="1em" height="1em">
+                    <path fill="currentColor" d="M143.36 184.32h737.28a61.44 61.44 0 0 1 61.44 61.44v532.48a61.44 61.44 0 0 1-61.44 61.44H143.36a61.44 61.44 0 0 1-61.44-61.44V245.76a61.44 61.44 0 0 1 61.44-61.44z m40.96 81.92a20.48 20.48 0 0 0-20.48 20.48v450.56a20.48 20.48 0 0 0 20.48 20.48h655.36a20.48 20.48 0 0 0 20.48-20.48V286.72a20.48 20.48 0 0 0-20.48-20.48H184.32z"></path>
+                    <path fill="currentColor" d="M499.712 513.82272l372.5312-237.1584 43.99104 69.12-383.50848 244.14208a61.44 61.44 0 0 1-66.00704 0L83.21024 345.78432l43.99104-69.12 372.5312 237.1584z"></path>
+                  </svg>
+                  <span class="ml-1">邮箱 Email</span>
+                </div>
+                <div>xxx@thape.com.cn</div>
+              </div>
             </div>
-            <div class="flex-shrink-0 flex items-center px-4">
-              <h1 class="text-white text-2xl font-bold">Sidebar</h1>
+            <div class="relative flex sidebar-nav-container">
+              <%# 二级菜单 %>
+              <nav class="sidebar-nav">
+              </nav>
+              <div class="sidebar-border"></div>
             </div>
-            <div class="mt-5 flex-1 h-0 overflow-y-auto">
-              <nav class="px-2 space-y-1">
+            <div class="relative flex sidebar-nav-container">
+              <%# 三级菜单 %>
+              <nav class="sidebar-nav">
               </nav>
             </div>
           </div>
