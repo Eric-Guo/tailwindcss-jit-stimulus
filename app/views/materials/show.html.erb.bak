@@ -105,14 +105,16 @@
     <div class="mx-4 my-4 text-sm text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid">
       <h2 class="w-24 py-4 bg-gray-100 text-black-6c font-medium text-right pr-6">色系</h2>
       <p class="w-24 py-4">全部</p>
-      <% @color_systems.each_with_index do |color_system, i| %>
-        <p class="w-24 py-4"><%= color_system.description -%></p>
-      <% end %>
-<!--      <p class="w-24 py-4">-->
-<!--        <span class="px-5 py-2 rounded-full font-medium bg-gray-100 text-black-6c">-->
-<!--          黄色系-->
-<!--        </span>-->
-<!--      </p>-->
+      <p class="w-24 py-4">白色系</p>
+      <p class="w-24 py-4">灰色系</p>
+      <p class="w-24 py-4">黑色系</p>
+      <p class="w-24 py-4">
+        <span class="px-5 py-2 rounded-full font-medium bg-gray-100 text-black-6c">
+          黄色系
+        </span>
+      </p>
+      <p class="w-24 py-4">红色系</p>
+      <p class="w-24 py-4">棕色系</p>
     </div>
 
     <div class="mx-4 flex gap-3">
@@ -127,7 +129,7 @@
 
     <%# 材料名称 %>
     <div class="mx-4 mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem"><%= @material.name %></span><span class="text-xl font-light">（<%= @material.no %>）</span>
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">黄金麻</span><span class="text-xl font-light">（A07010）</span>
     </div>
 
     <div class="mx-4 flex gap-20">

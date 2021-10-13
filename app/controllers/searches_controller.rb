@@ -18,6 +18,5 @@ class SearchesController < ApplicationController
   private
 
   def set_q_params
-    @q = params[:q]
   end
 end

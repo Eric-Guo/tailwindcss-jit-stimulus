@@ -1,8 +1,11 @@
 <section class="flex-auto">
-
     <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-100 border-solid pb-3">
-      <img class="h-6 w-6 float-right mt-1" src="<%= image_pack_path('static/arrow_right.svg') -%>" alt="">
-      <img class="h-6 w-6 float-right mt-1 mr-1 lg:mr-2 xl:mr-3" src="<%= image_pack_path('static/arrow_left.svg') -%>" alt="">
+       <%= link_to next_projects_sample_path(id: sample.no) do %>
+            <img class="h-6 w-6 float-right mt-1" src="<%= image_pack_path('static/arrow_right.svg') -%>" alt="">
+          <% end %>
+          <%= link_to prev_projects_sample_path(id: sample.no) do %>
+            <img class="h-6 w-6 float-right mt-1 mr-1 lg:mr-2 xl:mr-3" src="<%= image_pack_path('static/arrow_left.svg') -%>" alt="">
+          <% end %>
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">所属案例</span><span class="text-xl font-light">Projects</span>
     </div>
 
