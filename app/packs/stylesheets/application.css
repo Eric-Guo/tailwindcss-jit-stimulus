@@ -1,3 +1,4 @@
+@import "sidebar.css";
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -29,3 +30,4 @@
 .black-mask {
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
 }
+
