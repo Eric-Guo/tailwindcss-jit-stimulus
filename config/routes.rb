@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     member do
       get :prev_other_samples
       get :next_other_samples
+      get :prev_projects
+      get :next_projects
     end
   end
   resources :materials, only: [:show]

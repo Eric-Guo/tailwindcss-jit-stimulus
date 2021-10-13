@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c41e1794-b4cc-4484-ac3a-cce0c39d031e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/samples/_projects.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/samples/next_projects.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/samples/prev_projects.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/sample_enclosure.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/materials/show.html.erb.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/matlib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/matlib.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/materials_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/materials_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/samples_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/samples_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/samples/next_other_samples.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/next_other_samples.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/samples/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/searches_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/searches_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/color_system.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/color_system.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/sample.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/sample.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/materials/show.html+phone.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/materials/show.html+phone.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/materials/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/materials/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/samples/_projects.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/_projects.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/samples/next_projects.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/next_projects.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/samples/prev_projects.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/prev_projects.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +29,14 @@
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1ynnxSqPyypn21Pu0hNL1FfvG9m" />
   <component name="ProjectViewState">
@@ -29,11 +48,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="ToolWindowEvent Log.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views/samples" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -46,12 +66,24 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/views/samples" />
+      <recent name="$PROJECT_DIR$/app/views/materials" />
       <recent name="$PROJECT_DIR$/app/models" />
+      <recent name="$PROJECT_DIR$/app/views/samples" />
       <recent name="$PROJECT_DIR$/config" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1634093000068</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1634093000068</updated>
+      <workItem from="1634093002769" duration="241000" />
+      <workItem from="1634093253564" duration="3361000" />
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
@@ -65,5 +97,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
