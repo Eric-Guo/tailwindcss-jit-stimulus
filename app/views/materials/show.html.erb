@@ -105,7 +105,7 @@
     <div class="mx-4 my-4 text-sm text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid">
       <h2 class="w-24 py-4 bg-gray-100 text-black-6c font-medium text-right pr-6">色系</h2>
       <p class="w-24 py-4">全部</p>
-      <% @color_systems.each_with_index do |color_system, i| %>
+      <% @material.material_product.color_systems.each_with_index do |color_system, i| %>
         <p class="w-24 py-4"><%= color_system.description -%></p>
       <% end %>
 <!--      <p class="w-24 py-4">-->
