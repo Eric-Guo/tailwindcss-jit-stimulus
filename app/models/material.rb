@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Material < ApplicationRecord
-  self.table_name = 'materials'
-
   has_one :material_info
   has_one :material_product, foreign_key: :material_id, class_name: 'MaterialProduct'
 

@@ -2,5 +2,4 @@
 
 class Cases < ApplicationRecord
   self.table_name = 'cases'
-
 end
