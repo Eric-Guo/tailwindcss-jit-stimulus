@@ -5,6 +5,8 @@ class Material < ApplicationRecord
   has_one :material_product, foreign_key: :material_id, class_name: 'MaterialProduct'
   has_many :children_materials, class_name: :Material, foreign_key: :parent_id
 
+  default_scope { where(deleted_at: nil) }
+
   def color
     if level == 3
       material_product.color_system

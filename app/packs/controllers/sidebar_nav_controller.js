@@ -55,7 +55,7 @@ export default class extends Controller {
   }
 
   nav3ItemClick(e) {
-    this.nav2ItemTargets.forEach(item => {
+    this.nav3ItemTargets.forEach(item => {
       if (item.contains(e.target)) {
         item.classList.add('active');
       } else {
@@ -64,7 +64,15 @@ export default class extends Controller {
     });
   }
 
+  show() {
+    document.body.classList.add('overflow-hidden');
+  }
+  
   reset() {
+    document.body.classList.remove('overflow-hidden');
+    this.nav1ItemTargets.forEach(item => {
+      item.classList.remove('active');
+    });
     this.nav2ContainerTarget.classList.add('hidden');
     const nav2Elem = this.nav2ContainerTarget.querySelector('nav.sidebar-nav');
     nav2Elem.innerHTML = '';
@@ -77,11 +85,19 @@ export default class extends Controller {
     return `
       <div class="flex justify-between items-center sidebar-nav-item" data-sidebar-nav-target="${data.targetName}" data-action="click->sidebar-nav#${data.clickName}" data-children='${JSON.stringify(data.children)}'>
         <div class="sidebar-nav-item-content truncate">
-          <span class="relative" title="${data.title} ${data.subtitle}">
-            <span class="text-2xl">${data.title}</span>
-            <span class="text-lg">${data.subtitle}</span>
-            <span class="sidebar-nav-text-underline"></span>
-          </span>
+          ${data.url ? `
+            <a class="relative" href="${data.url}" title="${data.title} ${data.subtitle}">
+              <span class="text-2xl">${data.title}</span>
+              <span class="text-lg">${data.subtitle}</span>
+              <span class="sidebar-nav-text-underline"></span>
+            </a>
+          ` : `
+            <span class="relative" title="${data.title} ${data.subtitle}">
+              <span class="text-2xl">${data.title}</span>
+              <span class="text-lg">${data.subtitle}</span>
+              <span class="sidebar-nav-text-underline"></span>
+            </span>
+          `}
         </div>
         ${data.children ? `
           <div class="sidebar-nav-item-icon">

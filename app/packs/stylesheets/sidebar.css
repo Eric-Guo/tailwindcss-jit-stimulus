@@ -38,6 +38,17 @@
 
 .sidebar-nav {
   width: 100%;
+  overflow: auto;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: #B2B2B2;
+  border-radius: 4px;
 }
 
 .sidebar-nav-item {

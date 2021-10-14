@@ -12,44 +12,30 @@ class ApplicationController < ActionController::Base
     end
 
     def set_sidebar_nav
+      materials = Material.where(level: [1, 2]).all
       @sidebar_nav = [
         {
           title: '材料',
           subtitle: 'Materials',
-          children: [
+          children: materials.select do |item|
+            item.level == 1
+          end.map do |item|
             {
-              title: '石材',
-              subtitle: 'Stone',
-              children: [
+              id: item.id,
+              title: item.name,
+              subtitle: item.en_name,
+              children: materials.select do |it|
+                it.level == 2 && item.id == it.parent_id
+              end.map do |it|
                 {
-                  title: '石灰石/青石',
-                  subtitle: 'Limestone',
-                  url: '',
-                },
-                {
-                  title: '大理石',
-                  subtitle: 'Marble',
-                  url: '',
+                  id: it.id,
+                  title: it.name,
+                  subtitle: it.en_name,
+                  url: material_path(it.id),
                 }
-              ]
-            },
-            {
-              title: '玻璃',
-              subtitle: 'Glass',
-              children: [
-                {
-                  title: '超白透明色玻璃基片',
-                  subtitle: '',
-                  url: '',
-                },
-                {
-                  title: '磨砂双星玻璃砖',
-                  subtitle: '',
-                  url: '',
-                },
-              ]
+              end
             }
-          ]
+          end
         },
         {
           title: '案例',
