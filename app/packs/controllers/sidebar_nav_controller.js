@@ -2,10 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ['nav1Item', 'nav2Item', 'nav3Item', 'nav2Container', 'nav3Container']
-  
-  connect() { }
 
-  nav1ItemClick = (e) => {
+  nav1ItemClick(e) {
     this.nav1ItemTargets.forEach(item => {
       this.nav3ContainerTarget.classList.add('hidden');
       const nav3Elem = this.nav3ContainerTarget.querySelector('nav.sidebar-nav');
@@ -32,7 +30,7 @@ export default class extends Controller {
     });
   }
 
-  nav2ItemClick = (e) => {
+  nav2ItemClick(e) {
     this.nav2ItemTargets.forEach(item => {
       if (item.contains(e.target)) {
         item.classList.add('active');
@@ -56,7 +54,7 @@ export default class extends Controller {
     });
   }
 
-  nav3ItemClick = (e) => {
+  nav3ItemClick(e) {
     this.nav2ItemTargets.forEach(item => {
       if (item.contains(e.target)) {
         item.classList.add('active');
@@ -66,7 +64,7 @@ export default class extends Controller {
     });
   }
 
-  reset = () => {
+  reset() {
     this.nav2ContainerTarget.classList.add('hidden');
     const nav2Elem = this.nav2ContainerTarget.querySelector('nav.sidebar-nav');
     nav2Elem.innerHTML = '';
@@ -95,6 +93,4 @@ export default class extends Controller {
       </div>
     `;
   }
-
-  disconnect() { }
 }
