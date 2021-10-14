@@ -31,9 +31,9 @@
       <div id="sidebar">
         <div data-slideover-target="overlay" class="fixed inset-0 flex z-40 transition-opacity ease-linear duration-300 opacity-0 hidden">
           <div class="fixed inset-0">
-            <div class="absolute inset-0" style="background: rgba(0, 0, 0, 0.6);"></div>
+            <div class="absolute inset-0 cursor-pointer" style="background: rgba(0, 0, 0, 0.6);" data-action="click->slideover#toggle"></div>
           </div>
-          <div id="slideover-target" data-slideover-target="menu" class="sidebar relative flex-none flex transition ease-in-out duration-300 transform -translate-x-full hidden">
+          <div id="slideover-target" data-slideover-target="menu" class="sidebar relative flex-none flex transition ease-in-out duration-300 transform -translate-x-full hidden" data-controller="sidebar-nav">
             <div class="relative flex sidebar-nav-container">
               <%# 关闭按钮 %>
               <button data-action="slideover#toggle" class="absolute top-1 left-0 flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600" aria-label="Close sidebar">
@@ -43,35 +43,24 @@
               </button>
               <%# 一级菜单 %>
               <nav class="sidebar-nav">
-                <div class="text-white text-opacity-60 flex justify-between items-center sidebar-nav-item">
-                  <div class="sidebar-nav-item-content truncate">
-                    <span class="text-2xl">材料</span>
-                    <span class="text-lg">Materials</span>
+                <% @sidebar_nav.each do |navItem| %>
+                  <div class="flex justify-between items-center sidebar-nav-item" data-sidebar-nav-target="nav1Item" data-action="click->sidebar-nav#nav1ItemClick" data-children="<%= navItem[:children].to_json %>">
+                    <div class="sidebar-nav-item-content truncate">
+                      <span class="relative" title="<%= navItem[:title] %> <%= navItem[:subtitle] %>">
+                        <span class="text-2xl"><%= navItem[:title] %></span>
+                        <span class="text-lg"><%= navItem[:subtitle] %></span>
+                        <span class="sidebar-nav-text-underline"></span>
+                      </span>
+                    </div>
+                    <% if navItem[:children].present? %>
+                      <div class="sidebar-nav-item-icon">
+                        <svg viewBox="0 0 1024 1024" width="100%" height="1em">
+                          <path fill="currentColor" d="M250.595556 184.888889a92.529778 92.529778 0 0 1 0.284444-129.991111 92.529778 92.529778 0 0 1 130.844444-0.853334l391.395556 391.68a92.188444 92.188444 0 0 1 0 130.56L381.44 967.964444a92.529778 92.529778 0 0 1-131.128889-130.56l326.826667-326.257777L250.595556 184.888889z"></path>
+                        </svg>
+                      </div>
+                    <% end %>
                   </div>
-                  <div class="sidebar-nav-item-icon">
-                    <svg viewBox="0 0 1024 1024" width="100%" height="1em">
-                      <path fill="currentColor" d="M250.595556 184.888889a92.529778 92.529778 0 0 1 0.284444-129.991111 92.529778 92.529778 0 0 1 130.844444-0.853334l391.395556 391.68a92.188444 92.188444 0 0 1 0 130.56L381.44 967.964444a92.529778 92.529778 0 0 1-131.128889-130.56l326.826667-326.257777L250.595556 184.888889z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <div class="text-white text-opacity-60 truncate sidebar-nav-item">
-                  <div class="sidebar-nav-item-content truncate">
-                    <span class="text-2xl">案例</span>
-                    <span class="text-lg">Projects</span>
-                  </div>
-                </div>
-                <div class="text-white text-opacity-60 truncate sidebar-nav-item">
-                  <div class="sidebar-nav-item-content truncate">
-                    <span class="text-2xl">供应商</span>
-                    <span class="text-lg">Manufacturer</span>
-                  </div>
-                </div>
-                <div class="text-white text-opacity-60 truncate sidebar-nav-item">
-                  <div class="sidebar-nav-item-content truncate">
-                    <span class="text-2xl">需求登记</span>
-                    <span class="text-lg">Your Demandasdasdasdasd</span>
-                  </div>
-                </div>
+                <% end %>
               </nav>
               <div class="sidebar-border"></div>
               <div class="absolute text-white text-sm" style="left: 40px; bottom: 40px;">
@@ -93,19 +82,18 @@
                 <div>xxx@thape.com.cn</div>
               </div>
             </div>
-            <div class="relative flex sidebar-nav-container">
+            <div class="relative flex sidebar-nav-container hidden" data-sidebar-nav-target="nav2Container">
               <%# 二级菜单 %>
               <nav class="sidebar-nav">
               </nav>
               <div class="sidebar-border"></div>
             </div>
-            <div class="relative flex sidebar-nav-container">
+            <div class="relative flex sidebar-nav-container hidden" data-sidebar-nav-target="nav3Container">
               <%# 三级菜单 %>
               <nav class="sidebar-nav">
               </nav>
             </div>
           </div>
-          <div class="flex-shrink-0 w-14"><%# Dummy element to force sidebar to shrink to fit close icon -%></div>
         </div>
       </div>
     </main>
