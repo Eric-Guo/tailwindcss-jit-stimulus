@@ -7,12 +7,13 @@ export default class extends Controller {
 
   nav1ItemClick = (e) => {
     this.nav1ItemTargets.forEach(item => {
+      this.nav3ContainerTarget.classList.add('hidden');
+      const nav3Elem = this.nav3ContainerTarget.querySelector('nav.sidebar-nav');
+      nav3Elem.innerHTML = '';
       if (item.contains(e.target)) {
         item.classList.add('active');
         const children = JSON.parse(item.dataset.children);
         const nav2Elem = this.nav2ContainerTarget.querySelector('nav.sidebar-nav');
-        const nav3Elem = this.nav3ContainerTarget.querySelector('nav.sidebar-nav');
-        nav3Elem.innerHTML = '';
         if (children) {
           nav2Elem.innerHTML = children.map(item => this.generalNavItem({ ...item, targetName: 'nav2Item', clickName: 'nav2ItemClick' })).join('');
           this.nav2ContainerTarget.classList.remove('hidden');
@@ -24,7 +25,6 @@ export default class extends Controller {
         else {
           nav2Elem.innerHTML = '';
           this.nav2ContainerTarget.classList.add('hidden');
-          this.nav3ContainerTarget.classList.add('hidden');
         }
       } else {
         item.classList.remove('active');
