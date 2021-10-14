@@ -135,16 +135,18 @@
         <img class="w-72 h-72" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
         <dl class="block w-72 mt-2 text-lg">
           <dt class="my-1 inline-block w-1/2">色系：</dt>
-          <dd class="my-1 inline-block text-right" style="width: 48%">黄色</dd>
+          <dd class="my-1 inline-block text-right" style="width: 48%"><% @material.material_product.color_systems.each_with_index do |color_system, i| %><%= color_system.description -%><% if i == @material.material_product.color_systems.length %>,<% end %><% end %></dd>
 
           <dt class="my-1 inline-block w-1/2">产地：</dt>
-          <dd class="my-1 inline-block text-right" style="width: 48%">山东、湖北</dd>
+          <dd class="my-1 inline-block text-right" style="width: 48%"><%= @material.material_product.origin %></dd>
 
           <dt class="my-1 inline-block w-1/2">价格区间：</dt>
-          <dd class="my-1 inline-block text-right" style="width: 48%">100-350/㎡</dd>
+          <dd class="my-1 inline-block text-right" style="width: 48%">
+            <%= @material.material_product.low_price %>-<%= @material.material_product.high_price %>/㎡
+          </dd>
 
           <dt class="my-1 inline-block w-1/2">是否常用产品：</dt>
-          <dd class="my-1 inline-block text-right" style="width: 48%">是</dd>
+          <dd class="my-1 inline-block text-right" style="width: 48%"><% if @material.material_product.is_common == 1 %> 是 <% end %></dd>
         </dl>
       </div>
       <div>

@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c41e1794-b4cc-4484-ac3a-cce0c39d031e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/models/sample_enclosure.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/materials/show.html.erb.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/matlib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/matlib.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/material_product_color_system.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/materials_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/materials_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/samples_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/samples_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/searches_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/searches_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/color_system.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/color_system.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/sample.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/sample.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/materials/show.html+phone.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/materials/show.html+phone.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/material.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/material.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/material_product.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/material_product.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/materials/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/materials/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/samples/_projects.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/_projects.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/samples/next_projects.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/next_projects.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/samples/prev_projects.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/prev_projects.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +43,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/models" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -61,13 +51,13 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/views/materials" />
       <recent name="$PROJECT_DIR$/app/models" />
+      <recent name="$PROJECT_DIR$/app/views/materials" />
       <recent name="$PROJECT_DIR$/app/views/samples" />
       <recent name="$PROJECT_DIR$/config" />
     </key>
@@ -80,7 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1634093000068</updated>
       <workItem from="1634093002769" duration="241000" />
-      <workItem from="1634093253564" duration="3361000" />
+      <workItem from="1634093253564" duration="9534000" />
     </task>
     <servers />
   </component>
