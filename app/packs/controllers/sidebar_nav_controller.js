@@ -66,6 +66,15 @@ export default class extends Controller {
     });
   }
 
+  reset = () => {
+    this.nav2ContainerTarget.classList.add('hidden');
+    const nav2Elem = this.nav2ContainerTarget.querySelector('nav.sidebar-nav');
+    nav2Elem.innerHTML = '';
+    this.nav3ContainerTarget.classList.add('hidden');
+    const nav3Elem = this.nav3ContainerTarget.querySelector('nav.sidebar-nav');
+    nav3Elem.innerHTML = '';
+  }
+
   generalNavItem = (data) => {
     return `
       <div class="flex justify-between items-center sidebar-nav-item" data-sidebar-nav-target="${data.targetName}" data-action="click->sidebar-nav#${data.clickName}" data-children='${JSON.stringify(data.children)}'>
