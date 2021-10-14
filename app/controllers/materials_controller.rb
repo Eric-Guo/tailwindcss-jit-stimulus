@@ -2,7 +2,6 @@
 
 class MaterialsController < ApplicationController
   def show
-    @color_systems = ColorSystem.all
-    @material = Material.find_by!(id: params[:id])
+    @material = Material.includes(material_product: :color_systems).find_by!(id: params[:id])
   end
 end
