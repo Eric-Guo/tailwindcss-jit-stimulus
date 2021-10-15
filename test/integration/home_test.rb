@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class HomeTest < ActionDispatch::IntegrationTest
   test 'should get index' do

@@ -10,7 +10,6 @@ class SamplesController < ApplicationController
     @other_samples = Sample.where.not(id: @sample.id).limit(2)
 
     # breadcrumb
-
   end
 
   def next_other_samples
