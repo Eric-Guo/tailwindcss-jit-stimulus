@@ -17,6 +17,6 @@ class SearchesController < ApplicationController
 
   private
 
-  def set_q_params
-  end
+    def set_q_params
+    end
 end
