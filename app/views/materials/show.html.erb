@@ -108,12 +108,14 @@
       <% @material.parent_color_systems.each_with_index do |color_system, i| %>
         <% if @material.material_product.color_system&.id == color_system.id %>
           <p class="w-24 py-4">
-            <span class="px-5 py-2 rounded-full font-medium bg-gray-100 text-black-6c">
+            <span class="active-pill">
               <%= color_system.description -%>
             </span>
           </p>
         <% else %>
-          <p class="w-24 py-4"><%= color_system.description -%></p>
+          <p class="w-24 py-4">
+            <%= color_system.description -%>
+          </p>
         <% end %>
       <% end %>
     </div>
