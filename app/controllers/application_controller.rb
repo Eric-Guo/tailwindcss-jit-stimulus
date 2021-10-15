@@ -14,21 +14,17 @@ class ApplicationController < ActionController::Base
     end
 
     def set_sidebar_nav
-      materials = Material.where(level: [1, 2]).all
+      materials = Material.includes(:children_materials).where(level: 1).all
       @sidebar_nav = [
         {
           title: '材料',
           subtitle: 'Materials',
-          children: materials.select do |item|
-            item.level == 1
-          end.map do |item|
+          children: materials.map do |item|
             {
               id: item.id,
               title: item.name,
               subtitle: item.en_name,
-              children: materials.select do |it|
-                it.level == 2 && item.id == it.parent_id
-              end.map do |it|
+              children: item.children_materials.map do |it|
                 {
                   id: it.id,
                   title: it.name,
