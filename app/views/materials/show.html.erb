@@ -1,112 +1,63 @@
 <%= render partial: 'shared/header', locals: { } -%>
 
-<p class="mx-4 px-48 pt-8 text-sm text-gray-500">首页 > 石材 > 花岗岩 > 黄金麻 > <span class="text-black">黄金麻样品</span></p>
+<p class="mx-52 pt-12 text-sm text-gray-500">首页 > 石材 > 花岗岩 > 黄金麻 > <span class="text-black">黄金麻样品</span></p>
 
-<div class="flex flex-row px-48">
+<div class="flex flex-row mx-52">
   <%# 材料菜单 %>
-  <section class="flex-auto">
-    <h2 class="mx-4 mt-8 border-b-2 border-gray-900 border-solid py-2">
-      <span class="text-xl font-bold mr-2">石材</span><span class="text-base font-light">Store</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 float-right" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </h2>
-    <div class="mx-4">
-      <div class="bg-gray-100 py-3 pl-5 text-gray-400 text-lg">
-        <h3 class="my-2">
-          <span>
-            石灰石/青石
-            <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+  <section class="material-nav" data-controller="material-nav">
+    <% @materials.each do |item| %>
+      <div class="material-nav-item mt-5" data-material-nav-target="navItem">
+        <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
+          <div class="material-nav-item-header-title truncate">
+            <span class="text-xl font-bold"><%= item.name %></span>
+            <span class="ml-1 text-base font-light"><%= item.en_name %></span>
+          </div>
+          <% if item.children_materials.present? %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="material-nav-item-header-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
-          </span>
-        </h3>
-        <h3 class="my-2">
-          <span>
-            大理石
-            <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </h3>
-        <h3 class="my-2">
-          <span>
-            砂岩
-            <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </h3>
-        <h3 class="my-2">
-          <span>
-            洞石 / 石灰华
-            <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </h3>
-        <h3 class="my-2">
-          <span>
-            火山岩 / 喷出岩
-            <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </h3>
-        <h3 class="my-2 text-gray-800">
-          <span class="border-b border-black border-solid pb-1">
-            花岗岩
-            <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </h3>
-        <h3 class="my-2">
-          <span>
-            板岩 / 板石
-            <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </h3>
+          <% end %>
+        </div>
+        <% if item.children_materials.present? %>
+          <div class="material-nav-item-children bg-gray-100 flex flex-col px-5 text-gray-400 text-lg">
+            <% item.children_materials.each do |child_item| %>
+              <div class="relative mt-4 material-nav-item-children-item">
+                <span class="relative">
+                  <span class="truncate"><%= child_item.name %></span>
+                  <% if child_item.children_materials.present? %>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  <% end %>
+                  <div class="material-nav-item-children-text-border"></div>
+                </span>
+                <% if child_item.children_materials.present? %>
+                  <div class="material-nav-item-children-item-children absolute w-40 h-60 rounded-md shadow bg-white">
+                    <div class="flex flex-col overflow-auto w-full h-full">
+                      <% child_item.children_materials.each do |child_item2| %>
+                        <a href="<%= material_path(child_item2.id) %>" class="flex-none truncate mb-2" title="<%= child_item2.name %>"><%= child_item2.name %></a>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-    </div>
-    <h2 class="mx-4 mt-6 border-b-2 border-gray-100 border-solid py-2">
-      <span class="text-xl font-bold mr-2">玻璃</span><span class="text-base font-light">Store</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-200 float-right" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </h2>
-    <h2 class="mx-4 mt-6 border-b-2 border-gray-100 border-solid py-2">
-      <span class="text-xl font-bold mr-2">金属</span><span class="text-base font-light">Store</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-200 float-right" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </h2>
-    <h2 class="mx-4 mt-6 border-b-2 border-gray-100 border-solid py-2">
-      <span class="text-xl font-bold mr-2">混凝土/水泥</span><span class="text-base font-light">Concrete/Cement</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-200 float-right" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </h2>
-    <h2 class="mx-4 mt-6 border-b-2 border-gray-100 border-solid py-2">
-      <span class="text-xl font-bold mr-2">高分子材料</span><span class="text-base font-light">Plastic</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-200 float-right" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </h2>
+    <% end %>
   </section>
 
   <%# 材料产品详情 %>
-  <section class="w-full ml-8 flex flex-col">
-    <div class="mx-4 mt-8 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+  <section class="w-full ml-24 flex flex-col">
+    <div class="mt-5 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid border-solid" style="padding-bottom: 0.9rem">材料产品详情</span><span class="text-xl font-light">Material Details</span>
     </div>
-    <div class="mx-4 my-4 text-sm text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid">
+    <div class="my-4 text-sm text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid">
       <h2 class="w-24 py-4 bg-gray-100 text-black-6c font-medium text-right pr-6">色系</h2>
       <p class="w-24 py-4">全部</p>
-      <% @material.parent_color_systems.each_with_index do |color_system, i| %>
-        <% if @material.material_product.color_system&.id == color_system.id %>
+      <% @material.parent_color_systems&.each_with_index do |color_system, i| %>
+        <% if @material.material_product&.color_system&.id == color_system.id %>
           <p class="w-24 py-4">
             <span class="active-pill">
               <%= color_system.description -%>
@@ -120,7 +71,7 @@
       <% end %>
     </div>
 
-    <div class="mx-4 flex gap-3">
+    <div class="flex gap-3">
       <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
         <% pic_url = "static/new_mat_g#{i+1}.jpg" -%>
         <div class="border border-gray-200 border-solid">
@@ -131,27 +82,27 @@
     </div>
 
     <%# 材料名称 %>
-    <div class="mx-4 mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem"><%= @material.name %></span><span class="text-xl font-light">（<%= @material.no %>）</span>
     </div>
 
-    <div class="mx-4 flex gap-20">
+    <div class="flex gap-20">
       <div>
         <img class="w-72 h-72" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
         <dl class="block w-72 mt-2 text-lg">
           <dt class="my-1 inline-block w-1/2">色系：</dt>
-          <dd class="my-1 inline-block text-right" style="width: 48%"><% @material.material_product.color_systems.each_with_index do |color_system, i| %><%= color_system.description -%><% if i == @material.material_product.color_systems.length %>,<% end %><% end %></dd>
+          <dd class="my-1 inline-block text-right" style="width: 48%"><% @material.material_product&.color_systems&.each_with_index do |color_system, i| %><%= color_system.description -%><% if i == @material.material_product.color_systems.length %>,<% end %><% end %></dd>
 
           <dt class="my-1 inline-block w-1/2">产地：</dt>
-          <dd class="my-1 inline-block text-right" style="width: 48%"><%= @material.material_product.origin %></dd>
+          <dd class="my-1 inline-block text-right" style="width: 48%"><%= @material.material_product&.origin %></dd>
 
           <dt class="my-1 inline-block w-1/2">价格区间：</dt>
           <dd class="my-1 inline-block text-right" style="width: 48%">
-            <%= @material.material_product.low_price %>-<%= @material.material_product.high_price %>/㎡
+            <%= @material.material_product&.low_price %>-<%= @material.material_product&.high_price %>/㎡
           </dd>
 
           <dt class="my-1 inline-block w-1/2">是否常用产品：</dt>
-          <dd class="my-1 inline-block text-right" style="width: 48%"><% if @material.material_product.is_common == 1 %> 是 <% end %></dd>
+          <dd class="my-1 inline-block text-right" style="width: 48%"><% if @material.material_product&.is_common == 1 %> 是 <% end %></dd>
         </dl>
       </div>
       <div>
@@ -175,12 +126,12 @@
 
     <%# 实际应用 材料样品 %>
     <div class="flex justify-between">
-      <div class="flex-grow" style="max-width: 50%;">
-        <div class="mx-4 mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+      <div class="flex-grow w-0">
+        <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3 truncate">
           <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">实际应用</span><span class="text-xl font-light">Application</span>
         </div>
 
-        <div class="mx-4 py-4 bg-gray-100" style="height: 31rem;">
+        <div class="py-4 bg-gray-100" style="height: 31rem;">
           <h5 class="pb-3 text-lg font-medium text-center">佳兆业中山樾伴山花园</h5>
           <div class="mx-2 lg:mx-4 xl:mx-8 2xl:mx-12">
             <img class="w-full" src="<%= image_pack_path('static/application_big_pic.jpg') -%>" alt="">
@@ -194,14 +145,14 @@
           </div>
         </div>
       </div>
-      <div class="flex-grow">
-        <div class="mx-4 mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+      <div class="flex-grow w-0 ml-5">
+        <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3 truncate">
           <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材料样品</span><span class="text-xl font-light">Samples</span>
         </div>
 
-        <div class="mx-4 py-4 bg-gray-100" style="height: 31rem;">
+        <div class="py-4 bg-gray-100" style="height: 31rem;">
           <h5 class="pb-3 text-lg font-medium text-center">实体材料库库存信息</h5>
-          <div class="mx-3">
+          <div class="mx-3 overflow-auto">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
                 <tr>
@@ -263,11 +214,11 @@
     </div>
 
     <%# 产品案例 %>
-    <div class="mx-4 mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">产品案例</span><span class="text-xl font-light">Projects</span>
     </div>
 
-    <div class="m-4 grid grid-cols-3 gap-1.5">
+    <div class="grid grid-cols-3 gap-1.5">
       <div class="relative">
         <img class="w-full" src="<%= image_pack_path('static/project_new_g1.jpg') -%>" alt="">
         <div class="absolute left-3 bottom-3 text-white text-left">
@@ -349,7 +300,7 @@
     </div>
 
     <%# 构造做法 %>
-    <div class="mx-4 mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">构造做法</span><span class="text-xl font-light">Construction</span>
     </div>
 
@@ -381,11 +332,11 @@
     </div>
 
     <%# 源文件 %>
-    <div class="mx-4 mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">源文件</span><span class="text-xl font-light">Files</span>
     </div>
 
-    <div class="mx-4 my-2 grid grid-cols-6 gap-1.5">
+    <div class="my-2 grid grid-cols-6 gap-1.5">
       <% %w[安装方式.dwg 安装方式.pdf 接缝.dwg].each do |word| %>
         <a class="p-4 shadow-tw-dark font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
           <%= word %>
@@ -397,20 +348,20 @@
     </div>
 
     <%# 材质贴图 %>
-    <div class="mx-4 mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材质贴图</span><span class="text-xl font-light">Texture</span>
     </div>
-    <div class="mx-4 my-6 grid grid-cols-6 gap-1.5">
+    <div class="my-6 grid grid-cols-6 gap-1.5">
       <% (1..6).each do |i| %>
         <img class="w-full object-fill" src="<%= image_pack_path("static/texture_t#{i}.jpg") -%>" alt="">
       <% end %>
     </div>
 
     <%# 厂家信息 %>
-    <div class="mx-4 mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">厂家信息</span><span class="text-xl font-light">Manufacturer</span>
     </div>
-    <div class="mx-4 mt-6 mb-16 grid grid-cols-3 gap-4">
+    <div class="mt-6 mb-16 grid grid-cols-3 gap-4">
       <%= render partial: 'shared/manufacturers', locals: { } -%>
     </div>
 

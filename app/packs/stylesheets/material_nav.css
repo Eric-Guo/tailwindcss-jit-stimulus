@@ -1,0 +1,109 @@
+.material-nav {
+  width: 300px;
+  flex: none;
+  position: relative;
+  user-select: none;
+}
+
+.material-nav-item {
+  position: relative;
+  z-index: 0;
+}
+
+.material-nav-item:hover {
+  z-index: 50;
+}
+
+.material-nav-item-header {
+  border-bottom: 1px solid #EBEBEB;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.material-nav-item-header-title {
+  margin-left: 10px;
+}
+
+.material-nav-item-header-icon {
+  color: #DBDBDB;
+  transition: all .3s ease-in-out;
+  transform: rotateZ(-90deg);
+}
+
+.material-nav-item-children {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.material-nav-item.active .material-nav-item-header {
+  border-bottom: 1px solid #101820;
+}
+
+.material-nav-item.active .material-nav-item-children {
+  position: static;
+  opacity: 1;
+  max-height: 2000px;
+  overflow: visible;
+  transition: max-height .5s ease-in-out;
+  padding-bottom: 16px;
+}
+
+.material-nav-item.active .material-nav-item-header-icon {
+  color: #171717;
+  transform: rotateZ(0);
+}
+
+.material-nav-item-children-item {
+  cursor: pointer;
+  flex: none;
+  z-index: 0;
+}
+
+.material-nav-item-children-item:hover {
+  z-index: 50;
+}
+
+.material-nav-item-children-text-border {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  height: 1px;
+  width: 0;
+  background: #101820;
+  transition: width .3s ease-in-out;
+}
+
+.material-nav-item-children-item.active .material-nav-item-children-text-border,
+.material-nav-item-children-item:hover .material-nav-item-children-text-border {
+  width: 100%;
+}
+
+.material-nav-item-children-item-children {
+  display: inline-block;
+  max-height: 0;
+  margin-left: 10px;
+  margin-top: -10px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.material-nav-item-children-item:hover .material-nav-item-children-item-children {
+  transition: max-height .3s ease-in-out;
+  max-height: 240px;
+  padding: 18px 20px;
+}
+
+.material-nav-item-children-item-children a {
+  display: block;
+}
+
+.material-nav-item-children-item-children a:active,
+.material-nav-item-children-item-children a:hover {
+  color: #101820;
+}

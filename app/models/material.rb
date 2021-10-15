@@ -26,7 +26,7 @@ class Material < ApplicationRecord
 
   def parent_color_systems
     parent_material.children_materials.collect do |m|
-      m.material_product.color_systems
+      m.material_product&.color_systems
     end.flatten.uniq
   end
 end
