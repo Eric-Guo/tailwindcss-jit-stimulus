@@ -106,13 +106,16 @@
       <h2 class="w-24 py-4 bg-gray-100 text-black-6c font-medium text-right pr-6">色系</h2>
       <p class="w-24 py-4">全部</p>
       <% @material.parent_color_systems.each_with_index do |color_system, i| %>
-        <p class="w-24 py-4"><%= color_system.description -%></p>
+        <% if @material.material_product.color_system&.id == color_system.id %>
+          <p class="w-24 py-4">
+            <span class="px-5 py-2 rounded-full font-medium bg-gray-100 text-black-6c">
+              <%= color_system.description -%>
+            </span>
+          </p>
+        <% else %>
+          <p class="w-24 py-4"><%= color_system.description -%></p>
+        <% end %>
       <% end %>
-<!--      <p class="w-24 py-4">-->
-<!--        <span class="px-5 py-2 rounded-full font-medium bg-gray-100 text-black-6c">-->
-<!--          黄色系-->
-<!--        </span>-->
-<!--      </p>-->
     </div>
 
     <div class="mx-4 flex gap-3">
