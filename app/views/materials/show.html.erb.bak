@@ -109,7 +109,7 @@
       <p class="w-24 py-4">灰色系</p>
       <p class="w-24 py-4">黑色系</p>
       <p class="w-24 py-4">
-        <span class="px-5 py-2 rounded-full font-medium bg-gray-100 text-black-6c">
+        <span class="active-pill">
           黄色系
         </span>
       </p>
