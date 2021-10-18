@@ -245,17 +245,21 @@
 
     <div class="grid grid-cols-3 gap-1.5">
       <% @cases&.each do |project_case| %>
-      <div class="relative">
-        <img class="w-full" src="<%= get_first_url(project_case.live_photos) %>" alt="">
-        <div class="absolute left-3 bottom-3 text-white text-left">
-          <p class="text-lg"><%= project_case.project_name -%>/<span class="text-sm"><%= project_case.project_location -%></span></p>
-          <p class="text-sm">Shanghai West Bund Park</p>
+      <div class="bg-cover bg-center bg-no-repeat flex flex-col" style="height: 296px; background-image: url('<%= get_first_url(project_case.live_photos) %>');">
+        <div class="flex flex-row p-2.5 justify-end">
+          <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2">荔枝面黄金麻</div>
         </div>
-        <div class="absolute right-3 bottom-3 text-white text-right">
-          <p class="text-sm"><% if project_case.is_th == 1 %>内部项目<% else %>外部项目<% end %></p>
-        </div>
-        <div class="absolute right-3 top-3 bg-gray-500 bg-opacity-80 p-1">
-          <p class="text-white text-right text-sm">荔枝面黄金麻</p>
+        <div class="mt-auto h-20 pl-4 pr-5 pb-2.5 flex flex-row items-end black-mask">
+          <div class="text-white flex-1 w-0">
+            <div class="truncate" title="<%= project_case.project_name -%>/<%= project_case.project_location -%>">
+              <span class="text-lg"><%= project_case.project_name -%>/</span>
+              <span class="text-sm"> <%= project_case.project_location -%></span>
+            </div>
+            <div class="text-sm truncate">Shanghai West Bund Park</div>
+          </div>
+          <div class="text-white text-sm whitespace-nowrap flex-none ml-12">
+            <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+          </div>
         </div>
       </div>
         <% end %>
