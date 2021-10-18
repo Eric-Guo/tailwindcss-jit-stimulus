@@ -7,37 +7,37 @@
 <div class="flex flex-row mx-auto justify-between" style="width: 1600px;">
   <%# 材料菜单 %>
   <section class="material-nav mt-5" data-controller="material-nav">
-    <% @materials.each do |item| %>
-      <div class="material-nav-item mb-5" data-material-nav-target="navItem">
+    <% @tree_materials.each do |item| %>
+      <div class="material-nav-item mb-5 <%= @material.id == item[:id] || item[:descendant_ids].include?(@material.id) ? 'active' : '' %>" data-material-nav-target="navItem">
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
-          <div class="material-nav-item-header-title truncate">
-            <span><%= item.name %></span>
-            <span>&ensp;<%= item.en_name %></span>
+          <div class="material-nav-item-header-title truncate" title="<%= item[:title] %> <%= item[:subtitle] %>">
+            <span><%= item[:title] %></span>
+            <span>&ensp;<%= item[:subtitle] %></span>
           </div>
-          <% if item.children_materials.present? %>
+          <% if item[:children].present? %>
             <svg xmlns="http://www.w3.org/2000/svg" class="material-nav-item-header-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
           <% end %>
         </div>
-        <% if item.children_materials.present? %>
-          <div class="material-nav-item-children bg-gray-100 flex flex-col px-5 text-gray-400 text-lg">
-            <% item.children_materials.each do |child_item| %>
-              <div class="relative mt-4 material-nav-item-children-item">
+        <% if item[:children].present? %>
+          <div class="material-nav-item-children flex flex-col px-5 text-lg">
+            <% item[:children].each do |child_item| %>
+              <div class="relative mt-4 material-nav-item-children-item <%= @material.id == child_item[:id] || child_item[:descendant_ids].include?(@material.id) ? 'active' : '' %>">
                 <span class="relative">
-                  <span class="truncate"><%= child_item.name %></span>
-                  <% if child_item.children_materials.present? %>
+                  <span class="truncate" title="<%= child_item[:title] %>"><%= child_item[:title] %></span>
+                  <% if child_item[:children].present? %>
                     <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
                   <% end %>
                   <div class="material-nav-item-children-text-border"></div>
                 </span>
-                <% if child_item.children_materials.present? %>
-                  <div class="material-nav-item-children-item-children rounded-md shadow bg-white">
+                <% if child_item[:children].present? %>
+                  <div class="material-nav-item-children-item-children rounded-md shadow">
                     <div class="material-nav-item-children-item-children-list">
-                      <% child_item.children_materials.each do |child_item2| %>
-                        <a href="<%= material_path(child_item2.id) %>" class="flex-none truncate mb-2" title="<%= child_item2.name %>"><%= child_item2.name %></a>
+                      <% child_item[:children].each do |child2_item| %>
+                        <a href="<%= material_path(child2_item[:id]) %>" class="flex-none truncate mb-2 <%= @material.id == child2_item[:id] ? 'active' : '' %>" title="<%= child2_item[:title] %>"><%= child2_item[:title] %></a>
                       <% end %>
                     </div>
                   </div>

@@ -50,6 +50,8 @@
   overflow: hidden;
   padding-bottom: 0;
   width: 100%;
+  background: #F7F7F7;
+  color: #8C8C8C;
 }
 
 .material-nav-item.active .material-nav-item-header {
@@ -76,8 +78,14 @@
   z-index: 0;
 }
 
+.material-nav-item-children-item.active,
 .material-nav-item-children-item:hover {
   z-index: 50;
+  color: #101820;
+}
+
+.material-nav-item-children-item:hover {
+  z-index: 60;
 }
 
 .material-nav-item-children-text-border {
@@ -105,6 +113,8 @@
   width: 160px;
   height: 240px;
   position: absolute;
+  color: #8C8C8C;
+  background: #fff;
 }
 
 .material-nav-item-children-item-children .material-nav-item-children-item-children-list {
@@ -123,7 +133,7 @@
   display: block;
 }
 
-.material-nav-item-children-item-children a:active,
+.material-nav-item-children-item-children a.active,
 .material-nav-item-children-item-children a:hover {
   color: #101820;
 }

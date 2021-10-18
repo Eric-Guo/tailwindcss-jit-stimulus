@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   include DetectDevice
   before_action :set_ie_warning
+  before_action :set_tree_materials
   before_action :set_sidebar_nav
 
   private
@@ -13,27 +14,42 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def tree_materials(materials, parent_id = 0)
+      materials.select { |item| item.parent_id == parent_id }.map do |item|
+        {
+          id: item.id,
+          title: item.name,
+          subtitle: item.en_name,
+          children: tree_materials(materials, item.id),
+          descendant_ids: material_descendants(materials, item).pluck(:id)
+        }
+      end
+    end
+
+    def material_descendants(materials, material)
+      case material.level
+      when 1
+        materials.select { |item| item.grandpa_id == material.id }
+      when 2
+        materials.select { |item| item.parent_id == material.id }
+      else
+        []
+      end
+    end
+
+    def set_tree_materials
+      materials = Material.where(level: [1, 2, 3]).all
+      @tree_materials = tree_materials(materials)
+    end
+
     def set_sidebar_nav
-      materials = Material.includes(:children_materials).where(level: 1).all
       @sidebar_nav = [
         {
           title: '材料',
           subtitle: 'Materials',
-          children: materials.map do |item|
-            {
-              id: item.id,
-              title: item.name,
-              subtitle: item.en_name,
-              children: item.children_materials.map do |it|
-                {
-                  id: it.id,
-                  title: it.name,
-                  subtitle: it.en_name,
-                  url: material_path(it.id),
-                }
-              end
-            }
-          end
+          children: @tree_materials.map do |item|
+            { **item, children: item[:children].map { |it| { **it, url: material_path(it[:id]), children: nil } } }
+          end,
         },
         {
           title: '案例',

@@ -3,7 +3,6 @@
 class MaterialsController < ApplicationController
   def show
     @material = Material.find_by!(id: params[:id])
-    @materials = Material.includes(:children_materials).where(level: 1).all
 
     @color_id = params["color_id"]
     query = Material

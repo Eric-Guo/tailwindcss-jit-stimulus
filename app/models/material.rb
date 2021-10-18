@@ -7,7 +7,7 @@ class Material < ApplicationRecord
   has_many :children_materials, class_name: :Material, foreign_key: :parent_id
 
 
-  default_scope { where(deleted_at: nil) }
+  default_scope { where(deleted_at: nil).where(display: 1) }
 
   def color
     if level == 3
@@ -27,8 +27,7 @@ class Material < ApplicationRecord
   end
 
   def parent_color_systems
-    parent_material.children_materials.collect do |m|
-      m.material_product&.color_systems
-    end.flatten.uniq
+    material_ids = parent_material.children_materials.pluck(:id)
+    ColorSystem.where(id: MaterialProduct.select(:color_system_id).where(material_id: material_ids))
   end
 end
