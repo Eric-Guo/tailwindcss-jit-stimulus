@@ -41,3 +41,4 @@ tailwind-jit.sublime-workspace
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+/.idea
