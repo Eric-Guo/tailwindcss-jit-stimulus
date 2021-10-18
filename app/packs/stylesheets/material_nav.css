@@ -23,7 +23,17 @@
 }
 
 .material-nav-item-header-title {
-  margin-left: 10px;
+  color: #000000;
+}
+
+.material-nav-item-header-title span:nth-child(1) {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.material-nav-item-header-title span:nth-child(2) {
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .material-nav-item-header-icon {
