@@ -34,8 +34,8 @@
                   <div class="material-nav-item-children-text-border"></div>
                 </span>
                 <% if child_item.children_materials.present? %>
-                  <div class="material-nav-item-children-item-children absolute w-40 h-60 rounded-md shadow bg-white">
-                    <div class="flex flex-col overflow-auto w-full h-full">
+                  <div class="material-nav-item-children-item-children rounded-md shadow bg-white">
+                    <div class="material-nav-item-children-item-children-list">
                       <% child_item.children_materials.each do |child_item2| %>
                         <a href="<%= material_path(child_item2.id) %>" class="flex-none truncate mb-2" title="<%= child_item2.name %>"><%= child_item2.name %></a>
                       <% end %>
