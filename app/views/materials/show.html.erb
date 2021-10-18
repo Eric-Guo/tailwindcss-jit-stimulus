@@ -1,18 +1,18 @@
 <%= render partial: 'shared/header', locals: {} -%>
 <% if @material.level == 3 %>
-<p class="mx-52 pt-12 text-sm text-gray-500">首页 > <%= @material.material.material.name %> > <%= @material.material.name %> > <span class="text-black"><%= @material.name %></span></p>
-  <% else %>
-  <p class="mx-52 pt-12 text-sm text-gray-500">首页 > <%= @material.material.name %> > <span class="text-black"><%= @material.name %></span></p>
+  <p class="pt-12 text-sm text-gray-500 mx-auto" style="width: 1600px;">首页 > <%= @material.material.material.name %> > <%= @material.material.name %> > <span class="text-black"><%= @material.name %></span></p>
+<% else %>
+  <p class="pt-12 text-sm text-gray-500 mx-auto" style="width: 1600px;">首页 > <%= @material.material.name %> > <span class="text-black"><%= @material.name %></span></p>
 <% end %>
-<div class="flex flex-row mx-52">
+<div class="flex flex-row mx-auto justify-between" style="width: 1600px;">
   <%# 材料菜单 %>
-  <section class="material-nav" data-controller="material-nav">
+  <section class="material-nav mt-5" data-controller="material-nav">
     <% @materials.each do |item| %>
-      <div class="material-nav-item mt-5" data-material-nav-target="navItem">
+      <div class="material-nav-item mb-5" data-material-nav-target="navItem">
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
           <div class="material-nav-item-header-title truncate">
-            <span class="text-xl font-bold"><%= item.name %></span>
-            <span class="ml-1 text-base font-light"><%= item.en_name %></span>
+            <span><%= item.name %></span>
+            <span>&ensp;<%= item.en_name %></span>
           </div>
           <% if item.children_materials.present? %>
             <svg xmlns="http://www.w3.org/2000/svg" class="material-nav-item-header-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,17 +50,16 @@
     <% end %>
   </section>
   <%# 材料产品详情 %>
-  <section class="w-full ml-24 flex flex-col">
-    <div class="mt-5 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+  <section class="flex flex-col overflow-hidden mt-5" style="width: 1200px;">
+    <div class="pb-3 border-b-2 border-gray-100 border-solid">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid border-solid" style="padding-bottom: 0.9rem">材料产品详情</span><span class="text-xl font-light">Material Details</span>
     </div>
-    <div class="my-4 text-sm text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid">
+    <div class="text-sm text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid" style="margin-top: 30px;">
       <h2 class="w-24 py-4 bg-gray-100 text-black-6c font-medium text-right pr-6">色系</h2>
       <p class="w-24 py-4">
         <a href="/materials/<%= @material.id %>">
           全部
         </a>
-
       </p>
       <% @material.parent_color_systems&.each do |color_system| %>
         <% if @color_id == color_system.id.to_s %>
@@ -79,14 +78,22 @@
       <% end %>
     </div>
 
-    <div class="flex gap-3">
-      <% @projects.each do |project| %>
-        <a href="<%= material_path(project.id) %>">
-          <div class="border border-gray-200 border-solid">
-            <img class="mx-auto w-24 h-24" src="<%= get_first_url(project.cover) -%>" alt="">
-            <h3 class="text-center my-2 text-sm"><%= project.name -%></h3>
-          </div>
-        </a>
+    <div class="flex flex-row mt-5 justify-between" data-controller="material-color-system" data-material-color-system-min-height-value="116" data-material-color-system-max-height-value="<%= (@projects.size.to_f / 11).ceil * 126 - 10 %>">
+      <div class="grid grid-cols-11 gap-2.5 overflow-hidden transition-all" style="width: 1068px; height: <%= (@projects.size.to_f / 11).ceil * 126 - 10 %>px" data-material-color-system-target="list">
+        <% @projects.each do |project| %>
+          <a href="<%= material_path(project.id) %>" class="block transition-shadow hover:shadow" style="width: 88px; height: 116px; border: 1px solid #EBEBEB;">
+            <img class="mx-auto object-cover" style="width: 88px; height: 88px;" src="<%= get_first_url(project.cover) -%>" alt="">
+            <h3 class="text-center text-sm truncate" style="height: 28px; line-height: 28px; margin: 0 10px;" title="<%= project.name %>"><%= project.name -%></h3>
+          </a>
+        <% end %>
+      </div>
+      <% if (@projects.size.to_f / 11).ceil > 1 %>
+        <div class="relative" style="width: 22px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" class="absolute cursor-pointer transition-transform rotate-180" style="bottom: 47px;" data-action="click->material-color-system#toggle" data-material-color-system-target="toggleBtn">
+            <circle cx="11" cy="11" r="11" fill="#f4f4f4" />
+            <path fill="gray" fill-rule="evenodd" d="M1776.35,372.889a0.492,0.492,0,0,1-.7,0l-3.54-3.535a0.511,0.511,0,0,1,0-.708,0.5,0.5,0,0,1,.71,0l3.18,3.182,3.18-3.182a0.5,0.5,0,0,1,.71,0,0.511,0.511,0,0,1,0,.708Zm-3.53-1.243,3.18,3.182,3.18-3.182a0.5,0.5,0,0,1,.71,0,0.511,0.511,0,0,1,0,.708l-3.54,3.535a0.492,0.492,0,0,1-.7,0l-3.54-3.535a0.511,0.511,0,0,1,0-.708A0.5,0.5,0,0,1,1772.82,371.646Z" transform="translate(-1765 -362)"/>
+          </svg>
+        </div>
       <% end %>
     </div>
     <% if @material.level == 3 %>
