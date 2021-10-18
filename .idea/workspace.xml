@@ -5,11 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c41e1794-b4cc-4484-ac3a-cce0c39d031e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/models/material_product_color_system.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/material_product_practical_application.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/material_product_surface_effect.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/practical_application.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/sample_color_system.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/sample_surface_effect.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/materials_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/materials_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/searches_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/searches_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/cases.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/cases.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/color_system.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/color_system.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/material.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/material.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/material_product.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/material_product.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/sample.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/sample.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/surface_effect.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/surface_effect.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/materials/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/materials/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/samples/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/shared/_project_case.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_project_case.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +42,7 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1ynnxSqPyypn21Pu0hNL1FfvG9m" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -51,15 +65,15 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/models" />
+      <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$/app/views/materials" />
       <recent name="$PROJECT_DIR$/app/views/samples" />
-      <recent name="$PROJECT_DIR$/config" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -71,6 +85,7 @@
       <updated>1634093000068</updated>
       <workItem from="1634093002769" duration="241000" />
       <workItem from="1634093253564" duration="9534000" />
+      <workItem from="1634432510493" duration="31774000" />
     </task>
     <servers />
   </component>
