@@ -146,21 +146,42 @@
           <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">实际应用</span><span class="text-xl font-light">Application</span>
         </div>
 
-        <div class="py-4 bg-gray-100" style="height: 31rem;">
+        <div class="bg-gray-100 flex flex-col" style="height: 493px;">
           <% if @material.material_product&.practical_applications.length > 0%>
-            <% practical_application= @material.material_product&.practical_applications[0] %>
-          <h5 class="pb-3 text-lg font-medium text-center"><%= practical_application&.description -%></h5>
-          <div class="mx-2 lg:mx-4 xl:mx-8 2xl:mx-12">
-            <img class="w-full" src="<%= mat_img_url(practical_application&.path, "") -%>" alt="">
-
-            <div class="flex flex-wrap gap-3 mt-2">
-              <% @material&.material_product.practical_applications&.each_with_index do |practical_application, i| %>
-                <% if i > 0 %>
-              <img class="w-14" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
+            <% practical_application = @material.material_product&.practical_applications[0] %>
+            <h5 class="text-lg font-medium text-center" style="margin-top: 26px; line-height: 18px;"><%= practical_application&.description -%></h5>
+            <div style="margin: 26px 60px 0;">
+              <div class="w-full" style="height: 353px;">
+                <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application&.path, "") -%>" alt="">
+              </div>
+              <div class="flex flex-nowrap gap-3 mt-2.5 overflow-x-auto">
+                <% @material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
+                  <div class="flex-none" style="width: 50px; height: 50px;">
+                    <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
+                  </div>
                 <% end %>
+                <% @material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
+                  <div class="flex-none" style="width: 50px; height: 50px;">
+                    <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
+                  </div>
                 <% end %>
+                <% @material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
+                  <div class="flex-none" style="width: 50px; height: 50px;">
+                    <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
+                  </div>
+                <% end %>
+                <% @material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
+                  <div class="flex-none" style="width: 50px; height: 50px;">
+                    <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
+                  </div>
+                <% end %>
+                <% @material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
+                  <div class="flex-none" style="width: 50px; height: 50px;">
+                    <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
+                  </div>
+                <% end %>
+              </div>
             </div>
-          </div>
           <% end %>
         </div>
       </div>
@@ -271,7 +292,7 @@
     </div>
 
     <div class="m-4 grid grid-cols-3 gap-1.5">
-      <% if @material.material_product.practice_details %>
+      <% if @material.material_product.practice_details != "" %>
         <% JSON.parse(@material.material_product.practice_details)&.each_with_index do |practice_detail, i| %>
         <div class="<% if i == 0  %>col-span-2 row-span-3<% end %> relative">
           <img class="w-full h-full" src="<%= mat_img_url(practice_detail["url"], "") -%>" alt="">
@@ -289,7 +310,7 @@
     </div>
 
     <div class="my-2 grid grid-cols-6 gap-1.5">
-      <% if @material.material_product.source_file %>
+      <% if @material.material_product.source_file != "" %>
         <% JSON.parse(@material.material_product.source_file)&.each do |source_file| %>
           <div class="flex flex-row p-4 shadow-tw-dark font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" title="<%= source_file["name"] %>">
             <div class="flex-1 truncate w-0 select-none"><%= source_file["name"] %></div>
@@ -308,7 +329,7 @@
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材质贴图</span><span class="text-xl font-light">Texture</span>
     </div>
     <div class="my-6 grid grid-cols-6 gap-1.5">
-      <% if @material.material_product.su_picture %>
+      <% if @material.material_product.su_picture != "" %>
         <% JSON.parse(@material.material_product.su_picture)&.each do |su_picture| %>
           <img class="w-full object-fill" src="<%= mat_img_url(su_picture["url"], "2") -%>" alt="">
         <% end %>

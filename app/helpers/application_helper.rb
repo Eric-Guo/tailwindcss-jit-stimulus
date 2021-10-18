@@ -13,13 +13,8 @@ module ApplicationHelper
     if paths.class == Array
       "https://m-thtri.thape.com.cn/api/#{paths[0]}"
     else
-      begin
-          paths = JSON.parse(paths)
-          "https://m-thtri.thape.com.cn/api/#{paths[0]}"
-      rescue JSON::ParserError
-        # Handle error
-      end
+      paths = JSON.parse(paths)
+      "https://m-thtri.thape.com.cn/api/#{paths[0]}"
     end
-
   end
 end
