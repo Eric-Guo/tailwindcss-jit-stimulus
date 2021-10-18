@@ -4,20 +4,20 @@ class MaterialsController < ApplicationController
   def show
     @material = Material.find_by!(id: params[:id])
 
-    @color_id = params["color_id"]
-    query = Material
-    if @color_id
-      query = query.joins("LEFT JOIN material_products AS products ON products.material_id = materials.id")
-      query = query.joins("LEFT JOIN material_product_color_systems AS mpc ON mpc.material_product_id = products.id")
-      query = query.where("mpc.color_systems_id = " + @color_id)
+    @color_id = params["color_id"]&.strip
+
+    @projects = Material.joins(:material_product)
+
+    if @color_id.present?
+      @projects = @projects.where(material_product: { color_system_id: @color_id })
     end
-    if @material.level == 2
-      query = query.where(parent_id: @material.id)
+  
+    case @material.level
+    when 2
+      @projects = @projects.where(parent_id: @material.id)
+    when 3
+      @projects = @projects.where(parent_id: @material.parent_id)
     end
-    if @material.level == 3
-      query=query.where(parent_id: @material.parent_id)
-    end
-    @projects = query.all
 
     @samples = Sample.where(obj_id: @material.id).all
     @cases = Cases.limit(2)

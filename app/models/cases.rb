@@ -4,6 +4,8 @@ class Cases < ApplicationRecord
   self.table_name = 'cases'
   belongs_to :material, foreign_key: :obj_id, class_name: 'Material'
 
+  default_scope { where(deleted_at: nil) }
+
   def material
     if level == 3
       material_product.color_system

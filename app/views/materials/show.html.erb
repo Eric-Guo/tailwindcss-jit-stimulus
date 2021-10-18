@@ -57,37 +57,29 @@
     <div class="text-sm text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid" style="margin-top: 30px;">
       <h2 class="w-24 py-4 bg-gray-100 text-black-6c font-medium text-right pr-6">色系</h2>
       <p class="w-24 py-4">
-        <a href="/materials/<%= @material.id %>">
+        <a href="/materials/<%= @material.id %>" class="<%= @color_id.present? ? '' : 'active-pill' %>">
           全部
         </a>
       </p>
       <% @material.parent_color_systems&.each do |color_system| %>
-        <% if @color_id == color_system.id.to_s %>
-          <p class="w-24 py-4">
-            <span class="active-pill">
-              <%= color_system.description -%>
-            </span>
-          </p>
-        <% else %>
-          <p class="w-24 py-4">
-            <a href="?color_id=<%= color_system.id -%>">
-              <%= color_system.description -%>
-            </a>
-          </p>
-        <% end %>
+        <p class="w-24 py-4">
+          <a href="?color_id=<%= color_system.id -%>" class="<%= @color_id == color_system.id.to_s ? 'active-pill' : '' %>">
+            <%= color_system.description -%>
+          </a>
+        </p>
       <% end %>
     </div>
 
-    <div class="flex flex-row mt-5 justify-between" data-controller="material-color-system" data-material-color-system-min-height-value="116" data-material-color-system-max-height-value="<%= (@projects.size.to_f / 11).ceil * 126 - 10 %>">
-      <div class="grid grid-cols-11 gap-2.5 overflow-hidden transition-all" style="width: 1068px; height: <%= (@projects.size.to_f / 11).ceil * 126 - 10 %>px" data-material-color-system-target="list">
+    <div class="flex flex-row mt-5 justify-between" data-controller="material-color-system" data-material-color-system-min-height-value="121" data-material-color-system-max-height-value="<%= (@projects.size.to_f / 11).ceil * 126 - 5 %>">
+      <div class="grid grid-cols-12 gap-2.5 overflow-y-hidden transition-all" style="width: 1166px; height: <%= (@projects.size.to_f / 12).ceil * 126 - 5 %>px" data-material-color-system-target="list">
         <% @projects.each do |project| %>
-          <a href="<%= material_path(project.id) %>" class="block transition-shadow hover:shadow" style="width: 88px; height: 116px; border: 1px solid #EBEBEB;">
+          <a href="<%= material_path(project.id, request.GET) %>" class="block transition-shadow hover:shadow <%= project.id == @material.id ? 'shadow' : '' %>" style="width: 88px; height: 116px; border: 1px solid #EBEBEB;">
             <img class="mx-auto object-cover" style="width: 88px; height: 88px;" src="<%= get_first_url(project.cover) -%>" alt="">
             <h3 class="text-center text-sm truncate" style="height: 28px; line-height: 28px; margin: 0 10px;" title="<%= project.name %>"><%= project.name -%></h3>
           </a>
         <% end %>
       </div>
-      <% if (@projects.size.to_f / 11).ceil > 1 %>
+      <% if (@projects.size.to_f / 12).ceil > 1 %>
         <div class="relative" style="width: 22px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" class="absolute cursor-pointer transition-transform rotate-180" style="bottom: 47px;" data-action="click->material-color-system#toggle" data-material-color-system-target="toggleBtn">
             <circle cx="11" cy="11" r="11" fill="#f4f4f4" />
