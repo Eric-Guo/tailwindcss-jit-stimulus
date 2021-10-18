@@ -267,7 +267,7 @@
     </div>
 
     <div class="m-4 grid grid-cols-3 gap-1.5">
-      <% if @material.material_product.practice_details != "" %>
+      <% if @material.material_product.practice_details %>
         <% JSON.parse(@material.material_product.practice_details)&.each_with_index do |practice_detail, i| %>
         <div class="<% if i == 0  %>col-span-2 row-span-3<% end %> relative">
           <img class="w-full h-full" src="<%= mat_img_url(practice_detail["url"], "") -%>" alt="">
@@ -285,7 +285,7 @@
     </div>
 
     <div class="my-2 grid grid-cols-6 gap-1.5">
-      <% if @material.material_product.source_file != "" %>
+      <% if @material.material_product.source_file %>
         <% JSON.parse(@material.material_product.source_file)&.each do |source_file| %>
           <a class="p-4 shadow-tw-dark font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
             <%= source_file["name"] %>
@@ -304,7 +304,7 @@
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材质贴图</span><span class="text-xl font-light">Texture</span>
     </div>
     <div class="my-6 grid grid-cols-6 gap-1.5">
-      <% if @material.material_product.su_picture != "" %>
+      <% if @material.material_product.su_picture %>
         <% JSON.parse(@material.material_product.su_picture)&.each do |su_picture| %>
           <img class="w-full object-fill" src="<%= mat_img_url(su_picture["url"], "2") -%>" alt="">
         <% end %>
