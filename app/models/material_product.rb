@@ -12,4 +12,6 @@ class MaterialProduct < ApplicationRecord
 
   has_many :material_product_practical_applications
   has_many :practical_applications, through: :material_product_practical_applications
+
+  default_scope { where(deleted_at: nil) }
 end

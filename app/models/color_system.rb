@@ -8,4 +8,6 @@ class ColorSystem < ApplicationRecord
 
   has_many :sample_color_systems, primary_key: :color_systems_id
   has_many :samples, through: :sample_color_systems
+
+  default_scope { where(deleted_at: nil) }
 end

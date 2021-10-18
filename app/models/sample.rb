@@ -13,4 +13,6 @@ class Sample < ApplicationRecord
 
   has_many :sample_surface_effects
   has_many :surface_effects, through: :sample_surface_effects
+
+  default_scope { where(deleted_at: nil) }
 end
