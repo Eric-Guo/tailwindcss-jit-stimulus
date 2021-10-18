@@ -4,25 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c41e1794-b4cc-4484-ac3a-cce0c39d031e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/models/material_product_practical_application.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/material_product_surface_effect.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/practical_application.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/sample_color_system.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/sample_surface_effect.rb" afterDir="false" />
+    <list default="true" id="5054669c-71b1-4c77-91a6-64082a73767c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/materials_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/materials_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/searches_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/searches_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/cases.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/cases.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/color_system.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/color_system.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/material.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/material.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/material_product.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/material_product.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/sample.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/sample.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/surface_effect.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/surface_effect.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/materials/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/materials/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/samples/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/samples/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/shared/_project_case.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_project_case.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -12,8 +12,13 @@ class MaterialsController < ApplicationController
       query = query.joins("LEFT JOIN material_product_color_systems AS mpc ON mpc.material_product_id = products.id")
       query = query.where("mpc.color_systems_id = " + @color_id)
     end
-
-    @projects = query.where(parent_id: @material.parent_id).all
+    if @material.level == 2
+      query = query.where(parent_id: @material.id)
+    end
+    if @material.level == 3
+      query=query.where(parent_id: @material.parent_id)
+    end
+    @projects = query.all
 
     @samples = Sample.where(obj_id: @material.id).all
     @cases = Cases.limit(2)
