@@ -38,7 +38,7 @@
 
 .material-nav-item-header-icon {
   color: #DBDBDB;
-  transition: all .3s ease-in-out;
+  transition: all .15s ease-in-out;
   transform: rotateZ(-90deg);
 }
 
@@ -49,6 +49,7 @@
   max-height: 0;
   overflow: hidden;
   padding-bottom: 0;
+  width: 100%;
 }
 
 .material-nav-item.active .material-nav-item-header {
@@ -60,7 +61,7 @@
   opacity: 1;
   max-height: 2000px;
   overflow: visible;
-  transition: max-height .5s ease-in-out;
+  transition: max-height .15s ease-in-out;
   padding-bottom: 16px;
 }
 
@@ -86,7 +87,7 @@
   height: 1px;
   width: 0;
   background: #101820;
-  transition: width .3s ease-in-out;
+  transition: width .15s ease-in-out;
 }
 
 .material-nav-item-children-item.active .material-nav-item-children-text-border,
@@ -101,10 +102,19 @@
   margin-top: -10px;
   padding: 0;
   overflow: hidden;
+  width: 160px;
+  height: 240px;
+  position: absolute;
+}
+
+.material-nav-item-children-item-children .material-nav-item-children-item-children-list {
+  width: 120px;
+  height: 204px;
+  overflow: auto;
 }
 
 .material-nav-item-children-item:hover .material-nav-item-children-item-children {
-  transition: max-height .3s ease-in-out;
+  transition: max-height .15s ease-in-out;
   max-height: 240px;
   padding: 18px 20px;
 }
