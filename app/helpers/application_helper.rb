@@ -10,6 +10,11 @@ module ApplicationHelper
   end
 
   def get_first_url(paths)
-    "https://m-thtri.thape.com.cn/api/#{paths[0]}"
+    if paths.class == Array
+      "https://m-thtri.thape.com.cn/api/#{paths[0]}"
+    else
+      paths = JSON.parse(paths)
+      "https://m-thtri.thape.com.cn/api/#{paths[0]}"
+    end
   end
 end

@@ -26,7 +26,12 @@
             <dd class="mt-2 inline"><%= @sample.material.no -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">色系：</dt>
-            <dd class="mt-2 inline"><%= @sample.material.color -%></dd>
+            <dd class="mt-2 inline">
+              <% @sample&.color_systems&.each_with_index do |color_system, i| %><%= color_system.description -%>
+                <% if i == @sample.color_systems.length %>,
+                <% end %>
+              <% end %>
+            </dd>
 
             <dt class="mt-2 inline-block w-1/2">色号：</dt>
             <dd class="mt-2 inline"><%= @sample.color_code -%></dd>
