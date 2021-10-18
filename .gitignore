@@ -38,5 +38,12 @@ tailwind-jit.sublime-workspace
 /public/packs
 /public/packs-test
 /node_modules
-/pnpm-debug.log*
-/.pnpm-store
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+/.idea
+/public/pdfjs
+
+.DS_Store
+
+/.history
