@@ -22,7 +22,7 @@ export default class extends Controller {
   // 展开菜单
   openNavItem(target) {
     target.classList.add('active');
-    target.scrollIntoView();
+    target.scrollIntoView({ behavior: 'smooth' });
   }
 
   // 关闭菜单
