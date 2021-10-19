@@ -28,6 +28,11 @@ class SearchesController < ApplicationController
   end
 
   def news
+    @news = if @q.present?
+      News.where('title LIKE ?', "%#{@q}%").or(News.where('subtitle LIKE ?', "%#{@q}%"))
+    else
+      News.none
+    end
   end
 
   private
