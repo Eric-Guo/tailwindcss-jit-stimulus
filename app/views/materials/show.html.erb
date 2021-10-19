@@ -172,7 +172,12 @@
             </div>
             <div class="flex flex-nowrap gap-3 mt-2.5 overflow-x-auto">
               <% @material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
-                <div class="flex-none cursor-pointer <%= i == 0 ? 'border border-gray-900' : '' %>" style="width: 50px; height: 50px;" data-material-carousel-target="dotItem">
+                <div
+                  class="flex-none cursor-pointer <%= i == 0 ? 'border border-gray-900' : '' %>"
+                  style="width: 50px; height: 50px;"
+                  data-material-carousel-target="dotItem"
+                  data-action="click->material-carousel#toDotIndex"
+                >
                   <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
                 </div>
               <% end %>

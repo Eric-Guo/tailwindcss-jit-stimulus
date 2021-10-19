@@ -96,11 +96,24 @@ export default class extends Controller {
     }
   }
 
+  // 上一个
   toPrev() {
     this.toIndex(this.prevIndex(), 1);
   }
   
+  // 下一个
   toNext() {
     this.toIndex(this.nextIndex(), 2);
-  }  
+  }
+
+  // 跳跃
+  toDotIndex(e) {
+    for (let i = 0; i < this.dotItemTargets.length; i++) {
+      const dot = this.dotItemTargets[i];
+      if (dot.contains(e.target)) {
+        this.toIndex(i);
+        break;
+      }
+    }
+  }
 }
