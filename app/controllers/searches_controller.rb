@@ -4,7 +4,11 @@ class SearchesController < ApplicationController
   before_action :set_q_params
 
   def material
-    @materials = Material.where('name LIKE ?', "%#{@q}%")
+    @materials = if @q.present?
+      Material.where('name LIKE ?', "%#{@q}%")
+    else
+      Material.none
+    end
   end
 
   def project
