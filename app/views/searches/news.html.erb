@@ -21,34 +21,21 @@
 
 <%# 新闻 %>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-3 gap-8">
-  <div class="flex-grow flex border border-gray-100 border-solid">
-    <div class="flex-none flex flex-col justify-around bg-gray-100 m-2 p-10">
-      <p class="text-center text-base font-normal tracking-wider leading-none">DEC</p>
-      <p class="mt-5 text-3xl text-center font-semibold tracking-widest leading-none">16</p>
+  <% @news.each do |news| %>
+    <div class="flex-grow flex border border-gray-100 border-solid">
+      <div class="flex-none flex flex-col justify-around bg-gray-100 m-2 p-10">
+        <p class="text-center text-base font-normal tracking-wider leading-none"><%= Date::ABBR_MONTHNAMES[news.created_at.month].upcase -%></p>
+        <p class="mt-5 text-3xl text-center font-semibold tracking-widest leading-none"><%= news.created_at.day -%></p>
+      </div>
+      <div class="flex flex-col justify-center px-8">
+          <h1 class="text-2xl text-left leading-tight">
+            <%= news.title -%>
+            <span class="ml-1 px-5 py-1 rounded-full text-sm bg-gray-100 text-gray-400 inline-block align-middle">
+              <%= news.mold_name -%>
+            </span>
+          </h1>
+          <h2 class="mt-3 text-1xl text-left"><%= news.subtitle -%></h2>
+      </div>
     </div>
-    <div class="flex flex-col justify-center px-8">
-        <h1 class="text-2xl text-left leading-tight">
-          文化市集
-          <span class="ml-1 px-5 py-1 rounded-full text-sm bg-gray-100 text-gray-400 inline-block align-middle">
-            天华
-          </span>
-        </h1>
-        <h2 class="mt-3 text-1xl text-left">展示书店内在文化属性的目的</h2>
-    </div>
-  </div>
-  <div class="flex-grow flex border border-gray-100 border-solid">
-    <div class="flex-none flex flex-col justify-around bg-gray-100 m-2 p-10">
-      <p class="text-center text-base font-normal tracking-wider leading-none">NOV</p>
-      <p class="mt-5 text-3xl text-center font-semibold tracking-widest leading-none">11</p>
-    </div>
-    <div class="flex flex-col justify-center px-8">
-      <h1 class="text-2xl text-left leading-tight">
-        浦开仁恒金桥世纪
-        <span class="ml-1 px-5 py-1 rounded-full text-sm bg-gray-100 text-gray-400 inline-block align-middle">
-          天华
-        </span>
-      </h1>
-      <h2 class="mt-3 text-1xl text-left">让青山更幽静，让绿水更清澈</h2>
-    </div>
-  </div>
+  <% end %>
 </div>
