@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
   before_action :set_q_params
 
   def material
+    @materials = Material.where('name LIKE ?', "%#{@q}%")
   end
 
   def project
@@ -16,6 +17,8 @@ class SearchesController < ApplicationController
   end
 
   private
+
     def set_q_params
+      @q = params[:q]
     end
 end
