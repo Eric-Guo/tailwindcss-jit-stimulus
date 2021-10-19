@@ -2,27 +2,26 @@
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2.5">
   <div class="my-2">
     <span class="font-medium px-1 text-gray-400">色系 ：</span>
+    <a href="<%= material_path(@material.id) %>">
+      <span class="px-2.5 py-1 rounded-full <%= @color_id.present? ? '' : 'font-bold bg-gray-200' %>">
+        全部
+      </span>
+    </a>
     <% @material.parent_color_systems&.each do |color_system| %>
-      <% if @color_id == color_system.id.to_s %>
-          <span class="px-1">
-            <span class="px-2.5 py-1 rounded-full font-medium bg-gray-200">
-              <%= color_system.description %>
-            </span>
-          </span>
-      <% else %>
-        <a href="?color_id=<%= color_system.id -%>">
-          <span class="px-1"><%= color_system.description %></span>
-        </a>
-      <% end %>
+      <a href="<%= material_path(@material.id, color_id: color_system.id) %>">
+        <span class="px-2.5 py-1 rounded-full <%= @color_id == color_system.id.to_s ? 'font-bold bg-gray-200' : '' %>">
+          <%= color_system.description %>
+        </span>
+      </a>
     <% end %>
   </div>
   <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
     <div class="flex flex-nowrap min-w-max">
       <% @projects.each do |project| %>
-        <div class="mx-px first:mx-px w-20 border border-gray-200 border-solid">
-          <img class="w-full object-contain" src="<%= get_first_url(project.cover) -%>" alt="">
+        <a class="mx-px first:mx-px w-20 border border-gray-200 border-solid <%= project.id == @material.id ? 'shadow-lg' : '' %>" href="<%= material_path(project.id, request.GET) %>">
+          <img class="w-20 h-20 object-cover" src="<%= get_first_url(project.cover) -%>" alt="">
           <h3 class="text-center my-2 whitespace-nowrap"><%= project.name -%></h3>
-        </div>
+        </a>
       <% end %>
     </div>
   </div>
