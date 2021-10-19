@@ -146,21 +146,47 @@
           <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">实际应用</span><span class="text-xl font-light">Application</span>
         </div>
 
-        <div class="py-4 bg-gray-100" style="height: 31rem;">
+        <div
+          class="bg-gray-100 flex flex-col relative"
+          style="height: 493px; padding-left: 60px; padding-right: 60px;"
+          data-controller="material-carousel"
+          data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
+          data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
+          data-material-carousel-duration-value="0.5"
+          data-material-carousel-dot-active-class-value="border border-gray-900"
+        >
           <% if @material.material_product&.practical_applications.length > 0%>
-            <% practical_application= @material.material_product&.practical_applications[0] %>
-          <h5 class="pb-3 text-lg font-medium text-center"><%= practical_application&.description -%></h5>
-          <div class="mx-2 lg:mx-4 xl:mx-8 2xl:mx-12">
-            <img class="w-full" src="<%= mat_img_url(practical_application&.path, "") -%>" alt="">
-
-            <div class="flex flex-wrap gap-3 mt-2">
-              <% @material&.material_product.practical_applications&.each_with_index do |practical_application, i| %>
-                <% if i > 0 %>
-              <img class="w-14" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
-                <% end %>
-                <% end %>
+            <div class="relative overflow-hidden mt-4" style="height: 393px;">
+              <% @material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
+                <div class="w-full h-full absolute top-0 left-0" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+                  <h5 class="text-lg font-medium text-center mt-4"><%= practical_application&.description -%></h5>
+                  <div class="relative mt-3">
+                    <div class="relative w-full overflow-hidden" style="height: 353px;">
+                      <div class="absolute w-full h-full">
+                        <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application&.path, "") -%>" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
             </div>
-          </div>
+            <div class="flex flex-nowrap gap-3 mt-2.5 overflow-x-auto">
+              <% @material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
+                <div class="flex-none cursor-pointer <%= i == 0 ? 'border border-gray-900' : '' %>" style="width: 50px; height: 50px;" data-material-carousel-target="dotItem">
+                  <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
+                </div>
+              <% end %>
+            </div>
+            <div class="absolute cursor-pointer" style="left: 21px; top: 216px;" data-action="click->material-carousel#toPrev">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18.125" height="32.81" viewBox="0 0 18.125 32.81">
+                <path fill="#999" fill-rule="evenodd" d="M599.627,1492.29l-13.54,13.54,13.674,13.68a1.641,1.641,0,1,1-2.321,2.32l-14.846-14.85a1.647,1.647,0,0,1-.011-2.33l14.7-14.7A1.656,1.656,0,0,1,599.627,1492.29Z" transform="translate(-582.125 -1489.5)"/>
+              </svg>
+            </div>
+            <div class="absolute cursor-pointer" style="right: 21px; top: 216px;" data-action="click->material-carousel#toNext">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="33.03" viewBox="0 0 18 33.03">
+                <path fill="#999" fill-rule="evenodd" class="cls-1" d="M599.534,1558.58l-14.743,14.93a1.62,1.62,0,0,1-2.317.01,1.667,1.667,0,0,1,.012-2.34l13.579-13.75-13.446-13.62a1.678,1.678,0,0,1,.011-2.35,1.628,1.628,0,0,1,2.316-.01l14.6,14.79A1.666,1.666,0,0,1,599.534,1558.58Z" transform="translate(-582.031 -1540.97)"/>
+              </svg>
+            </div>
           <% end %>
         </div>
       </div>
@@ -169,67 +195,68 @@
           <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材料样品</span><span class="text-xl font-light">Samples</span>
         </div>
 
-        <div class="py-4 bg-gray-100" style="height: 31rem;">
-          <h5 class="pb-3 text-lg font-medium text-center">实体材料库库存信息</h5>
-          <div class="mx-3 overflow-auto" style="height: 353px;">
-            <table class="min-w-full divide-y divide-gray-200">
-              <thead class="bg-gray-50">
-              <tr>
-                <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
-                  样品编号
-                </th>
-                <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
-                  色系
-                </th>
-                <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
-                  样品规格、型号
-                </th>
-                <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
-                  表面工艺
-                </th>
-                <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
-                  剩余库存
-                </th>
-                <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
-                  存放位置
-                </th>
-                <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
-                  供应商
-                </th>
-              </tr>
+        <div class="flex flex-col bg-gray-100" style="height: 493px;">
+          <h5 class="mt-4 text-lg font-medium text-center">实体材料库库存信息</h5>
+          <div class="mx-3 mt-3 overflow-auto" style="height: 353px;">
+            <table class="min-w-full border-collapse">
+              <thead>
+                <tr class="sticky bg-gray-50" style="top: -1px; left: 0;">
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    样品编号
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    色系
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    样品规格、型号
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    表面工艺
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    剩余库存
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    存放位置
+                  </th>
+                  <th scope="col" class="px-1 py-2 border whitespace-nowrap text-center text-sm text-gray-900">
+                    供应商
+                  </th>
+                </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
-              <% @samples&.each do |sample| %>
-              <tr>
-                <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs font-medium">
-                  <%= sample.no -%>
-                </td>
-                <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
-                  <% sample&.color_systems&.each_with_index do |color_system, i| %><%= color_system.description -%>
-                    <% if i == sample.color_systems.length %>,
-                    <% end %>
-                  <% end %>
-                </td>
-                <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
-                  <%= sample.spec_model -%>
-                </td>
-                <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
-                  <% sample&.surface_effects&.each_with_index do |surface_effect, i| %><%= surface_effect.description -%>
-                    <% if i == sample.surface_effects.length %>,
-                    <% end %>
-                  <% end %>
-                </td>
-                <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
-                    未知
-                </td>
-                <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
-                  <%= sample.position %>
-                </td>
-                <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
-                  <%= sample.manufacturer&.name %>
-                </td>
-              </tr>
-              <% end %>
+              <tbody>
+                <% @samples&.each do |sample| %>
+                  <tr class="bg-white">
+                    <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs font-medium">
+                      <a class="underline" href="<%= sample_path(sample.no) %>"><%= sample.no -%></a>
+                    </td>
+                    <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
+                      <% sample&.color_systems&.each_with_index do |color_system, i| %>
+                        <%= color_system.description -%>
+                        <% if i == sample.color_systems.length %>,
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
+                      <%= sample.spec_model -%>
+                    </td>
+                    <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
+                      <% sample&.surface_effects&.each_with_index do |surface_effect, i| %><%= surface_effect.description -%>
+                        <% if i == sample.surface_effects.length %>,
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
+                        未知
+                    </td>
+                    <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
+                      <%= sample.position %>
+                    </td>
+                    <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
+                      <%= sample.manufacturer&.name %>
+                    </td>
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>

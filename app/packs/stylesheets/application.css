@@ -42,3 +42,37 @@
   background: #B2B2B2;
   border-radius: 4px;
 }
+
+@keyframes translate-x-full {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes -translate-x-full {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animation-transition-x-full {
+  animation: translate-x-full .5s ease-in-out;
+}
+
+.animation-transition-x-full-reverse {
+  animation: translate-x-full .5s ease-in-out reverse;
+}
+
+.-animation-transition-x-full {
+  animation: -translate-x-full .5s ease-in-out;
+}
+
+.-animation-transition-x-full-reverse {
+  animation: -translate-x-full .5s ease-in-out reverse;
+}
