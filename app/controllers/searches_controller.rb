@@ -2,42 +2,55 @@
 
 class SearchesController < ApplicationController
   before_action :set_q_params
+  before_action :set_data_and_count_hash
 
   def material
-    @materials = if @q.present?
-      Material.where('name LIKE ?', "%#{@q}%")
-    else
-      Material.none
-    end
   end
 
   def project
-    @cases = if @q.present?
-      Cases.where('project_name LIKE ?', "%#{@q}%")
-    else
-      Cases.none
-    end
   end
 
   def manufacturer
-    @manufacturers = if @q.present?
-      Manufacturer.where('name LIKE ?', "%#{@q}%")
-    else
-      Manufacturer.none
-    end
   end
 
   def news
-    @news = if @q.present?
-      News.where('title LIKE ?', "%#{@q}%").or(News.where('subtitle LIKE ?', "%#{@q}%"))
-    else
-      News.none
-    end
   end
 
   private
 
     def set_q_params
       @q = params[:q]
+    end
+
+    def set_data_and_count_hash
+      @materials = if @q.present?
+        Material.where('name LIKE ?', "%#{@q}%")
+      else
+        Material.none
+      end
+
+      @cases = if @q.present?
+        Cases.where('project_name LIKE ?', "%#{@q}%")
+      else
+        Cases.none
+      end
+
+      @manufacturers = if @q.present?
+        Manufacturer.where('name LIKE ?', "%#{@q}%")
+      else
+        Manufacturer.none
+      end
+
+      @news = if @q.present?
+        News.where('title LIKE ?', "%#{@q}%").or(News.where('subtitle LIKE ?', "%#{@q}%"))
+      else
+        News.none
+      end
+
+      @count_hash = {}
+      @count_hash[:material] = @materials.count
+      @count_hash[:project] = @cases.count
+      @count_hash[:manufacturer] = @manufacturers.count
+      @count_hash[:news] = @news.count
     end
 end
