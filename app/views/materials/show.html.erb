@@ -70,8 +70,8 @@
       <% end %>
     </div>
 
-    <div class="flex flex-row mt-5 justify-between" data-controller="material-color-system" data-material-color-system-min-height-value="121" data-material-color-system-max-height-value="<%= (@projects.size.to_f / 11).ceil * 126 - 5 %>">
-      <div class="grid grid-cols-12 gap-2.5 overflow-y-hidden transition-all" style="width: 1166px; height: <%= (@projects.size.to_f / 12).ceil * 126 - 5 %>px" data-material-color-system-target="list">
+    <div class="flex flex-row mt-5 justify-between" data-controller="material-color-system" data-material-color-system-min-height-value="121" data-material-color-system-max-height-value="<%= (@projects.length.to_f / 11).ceil * 126 - 5 %>">
+      <div class="grid grid-cols-12 gap-2.5 overflow-y-hidden transition-all" style="width: 1166px; height: <%= (@projects.length.to_f / 12).ceil * 126 - 5 %>px" data-material-color-system-target="list">
         <% @projects.each do |project| %>
           <a href="<%= material_path(project.id, request.GET) %>" class="block transition-shadow hover:shadow <%= project.id == @material.id ? 'shadow' : '' %>" style="width: 88px; height: 116px; border: 1px solid #EBEBEB;">
             <img class="mx-auto object-cover" style="width: 88px; height: 88px;" src="<%= get_first_url(project.cover) -%>" alt="">
@@ -79,7 +79,7 @@
           </a>
         <% end %>
       </div>
-      <% if (@projects.size.to_f / 12).ceil > 1 %>
+      <% if (@projects.length.to_f / 12).ceil > 1 %>
         <div class="relative" style="width: 22px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" class="absolute cursor-pointer transition-transform rotate-180" style="bottom: 47px;" data-action="click->material-color-system#toggle" data-material-color-system-target="toggleBtn">
             <circle cx="11" cy="11" r="11" fill="#f4f4f4" />

@@ -30,6 +30,7 @@ class Material < ApplicationRecord
 
   def parent_color_systems
     material_ids = parent_material.children_materials.pluck(:id)
-    ColorSystem.where(id: MaterialProduct.select(:color_system_id).where(material_id: material_ids))
+    color_system_ids = MaterialProductColorSystem.where(material_product_id: MaterialProduct.select(:id).where(material_id: material_ids)).pluck(:color_systems_id)
+    ColorSystem.where(id: color_system_ids)
   end
 end

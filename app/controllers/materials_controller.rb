@@ -9,7 +9,7 @@ class MaterialsController < ApplicationController
     @projects = Material.joins(:material_product)
 
     if @color_id.present?
-      @projects = @projects.where(material_product: { color_system_id: @color_id })
+      @projects = @projects.where(material_product: { id: MaterialProductColorSystem.select(:material_product_id).where(color_systems_id: @color_id) })
     end
   
     case @material.level
