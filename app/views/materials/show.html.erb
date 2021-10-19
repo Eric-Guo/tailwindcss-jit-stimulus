@@ -159,7 +159,7 @@
             <div class="relative overflow-hidden mt-4" style="height: 393px;">
               <% @material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
                 <div class="w-full h-full absolute top-0 left-0" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
-                  <h5 class="text-lg font-medium text-center mt-4"><%= practical_application&.description -%></h5>
+                  <h5 class="text-lg font-medium text-center"><%= practical_application&.description -%></h5>
                   <div class="relative mt-3">
                     <div class="relative w-full overflow-hidden" style="height: 353px;">
                       <div class="absolute w-full h-full">
