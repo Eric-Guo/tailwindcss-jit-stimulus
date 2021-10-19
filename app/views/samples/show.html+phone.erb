@@ -3,34 +3,40 @@
   <div class="my-1 flex">
     <img class="flex-initial" style="max-width: 50%;" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
     <dl class="flex-auto ml-2">
-      <h3 class="text-base mb-2 font-medium">黄金麻（样品）</h3>
+      <h3 class="text-base mb-2 font-medium"><%= @sample.material&.name -%></h3>
       <p class="text-xs whitespace-nowrap">样品编号：
-        <span class="font-medium">A07010</span>
+        <span class="font-medium"><%= @sample.no %></span>
       </p>
       <p class="text-xs whitespace-nowrap">价格区间：
-        <span class="font-medium">100-350/㎡</span>
+        <span class="font-medium"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</span>
       </p>
       <p class="text-xs whitespace-nowrap">产品/二级分类名称：
-        <span class="font-medium">黄金麻</span>
+        <span class="font-medium"><%= @sample.material&.name -%></span>
       </p>
       <p class="text-xs whitespace-nowrap">产品/二级分类编号：
-        <span class="font-medium">A07013</span>
+        <span class="font-medium"><%= @sample.material&.no -%></span>
       </p>
       <p class="text-xs whitespace-nowrap">色系：
-        <span class="font-medium">黄色</span>
+        <% @sample&.color_systems&.each_with_index do |color_system, i| %><span class="font-medium"><%= color_system.description -%></span>
+          <% if i == @sample.color_systems.length %>,
+          <% end %>
+        <% end %>
       </p>
       <p class="text-xs whitespace-nowrap">色号：
-        <span class="font-medium">868688</span>
+        <span class="font-medium"><%= @sample.color_code -%></span>
       </p>
       <p class="text-xs whitespace-nowrap">产品规格/型号：
-        <span class="font-medium">30*30 cm</span>
+        <span class="font-medium"><%= @sample.spec_model -%></span>
       </p>
       <p class="text-xs whitespace-nowrap">表面效果：
-        <span class="font-medium">荔枝面</span>
+        <span class="font-medium"><% @sample&.surface_effects&.each_with_index do |surface_effect, i| %><%= surface_effect.description -%>
+            <% if i == @sample.surface_effects.length %>,
+                <% end %>
+              <% end %></span>
       </p>
       <div class="text-xs whitespace-nowrap" data-controller="modal" data-modal-allow-background-close="true">储存位置：
         <a href="#" data-action="click->modal#open">
-          <span class="font-medium underline">A-3-25</span>
+          <span class="font-medium underline"><%= @sample.position -%></span>
         </a>
         <!-- Modal Container -->
         <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
@@ -41,7 +47,7 @@
               <div class="p-8">
                 <figure>
                   <img src="<%= image_pack_path('static/sample_location.png') -%>" alt="">
-                  <figcaption class="text-center mt-2">样板位置: A-3-25</figcaption>
+                  <figcaption class="text-center mt-2"><%= @sample.position -%>: A-3-25</figcaption>
                 </figure>
               </div>
             </div>
@@ -53,11 +59,10 @@
   <h5 class="text-base mt-4">其他样品</h5>
   <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
     <div class="flex flex-nowrap min-w-max">
-      <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
-        <% pic_url = "static/new_mat_g#{i+1}.jpg" -%>
+      <% @other_samples.each_with_index do |other_sample, i| %>
         <div class="mx-px first:mx-px w-16">
-          <img class="w-full object-contain" src="<%= image_pack_path(pic_url) -%>" alt="">
-          <h3 class="text-center text-xs my-2 whitespace-nowrap"><%= name -%></h3>
+          <img class="w-full object-contain" src="<%= mat_img_url(other_sample.pic, "") -%>" alt="">
+          <h3 class="text-center text-xs my-2 whitespace-nowrap"><%= other_sample.material&.name -%></h3>
         </div>
       <% end %>
     </div>
@@ -70,15 +75,15 @@
 
   <div class="flex bg-gray-200 border border-gray-200 border-solid px-1 my-3">
     <div class="flex justify-center items-center px-2 py-3">
-      <img class="w-full border border-gray-300 border-solid" src="<%= image_pack_path('static/logo-1-1.jpg') -%>" alt="">
+      <img class="w-full border border-gray-300 border-solid" src="<%= mat_img_url(@sample.manufacturer&.logo,'') -%>" alt="">
     </div>
     <div class="px-2 py-3">
-      <h5 class="text-base font-medium mb-2">东丽石材</h5>
-      <p class="text-xs text-gray-700">联系人：13717634543</p>
-      <p class="text-xs text-gray-700">邮箱：564738476@qq.com</p>
-      <p class="text-xs text-gray-700">厂家地址：山东</p>
-      <p class="text-xs text-gray-700">联系电话：65383736</p>
-      <p class="text-xs text-gray-700">是否愿意提供材料样品：是</p>
+      <h5 class="text-base font-medium mb-2"><%= @sample.manufacturer&.name -%></h5>
+      <p class="text-xs text-gray-700">联系人：<%= @sample.manufacturer&.contact -%></p>
+      <p class="text-xs text-gray-700">邮箱：<%= @sample.manufacturer&.email -%></p>
+      <p class="text-xs text-gray-700">厂家地址：<%= @sample.manufacturer&.location -%></p>
+      <p class="text-xs text-gray-700">联系电话：<%= @sample.manufacturer&.contact_information -%></p>
+      <p class="text-xs text-gray-700">是否愿意提供材料样品：<%= @sample.manufacturer&.is_allow == 1 ? '是' : '否' -%></p>
     </div>
   </div>
 </div>
@@ -86,52 +91,25 @@
 <%# 产品案例 %>
 <div class="bg-white text-black-6c text-xs px-1.5 pt-2 pb-5 mt-2">
   <h5 class="text-base font-medium m-1">产品案例</h5>
+
   <div class="grid grid-cols-2 gap-y-2">
+    <% @cases.each_with_index do |project_case, i| %>
     <div class="mx-1">
       <div class="relative">
-        <img class="w-full" src="<%= image_pack_path('static/project_new_g1.jpg') -%>" alt="">
+        <img class="w-full" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
         <div class="absolute right-1 bottom-1 text-white text-right">
-          <p class="text-xs">内部项目</p>
+          <p class="text-xs"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></p>
         </div>
         <div class="absolute left-1 bottom-1 text-white text-left">
           <p class="text-white text-right text-xs">荔枝面黄金麻</p>
         </div>
       </div>
       <div class="text-black-6c text-left">
-        <p class="text-xs mt-1">融创徐汇滨江壹号 / 上海</p>
-        <p class="text-xs">Shanghai West Bund Park</p>
+        <p class="text-xs mt-1"><%= project_case.project_name -%> <%= project_case.project_location==''? '':'/' -%> <%= project_case.project_location -%></p>
+        <p class="text-xs"></p>
       </div>
     </div>
-    <div class="mx-1">
-      <div class="relative">
-        <img class="w-full" src="<%= image_pack_path('static/project_new_g2.jpg') -%>" alt="">
-        <div class="absolute right-1 bottom-1 text-white text-right">
-          <p class="text-xs">内部项目</p>
-        </div>
-        <div class="absolute left-1 bottom-1 text-white text-left">
-          <p class="text-white text-right text-xs">荔枝面黄金麻</p>
-        </div>
-      </div>
-      <div class="text-black-6c text-left">
-        <p class="text-xs mt-1"><%= '合肥北城中央公园中小学'.truncate(10) -%> / 安徽合肥</p>
-        <p class="text-xs">Shanghai West Bund Park</p>
-      </div>
-    </div>
-    <div class="mx-1">
-      <div class="relative">
-        <img class="w-full" src="<%= image_pack_path('static/project_new_g3.jpg') -%>" alt="">
-        <div class="absolute right-1 bottom-1 text-white text-right">
-          <p class="text-xs">内部项目</p>
-        </div>
-        <div class="absolute left-1 bottom-1 text-white text-left">
-          <p class="text-white text-right text-xs">光面黄金麻</p>
-        </div>
-      </div>
-      <div class="text-black-6c text-left">
-        <p class="text-xs mt-1"><%= '北京大兴龙湖天街'.truncate(10) -%> / 北京</p>
-        <p class="text-xs">Shanghai West Bund Park</p>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>
 

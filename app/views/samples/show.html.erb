@@ -9,7 +9,7 @@
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">产品样品</span><span class="text-xl font-light">Samples</span>
     </div>
     <div class="mx-4 mt-4 flex gap-4">
-      <img class="w-80 h-80" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
+      <img class="w-80 h-80" src="<%= mat_img_url(@sample.pic, "") -%>" alt="">
       <div class="ml-4 relative">
         <h2 class="text-xl font-medium"><%= @sample.material&.name -%></h2>
         <dl class="absolute bottom-0 w-120 text-sm">
@@ -40,7 +40,10 @@
             <dd class="mt-2 inline"><%= @sample.spec_model -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">表面效果：</dt>
-            <dd class="mt-2 inline"><%= @sample.surface_effect&.description -%></dd>
+            <dd class="mt-2 inline"><% @sample&.surface_effects&.each_with_index do |surface_effect, i| %><%= surface_effect.description -%>
+                <% if i == @sample.surface_effects.length %>,
+                <% end %>
+              <% end %></dd>
 
             <dt class="mt-2 inline-block w-1/2">存储位置：</dt>
             <dd class="mt-2 inline" data-controller="modal" data-modal-allow-background-close="true">
@@ -74,7 +77,7 @@
     <div class="mx-4 mt-4 grid grid-cols-5 gap-4">
       <div class="row-span-2">
         <div class="border border-gray-300 border-solid mx-auto">
-          <img class="w-full" src="<%= image_pack_path('static/logo-2-1.jpg') -%>" alt="">
+          <img class="w-full" src="<%= mat_img_url(@sample.manufacturer.logo,'') -%>" alt="">
         </div>
       </div>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
@@ -87,7 +90,7 @@
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
         <dt class="text-gray-400">邮箱</dt>
-        <dd class=""><%= @sample.manufacturer&.website -%></dd>
+        <dd class=""><%= @sample.manufacturer&.email -%></dd>
       </dl>
       <dl></dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
