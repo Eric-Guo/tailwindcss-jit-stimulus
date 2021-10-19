@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 set :nginx_use_ssl, true
-set :branch, :layout
+set :branch, :matlib
 set :puma_service_unit_name, :puma_matlib
 set :puma_systemctl_user, :system
 
