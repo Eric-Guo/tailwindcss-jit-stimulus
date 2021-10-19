@@ -20,6 +20,11 @@ class SearchesController < ApplicationController
   end
 
   def manufacturer
+    @manufacturers = if @q.present?
+      Manufacturer.where('name LIKE ?', "%#{@q}%")
+    else
+      Manufacturer.none
+    end
   end
 
   def news
