@@ -8,6 +8,11 @@ class SearchesController < ApplicationController
   end
 
   def project
+    @cases = if @q.present?
+      Cases.where('project_name LIKE ?', "%#{@q}%")
+    else
+      Cases.none
+    end
   end
 
   def manufacturer
