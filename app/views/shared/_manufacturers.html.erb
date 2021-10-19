@@ -1,13 +1,13 @@
 <% manufacturers&.each do |manufacturer| %>
-<div class="flex border border-gray-200 border-solid">
-  <div class="flex justify-center items-center px-1 border-r border-gray-200 border-solid">
-    <img class="w-full" src="<%= mat_img_url(manufacturer.logo,'') -%>" alt="">
+  <div class="flex border border-gray-200 border-solid">
+    <div class="flex justify-center items-center px-1 border-r border-gray-200 border-solid">
+      <img class="w-full" src="<%= mat_img_url(manufacturer.logo,'') -%>" alt="">
+    </div>
+    <div class="py-2 pl-4 pr-2">
+      <h5 class="text-base font-medium my-2"><%= manufacturer.name %></h5>
+      <p class="text-sm text-gray-700">所在地：<%= manufacturer.location %></p>
+      <p class="text-sm text-gray-700">联系方式：<%= manufacturer.contact_information %></p>
+      <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= manufacturer.is_allow == 1 ? '是' : '否' -%></p>
+    </div>
   </div>
-  <div class="py-2 pl-4 pr-2">
-    <h5 class="text-base font-medium my-2"><%= manufacturer.name %></h5>
-    <p class="text-sm text-gray-700">所在地：<%= manufacturer.location %></p>
-    <p class="text-sm text-gray-700">联系方式：<%= manufacturer.contact_information %></p>
-    <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= manufacturer.is_allow == 1?'是':'否' %></p>
-  </div>
-</div>
-  <% end %>
+<% end %>
