@@ -1,66 +1,13 @@
+<% manufacturers&.each do |manufacturer| %>
 <div class="flex border border-gray-200 border-solid">
   <div class="flex justify-center items-center px-1 border-r border-gray-200 border-solid">
-    <img class="w-full" src="<%= image_pack_path('static/logo-1-1.jpg') -%>" alt="">
+    <img class="w-full" src="<%= mat_img_url(manufacturer.logo,'') -%>" alt="">
   </div>
   <div class="py-2 pl-4 pr-2">
-    <h5 class="text-base font-medium my-2">正金石材</h5>
-    <p class="text-sm text-gray-700">所在地：山东 湖北</p>
-    <p class="text-sm text-gray-700">联系方式：15900585481</p>
-    <p class="text-sm text-gray-700">是否愿意提供材料样品：是</p>
+    <h5 class="text-base font-medium my-2"><%= manufacturer.name %></h5>
+    <p class="text-sm text-gray-700">所在地：<%= manufacturer.location %></p>
+    <p class="text-sm text-gray-700">联系方式：<%= manufacturer.contact_information %></p>
+    <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= manufacturer.is_allow == 1?'是':'否' %></p>
   </div>
 </div>
-<div class="flex border border-gray-200 border-solid">
-  <div class="flex justify-center items-center px-1 border-r border-gray-200 border-solid">
-    <img class="w-full" src="<%= image_pack_path('static/logo-2-1.jpg') -%>" alt="">
-  </div>
-  <div class="py-2 pl-4 pr-2">
-    <h5 class="text-base font-medium my-2">环球石材</h5>
-    <p class="text-sm text-gray-700">所在地：山东 湖北</p>
-    <p class="text-sm text-gray-700">联系方式：15900585481</p>
-    <p class="text-sm text-gray-700">是否愿意提供材料样品：是</p>
-  </div>
-</div>
-<div class="flex border border-gray-200 border-solid">
-  <div class="flex justify-center items-center px-1 border-r border-gray-200 border-solid">
-    <img class="w-full" src="<%= image_pack_path('static/logo-1-2.jpg') -%>" alt="">
-  </div>
-  <div class="py-2 pl-4 pr-2">
-    <h5 class="text-base font-medium my-2">江苏金蜜蜂石业有限公司</h5>
-    <p class="text-sm text-gray-700">所在地：山东 湖北</p>
-    <p class="text-sm text-gray-700">联系方式：15900585481</p>
-    <p class="text-sm text-gray-700">是否愿意提供材料样品：是</p>
-  </div>
-</div>
-<div class="flex border border-gray-200 border-solid">
-  <div class="flex justify-center items-center px-1 border-r border-gray-200 border-solid">
-    <img class="w-full" src="<%= image_pack_path('static/logo-1-3.jpg') -%>" alt="">
-  </div>
-  <div class="py-2 pl-4 pr-2">
-    <h5 class="text-base font-medium my-2">石尚美舍JMS</h5>
-    <p class="text-sm text-gray-700">所在地：山东 湖北</p>
-    <p class="text-sm text-gray-700">联系方式：15900585481</p>
-    <p class="text-sm text-gray-700">是否愿意提供材料样品：是</p>
-  </div>
-</div>
-<div class="flex border border-gray-200 border-solid">
-  <div class="flex justify-center items-center px-1 border-r border-gray-200 border-solid">
-    <img class="w-full" src="<%= image_pack_path('static/logo-2-3.jpg') -%>" alt="">
-  </div>
-  <div class="py-2 pl-4 pr-2">
-    <h5 class="text-base font-medium my-2">卡洛林软木</h5>
-    <p class="text-sm text-gray-700">所在地：山东 湖北</p>
-    <p class="text-sm text-gray-700">联系方式：15900585481</p>
-    <p class="text-sm text-gray-700">是否愿意提供材料样品：是</p>
-  </div>
-</div>
-<div class="flex border border-gray-200 border-solid">
-  <div class="flex justify-center items-center px-1 border-r border-gray-200 border-solid">
-    <img class="w-full" src="<%= image_pack_path('static/logo-2-4.jpg') -%>" alt="">
-  </div>
-  <div class="py-2 pl-4 pr-2">
-    <h5 class="text-base font-medium my-2">瑞德尔</h5>
-    <p class="text-sm text-gray-700">所在地：山东 湖北</p>
-    <p class="text-sm text-gray-700">联系方式：15900585481</p>
-    <p class="text-sm text-gray-700">是否愿意提供材料样品：是</p>
-  </div>
-</div>
+  <% end %>

@@ -2,24 +2,26 @@
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2.5">
   <div class="my-2">
     <span class="font-medium px-1 text-gray-400">色系 ：</span>
-    <span class="px-1">白色系</span>
-    <span class="px-1">灰色系</span>
-    <span class="px-1">黑色系</span>
-    <span class="px-1">
-      <span class="px-2.5 py-1 rounded-full font-medium bg-gray-200">
-        黄色系
-      </span>
-    </span>
-    <span class="px-1">红色系</span>
-    <span class="px-1">棕色系</span>
+    <% @material.parent_color_systems&.each do |color_system| %>
+      <% if @color_id == color_system.id.to_s %>
+          <span class="px-1">
+            <span class="px-2.5 py-1 rounded-full font-medium bg-gray-200">
+              <%= color_system.description %>
+            </span>
+          </span>
+      <% else %>
+        <a href="?color_id=<%= color_system.id -%>">
+          <span class="px-1"><%= color_system.description %></span>
+        </a>
+      <% end %>
+    <% end %>
   </div>
   <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
     <div class="flex flex-nowrap min-w-max">
-      <% %w[黄金麻 卡基诺金 世贸金麻 山东黄锈 莆田黄锈 卡拉麦里金 紫点金麻].each_with_index do |name, i| %>
-        <% pic_url = "static/new_mat_g#{i+1}.jpg" -%>
+      <% @projects.each do |project| %>
         <div class="mx-px first:mx-px w-20 border border-gray-200 border-solid">
-          <img class="w-full object-contain" src="<%= image_pack_path(pic_url) -%>" alt="">
-          <h3 class="text-center my-2 whitespace-nowrap"><%= name -%></h3>
+          <img class="w-full object-contain" src="<%= get_first_url(project.cover) -%>" alt="">
+          <h3 class="text-center my-2 whitespace-nowrap"><%= project.name -%></h3>
         </div>
       <% end %>
     </div>
@@ -30,31 +32,37 @@
   <div class="my-1 flex">
     <img class="w-40 h-40" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
     <dl class="block mx-3 my-1.5">
-      <h3 class="text-lg my-4 font-medium">黄金麻（A07010）</h3>
+      <h3 class="text-lg my-4 font-medium"><%= @material.name %>（<%= @material.no %>）</h3>
       <p>色系：
-        <span class="font-medium">黄色</span>
+        <% @material.material_product&.color_systems&.each_with_index do |color_system, i| %>
+          <span class="font-medium"><%= color_system.description -%></span>
+          <% if i == @material.material_product.color_systems.length %>,
+          <% end %>
+        <% end %>
+
       </p>
       <p>产地：
-        <span class="font-medium">山东、湖北</span>
+        <span class="font-medium"><%= @material.material_product&.origin %></span>
       </p>
 
       <p>价格区间：
-        <span class="font-medium">100-350/㎡</span>
+        <span class="font-medium"><%= @material.material_product&.low_price %>
+          -<%= @material.material_product&.high_price %>/㎡</span>
       </p>
 
       <p>是否常用产品：
-        <span class="font-medium">是</span>
+        <span class="font-medium"><%= @material.material_product&.is_common == 1 ? '是' : '否' %></span>
       </p>
     </dl>
   </div>
   <h5 class="text-base mt-4">表面效果：</h5>
   <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
     <div class="flex flex-nowrap min-w-max">
-      <% %w[光面 亚光 火烧 荔枝 剁斧 仿古 蘑菇 拉槽].each_with_index do |name, i| %>
+      <% @material.material_product&.surface_effects&.each do |surface_effect| %>
         <div class="relative">
-          <img class="mx-px first:mx-px w-16 object-fill" src="<%= image_pack_path("static/new_mat_g#{i+1}.jpg") -%>" alt="">
+          <img class="mx-px first:mx-px w-16 object-fill" src="<%= mat_img_url(surface_effect.path, "static/new_mat_g#{1}.jpg") -%>" alt="">
           <p class="absolute left-1/2 bottom-0 text-white text-center text-sm font-medium whitespace-nowrap" style="transform: translate(-50%, 0);">
-              <%= name -%>
+            <%= surface_effect.description -%>
           </p>
         </div>
       <% end %>
@@ -63,16 +71,18 @@
 </div>
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2">
   <h5 class="text-base font-medium my-2">安装施工要点</h5>
-  <p class="my-2">黄金麻是沉积岩，强度低、 吸水率高、 耐候性差，本不是石材幕墙面板的最佳用材，但砂岩的独有质感、 颜色和风格，使得建筑师又很喜欢将它们用作石材幕墙。 由千其结构松散，比重较轻，干挂板一般厚度控制在30mm厚以上，以保证安装安全。 另外尽量做防水、 防污处理。</p>
+  <p class="my-2"><%= @material.material_product&.points %></p>
   <h5 class="text-base font-medium my-2 mt-4">可定制效果</h5>
-  <p class="my-2">涂装型板是在表面通过涂装和模具压印出不同颜色凹凸及肌理的装饰型板，可以形成仿木、 仿石材、 仿清水等各种纹理效果的装饰型板。</p>
+  <p class="my-2"><%= @material.material_product&.is_customized %></p>
 </div>
 
 <%# 实际应用 %>
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2">
   <h5 class="text-base font-medium my-2">实际应用</h5>
   <div class="my-2">
-    <img class="w-full" src="<%= image_pack_path('static/application_big_pic.jpg') -%>" alt="">
+    <% @material&.material_product.practical_applications&.each_with_index do |practical_application, i| %>
+      <img class="w-full" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
+    <% end %>
   </div>
 </div>
 
@@ -86,44 +96,44 @@
     <div class="bg-gray-200 w-full overflow-hidden">
       <table class="w-full divide-y divide-gray-300 box-border">
         <thead class="">
-          <tr>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-              样品编号
-            </th>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-              色系
-            </th>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-              样品规格、型号
-            </th>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-              表面工艺
-            </th>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-              剩余库存
-            </th>
-          </tr>
+        <tr>
+          <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            样品编号
+          </th>
+          <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            色系
+          </th>
+          <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            样品规格、型号
+          </th>
+          <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            表面工艺
+          </th>
+          <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            剩余库存
+          </th>
+        </tr>
         </thead>
         <tbody class="divide-y divide-gray-300">
-          <% (1..4).each do %>
-            <tr>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs font-medium">
-                A07010-32
-              </td>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
-                黄色系
-              </td>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
-                30cmx30cm
-              </td>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
-                哑光
-              </td>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+        <% @samples&.each do |sample| %>
+          <tr>
+            <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs font-medium">
+              A07010-32
+            </td>
+            <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+              黄色系
+            </td>
+            <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+              30cmx30cm
+            </td>
+            <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+              哑光
+            </td>
+            <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
 
-              </td>
-            </tr>
-          <% end %>
+            </td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
       <p class="p-2 text-sm">实体材料库地址：上海市徐汇区漕河泾科汇大厦11F</p>
