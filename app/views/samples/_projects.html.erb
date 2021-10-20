@@ -1,22 +1,23 @@
 <section class="flex-auto">
-    <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-100 border-solid pb-3">
-       <%= link_to next_projects_sample_path(id: sample.no) do %>
-            <img class="h-6 w-6 float-right mt-1" src="<%= image_pack_path('static/arrow_right.svg') -%>" alt="">
-          <% end %>
-          <%= link_to prev_projects_sample_path(id: sample.no) do %>
-            <img class="h-6 w-6 float-right mt-1 mr-1 lg:mr-2 xl:mr-3" src="<%= image_pack_path('static/arrow_left.svg') -%>" alt="">
-          <% end %>
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">所属案例</span><span class="text-xl font-light">Projects</span>
-    </div>
+  <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+     <%= link_to next_projects_sample_path(id: sample.no) do %>
+          <img class="h-6 w-6 float-right mt-1" src="<%= image_pack_path('static/arrow_right.svg') -%>" alt="">
+        <% end %>
+        <%= link_to prev_projects_sample_path(id: sample.no) do %>
+          <img class="h-6 w-6 float-right mt-1 mr-1 lg:mr-2 xl:mr-3" src="<%= image_pack_path('static/arrow_left.svg') -%>" alt="">
+        <% end %>
+    <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">所属案例</span>
+    <span class="text-xl font-light">Projects</span>
+  </div>
 
-    <div class="mx-4 mt-4 mb-16 grid grid-cols-3 gap-8">
-      <% @cases.each do |project_case| %>
-        <div>
-          <img class="w-full my-3" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
-          <h3 class="text-base font-medium"><%= project_case.project_name -%></h3>
-          <p class="text-sm mt-1"><%= project_case.project_location -%></p>
-          <p class="text-sm mt-1"><%= project_case.design_unit -%></p>
-        </div>
-      <% end %>
-    </div>
-    </section>
+  <div class="mx-4 mt-4 mb-16 grid grid-cols-3 gap-8">
+    <% @cases.each do |project_case| %>
+      <div>
+        <img class="w-full my-3 h-52 object-cover" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
+        <h3 class="text-lg font-bold"><%= project_case.project_name -%></h3>
+        <p class="text-sm mt-1"><%= project_case.project_location -%></p>
+        <p class="text-sm mt-1"><%= project_case.design_unit -%></p>
+      </div>
+    <% end %>
+  </div>
+</section>

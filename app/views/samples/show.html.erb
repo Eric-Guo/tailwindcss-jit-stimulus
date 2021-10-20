@@ -11,7 +11,7 @@
     <div class="mx-4 mt-4 flex gap-4">
       <img class="w-80 h-80" src="<%= mat_img_url(@sample.pic, "") -%>" alt="">
       <div class="ml-4 relative">
-        <h2 class="text-xl font-medium"><%= @sample.material&.name -%></h2>
+        <h2 class="text-xl font-medium"><%= @sample.material&.name -%>（样品）</h2>
         <dl class="absolute bottom-0 w-120 text-sm">
             <dt class="mt-2 inline-block w-1/2">样品编号：</dt>
             <dd class="mt-2 inline"><%= @sample.no %></dd>
@@ -124,9 +124,9 @@
     </div>
 
     <%# 所属案例  %>
-  <%= turbo_frame_tag "projects" do %>
-    <%= render partial: 'projects', locals: { sample: @sample, cases: @cases } -%>
-  <% end %>
+    <%= turbo_frame_tag "projects" do %>
+      <%= render partial: 'projects', locals: { sample: @sample, cases: @cases } -%>
+    <% end %>
   </section>
 
   <%# 其他样品 %>
