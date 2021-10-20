@@ -23,7 +23,7 @@
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-4 gap-1.5">
   <% @cases.each do |project_case| %>
     <div class="relative">
-      <img class="w-full" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
+      <img class="w-full h-84 object-cover" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
       <div class="absolute left-3 bottom-3 text-white text-left leading-0">
         <p class="text-lg leading-tight"><%= project_case.project_name -%>/<span class="text-sm"><%= project_case.project_location -%></span></p>
         <p class="text-sm leading-tight">Shanghai West Bund Park</p>
