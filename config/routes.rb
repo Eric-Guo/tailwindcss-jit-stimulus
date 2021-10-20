@@ -9,7 +9,11 @@ Rails.application.routes.draw do
       get :next_projects
     end
   end
-  resources :materials, only: [:show]
+  resources :materials, only: [:show] do
+    member do
+      get :color_system_list
+    end
+  end
 
   resource :search, only: [] do
     get :material

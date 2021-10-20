@@ -43,6 +43,12 @@
   border-radius: 4px;
 }
 
+.scrollbar-none::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
 @keyframes translate-x-full {
   from {
     transform: translateX(0%);

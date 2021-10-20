@@ -16,5 +16,5 @@ export default class extends Controller {
       this.listTarget.style.height = `${this.minHeightValue}px`;
       if (this.toggleBtnTarget.classList.contains('rotate-180')) this.toggleBtnTarget.classList.remove('rotate-180');
     }
-  }  
+  }
 }
