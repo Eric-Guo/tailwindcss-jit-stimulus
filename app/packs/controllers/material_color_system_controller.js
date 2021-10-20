@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['list', 'toggleBtn', 'navItem', 'nav']
+  static targets = ['list', 'toggleBtn', 'navItem', 'nav', 'listItem']
   static values = {
     minHeight: Number,
     maxHeight: Number,
@@ -10,12 +10,20 @@ export default class extends Controller {
   connect() {
     const activeNavItem = this.getActiveNavItem();
     if (activeNavItem) {
-      activeNavItem.scrollIntoView(false)
+      activeNavItem.scrollIntoView({ block: "nearest", inline: "center" })
+    }
+    const listItem = this.getActiveListItem();
+    if (listItem) {
+      listItem.scrollIntoView({ block: "nearest", inline: "center" });
     }
   }
   
   getActiveNavItem() {
-    return this.navItemTargets.find(item => item.classList.contains('active-pill'));
+    return this.navItemTargets.find(item => item.dataset.active === 'true');
+  }
+
+  getActiveListItem() {
+    return this.listItemTargets.find(item => item.dataset.active === 'true');
   }
 
   toggle() {

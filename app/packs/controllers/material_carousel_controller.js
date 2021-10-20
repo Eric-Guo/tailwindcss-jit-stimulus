@@ -7,11 +7,30 @@ export default class extends Controller {
     leaveClass: Array,
     duration: Number,
     dotActiveClass: String,
+    autoPlay: Boolean,
+    autoPlayTime: Number,
   }
 
   connect() {
     this._currentIndex = 0;
     this._disabled = false;
+    this.autoPlayInterval = null;
+    this.lastTime = Date.now();
+    if (this.autoPlayValue) {
+      this.autoPlayInterval = setInterval(() => {
+        requestAnimationFrame(this.toNext.bind(this));
+      }, this.autoPlayTime());
+    }
+  }
+
+  duration() {
+    const time = this.durationValue * 1000;
+    return time > 0 ? time : 500;
+  }
+
+  autoPlayTime() {
+    const time = this.autoPlayTimeValue * 1000;
+    return time > 0 ? time : 500;
   }
 
   // 动画过程中或者数量小于2个，禁止轮播
@@ -75,24 +94,27 @@ export default class extends Controller {
     const leaveDotItem = this.getDotItemByIndex(this._currentIndex);
     const enterDotItem = this.getDotItemByIndex(index);
     const [enterClass, leaveClass, dotClass] = this.getAnimationClass(direction);
-    leaveCarouselItem.classList.add(...leaveClass);
-    enterCarouselItem.style.display = '';
-    enterCarouselItem.classList.add(...enterClass);
-    leaveDotItem.classList.remove(...dotClass);
-    enterDotItem.classList.add(...dotClass);
+    if (leaveCarouselItem) leaveCarouselItem.classList.add(...leaveClass);
+    if (enterCarouselItem) {
+      enterCarouselItem.style.display = '';
+      enterCarouselItem.classList.add(...enterClass);
+    }
+    if (leaveDotItem) leaveDotItem.classList.remove(...dotClass);
+    if (enterDotItem) enterDotItem.classList.add(...dotClass);
     this._currentIndex = index;
     const animationEnd = () => {
-      leaveCarouselItem.style.display = 'none';
-      leaveCarouselItem.classList.remove(...leaveClass);
-      enterCarouselItem.classList.remove(...enterClass);
+      if (leaveCarouselItem) {
+        leaveCarouselItem.style.display = 'none';
+        leaveCarouselItem.classList.remove(...leaveClass);
+      }
+      if (enterCarouselItem) enterCarouselItem.classList.remove(...enterClass);
       this._disabled = false;
     };
     if (this.supportAnimation()) {
-      leaveCarouselItem.onanimationend = null;
-      enterCarouselItem.onanimationend = animationEnd;
+      if (leaveCarouselItem) leaveCarouselItem.onanimationend = null;
+      if (enterCarouselItem) enterCarouselItem.onanimationend = animationEnd;
     } else {
-      const time = this.durationValue * 1000;
-      setTimeout(animationEnd, time > 0 ? time : 500);
+      setTimeout(animationEnd, this.duration());
     }
   }
 
@@ -115,5 +137,10 @@ export default class extends Controller {
         break;
       }
     }
+  }
+
+  disconnect() {
+    console.log('disconnect');
+    if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
   }
 }
