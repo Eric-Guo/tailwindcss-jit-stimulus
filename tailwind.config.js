@@ -26,6 +26,7 @@ module.exports = {
       spacing: {
         '30': '7.5rem',
         '50': '12.5rem',
+        '84': '21rem',
         '120': '30rem',
       },
       gridTemplateColumns: {
