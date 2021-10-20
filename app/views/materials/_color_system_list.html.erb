@@ -6,13 +6,13 @@
   <div class="text-sm text-center text-gray-400 flex content-center items-center border border-gray-200 border-solid" style="margin-top: 30px; height: 54px;">
     <div class="flex-none w-24 bg-gray-100 text-black-6c font-medium px-5 h-full flex items-center justify-end">色系</div>
     <div class="flex w-0 flex-1 items-center overflow-auto scrollbar-none" data-action="wheel->material-color-system#navScroll:capture" data-material-color-system-target="nav">
-      <div class="flex-none mx-2 px-5 py-2 <%= color_id.present? ? '' : 'active-pill' %>" data-material-color-system-target="navItem">
+      <div class="flex-none mx-2 px-5 py-2 <%= color_id.present? ? '' : 'active-pill' %>" data-active="<%= color_id.blank? %>" data-material-color-system-target="navItem">
         <a href="<%= color_system_list_material_path(material.id) %>">
           全部
         </a>
       </div>
       <% material.parent_color_systems&.each do |color_system| %>
-        <div class="flex-none mx-2 px-5 py-2 <%= color_id == color_system.id.to_s ? 'active-pill' : '' %>" data-material-color-system-target="navItem">
+        <div class="flex-none mx-2 px-5 py-2 <%= color_id == color_system.id.to_s ? 'active-pill' : '' %>" data-active="<%= color_id == color_system.id.to_s %>" data-material-color-system-target="navItem">
           <a href="<%= color_system_list_material_path(material.id, color_id: color_system.id) %>">
             <%= color_system.description -%>
           </a>

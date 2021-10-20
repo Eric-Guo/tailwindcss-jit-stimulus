@@ -1,0 +1,39 @@
+<div data-controller="material-color-system">
+  <div class="flex flex-row items-center h-8">
+    <div class="flex-none font-medium px-1 text-gray-400">色系 ：</div>
+    <div class="flex flex-row items-center overflow-auto w-0 flex-1 scrollbar-none" data-material-color-system-target="nav">
+      <a
+        href="<%= color_system_list_material_path(material.id) %>"
+        class="flex-none px-2.5 py-1 <%= color_id.present? ? '' : 'rounded-full font-bold bg-gray-200' %>"
+        data-active="<%= color_id.blank? %>"
+        data-material-color-system-target="navItem"
+      >
+        全部
+      </a>
+      <% material.parent_color_systems&.each do |color_system| %>
+        <a
+          href="<%= color_system_list_material_path(material.id, color_id: color_system.id) %>"
+          class="flex-none px-2.5 py-1 <%= color_id == color_system.id.to_s ? 'rounded-full font-bold bg-gray-200' : '' %>"
+          data-active="<%= color_id == color_system.id.to_s %>"
+          data-material-color-system-target="navItem"
+        >
+          <%= color_system.description %>
+        </a>
+      <% end %>
+    </div>
+  </div>
+  <div class="mt-2 overscroll-x-auto overflow-x-auto shadow-sm flex flex-nowrap scrollbar-none">
+    <% projects.each do |project| %>
+      <a
+        href="<%= material_path(project.id, request.GET) %>"
+        class="flex-none mx-px first:mx-px w-20 border border-gray-200 border-solid <%= project.id == material.id ? 'shadow-lg' : '' %>"
+        data-active="<%= project.id == material.id %>"
+        data-material-color-system-target="listItem"
+        data-turbo-frame="_top"
+      >
+        <img class="w-20 h-20 object-cover" src="<%= get_first_url(project.cover) -%>" alt="">
+        <h3 class="text-center my-2 whitespace-nowrap"><%= project.name -%></h3>
+      </a>
+    <% end %>
+  </div>
+</div>
