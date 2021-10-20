@@ -1,19 +1,21 @@
 <%# 材料产品详情 %>
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2.5">
-  <div class="my-2">
-    <span class="font-medium px-1 text-gray-400">色系 ：</span>
-    <a href="<%= material_path(@material.id) %>">
-      <span class="px-2.5 py-1 rounded-full <%= @color_id.present? ? '' : 'font-bold bg-gray-200' %>">
-        全部
-      </span>
-    </a>
-    <% @material.parent_color_systems&.each do |color_system| %>
-      <a href="<%= material_path(@material.id, color_id: color_system.id) %>">
-        <span class="px-2.5 py-1 rounded-full <%= @color_id == color_system.id.to_s ? 'font-bold bg-gray-200' : '' %>">
-          <%= color_system.description %>
+  <div class="my-2 flex flex-row">
+    <div class="flex-none font-medium px-1 text-gray-400">色系 ：</div>
+    <div class="flex flex-row overflow-scroll w-0 flex-1 scrollbar-none">
+      <a class="flex-none" href="<%= material_path(@material.id) %>">
+        <span class="px-2.5 py-1 rounded-full <%= @color_id.present? ? '' : 'font-bold bg-gray-200' %>">
+          全部
         </span>
       </a>
-    <% end %>
+      <% @material.parent_color_systems&.each do |color_system| %>
+        <a class="flex-none" href="<%= material_path(@material.id, color_id: color_system.id) %>">
+          <span class="px-2.5 py-1 rounded-full <%= @color_id == color_system.id.to_s ? 'font-bold bg-gray-200' : '' %>">
+            <%= color_system.description %>
+          </span>
+        </a>
+      <% end %>
+    </div>
   </div>
   <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
     <div class="flex flex-nowrap min-w-max">
