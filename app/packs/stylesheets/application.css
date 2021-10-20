@@ -17,7 +17,7 @@
 }
 
 .active-pill {
-  @apply px-5 py-2 rounded-full font-medium bg-gray-100 text-black-6c;
+  @apply rounded-full font-medium bg-gray-100 text-black-6c;
 }
 
 .more-btn {
