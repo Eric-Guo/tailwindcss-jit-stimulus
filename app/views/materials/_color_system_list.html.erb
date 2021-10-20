@@ -1,33 +1,41 @@
-<div class="text-sm text-center text-gray-400 flex content-center justify-start border border-gray-200 border-solid" style="margin-top: 30px;">
-  <div class="w-24 py-4 bg-gray-100 text-black-6c font-medium text-right pr-6">色系</div>
-  <div class="w-24 py-4">
-    <a href="<%= color_system_list_material_path(material.id) %>" class="<%= color_id.present? ? '' : 'active-pill' %>">
-      全部
-    </a>
-  </div>
-  <% material.parent_color_systems&.each do |color_system| %>
-    <div class="w-24 py-4">
-      <a href="<%= color_system_list_material_path(material.id, color_id: color_system.id) %>" class="<%= color_id == color_system.id.to_s ? 'active-pill' : '' %>">
-        <%= color_system.description -%>
-      </a>
+<div
+  data-controller="material-color-system"
+  data-material-color-system-min-height-value="121"
+  data-material-color-system-max-height-value="<%= (projects.length.to_f / 11).ceil * 126 - 5 %>"
+>
+  <div class="text-sm text-center text-gray-400 flex content-center items-center border border-gray-200 border-solid" style="margin-top: 30px; height: 54px;">
+    <div class="flex-none w-24 bg-gray-100 text-black-6c font-medium px-5 h-full flex items-center justify-end">色系</div>
+    <div class="flex w-0 flex-1 items-center overflow-auto scrollbar-none" data-action="wheel->material-color-system#navScroll:capture" data-material-color-system-target="nav">
+      <div class="flex-none mx-2 px-5 py-2 <%= color_id.present? ? '' : 'active-pill' %>" data-material-color-system-target="navItem">
+        <a href="<%= color_system_list_material_path(material.id) %>">
+          全部
+        </a>
+      </div>
+      <% material.parent_color_systems&.each do |color_system| %>
+        <div class="flex-none mx-2 px-5 py-2 <%= color_id == color_system.id.to_s ? 'active-pill' : '' %>" data-material-color-system-target="navItem">
+          <a href="<%= color_system_list_material_path(material.id, color_id: color_system.id) %>">
+            <%= color_system.description -%>
+          </a>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
-<div class="mt-5 flex flex-row justify-between" data-controller="material-color-system" data-material-color-system-min-height-value="121" data-material-color-system-max-height-value="<%= (projects.length.to_f / 11).ceil * 126 - 5 %>">
-  <div class="grid grid-cols-12 gap-2.5 overflow-y-hidden transition-all" style="width: 1166px; height: <%= (projects.length.to_f / 12).ceil * 126 - 5 %>px" data-material-color-system-target="list">
-    <% projects.each do |project| %>
-      <a href="<%= material_path(project.id, request.GET) %>" class="block transition-shadow hover:shadow <%= project.id == material.id ? 'shadow' : '' %>" style="width: 88px; height: 116px; border: 1px solid #EBEBEB;" data-turbo-frame="_top">
-        <img class="mx-auto object-cover" style="width: 88px; height: 88px;" src="<%= get_first_url(project.cover) -%>" alt="">
-        <h3 class="text-center text-sm truncate" style="height: 28px; line-height: 28px; margin: 0 10px;" title="<%= project.name %>"><%= project.name -%></h3>
-      </a>
+  </div>
+  <div class="mt-5 flex flex-row justify-between">
+    <div class="grid grid-cols-12 gap-2.5 overflow-y-hidden transition-all" style="width: 1166px; height: <%= (projects.length.to_f / 12).ceil * 126 - 5 %>px" data-material-color-system-target="list">
+      <% projects.each do |project| %>
+        <a href="<%= material_path(project.id, request.GET) %>" class="block transition-shadow hover:shadow <%= project.id == material.id ? 'shadow' : '' %>" style="width: 88px; height: 116px; border: 1px solid #EBEBEB;" data-turbo-frame="_top">
+          <img class="mx-auto object-cover" style="width: 88px; height: 88px;" src="<%= get_first_url(project.cover) -%>" alt="">
+          <h3 class="text-center text-sm truncate" style="height: 28px; line-height: 28px; margin: 0 10px;" title="<%= project.name %>"><%= project.name -%></h3>
+        </a>
+      <% end %>
+    </div>
+    <% if (projects.length.to_f / 12).ceil > 1 %>
+      <div class="relative" style="width: 22px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" class="absolute cursor-pointer transition-transform rotate-180" style="bottom: 47px;" data-action="click->material-color-system#toggle" data-material-color-system-target="toggleBtn">
+          <circle cx="11" cy="11" r="11" fill="#f4f4f4" />
+          <path fill="gray" fill-rule="evenodd" d="M1776.35,372.889a0.492,0.492,0,0,1-.7,0l-3.54-3.535a0.511,0.511,0,0,1,0-.708,0.5,0.5,0,0,1,.71,0l3.18,3.182,3.18-3.182a0.5,0.5,0,0,1,.71,0,0.511,0.511,0,0,1,0,.708Zm-3.53-1.243,3.18,3.182,3.18-3.182a0.5,0.5,0,0,1,.71,0,0.511,0.511,0,0,1,0,.708l-3.54,3.535a0.492,0.492,0,0,1-.7,0l-3.54-3.535a0.511,0.511,0,0,1,0-.708A0.5,0.5,0,0,1,1772.82,371.646Z" transform="translate(-1765 -362)"/>
+        </svg>
+      </div>
     <% end %>
   </div>
-  <% if (projects.length.to_f / 12).ceil > 1 %>
-    <div class="relative" style="width: 22px;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" class="absolute cursor-pointer transition-transform rotate-180" style="bottom: 47px;" data-action="click->material-color-system#toggle" data-material-color-system-target="toggleBtn">
-        <circle cx="11" cy="11" r="11" fill="#f4f4f4" />
-        <path fill="gray" fill-rule="evenodd" d="M1776.35,372.889a0.492,0.492,0,0,1-.7,0l-3.54-3.535a0.511,0.511,0,0,1,0-.708,0.5,0.5,0,0,1,.71,0l3.18,3.182,3.18-3.182a0.5,0.5,0,0,1,.71,0,0.511,0.511,0,0,1,0,.708Zm-3.53-1.243,3.18,3.182,3.18-3.182a0.5,0.5,0,0,1,.71,0,0.511,0.511,0,0,1,0,.708l-3.54,3.535a0.492,0.492,0,0,1-.7,0l-3.54-3.535a0.511,0.511,0,0,1,0-.708A0.5,0.5,0,0,1,1772.82,371.646Z" transform="translate(-1765 -362)"/>
-      </svg>
-    </div>
-  <% end %>
 </div>
