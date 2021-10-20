@@ -103,17 +103,10 @@
           </svg>
         </div>
       <% else %>
-        <div class="relative overflow-hidden mt-12" style="height: 393px;">
-          <div class="w-full h-full absolute top-0 left-0">
-            <div class="relative mt-3">
-              <div class="relative w-full overflow-hidden" style="height: 353px;">
-                <div class="absolute w-full h-full">
-                  <img class="w-full h-full object-cover" src="<%= image_pack_path('static/materials-applications-default.jpg') -%>" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="mt-12">
+          <img class="w-full h-full object-cover" src="<%= image_pack_path('static/materials-applications-default.jpg') -%>" alt="">
         </div>
+        <p class="text-sm mt-6">暂无相关图片</p>
       <% end %>
     </div>
   </div>
