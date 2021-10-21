@@ -4,8 +4,8 @@
   <span class="text-xl font-light">（<%= material.no %>）</span>
 </div>
 
-<div class="flex gap-20">
-  <div>
+<div class="flex flex-row">
+  <div class="flex-none w-72">
     <img class="w-72 h-72 object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
     <dl class="block w-72 mt-2 text-lg">
       <dt class="my-1 inline-block w-1/2">色系：</dt>
@@ -29,12 +29,12 @@
       </dd>
     </dl>
   </div>
-  <div>
+  <div class="w-0 flex-1 ml-20">
     <h5 class="text-lg font-medium">表面效果：</h5>
     <div class="grid grid-cols-8 gap-1 my-3">
       <% material.material_product&.surface_effects&.each do |surface_effect| %>
-        <div class="relative">
-          <img class="w-full h-full object-cover" src="<%= mat_img_url(surface_effect.path, "static/new_mat_g#{1}.jpg") -%>" alt="">
+        <div class="relative" style="padding-top: 100%;">
+          <img class="absolute left-0 top-0 w-full h-full object-cover" src="<%= mat_img_url(surface_effect.path, "static/new_mat_g#{1}.jpg") -%>" alt="">
           <p class="absolute left-1/2 bottom-0 text-white text-center text-sm font-medium whitespace-nowrap" style="transform: translate(-50%, 0);">
             <%= surface_effect.description -%>
           </p>
@@ -44,7 +44,7 @@
     <h5 class="text-lg font-medium mt-14 mb-3">安装施工要点：</h5>
     <p class="text-sm text-justify"><%= material.material_product&.points %></p>
     <h5 class="text-lg font-medium mt-14 mb-3">可定制效果：</h5>
-    <p class="text-sm text-justify"><%= material.material_product&.is_customized %></p>
+    <p class="text-sm text-justify"><%= material.material_product&.customized %></p>
   </div>
 </div>
 
@@ -186,7 +186,7 @@
 </div>
 
 <div class="grid grid-cols-3 gap-1.5">
-  <% material.cases.each do |project_case| %>
+  <% material.cases.limit(6).each do |project_case| %>
     <div class="bg-cover bg-center bg-no-repeat flex flex-col" style="height: 296px; background-image: url('<%= get_first_url(project_case.live_photos) %>');">
       <div class="flex flex-row p-2.5 justify-end">
         <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2"><%= material.name %></div>
@@ -213,18 +213,18 @@
   <span class="text-xl font-light">Construction</span>
 </div>
 
-<div class="m-4 grid grid-cols-3 gap-1.5">
-  <% if material.material_product&.practice_details.present? %>
-    <% JSON.parse(material.material_product.practice_details)&.each_with_index do |practice_detail, i| %>
-      <div class="<% if i == 0  %>col-span-2 row-span-3<% end %> relative">
-        <img class="w-full h-full" src="<%= mat_img_url(practice_detail["url"], "") -%>" alt="">
-        <div class="black-mask absolute left-0 bottom-0 w-full p-2 text-white text-left">
-          <p class="text-lg"><%= practice_detail["name"] -%></p>
+<% if material.material_product&.construction.present? %>
+  <div class="m-4 grid grid-cols-3 gap-1.5" style="height: 600px;">
+      <% material.material_product.construction.each_with_index do |practice_detail, i| %>
+        <div class="<% if i == 0  %>col-span-2 row-span-3<% end %> relative">
+          <img class="w-full h-full" src="<%= mat_img_url(practice_detail["url"], "") -%>" alt="">
+          <div class="black-mask absolute left-0 bottom-0 w-full p-2 text-white text-left">
+            <p class="text-lg"><%= practice_detail["name"] -%></p>
+          </div>
         </div>
-      </div>
-    <% end %>
-  <% end %>
-</div>
+      <% end %>
+  </div>
+<% end %>
 
 <%# 源文件 %>
 <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
@@ -232,9 +232,9 @@
   <span class="text-xl font-light">Files</span>
 </div>
 
-<div class="my-2 grid grid-cols-6 gap-1.5">
-  <% if material.material_product&.source_file.present? %>
-    <% JSON.parse(material.material_product.source_file)&.each do |source_file| %>
+<% if material.material_product&.files.present? %>
+  <div class="my-2 grid grid-cols-6 gap-1.5">
+    <% material.material_product.files.each do |source_file| %>
       <div class="flex flex-row p-4 shadow-tw-dark font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" title="<%= source_file["name"] %>">
         <div class="flex-1 truncate w-0 select-none"><%= source_file["name"] %></div>
         <a class="ml-4" href="<%= mat_img_url(source_file["url"], "") -%>" download="<%= source_file["name"] %>" target="_blank">
@@ -244,21 +244,23 @@
         </a>
       </div>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <%# 材质贴图 %>
 <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
   <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材质贴图</span>
   <span class="text-xl font-light">Texture</span>
 </div>
-<div class="my-6 grid grid-cols-6 gap-1.5">
-  <% if material.material_product&.su_picture.present? %>
-    <% JSON.parse(material.material_product.su_picture)&.each do |su_picture| %>
-      <img class="w-full object-fill" src="<%= mat_img_url(su_picture["url"], "2") -%>" alt="">
+<% if material.material_product&.texture.present? %>
+  <div class="my-6 grid grid-cols-6 gap-1.5">
+    <% material.material_product.texture.each do |su_picture| %>
+      <div class="relative" style="padding-top: 100%;">
+        <img class="absolute left-0 top-0 w-full h-full object-cover" src="<%= mat_img_url(su_picture["url"], "2") %>" alt="">
+      </div>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <%# 厂家信息 %>
 <div class="mt-20 mb-4 border-b-2 border-gray-100 border-solid pb-3">
