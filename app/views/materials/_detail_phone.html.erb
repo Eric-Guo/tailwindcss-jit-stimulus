@@ -57,14 +57,14 @@
     data-material-carousel-auto-play-time-value="2"
   >
     <div class="relative w-full h-52 overflow-hidden">
-      <% material&.material_product.practical_applications&.each_with_index do |practical_application, i| %>
+      <% material.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
         <div class="absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
           <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
         </div>
       <% end %>
     </div>
     <div class="flex justify-center mt-3">
-      <% material&.material_product.practical_applications&.each_with_index do |practical_application, i| %>
+      <% material.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
         <div class="w-2 h-2 mx-1 rounded-full bg-gray-300 <%= i == 0 ? 'bg-gray-900' : '' %>" data-material-carousel-target="dotItem"></div>
       <% end %>
     </div>
@@ -100,7 +100,7 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-300">
-          <% samples&.each do |sample| %>
+          <% material.samples.each do |sample| %>
             <tr>
               <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs font-medium">
                 <%= sample.no -%>
@@ -131,12 +131,12 @@
   <h5 class="inline text-base font-medium m-1">产品案例</h5>
   <a class="more-btn-sm inline" href="<%= root_path -%>">MORE+</a>
   <div class="mt-1 grid grid-cols-2 gap-y-2 gap-x-1 pb-2">
-    <% cases&.each do |project_case| %>
+    <% material.cases.each do |project_case| %>
       <div>
         <div class="relative w-full h-28">
           <img class="w-full h-full object-cover" src="<%= get_first_url(project_case.live_photos) %>" alt="">
           <div class="absolute bottom-0 left-0 w-full flex justify-between items-center h-6 px-2 text-white text-xs black-mask">
-            <div class="truncate">荔枝面黄金麻</div>
+            <div class="truncate"><%= material.name %></div>
             <div class="flex-none ml-3"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></div>
           </div>
         </div>

@@ -146,7 +146,7 @@
             </tr>
           </thead>
           <tbody>
-            <% samples&.each do |sample| %>
+            <% material.samples.each do |sample| %>
               <tr class="bg-white">
                 <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs font-medium">
                   <a class="underline" href="<%= sample_path(sample.no) %>"><%= sample.no -%></a>
@@ -158,7 +158,7 @@
                   <%= sample.spec_model -%>
                 </td>
                 <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
-                  <%= sample&.surface_effects&.pluck(:description).join(',') %>
+                  <%= sample&.surface_effects&.pluck(:description)&.join(',') %>
                 </td>
                 <td class="px-1 2xl:px-2 py-2 text-center border whitespace-nowrap text-xs">
                     未知
@@ -186,25 +186,25 @@
 </div>
 
 <div class="grid grid-cols-3 gap-1.5">
-  <% cases&.each do |project_case| %>
-  <div class="bg-cover bg-center bg-no-repeat flex flex-col" style="height: 296px; background-image: url('<%= get_first_url(project_case.live_photos) %>');">
-    <div class="flex flex-row p-2.5 justify-end">
-      <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2">荔枝面黄金麻</div>
-    </div>
-    <div class="mt-auto h-20 pl-4 pr-5 pb-2.5 flex flex-row items-end black-mask">
-      <div class="text-white flex-1 w-0">
-        <div class="truncate" title="<%= project_case.project_name -%>/<%= project_case.project_location -%>">
-          <span class="text-lg"><%= project_case.project_name -%>/</span>
-          <span class="text-sm"> <%= project_case.project_location -%></span>
+  <% material.cases.each do |project_case| %>
+    <div class="bg-cover bg-center bg-no-repeat flex flex-col" style="height: 296px; background-image: url('<%= get_first_url(project_case.live_photos) %>');">
+      <div class="flex flex-row p-2.5 justify-end">
+        <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2"><%= material.name %></div>
+      </div>
+      <div class="mt-auto h-20 pl-4 pr-5 pb-2.5 flex flex-row items-end black-mask">
+        <div class="text-white flex-1 w-0">
+          <div class="truncate" title="<%= project_case.project_name -%>/<%= project_case.project_location -%>">
+            <span class="text-lg"><%= project_case.project_name -%>/</span>
+            <span class="text-sm"> <%= project_case.project_location -%></span>
+          </div>
+          <div class="text-sm truncate"></div>
         </div>
-        <div class="text-sm truncate"></div>
-      </div>
-      <div class="text-white text-sm whitespace-nowrap flex-none ml-12">
-        <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+        <div class="text-white text-sm whitespace-nowrap flex-none ml-12">
+          <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+        </div>
       </div>
     </div>
-  </div>
-    <% end %>
+  <% end %>
 </div>
 
 <%# 构造做法 %>
@@ -216,12 +216,12 @@
 <div class="m-4 grid grid-cols-3 gap-1.5">
   <% if material.material_product&.practice_details.present? %>
     <% JSON.parse(material.material_product.practice_details)&.each_with_index do |practice_detail, i| %>
-    <div class="<% if i == 0  %>col-span-2 row-span-3<% end %> relative">
-      <img class="w-full h-full" src="<%= mat_img_url(practice_detail["url"], "") -%>" alt="">
-      <div class="black-mask absolute left-0 bottom-0 w-full p-2 text-white text-left">
-        <p class="text-lg"><%= practice_detail["name"] -%></p>
+      <div class="<% if i == 0  %>col-span-2 row-span-3<% end %> relative">
+        <img class="w-full h-full" src="<%= mat_img_url(practice_detail["url"], "") -%>" alt="">
+        <div class="black-mask absolute left-0 bottom-0 w-full p-2 text-white text-left">
+          <p class="text-lg"><%= practice_detail["name"] -%></p>
+        </div>
       </div>
-    </div>
     <% end %>
   <% end %>
 </div>

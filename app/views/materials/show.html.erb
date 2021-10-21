@@ -58,7 +58,7 @@
       <%= render partial: 'color_system_list', locals: { projects: @projects, material: @material, color_id: @color_id } %>
     </turbo-frame>
     <% if @material.level == 3 %>
-      <%= render partial: 'detail', locals: { material: @material, samples: @samples, cases: @cases } %>
+      <%= render partial: 'detail', locals: { material: @material } %>
     <% end %>
   </section>
 </div>

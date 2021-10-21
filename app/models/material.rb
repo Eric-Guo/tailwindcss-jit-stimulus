@@ -9,6 +9,11 @@ class Material < ApplicationRecord
   has_many :material_manufacturers
   has_many :manufacturers, through: :material_manufacturers
 
+  has_many :case_materials, class_name: 'CasesMaterial'
+  has_many :cases, through: :case_materials, class_name: 'Cases'
+
+  has_many :samples, foreign_key: :obj_id
+
   default_scope { where(deleted_at: nil).where(display: 1) }
 
   def color
