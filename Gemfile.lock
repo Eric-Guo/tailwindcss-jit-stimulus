@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: dfeb1c809a7921c22534c0369422fdb2aed7e712
+  revision: 9f169c7baa0ec9cdaff2560147f4cfdcee302d77
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha2)
@@ -81,7 +81,7 @@ GIT
       method_source
       rake (>= 12.2)
       thor (~> 1.0)
-      zeitwerk (~> 2.5.0.beta5)
+      zeitwerk (~> 2.5)
 
 GEM
   remote: https://rubygems.org/
@@ -100,7 +100,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    childprocess (3.0.0)
+    childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     erubi (1.10.0)
@@ -125,7 +125,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
-    racc (1.5.2)
+    racc (1.6.0)
     rack (2.2.3)
     rack-proxy (0.7.0)
       rack
@@ -140,13 +140,14 @@ GEM
     regexp_parser (2.1.1)
     rexml (3.2.5)
     rubyzip (2.3.2)
-    selenium-webdriver (3.142.7)
-      childprocess (>= 0.5, < 4.0)
+    selenium-webdriver (4.0.3)
+      childprocess (>= 0.5, < 5.0)
+      rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
     sqlite3 (1.4.2)
     thor (1.1.0)
-    turbo-rails (7.1.0)
+    turbo-rails (7.1.1)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -155,10 +156,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webdrivers (4.6.1)
+    webdrivers (5.0.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
-      selenium-webdriver (>= 3.0, < 4.0)
+      selenium-webdriver (~> 4.0)
     webpacker (6.0.0.rc.5)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
@@ -169,7 +170,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.0.beta5)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   x86_64-darwin-19
