@@ -17,25 +17,28 @@ class MaterialProduct < ApplicationRecord
 
   def construction
     if practice_details.present?
-      JSON.parse(practice_details)
+      data = JSON.parse(practice_details)
+      data.is_a?(Array) ? data : []
     else
       []
-    end
+    end.map { |item| item.with_indifferent_access }
   end
 
   def files
     if source_file.present?
-      JSON.parse(source_file)
+      data = JSON.parse(source_file)
+      data.is_a?(Array) ? data : []
     else
       []
-    end
+    end.map { |item| item.with_indifferent_access }
   end
   
   def texture
     if su_picture.present?
-      JSON.parse(su_picture)
+      data = JSON.parse(su_picture)
+      data.is_a?(Array) ? data : []
     else
       []
-    end
+    end.map { |item| item.with_indifferent_access }
   end
 end
