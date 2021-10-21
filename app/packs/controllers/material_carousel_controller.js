@@ -80,13 +80,7 @@ export default class extends Controller {
   toIndex(index, direction = null) {
     if (this.disabled() || this._currentIndex === index) return;
     if (!direction) {
-      if (this._currentIndex === this.carouselItemTargets.length - 1 && index === 0 ) {
-        direction = 2;
-      } else if (this._currentIndex === 0 && index === this.carouselItemTargets.length - 1) {
-        direction = 1;
-      } else {
-        direction = this._currentIndex > index ? 1 : 2
-      }
+      direction = this._currentIndex > index ? 1 : 2;
     }
     this._disabled = true;
     const leaveCarouselItem = this.getCarouselItemByIndex(this._currentIndex);

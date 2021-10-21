@@ -2,7 +2,7 @@
 
 class Cases < ApplicationRecord
   self.table_name = 'cases'
-  belongs_to :material, foreign_key: :obj_id, class_name: 'Material'
+  has_many :case_materials, class_name: 'CasesMaterial'
 
   default_scope { where(deleted_at: nil) }
 

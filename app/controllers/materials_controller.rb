@@ -6,11 +6,6 @@ class MaterialsController < ApplicationController
 
     @color_id = params["color_id"]&.strip
     @projects = get_color_system_projects(@material, @color_id)
-
-    if @material.level == 3
-      @samples = Sample.where(obj_id: @material.id).all
-      @cases = Cases.limit(2)
-    end
   end
 
   def color_system_list
