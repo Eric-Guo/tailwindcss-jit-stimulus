@@ -1,7 +1,7 @@
 <%# 材料名称 %>
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2.5">
   <div class="my-1 flex">
-    <img class="w-40 h-40 object-cover" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
+    <img class="w-40 h-40 object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
     <dl class="block mx-3 my-1.5">
       <h3 class="text-lg my-4 font-medium"><%= material.name %>（<%= material.no %>）</h3>
       <p>
@@ -171,16 +171,16 @@
   <a class="more-btn-sm inline" href="<%= root_path -%>">MORE+</a>
 
   <% material.manufacturers&.each do |manufacturer| %>
-  <div class="flex bg-gray-200 border border-gray-200 border-solid px-2 my-3">
-    <div class="flex justify-center items-center px-1">
-      <img class="w-full border border-gray-300 border-solid" src="<%= mat_img_url(manufacturer.logo,'') -%>" alt="">
+    <div class="flex bg-gray-200 border border-gray-200 border-solid px-2 my-3">
+      <div class="flex justify-center items-center px-1">
+        <img class="w-full border border-gray-300 border-solid" src="<%= mat_img_url(manufacturer.logo,'') -%>" alt="">
+      </div>
+      <div class="p-4">
+        <h5 class="text-lg font-medium my-2"><%= manufacturer.name %></h5>
+        <p class="text-sm text-gray-700">所在地：<%= manufacturer.location %></p>
+        <p class="text-sm text-gray-700">联系方式：<%= manufacturer.contact_information %></p>
+        <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= manufacturer.is_allow == 1?'是':'否' %></p>
+      </div>
     </div>
-    <div class="p-4">
-      <h5 class="text-lg font-medium my-2"><%= manufacturer.name %></h5>
-      <p class="text-sm text-gray-700">所在地：<%= manufacturer.location %></p>
-      <p class="text-sm text-gray-700">联系方式：<%= manufacturer.contact_information %></p>
-      <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= manufacturer.is_allow == 1?'是':'否' %></p>
-    </div>
-  </div>
   <% end %>
 </div>
