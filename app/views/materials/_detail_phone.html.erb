@@ -40,7 +40,7 @@
   <h5 class="text-base font-medium my-2">安装施工要点</h5>
   <p class="my-2"><%= material.material_product&.points %></p>
   <h5 class="text-base font-medium my-2 mt-4">可定制效果</h5>
-  <p class="my-2"><%= material.material_product&.is_customized %></p>
+  <p class="my-2"><%= material.material_product&.customized %></p>
 </div>
 
 <%# 实际应用 %>
@@ -131,7 +131,7 @@
   <h5 class="inline text-base font-medium m-1">产品案例</h5>
   <a class="more-btn-sm inline" href="<%= root_path -%>">MORE+</a>
   <div class="mt-1 grid grid-cols-2 gap-y-2 gap-x-1 pb-2">
-    <% material.cases.each do |project_case| %>
+    <% material.cases.limit(4).each do |project_case| %>
       <div>
         <div class="relative w-full h-28">
           <img class="w-full h-full object-cover" src="<%= get_first_url(project_case.live_photos) %>" alt="">
@@ -154,8 +154,8 @@
   <h5 class="inline text-base font-medium my-2">构造做法</h5>
   <a class="more-btn-sm inline" href="<%= root_path -%>">MORE+</a>
 
-  <% if material.material_product&.practice_details.present? %>
-    <% JSON.parse(material.material_product.practice_details)&.each_with_index do |practice_detail, i| %>
+  <% if material.material_product&.construction.present? %>
+    <% material.material_product.construction.each_with_index do |practice_detail, i| %>
       <div class="my-2">
         <img class="w-full" src="<%= mat_img_url(practice_detail["url"], "") -%>" alt="">
       </div>
