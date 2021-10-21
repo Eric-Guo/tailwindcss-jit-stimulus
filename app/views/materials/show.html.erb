@@ -1,9 +1,9 @@
 <%= render partial: 'shared/header', locals: {} -%>
-<% if @material.level == 3 %>
-  <p class="pt-12 text-sm text-gray-500 mx-auto" style="width: 1600px;">首页 > <%= @material.material.material.name %> > <%= @material.material.name %> > <span class="text-black"><%= @material.name %></span></p>
-<% else %>
-  <p class="pt-12 text-sm text-gray-500 mx-auto" style="width: 1600px;">首页 > <%= @material.material.name %> > <span class="text-black"><%= @material.name %></span></p>
-<% end %>
+
+<% breadcrumbs = material_breadcrumbs(@material) %>
+<p class="pt-12 text-sm text-gray-500 mx-auto" style="width: 1600px;">
+  <%= raw material_breadcrumbs(@material).map.with_index { |item, i| "<span class=\"#{ i == breadcrumbs.length - 1 ? 'text-black' : '' }\">#{item[:title]}</span>" }.join('<span> > </span>') %>
+</p>
 <div class="flex flex-row mx-auto justify-between" style="width: 1600px;">
   <%# 材料菜单 %>
   <section class="material-nav mt-5" data-controller="material-nav">
@@ -50,7 +50,7 @@
     <% end %>
   </section>
   <%# 材料产品详情 %>
-  <section class="flex flex-col mt-5" style="width: 1200px;">
+  <section class="flex flex-col mt-5 mb-20" style="width: 1200px;">
     <div class="pb-3 border-b-2 border-gray-100 border-solid">
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid border-solid" style="padding-bottom: 0.9rem">材料产品详情</span><span class="text-xl font-light">Material Details</span>
     </div>

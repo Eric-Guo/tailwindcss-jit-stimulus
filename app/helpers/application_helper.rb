@@ -22,4 +22,21 @@ module ApplicationHelper
     end
 
   end
+
+  def material_breadcrumbs(material)
+    breadcrumbs = [
+      { title: '首页' },
+    ]
+    case material.level
+    when 1
+      breadcrumbs.push({ title: material.name })
+    when 2
+      breadcrumbs.push({ title: material.parent_material.name })
+      breadcrumbs.push({ title: material.name })
+    when 3
+      breadcrumbs.push({ title: material.grandpa_material.name })
+      breadcrumbs.push({ title: material.parent_material.name })
+      breadcrumbs.push({ title: material.name })
+    end
+  end
 end
