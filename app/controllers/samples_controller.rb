@@ -5,7 +5,7 @@ class SamplesController < ApplicationController
     @sample = Sample.find_by!(no: params[:id])
 
     case_ids = CasesMaterial.select(:case_id).where(type: 1, sample_id: @sample.id).pluck(:case_id)
-    @cases = Cases.where(id: case_ids).page(1).per(2)
+    @cases = Cases.where(id: case_ids).page(1).per(3)
     @other_samples = Sample.where.not(id: @sample.id).page(1).per(2)
 
     # breadcrumb
