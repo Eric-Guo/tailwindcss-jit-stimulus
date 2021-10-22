@@ -3,10 +3,8 @@
 Rails.application.routes.draw do
   resources :samples, only: [:show] do
     member do
-      get :prev_other_samples
-      get :next_other_samples
-      get :prev_projects
-      get :next_projects
+      get :other_samples
+      get :projects
     end
   end
   resources :materials, only: [:show] do
