@@ -96,43 +96,43 @@
     <a class="more-btn-sm" href="<%= root_path -%>">MORE+</a>
   </div>
   <div class="bg-gray-200 mt-2">
-    <div class="w-full overflow-auto h-40">
-      <table class="w-full divide-y divide-gray-300 box-border">
+    <div class="w-full overflow-auto h-40 border border-gray-300 border-solid scrollbar-none">
+      <table class="min-w-full border-collapse">
         <thead>
           <tr>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            <th scope="col" class="sticky top-0 left-0 z-50 bg-gray-200 px-1 py-2 border border-t-0 border-l-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
               样品编号
             </th>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            <th scope="col" class="sticky top-0 bg-gray-200 px-1 py-2 border border-t-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
               色系
             </th>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            <th scope="col" class="sticky top-0 bg-gray-200 px-1 py-2 border border-t-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
               样品规格、型号
             </th>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            <th scope="col" class="sticky top-0 bg-gray-200 px-1 py-2 border border-t-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
               表面工艺
             </th>
-            <th scope="col" class="px-1 py-2 border border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+            <th scope="col" class="sticky top-0 bg-gray-200 px-1 py-2 border border-t-0 border-r-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
               剩余库存
             </th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-300">
+        <tbody>
           <% material.samples.each do |sample| %>
             <tr>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs font-medium">
-                <%= sample.no -%>
+              <td class="sticky left-0 bg-gray-200 px-1 py-2 text-center border border-b-0 border-l-0 border-gray-300 whitespace-nowrap text-xs font-medium">
+                <a class="underline" href="<%= sample_path(sample.no) %>"><%= sample.no -%></a>
               </td>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+              <td class="px-1 py-2 text-center border border-b-0 border-gray-300 whitespace-nowrap text-xs">
                 <%= sample&.color_systems&.pluck(:description)&.join(',') %>
               </td>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+              <td class="px-1 py-2 text-center border border-b-0 border-gray-300 whitespace-nowrap text-xs">
                 <%= sample.spec_model -%>
               </td>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+              <td class="px-1 py-2 text-center border border-b-0 border-gray-300 whitespace-nowrap text-xs">
                 <%= sample&.surface_effects&.pluck(:description)&.join(',') %>
               </td>
-              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+              <td class="px-1 py-2 text-center border border-b-0 border-r-0 border-gray-300 whitespace-nowrap text-xs">
 
               </td>
             </tr>
