@@ -35,17 +35,6 @@ export default class extends Controller {
 
   }
 
-  news() {
-    document.getElementById('search-form').action = '/search/news';
-    const current_node_class = document.getElementById('div-select-news').classList;
-    this.remove_active();
-    if(!current_node_class.contains('active-search')) {
-      current_node_class.remove('cursor-pointer');
-      current_node_class.add('active-search');
-      document.getElementById('search-box').placeholder = '天华项目编号';
-    }
-  }
-
   remove_active() {
     const c1 = document.getElementById('div-select-materials').classList;
     c1.remove('active-search');
@@ -56,8 +45,5 @@ export default class extends Controller {
     const c3 = document.getElementById('div-select-manufacturer').classList;
     c3.remove('active-search');
     c3.add('cursor-pointer');
-    const c4 = document.getElementById('div-select-news').classList;
-    c4.remove('active-search');
-    c4.add('cursor-pointer');
   }
 }
