@@ -1,6 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+  all_as_material() {
+    document.getElementById('search-form').action = '/search/material';
+    const current_node_class = document.getElementById('div-select-all-as-material').classList;
+    this.remove_active();
+    if(!current_node_class.contains('active-search')) {
+      current_node_class.remove('cursor-pointer');
+      current_node_class.add('active-search');
+      document.getElementById('search-box').placeholder = '黄金麻/镀膜玻璃/PC板/项目名称/东丽石业';
+    }
+  }
+
   materials() {
     document.getElementById('search-form').action = '/search/material';
     const current_node_class = document.getElementById('div-select-materials').classList;
@@ -36,6 +47,9 @@ export default class extends Controller {
   }
 
   remove_active() {
+    const c0 = document.getElementById('div-select-all-as-material').classList;
+    c0.remove('active-search');
+    c0.add('cursor-pointer');
     const c1 = document.getElementById('div-select-materials').classList;
     c1.remove('active-search');
     c1.add('cursor-pointer');
