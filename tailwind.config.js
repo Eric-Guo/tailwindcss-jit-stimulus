@@ -3,7 +3,7 @@ module.exports = {
     './app/views/**/*.html.erb',
     './app/views/**/*.html+phone.erb',
     './app/helpers/**/*.rb',
-    './app/javascript/**/*.js',
+    './app/packs/**/*.js',
   ],
   corePlugins: {
     gap: true, // have to disable for wechat/qq browser, as it not supported yet.
