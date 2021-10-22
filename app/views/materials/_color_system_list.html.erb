@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="mt-5 flex flex-row justify-between">
-    <div class="grid grid-cols-12 gap-2.5 overflow-y-hidden transition-all" style="width: 1166px; height: <%= (projects.length.to_f / 12).ceil * 126 - 5 %>px" data-material-color-system-target="list">
+    <div class="grid grid-cols-12 gap-2.5 overflow-y-hidden transition-all" style="width: 1166px; height: 121px" data-material-color-system-target="list">
       <% projects.each do |project| %>
         <a href="<%= material_path(project.id, request.GET) %>" class="block transition-shadow hover:shadow <%= project.id == material.id ? 'shadow' : '' %>" style="width: 88px; height: 116px; border: 1px solid #EBEBEB;" data-turbo-frame="_top">
           <img class="mx-auto object-cover" style="width: 88px; height: 88px;" src="<%= get_first_url(project.cover) -%>" alt="">
@@ -31,7 +31,7 @@
     </div>
     <% if (projects.length.to_f / 12).ceil > 1 %>
       <div class="relative" style="width: 22px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" class="absolute cursor-pointer transition-transform rotate-180" style="bottom: 47px;" data-action="click->material-color-system#toggle" data-material-color-system-target="toggleBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" class="absolute cursor-pointer transition-transform" style="bottom: 47px;" data-action="click->material-color-system#toggle" data-material-color-system-target="toggleBtn">
           <circle cx="11" cy="11" r="11" fill="#f4f4f4" />
           <path fill="gray" fill-rule="evenodd" d="M1776.35,372.889a0.492,0.492,0,0,1-.7,0l-3.54-3.535a0.511,0.511,0,0,1,0-.708,0.5,0.5,0,0,1,.71,0l3.18,3.182,3.18-3.182a0.5,0.5,0,0,1,.71,0,0.511,0.511,0,0,1,0,.708Zm-3.53-1.243,3.18,3.182,3.18-3.182a0.5,0.5,0,0,1,.71,0,0.511,0.511,0,0,1,0,.708l-3.54,3.535a0.492,0.492,0,0,1-.7,0l-3.54-3.535a0.511,0.511,0,0,1,0-.708A0.5,0.5,0,0,1,1772.82,371.646Z" transform="translate(-1765 -362)"/>
         </svg>
