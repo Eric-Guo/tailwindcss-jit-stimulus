@@ -125,12 +125,12 @@
 
     <%# 所属案例  %>
     <%= turbo_frame_tag "projects" do %>
-      <%= render partial: 'projects', locals: { sample: @sample, cases: @cases } -%>
+      <%= render partial: 'projects', locals: { id: @sample.id, cases: @cases } -%>
     <% end %>
   </section>
 
   <%# 其他样品 %>
   <%= turbo_frame_tag "other_samples" do %>
-    <%= render partial: 'other_samples', locals: { sample: @sample, other_samples: @other_samples } -%>
+    <%= render partial: 'other_samples', locals: { id: @sample.id, other_samples: @other_samples } -%>
   <% end %>
 </div>

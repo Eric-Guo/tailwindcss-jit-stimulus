@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "projects" do %>
+  <%= render partial: 'projects', locals: { id: params[:id], cases: @cases } -%>
+<% end %>
