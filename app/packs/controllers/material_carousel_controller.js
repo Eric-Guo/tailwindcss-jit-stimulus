@@ -6,6 +6,7 @@ export default class extends Controller {
     enterClass: Array,
     leaveClass: Array,
     duration: Number,
+    dotNormalClass: String,
     dotActiveClass: String,
     autoPlay: Boolean,
     autoPlayTime: Number,
@@ -72,6 +73,7 @@ export default class extends Controller {
     return [
       direction === 1 ? leftEnter.split(' ') : rightEnter.split(' '),
       direction === 1 ? leftLeave.split(' ') : rightLeave.split(' '),
+      this.dotNormalClassValue.split(' '),
       this.dotActiveClassValue.split(' '),
     ];
   }
@@ -87,14 +89,20 @@ export default class extends Controller {
     const enterCarouselItem = this.getCarouselItemByIndex(index);
     const leaveDotItem = this.getDotItemByIndex(this._currentIndex);
     const enterDotItem = this.getDotItemByIndex(index);
-    const [enterClass, leaveClass, dotClass] = this.getAnimationClass(direction);
+    const [enterClass, leaveClass, dotNormalClass, dotActiveClass] = this.getAnimationClass(direction);
     if (leaveCarouselItem) leaveCarouselItem.classList.add(...leaveClass);
     if (enterCarouselItem) {
       enterCarouselItem.style.display = '';
       enterCarouselItem.classList.add(...enterClass);
     }
-    if (leaveDotItem) leaveDotItem.classList.remove(...dotClass);
-    if (enterDotItem) enterDotItem.classList.add(...dotClass);
+    if (leaveDotItem) {
+      leaveDotItem.classList.remove(...dotActiveClass);
+      leaveDotItem.classList.add(...dotNormalClass);
+    }
+    if (enterDotItem) {
+      enterDotItem.classList.remove(...dotNormalClass);
+      enterDotItem.classList.add(...dotActiveClass);
+    }
     this._currentIndex = index;
     const animationEnd = () => {
       if (leaveCarouselItem) {

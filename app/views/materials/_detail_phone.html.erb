@@ -69,6 +69,7 @@
     data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
     data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
     data-material-carousel-duration-value="0.5"
+    data-material-carousel-dot-normal-class-value="bg-gray-300"
     data-material-carousel-dot-active-class-value="bg-gray-900"
     data-material-carousel-auto-play-value="true"
     data-material-carousel-auto-play-time-value="2"
@@ -82,7 +83,7 @@
     </div>
     <div class="flex justify-center mt-3">
       <% material.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
-        <div class="w-2 h-2 mx-1 rounded-full bg-gray-300 <%= i == 0 ? 'bg-gray-900' : '' %>" data-material-carousel-target="dotItem"></div>
+        <div class="w-2 h-2 mx-1 rounded-full <%= i == 0 ? 'bg-gray-900' : 'bg-gray-300' %>" data-material-carousel-target="dotItem"></div>
       <% end %>
     </div>
   </div>
