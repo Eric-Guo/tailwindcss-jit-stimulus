@@ -69,17 +69,19 @@
       data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
       data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
       data-material-carousel-duration-value="0.5"
-      data-material-carousel-dot-active-class-value="border border-gray-900"
+      data-material-carousel-dot-normal-class-value="border-transparent"
+      data-material-carousel-dot-active-class-value="border-gray-900"
+      data-material-carousel-viewer-value="true"
     >
       <% if material.material_product&.practical_applications.present? %>
-        <div class="relative overflow-hidden mt-4" style="height: 393px;">
+        <div class="relative overflow-hidden mt-4" style="height: 393px;" data-material-carousel-target="viewer">
           <% material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
             <div class="w-full h-full absolute top-0 left-0" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
               <h5 class="text-lg font-medium text-center"><%= practical_application&.description -%></h5>
               <div class="relative mt-3">
                 <div class="relative w-full overflow-hidden" style="height: 353px;">
                   <div class="absolute w-full h-full">
-                    <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application&.path, "") -%>" alt="">
+                    <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application&.path, "") -%>" alt="<%= practical_application&.description -%>">
                   </div>
                 </div>
               </div>
@@ -89,7 +91,7 @@
         <div class="flex flex-nowrap gap-3 mt-2.5 overflow-x-auto">
           <% material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
             <div
-              class="flex-none cursor-pointer <%= i == 0 ? 'border border-gray-900' : '' %>"
+              class="flex-none cursor-pointer border <%= i == 0 ? 'border-gray-900' : 'border-transparent' %>"
               style="width: 50px; height: 50px;"
               data-material-carousel-target="dotItem"
               data-action="click->material-carousel#toDotIndex"
