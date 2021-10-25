@@ -30,6 +30,6 @@ class MaterialsController < ApplicationController
       when 3
         projects = projects.where(parent_id: material.parent_id)
       end
-      projects
+      projects.sort_by { |item| item.id == material.id ? -1 : 0 }
     end
 end
