@@ -73,11 +73,12 @@
     data-material-carousel-dot-active-class-value="bg-gray-900"
     data-material-carousel-auto-play-value="true"
     data-material-carousel-auto-play-time-value="2"
+    data-material-carousel-viewer-value="true"
   >
-    <div class="relative w-full h-52 overflow-hidden">
+    <div class="relative w-full h-52 overflow-hidden" data-material-carousel-target="viewer">
       <% material.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
         <div class="absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
-          <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="">
+          <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="<%= practical_application&.description -%>">
         </div>
       <% end %>
     </div>
