@@ -55,7 +55,7 @@
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid border-solid" style="padding-bottom: 0.9rem">材料产品详情</span><span class="text-xl font-light">Material Details</span>
     </div>
     <turbo-frame id="color_system_list">
-      <%= render partial: 'color_system_list', locals: { projects: @projects, material: @material, color_id: @color_id } %>
+      <%= render partial: 'color_system_list', locals: { projects: @projects, material: @material, color_id: @color_id, expanded: @material.level != 3 } %>
     </turbo-frame>
     <% if @material.level == 3 %>
       <%= render partial: 'detail', locals: { material: @material } %>

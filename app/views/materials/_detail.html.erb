@@ -43,9 +43,13 @@
         <% end %>
       </div>
       <h5 class="text-lg font-medium mt-14 mb-3">安装施工要点：</h5>
-      <p class="text-sm text-justify"><%= material.material_product&.points %></p>
+      <p class="text-sm text-justify" title="<%= material.material_product&.points %>">
+        <%= material.material_product&.points&.length > 170 ? "#{material.material_product&.points&.slice(0, 170)}..." : material.material_product&.points %>
+      </p>
       <h5 class="text-lg font-medium mt-14 mb-3">可定制效果：</h5>
-      <p class="text-sm text-justify"><%= material.material_product&.customized %></p>
+      <p class="text-sm text-justify" title="<%= material.material_product&.customized %>">
+        <%= material.material_product&.customized&.length > 110 ? "#{material.material_product&.customized&.slice(0, 110)}..." : material.material_product&.customized %>
+      </p>
     </div>
   </div>
 </div>
@@ -59,8 +63,8 @@
     </div>
 
     <div
-      class="bg-gray-100 flex flex-col relative mt-4"
-      style="height: 493px; padding-left: 60px; padding-right: 60px;"
+      class="flex flex-col relative mt-4"
+      style="height: 493px; padding-left: 60px; padding-right: 60px; background-color: #f2f2f2;"
       data-controller="material-carousel"
       data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
       data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
@@ -118,10 +122,10 @@
       <span class="text-xl font-light">Samples</span>
     </div>
 
-    <div class="flex flex-col bg-gray-100 mt-4" style="height: 493px;">
+    <div class="flex flex-col mt-4" style="height: 493px; background-color: #f2f2f2;">
       <h5 class="mt-4 text-lg font-medium text-center">实体材料库库存信息</h5>
-      <div class="mx-3 mt-3 overflow-auto border" style="height: 353px;">
-        <table class="min-w-full border-collapse">
+      <div class="flex flex-col mx-3 mt-3 overflow-auto border" style="height: 353px;">
+        <table class="flex-none min-w-full h-auto border-collapse">
           <thead>
             <tr>
               <th scope="col" class="sticky top-0 left-0 z-50 bg-gray-50 px-1 py-2 border border-t-0 border-l-0 whitespace-nowrap text-center text-sm text-gray-900">
@@ -175,6 +179,11 @@
             <% end %>
           </tbody>
         </table>
+        <% if material.samples.blank? %>
+          <div class="flex flex-1 items-center justify-center text-sm">
+            暂无相关实体材料样品
+          </div>
+        <% end %>
       </div>
       <p class="mx-4 mt-4 text-sm">实体材料库地址：上海市徐汇区漕河泾科汇大厦11F</p>
     </div>
