@@ -36,4 +36,20 @@ class Material < ApplicationRecord
     color_system_ids = MaterialProductColorSystem.where(material_product_id: MaterialProduct.select(:id).where(material_id: material_ids)).pluck(:color_systems_id)
     ColorSystem.where(id: color_system_ids)
   end
+
+  # 安装施工要点
+  def installation_and_construction_points
+    @_installation_and_construction_points ||= if level == 3 && material_product&.points.present?
+      material_product&.points
+    elsif level == 3 && parent_material.material_product&.points.present?
+      parent_material.material_product&.points
+    else
+      nil
+    end
+  end
+
+  # 可定制效果
+  def customizable_effect
+    @_customizable_effect ||= material_product&.customized
+  end
 end

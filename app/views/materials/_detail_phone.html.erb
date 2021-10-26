@@ -43,18 +43,23 @@
   </div>
 </div>
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2">
-  <div class="flex flex-row justify-between items-center">
-    <h5 class="text-base font-medium">安装施工要点</h5>
-  </div>
-  <div class="mt-2">
-    <%= material.material_product&.points %>
-  </div>
-  <div class="flex flex-row justify-between items-center mt-4">
-    <h5 class="text-base font-medium">可定制效果</h5>
-  </div>
-  <div class="mt-2">
-    <%= material.material_product&.customized %>
-  </div>
+  <% if material.installation_and_construction_points.present? %>
+    <div class="flex flex-row justify-between items-center">
+      <h5 class="text-base font-medium">安装施工要点</h5>
+    </div>
+    <div class="mt-2">
+      <%= material.material_product&.points %>
+    </div>
+    <div class="mt-4"></div>
+  <% end %>
+  <% if material.customizable_effect.present? %>
+    <div class="flex flex-row justify-between items-center">
+      <h5 class="text-base font-medium">可定制效果</h5>
+    </div>
+    <div class="mt-2">
+      <%= material.customizable_effect %>
+    </div>
+  <% end %>
 </div>
 
 <%# 实际应用 %>
