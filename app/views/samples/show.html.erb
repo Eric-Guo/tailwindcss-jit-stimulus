@@ -34,7 +34,7 @@
             </dd>
 
             <dt class="mt-2 inline-block w-1/2">色号：</dt>
-            <dd class="mt-2 inline"><%= @sample.color_code -%></dd>
+            <dd class="mt-2 inline"><%= @sample.color_code.present? ? @sample.color_code : '-' -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">产品规格/型号：</dt>
             <dd class="mt-2 inline"><%= @sample.spec_model -%></dd>
@@ -103,7 +103,7 @@
       </dl>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">
         <dt class="text-gray-400">是否愿意送样</dt>
-        <dd class=""><%= @sample.manufacturer&.is_allow -%></dd>
+        <dd class=""><%= @sample.manufacturer&.is_allow.present? ? @sample.manufacturer.is_allow : '-' -%></dd>
       </dl>
       <dl></dl>
     </div>

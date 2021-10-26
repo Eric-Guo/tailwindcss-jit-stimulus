@@ -12,7 +12,9 @@
 
   <% other_samples.each_with_index do |other_sample, i| %>
     <div class="mr-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> mb-4 flex">
-      <img class="w-1/2" src="<%= image_pack_path("static/sample_side_p#{i+1}.jpg") -%>" alt="">
+      <div style="width: 170px; height: 170px;">
+        <img class="w-full h-full obejct-cover" src="<%= image_pack_path("static/sample_side_p#{i+1}.jpg") -%>" alt="">
+      </div>
       <div class="flex flex-col justify-end mx-4">
         <h2 class="text-base mb-2">黄金麻（样品）</h2>
         <p class="mt-1 text-xs text-gray-400">样品编号：<%= other_sample.no -%></p>
