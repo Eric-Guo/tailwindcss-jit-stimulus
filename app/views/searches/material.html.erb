@@ -21,12 +21,17 @@
 
 <%# 材料 %>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-8 gap-x-1.5 gap-y-10">
-  <% @materials.each do |material| %>
+  <% @materials.select('materials.id AS material_id, materials.name, materials.cover, sample.genus, sample.no AS sample_no').each do |material| %>
     <div>
-      <%= link_to material_path(material) do %>
+      <%= link_to material_path(id: material.material_id) do %>
         <img class="mx-auto w-full h-52 object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
         <h3 class="text-center mt-2 font-medium"><%= material.name -%></h3>
-        <h4 class="text-center text-sm text-gray-400">石材</h4>
+        <h4 class="text-center text-sm text-gray-400"><%= material.genus -%></h4>
+      <% end %>
+      <% if material.sample_no.present? %>
+        <%= link_to sample_path(id: material.sample_no) do %>
+          <h4 class="text-center text-sm text-gray-400">（样品）</h4>
+        <% end %>
       <% end %>
     </div>
   <% end %>
