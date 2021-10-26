@@ -24,7 +24,8 @@ class SearchesController < ApplicationController
 
     def set_data_and_count_hash
       @materials = if @q.present?
-        Material.where('name LIKE ?', "%#{@q}%")
+        Material.left_joins(:samples)
+          .where('materials.name LIKE ? OR sample.genus LIKE ?', "%#{@q}%", "%#{@q}%")
       else
         Material.none
       end
