@@ -1,12 +1,13 @@
 <%= render partial: 'shared/header', locals: {} -%>
 
 <% breadcrumbs = material_breadcrumbs(@material) %>
-<p class="pt-12 text-sm text-gray-500 mx-auto" style="width: 1600px;">
+<div class="text-sm text-gray-500 mx-auto mt-12" style="width: 1600px;">
   <%= raw material_breadcrumbs(@material).map.with_index { |item, i| "<span class=\"#{ i == breadcrumbs.length - 1 ? 'text-black' : '' }\">#{item[:title]}</span>" }.join('<span> > </span>') %>
-</p>
-<div class="flex flex-row mx-auto justify-between" style="width: 1600px;">
+</div>
+
+<div class="flex flex-row justify-between mx-auto mt-5" style="width: 1600px;">
   <%# 材料菜单 %>
-  <section class="material-nav mt-5" data-controller="material-nav">
+  <section class="material-nav" data-controller="material-nav">
     <% @tree_materials.each do |item| %>
       <div class="material-nav-item mb-5 <%= @material.id == item[:id] || item[:descendant_ids].include?(@material.id) ? 'active' : '' %>" data-material-nav-target="navItem">
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
@@ -52,9 +53,10 @@
     <% end %>
   </section>
   <%# 材料产品详情 %>
-  <section class="flex flex-col mt-5 mb-20" style="width: 1200px;">
+  <section class="flex flex-col mb-20" style="width: 1200px;">
     <div class="pb-3 border-b-2 border-gray-100 border-solid">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材料产品详情</span><span class="text-xl font-light">Material Details</span>
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材料产品详情</span>
+      <span class="text-xl font-light">Material Details</span>
     </div>
     <turbo-frame id="color_system_list">
       <%= render partial: 'color_system_list', locals: { projects: @projects, material: @material, color_id: @color_id, expanded: @material.level != 3 } %>
