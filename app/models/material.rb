@@ -1,20 +1,33 @@
 # frozen_string_literal: true
 
 class Material < ApplicationRecord
-  has_one :material_info
-  belongs_to :parent_material, foreign_key: :parent_id, class_name: 'Material', optional: true
-  belongs_to :grandpa_material, foreign_key: :grandpa_id, class_name: 'Material', optional: true
-  has_one :material_product, foreign_key: :material_id, class_name: 'MaterialProduct'
+  # 二级对应的产品
   has_one :material_info, foreign_key: :material_id, class_name: 'MaterialInfo'
+
+  # 三级对应的产品
+  has_one :material_product, foreign_key: :material_id, class_name: 'MaterialProduct'
+  
+  # 父级
+  belongs_to :parent_material, foreign_key: :parent_id, class_name: 'Material', optional: true
+
+  # 祖父级
+  belongs_to :grandpa_material, foreign_key: :grandpa_id, class_name: 'Material', optional: true
+
+  # 子级
   has_many :children_materials, class_name: :Material, foreign_key: :parent_id
+
+  # 孙子级
   has_many :grandpa_materials, class_name: :Material, foreign_key: :grandpa_id
 
+  # 厂家信息
   has_many :material_manufacturers
   has_many :manufacturers, through: :material_manufacturers
 
+  # 案例
   has_many :case_materials, class_name: 'CasesMaterial'
   has_many :cases, through: :case_materials, class_name: 'Cases'
 
+  # 样品
   has_many :samples, foreign_key: :obj_id
 
   default_scope { where(deleted_at: nil).where(display: 1) }
