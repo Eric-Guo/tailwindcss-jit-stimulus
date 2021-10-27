@@ -51,6 +51,19 @@ class Material < ApplicationRecord
     ColorSystem.where(id: color_system_ids)
   end
 
+  def level_name
+    case level
+    when 1
+      name
+    when 2
+      "#{parent_material.name}-#{name}"
+    when 3
+      "#{grandpa_material.name}-#{parent_material.name}-#{name}"
+    else
+      name
+    end
+  end
+
   # 安装施工要点
   def installation_and_construction_points
     @_installation_and_construction_points ||= if level == 3 && material_product&.points.present?

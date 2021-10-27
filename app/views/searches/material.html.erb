@@ -21,20 +21,20 @@
 
 <%# 材料 %>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-8 gap-x-1.5 gap-y-10">
-  <% @materials.select('materials.id AS material_id, materials.name, materials.cover, sample.genus, sample.no AS sample_no').each do |material| %>
+  <% @materials.select('materials.id, materials.name, materials.level, materials.parent_id, materials.grandpa_id, materials.cover, sample.genus, sample.no AS sample_no').each do |material| %>
     <div>
       <% if material.sample_no.present? %>
         <%= link_to sample_path(id: material.sample_no) do %>
           <% s_pic = Sample.find_by(no: material.sample_no)&.pic %>
           <img class="mx-auto w-full h-52 object-cover" src="<%= s_pic.present? ? mat_img_url(s_pic, "") : get_first_url(material.cover) -%>" alt="">
           <h3 class="text-center mt-2 font-medium"><%= material.name -%>（样品）</h3>
-          <h4 class="text-center text-sm text-gray-400"><%= material.genus -%></h4>
+          <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
         <% end %>
       <% else %>
-        <%= link_to material_path(id: material.material_id) do %>
+        <%= link_to material_path(id: material.id) do %>
           <img class="mx-auto w-full h-52 object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
           <h3 class="text-center mt-2 font-medium"><%= material.name -%></h3>
-          <h4 class="text-center text-sm text-gray-400"><%= material.genus -%></h4>
+          <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
         <% end %>
       <% end %>
     </div>
