@@ -25,7 +25,9 @@
             <% item[:children].each do |child_item| %>
               <div class="relative mt-4 material-nav-item-children-item <%= @material.id == child_item[:id] || child_item[:descendant_ids].include?(@material.id) ? 'active' : '' %>">
                 <span class="relative">
-                  <span class="truncate" title="<%= child_item[:title] %>"><%= child_item[:title] %></span>
+                  <%= link_to material_path(id: child_item[:id]) do %>
+                    <span class="truncate" title="<%= child_item[:title] %>"><%= child_item[:title] %></span>
+                  <% end %>
                   <% if child_item[:children].present? %>
                     <svg xmlns="http://www.w3.org/2000/svg" class="-mt-0.5 h-5 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
