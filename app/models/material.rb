@@ -5,6 +5,7 @@ class Material < ApplicationRecord
   belongs_to :parent_material, foreign_key: :parent_id, class_name: 'Material', optional: true
   belongs_to :grandpa_material, foreign_key: :grandpa_id, class_name: 'Material', optional: true
   has_one :material_product, foreign_key: :material_id, class_name: 'MaterialProduct'
+  has_one :material_info, foreign_key: :material_id, class_name: 'MaterialInfo'
   has_many :children_materials, class_name: :Material, foreign_key: :parent_id
   has_many :grandpa_materials, class_name: :Material, foreign_key: :grandpa_id
 
@@ -40,9 +41,9 @@ class Material < ApplicationRecord
   # 安装施工要点
   def installation_and_construction_points
     @_installation_and_construction_points ||= if level == 3 && material_product&.points.present?
-      material_product&.points
-    elsif level == 3 && parent_material.material_product&.points.present?
-      parent_material.material_product&.points
+      material_product.points
+    elsif level == 3 && parent_material.material_info&.points.present?
+      parent_material.material_info.points
     else
       nil
     end
