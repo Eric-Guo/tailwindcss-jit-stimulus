@@ -61,8 +61,10 @@
     <turbo-frame id="color_system_list">
       <%= render partial: 'color_system_list', locals: { projects: @projects, material: @material, color_id: @color_id, expanded: @material.level != 3 } %>
     </turbo-frame>
-    <% if @material.level == 3 %>
-      <%= render partial: 'detail', locals: { material: @material } %>
-    <% end %>
+    <%= render partial: 'detail_material_name', locals: { material: @material } if @material.level == 3 %>
+    <%= render partial: 'detail_application_material_samples', locals: { material: @material } if @material.level == 3 %>
+    <%= render partial: 'detail_product_case', locals: { material: @material } if @material.level == 3 %>
+    <%= render partial: 'detail_construction_method', locals: { material: @material } if @material.level == 3 %>
+    <%= render partial: 'detail', locals: { material: @material } if @material.level == 3 %>
   </section>
 </div>
