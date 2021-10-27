@@ -23,7 +23,9 @@
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-4 gap-8">
   <% @manufacturers.each do |manufacturer| %>
     <div class="flex border border-gray-200 border-solid">
-      <img class="w-36 h-36 object-scale-down" src="<%= mat_img_url(manufacturer.logo, 'static/logo-1-1.jpg') -%>" alt="">
+      <div class="flex-none p-1"  style="width: 140px; height: 140px;">
+        <img class="w-full h-full object-contain object-center" src="<%= mat_img_url(manufacturer.logo, 'manufacturer_default_cover.png') -%>" alt="">
+      </div>
       <div class="pt-6 pb-2 pl-4 pr-2 border-l border-gray-200 border-solid">
         <h5 class="text-base font-bold my-2"><%= manufacturer.name %></h5>
         <p class="text-sm text-gray-400">所在地：<%= manufacturer.location %></p>

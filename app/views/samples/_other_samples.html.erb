@@ -12,7 +12,7 @@
 
   <% other_samples.each_with_index do |other_sample, i| %>
     <div class="mr-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> mb-4 flex">
-      <div style="width: 170px; height: 170px;">
+      <div class="flex-none" style="width: 170px; height: 170px;">
         <img class="w-full h-full obejct-cover" src="<%= image_pack_path("static/sample_side_p#{i+1}.jpg") -%>" alt="">
       </div>
       <div class="flex flex-col justify-end mx-4">
