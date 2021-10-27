@@ -76,8 +76,8 @@
     </div>
     <div class="mx-4 mt-4 grid grid-cols-5 gap-4">
       <div class="row-span-2">
-        <div class="border border-gray-300 border-solid mx-auto">
-          <img class="w-full" src="<%= mat_img_url(@sample.manufacturer.logo,'') -%>" alt="">
+        <div class="border border-gray-300 border-solid mx-auto" style="width: 140px; height: 140px;">
+          <img class="w-full h-full object-contain object-center" src="<%= mat_img_url(@sample.manufacturer.logo, 'manufacturer_default_cover.png') -%>" alt="">
         </div>
       </div>
       <dl class="my-4 border-l border-gray-300 border-solid pl-3 py1">

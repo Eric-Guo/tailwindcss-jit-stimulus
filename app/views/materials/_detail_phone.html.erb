@@ -209,8 +209,8 @@
   <div class="grid grid-cols-1 gap-2 mt-2">
     <% material.manufacturers&.each do |manufacturer| %>
       <div class="flex items-center bg-gray-200 border border-gray-200 border-solid p-2">
-        <div class="flex items-center justify-center overflow-hidden flex-none w-32 h-32 bg-white border border-gray-300 border-solid">
-          <img class="w-5/6" src="<%= mat_img_url(manufacturer.logo,'') -%>" alt="">
+        <div class="flex items-center justify-center overflow-hidden flex-none w-32 h-32 bg-white border border-gray-300 border-solid p-1">
+          <img class="w-full h-full object-contain object-center" src="<%= mat_img_url(manufacturer.logo, 'manufacturer_default_cover.png') -%>" alt="">
         </div>
         <div class="flex-1 ml-8">
           <h5 class="text-lg font-medium"><%= manufacturer.name %></h5>
