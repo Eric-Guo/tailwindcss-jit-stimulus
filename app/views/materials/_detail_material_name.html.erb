@@ -1,0 +1,62 @@
+<%# 材料名称 %>
+<div class="mt-20">
+  <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
+    <div>
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem"><%= material.name %></span>
+      <span class="text-xl font-light">（<%= material.no %>）</span>
+    </div>
+    <a class="more-btn" href="<%= root_path -%>">进入相关样品页</a>
+  </div>
+
+  <div class="flex flex-row mt-4">
+    <div class="flex-none w-72">
+      <img class="w-72 h-72 object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
+      <dl class="block w-72 mt-2 text-lg">
+        <dt class="my-1 inline-block w-1/2">色系：</dt>
+        <dd class="my-1 inline-block text-right" style="width: 48%">
+          <%= material.material_product&.color_systems&.pluck(:description)&.join(',') %>
+        </dd>
+
+        <dt class="my-1 inline-block w-1/2">产地：</dt>
+        <dd class="my-1 inline-block text-right" style="width: 48%">
+          <%= material.material_product&.origin %>
+        </dd>
+
+        <dt class="my-1 inline-block w-1/2">价格区间：</dt>
+        <dd class="my-1 inline-block text-right" style="width: 48%">
+          <%= "#{[material.material_product&.low_price, material.material_product&.high_price].uniq.join('-')}/㎡" %>
+        </dd>
+
+        <dt class="my-1 inline-block w-1/2">是否常用产品：</dt>
+        <dd class="my-1 inline-block text-right" style="width: 48%">
+          <%= material.material_product&.is_common == 1 ? '是' : '' %>
+        </dd>
+      </dl>
+    </div>
+    <div class="w-0 flex-1 ml-20">
+      <h5 class="text-lg font-medium">表面效果：</h5>
+      <div class="grid grid-cols-8 gap-1 my-3">
+        <% material.material_product&.surface_effects&.each do |surface_effect| %>
+          <div class="relative" style="padding-top: 100%;">
+            <img class="absolute left-0 top-0 w-full h-full object-cover" src="<%= mat_img_url(surface_effect.path, "static/new_mat_g#{1}.jpg") -%>" alt="">
+            <p class="absolute left-1/2 bottom-0 text-white text-center text-sm font-medium whitespace-nowrap" style="transform: translate(-50%, 0);">
+              <%= surface_effect.description -%>
+            </p>
+          </div>
+        <% end %>
+      </div>
+      <% if material.installation_and_construction_points.present? %>
+        <h5 class="text-lg font-medium mt-14 mb-3">安装施工要点：</h5>
+        <p class="text-sm text-justify" title="<%= material.installation_and_construction_points %>">
+          <%= material.installation_and_construction_points.length > 170 ? "#{material.installation_and_construction_points.slice(0, 170)}..." : material.installation_and_construction_points %>
+        </p>
+      <% end %>
+      <% if material.customizable_effect.present? %>
+        <h5 class="text-lg font-medium mt-14 mb-3">可定制效果：</h5>
+        <p class="text-sm text-justify" title="<%= material.customizable_effect %>">
+          <%= material.customizable_effect.length > 110 ? "#{material.customizable_effect.slice(0, 110)}..." : material.customizable_effect %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

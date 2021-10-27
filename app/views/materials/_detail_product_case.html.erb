@@ -1,0 +1,35 @@
+<%# 产品案例 %>
+<% cases = material.cases.limit(6) %>
+<% if cases.present? %>
+  <div class="mt-20">
+    <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
+      <div>
+        <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">产品案例</span>
+        <span class="text-xl font-light">Projects</span>
+      </div>
+      <a class="more-btn" href="<%= root_path -%>">MORE+</a>
+    </div>
+
+    <div class="grid grid-cols-3 gap-1.5 mt-4">
+      <% cases.each do |project_case| %>
+        <div class="bg-cover bg-center bg-no-repeat flex flex-col" style="height: 296px; background-image: url('<%= get_first_url(project_case.live_photos) %>');">
+          <div class="flex flex-row p-2.5 justify-end">
+            <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2"><%= material.name %></div>
+          </div>
+          <div class="mt-auto h-20 pl-4 pr-5 pb-2.5 flex flex-row items-end black-mask">
+            <div class="text-white flex-1 w-0">
+              <div class="truncate" title="<%= project_case.project_name -%>/<%= project_case.project_location -%>">
+                <span class="text-lg"><%= project_case.project_name -%>/</span>
+                <span class="text-sm"> <%= project_case.project_location -%></span>
+              </div>
+              <div class="text-sm truncate"></div>
+            </div>
+            <div class="text-white text-sm whitespace-nowrap flex-none ml-12">
+              <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
