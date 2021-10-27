@@ -75,6 +75,16 @@ class Material < ApplicationRecord
     end
   end
 
+  # 构造做法
+  def construction
+    case level
+    when 3
+      material_product.construction
+    when 2
+      children_materials.collect(&:material_product).collect(&:construction).flatten
+    end
+  end
+
   # 可定制效果
   def customizable_effect
     @_customizable_effect ||= material_product&.customized
