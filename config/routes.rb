@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :materials, only: [:show] do
     member do
       get :color_system_list
+      get :download_texture
     end
   end
 

@@ -33,6 +33,10 @@ gem 'wechat', git: 'https://git.thape.com.cn/Eric-Guo/wechat.git', branch: :main
 
 gem 'kaminari'
 
+gem 'rubyzip'
+
+gem "http"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
