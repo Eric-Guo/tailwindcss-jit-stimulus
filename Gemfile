@@ -17,6 +17,10 @@ gem "browser", require: "browser/browser"
 
 gem 'kaminari'
 
+gem 'rubyzip'
+
+gem "http"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 # Use Active Model has_secure_password
