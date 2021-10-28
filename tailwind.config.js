@@ -34,6 +34,12 @@ module.exports = {
         '20': 'repeat(20, minmax(0, 1fr))',
       },
       visibility: ['hover','focus'],
+      lineClamp: {
+        7: '7',
+        8: '8',
+        9: '9',
+        10: '10',
+      }
     },
   },
   plugins: [
