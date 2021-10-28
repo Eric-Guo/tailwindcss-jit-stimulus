@@ -47,15 +47,11 @@
       </div>
       <% if material.installation_and_construction_points.present? %>
         <h5 class="text-lg font-medium mt-14 mb-3">安装施工要点：</h5>
-        <p class="text-sm text-justify" title="<%= material.installation_and_construction_points %>">
-          <%= material.installation_and_construction_points.length > 170 ? "#{material.installation_and_construction_points.slice(0, 170)}..." : material.installation_and_construction_points %>
-        </p>
+        <p class="text-sm text-justify line-clamp-3 whitespace-pre-wrap" title="<%= material.installation_and_construction_points %>"><%= material.installation_and_construction_points %></p>
       <% end %>
       <% if material.customizable_effect.present? %>
         <h5 class="text-lg font-medium mt-14 mb-3">可定制效果：</h5>
-        <p class="text-sm text-justify" title="<%= material.customizable_effect %>">
-          <%= material.customizable_effect.length > 110 ? "#{material.customizable_effect.slice(0, 110)}..." : material.customizable_effect %>
-        </p>
+        <p class="text-sm text-justify line-clamp-2 whitespace-pre-wrap" title="<%= material.customizable_effect %>"><%= material.customizable_effect %></p>
       <% end %>
     </div>
   </div>

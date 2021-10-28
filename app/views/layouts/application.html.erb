@@ -29,7 +29,7 @@
       data-slideover-active-target="#slideover-target">
       <%= yield %>
       <div id="sidebar" class="fixed top-0 left-0" style="z-index: 9999;">
-        <div data-slideover-target="overlay" class="fixed inset-0 flex z-40 transition-opacity ease-linear duration-300 opacity-0">
+        <div data-slideover-target="overlay" class="fixed inset-0 flex z-40 transition-opacity ease-linear duration-300 opacity-0 hidden">
           <div class="fixed inset-0">
             <div class="absolute inset-0 cursor-pointer" style="background: rgba(0, 0, 0, 0.6);" data-action="click->slideover#toggle click->sidebar-nav#reset"></div>
           </div>
