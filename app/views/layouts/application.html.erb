@@ -28,12 +28,12 @@
       data-slideover-leave-timeout="300,0"
       data-slideover-active-target="#slideover-target">
       <%= yield %>
-      <div id="sidebar" class="fixed top-0 left-0">
-        <div data-slideover-target="overlay" class="fixed inset-0 flex z-40 transition-opacity ease-linear duration-300 opacity-0 hidden">
+      <div id="sidebar" class="fixed top-0 left-0" style="z-index: 9999;">
+        <div data-slideover-target="overlay" class="fixed inset-0 flex z-40 transition-opacity ease-linear duration-300 opacity-0">
           <div class="fixed inset-0">
             <div class="absolute inset-0 cursor-pointer" style="background: rgba(0, 0, 0, 0.6);" data-action="click->slideover#toggle click->sidebar-nav#reset"></div>
           </div>
-          <div id="slideover-target" data-slideover-target="menu" class="sidebar relative flex-none flex transition ease-in-out duration-300 transform -translate-x-full hidden">
+          <div id="slideover-target" data-slideover-target="menu" class="sidebar relative flex-none flex transition ease-in-out duration-300 transform -translate-x-full">
             <div class="relative flex sidebar-nav-container">
               <%# 关闭按钮 %>
               <button data-action="slideover#toggle sidebar-nav#reset" class="absolute top-1 left-0 flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600" aria-label="Close sidebar">
