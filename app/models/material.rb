@@ -77,11 +77,12 @@ class Material < ApplicationRecord
 
   # 构造做法
   def construction
-    case level
-    when 3
+    @_construction ||= if level == 3 && material_product&.construction.present?
       material_product.construction
-    when 2
-      children_materials.collect(&:material_product).collect(&:construction).flatten
+    elsif level == 3 && parent_material.material_info&.construction.present?
+      parent_material.material_info.construction
+    else
+      nil
     end
   end
 

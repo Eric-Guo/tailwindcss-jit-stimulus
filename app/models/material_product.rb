@@ -17,8 +17,12 @@ class MaterialProduct < ApplicationRecord
 
   def construction
     if practice_details.present?
-      data = JSON.parse(practice_details)
-      data.is_a?(Array) ? data : []
+      if practice_details.is_a?(Array)
+        practice_details
+      else
+        data = JSON.parse(practice_details)
+        data.is_a?(Array) ? data : []
+      end
     else
       []
     end.map { |item| item.with_indifferent_access }
