@@ -118,128 +118,96 @@
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-8">
   <span class="text-2xl font-bold ml-px mr-2">近日更新</span><span class="text-xl font-light">What's new</span>
 </div>
-<div class="mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 grid grid-cols-20 gap-2">
-  <div class="col-span-5">
-    <div class="relative">
-      <img class="w-full h-full object-fill" src="<%= image_pack_path('static/news_material.jpg') -%>" alt="">
-      <div class="absolute top-1/2 left-1/2 text-white" style="transform: translate(-50%, -50%);">
-        <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-          至7月8日
-        </p>
-        <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl">16</span> 个新材料
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-span-7">
-    <div class="grid grid-cols-4 gap-2 text-white">
-      <% (1..8).each do |i| %>
-        <div class="relative">
-          <img class="w-full h-full object-fill" src="<%= image_pack_path("static/new_mat_g#{i}.jpg") -%>" alt="">
-          <div class="absolute top-1/2 left-1/2 invisible hover:visible focus:visible" style="transform: translate(-50%, -50%);">
-            <p class="text-base fond-medium 2xl:text-lg whitespace-nowrap">
-              拉丝铜版
+<div class="flex mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 ">
+  <div class="flex-none w-7/12">
+    <div class="relative w-full" style="padding-top: 56.98%;">
+      <div class="absolute top-0 left-0 w-full h-full grid grid-cols-7 grid-rows-4 gap-1">
+        <div class="relative flex row-span-2 col-span-3">
+          <img class="w-full h-full object-fill" src="<%= image_pack_path('static/news_material.jpg') -%>" alt="">
+          <div class="absolute top-1/2 left-1/2 text-white" style="transform: translate(-50%, -50%);">
+            <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
+              至7月8日
+            </p>
+            <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl">16</span> 个新材料
             </p>
           </div>
         </div>
+        <div class="relative row-span-2 col-span-4">
+          <div class="grid grid-cols-4 grid-rows-2 w-full h-full gap-1">
+            <% (1..8).each do |i| %>
+              <div class="relative">
+                <img class="w-full h-full object-fill" src="<%= image_pack_path("static/new_mat_g#{i}.jpg") -%>" alt="">
+                <div class="absolute top-1/2 left-1/2 invisible hover:visible focus:visible" style="transform: translate(-50%, -50%);">
+                  <p class="text-base fond-medium 2xl:text-lg whitespace-nowrap">
+                    拉丝铜版
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="absolute left-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);">
+            <img class="w-full h-full object-cover" src="<%= image_pack_path('static/arrow_left.svg') %>" alt="">
+          </div>
+          <div class="absolute right-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);">
+            <img class="w-full h-full object-cover" src="<%= image_pack_path('static/arrow_right.svg') %>" alt="">
+          </div>
+        </div>
+        <div class="relative flex row-span-2 col-span-3">
+          <img class="w-full h-full object-fill" src="<%= image_pack_path('static/news_project.jpg') -%>" alt="">
+          <div class="absolute top-1/2 left-1/2 text-white" style="transform: translate(-50%, -50%);">
+            <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
+              至7月8日
+            </p>
+            <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl">10</span> 个新案例
+            </p>
+          </div>
+        </div>
+        <div class="relative grid row-span-2 col-span-4">
+          <div class="relative w-full h-full">
+            <img class="w-full h-full object-fill" src="<%= image_pack_path('static/news_project_1.jpg') -%>" alt="">
+            <div class="absolute left-1/2 bottom-0 text-white text-lg" style="transform: translate(-50%, 0);">
+              华夏幸福廊坊市固安ING幸福城
+            </div>
+          </div>
+          <div class="absolute left-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);">
+            <img class="w-full h-full object-cover" src="<%= image_pack_path('static/arrow_left.svg') %>" alt="">
+          </div>
+          <div class="absolute right-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);">
+            <img class="w-full h-full object-cover" src="<%= image_pack_path('static/arrow_right.svg') %>" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="relative flex-1 ml-12" style="width: 740px;">
+    <div class="absolute top-0 right-0">
+      <a class="more-btn" href="<%= root_path -%>">MORE+</a>
+    </div>
+    <div class="flex flex-col h-full">
+      <% @latest_news.each do |news| %>
+        <div class="flex flex-1 items-center border-b">
+          <div class="flex-none flex flex-col justify-around">
+            <p class="text-center text-base font-normal tracking-wider leading-none"><%= Date::ABBR_MONTHNAMES[news.created_at.month].upcase -%></p>
+            <p class="text-3xl text-center font-semibold tracking-widest leading-none mt-5"><%= news.created_at.day -%></p>
+          </div>
+          <div class="flex-1 w-0 ml-28">
+            <div class="flex text-2xl text-left leading-tight">
+              <h1 class="flex-1 w-0 font-bold truncate" title="<%= news.title -%>"><%= news.title -%></h1>
+              <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
+                材料在线
+              </span>
+              <% if news.mold_name.present? %>
+                <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
+                  <%= news.mold_name -%>
+                </span>
+              <% end %>
+            </div>
+            <h2 class="mt-3 text-1xl text-left truncate" title="<%= news.subtitle -%>"><%= news.subtitle -%><%= news.subtitle -%><%= news.subtitle -%></h2>
+          </div>
+        </div>
       <% end %>
-    </div>
-  </div>
-  <div class="col-span-8 ml-16 flex justify-around flex-col">
-    <div class="flex-grow pb-3 border-b-2 border-gray-100 border-solid">
-      <div class="relative flex">
-        <div class="flex-none flex flex-col justify-around">
-          <p class="pt-5 text-center text-base font-normal tracking-wider leading-none">DEC</p>
-          <p class="text-3xl text-center font-semibold tracking-widest leading-none">16</p>
-        </div>
-        <div class="flex flex-col justify-center pt-8 pb-4 pl-28 gap-y-3">
-          <h1 class="text-2xl text-left leading-tight">
-            文化市集
-            <span class="ml-1 px-5 py-1 rounded-full text-sm bg-gray-100 text-gray-400 inline-block align-middle">
-              天华
-            </span>
-          </h1>
-          <h2 class="text-1xl text-left">展示书店内在文化属性的目的</h2>
-        </div>
-        <div class="absolute top-0 right-0">
-          <a class="more-btn" href="<%= root_path -%>">MORE+</a>
-        </div>
-      </div>
-    </div>
-    <div class="flex-grow flex pb-3 border-b-2 border-gray-100 border-solid">
-      <div class="relative flex">
-        <div class="flex-none flex flex-col justify-around">
-          <p class="pt-5 text-center text-base font-normal tracking-wider leading-none">NOV</p>
-          <p class="text-3xl text-center font-semibold tracking-widest leading-none">11</p>
-        </div>
-        <div class="flex flex-col justify-center pt-8 pb-4 pl-28 gap-y-3">
-          <h1 class="text-2xl text-left leading-tight">
-            浦开仁恒金桥世纪
-            <span class="ml-1 px-5 py-1 rounded-full text-sm bg-gray-100 text-gray-400 inline-block align-middle">
-              天华
-            </span>
-          </h1>
-          <h2 class="text-1xl text-left">让青山更幽静，让绿水更清澈</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-span-5">
-    <div class="relative">
-      <img class="w-full h-80 object-fill" src="<%= image_pack_path('static/news_project.jpg') -%>" alt="">
-      <div class="absolute top-1/2 left-1/2 text-white" style="transform: translate(-50%, -50%);">
-        <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-          至7月8日
-        </p>
-        <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl">10</span> 个新案例
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-span-7">
-    <div class="relative">
-      <img class="w-full h-80 object-fill" src="<%= image_pack_path('static/news_project_1.jpg') -%>" alt="">
-      <div class="absolute left-1/2 bottom-0 text-white text-lg" style="transform: translate(-50%, 0);">
-        华夏幸福廊坊市固安ING幸福城
-      </div>
-    </div>
-  </div>
-  <div class="col-span-8 ml-16 flex justify-around flex-col">
-    <div class="flex-grow flex pb-3 border-b-2 border-gray-100 border-solid">
-      <div class="relative flex">
-        <div class="flex-none flex flex-col justify-around">
-          <p class="pt-5 text-center text-base font-normal tracking-wider leading-none">SEP</p>
-          <p class="text-3xl text-center font-semibold tracking-widest leading-none">1</p>
-        </div>
-        <div class="flex flex-col justify-center pt-8 pb-4 pl-28 gap-y-3">
-          <h1 class="text-2xl text-left leading-tight">
-            湖畔艇居 | 香港置地
-            <span class="ml-1 px-5 py-1 rounded-full text-sm bg-gray-100 text-gray-400 inline-block align-middle">
-              材料在线
-            </span>
-          </h1>
-          <h2 class="text-1xl text-left">一次别墅设计领域打破传统的颠覆性探索</h2>
-        </div>
-      </div>
-    </div>
-    <div class="flex-grow flex pb-3 border-b-2 border-gray-100 border-solid">
-      <div class="relative flex">
-        <div class="flex-none flex flex-col justify-around">
-          <p class="pt-5 text-center text-base font-normal tracking-wider leading-none">AUG</p>
-          <p class="text-3xl text-center font-semibold tracking-widest leading-none">16</p>
-        </div>
-        <div class="flex flex-col justify-center pt-8 pb-4 pl-28 gap-y-3">
-          <h1 class="text-2xl text-left leading-tight">
-            湖畔艇居 | 香港置地
-            <span class="ml-1 px-5 py-1 rounded-full text-sm bg-gray-100 text-gray-400 inline-block align-middle">
-              材料在线
-            </span>
-          </h1>
-          <h2 class="text-1xl text-left">一次别墅设计领域打破传统的颠覆性探索</h2>
-        </div>
-      </div>
     </div>
   </div>
 </div>
