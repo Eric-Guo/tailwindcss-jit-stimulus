@@ -3,10 +3,10 @@
     <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">其他样品</span>
     <span class="text-xl font-light">Other Samples</span>
     <%= link_to other_samples_sample_path(id, page_size: other_samples.limit_value, page: other_samples.next_page), class: other_samples.last_page? ? 'cursor-not-allowed' : '' do %>
-      <img class="h-6 w-6 float-right mt-1" src="<%= image_pack_path('static/arrow_right.svg') -%>" alt="">
+      <img class="h-6 w-6 float-right mt-1" src="<%= image_pack_path('arrow_right.svg') -%>" alt="">
     <% end %>
     <%= link_to other_samples_sample_path(id, page_size: other_samples.limit_value, page: other_samples.prev_page), class: other_samples.first_page? ? 'cursor-not-allowed' : '' do %>
-      <img class="h-6 w-6 float-right mt-1 mr-1 lg:mr-2 xl:mr-3" src="<%= image_pack_path('static/arrow_left.svg') -%>" alt="">
+      <img class="h-6 w-6 float-right mt-1 mr-1 lg:mr-2 xl:mr-3" src="<%= image_pack_path('arrow_left.svg') -%>" alt="">
     <% end %>
   </div>
 

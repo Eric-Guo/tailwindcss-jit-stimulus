@@ -1,7 +1,7 @@
 <%# 样品名称 %>
 <div class="bg-white text-black-6c m-1 px-1.5 py-2.5">
   <div class="my-1 flex">
-    <img class="flex-initial" style="max-width: 50%;" src="<%= image_pack_path('static/big_sample_picture.jpg') -%>" alt="">
+    <img class="flex-initial" style="max-width: 50%;" src="<%= image_pack_path('big_sample_picture.jpg') -%>" alt="">
     <dl class="flex-auto ml-2">
       <h3 class="text-base mb-2 font-medium"><%= @sample.material&.name -%></h3>
       <p class="text-xs whitespace-nowrap">样品编号：
@@ -46,7 +46,7 @@
             <div class="m-1 bg-white rounded shadow">
               <div class="p-8">
                 <figure>
-                  <img src="<%= image_pack_path('static/sample_location.png') -%>" alt="">
+                  <img src="<%= image_pack_path('sample_location.png') -%>" alt="">
                   <figcaption class="text-center mt-2"><%= @sample.position -%>: A-3-25</figcaption>
                 </figure>
               </div>
