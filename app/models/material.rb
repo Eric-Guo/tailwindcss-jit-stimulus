@@ -53,14 +53,12 @@ class Material < ApplicationRecord
 
   def level_name
     case level
-    when 1
-      name
     when 2
-      "#{parent_material.name}-#{name}"
+      "#{parent_material.name}"
     when 3
-      "#{grandpa_material.name}-#{parent_material.name}-#{name}"
+      "#{grandpa_material.name}-#{parent_material.name}"
     else
-      name
+      ''
     end
   end
 

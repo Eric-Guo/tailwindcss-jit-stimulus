@@ -24,8 +24,8 @@ class SearchesController < ApplicationController
 
     def set_data_and_count_hash
       @materials = if @q.present?
-        Material.left_joins(:samples)
-          .where('materials.name LIKE ? OR sample.genus LIKE ?', "%#{@q}%", "%#{@q}%")
+        Material.left_joins(:samples).where('materials.level <> 1')
+          .where('materials.name LIKE ? OR sample.genus LIKE ? OR sample.species LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%").distinct
       else
         Material.none
       end
@@ -49,9 +49,11 @@ class SearchesController < ApplicationController
       end
 
       @count_hash = {}
-      @count_hash[:material] = @materials.count
+      @count_hash[:material] = @materials.count + Sample.where(obj_id: @materials.pluck(:id)).count
       @count_hash[:project] = @cases.count
       @count_hash[:manufacturer] = @manufacturers.count
       @count_hash[:news] = @news.count
+
+      @materials = @materials.includes(:samples)
     end
 end
