@@ -29,7 +29,7 @@
     <% end %>
     <% if material.samples.present? %>
       <% material.samples.each do |sample| %>
-        <%= link_to sample_path(id: sample.no) do %>
+        <%= link_to sample_path(sample) do %>
           <img class="mx-auto w-full h-52 object-cover" src="<%= sample.pic.present? ? mat_img_url(sample.pic, "") : get_first_url(material.cover) -%>" alt="">
           <h3 class="text-center mt-2 font-medium"><%= material.name -%>（样品）</h3>
           <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
