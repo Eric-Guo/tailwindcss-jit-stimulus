@@ -30,10 +30,11 @@
   },
   "babel": {
     "presets": [
-      "./babel-preset.js"
+      "./node_modules/@rails/webpacker/package/babel/preset.js"
     ]
   },
   "browserslist": [
-    "defaults"
+    "defaults",
+    "not IE 11"
   ]
 }
