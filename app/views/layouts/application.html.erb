@@ -44,7 +44,7 @@
               <%# 一级菜单 %>
               <nav class="sidebar-nav">
                 <% @sidebar_nav.each do |navItem| %>
-                  <div class="flex justify-between items-center sidebar-nav-item" data-sidebar-nav-target="nav1Item" data-action="click->sidebar-nav#nav1ItemClick" data-children="<%= navItem[:children].to_json %>">
+                  <div class="flex justify-between items-center sidebar-nav-item pl-1 pr-4" data-sidebar-nav-target="nav1Item" data-action="click->sidebar-nav#nav1ItemClick" data-children="<%= navItem[:children].to_json %>">
                     <div class="sidebar-nav-item-content truncate">
                       <span class="relative" title="<%= navItem[:title] %> <%= navItem[:subtitle] %>">
                         <span class="text-2xl"><%= navItem[:title] %></span>
