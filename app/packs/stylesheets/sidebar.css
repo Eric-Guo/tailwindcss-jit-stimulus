@@ -1,7 +1,7 @@
 @charset "utf8";
 
 .sidebar {
-  width: 960px;
+  width: 320px; /* init width set to level 1 enough */
   height: 100%;
 }
 
