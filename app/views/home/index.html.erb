@@ -81,7 +81,7 @@
       </div>
       <div class="absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%);">
         <p class="text-2xl 2xl:text-3xl font-medium whitespace-nowrap">
-          收录有 <span class="text-6xl 2xl:text-7xl">100</span> 多种材料
+          收录有 <span class="text-6xl 2xl:text-7xl"><%= @total[:material] %></span> 多种材料
         </p>
       </div>
     </div>
@@ -94,7 +94,7 @@
       </div>
       <div class="absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%);">
         <p class="text-2xl 2xl:text-3xl font-medium whitespace-nowrap">
-          收录有 <span class="text-6xl 2xl:text-7xl">500</span> 多个案例
+          收录有 <span class="text-6xl 2xl:text-7xl"><%= @total[:project] %></span> 多个案例
         </p>
       </div>
     </div>
@@ -107,7 +107,7 @@
       </div>
       <div class="absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%);">
         <p class="text-2xl 2xl:text-3xl font-medium whitespace-nowrap">
-          收录有 <span class="text-6xl 2xl:text-7xl">50</span> 多个材料供应商
+          收录有 <span class="text-6xl 2xl:text-7xl"><%= @total[:manufacturer] %></span> 多个材料供应商
         </p>
       </div>
     </div>
@@ -129,27 +129,39 @@
               至7月8日
             </p>
             <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl">16</span> 个新材料
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl"><%= @recently_materials.length %></span> 个新材料
             </p>
           </div>
         </div>
-        <div class="relative row-span-2 col-span-4">
-          <div class="grid grid-cols-4 grid-rows-2 w-full h-full gap-1">
-            <% (1..8).each do |i| %>
-              <div class="relative">
-                <img class="w-full h-full object-fill" src="<%= image_pack_path("static/new_mat_g#{i}.jpg") -%>" alt="">
-                <div class="absolute top-1/2 left-1/2 invisible hover:visible focus:visible" style="transform: translate(-50%, -50%);">
-                  <p class="text-base fond-medium 2xl:text-lg whitespace-nowrap">
-                    拉丝铜版
-                  </p>
-                </div>
+        <div
+          class="relative row-span-2 col-span-4"
+          data-controller="material-carousel"
+          data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
+          data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
+          data-material-carousel-duration-value="0.5"
+        >
+          <div class="relative w-full h-full overflow-hidden">
+            <% for i in 0...(@recently_materials.length.to_f / 8).ceil %>
+              <div class="absolute top-0 left-0 w-full h-full grid grid-cols-4 grid-rows-2 gap-1" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+                <% @recently_materials.slice(i * 8, (i + 1) * 8).each do |material| %>
+                  <div class="relative w-full" style="padding-top: 100%;">
+                    <div class="absolute top-0 left-0 w-full h-full bg-gray-500">
+                      <img class="w-full h-full object-fill" src="<%= get_first_url(material.cover) -%>" alt="">
+                      <div class="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-opacity flex items-center px-1">
+                        <p class="w-full text-sm lg:text-base fond-medium 2xl:text-lg whitespace-nowrap text-white truncate text-center" title="<%= material.name %>">
+                          <%= material.name %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             <% end %>
           </div>
-          <div class="absolute left-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);">
+          <div class="absolute left-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);" data-action="click->material-carousel#toPrev">
             <img class="w-full h-full object-cover" src="<%= image_pack_path('arrow_left.svg') %>" alt="">
           </div>
-          <div class="absolute right-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);">
+          <div class="absolute right-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);" data-action="click->material-carousel#toNext">
             <img class="w-full h-full object-cover" src="<%= image_pack_path('arrow_right.svg') %>" alt="">
           </div>
         </div>
