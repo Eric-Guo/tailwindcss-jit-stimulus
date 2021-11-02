@@ -4,7 +4,7 @@ class Cases < ApplicationRecord
   self.table_name = 'cases'
   has_many :case_materials, class_name: 'CasesMaterial'
 
-  default_scope { where(deleted_at: nil) }
+  default_scope { where(deleted_at: nil).where(display: 1) }
 
   def material
     if level == 3

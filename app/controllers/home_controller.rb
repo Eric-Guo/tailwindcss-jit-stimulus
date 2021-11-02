@@ -9,6 +9,8 @@ class HomeController < ApplicationController
     }
 
     @recently_materials = Material.where('level = ?', 3).order(created_at: :desc).limit(16)
+
+    @recently_projects = Cases.order(created_at: :desc).limit(10)
     
     @latest_news = News.order(updated_at: :desc).limit(4)
   end
