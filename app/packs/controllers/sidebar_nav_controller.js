@@ -83,7 +83,7 @@ export default class extends Controller {
 
   generalNavItem(data) {
     return `
-      <div class="flex justify-between items-center sidebar-nav-item" data-sidebar-nav-target="${data.targetName}" data-action="click->sidebar-nav#${data.clickName}" data-children='${JSON.stringify(data.children)}'>
+      <div class="flex justify-between items-center sidebar-nav-item pr-3" data-sidebar-nav-target="${data.targetName}" data-action="click->sidebar-nav#${data.clickName}" data-children='${JSON.stringify(data.children)}'>
         <div class="sidebar-nav-item-content truncate">
           ${data.url ? `
             <a class="relative" href="${data.url}" title="${data.title} ${data.subtitle}">
