@@ -4,7 +4,7 @@ class MaterialsController < ApplicationController
   include ApplicationHelper
   
   def show
-    @material = Material.find_by!(id: params[:id])
+    @material = Material.find(params[:id])
 
     @color_id = params["color_id"]&.strip
     @projects = get_color_system_projects(@material, @color_id)
