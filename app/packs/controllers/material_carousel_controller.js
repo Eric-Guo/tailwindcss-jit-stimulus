@@ -1,8 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
-import Viewer from "viewerjs"
 
 export default class extends Controller {
-  static targets = ['carouselItem', 'dotItem', 'viewer']
+  static targets = ['carouselItem', 'dotItem']
   static values = {
     enterClass: Array,
     leaveClass: Array,
@@ -11,7 +10,6 @@ export default class extends Controller {
     dotActiveClass: String,
     autoPlay: Boolean,
     autoPlayTime: Number,
-    viewer: Boolean,
   }
 
   connect() {
@@ -23,9 +21,6 @@ export default class extends Controller {
       this.autoPlayInterval = setInterval(() => {
         requestAnimationFrame(this.toNext.bind(this));
       }, this.autoPlayTime());
-    }
-    if (this.viewerValue && this.hasViewerTarget) {
-      this.viewer = new Viewer(this.viewerTarget);
     }
   }
 
@@ -149,6 +144,5 @@ export default class extends Controller {
   disconnect() {
     console.log('disconnect');
     if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
-    if (this.viewer) this.viewer.destroy();
   }
 }

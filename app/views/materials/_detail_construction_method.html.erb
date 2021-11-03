@@ -8,11 +8,16 @@
 
     <div class="grid grid-cols-3 gap-1.5 grid-rows-3 mt-4" style="height: 600px;">
       <% material.construction.slice(0, 4).each_with_index do |practice_detail, i| %>
-        <div class="relative flex flex-col bg-center bg-cover bg-no-repeat <%= i == 0 ? 'col-span-2 row-span-3' : ''  %>" style="background-image: url('<%= mat_img_url(practice_detail["url"], "") %>')">
-          <div class="mt-auto black-mask w-full p-2 text-white">
-            <div class="text-lg truncate"><%= practice_detail["name"] -%></div>
-          </div>
+        <div class="<%= i == 0 ? 'col-span-2 row-span-3' : ''  %>">
+          <img class="w-full h-full object-cover" src="<%= mat_img_url(practice_detail["url"], "") %>" alt="">
         </div>
+      <% end %>
+      <% if material.construction.length < 4 %>
+        <% Array.new(4 - material.construction.length).each do %>
+          <div class="flex items-center justify-center" style="background: #f2f2f2;">
+            <span>暂无相关图片</span>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

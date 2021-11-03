@@ -15,17 +15,16 @@
       data-material-carousel-duration-value="0.5"
       data-material-carousel-dot-normal-class-value="border-transparent"
       data-material-carousel-dot-active-class-value="border-gray-900"
-      data-material-carousel-viewer-value="true"
     >
       <% if material.material_product&.practical_applications.present? %>
-        <div class="relative overflow-hidden mt-4" style="height: 393px;" data-material-carousel-target="viewer">
+        <div class="relative overflow-hidden mt-4" style="height: 393px;" data-controller="picture-viewer">
           <% material&.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
-            <div class="w-full h-full absolute top-0 left-0" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+            <div class="w-full h-full absolute top-0 left-0 cursor-pointer" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
               <h5 class="text-lg font-medium text-center"><%= practical_application&.description -%></h5>
               <div class="relative mt-3">
                 <div class="relative w-full overflow-hidden" style="height: 353px;">
                   <div class="absolute w-full h-full">
-                    <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application&.path, "") -%>" alt="<%= practical_application&.description -%>">
+                    <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application&.path, "") -%>" alt="<%= practical_application&.description -%>" data-picture-viewer-target="image">
                   </div>
                 </div>
               </div>
