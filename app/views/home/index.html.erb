@@ -144,8 +144,8 @@
             <% for i in 0...(@recently_materials.length.to_f / 8).ceil %>
               <div class="absolute top-0 left-0 w-full h-full grid grid-cols-4 grid-rows-2 gap-1" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
                 <% @recently_materials.slice(i * 8, (i + 1) * 8).each do |material| %>
-                  <div class="relative w-full" style="padding-top: 100%;">
-                    <div class="absolute top-0 left-0 w-full h-full bg-gray-500">
+                  <a class="relative block w-full cursor-pointer" style="padding-top: 100%;" href="<%= material_path(material) %>">
+                    <div class="absolute top-0 left-0 w-full h-full">
                       <img class="w-full h-full object-fill" src="<%= get_first_url(material.cover) -%>" alt="">
                       <div class="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-opacity flex items-center px-1">
                         <p class="w-full text-sm lg:text-base fond-medium 2xl:text-lg whitespace-nowrap text-white truncate text-center" title="<%= material.name %>">
@@ -153,7 +153,7 @@
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 <% end %>
               </div>
             <% end %>
