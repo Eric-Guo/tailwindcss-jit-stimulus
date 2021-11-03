@@ -10,7 +10,9 @@
 
   <div class="flex flex-row mt-4">
     <div class="flex-none w-72">
-      <img class="w-72 h-72 object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
+      <div class="w-72 h-72 cursor-pointer" data-controller="picture-viewer">
+        <img class="w-full h-full object-cover" src="<%= get_first_url(material.cover) -%>" alt="" data-picture-viewer-target="image">
+      </div>
       <dl class="block w-72 mt-2 text-lg">
         <dt class="my-1 inline-block w-1/2">色系：</dt>
         <dd class="my-1 inline-block text-right" style="width: 48%">
