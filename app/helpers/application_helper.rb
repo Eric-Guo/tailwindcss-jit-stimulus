@@ -25,17 +25,17 @@ module ApplicationHelper
 
   def material_breadcrumbs(material)
     breadcrumbs = [
-      { title: '首页' },
+      { title: '首页', url: '/' },
     ]
     case material.level
     when 1
       breadcrumbs.push({ title: material.name })
     when 2
-      breadcrumbs.push({ title: material.parent_material.name })
+      breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) })
       breadcrumbs.push({ title: material.name })
     when 3
-      breadcrumbs.push({ title: material.grandpa_material.name })
-      breadcrumbs.push({ title: material.parent_material.name })
+      breadcrumbs.push({ title: material.grandpa_material.name, url: material_path(material.grandpa_material) })
+      breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) })
       breadcrumbs.push({ title: material.name })
     end
   end
