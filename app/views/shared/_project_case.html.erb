@@ -1,80 +1,12 @@
-<div class="relative">
-  <img class="w-full" src="<%= image_pack_path('project_new_g1.jpg') -%>" alt="">
-  <div class="absolute left-3 bottom-3 text-white text-left leading-0">
-    <p class="text-lg leading-tight">融创徐汇滨江壹号/<span class="text-sm">上海</span></p>
-    <p class="text-sm leading-tight">Shanghai West Bund Park</p>
-  </div>
-  <div class="absolute right-3 bottom-3 text-white text-right leading-0">
-    <p class="text-sm">内部项目</p>
-  </div>
-</div>
-<div class="relative">
-  <img class="w-full" src="<%= image_pack_path('project_new_g2.jpg') -%>" alt="">
-  <div class="absolute left-3 bottom-3 text-white text-left">
-    <p class="text-lg leading-tight">合肥北城中央公园中小学/<span class="text-sm">安徽合肥</span></p>
-    <p class="text-sm leading-tight">Hefei North City Central Park Primary & ...</p>
-  </div>
-  <div class="absolute right-3 bottom-3 text-white text-right leading-0">
-    <p class="text-sm">内部项目</p>
-  </div>
-</div>
-<div class="relative">
-  <img class="w-full" src="<%= image_pack_path('project_new_g3.jpg') -%>" alt="">
-  <div class="absolute left-3 bottom-3 text-white text-left">
-    <p class="text-lg leading-tight">北京大兴龙湖天街/<span class="text-sm">北京</span></p>
-    <p class="text-sm leading-tight">LONGFOR Beijing Daxing Paradise Walk</p>
-  </div>
-  <div class="absolute right-3 bottom-3 text-white text-right leading-0">
-    <p class="text-sm">内部项目</p>
-  </div>
-</div>
-<div class="relative">
-  <img class="w-full" src="<%= image_pack_path('project_new_g4.jpg') -%>" alt="">
-  <div class="absolute left-3 bottom-3 text-white text-left">
-    <p class="text-lg leading-tight">奥园昆山千灯镇誉景澜庭示范区/<span class="text-sm">江苏昆山</span></p>
-    <p class="text-sm leading-tight">AOYUAN Kunshan Riverside Mansion</p>
-  </div>
-  <div class="absolute right-3 bottom-3 text-white text-right leading-0">
-    <p class="text-sm">内部项目</p>
-  </div>
-</div>
-<div class="relative">
-  <img class="w-full" src="<%= image_pack_path('project_new_g5.jpg') -%>" alt="">
-  <div class="absolute left-3 bottom-3 text-white text-left">
-    <p class="text-lg leading-tight">国银·民生金融大厦/<span class="text-sm">广州广东</span></p>
-    <p class="text-sm leading-tight">Guoyin Minsheng Financial Building</p>
-  </div>
-  <div class="absolute right-3 bottom-3 text-white text-right leading-0">
-    <p class="text-sm">外部项目</p>
-  </div>
-</div>
-<div class="relative">
-  <img class="w-full" src="<%= image_pack_path('project_new_g6.jpg') -%>" alt="">
-  <div class="absolute left-3 bottom-3 text-white text-left">
-    <p class="text-lg leading-tight">同济大学运筹楼/<span class="text-sm">上海</span></p>
-    <p class="text-sm leading-tight">Operation Research Building of Tongji University</p>
-  </div>
-  <div class="absolute right-3 bottom-3 text-white text-right leading-0">
-    <p class="text-sm">外部项目</p>
-  </div>
-</div>
-<div class="relative">
-  <img class="w-full" src="<%= image_pack_path('project_new_g7.jpg') -%>" alt="">
-  <div class="absolute left-3 bottom-3 text-white text-left">
-    <p class="text-lg leading-tight">银川当代艺术美术馆/</span><span class="text-sm">甘肃银川</p>
-    <p class="text-sm leading-tight">Yinchuan Museum of Contemporary Art</p>
-  </div>
-  <div class="absolute right-3 bottom-3 text-white text-right leading-0">
-    <p class="text-sm">外部项目</p>
-  </div>
-</div>
-<div class="relative">
-  <img class="w-full" src="<%= image_pack_path('project_new_g8.jpg') -%>" alt="">
-  <div class="absolute left-3 bottom-3 text-white text-left">
-    <p class="text-lg leading-tight">海宁海派总部办公楼/</span><span class="text-sm">浙江海宁</p>
-    <p class="text-sm leading-tight">Haining Haipai Headquarters Office Building</p>
-  </div>
-  <div class="absolute right-3 bottom-3 text-white text-right leading-0">
-    <p class="text-sm">内部项目</p>
+<div class="relative" style="padding-top: 74.78%;">
+  <div class="absolute top-0 left-0 w-full h-full">
+    <img class="w-full h-full object-cover" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
+    <div class="absolute left-3 bottom-3 text-white text-left leading-0">
+      <p class="text-lg leading-tight"><%= project_case.project_name -%>/<span class="text-sm"><%= project_case.project_location -%></span></p>
+      <p class="text-sm leading-tight">Shanghai West Bund Park</p>
+    </div>
+    <div class="absolute right-3 bottom-3 text-white text-right leading-0">
+      <p class="text-sm"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></p>
+    </div>
   </div>
 </div>

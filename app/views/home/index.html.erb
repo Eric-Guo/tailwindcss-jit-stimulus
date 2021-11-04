@@ -126,7 +126,7 @@
           <img class="w-full h-full object-fill" src="<%= image_pack_path('news_material.jpg') -%>" alt="">
           <div class="absolute top-1/2 left-1/2 text-white" style="transform: translate(-50%, -50%);">
             <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-              至7月8日
+              <%= Time.now.strftime('至%m月%d日') %>
             </p>
             <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl"><%= @recently_materials.length %></span> 个新材料
@@ -158,35 +158,45 @@
               </div>
             <% end %>
           </div>
-          <div class="absolute left-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);" data-action="click->material-carousel#toPrev">
-            <img class="w-full h-full object-cover" src="<%= image_pack_path('arrow_left.svg') %>" alt="">
-          </div>
-          <div class="absolute right-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);" data-action="click->material-carousel#toNext">
-            <img class="w-full h-full object-cover" src="<%= image_pack_path('arrow_right.svg') %>" alt="">
-          </div>
+          <% if @recently_materials.length > 8 %>
+            <div class="absolute left-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);" data-action="click->material-carousel#toPrev">
+              <img class="w-full h-full object-cover" src="<%= image_pack_path('arrow_left.svg') %>" alt="">
+            </div>
+            <div class="absolute right-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);" data-action="click->material-carousel#toNext">
+              <img class="w-full h-full object-cover" src="<%= image_pack_path('arrow_right.svg') %>" alt="">
+            </div>
+          <% end %>
         </div>
         <div class="relative flex row-span-2 col-span-3">
           <img class="w-full h-full object-fill" src="<%= image_pack_path('news_project.jpg') -%>" alt="">
           <div class="absolute top-1/2 left-1/2 text-white" style="transform: translate(-50%, -50%);">
             <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-              至7月8日
+              <%= Time.now.strftime('至%m月%d日') %>
             </p>
             <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl">10</span> 个新案例
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl"><%= @recently_projects.length %></span> 个新案例
             </p>
           </div>
         </div>
-        <div class="relative grid row-span-2 col-span-4">
-          <div class="relative w-full h-full">
-            <img class="w-full h-full object-fill" src="<%= image_pack_path('news_project_1.jpg') -%>" alt="">
-            <div class="absolute left-1/2 bottom-0 text-white text-lg" style="transform: translate(-50%, 0);">
-              华夏幸福廊坊市固安ING幸福城
+        <div
+          class="relative grid row-span-2 col-span-4 overflow-hidden"
+          data-controller="material-carousel"
+          data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
+          data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
+          data-material-carousel-duration-value="0.5"
+        >
+          <% @recently_projects.each_with_index do |project, i| %>
+            <div class="absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+              <img class="w-full h-full object-fill" src="<%= get_first_url(project.live_photos) -%>" alt="">
+              <div class="absolute left-1/2 bottom-0 text-white text-lg" style="transform: translate(-50%, 0);">
+                <%= project.project_name -%>
+              </div>
             </div>
-          </div>
-          <div class="absolute left-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);">
+          <% end %>
+          <div class="absolute left-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);" data-action="click->material-carousel#toPrev">
             <img class="w-full h-full object-cover" src="<%= image_pack_path('arrow_left.svg') %>" alt="">
           </div>
-          <div class="absolute right-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);">
+          <div class="absolute right-2 cursor-pointer" style="style: 34px; height: 34px; top: calc((100% - 34px) / 2);" data-action="click->material-carousel#toNext">
             <img class="w-full h-full object-cover" src="<%= image_pack_path('arrow_right.svg') %>" alt="">
           </div>
         </div>
@@ -297,7 +307,9 @@
   <a class="more-btn inline" href="<%= root_path -%>">MORE+</a>
 </div>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 grid grid-cols-4 gap-1.5">
-  <%= render partial: 'shared/project_case', locals: { } -%>
+  <% @projects.each do |project| %>
+    <%= render partial: 'shared/project_case', locals: { project_case: project } -%>
+  <% end %>
 </div>
 
 <%# 供应商 %>
