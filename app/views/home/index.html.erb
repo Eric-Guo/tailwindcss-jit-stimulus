@@ -129,7 +129,7 @@
               <%= Time.now.strftime('至%m月%d日') %>
             </p>
             <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl"><%= @recently_materials.length %></span> 个新材料
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl"><%= @total[:recently_materials] %></span> 个新材料
             </p>
           </div>
         </div>
@@ -174,7 +174,7 @@
               <%= Time.now.strftime('至%m月%d日') %>
             </p>
             <p class="text-xl 2xl:text-2xl font-medium whitespace-nowrap">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl"><%= @recently_projects.length %></span> 个新案例
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增 <span class="text-4xl 2xl:text-5xl"><%= @total[:recently_project] %></span> 个新案例
             </p>
           </div>
         </div>
@@ -188,7 +188,7 @@
           <% @recently_projects.each_with_index do |project, i| %>
             <div class="absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
               <img class="w-full h-full object-fill" src="<%= get_first_url(project.live_photos) -%>" alt="">
-              <div class="absolute left-1/2 bottom-0 text-white text-lg" style="transform: translate(-50%, 0);">
+              <div class="absolute left-0 bottom-0 w-full text-white text-lg text-center truncate p-2">
                 <%= project.project_name -%>
               </div>
             </div>
