@@ -83,3 +83,16 @@
 .-animation-transition-x-full-reverse {
   animation: -translate-x-full .5s ease-in-out reverse;
 }
+
+
+.circle-arrow {
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  transition: all .15s ease-in-out;
+  color: #999;
+}
+
+.circle-arrow:hover {
+  background: rgba(255, 255, 255, 0.85);
+  color: #666;
+}
