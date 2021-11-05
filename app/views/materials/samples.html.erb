@@ -1,10 +1,10 @@
 <%= render partial: 'shared/header', locals: {} -%>
 
-<div class="text-sm text-gray-500 mx-auto mt-12" style="width: 1600px;">
-  <% breadcrumbs = material_breadcrumbs(@material, in_samples: true) %>
-  <%= raw breadcrumbs.map { |item| \
-    item[:url].present? \
-    ? "<a href=\"#{item[:url]}\">#{item[:title]}</a>" \
-    : "<span class='text-black'>#{item[:title]}</span>" \
-  }.join('<span> > </span>') %>
+<div class="flex flex-row px-48">
+  <section class="w-full mr-6 max-w-lg lg:max-w-xl xl:max-w-5xl flex flex-col">
+    <%# 产品样品 %>
+    <div class="mx-4 mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">样品列表</span><span class="text-xl font-light">Samples</span>
+    </div>
+  </section>
 </div>
