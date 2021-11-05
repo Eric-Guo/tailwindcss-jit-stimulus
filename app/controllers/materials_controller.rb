@@ -10,9 +10,13 @@ class MaterialsController < ApplicationController
     @projects = get_color_system_projects(@material, @color_id)
   end
 
+  def samples
+    @material = Material.find(params[:id])
+  end
+
   def color_system_list
     @material = Material.find(params[:id])
-    @color_id = params["color_id"]&.strip
+    @color_id = params['color_id']&.strip
     @projects = get_color_system_projects(@material, @color_id)
   end
 
@@ -55,6 +59,7 @@ class MaterialsController < ApplicationController
   end
 
   private
+
     def get_color_system_projects(material, color_id = nil)
       projects = Material.joins(:material_product)
 

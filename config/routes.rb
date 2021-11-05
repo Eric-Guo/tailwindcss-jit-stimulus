@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       get :color_system_list
       get :download_texture
+      get :samples
     end
   end
 

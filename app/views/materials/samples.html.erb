@@ -1,0 +1,10 @@
+<%= render partial: 'shared/header', locals: {} -%>
+
+<div class="text-sm text-gray-500 mx-auto mt-12" style="width: 1600px;">
+  <% breadcrumbs = material_breadcrumbs(@material, in_samples: true) %>
+  <%= raw breadcrumbs.map { |item| \
+    item[:url].present? \
+    ? "<a href=\"#{item[:url]}\">#{item[:title]}</a>" \
+    : "<span class='text-black'>#{item[:title]}</span>" \
+  }.join('<span> > </span>') %>
+</div>
