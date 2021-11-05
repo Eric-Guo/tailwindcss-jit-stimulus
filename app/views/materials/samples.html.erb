@@ -19,9 +19,9 @@
 </div>
 
 <section class="px-48">
-  <div class="mx-4 mt-4 mb-16 grid grid-cols-6 gap-3">
+  <div class="mx-4 mt-2 mb-16 grid grid-cols-6 gap-3">
     <% @material.samples.each do |sample| %>
-      <div>
+      <div class="mb-4">
         <div class="mb-1">
           <img class="w-full h-56 min-h-full object-cover" src="<%= mat_img_url(sample.pic, "") -%>" alt="">
         </div>
