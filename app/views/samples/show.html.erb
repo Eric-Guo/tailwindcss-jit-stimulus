@@ -26,12 +26,7 @@
             <dd class="mt-2 inline"><%= @sample.material&.no -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">色系：</dt>
-            <dd class="mt-2 inline">
-              <% @sample&.color_systems&.each_with_index do |color_system, i| %><%= color_system.description -%>
-                <% if i == @sample.color_systems.length %>,
-                <% end %>
-              <% end %>
-            </dd>
+            <dd class="mt-2 inline"><%= @sample&.color_systems&.collect(&:description)&.join(' ') -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">色号：</dt>
             <dd class="mt-2 inline"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></dd>
@@ -40,13 +35,7 @@
             <dd class="mt-2 inline"><%= @sample.spec_model -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">表面效果：</dt>
-            <dd class="mt-2 inline">
-              <% @sample&.surface_effects&.each_with_index do |surface_effect, i| %>
-                <%= surface_effect.description -%>
-                <% if i == @sample.surface_effects.length %>,
-                <% end %>
-              <% end %>
-            </dd>
+            <dd class="mt-2 inline"><%= @sample&.surface_effects&.collect(&:description)&.join(' ') -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">存储位置：</dt>
             <dd class="mt-2 inline" data-controller="modal" data-modal-allow-background-close="true">

@@ -17,10 +17,9 @@
         <span class="font-medium"><%= @sample.material&.no -%></span>
       </p>
       <p class="text-xs whitespace-nowrap">色系：
-        <% @sample&.color_systems&.each_with_index do |color_system, i| %><span class="font-medium"><%= color_system.description -%></span>
-          <% if i == @sample.color_systems.length %>,
-          <% end %>
-        <% end %>
+        <span class="font-medium">
+          <%= @sample&.color_systems&.collect(&:description)&.join(' ') -%>
+        </span>
       </p>
       <p class="text-xs whitespace-nowrap">色号：
         <span class="font-medium"><%= @sample.color_code -%></span>
@@ -29,10 +28,9 @@
         <span class="font-medium"><%= @sample.spec_model -%></span>
       </p>
       <p class="text-xs whitespace-nowrap">表面效果：
-        <span class="font-medium"><% @sample&.surface_effects&.each_with_index do |surface_effect, i| %><%= surface_effect.description -%>
-            <% if i == @sample.surface_effects.length %>,
-                <% end %>
-              <% end %></span>
+        <span class="font-medium">
+          <%= @sample&.surface_effects&.collect(&:description)&.join(' ') -%>
+        </span>
       </p>
       <div class="text-xs whitespace-nowrap" data-controller="modal" data-modal-allow-background-close="true">储存位置：
         <a href="#" data-action="click->modal#open">
