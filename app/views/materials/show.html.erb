@@ -1,8 +1,8 @@
 <%= render partial: 'shared/header', locals: {} -%>
 
-<% breadcrumbs = material_breadcrumbs(@material) %>
 <div class="text-sm text-gray-500 mx-auto mt-12" style="width: 1600px;">
-  <%= raw material_breadcrumbs(@material).map.with_index { |item, i| \
+  <% breadcrumbs = material_breadcrumbs(@material, in_samples: false) %>
+  <%= raw breadcrumbs.map.with_index { |item, i| \
     item[:url].present? \
     ? "<a class=\"#{ i == breadcrumbs.length - 1 ? 'text-black' : '' }\" href=\"#{item[:url]}\">#{item[:title]}</a>" \
     : "<span class=\"#{ i == breadcrumbs.length - 1 ? 'text-black' : '' }\">#{item[:title]}</span>" \

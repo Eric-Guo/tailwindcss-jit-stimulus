@@ -5,7 +5,7 @@
       <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem"><%= material.name %></span>
       <span class="text-xl font-light">（<%= material.no %>）</span>
     </div>
-    <a class="more-btn" href="<%= root_path -%>">进入相关样品页</a>
+    <a class="more-btn" href="<%= samples_material_path(id: material.id) -%>">进入相关样品页</a>
   </div>
 
   <div class="flex flex-row mt-4">
