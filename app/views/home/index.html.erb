@@ -148,7 +148,7 @@
                 <% @recently_materials.slice(i * 8, (i + 1) * 8).each do |material| %>
                   <a class="relative block w-full cursor-pointer" style="padding-top: 100%;" href="<%= material_path(material) %>">
                     <div class="absolute top-0 left-0 w-full h-full">
-                      <img class="w-full h-full object-fill" src="<%= get_first_url(material.cover) -%>" alt="">
+                      <img class="w-full h-full object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
                       <div class="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-opacity flex items-center px-1">
                         <p class="w-full text-sm lg:text-base fond-medium 2xl:text-lg whitespace-nowrap text-white truncate text-center" title="<%= material.name %>">
                           <%= material.name %>
@@ -193,7 +193,7 @@
         >
           <% @recently_projects.each_with_index do |project, i| %>
             <div class="absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
-              <img class="w-full h-full object-fill" src="<%= mat_img_url(project.web_cover) -%>" alt="">
+              <img class="w-full h-full object-cover" src="<%= mat_img_url(project.web_cover) -%>" alt="">
               <div class="absolute left-0 bottom-0 w-full text-white text-lg text-center truncate p-2">
                 <%= project.project_name -%>
               </div>
