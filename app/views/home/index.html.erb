@@ -224,7 +224,7 @@
             <p class="text-center text-base font-normal tracking-wider leading-none"><%= Date::ABBR_MONTHNAMES[news.created_at.month].upcase -%></p>
             <p class="text-3xl text-center font-semibold tracking-widest leading-none mt-5"><%= news.created_at.day -%></p>
           </div>
-          <div class="flex-1 w-0 ml-28">
+          <div class="flex-1 w-0 ml-4 md:ml-8 lg:ml-12 xl:ml-20 2xl:ml-28">
             <div class="flex text-2xl text-left leading-tight">
               <h1 class="flex-1 w-0 font-bold truncate" title="<%= news.title -%>"><%= news.title -%></h1>
               <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
