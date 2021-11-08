@@ -321,12 +321,12 @@
     <div class="relative" style="padding-top: 74.78%;">
       <div class="absolute top-0 left-0 w-full h-full">
         <img class="w-full h-full object-cover" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
-        <div class="absolute left-3 bottom-3 text-white text-left leading-0">
-          <p class="text-lg leading-tight"><%= project_case.project_name -%>/<span class="text-sm"><%= project_case.project_location -%></span></p>
-          <p class="text-sm leading-tight">Shanghai West Bund Park</p>
-        </div>
-        <div class="absolute right-3 bottom-3 text-white text-right leading-0">
-          <p class="text-sm"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></p>
+        <div class="absolute left-0 bottom-0 p-3 w-full text-white black-mask">
+          <p class="text-lg leading-tight truncate"><%= project_case.project_name -%>/<span class="text-sm"><%= project_case.project_location -%></span></p>
+          <div class="flex flex-row items-center justify-center">
+            <p class="text-sm leading-tight flex-1 truncate">Shanghai West Bund Park</p>
+            <p class="text-sm flex-none"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></p>
+          </div>
         </div>
       </div>
     </div>
