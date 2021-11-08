@@ -24,12 +24,13 @@
   <% @cases.each do |project_case| %>
     <div class="mb-4">
       <img class="w-full h-56 min-h-full object-cover" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
-      <div class="flex justify-between items-baseline"
+      <div class="flex justify-between items-baseline">
         <p class="mt-2 text-sm font-bold whitespace-nowrap">
           <%= project_case.project_name.truncate(14) -%>/<span class="text-xs"><%= project_case.project_location.gsub('上海市','') -%></span>
         </p>
         <p class="whitespace-nowrap text-gray-400 text-xs"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></p>
       </div>
+      <p class="text-sm font-medium whitespace-nowrap">真石漆｜质感涂料｜黄金麻</p>
     </div>
   <% end %>
 </div>
