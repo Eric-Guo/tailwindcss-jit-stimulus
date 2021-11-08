@@ -164,13 +164,12 @@
         <div class="relative w-full h-28">
           <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) %>" alt="">
           <div class="absolute bottom-0 left-0 w-full flex justify-between items-center h-6 px-2 text-white text-xs black-mask">
-            <div class="truncate"><%= material.name %></div>
+            <div class="truncate" title="<%= material.name -%>"><%= material.name %></div>
             <div class="flex-none ml-3"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></div>
           </div>
         </div>
         <div class="text-black-6c mt-1">
-          <div class="text-sm truncate"><%= project_case.project_name -%>/<%= project_case.project_location -%></div>
-          <div class="text-xs truncate"></div>
+          <div class="text-sm truncate" title="<%= project_case.project_name -%>"><%= project_case.project_name -%>/<%= project_case.project_location -%></div>
         </div>
       </div>
     <% end %>
