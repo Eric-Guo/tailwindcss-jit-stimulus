@@ -28,6 +28,8 @@ class HomeController < ApplicationController
     
     @latest_news = News.order(updated_at: :desc).limit(4)
 
-    @projects = Cases.order(created_at: :desc).limit(8)
+    @projects = Cases.order(top_at: :desc).limit(8)
+
+    @manufacturer_cates = Material.where(level: 1)
   end
 end
