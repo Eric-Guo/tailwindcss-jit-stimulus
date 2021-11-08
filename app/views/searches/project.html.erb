@@ -24,9 +24,12 @@
   <% @cases.each do |project_case| %>
     <div class="mb-4">
       <img class="w-full h-56 min-h-full object-cover" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
-      <p class="mt-2 text-sm font-bold leading-8 align-bottom"><%= project_case.project_name.truncate(12) -%>/<span class="text-sm"><%= project_case.project_location -%></span>
-        <span class="text-xs float-right text-gray-400 "><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></span>
-      </p>
+      <div class="flex justify-between items-baseline"
+        <p class="mt-2 text-sm font-bold whitespace-nowrap">
+          <%= project_case.project_name.truncate(14) -%>/<span class="text-xs"><%= project_case.project_location.gsub('上海市','') -%></span>
+        </p>
+        <p class="whitespace-nowrap text-gray-400 text-xs"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></p>
+      </div>
     </div>
   <% end %>
 </div>
