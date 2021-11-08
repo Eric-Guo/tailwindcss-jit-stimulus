@@ -4,5 +4,13 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.exclude": {
+			".byebug_history": true,
+			"*.sublime-workspace": true,
+			"**/log": true,
+			"**/node_modules": true,
+			"**/tmp": true
+		}
+	}
 }
