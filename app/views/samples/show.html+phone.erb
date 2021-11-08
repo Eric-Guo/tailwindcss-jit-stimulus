@@ -94,7 +94,7 @@
     <% @cases.each_with_index do |project_case, i| %>
     <div class="mx-1">
       <div class="relative">
-        <img class="w-full" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
+        <img class="w-full" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
         <div class="absolute right-1 bottom-1 text-white text-right">
           <p class="text-xs"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></p>
         </div>

@@ -162,7 +162,7 @@
     <% cases.each do |project_case| %>
       <div>
         <div class="relative w-full h-28">
-          <img class="w-full h-full object-cover" src="<%= get_first_url(project_case.live_photos) %>" alt="">
+          <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) %>" alt="">
           <div class="absolute bottom-0 left-0 w-full flex justify-between items-center h-6 px-2 text-white text-xs black-mask">
             <div class="truncate"><%= material.name %></div>
             <div class="flex-none ml-3"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></div>

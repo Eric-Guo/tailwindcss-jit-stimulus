@@ -193,7 +193,7 @@
         >
           <% @recently_projects.each_with_index do |project, i| %>
             <div class="absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
-              <img class="w-full h-full object-fill" src="<%= get_first_url(project.live_photos) -%>" alt="">
+              <img class="w-full h-full object-fill" src="<%= mat_img_url(project.web_cover) -%>" alt="">
               <div class="absolute left-0 bottom-0 w-full text-white text-lg text-center truncate p-2">
                 <%= project.project_name -%>
               </div>
@@ -320,7 +320,7 @@
   <% @projects.each do |project_case| %>
     <div class="relative" style="padding-top: 74.78%;">
       <div class="absolute top-0 left-0 w-full h-full">
-        <img class="w-full h-full object-cover" src="<%= get_first_url(project_case.live_photos) -%>" alt="">
+        <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
         <div class="absolute left-0 bottom-0 p-3 w-full text-white black-mask">
           <p class="text-lg leading-tight truncate"><%= project_case.project_name -%>/<span class="text-sm"><%= project_case.project_location -%></span></p>
           <div class="flex flex-row items-center justify-center">
