@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def mat_img_url(path, fallback_path)
+  def mat_img_url(path, fallback_path = '')
     if path.present?
       "https://matlib.thape.com.cn/#{path}"
-    else
+    elsif fallback_path.present?
       image_pack_path(fallback_path)
+    else
+      ''
     end
   end
 
