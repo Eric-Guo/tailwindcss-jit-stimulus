@@ -75,7 +75,14 @@
           <!-- Modal Inner Container -->
           <div class="max-h-screen w-full max-w-lg relative">
             <div class="m-1 p-2 bg-white rounded shadow">
-              <img class="w-full rounded shadow object-cover" src="<%= image_pack_path('contact_us_head.jpg') -%>">
+              <div class="relative">
+                <img class="w-full rounded shadow object-cover" src="<%= image_pack_path('contact_us_head.jpg') -%>">
+                <div class="absolute inset-x-0 top-0 h-16 text-white text-xl pt-12">天华建造研究中心</div>
+                <div class="absolute inset-x-0 bottom-0 h-16 text-white">
+                  <p>需求登记</p>
+                  <p>Your demand</p>
+                </div>
+              </div>
               <div class="pt-8 pb-4">
                 <p>致电Tel: 64281588-8914</p>
                 <p>或添加建筑委企业微信</p>
