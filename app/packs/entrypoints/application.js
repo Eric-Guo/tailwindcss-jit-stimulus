@@ -23,15 +23,15 @@ import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
 window.Stimulus = Application.start()
 
 // Import and register all TailwindCSS Components
-import tailwindcssStimulusComponents from "tailwindcss-stimulus-components/dist/tailwindcss-stimulus-components.modern"
-Stimulus.register('alert', tailwindcssStimulusComponents.Alert)
-Stimulus.register('autosave', tailwindcssStimulusComponents.Autosave)
-Stimulus.register('dropdown', tailwindcssStimulusComponents.Dropdown)
-Stimulus.register('modal', tailwindcssStimulusComponents.Modal)
-Stimulus.register('tabs', tailwindcssStimulusComponents.Tabs)
-Stimulus.register('popover', tailwindcssStimulusComponents.Popover)
-Stimulus.register('toggle', tailwindcssStimulusComponents.Toggle)
-Stimulus.register('slideover', tailwindcssStimulusComponents.Slideover)
+import {Alert, Autosave, Dropdown, Modal, Tabs, Popover, Toggle, Slideover} from "tailwindcss-stimulus-components"
+Stimulus.register('alert', Alert)
+Stimulus.register('autosave', Autosave)
+Stimulus.register('dropdown', Dropdown)
+Stimulus.register('modal', Modal)
+Stimulus.register('tabs', Tabs)
+Stimulus.register('popover', Popover)
+Stimulus.register('toggle', Toggle)
+Stimulus.register('slideover', Slideover)
 
 const context = require.context("../controllers", true, /\.js$/)
 Stimulus.load(definitionsFromContext(context))
