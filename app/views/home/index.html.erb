@@ -65,10 +65,26 @@
       <% end %>
     </div>
     <div class="text-center pt-20 pb-32">
-      <a class="text-2xl text-white font-medium border-b-2 border-gray-100 border-solid pb-1"
-        href="mailto:architectonic@thape.com.cn?subject=天华材料库需求登记">
-        <span class="text-xl mr-2">需求登记</span><span class="text-lg">Your demand</span>
-      </a>
+      <div data-controller="modal" data-modal-allow-background-close="true">
+        <a href="#" data-action="click->modal#open" class="text-2xl text-white font-medium border-b-2 border-gray-100 border-solid pb-1">
+          <span class="text-xl mr-2">需求登记</span><span class="text-lg">Your demand</span>
+        </a>
+
+        <!-- Modal Container -->
+        <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
+          <!-- Modal Inner Container -->
+          <div class="max-h-screen w-full max-w-lg relative">
+            <div class="m-1 p-2 bg-white rounded shadow">
+              <img class="w-full rounded shadow object-cover" src="<%= image_pack_path('contact_us_head.jpg') -%>">
+              <div class="pt-8 pb-4">
+                <p>致电Tel: 64281588-8914</p>
+                <p>或添加建筑委企业微信</p>
+                <img class="w-1/2 mx-auto" src="<%= image_pack_path('contact_us_code.png') -%>">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
