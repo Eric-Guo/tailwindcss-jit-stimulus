@@ -7,26 +7,26 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
     "@hotwired/turbo": "^7.0.1",
-    "@rails/webpacker": "^6.0.0-rc.5",
+    "@rails/webpacker": "^6.0.0-rc.6",
     "@tailwindcss/forms": "^0.3.4",
     "autoprefixer": "^10.3.7",
     "css-loader": "^6.4.0",
     "css-minimizer-webpack-plugin": "^3.1.1",
-    "mini-css-extract-plugin": "^2.4.3",
-    "mrujs": "^0.4.21",
+    "mini-css-extract-plugin": "^2.4.4",
+    "mrujs": "^0.6.0",
     "postcss": "^8.3.11",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^14.0.2",
     "postcss-loader": "^6.2.0",
     "postcss-preset-env": "^6.7.0",
-    "tailwindcss": "^2.2.17",
-    "webpack": "^5.59.1",
+    "tailwindcss": "^2.2.19",
+    "webpack": "^5.62.1",
     "webpack-cli": "^4.9.1"
   },
   "version": "0.1.0",
   "devDependencies": {
     "@webpack-cli/serve": "^1.6.0",
-    "webpack-dev-server": "^4.3.1"
+    "webpack-dev-server": "^4.4.0"
   },
   "babel": {
     "presets": [
