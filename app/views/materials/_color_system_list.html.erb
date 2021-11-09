@@ -13,13 +13,13 @@
     <div class="flex-none w-24 bg-gray-100 text-black-6c font-medium px-5 h-full flex items-center justify-end">色系</div>
     <div class="flex w-0 flex-1 items-center overflow-auto scrollbar-none" data-action="wheel->material-color-system#navScroll:capture" data-material-color-system-target="nav">
       <div class="flex-none mx-2 px-5 py-2 <%= color_id.present? ? '' : 'active-pill' %>" data-active="<%= color_id.blank? %>" data-material-color-system-target="navItem">
-        <a href="<%= material_path(material.id) %>">
+        <a href="<%= material_path(material.id) %>" data-turbo-frame="_top">
           全部
         </a>
       </div>
       <% material.parent_color_systems&.each do |color_system| %>
         <div class="flex-none mx-2 px-5 py-2 <%= color_id == color_system.id.to_s ? 'active-pill' : '' %>" data-active="<%= color_id == color_system.id.to_s %>" data-material-color-system-target="navItem">
-          <a href="<%= material_path(material.id, color_id: color_system.id) %>">
+          <a href="<%= material_path(material.id, color_id: color_system.id) %>" data-turbo-frame="_top">
             <%= color_system.description -%>
           </a>
         </div>
