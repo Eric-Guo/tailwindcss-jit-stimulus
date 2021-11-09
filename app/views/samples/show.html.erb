@@ -1,7 +1,7 @@
 <%= render partial: 'shared/header', locals: { } -%>
 
 <p class="mx-4 px-48 pt-8 text-sm text-gray-500">
-  <% breadcrumbs = material_breadcrumbs(@sample.material, append_title: @sample.material&.name) %>
+  <% breadcrumbs = material_breadcrumbs(@sample.material, append_title: "#{@sample.material&.name}（样品）") %>
   <%= raw breadcrumbs.map { |item| \
     item[:url].present? \
     ? "<a href=\"#{item[:url]}\">#{item[:title]}</a>" \
