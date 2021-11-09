@@ -5,9 +5,26 @@ class MaterialsController < ApplicationController
   
   def show
     @material = Material.find(params[:id])
-
-    @color_id = params["color_id"]&.strip
-    @projects = get_color_system_projects(@material, @color_id)
+    
+    case @material.level
+    when 1
+      material = Material.where(grandpa_id: @material.id).first
+      if material
+        redirect_to material_path(material)
+      else
+        @projects = []
+      end
+    when 2
+      material = Material.where(parent_id: @material.id).first
+      if material
+        redirect_to material_path(material)
+      else
+        @projects = []
+      end
+    when 3
+      @color_id = params["color_id"]&.strip
+      @projects = get_color_system_projects(@material, @color_id)
+    end
   end
 
   def samples
@@ -69,12 +86,11 @@ class MaterialsController < ApplicationController
     
       case material.level
       when 1
-        projects = projects.where(parent_id: Material.select(:id).where(parent_id: material.id))
+        projects = projects.where(grandpa_id: material.id)
       when 2
         projects = projects.where(parent_id: material.id)
       when 3
         projects = projects.where(parent_id: material.parent_id)
       end
-      projects.sort_by { |item| item.id == material.id ? -1 : 0 }
     end
 end
