@@ -43,6 +43,18 @@ class HomeController < ApplicationController
       { mat: Material.find_by(name: '新型'), title: '新材料', subtitle: 'New Materials', cover: 'mat_nav_g10.jpg' },
     ]
 
-    @manufacturer_cates = Material.where(level: 1)
+    @manufacturer_cates = Material.where(level: 1).map do |manufacturer_cate|
+      material_ids = Material.where('id = :id OR parent_id = :id OR grandpa_id = :id', id: manufacturer_cate.id).pluck(:id)
+      manufacturers = Manufacturer.joins(:material_manufacturers).where(material_manufacturers: { material_id: material_ids }).order(top_at: :desc).limit(2).distinct
+      {
+        name: manufacturer_cate.name,
+        manufacturers: manufacturers.map do |manufacturer|
+          {
+            name: manufacturer.name,
+            logo: manufacturer.logo,
+          }
+        end,
+      }
+    end
   end
 end
