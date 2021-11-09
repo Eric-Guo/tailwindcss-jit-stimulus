@@ -293,11 +293,11 @@
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 grid grid-cols-5 xl:grid-cols-10 gap-4">
   <% @manufacturer_cates.each do |manufacturer_cate| %>
     <div class="flex flex-col w-full py-4 rounded-lg shadow-tw-light">
-      <h5 class="text-center"><%= manufacturer_cate.name %>供应商</h5>
-      <% manufacturer_cate.manufacturers.order(top_at: :desc).limit(2).each do |manufacturer| %>
+      <h5 class="text-center"><%= manufacturer_cate[:name] %>供应商</h5>
+      <% manufacturer_cate[:manufacturers].each do |manufacturer| %>
         <div class="relative w-full" style="padding-top: 100%;">
           <div class="absolute top-0 left-0 w-full h-full p-4">
-            <img class="w-full h-full object-scale-down" src="<%= mat_img_url(manufacturer.logo) -%>" alt="">
+            <img class="w-full h-full object-scale-down" src="<%= mat_img_url(manufacturer[:logo]) -%>" alt="">
           </div>
         </div>
       <% end %>
