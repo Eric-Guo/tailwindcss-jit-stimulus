@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_ie_warning
   before_action :set_tree_materials
   before_action :set_sidebar_nav
+  before_action :set_footer_info
 
   private
 
@@ -67,5 +68,17 @@ class ApplicationController < ActionController::Base
           url: '',
         }
       ]
+    end
+
+    def set_footer_info
+      @footer_info = {
+        phone_number: '64281588-8914',
+        email: 'architectonic@thape.com.cn',
+        links: [
+          { title: '建筑委', url: 'http://jzw.thape.com.cn/' },
+          { title: '材料在线', url: 'http://www.clzx.net/' },
+          { title: '阿奇找找', url: 'https://www.archifound.com/#/' },
+        ],
+      }
     end
 end

@@ -71,7 +71,7 @@
                   </svg>
                   <span class="ml-1">电话 Phone</span>
                 </div>
-                <div>xxxxxxxxxxxxx</div>
+                <div><%= @footer_info[:phone_number] %></div>
                 <div class="mt-4 flex items-center">
                   <svg class="text-base" viewBox="0 0 1024 1024" version="1.1" width="1em" height="1em">
                     <path fill="currentColor" d="M143.36 184.32h737.28a61.44 61.44 0 0 1 61.44 61.44v532.48a61.44 61.44 0 0 1-61.44 61.44H143.36a61.44 61.44 0 0 1-61.44-61.44V245.76a61.44 61.44 0 0 1 61.44-61.44z m40.96 81.92a20.48 20.48 0 0 0-20.48 20.48v450.56a20.48 20.48 0 0 0 20.48 20.48h655.36a20.48 20.48 0 0 0 20.48-20.48V286.72a20.48 20.48 0 0 0-20.48-20.48H184.32z"></path>
@@ -79,7 +79,7 @@
                   </svg>
                   <span class="ml-1">邮箱 Email</span>
                 </div>
-                <div>xxx@thape.com.cn</div>
+                <div><%= @footer_info[:email] %></div>
               </div>
             </div>
             <div class="relative flex sidebar-nav-container hidden" data-sidebar-nav-target="nav2Container">
@@ -101,7 +101,7 @@
     <% if @browser.mobile? %>
       <footer class="bg-gray-800 text-white text-xs p-4">
         <p class="my-1">联系我们：建筑委</p>
-        <p class="my-1">电话：xxxxxxxxxx 邮箱：xxx@thape.com.cn</p>
+        <p class="my-1">电话：<%= @footer_info[:phone_number] %> 邮箱：<%= @footer_info[:email] %></p>
         <p class="mb-1 mt-4">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</p>
         <p class="my-1">友情链接：<span class="mx-1">建筑委</span><span class="mx-1">材料在线</span><span class="mx-1">阿奇找找</span></p>
       </footer>
@@ -110,13 +110,16 @@
         <nav class="flex items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
           <div class="w-0 flex-1">
             <p>联系我们：建筑委</p>
-            <p>电话：xxxxxxxxxx 邮箱：xxx@thape.com.cn</p>
+            <p>电话：<%= @footer_info[:phone_number] %> 邮箱：<%= @footer_info[:email] %></p>
           </div>
           <div>
             <a href="#" class="font-medium">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</a>
           </div>
-          <div class="w-0 flex-1 flex justify-end">
-            <p>友情链接：<span class="mx-4">建筑委</span><span class="mx-4">材料在线</span><span class="mx-4">阿奇找找</span></p>
+          <div class="w-0 flex-1 flex justify-end gap-4">
+            <div>友情链接:</div>
+            <% @footer_info[:links].each do |link| %>
+              <a href="<%= link[:url] %>" target="_blank"><%= link[:title] %></a>
+            <% end %>
           </div>
         </nav>
       </footer>
