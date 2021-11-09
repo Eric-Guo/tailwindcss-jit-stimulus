@@ -181,6 +181,9 @@ importers:
       tailwindcss:
         specifier: ^3.0.1
         version: 3.4.19
+      tailwindcss-stimulus-components:
+        specifier: ^3.0.1
+        version: 3.0.4(@hotwired/stimulus@3.2.2)
       terser-webpack-plugin:
         specifier: '5'
         version: 5.6.1(cssnano@5.1.15(postcss@8.5.28))(csso@4.2.0)(postcss@8.5.28)(webpack@5.110.3)
@@ -2961,6 +2964,11 @@ packages:
     resolution: {integrity: sha512-2GJ4h3rl13qYTdwllaK6QlL8tG+UrM8626V2Ylcd/yBUv2Y/EwLsYisVV6UDCRmlk+C74G8nMpxJCk0RWPdDCw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+
+  tailwindcss-stimulus-components@3.0.4:
+    resolution: {integrity: sha512-kv4CHEcTvZSmthV6PseSdnW/QqKh237fZrvbNKNhWeYsTuEnOrKvdbR+3CmpuTok7L4XgEXk+XOFfo7AMhhtAA==}
+    peerDependencies:
+      '@hotwired/stimulus': '>=3.0.0'
 
   tailwindcss@3.4.19:
     resolution: {integrity: sha512-3ofp+LL8E+pK/JuPLPggVAIaEuhvIz4qNcf3nA1Xn2o/7fb7s/TYpHhwGDv1ZU3PkBluUVaF8PyCHcm48cKLWQ==}
@@ -6245,6 +6253,10 @@ snapshots:
       picocolors: 1.1.1
       sax: 1.6.1
       stable: 0.1.8
+
+  tailwindcss-stimulus-components@3.0.4(@hotwired/stimulus@3.2.2):
+    dependencies:
+      '@hotwired/stimulus': 3.2.2
 
   tailwindcss@3.4.19:
     dependencies:
