@@ -142,7 +142,6 @@ export default class extends Controller {
   }
 
   disconnect() {
-    console.log('disconnect');
     if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
   }
 }

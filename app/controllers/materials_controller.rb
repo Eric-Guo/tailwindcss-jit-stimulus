@@ -24,6 +24,9 @@ class MaterialsController < ApplicationController
     when 3
       @color_id = params["color_id"]&.strip
       @projects = get_color_system_projects(@material, @color_id)
+      unless @projects.pluck(:id).include?(@material.id)
+        redirect_to material_path(@projects.first, request.GET)
+      end
     end
   end
 
