@@ -88,4 +88,13 @@ class Material < ApplicationRecord
   def customizable_effect
     @_customizable_effect ||= material_product&.customized
   end
+
+  # 表面效果描述
+  def surface_effect_descriptions
+    @_surface_effect_descriptions ||= if material_product&.surface_effects.present?
+      material_product.surface_effects.pluck(:description).join('、')
+    else
+      nil
+    end
+  end
 end
