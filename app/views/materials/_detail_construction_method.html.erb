@@ -6,10 +6,10 @@
       <span class="text-xl font-light">Construction</span>
     </div>
 
-    <div class="grid grid-cols-3 gap-1.5 grid-rows-3 mt-4" style="height: 600px;">
+    <div class="grid grid-cols-3 gap-1.5 grid-rows-3 mt-4" style="height: 600px;" data-controller="picture-viewer">
       <% material.construction.slice(0, 4).each_with_index do |practice_detail, i| %>
         <div class="<%= i == 0 ? 'col-span-2 row-span-3' : ''  %>">
-          <img class="w-full h-full object-cover" src="<%= mat_img_url(practice_detail["url"], "") %>" alt="">
+          <img class="w-full h-full object-cover" src="<%= mat_img_url(practice_detail["url"], "") %>" alt="" data-picture-viewer-target="image">
         </div>
       <% end %>
       <% if material.construction.length < 4 %>
