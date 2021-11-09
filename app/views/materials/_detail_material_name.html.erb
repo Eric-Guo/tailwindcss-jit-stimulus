@@ -35,25 +35,24 @@
         </dd>
       </dl>
     </div>
-    <div class="w-0 flex-1 ml-20">
-      <h5 class="text-lg font-medium">表面效果：</h5>
-      <div class="grid grid-cols-8 gap-1 my-3">
-        <% material.material_product&.surface_effects&.each do |surface_effect| %>
-          <div class="relative" style="padding-top: 100%;">
-            <img class="absolute left-0 top-0 w-full h-full object-cover" src="<%= mat_img_url(surface_effect.path, "static/new_mat_g#{1}.jpg") -%>" alt="">
-            <p class="absolute left-1/2 bottom-0 text-white text-center text-sm font-medium whitespace-nowrap" style="transform: translate(-50%, 0);">
-              <%= surface_effect.description -%>
-            </p>
-          </div>
-        <% end %>
-      </div>
+    <div class="w-0 flex-1 ml-20 flex flex-col gap-14">
+      <% if material.surface_effect_descriptions.present? %>
+        <div>
+          <h5 class="text-lg font-medium">表面效果：</h5>
+          <p class="text-sm mt-3 truncate" title="<%= material.surface_effect_descriptions %>"><%= material.surface_effect_descriptions %></p>
+        </div>
+      <% end %>
       <% if material.installation_and_construction_points.present? %>
-        <h5 class="text-lg font-medium mt-14 mb-3">安装施工要点：</h5>
-        <p class="text-sm text-justify whitespace-pre-wrap <%= material.customizable_effect.present? ? 'line-clamp-3' : 'line-clamp-10' %>" title="<%= material.installation_and_construction_points %>" style="min-height: 60px;"><%= material.installation_and_construction_points %></p>
+        <div>
+          <h5 class="text-lg font-medium">安装施工要点：</h5>
+          <p class="text-sm mt-3 whitespace-pre-wrap line-clamp-4" title="<%= material.installation_and_construction_points %>"><%= material.installation_and_construction_points %></p>
+        </div>
       <% end %>
       <% if material.customizable_effect.present? %>
-        <h5 class="text-lg font-medium mb-3 <%= material.installation_and_construction_points.present? ? 'mt-10' : 'mt-14' %>">可定制效果：</h5>
-        <p class="text-sm text-justify whitespace-pre-wrap <%= material.installation_and_construction_points.present? ? 'line-clamp-3' : 'line-clamp-10' %>" title="<%= material.customizable_effect %>"><%= material.customizable_effect %></p>
+        <div>
+          <h5 class="text-lg font-medium">可定制效果：</h5>
+          <p class="text-sm mt-3 whitespace-pre-wrap line-clamp-4" title="<%= material.customizable_effect %>"><%= material.customizable_effect %></p>
+        </div>
       <% end %>
     </div>
   </div>
