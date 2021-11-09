@@ -25,11 +25,11 @@ module ApplicationHelper
 
   end
 
-  def material_breadcrumbs(material, in_samples: false)
+  def material_breadcrumbs(material, append_title: nil)
     breadcrumbs = [
       { title: '首页', url: '/' },
     ]
-    if in_samples
+    if append_title.present?
       case material.level
       when 1
         breadcrumbs.push({ title: material.name, url: material_path(material.parent_material) })
@@ -40,7 +40,7 @@ module ApplicationHelper
         breadcrumbs.push({ title: material.grandpa_material.name, url: material_path(material.grandpa_material) })
         breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) })
         breadcrumbs.push({ title: material.name, url: material_path(material) })
-        breadcrumbs.push({ title: '相关列表' })
+        breadcrumbs.push({ title: append_title })
       end
     else
       case material.level
