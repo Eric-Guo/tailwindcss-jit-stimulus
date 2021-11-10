@@ -26,7 +26,7 @@ class HomeController < ApplicationController
     @total[:recently_project] = @recently_projects.count
     @recently_projects = @recently_projects.limit(10)
     
-    @latest_news = News.order(updated_at: :desc).limit(4)
+    @latest_news = News.order(published_at: :desc).limit(4)
 
     @projects = Cases.order(top_at: :desc).limit(8)
 
