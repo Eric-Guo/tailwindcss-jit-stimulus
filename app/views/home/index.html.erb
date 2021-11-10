@@ -250,8 +250,8 @@
       <% @latest_news.each do |news| %>
         <a class="flex flex-1 items-center border-b" href="<%= news.url %>" target="_blank">
           <div class="flex-none flex flex-col justify-around">
-            <p class="text-center text-base font-normal tracking-wider leading-none"><%= Date::ABBR_MONTHNAMES[news.updated_at.month].upcase -%></p>
-            <p class="text-3xl text-center font-semibold tracking-widest leading-none mt-5"><%= news.updated_at.day -%></p>
+            <p class="text-center text-base font-normal tracking-wider leading-none"><%= Date::ABBR_MONTHNAMES[news.published_at.month].upcase -%></p>
+            <p class="text-3xl text-center font-semibold tracking-widest leading-none mt-5"><%= news.published_at.day -%></p>
           </div>
           <div class="flex-1 w-0 ml-4 md:ml-8 lg:ml-12 xl:ml-20 2xl:ml-28">
             <div class="flex text-2xl text-left leading-tight">
