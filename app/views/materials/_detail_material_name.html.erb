@@ -45,10 +45,10 @@
       <% if material.installation_and_construction_points.present? %>
         <div>
           <h5 class="text-lg font-medium">安装施工要点：</h5>
-          <p class="text-sm mt-3 whitespace-pre-wrap line-clamp-4" title="<%= material.installation_and_construction_points %>"><%= material.installation_and_construction_points %></p>
+          <p class="text-sm mt-3 whitespace-pre-wrap <%= material.surface_effect_descriptions.present? ? 'line-clamp-14' : 'line-clamp-20' %>" title="<%= material.installation_and_construction_points %>"><%= material.installation_and_construction_points %></p>
         </div>
       <% end %>
-      <% if material.customizable_effect.present? %>
+      <% if false && material.customizable_effect.present? %>
         <div>
           <h5 class="text-lg font-medium">可定制效果：</h5>
           <p class="text-sm mt-3 whitespace-pre-wrap line-clamp-4" title="<%= material.customizable_effect %>"><%= material.customizable_effect %></p>
