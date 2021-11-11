@@ -111,6 +111,6 @@
   color: white;
 }
 
-.circle-arrow1:hover {
+.circle-arrow1:not(.disabled):hover {
   background: #101820;
 }

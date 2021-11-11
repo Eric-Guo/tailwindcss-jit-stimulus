@@ -5,12 +5,12 @@
       <span class="text-xl font-light">Projects</span>
     </div>
     <div class="flex flex-row gap-2">
-      <a class="circle-arrow1 w-5 h-5 <%= cases.first_page? ? 'cursor-not-allowed' : 'cursor-pointer' %>" href="<%= projects_sample_path(id, page_size: cases.limit_value, page: cases.prev_page) %>">
+      <a class="circle-arrow1 w-5 h-5 <%= cases.first_page? ? 'cursor-not-allowed disabled' : 'cursor-pointer' %>" href="<%= projects_sample_path(id, page_size: cases.limit_value, page: cases.prev_page) %>">
         <svg class="-ml-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="6.2" height="10.5" viewBox="0 0 9.062 16.125">
           <path d="M564.707,561.636L558.343,568l6.364,6.364a1,1,0,0,1-1.414,1.414l-7.071-7.071a1,1,0,0,1,0-1.414l7.071-7.071A1,1,0,0,1,564.707,561.636Z" transform="translate(-555.938 -559.938)"/>
         </svg>
       </a>
-      <a class="circle-arrow1 w-5 h-5 <%= cases.last_page? ? 'cursor-not-allowed' : 'cursor-pointer' %>" href="<%= projects_sample_path(id, page_size: cases.limit_value, page: cases.next_page) %>">
+      <a class="circle-arrow1 w-5 h-5 <%= cases.last_page? || cases.next_page.blank? ? 'cursor-not-allowed disabled' : 'cursor-pointer' %>" href="<%= projects_sample_path(id, page_size: cases.limit_value, page: cases.next_page) %>">
         <svg class="-mr-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="6.2" height="10.5" viewBox="0 0 9 16">
           <path d="M556.291,561.685l6.32,6.315-6.32,6.315a0.992,0.992,0,0,0,1.4,1.4l7.023-7.016a0.994,0.994,0,0,0,0-1.4l-7.023-7.016A0.992,0.992,0,0,0,556.291,561.685Z" transform="translate(-556 -560)"/>
         </svg>
