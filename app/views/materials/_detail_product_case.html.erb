@@ -1,5 +1,5 @@
 <%# 产品案例 %>
-<% cases = material.cases.limit(6) %>
+<% cases = material.parent_material&.cases&.limit(6) %>
 <% if cases.present? %>
   <div class="mt-20">
     <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
