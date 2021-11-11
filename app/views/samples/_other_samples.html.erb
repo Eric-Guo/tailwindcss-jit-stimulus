@@ -1,13 +1,21 @@
-<section class="flex-auto">
-  <div class="mr-4 mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
-    <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">其他样品</span>
-    <span class="text-xl font-light">Other Samples</span>
-    <%= link_to other_samples_sample_path(id, page_size: other_samples.limit_value, page: other_samples.next_page), class: other_samples.last_page? ? 'cursor-not-allowed' : '' do %>
-      <img class="h-6 w-6 float-right mt-1" src="<%= image_pack_path('arrow_right.svg') -%>" alt="">
-    <% end %>
-    <%= link_to other_samples_sample_path(id, page_size: other_samples.limit_value, page: other_samples.prev_page), class: other_samples.first_page? ? 'cursor-not-allowed' : '' do %>
-      <img class="h-6 w-6 float-right mt-1 mr-1 lg:mr-2 xl:mr-3" src="<%= image_pack_path('arrow_left.svg') -%>" alt="">
-    <% end %>
+<section style="width: 400px;">
+  <div class="flex flex-row justify-between items-center mr-4 mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+    <div>
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">其他样品</span>
+      <span class="text-xl font-light">Other Samples</span>
+    </div>
+    <div class="flex flex-row gap-2">
+      <a class="circle-arrow1 w-5 h-5 <%= other_samples.first_page? ? 'cursor-not-allowed' : 'cursor-pointer' %>" href="<%= other_samples_sample_path(id, page_size: other_samples.limit_value, page: other_samples.prev_page) %>">
+        <svg class="-ml-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="6.2" height="10.5" viewBox="0 0 9.062 16.125">
+          <path d="M564.707,561.636L558.343,568l6.364,6.364a1,1,0,0,1-1.414,1.414l-7.071-7.071a1,1,0,0,1,0-1.414l7.071-7.071A1,1,0,0,1,564.707,561.636Z" transform="translate(-555.938 -559.938)"/>
+        </svg>
+      </a>
+      <a class="circle-arrow1 w-5 h-5 <%= other_samples.last_page? ? 'cursor-not-allowed' : 'cursor-pointer' %>" href="<%= other_samples_sample_path(id, page_size: other_samples.limit_value, page: other_samples.next_page) %>">
+        <svg class="-mr-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="6.2" height="10.5" viewBox="0 0 9 16">
+          <path d="M556.291,561.685l6.32,6.315-6.32,6.315a0.992,0.992,0,0,0,1.4,1.4l7.023-7.016a0.994,0.994,0,0,0,0-1.4l-7.023-7.016A0.992,0.992,0,0,0,556.291,561.685Z" transform="translate(-556 -560)"/>
+        </svg>
+      </a>
+    </div>
   </div>
 
   <% other_samples.each_with_index do |other_sample, i| %>

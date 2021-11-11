@@ -100,3 +100,17 @@
 .material-color-system-project.active, .material-color-system-project:hover {
   box-shadow: 0px 4px 8px 0px rgba(110, 110, 110, 0.2);
 }
+
+.circle-arrow1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #E6E6E6;
+  transition: all .15s ease-in-out;
+  color: white;
+}
+
+.circle-arrow1:hover {
+  background: #101820;
+}
