@@ -1,23 +1,46 @@
 <%# 构造做法 %>
 <% if material.construction.present? %>
-  <div class="mt-20">
-    <div class="border-b-2 border-gray-100 border-solid pb-3">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">构造做法</span>
-      <span class="text-xl font-light">Construction</span>
-    </div>
-
-    <div class="grid grid-cols-3 gap-1.5 grid-rows-3 mt-4" style="height: 600px;" data-controller="picture-viewer">
-      <% material.construction.slice(0, 4).each_with_index do |practice_detail, i| %>
-        <div class="<%= i == 0 ? 'col-span-2 row-span-3' : ''  %>">
-          <img class="w-full h-full object-cover cursor-pointer" src="<%= mat_img_url(practice_detail["url"], "") %>" alt="" data-picture-viewer-target="image">
+  <div
+    class="mt-20"
+    data-controller="material-carousel picture-viewer"
+    data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
+    data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
+    data-material-carousel-duration-value="0.5"
+  >
+    <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
+      <div>
+        <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">构造做法</span>
+        <span class="text-xl font-light">Construction</span>
+      </div>
+      <% if material.construction.length > 6 %>
+        <div class="flex flex-row gap-2">
+          <div class="w-6 h-6 cursor-pointer" data-action="click->material-carousel#toPrev">
+            <img class="w-full h-full object-fill" src="<%= image_pack_path('arrow_left.svg') -%>" alt="">
+          </div>
+          <div class="w-6 h-6 cursor-pointer" data-action="click->material-carousel#toNext">
+            <img class="w-full h-full object-fill" src="<%= image_pack_path('arrow_right.svg') -%>" alt="">
+          </div>
         </div>
       <% end %>
-      <% if material.construction.length < 4 %>
-        <% Array.new(4 - material.construction.length).each do %>
-          <div class="flex items-center justify-center" style="background: #f2f2f2;">
-            <span>暂无相关图片</span>
-          </div>
-        <% end %>
+    </div>
+
+    <div class="relative overflow-hidden mt-4" style="height: 598px;">
+      <% for i in 0...(material.construction.length.to_f / 6).ceil %>
+        <div class="absolute top-0 left-0 w-full h-full grid grid-cols-3 grid-rows-2 gap-1.5" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+          <% list = material.construction.slice(i * 6, (i + 1) * 6) %>
+          <% list.each do |practice_detail| %>
+            <div class="w-full h-full">
+              <img class="w-full h-full object-cover cursor-pointer" src="<%= mat_img_url(practice_detail["url"], "") %>" alt="" data-picture-viewer-target="image">
+            </div>
+          <% end %>
+          <% if list.length < 6 %>
+            <% Array.new(6 - list.length).each do %>
+              <div class="w-full h-full flex items-center justify-center" style="background: #f2f2f2;">
+                <span>暂无相关图片</span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
