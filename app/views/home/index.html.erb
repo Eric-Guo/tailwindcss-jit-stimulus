@@ -148,6 +148,7 @@
 <%# 近日更新 %>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-8">
   <span class="text-2xl font-bold ml-px mr-2">近日更新</span><span class="text-xl font-light">What's new</span>
+  <a class="more-btn inline" href="<%= root_path -%>">MORE+</a>
 </div>
 <div class="flex mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 ">
   <div class="flex-none w-7/12">
@@ -243,9 +244,6 @@
     </div>
   </div>
   <div class="relative flex-1 ml-12" style="width: 740px;">
-    <div class="absolute top-0 right-0 hidden">
-      <a class="more-btn" href="<%= root_path -%>">MORE+</a>
-    </div>
     <div class="flex flex-col h-full">
       <% @latest_news.each do |news| %>
         <a class="flex flex-1 items-center border-b" href="<%= news.url %>" target="_blank">
