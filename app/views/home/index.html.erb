@@ -278,7 +278,7 @@
 </div>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 grid grid-cols-5 gap-1.5">
   <% @material_cates.each do |material_cate| %>
-    <%= link_to material_path(id: material_cate[:mat].id), class: 'block relative' do %>
+    <%= link_to material_cate[:mat].present? ? material_path(id: material_cate[:mat].id) : 'javascript:void(0);', class: 'block relative' do %>
       <div class="w-full" style="padding-top: 125%;">
         <div class="absolute left-0 top-0 w-full h-full">
           <img class="w-full h-full object-cover" src="<%= image_pack_path(material_cate[:cover]) -%>" alt="">
