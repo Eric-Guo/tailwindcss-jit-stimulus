@@ -37,7 +37,8 @@ class SearchesController < ApplicationController
       end
 
       @manufacturers = if @q.present?
-        Manufacturer.where('name LIKE ?', "%#{@q}%")
+        Manufacturer.where('name LIKE ? OR location LIKE ? OR contact LIKE ? OR contact_information LIKE ? OR address LIKE ? OR website LIKE ?',
+         "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
       else
         Manufacturer.none
       end
