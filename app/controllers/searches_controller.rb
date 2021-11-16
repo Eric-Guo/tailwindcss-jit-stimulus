@@ -32,20 +32,21 @@ class SearchesController < ApplicationController
 
       @cases = if @q.present?
         Cases.where('project_name LIKE ? OR business_type LIKE ? OR project_type LIKE ? OR project_location LIKE ? OR design_unit LIKE ?',
-         "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
+          "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
       else
         Cases.none
       end
 
       @manufacturers = if @q.present?
         Manufacturer.where('name LIKE ? OR location LIKE ? OR contact LIKE ? OR contact_information LIKE ? OR address LIKE ? OR website LIKE ?',
-         "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
+          "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
       else
         Manufacturer.none
       end
 
       @news = if @q.present?
-        News.where('title LIKE ?', "%#{@q}%").or(News.where('subtitle LIKE ?', "%#{@q}%"))
+        News.where('title LIKE ? OR subtitle LIKE ? OR mold_name LIKE ?',
+          "%#{@q}%", "%#{@q}%", "%#{@q}%")
       else
         News.none
       end
