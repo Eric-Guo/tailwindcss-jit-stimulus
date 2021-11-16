@@ -19,7 +19,7 @@ class SearchesController < ApplicationController
   private
 
     def set_q_params
-      @q = params[:q]
+      @q = ActiveRecord::Base::sanitize_sql(params[:q])
     end
 
     def set_data_and_count_hash
