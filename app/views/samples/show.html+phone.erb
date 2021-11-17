@@ -81,7 +81,7 @@
       <p class="text-xs text-gray-700">邮箱：<%= @sample.manufacturer&.email -%></p>
       <p class="text-xs text-gray-700">厂家地址：<%= @sample.manufacturer&.location -%></p>
       <p class="text-xs text-gray-700">联系电话：<%= @sample.manufacturer&.contact_information -%></p>
-      <p class="text-xs text-gray-700">是否愿意提供材料样品：<%= @sample.manufacturer&.is_allow == 1 ? '是' : '否' -%></p>
+      <p class="text-xs text-gray-700">是否愿意提供材料样品：<%= @sample.manufacturer&.is_allow.present? ? '是' : '去电详询' -%></p>
     </div>
   </div>
 </div>
