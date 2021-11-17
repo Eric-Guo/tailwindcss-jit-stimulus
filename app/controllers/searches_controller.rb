@@ -39,7 +39,7 @@ class SearchesController < ApplicationController
 
       @manufacturers = if @q.present?
         Manufacturer.where('name LIKE ? OR location LIKE ? OR contact LIKE ? OR contact_information LIKE ? OR address LIKE ? OR website LIKE ?',
-          "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").order(logo: :desc).order(is_allow: :desc)
+          "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").sort_by_logo(:desc).order(is_allow: :desc)
       else
         Manufacturer.none
       end
