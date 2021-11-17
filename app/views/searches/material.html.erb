@@ -12,6 +12,8 @@
   <% end %>
 </div>
 
+<% if params[:q].present? %>
+
 <div class="mx-4 xl:mx-6 2xl:mx-8 mb-4 border-b-2 border-gray-100 border-solid pb-3 text-center text-lg">
   <%= link_to "材料 （#{@count_hash[:material]}）", material_search_path(q: @q), class: "mx-3 border-b-2 border-gray-900 border-solid font-bold", style: 'padding-bottom: 0.9rem' -%>
   <%= link_to "案例 （#{@count_hash[:project]}）", project_search_path(q: @q), class: "mx-3" -%>
@@ -42,3 +44,4 @@
   <% end %>
 </div>
 
+<% end %>
