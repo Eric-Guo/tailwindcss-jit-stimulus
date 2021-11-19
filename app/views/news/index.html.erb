@@ -1,3 +1,12 @@
 <%= render partial: 'shared/header', locals: {} -%>
 
 <p class="px-4 sm:px-6 lg:px-8 pt-8 text-sm text-gray-500"><%= link_to '首页', root_path -%> > <span class="text-black">新闻列表</span></p>
+
+<div class="flex flex-row px-4 sm:px-6 lg:px-8">
+  <section class="w-full flex flex-col">
+    <%# 新闻 %>
+    <div class="mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">新闻</span><span class="text-xl font-light">News</span>
+    </div>
+  </section>
+</div>
