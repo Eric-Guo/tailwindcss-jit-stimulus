@@ -3,6 +3,9 @@
 class MaterialsController < ApplicationController
   include ApplicationHelper
   
+  def index
+  end
+
   def show
     @material = Material.find(params[:id])
     
