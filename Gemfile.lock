@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/Rails.git
-  revision: d1a67176cb6ee8f9065dd0b3f03ebd940a55e326
+  revision: 602aec1d77cadcbe8b2dfb2e5450934458441f3e
   branch: eric_read
   specs:
     actioncable (7.0.0.alpha2)
@@ -153,7 +153,7 @@ GEM
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    web-console (4.1.0)
+    web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
@@ -181,8 +181,8 @@ PLATFORMS
 DEPENDENCIES
   browser
   byebug
-  capybara (>= 3.26)
-  puma (~> 5.0)
+  capybara
+  puma
   rails!
   rexml
   selenium-webdriver

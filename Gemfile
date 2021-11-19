@@ -9,7 +9,7 @@ gem "rails", git: 'https://gitee.com/Eric-Guo/Rails.git', branch: :eric_read
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 # Use Puma as the app server
-gem "puma", "~> 5.0"
+gem 'puma'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker", "~> 6.0.0.rc.6"
 gem "turbo-rails"
@@ -42,9 +42,9 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem "capybara", ">= 3.26"
-  gem "rexml" # required by selenium-webdriver
-  gem "selenium-webdriver"
+  gem 'capybara'
+  gem 'rexml' # required by selenium-webdriver
+  gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem "webdrivers"
 end
