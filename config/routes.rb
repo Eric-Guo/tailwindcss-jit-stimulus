@@ -7,13 +7,17 @@ Rails.application.routes.draw do
       get :projects
     end
   end
-  resources :materials, only: [:show] do
+  resources :materials, only: %i[index show] do
     member do
       get :color_system_list
       get :download_texture
       get :samples
     end
   end
+
+  resources :projects, only: %i[index]
+  resources :manufacturers, only: %i[index]
+  resources :news, only: %i[index]
 
   resource :search, only: [] do
     get :material
