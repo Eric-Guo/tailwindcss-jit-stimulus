@@ -245,13 +245,13 @@
   </div>
   <div class="relative flex-1 ml-12" style="width: 740px;">
     <div class="flex flex-col h-full">
-      <% @latest_news.each do |news| %>
-        <a class="flex flex-1 items-center border-b" href="<%= news.url %>" target="_blank">
+      <% @latest_news.each_with_index do |news, index| %>
+        <a class="flex flex-1 items-center border-b <%= index == 0 ? 'border-t' : '' -%>" href="<%= news.url %>" target="_blank">
           <div class="flex-none flex flex-col justify-around">
             <p class="text-center text-base font-normal tracking-wider leading-none"><%= Date::ABBR_MONTHNAMES[news.published_at.month].upcase -%></p>
             <p class="text-3xl text-center font-semibold tracking-widest leading-none mt-5"><%= news.published_at.day -%></p>
           </div>
-          <div class="flex-1 w-0 ml-4 md:ml-8 lg:ml-12 xl:ml-20 2xl:ml-28">
+          <div class="flex-1 w-0 ml-4 md:ml-8 lg:ml-12 xl:ml-16 2xl:ml-20">
             <div class="flex text-2xl text-left leading-tight">
               <h1 class="flex-1 w-0 font-bold truncate" title="<%= news.title -%>"><%= news.title -%></h1>
               <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
@@ -290,6 +290,7 @@
     <% end %>
   <% end %>
 </div>
+
 <%# 案例 %>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-8">
   <span class="text-2xl font-bold ml-px mr-2">案例</span><span class="text-xl font-light">Projects</span>
