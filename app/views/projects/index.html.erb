@@ -10,3 +10,26 @@
     </div>
   </section>
 </div>
+
+
+<%# 案例 %>
+<div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
+  <% @cases.each do |project_case| %>
+    <div class="mb-4">
+      <div class="relative" style="padding-top: 74.78%;">
+        <div class="absolute top-0 left-0 w-full h-full">
+          <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
+        </div>
+      </div>
+      <div class="flex flex-row justify-between items-baseline mt-2">
+        <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name %>">
+          <%= project_case.project_name -%>/<span class="text-xs"><%= project_case.project_location.gsub('上海市','') -%></span>
+        </p>
+        <p class="text-xs text-gray-400 flex-none ml-3">
+          <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+        </p>
+      </div>
+      <p class="text-sm font-medium truncate" title="<%= '真石漆｜质感涂料｜黄金麻' -%>">真石漆｜质感涂料｜黄金麻</p>
+    </div>
+  <% end %>
+</div>
