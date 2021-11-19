@@ -11,6 +11,32 @@
   </section>
 </div>
 
+<div class="px-4 sm:px-6 lg:px-8 mt-2">
+  <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
+    <div class="flex flex-row w-1/3">
+      <%= text_field_tag :q, nil, placeholder: '黄金麻/镀膜玻璃/PC板', class: 'block flex-grow bg-transparent text-base placeholder-gray-300 border-0 focus:outline-none focus:ring-gray-200 focus:border-gray-200 focus:ring-offset-gray-200', id: 'search-box', autocomplete: "off" -%>
+      <svg xmlns="http://www.w3.org/2000/svg" class="flex-none mx-4 my-2 h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
+    <div class="flex flex-row w-1/3">
+      <p class="flex-none pl-4 pr-2 my-2 text-gray-500 border-l border-gray-300">
+        材料
+      </p>
+      <svg xmlns="http://www.w3.org/2000/svg" class="flex-none my-3 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>
+      </svg>
+    </div>
+    <div class="flex flex-row w-1/3">
+      <p class="flex-none pl-4 pr-2 my-2 text-gray-500 border-l border-gray-300">
+        所在地区
+      </p>
+      <svg xmlns="http://www.w3.org/2000/svg" class="flex-none my-3 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path fill="currentColor" d="M20 16H4L12 8L20 16Z"></path>
+      </svg>
+    </div>
+  </div>
+</div>
 
 <%# 案例 %>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
