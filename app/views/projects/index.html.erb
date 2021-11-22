@@ -57,6 +57,30 @@
       <div class="my-4">新型</div>
     </div>
   </div>
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50">
+    <div class="w-80">
+      <div class="my-4 ml-8 flex items-start">
+        <input id="comments" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
+        <label for="comments" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
+      </div>
+    </div>
+    <div class="grid grid-flow-row grid-cols-6 w-full py-1">
+      <%= render partial: 'material_item', locals: { name: '花岗石', checked: true } %>
+      <%= render partial: 'material_item', locals: { name: '石灰石', checked: true } %>
+      <%= render partial: 'material_item', locals: { name: '砂岩', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '洞石', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '板岩', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '火山岩', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '超薄石材', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '石材保温一体板', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '人造玉石', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '水洗石', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '透光石材', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '水泥浇筑石', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '大理石', checked: false } %>
+      <%= render partial: 'material_item', locals: { name: '人造岩石', checked: false } %>
+    </div>
+  </div>
 <% end %>
 
 <%# 案例 %>
