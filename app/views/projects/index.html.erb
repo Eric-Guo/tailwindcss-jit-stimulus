@@ -89,7 +89,8 @@
     </div>
     <div class="grid grid-flow-row grid-cols-6 w-full py-1">
       <div class="my-2.5 flex items-start">
-        <label for="m1" class="text-gray-700 mt-px">项目类型</label>
+        <label for="project_type" class="text-gray-700 mt-px">项目类型</label>
+        <%= select_tag :project_type, options_for_select([ "VISA", "MasterCard" ]), class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded', id: 'project_type' %>
       </div>
       <div class="my-2.5 flex items-start">
         <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
