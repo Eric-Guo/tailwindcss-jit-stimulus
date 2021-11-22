@@ -17,6 +17,7 @@
     <%= render partial: 'search_item', locals: { name: '石灰石' } %>
     <%= render partial: 'search_item', locals: { name: '北京' } %>
     <%= render partial: 'search_item', locals: { name: '上海' } %>
+    <%= render partial: 'search_item', locals: { name: '有实体样品信息' } %>
   </div>
   <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
     <div class="flex flex-row w-1/3 p-1">
@@ -27,10 +28,10 @@
     </div>
     <div class="flex flex-row w-1/3 p-1">
       <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
-        材料
+        <span class="border-b-2 border-gray-900 border-solid" style="padding-bottom: 1.1rem">材料</span>
       </p>
       <svg xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>
+        <path fill="currentColor" d="M20 16H4L12 8L20 16Z"></path>
       </svg>
     </div>
     <div class="flex flex-row w-1/3 p-1">
@@ -38,7 +39,7 @@
         所在地区
       </p>
       <svg xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path fill="currentColor" d="M20 16H4L12 8L20 16Z"></path>
+        <path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>
       </svg>
     </div>
   </div>
