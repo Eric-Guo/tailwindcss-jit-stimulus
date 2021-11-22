@@ -11,7 +11,13 @@
   </section>
 </div>
 
-<div class="px-4 sm:px-6 lg:px-8 mt-2">
+<%= form_with url: projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2' do |f| %>
+  <div class="flex flex-row mb-5">
+    <%= render partial: 'search_item', locals: { name: '花岗石' } %>
+    <%= render partial: 'search_item', locals: { name: '石灰石' } %>
+    <%= render partial: 'search_item', locals: { name: '北京' } %>
+    <%= render partial: 'search_item', locals: { name: '上海' } %>
+  </div>
   <div class="flex flex-row justify-between border border-gray-200 bg-gray-50">
     <div class="flex flex-row w-1/3 p-1">
       <%= text_field_tag :q, nil, placeholder: '黄金麻/镀膜玻璃/PC板', class: 'block flex-grow bg-transparent text-base placeholder-gray-300 border-0 focus:outline-none focus:ring-gray-50 focus:border-gray-50 focus:ring-offset-gray-50', id: 'search-box', autocomplete: "off" -%>
@@ -36,7 +42,7 @@
       </svg>
     </div>
   </div>
-</div>
+<% end %>
 
 <%# 案例 %>
 <div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
