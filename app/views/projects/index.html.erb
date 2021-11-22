@@ -81,6 +81,35 @@
       <%= render partial: 'material_item', locals: { name: '人造岩石', checked: false } %>
     </div>
   </div>
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50">
+    <div class="w-80">
+      <div class="my-4 ml-8">
+        高级筛选
+      </div>
+    </div>
+    <div class="grid grid-flow-row grid-cols-6 w-full py-1">
+      <div class="my-2.5 flex items-start">
+        <label for="m1" class="text-gray-700 mt-px">项目类型</label>
+      </div>
+      <div class="my-2.5 flex items-start">
+        <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
+        <label for="m1" class="text-gray-700 ml-2 mt-px">有立面控制手册</label>
+      </div>
+      <div class="my-2.5 flex items-start">
+        <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
+        <label for="m1" class="text-gray-700 ml-2 mt-px">有实体样品信息</label>
+      </div>
+      <div class="my-2.5 flex items-start">
+        <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
+        <label for="m1" class="text-gray-700 ml-2 mt-px">示范区</label>
+      </div>
+      <div class="my-2.5 flex items-start">
+        <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
+        <label for="m1" class="text-gray-700 ml-2 mt-px">天华内部项目</label>
+      </div>
+
+    </div>
+  </div>
 <% end %>
 
 <%# 案例 %>
