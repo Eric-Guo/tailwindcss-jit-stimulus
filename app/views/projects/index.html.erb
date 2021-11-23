@@ -11,7 +11,7 @@
   </section>
 </div>
 
-<%= form_with url: projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2' do |f| %>
+<%= form_with url: projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', data: {controller: 'project-filter'} do |f| %>
   <div class="flex flex-row mb-5">
     <%= render partial: 'search_item', locals: { name: '花岗石' } %>
     <%= render partial: 'search_item', locals: { name: '石灰石' } %>
@@ -61,8 +61,8 @@
   <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50">
     <div class="w-80">
       <div class="my-4 ml-8 flex items-start">
-        <input id="comments" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
-        <label for="comments" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
+        <input id="checkbox-select-all" data-project-filter-target="selectAll" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
+        <label for="checkbox-select-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
       </div>
     </div>
     <div class="grid grid-flow-row grid-cols-6 w-full py-1">
