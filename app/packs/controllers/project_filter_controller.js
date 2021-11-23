@@ -9,4 +9,9 @@ export default class extends Controller {
 
   disconnect() {
   }
+
+  remove(e) {
+    e.target.parentNode.remove();
+    e.preventDefault();
+  }
 }
