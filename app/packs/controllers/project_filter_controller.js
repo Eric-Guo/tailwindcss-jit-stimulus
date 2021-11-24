@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['selectAll','selectItem']
+  static targets = ['selectAll', 'selectItem', 'materialSpan', 'areaSpan']
   static values = {
     materialBarOpen: Boolean,
     areaBarOpen: Boolean,
@@ -29,13 +29,25 @@ export default class extends Controller {
   }
 
   expend_material(e) {
-    this.materialBarOpenValue = !this.materialBarOpenValue;
+    if (this.materialBarOpenValue) {
+      this.materialSpanTarget.classList.remove('under-text-border');
+      this.materialBarOpenValue = false;
+    } else {
+      this.materialSpanTarget.classList.add('under-text-border');
+      this.materialBarOpenValue = true;
+    }
     console.log(this.materialBarOpenValue);
     e.preventDefault();
   }
 
   expend_area(e) {
-    this.areaBarOpenValue = !this.areaBarOpenValue;
+    if (this.areaBarOpenValue) {
+      this.areaSpanTarget.classList.remove('under-text-border');
+      this.areaBarOpenValue = false;
+    } else {
+      this.areaSpanTarget.classList.add('under-text-border');
+      this.areaBarOpenValue = true;
+    }
     console.log(this.areaBarOpenValue);
     e.preventDefault();
   }
