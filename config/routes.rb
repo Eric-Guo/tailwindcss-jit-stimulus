@@ -26,5 +26,7 @@ Rails.application.routes.draw do
     get :news
   end
 
+  resources :material_types, only: %i[show]
+
   root 'home#index'
 end
