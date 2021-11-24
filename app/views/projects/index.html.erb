@@ -56,7 +56,6 @@
       <% end %>
     </div>
   </div>
-<turbo-frame id="material_details">
   <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-filter-target="materialDetailDiv">
     <div class="w-80">
       <div class="my-4 ml-8 flex items-start">
@@ -64,7 +63,7 @@
         <label for="checkbox-select-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
       </div>
     </div>
-    <div class="grid grid-flow-row grid-cols-6 w-full py-1">
+    <turbo-frame id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1">
       <%= render partial: 'material_item', locals: { name: '花岗石', checked: true } %>
       <%= render partial: 'material_item', locals: { name: '石灰石', checked: true } %>
       <%= render partial: 'material_item', locals: { name: '砂岩', checked: false } %>
@@ -79,9 +78,8 @@
       <%= render partial: 'material_item', locals: { name: '水泥浇筑石', checked: false } %>
       <%= render partial: 'material_item', locals: { name: '大理石', checked: false } %>
       <%= render partial: 'material_item', locals: { name: '人造岩石', checked: false } %>
-    </div>
+    </turbo-frame>
   </div>
-</turbo-frame>
   <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-filter-target="additionalDiv">
     <div class="w-80">
       <div class="my-4 ml-8">
