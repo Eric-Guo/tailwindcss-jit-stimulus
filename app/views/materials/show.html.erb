@@ -72,7 +72,7 @@
     <%# 产品案例 %>
     <%= render partial: 'detail_product_case', locals: { material: @material } if @material.level == 3 %>
     <%# 构造做法 %>
-    <%= render partial: 'detail_construction_method', locals: { material: @material } if @material.level != 3 %>
+    <%= render partial: 'detail_construction_method', locals: { material: @material } %>
     <%= render partial: 'detail', locals: { material: @material } if @material.level == 3 %>
   </section>
 </div>
