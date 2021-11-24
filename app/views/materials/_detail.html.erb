@@ -2,7 +2,7 @@
 <% if material.material_product&.files.present? %>
   <div class="mt-20">
     <div class="border-b-2 border-gray-100 border-solid pb-3">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">源文件</span>
+      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">源文件</span>
       <span class="text-xl font-light">Files</span>
     </div>
 
@@ -26,7 +26,7 @@
   <div class="mt-20">
     <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
       <div>
-        <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">材质贴图</span>
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">材质贴图</span>
         <span class="text-xl font-light">Texture</span>
       </div>
       <a class="more-btn" href="<%= download_texture_material_path(material) -%>" target="_blank">打包下载</a>
@@ -46,7 +46,7 @@
   <div class="mt-20">
     <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
       <div>
-        <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">厂家信息</span>
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">厂家信息</span>
         <span class="text-xl font-light">Manufacturer</span>
       </div>
       <a class="more-btn" href="<%= root_path -%>">MORE+</a>
