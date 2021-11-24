@@ -33,6 +33,10 @@
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
 }
 
+.under-text-border {
+  @apply border-b-2 border-gray-900 border-solid;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

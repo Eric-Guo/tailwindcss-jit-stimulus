@@ -13,7 +13,7 @@
   <section class="w-full mr-6 max-w-lg lg:max-w-xl xl:max-w-5xl flex flex-col">
     <%# 产品样品 %>
     <div class="mx-4 mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">产品样品</span><span class="text-xl font-light">Samples</span>
+      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">产品样品</span><span class="text-xl font-light">Samples</span>
     </div>
     <div class="mx-4 mt-4 flex gap-4">
       <img class="w-80 h-80" src="<%= mat_img_url(@sample.pic, "") -%>" alt="">
@@ -71,7 +71,7 @@
 
     <%# 厂家信息 %>
     <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-100 border-solid pb-3">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">厂家信息</span><span class="text-xl font-light">Information</span>
+      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">厂家信息</span><span class="text-xl font-light">Information</span>
     </div>
     <div class="mx-4 mt-4 flex flex-row justify-start">
       <div class="flex-none border border-gray-300 border-solid p-4" style="width: 180px; height: 180px;">
@@ -111,7 +111,7 @@
 
     <%# 附件下载 %>
     <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-100 border-solid pb-3">
-      <span class="text-2xl font-bold ml-px mr-2 border-b-2 border-gray-900 border-solid" style="padding-bottom: 0.9rem">附件下载</span><span class="text-xl font-light">Download</span>
+      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">附件下载</span><span class="text-xl font-light">Download</span>
     </div>
     <div class="mx-4 mt-4 grid grid-cols-5 gap-4">
       <% @sample.sample_enclosures.each do |enclosure| %>
