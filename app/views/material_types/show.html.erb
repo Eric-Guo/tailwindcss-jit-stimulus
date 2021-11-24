@@ -4,19 +4,9 @@
   </turbo-frame>
 <% end %>
 <%= turbo_stream.replace 'material_details' do %>
-  <turbo-frame id="material_details">
-    <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50" data-project-filter-target="materialDetailDiv">
-      <div class="w-80">
-        <div class="my-4 ml-8 flex items-start">
-          <input id="checkbox-select-all" data-project-filter-target="selectAll" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->project-filter#select_all">
-          <label for="checkbox-select-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
-        </div>
-      </div>
-      <div class="grid grid-flow-row grid-cols-6 w-full py-1">
-        <% @materials.each do |material| %>
-          <%= render partial: 'projects/material_item', locals: { name: material.name, checked: false } %>
-        <% end %>
-      </div>
-    </div>
+  <turbo-frame id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1">
+    <% @materials.each do |material| %>
+      <%= render partial: 'projects/material_item', locals: { name: material.name, checked: false } %>
+    <% end %>
   </turbo-frame>
 <% end %>
