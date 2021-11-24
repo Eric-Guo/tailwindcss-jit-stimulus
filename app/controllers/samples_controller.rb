@@ -2,7 +2,7 @@
 
 class SamplesController < ApplicationController
   def show
-    @sample = Sample.find(params[:id])
+    @sample = Sample.find_by(no: params[:id]) || Sample.find(params[:id])
 
     case_ids = CasesMaterial.select(:case_id).where(type: 1, sample_id: @sample.id).pluck(:case_id)
     @cases = Cases.where(id: case_ids).page(1).per(3)
