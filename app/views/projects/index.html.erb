@@ -49,18 +49,14 @@
   <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-filter-target="materialTypeDiv">
     <div class="w-80"></div>
     <div class="grid grid-flow-row grid-cols-6 w-full">
-      <div class="my-4 font-bold">石材</div>
-      <div class="my-4">涂料</div>
-      <div class="my-4">金属</div>
-      <div class="my-4">玻璃</div>
-      <div class="my-4">陶瓷</div>
-      <div class="my-4">混凝土/水泥</div>
-      <div class="my-4">木材</div>
-      <div class="my-4">高分子材料</div>
-      <div class="my-4">生态</div>
-      <div class="my-4">新型</div>
+      <% @material_types.each do |material_type| %>
+        <turbo-frame id="<%= dom_id(material_type) -%>">
+          <div class="my-4"><%= link_to material_type.name, material_type_path(id: material_type.id) -%></div>
+        </turbo-frame>
+      <% end %>
     </div>
   </div>
+<turbo-frame id="material_details">
   <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-filter-target="materialDetailDiv">
     <div class="w-80">
       <div class="my-4 ml-8 flex items-start">
@@ -85,6 +81,7 @@
       <%= render partial: 'material_item', locals: { name: '人造岩石', checked: false } %>
     </div>
   </div>
+</turbo-frame>
   <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-filter-target="additionalDiv">
     <div class="w-80">
       <div class="my-4 ml-8">
