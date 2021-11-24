@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['selectAll', 'selectItem', 'materialSpan', 'areaSpan']
+  static targets = ['selectAll', 'selectItem', 'materialSpan', 'areaSpan', 'materialIconSvg', 'areaIconSvg']
   static values = {
     materialBarOpen: Boolean,
     areaBarOpen: Boolean,
@@ -31,9 +31,11 @@ export default class extends Controller {
   expend_material(e) {
     if (this.materialBarOpenValue) {
       this.materialSpanTarget.classList.remove('under-text-border');
+      this.materialIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>`;
       this.materialBarOpenValue = false;
     } else {
       this.materialSpanTarget.classList.add('under-text-border');
+      this.materialIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 16H4L12 8L20 16Z"></path>`;
       this.materialBarOpenValue = true;
     }
     console.log(this.materialBarOpenValue);
@@ -43,9 +45,11 @@ export default class extends Controller {
   expend_area(e) {
     if (this.areaBarOpenValue) {
       this.areaSpanTarget.classList.remove('under-text-border');
+      this.areaIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>`;
       this.areaBarOpenValue = false;
     } else {
       this.areaSpanTarget.classList.add('under-text-border');
+      this.areaIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 16H4L12 8L20 16Z"></path>`;
       this.areaBarOpenValue = true;
     }
     console.log(this.areaBarOpenValue);
