@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [
     'selectAll', 'selectItem', 'materialSpan', 'areaSpan', 'materialIconSvg', 'areaIconSvg',
-    'materialTypeDiv', 'materialDetailDiv', 'additionalDiv'
+    'materialTypeDiv', 'materialDetailDiv', 'additionalDiv', 'matTypeLink'
   ]
   static values = {
     materialBarOpen: Boolean,
@@ -63,5 +63,9 @@ export default class extends Controller {
     }
     console.log(this.areaBarOpenValue);
     e.preventDefault();
+  }
+
+  clean_active(e) {
+    this.matTypeLinkTargets.map(function(a) { a.classList.remove('font-bold'); });
   }
 }
