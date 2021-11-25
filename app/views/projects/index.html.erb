@@ -49,9 +49,9 @@
   <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-filter-target="materialTypeDiv">
     <div class="w-80"></div>
     <div class="grid grid-flow-row grid-cols-6 w-full">
-      <% @material_types.each do |material_type| %>
+      <% @material_types.each_with_index do |material_type, index| %>
         <turbo-frame id="<%= dom_id(material_type) -%>">
-          <div class="my-4" data-project-filter-target="matTypeLink">
+          <div class="my-4 <%= index.zero? ? 'font-bold' : '' -%>" data-project-filter-target="matTypeLink">
             <%= link_to material_type.name, material_type_path(id: material_type.id), data: { action: 'click->project-filter#clean_active' } -%>
           </div>
         </turbo-frame>
@@ -66,20 +66,9 @@
       </div>
     </div>
     <turbo-frame id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1">
-      <%= render partial: 'material_item', locals: { name: '花岗石', checked: true } %>
-      <%= render partial: 'material_item', locals: { name: '石灰石', checked: true } %>
-      <%= render partial: 'material_item', locals: { name: '砂岩', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '洞石', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '板岩', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '火山岩', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '超薄石材', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '石材保温一体板', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '人造玉石', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '水洗石', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '透光石材', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '水泥浇筑石', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '大理石', checked: false } %>
-      <%= render partial: 'material_item', locals: { name: '人造岩石', checked: false } %>
+      <% @materials.each do |material| %>
+        <%= render partial: 'projects/material_item', locals: { name: material.name, checked: false } %>
+      <% end %>
     </turbo-frame>
   </div>
   <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-filter-target="additionalDiv">
