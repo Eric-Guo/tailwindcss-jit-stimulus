@@ -51,7 +51,9 @@
     <div class="grid grid-flow-row grid-cols-6 w-full">
       <% @material_types.each do |material_type| %>
         <turbo-frame id="<%= dom_id(material_type) -%>">
-          <div class="my-4"><%= link_to material_type.name, material_type_path(id: material_type.id) -%></div>
+          <div class="my-4" data-project-filter-target="matTypeLink">
+            <%= link_to material_type.name, material_type_path(id: material_type.id), data: { action: 'click->project-filter#clean_active' } -%>
+          </div>
         </turbo-frame>
       <% end %>
     </div>
