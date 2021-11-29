@@ -1,14 +1,5 @@
 <%= render partial: 'shared/header', locals: { } -%>
 
-<p class="mx-4 px-48 pt-8 text-sm text-gray-500">
-  <% breadcrumbs = material_breadcrumbs(@sample.material, append_title: "#{@sample.material&.name}（样品）") %>
-  <%= raw breadcrumbs.map { |item| \
-    item[:url].present? \
-    ? "<a href=\"#{item[:url]}\">#{item[:title]}</a>" \
-    : "<span class='text-black'>#{item[:title]}</span>" \
-  }.join('<span> > </span>') %>
-</p>
-
 <div class="flex flex-row px-48">
   <section class="w-full mr-6 max-w-lg lg:max-w-xl xl:max-w-5xl flex flex-col">
     <%# 产品样品 %>
