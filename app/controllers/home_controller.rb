@@ -28,7 +28,7 @@ class HomeController < ApplicationController
 
     @latest_news = News.order(published_at: :desc).limit(4)
 
-    @projects = Cases.order(top_at: :desc).limit(8)
+    @projects = Tops.where('top_model = ?', 'home_top_cases').where('case_id > ?', 0).order(top_sort: :desc)
 
     @material_cates = [
       { title: '石材', cover: 'mat_nav_g1.jpg' },
