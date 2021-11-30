@@ -169,7 +169,9 @@
           </div>
         </div>
         <div class="text-black-6c mt-1">
-          <div class="text-sm truncate" title="<%= project_case.project_name -%>"><%= project_case.project_name -%>/<%= project_case.project_location -%></div>
+          <div class="text-sm truncate" title="<%= project_case.project_name_and_location -%>">
+            <%= project_case.project_name_and_location -%>
+          </div>
         </div>
       </div>
     <% end %>
