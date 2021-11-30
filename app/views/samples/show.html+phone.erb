@@ -1,9 +1,9 @@
 <%# 样品名称 %>
 <div class="bg-white text-black-6c m-1 px-1.5 py-2.5">
   <div class="my-1 flex">
-    <img class="flex-initial" style="max-width: 50%;" src="<%= image_pack_path('big_sample_picture.jpg') -%>" alt="">
+    <img class="flex-initial" style="max-width: 50%;" src="<%= mat_img_url(@sample.pic, "") -%>" alt="">
     <dl class="flex-auto ml-2">
-      <h3 class="text-base mb-2 font-medium"><%= @sample.material&.name -%></h3>
+      <h3 class="text-base mb-2 font-medium"><%= @sample.material&.name -%>（样品） -%></h3>
       <p class="text-xs whitespace-nowrap">样品编号：
         <span class="font-medium"><%= @sample.no %></span>
       </p>
@@ -22,7 +22,7 @@
         </span>
       </p>
       <p class="text-xs whitespace-nowrap">色号：
-        <span class="font-medium"><%= @sample.color_code -%></span>
+        <span class="font-medium"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></span>
       </p>
       <p class="text-xs whitespace-nowrap">产品规格/型号：
         <span class="font-medium"><%= @sample.spec_model -%></span>
@@ -45,7 +45,7 @@
               <div class="p-8">
                 <figure>
                   <img src="<%= image_pack_path('sample_location.png') -%>" alt="">
-                  <figcaption class="text-center mt-2"><%= @sample.position -%>: A-3-25</figcaption>
+                  <figcaption class="text-center mt-2">样板位置: <%= @sample.position -%></figcaption>
                 </figure>
               </div>
             </div>
