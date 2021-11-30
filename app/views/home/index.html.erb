@@ -176,9 +176,9 @@
             <% for i in 0...(@recently_materials.length.to_f / 8).ceil %>
               <div class="absolute top-0 left-0 w-full h-full grid grid-cols-4 grid-rows-2 gap-1" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
                 <% @recently_materials.slice(i * 8, (i + 1) * 8).each do |material| %>
-                  <a class="relative block w-full cursor-pointer" style="padding-top: 100%;" href="<%= material_path(material) %>">
+                  <a class="relative block w-full cursor-pointer" style="padding-top: 100%;" href="<%= material_path(material.material_id) %>">
                     <div class="absolute top-0 left-0 w-full h-full">
-                      <img class="w-full h-full object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
+                      <img class="w-full h-full object-cover" src="<%= mat_img_url(material.cover) -%>" alt="">
                       <div class="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-all flex items-center px-1" style="background-color: rgba(16, 24, 32, .6);">
                         <p class="w-full text-sm lg:text-base fond-medium 2xl:text-lg whitespace-nowrap text-white truncate text-center" title="<%= material.name %>">
                           <%= material.name %>
@@ -223,22 +223,24 @@
         >
           <% @recently_projects.each_with_index do |project, i| %>
             <div class="absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
-              <img class="w-full h-full object-cover" src="<%= mat_img_url(project.web_cover) -%>" alt="">
+              <img class="w-full h-full object-cover" src="<%= mat_img_url(project.cover) -%>" alt="">
               <div class="absolute left-0 bottom-0 w-full text-white text-lg text-center truncate p-2">
-                <%= project.project_name -%>
+                <%= project.name -%>
               </div>
             </div>
           <% end %>
-          <div class="absolute left-2 flex items-center justify-center cursor-pointer circle-arrow text-lg" style="width: 30px; height: 30px; top: calc((100% - 30px) / 2);" data-action="click->material-carousel#toPrev">
-            <svg class="-ml-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="9.062" height="16.125" viewBox="0 0 9.062 16.125">
-              <path d="M564.707,561.636L558.343,568l6.364,6.364a1,1,0,0,1-1.414,1.414l-7.071-7.071a1,1,0,0,1,0-1.414l7.071-7.071A1,1,0,0,1,564.707,561.636Z" transform="translate(-555.938 -559.938)"/>
-            </svg>
-          </div>
-          <div class="absolute right-2 flex items-center justify-center cursor-pointer circle-arrow text-lg" style="width: 30px; height: 30px; top: calc((100% - 30px) / 2);" data-action="click->material-carousel#toNext">
-            <svg class="-mr-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16">
-              <path d="M556.291,561.685l6.32,6.315-6.32,6.315a0.992,0.992,0,0,0,1.4,1.4l7.023-7.016a0.994,0.994,0,0,0,0-1.4l-7.023-7.016A0.992,0.992,0,0,0,556.291,561.685Z" transform="translate(-556 -560)"/>
-            </svg>
-          </div>
+          <% if @recently_projects.length > 1 %>
+            <div class="absolute left-2 flex items-center justify-center cursor-pointer circle-arrow text-lg" style="width: 30px; height: 30px; top: calc((100% - 30px) / 2);" data-action="click->material-carousel#toPrev">
+              <svg class="-ml-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="9.062" height="16.125" viewBox="0 0 9.062 16.125">
+                <path d="M564.707,561.636L558.343,568l6.364,6.364a1,1,0,0,1-1.414,1.414l-7.071-7.071a1,1,0,0,1,0-1.414l7.071-7.071A1,1,0,0,1,564.707,561.636Z" transform="translate(-555.938 -559.938)"/>
+              </svg>
+            </div>
+            <div class="absolute right-2 flex items-center justify-center cursor-pointer circle-arrow text-lg" style="width: 30px; height: 30px; top: calc((100% - 30px) / 2);" data-action="click->material-carousel#toNext">
+              <svg class="-mr-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16">
+                <path d="M556.291,561.685l6.32,6.315-6.32,6.315a0.992,0.992,0,0,0,1.4,1.4l7.023-7.016a0.994,0.994,0,0,0,0-1.4l-7.023-7.016A0.992,0.992,0,0,0,556.291,561.685Z" transform="translate(-556 -560)"/>
+              </svg>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
