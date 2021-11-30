@@ -10,9 +10,6 @@ class MaterialProduct < ApplicationRecord
   has_many :material_product_surface_effects
   has_many :surface_effects, through: :material_product_surface_effects
 
-  has_many :material_product_practical_applications
-  has_many :practical_applications, through: :material_product_practical_applications
-
   default_scope { where(deleted_at: nil) }
 
   def construction
@@ -44,5 +41,13 @@ class MaterialProduct < ApplicationRecord
     else
       []
     end.map { |item| item.with_indifferent_access }
+  end
+
+  def practical_applications_json
+    if self.practical_applications.present?
+      JSON.parse(self.practical_applications).map { |item| item.with_indifferent_access }
+    else
+      []
+    end
   end
 end
