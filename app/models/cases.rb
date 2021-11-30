@@ -13,4 +13,8 @@ class Cases < ApplicationRecord
       material_info.color_system.description
     end
   end
+
+  def project_name_and_location
+    [self.project_name, self.project_location.gsub('上海市','')].select { |str| str.present? }.join('/')
+  end
 end
