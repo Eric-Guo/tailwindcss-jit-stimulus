@@ -120,7 +120,7 @@
           <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
         </p>
       </div>
-      <p class="text-sm font-medium truncate" title="<%= '真石漆｜质感涂料｜黄金麻' -%>">真石漆｜质感涂料｜黄金麻</p>
+      <p class="text-sm font-medium truncate" title="<%= project_case.material_tags.join(' | ') -%>"><%= project_case.material_tags.join(' | ') %></p>
     </div>
   <% end %>
 </div>
