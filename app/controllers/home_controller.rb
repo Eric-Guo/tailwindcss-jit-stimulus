@@ -15,7 +15,7 @@ class HomeController < ApplicationController
       Material.none
     end
     @total[:recently_materials] = @recently_materials.count
-    @recently_materials = @recently_materials.limit(16)
+    @recently_materials = Tops.where('top_model = ?', 'home_new_material').where('material_id > ?', 0).order(top_sort: :desc)
 
     recently_project = Cases.order(created_at: :desc).first
     @recently_projects = if recently_project.present?
@@ -24,8 +24,8 @@ class HomeController < ApplicationController
       Cases.none
     end
     @total[:recently_project] = @recently_projects.count
-    @recently_projects = @recently_projects.limit(10)
-    
+    @recently_projects = Tops.where('top_model = ?', 'home_new_cases').where('case_id > ?', 0).order(top_sort: :desc)
+
     @latest_news = News.order(published_at: :desc).limit(4)
 
     @projects = Cases.order(top_at: :desc).limit(8)
