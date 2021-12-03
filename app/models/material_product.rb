@@ -44,8 +44,9 @@ class MaterialProduct < ApplicationRecord
   end
 
   def practical_applications_json
-    if self.practical_applications.present?
-      JSON.parse(self.practical_applications).map { |item| item.with_indifferent_access }
+    arr = self.practical_applications.is_a?(Array) ? self.practical_applications : JSON.parse(self.practical_applications)
+    if arr.present? && arr.is_a?(Array)
+      arr.map { |item| item.with_indifferent_access }
     else
       []
     end
