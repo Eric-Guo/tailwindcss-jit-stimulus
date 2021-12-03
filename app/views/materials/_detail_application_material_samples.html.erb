@@ -77,9 +77,6 @@
                 样品编号
               </th>
               <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 whitespace-nowrap text-center text-sm text-gray-900">
-                色系
-              </th>
-              <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 whitespace-nowrap text-center text-sm text-gray-900">
                 样品规格、型号
               </th>
               <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 whitespace-nowrap text-center text-sm text-gray-900">
@@ -88,11 +85,8 @@
               <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 whitespace-nowrap text-center text-sm text-gray-900">
                 剩余库存
               </th>
-              <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 whitespace-nowrap text-center text-sm text-gray-900">
-                存放位置
-              </th>
               <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 border-r-0 whitespace-nowrap text-center text-sm text-gray-900">
-                供应商
+                存放位置
               </th>
             </tr>
           </thead>
@@ -103,9 +97,6 @@
                   <a class="underline" href="<%= sample_path(sample) %>"><%= sample.no -%></a>
                 </td>
                 <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 whitespace-nowrap text-xs">
-                  <%= sample&.color_systems&.pluck(:description)&.join(',') %>
-                </td>
-                <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 whitespace-nowrap text-xs">
                   <%= sample.spec_model -%>
                 </td>
                 <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 whitespace-nowrap text-xs">
@@ -114,11 +105,8 @@
                 <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 whitespace-nowrap text-xs">
                     未知
                 </td>
-                <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 whitespace-nowrap text-xs">
-                  <%= sample.position %>
-                </td>
                 <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 border-r-0 whitespace-nowrap text-xs">
-                  <%= sample.manufacturer&.name %>
+                  <%= sample.position %>
                 </td>
               </tr>
             <% end %>
