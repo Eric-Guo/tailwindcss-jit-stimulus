@@ -21,10 +21,10 @@
   <% other_samples.each_with_index do |other_sample, i| %>
     <div class="mr-4 <%= i == 1 ? 'mt-10' : 'mt-4' -%> mb-4 flex">
       <div class="flex-none" style="width: 170px; height: 170px;">
-        <img class="w-full h-full obejct-cover" src="<%= image_pack_path("static/sample_side_p#{i+1}.jpg") -%>" alt="">
+        <img class="w-full h-full obejct-cover" src="<%= mat_img_url(other_sample.pic, "") -%>" alt="">
       </div>
       <div class="flex flex-col justify-end mx-4">
-        <h2 class="text-base mb-2">黄金麻（样品）</h2>
+        <h2 class="text-base mb-2"><%= other_sample.material&.name %>（样品）</h2>
         <p class="mt-1 text-xs text-gray-400">样品编号：<%= other_sample.no -%></p>
         <p class="mt-1 text-xs text-gray-400">表面效果：<%= other_sample.surface_effect&.description -%></p>
         <p class="mt-1 text-xs text-gray-400">色系：<%= other_sample.material&.color -%></p>
