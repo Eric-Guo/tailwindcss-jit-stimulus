@@ -14,10 +14,10 @@
       <p class="text-xs break-all">价格区间：
         <span class="font-medium"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</span>
       </p>
-      <p class="text-xs break-all">产品/二级分类名称：
+      <p class="text-xs break-all">产品分类：
         <span class="font-medium"><%= @sample.material&.name -%></span>
       </p>
-      <p class="text-xs break-all">产品/二级分类编号：
+      <p class="text-xs break-all">产品编号：
         <span class="font-medium"><%= @sample.material&.no -%></span>
       </p>
       <p class="text-xs break-all">色系：
@@ -79,20 +79,13 @@
 <div class="bg-white text-black-6c m-1 px-1.5 py-2">
   <h5 class="text-base font-medium my-2">厂家信息</h5>
 
-  <div class="flex bg-gray-200 border border-gray-200 border-solid px-1 my-3 py-3">
-    <div class="w-5/12 px-2">
-      <div class="relative w-full" style="padding-top: 100%;">
-        <img class="absolute top-0 left-0 w-full h-full object-cover border border-gray-300 border-solid" src="<%= mat_img_url(@sample.manufacturer&.logo,'') -%>" alt="">
-      </div>
-    </div>
-    <div class="px-2">
-      <h5 class="text-base font-medium mb-2"><%= @sample.manufacturer&.name -%></h5>
-      <p class="text-xs text-gray-700">联系人：<%= @sample.manufacturer&.contact -%></p>
-      <p class="text-xs text-gray-700">邮箱：<%= @sample.manufacturer&.email -%></p>
-      <p class="text-xs text-gray-700">厂家地址：<%= @sample.manufacturer&.location -%></p>
-      <p class="text-xs text-gray-700">联系电话：<%= @sample.manufacturer&.contact_information -%></p>
-      <p class="text-xs text-gray-700">是否愿意提供材料样品：<%= @sample.manufacturer&.is_allow.present? ? '是' : '去电详询' -%></p>
-    </div>
+  <div class="bg-gray-200 border border-gray-200 border-solid p-3 my-3">
+    <h5 class="text-base font-medium mb-2"><%= @sample.manufacturer&.name -%></h5>
+    <p class="text-xs text-gray-700">联系人：<%= @sample.manufacturer&.contact -%></p>
+    <p class="text-xs text-gray-700">邮箱：<%= @sample.manufacturer&.email -%></p>
+    <p class="text-xs text-gray-700">厂家地址：<%= @sample.manufacturer&.location -%></p>
+    <p class="text-xs text-gray-700">联系电话：<%= @sample.manufacturer&.contact_information -%></p>
+    <p class="text-xs text-gray-700">是否愿意提供材料样品：<%= @sample.manufacturer&.is_allow.present? ? '是' : '去电详询' -%></p>
   </div>
 </div>
 
