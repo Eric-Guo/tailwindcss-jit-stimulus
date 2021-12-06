@@ -28,19 +28,14 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-row justify-between items-center mt-4">
-    <h5 class="text-base">表面效果：</h5>
-  </div>
-  <div class="overflow-auto w-full flex flex-nowrap scrollbar-none mt-2">
-    <% material.material_product&.surface_effects&.each do |surface_effect| %>
-      <div class="flex-none relative w-16 h-16 mx-px">
-        <img class="w-full h-full object-cover" src="<%= mat_img_url(surface_effect.path, "static/new_mat_g#{1}.jpg") -%>" alt="">
-        <div class="absolute left-0 bottom-0 w-full p-1 black-mask text-white flex items-end justify-center truncate">
-          <%= surface_effect.description -%>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <% if material.surface_effect_descriptions.present? %>
+    <div class="flex flex-row justify-between items-center mt-4">
+      <h5 class="text-base">表面效果：</h5>
+    </div>
+    <div class="mt-2">
+      <%= material.surface_effect_descriptions %>
+    </div>
+  <% end %>
 </div>
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2">
   <% if material.installation_and_construction_points.present? %>
@@ -80,14 +75,14 @@
     data-material-carousel-auto-play-time-value="2"
   >
     <div class="relative w-full h-52 overflow-hidden" data-controller="picture-viewer">
-      <% material.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
+      <% material.material_product&.practical_applications_json&.each_with_index do |practical_application, i| %>
         <div class="absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
-          <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application.path, "") -%>" alt="<%= practical_application&.description -%>" data-picture-viewer-target="image">
+          <img class="w-full h-full object-cover" src="<%= mat_img_url(practical_application[:url], "") -%>" alt="<%= practical_application[:name] -%>" data-picture-viewer-target="image">
         </div>
       <% end %>
     </div>
     <div class="flex justify-center mt-3">
-      <% material.material_product&.practical_applications&.each_with_index do |practical_application, i| %>
+      <% material.material_product&.practical_applications_json&.each_with_index do |practical_application, i| %>
         <div class="w-2 h-2 mx-1 rounded-full <%= i == 0 ? 'bg-gray-900' : 'bg-gray-300' %>" data-material-carousel-target="dotItem"></div>
       <% end %>
     </div>
@@ -108,9 +103,6 @@
           <tr>
             <th scope="col" class="sticky top-0 left-0 z-50 bg-gray-200 px-1 py-2 border border-t-0 border-l-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
               样品编号
-            </th>
-            <th scope="col" class="sticky top-0 bg-gray-200 px-1 py-2 border border-t-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
-              色系
             </th>
             <th scope="col" class="sticky top-0 bg-gray-200 px-1 py-2 border border-t-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
               样品规格、型号
@@ -139,7 +131,7 @@
                 <%= sample&.surface_effects&.pluck(:description)&.join(',') %>
               </td>
               <td class="px-1 py-2 text-center border border-b-0 border-r-0 border-gray-300 whitespace-nowrap text-xs">
-
+                <%= sample.position %>
               </td>
             </tr>
           <% end %>
