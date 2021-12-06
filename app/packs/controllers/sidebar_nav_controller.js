@@ -87,14 +87,14 @@ export default class extends Controller {
         <div class="sidebar-nav-item-content truncate">
           ${data.url ? `
             <a class="relative" href="${data.url}" title="${data.title} ${data.subtitle}">
-              <span class="text-xl">${data.title}</span>
-              <span class="text-base">${data.subtitle}</span>
+              <span class="text-xl leading-8">${data.title}</span>
+              <span class="text-base leading-7">${data.subtitle}</span>
               <span class="sidebar-nav-text-underline"></span>
             </a>
           ` : `
             <span class="relative" title="${data.title} ${data.subtitle}">
-              <span class="text-xl">${data.title}</span>
-              <span class="text-base">${data.subtitle}</span>
+              <span class="text-xl leading-8">${data.title}</span>
+              <span class="text-base leading-7">${data.subtitle}</span>
               <span class="sidebar-nav-text-underline"></span>
             </span>
           `}
