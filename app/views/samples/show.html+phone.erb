@@ -1,38 +1,40 @@
 <%# 样品名称 %>
 <div class="bg-white text-black-6c m-1 px-1.5 py-2.5">
   <div class="my-1 flex">
-    <img class="flex-initial" style="max-width: 50%;" src="<%= mat_img_url(@sample.pic, "") -%>" alt="">
+    <div class="w-5/12">
+      <img class="w-full object-scale-down" src="<%= mat_img_url(@sample.pic, "") -%>" alt="">
+    </div>
     <dl class="flex-auto ml-2">
-      <h3 class="text-base mb-2 font-medium"><%= @sample.material&.name -%>（样品） -%></h3>
-      <p class="text-xs whitespace-nowrap">样品编号：
+      <h3 class="text-base mb-2 font-medium"><%= @sample.material&.name -%>（样品）</h3>
+      <p class="text-xs break-all">样品编号：
         <span class="font-medium"><%= @sample.no %></span>
       </p>
-      <p class="text-xs whitespace-nowrap">价格区间：
+      <p class="text-xs break-all">价格区间：
         <span class="font-medium"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</span>
       </p>
-      <p class="text-xs whitespace-nowrap">产品/二级分类名称：
+      <p class="text-xs break-all">产品/二级分类名称：
         <span class="font-medium"><%= @sample.material&.name -%></span>
       </p>
-      <p class="text-xs whitespace-nowrap">产品/二级分类编号：
+      <p class="text-xs break-all">产品/二级分类编号：
         <span class="font-medium"><%= @sample.material&.no -%></span>
       </p>
-      <p class="text-xs whitespace-nowrap">色系：
+      <p class="text-xs break-all">色系：
         <span class="font-medium">
           <%= @sample&.color_systems&.collect(&:description)&.join(' ') -%>
         </span>
       </p>
-      <p class="text-xs whitespace-nowrap">色号：
+      <p class="text-xs break-all">色号：
         <span class="font-medium"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></span>
       </p>
-      <p class="text-xs whitespace-nowrap">产品规格/型号：
+      <p class="text-xs break-all">产品规格/型号：
         <span class="font-medium"><%= @sample.spec_model -%></span>
       </p>
-      <p class="text-xs whitespace-nowrap">表面效果：
+      <p class="text-xs break-all">表面效果：
         <span class="font-medium">
           <%= @sample&.surface_effects&.collect(&:description)&.join(' ') -%>
         </span>
       </p>
-      <div class="text-xs whitespace-nowrap" data-controller="modal" data-modal-allow-background-close="true">储存位置：
+      <div class="text-xs break-all" data-controller="modal" data-modal-allow-background-close="true">储存位置：
         <a href="#" data-action="click->modal#open">
           <span class="font-medium underline"><%= @sample.position -%></span>
         </a>
@@ -56,12 +58,16 @@
   </div>
   <h5 class="text-base mt-4">其他样品</h5>
   <div class="pt-2 pb-3 overscroll-x-auto overflow-x-auto shadow-sm">
-    <div class="flex flex-nowrap min-w-max">
-      <% @other_samples.each_with_index do |other_sample, i| %>
-        <div class="mx-px first:mx-px w-16">
-          <img class="w-full object-contain" src="<%= mat_img_url(other_sample.pic, "") -%>" alt="">
-          <h3 class="text-center text-xs my-2 whitespace-nowrap"><%= other_sample.material&.name -%></h3>
-        </div>
+    <div class="grid grid-cols-5 gap-1">
+      <% @other_samples.page(1).per(5).each_with_index do |other_sample, i| %>
+        <a href="<%= sample_path(other_sample.id) %>" class="block relative" style="padding-top: 100%;">
+          <div class="absolute top-0 left-0 w-full h-full">
+            <img class="w-full h-full object-cover" src="<%= mat_img_url(other_sample.pic, "") -%>" alt="">
+          </div>
+          <div class="absolute bottom-0 left-0 w-full break-all text-xs text-center p-1 black-mask text-white">
+            <%= other_sample.material&.name -%>
+          </div>
+        </a>
       <% end %>
     </div>
   </div>
@@ -86,27 +92,40 @@
   </div>
 </div>
 
-<%# 产品案例 %>
-<div class="bg-white text-black-6c text-xs px-1.5 pt-2 pb-5 mt-2">
-  <h5 class="text-base font-medium m-1">产品案例</h5>
+<%# 附件下载 %>
+<div class="bg-white text-black-6c m-1 px-1.5 py-2">
+  <h5 class="text-base font-medium">附件下载</h5>
 
-  <div class="grid grid-cols-2 gap-y-2">
+  <div class="grid grid-cols-2 gap-2 mt-2">
+    <% @sample.sample_enclosures.each do |enclosure| %>
+      <a target="_blank" href="<%= mat_img_url(enclosure.path) %>" class="flex items-center justify-between text-sm p-3 shadow-tw-dark font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+        <span><%= enclosure.name %></span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+        </svg>
+      </a>
+    <% end %>
+  </div>
+</div>
+
+<%# 产品案例 %>
+<div class="bg-white text-black-6c m-1 px-1.5 py-2">
+  <h5 class="text-base font-medium">所属案例</h5>
+
+  <div class="grid grid-cols-1 gap-y-4 mt-2">
     <% @cases.each_with_index do |project_case, i| %>
-    <div class="mx-1">
-      <div class="relative">
-        <img class="w-full" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
-        <div class="absolute right-1 bottom-1 text-white text-right">
-          <p class="text-xs"><%= project_case.is_th == 1 ? '内部项目' : '外部项目' %></p>
+      <div>
+        <div class="relative">
+          <img class="w-full h-36 object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
+          <div class="absolute right-1 bottom-1 text-white text-xs">
+            <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+          </div>
         </div>
-        <div class="absolute left-1 bottom-1 text-white text-left">
-          <p class="text-white text-right text-xs">荔枝面黄金麻</p>
+        <div class="text-black-6c text-left">
+          <p class="text-xs mt-1"><%= project_case.project_name_and_location -%></p>
+          <p class="text-xs mt-1"><%= project_case.design_unit -%></p>
         </div>
       </div>
-      <div class="text-black-6c text-left">
-        <p class="text-xs mt-1"><%= project_case.project_name_and_location -%></p>
-        <p class="text-xs"></p>
-      </div>
-    </div>
     <% end %>
   </div>
 </div>
