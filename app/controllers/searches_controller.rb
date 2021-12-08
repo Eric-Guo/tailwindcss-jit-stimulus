@@ -31,8 +31,20 @@ class SearchesController < ApplicationController
       end
 
       @cases = if @q.present?
-        Cases.where('project_name LIKE ? OR business_type LIKE ? OR project_type LIKE ? OR project_location LIKE ? OR design_unit LIKE ?',
-          "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
+        # 先获取所有符合条件的材料与样品
+        material_and_samples = MaterialAndSample.where('material_level IN (2,3)')
+          .where('material_name LIKE :keywords OR parent_material_name LIKE :keywords OR grandpa_material_name LIKE :keywords', keywords: "%#{@q}%")
+        material_ids = material_and_samples.pluck(:material_id).uniq
+        sample_ids = material_and_samples.pluck(:sample_id).uniq.select { |sample_id| sample_id.present? }
+
+        # 再查出这些材料或样品关联的案例
+        case_materials = CasesMaterial.where('(type_id = 2 AND material_id IN (?)) OR (type_id = 1 AND sample_id IN (?))', material_ids, sample_ids)
+
+        Cases.where(
+          '(id IN (:ids)) OR project_name LIKE :keywords OR business_type LIKE :keywords OR project_type LIKE :keywords OR project_location LIKE :keywords OR design_unit LIKE :keywords',
+          keywords: "%#{@q}%",
+          ids: case_materials.pluck(:case_id)
+        )
       else
         Cases.none
       end
