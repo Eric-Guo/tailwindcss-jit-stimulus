@@ -151,7 +151,7 @@
   </div>
   <div class="mt-2 grid grid-cols-2 gap-y-2 gap-x-1">
     <% cases.each do |project_case| %>
-      <div>
+      <a class="block" href="<%= project_path(project_case) %>">
         <div class="relative w-full h-28">
           <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) %>" alt="">
           <div class="absolute bottom-0 left-0 w-full flex justify-between items-center h-6 px-2 text-white text-xs black-mask">
@@ -164,7 +164,7 @@
             <%= project_case.project_name_and_location -%>
           </div>
         </div>
-      </div>
+      </a>
     <% end %>
   </div>
 </div>
