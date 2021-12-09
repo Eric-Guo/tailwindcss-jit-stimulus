@@ -7,6 +7,20 @@ class ApplicationController < ActionController::Base
   before_action :set_sidebar_nav
   before_action :set_footer_info
 
+  protected
+
+    def make_sure_wechat_user_login
+      wechat_oauth2 do |user_name|
+        Current.user = User.find_by wecom_id: user_name
+        Current.user = User.find_by email: "#{user_name}@thape.com.cn" if Current.user.blank?
+        if Current.user.present?
+          return
+        else
+          return redirect_to root_path
+        end
+      end unless Current.user.present?
+    end
+
   private
 
     def set_ie_warning
