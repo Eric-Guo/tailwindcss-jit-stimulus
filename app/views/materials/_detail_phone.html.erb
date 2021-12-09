@@ -117,16 +117,16 @@
         <tbody>
           <% material.samples.each do |sample| %>
             <tr>
-              <td class="sticky left-0 bg-gray-200 px-1 py-2 text-center border border-b-0 border-l-0 border-gray-300 whitespace-nowrap text-xs font-medium">
+              <td class="sticky left-0 bg-gray-200 px-1 py-2 text-center border border-l-0 border-gray-300 whitespace-nowrap text-xs font-medium">
                 <a class="underline" href="<%= sample_path(sample) %>"><%= sample.no -%></a>
               </td>
-              <td class="px-1 py-2 text-center border border-b-0 border-gray-300 whitespace-nowrap text-xs">
+              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
                 <%= sample.spec_model %>
               </td>
-              <td class="px-1 py-2 text-center border border-b-0 border-gray-300 whitespace-nowrap text-xs">
+              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
                 <%= sample.surface_effect_descriptions -%>
               </td>
-              <td class="px-1 py-2 text-center border border-b-0 border-r-0 border-gray-300 whitespace-nowrap text-xs">
+              <td class="px-1 py-2 text-center border border-r-0 border-gray-300 whitespace-nowrap text-xs">
                 <%= sample.position %>
               </td>
             </tr>
