@@ -15,12 +15,12 @@
         <span class="font-medium"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</span>
       </p>
       <p class="text-xs break-all">产品分类：
-        <a href="<%= material_path(@sample.material) %>" class="underline">
+        <a href="<%= material_path(@sample.material) %>" class="underline text-blue-400">
           <span class="font-medium"><%= @sample.material&.name -%></span>
         </a>
       </p>
       <p class="text-xs break-all">产品编号：
-        <a href="<%= material_path(@sample.material) %>" class="underline">
+        <a href="<%= material_path(@sample.material) %>" class="underline text-blue-400">
           <span class="font-medium"><%= @sample.material&.no -%></span>
         </a>
       </p>
@@ -93,41 +93,45 @@
   </div>
 </div>
 
-<%# 附件下载 %>
-<div class="bg-white text-black-6c m-1 px-1.5 py-2">
-  <h5 class="text-base font-medium">附件下载</h5>
+<% if @sample.sample_enclosures.length > 0 %>
+  <%# 附件下载 %>
+  <div class="bg-white text-black-6c m-1 px-1.5 py-2">
+    <h5 class="text-base font-medium">附件下载</h5>
 
-  <div class="grid grid-cols-2 gap-2 mt-2">
-    <% @sample.sample_enclosures.each do |enclosure| %>
-      <a target="_blank" href="<%= mat_img_url(enclosure.path) %>" class="flex items-center justify-between text-sm p-3 shadow-tw-dark font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-        <span><%= enclosure.name %></span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-        </svg>
-      </a>
-    <% end %>
+    <div class="grid grid-cols-2 gap-2 mt-2">
+      <% @sample.sample_enclosures.each do |enclosure| %>
+        <a target="_blank" href="<%= mat_img_url(enclosure.path) %>" class="flex items-center justify-between text-sm p-3 shadow-tw-dark font-medium bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+          <span><%= enclosure.name %></span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+          </svg>
+        </a>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
-<%# 产品案例 %>
-<div class="bg-white text-black-6c m-1 px-1.5 py-2">
-  <h5 class="text-base font-medium">所属案例</h5>
+<% if @cases.length > 0 %>
+  <%# 产品案例 %>
+  <div class="bg-white text-black-6c m-1 px-1.5 py-2">
+    <h5 class="text-base font-medium">所属案例</h5>
 
-  <div class="grid grid-cols-1 gap-y-4 mt-2">
-    <% @cases.each_with_index do |project_case, i| %>
-      <div>
-        <div class="relative">
-          <img class="w-full h-36 object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
-          <div class="absolute right-1 bottom-1 text-white text-xs">
-            <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+    <div class="grid grid-cols-1 gap-y-4 mt-2">
+      <% @cases.each_with_index do |project_case, i| %>
+        <div>
+          <div class="relative">
+            <img class="w-full h-36 object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
+            <div class="absolute right-1 bottom-1 text-white text-xs">
+              <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+            </div>
+          </div>
+          <div class="text-black-6c text-left">
+            <p class="text-xs mt-1"><%= project_case.project_name_and_location -%></p>
+            <p class="text-xs mt-1"><%= project_case.design_unit -%></p>
           </div>
         </div>
-        <div class="text-black-6c text-left">
-          <p class="text-xs mt-1"><%= project_case.project_name_and_location -%></p>
-          <p class="text-xs mt-1"><%= project_case.design_unit -%></p>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
