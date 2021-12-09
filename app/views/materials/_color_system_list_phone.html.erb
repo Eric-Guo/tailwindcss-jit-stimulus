@@ -32,7 +32,7 @@
         data-turbo-frame="_top"
       >
         <img class="w-20 h-20 object-cover" src="<%= get_first_url(project.cover) -%>" alt="">
-        <h3 class="text-center my-2 whitespace-nowrap"><%= project.name -%></h3>
+        <h3 class="text-center my-2 truncate"><%= project.name -%></h3>
       </a>
     <% end %>
   </div>

@@ -1,5 +1,14 @@
 <%= render partial: 'shared/header', locals: { } -%>
 
+<div class="mx-4 px-48 pt-8 text-sm text-gray-500">
+  <% breadcrumbs = material_breadcrumbs(@sample.material, append_title: "#{@sample.material&.name}（样品）") %>
+  <%= raw breadcrumbs.map { |item| \
+    item[:url].present? \
+    ? "<a href=\"#{item[:url]}\">#{item[:title]}</a>" \
+    : "<span class='text-black'>#{item[:title]}</span>" \
+  }.join('<span> > </span>') %>
+</div>
+
 <div class="flex flex-row px-48">
   <section class="w-full mr-6 max-w-lg lg:max-w-xl xl:max-w-5xl flex flex-col">
     <%# 产品样品 %>
@@ -18,13 +27,21 @@
             <dd class="mt-2 inline"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</dd>
 
             <dt class="mt-2 inline-block w-1/2">产品/二级分类名称：</dt>
-            <dd class="mt-2 inline"><%= @sample.material&.name -%></dd>
+            <dd class="mt-2 inline">
+              <a href="<%= material_path(@sample.material) %>" class="underline">
+                <%= @sample.material&.name -%>
+              </a>
+            </dd>
 
             <dt class="mt-2 inline-block w-1/2">产品/二级分类编号：</dt>
-            <dd class="mt-2 inline"><%= @sample.material&.no -%></dd>
+            <dd class="mt-2 inline">
+              <a href="<%= material_path(@sample.material) %>" class="underline">
+                <%= @sample.material&.no -%>
+              </a>
+            </dd>
 
             <dt class="mt-2 inline-block w-1/2">色系：</dt>
-            <dd class="mt-2 inline"><%= @sample&.color_systems&.collect(&:description)&.join(' ') -%></dd>
+            <dd class="mt-2 inline"><%= @sample.color_str -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">色号：</dt>
             <dd class="mt-2 inline"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></dd>
@@ -33,7 +50,7 @@
             <dd class="mt-2 inline"><%= @sample.spec_model -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">表面效果：</dt>
-            <dd class="mt-2 inline"><%= @sample&.surface_effects&.collect(&:description)&.join(' ') -%></dd>
+            <dd class="mt-2 inline"><%= @sample.surface_effect_descriptions -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">存储位置：</dt>
             <dd class="mt-2 inline" data-controller="modal" data-modal-allow-background-close="true">
