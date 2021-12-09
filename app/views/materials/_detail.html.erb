@@ -49,7 +49,7 @@
         <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">厂家信息</span>
         <span class="text-xl font-light">Manufacturer</span>
       </div>
-      <a class="more-btn" href="<%= root_path -%>">MORE+</a>
+      <a class="more-btn hidden" href="<%= root_path -%>">MORE+</a>
     </div>
     <div class="grid grid-cols-3 gap-4 mt-4">
       <%= render partial: 'shared/manufacturers', locals: { manufacturers: material.manufacturers } -%>

@@ -93,7 +93,7 @@
 <div class="bg-white m-1 px-1.5 py-2">
   <div class="flex flex-row justify-between items-center">
     <h5 class="text-base font-medium">材料样品</h5>
-    <a class="more-btn-sm" href="<%= root_path -%>">MORE+</a>
+    <a class="more-btn-sm hidden" href="<%= root_path -%>">MORE+</a>
   </div>
   <div class="bg-gray-200 mt-2">
     <div class="w-full overflow-auto h-40 border border-gray-300 border-solid scrollbar-none">
@@ -153,7 +153,7 @@
 <div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2">
   <div class="flex flex-row justify-between items-center">
     <h5 class="text-base font-medium">产品案例</h5>
-    <a class="more-btn-sm" href="<%= root_path -%>">MORE+</a>
+    <a class="more-btn-sm hidden" href="<%= root_path -%>">MORE+</a>
   </div>
   <div class="mt-2 grid grid-cols-2 gap-y-2 gap-x-1">
     <% cases.each do |project_case| %>
@@ -181,7 +181,7 @@
 <div class="bg-white text-black-6c m-1 px-1.5 py-2">
   <div class="flex flex-row justify-between items-center">
     <h5 class="text-base font-medium">构造做法</h5>
-    <a class="more-btn-sm" href="<%= root_path -%>">MORE+</a>
+    <a class="more-btn-sm hidden" href="<%= root_path -%>">MORE+</a>
   </div>
   <div class="grid grid-cols-1 gap-2 mt-2">
     <% material.material_product.construction.each_with_index do |practice_detail, i| %>
@@ -201,7 +201,7 @@
 <div class="bg-white text-black-6c m-1 px-1.5 py-2">
   <div class="flex flex-row justify-between items-center">
     <h5 class="text-base font-medium">厂家信息</h5>
-    <a class="more-btn-sm" href="<%= root_path -%>">MORE+</a>
+    <a class="more-btn-sm hidden" href="<%= root_path -%>">MORE+</a>
   </div>
   <div class="grid grid-cols-1 gap-2 mt-2">
     <% material.manufacturers&.each do |manufacturer| %>
