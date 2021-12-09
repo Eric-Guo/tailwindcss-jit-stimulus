@@ -7,38 +7,35 @@
       </div>
     </div>
     <dl class="flex-auto ml-2">
-      <h3 class="text-base mb-2 font-medium"><%= @sample.material&.name -%>（样品）</h3>
-      <p class="text-xs break-all">样品编号：
-        <span class="font-medium"><%= @sample.no %></span>
+      <h3 class="text-base mb-2 font-medium"><%= @sample.material&.name -%> (样品) (<%= @sample.material.no %>-<%= @sample.no %>)</h3>
+      <p class="text-xs break-all">样品描述：
+        <span class="font-medium"><%= @sample.material_text %></span>
       </p>
-      <p class="text-xs break-all">价格区间：
+      <p class="text-xs break-all">价格：
         <span class="font-medium"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</span>
       </p>
       <p class="text-xs break-all">产品分类：
         <a href="<%= material_path(@sample.material) %>" class="underline text-blue-400">
-          <span class="font-medium"><%= @sample.material&.name -%></span>
-        </a>
-      </p>
-      <p class="text-xs break-all">产品编号：
-        <a href="<%= material_path(@sample.material) %>" class="underline text-blue-400">
-          <span class="font-medium"><%= @sample.material&.no -%></span>
+          <span class="font-medium"><%= @sample.material&.name -%>(<%= @sample.material&.no -%>)</span>
         </a>
       </p>
       <p class="text-xs break-all">色系：
-        <span class="font-medium">
-          <%= @sample.color_str -%>
-        </span>
+        <span class="font-medium"><%= @sample.color_str -%></span>
       </p>
       <p class="text-xs break-all">色号：
         <span class="font-medium"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></span>
       </p>
-      <p class="text-xs break-all">产品规格/型号：
+      <p class="text-xs break-all">原厂型号：
+        <span class="font-medium"><%= @sample.model -%></span>
+      </p>
+      <p class="text-xs break-all">产品规格：
         <span class="font-medium"><%= @sample.spec_model -%></span>
       </p>
+      <p class="text-xs break-all">表面肌理：
+        <span class="font-medium"><%= @sample.visual -%></span>
+      </p>
       <p class="text-xs break-all">表面效果：
-        <span class="font-medium">
-          <%= @sample.surface_effect_descriptions -%>
-        </span>
+        <span class="font-medium"><%= @sample.surface_effect_descriptions -%></span>
       </p>
       <div class="text-xs break-all" data-controller="modal" data-modal-allow-background-close="true">储存位置：
         <a href="#" data-action="click->modal#open">
@@ -70,7 +67,7 @@
           <div class="absolute top-0 left-0 w-full h-full">
             <img class="w-full h-full object-cover" src="<%= mat_img_url(other_sample.pic, "") -%>" alt="">
           </div>
-          <div class="absolute bottom-0 left-0 w-full break-all text-xs text-center p-1 black-mask text-white">
+          <div class="absolute bottom-0 left-0 w-full break-all text-xs text-center p-1 black-mask text-white truncate">
             <%= other_sample.material&.name -%>
           </div>
         </a>

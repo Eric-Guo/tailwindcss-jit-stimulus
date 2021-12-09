@@ -18,18 +18,18 @@
     <div class="mx-4 mt-4 flex gap-4">
       <img class="w-80 h-80 object-scale-down" src="<%= mat_img_url(@sample.pic, "") -%>" alt="">
       <div class="ml-4 relative">
-        <h2 class="text-xl font-medium"><%= @sample.material&.name -%>（样品）</h2>
-        <dl class="absolute bottom-0 w-120 text-sm">
-            <dt class="mt-2 inline-block w-1/2">样品编号：</dt>
-            <dd class="mt-2 inline"><%= @sample.no %></dd>
+        <h2 class="text-xl font-medium"><%= @sample.material&.name -%> (样品) (<%= @sample.material.no %>-<%= @sample.no %>)</h2>
+        <dl class="w-120 text-sm mt-2">
+            <dt class="mt-2 inline-block w-1/2">样品描述：</dt>
+            <dd class="mt-2 inline"><%= @sample.material_text %></dd>
 
             <dt class="mt-2 inline-block w-1/2">价格：</dt>
             <dd class="mt-2 inline"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</dd>
 
-            <dt class="mt-2 inline-block w-1/2">产品/二级分类名称：</dt>
+            <dt class="mt-2 inline-block w-1/2">产品/二级分类名称(编号)：</dt>
             <dd class="mt-2 inline">
               <a href="<%= material_path(@sample.material) %>" class="underline text-blue-400">
-                <%= @sample.material&.name -%>
+                <%= @sample.material&.name -%>(<%= @sample.material&.no -%>)
               </a>
             </dd>
 
@@ -46,8 +46,14 @@
             <dt class="mt-2 inline-block w-1/2">色号：</dt>
             <dd class="mt-2 inline"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></dd>
 
-            <dt class="mt-2 inline-block w-1/2">产品规格/型号：</dt>
+            <dt class="mt-2 inline-block w-1/2">原厂型号</dt>
+            <dd class="mt-2 inline"><%= @sample.model -%></dd>
+
+            <dt class="mt-2 inline-block w-1/2">产品规格：</dt>
             <dd class="mt-2 inline"><%= @sample.spec_model -%></dd>
+
+            <dt class="mt-2 inline-block w-1/2">表面肌理：</dt>
+            <dd class="mt-2 inline"><%= @sample.visual -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">表面效果：</dt>
             <dd class="mt-2 inline"><%= @sample.surface_effect_descriptions -%></dd>
