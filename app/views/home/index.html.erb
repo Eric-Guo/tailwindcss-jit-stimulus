@@ -222,12 +222,12 @@
           data-material-carousel-duration-value="0.5"
         >
           <% @recently_projects.each_with_index do |project, i| %>
-            <div class="absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+            <a class="block absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem" href="<%= project_path(project.home_top_case) %>">
               <img class="w-full h-full object-cover" src="<%= mat_img_url(project.cover) -%>" alt="">
               <div class="absolute left-0 bottom-0 w-full text-white text-lg text-center truncate p-2">
                 <%= project.name -%>
               </div>
-            </div>
+            </a>
           <% end %>
           <% if @recently_projects.length > 1 %>
             <div class="absolute left-2 flex items-center justify-center cursor-pointer circle-arrow text-lg" style="width: 30px; height: 30px; top: calc((100% - 30px) / 2);" data-action="click->material-carousel#toPrev">

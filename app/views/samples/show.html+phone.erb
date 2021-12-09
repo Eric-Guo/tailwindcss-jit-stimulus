@@ -118,7 +118,7 @@
 
     <div class="grid grid-cols-1 gap-y-4 mt-2">
       <% @cases.each_with_index do |project_case, i| %>
-        <div>
+        <a class="block" href="<%= project_path(project_case) %>">
           <div class="relative">
             <img class="w-full h-36 object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
             <div class="absolute right-1 bottom-1 text-white text-xs">
@@ -129,7 +129,7 @@
             <p class="text-xs mt-1"><%= project_case.project_name_and_location -%></p>
             <p class="text-xs mt-1"><%= project_case.design_unit -%></p>
           </div>
-        </div>
+        </a>
       <% end %>
     </div>
   </div>
