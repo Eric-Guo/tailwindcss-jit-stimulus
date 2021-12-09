@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :projects, only: %i[index]
+  resources :projects, only: %i[index show]
   resources :manufacturers, only: %i[index]
   resources :news, only: %i[index]
 
