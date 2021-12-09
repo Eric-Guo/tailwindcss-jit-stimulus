@@ -23,12 +23,12 @@
 
 .more-btn {
   background-color: #fff;
-  @apply float-right py-1 px-2.5 border border-black font-medium text-sm rounded-full text-black shadow-sm active:bg-gray-800 hover:bg-black focus:text-black hover:text-white focus:text-white transition duration-150 ease-in-out leading-snug;
+  @apply float-right py-1 px-2.5 border border-black font-medium text-sm rounded-full text-black shadow-sm active:bg-gray-800 hover:bg-black focus:text-black hover:text-white focus:text-white transition duration-150 ease-in-out;
 }
 
 .more-btn-sm {
   background-color: #fff;
-  @apply float-right py-0.5 px-2 border border-black font-medium text-xs rounded-full text-black shadow-sm active:bg-gray-800 hover:bg-black focus:text-black hover:text-white focus:text-white transition duration-150 ease-in-out leading-snug;
+  @apply float-right py-0.5 px-2 border border-black font-medium text-xs rounded-full text-black shadow-sm active:bg-gray-800 hover:bg-black focus:text-black hover:text-white focus:text-white transition duration-150 ease-in-out;
 }
 
 .black-mask {

@@ -15,4 +15,17 @@ class Sample < ApplicationRecord
   has_many :surface_effects, through: :sample_surface_effects
 
   default_scope { where(deleted_at: nil).where(display: 1) }
+
+  def color_str
+    self.color_systems&.collect(&:description)&.join(',')
+  end
+
+  # 表面效果描述
+  def surface_effect_descriptions
+    @_surface_effect_descriptions ||= if self.surface_effects.present?
+      self.surface_effects.pluck(:description).join('、')
+    else
+      nil
+    end
+  end
 end

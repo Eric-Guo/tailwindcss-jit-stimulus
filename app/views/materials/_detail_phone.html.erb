@@ -9,7 +9,7 @@
       <div class="mt-4">
         <p>
           <span>色系：</span>
-          <span class="font-medium"><%= material.material_product&.color_systems&.pluck(:description)&.join(',') %></span>
+          <span class="font-medium"><%= material.color %></span>
         </p>
         <p>
           <span>产地：</span>
@@ -25,24 +25,23 @@
           <span>是否常用产品：</span>
           <span class="font-medium"><%= material.material_product&.is_common == 1 ? '是' : '否' %></span>
         </p>
+
+        <% if material.surface_effect_descriptions.present? %>
+          <p>
+            <span>表面效果：</span>
+            <span class="font-medium"><%= material.surface_effect_descriptions %></span>
+          </p>
+        <% end %>
       </div>
     </div>
   </div>
-  <% if material.surface_effect_descriptions.present? %>
-    <div class="flex flex-row justify-between items-center mt-4">
-      <h5 class="text-base">表面效果：</h5>
-    </div>
-    <div class="mt-2">
-      <%= material.surface_effect_descriptions %>
-    </div>
-  <% end %>
 </div>
-<div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2">
+<div class="bg-white text-black-6c text-xs m-1 px-1.5 py-2" data-controller="toggle-class">
   <% if material.installation_and_construction_points.present? %>
     <div class="flex flex-row justify-between items-center">
       <h5 class="text-base font-medium">安装施工要点</h5>
     </div>
-    <div class="mt-2">
+    <div class="mt-2 line-clamp-5" data-action="click->toggle-class#toggle" data-toggle-class="line-clamp-5">
       <%= material.material_product&.points %>
     </div>
     <div class="mt-4"></div>
@@ -122,13 +121,10 @@
                 <a class="underline" href="<%= sample_path(sample) %>"><%= sample.no -%></a>
               </td>
               <td class="px-1 py-2 text-center border border-b-0 border-gray-300 whitespace-nowrap text-xs">
-                <%= sample&.color_systems&.pluck(:description)&.join(',') %>
+                <%= sample.spec_model %>
               </td>
               <td class="px-1 py-2 text-center border border-b-0 border-gray-300 whitespace-nowrap text-xs">
-                <%= sample.spec_model -%>
-              </td>
-              <td class="px-1 py-2 text-center border border-b-0 border-gray-300 whitespace-nowrap text-xs">
-                <%= sample&.surface_effects&.pluck(:description)&.join(',') %>
+                <%= sample.surface_effect_descriptions -%>
               </td>
               <td class="px-1 py-2 text-center border border-b-0 border-r-0 border-gray-300 whitespace-nowrap text-xs">
                 <%= sample.position %>
@@ -137,6 +133,9 @@
           <% end %>
         </tbody>
       </table>
+      <% if material.samples.length === 0 %>
+        <div class="text-center mt-12 text-gray-500 text-sm">暂无相关实体材料样品</div>
+      <% end %>
     </div>
     <div class="p-2 text-sm">实体材料库地址：上海市徐汇区漕河泾科汇大厦11F</div>
   </div>
