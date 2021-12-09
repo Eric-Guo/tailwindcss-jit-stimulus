@@ -104,6 +104,9 @@
               样品编号
             </th>
             <th scope="col" class="sticky top-0 bg-gray-200 px-1 py-2 border border-t-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
+              样品描述
+            </th>
+            <th scope="col" class="sticky top-0 bg-gray-200 px-1 py-2 border border-t-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
               样品规格、型号
             </th>
             <th scope="col" class="sticky top-0 bg-gray-200 px-1 py-2 border border-t-0 border-gray-300 border-solid whitespace-nowrap text-center text-sm text-gray-900">
@@ -119,6 +122,9 @@
             <tr>
               <td class="sticky left-0 bg-gray-200 px-1 py-2 text-center border border-l-0 border-gray-300 whitespace-nowrap text-xs font-medium">
                 <a class="underline" href="<%= sample_path(sample) %>"><%= sample.no -%></a>
+              </td>
+              <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
+                <%= sample.material_text -%>
               </td>
               <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
                 <%= sample.spec_model %>

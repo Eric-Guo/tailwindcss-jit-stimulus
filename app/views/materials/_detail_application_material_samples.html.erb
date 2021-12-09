@@ -70,36 +70,49 @@
     <div class="flex flex-col mt-4" style="height: 493px; background-color: #f2f2f2;">
       <h5 class="mt-4 text-lg font-medium text-center">实体材料库库存信息</h5>
       <div class="flex flex-col mx-3 mt-3 overflow-auto border" style="height: 353px;">
-        <table class="flex-none min-w-full h-auto border-collapse">
-          <thead>
+        <table class="flex-none w-full h-auto border-collapse table-fixed text-center">
+          <colgroup>
+            <col style="width: 15%;">
+            <col style="width: 25%;">
+            <col style="width: 25%;">
+            <col style="width: 20%;">
+            <col style="width: 15%;">
+          </colgroup>
+          <thead class="bg-gray-50 text-sm text-gray-900 sticky top-0">
             <tr>
-              <th scope="col" class="sticky top-0 left-0 z-50 bg-gray-50 px-1 py-2 border border-t-0 border-l-0 whitespace-nowrap text-center text-sm text-gray-900">
+              <th scope="col" class="px-1 py-2 border border-t-0">
                 样品编号
               </th>
-              <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 whitespace-nowrap text-center text-sm text-gray-900">
+              <th scope="col" class="px-1 py-2 border border-t-0">
+                样品描述
+              </th>
+              <th scope="col" class="px-1 py-2 border border-t-0">
                 样品规格、型号
               </th>
-              <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 whitespace-nowrap text-center text-sm text-gray-900">
+              <th scope="col" class="px-1 py-2 border border-t-0">
                 表面工艺
               </th>
-              <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 border-r-0 whitespace-nowrap text-center text-sm text-gray-900">
+              <th scope="col" class="px-1 py-2 border border-t-0">
                 存放位置
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="bg-white text-xs">
             <% material.samples.each do |sample| %>
               <tr>
-                <td class="sticky left-0 bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 border-l-0 whitespace-nowrap text-xs font-medium">
+                <td class="px-1 py-2 border truncate">
                   <a class="underline" href="<%= sample_path(sample) %>"><%= sample.no -%></a>
                 </td>
-                <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 whitespace-nowrap text-xs">
+                <td class="px-1 py-2 border truncate" title="<%= sample.material_text -%>">
+                  <%= sample.material_text -%>
+                </td>
+                <td class="px-1 py-2 border truncate" title="<%= sample.spec_model -%>">
                   <%= sample.spec_model -%>
                 </td>
-                <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 whitespace-nowrap text-xs">
+                <td class="px-1 py-2 border truncate" title="<%= sample.surface_effect_descriptions -%>">
                   <%= sample.surface_effect_descriptions %>
                 </td>
-                <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 border-r-0 whitespace-nowrap text-xs">
+                <td class="px-1 py-2 border truncate">
                   <%= sample.position %>
                 </td>
               </tr>
