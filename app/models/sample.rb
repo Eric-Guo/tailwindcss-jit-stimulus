@@ -25,7 +25,7 @@ class Sample < ApplicationRecord
     @_surface_effect_descriptions ||= if self.surface_effects.present?
       self.surface_effects.pluck(:description).join('、')
     else
-      nil
+      self.aq_vein
     end
   end
 end

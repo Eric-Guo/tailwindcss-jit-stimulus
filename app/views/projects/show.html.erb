@@ -1,0 +1,263 @@
+<%= render partial: 'shared/header', locals: {} -%>
+
+<div class="mx-auto mt-12" style="width: 1500px; padding-bottom: 50px;">
+
+  <div class="text-sm text-gray-500">
+    <span class="<%= root_path %>">首页</span>
+    <span> > </span>
+    <a class="<%= projects_path %>">案例</a>
+    <span> > </span>
+    <span>案例详情</span>
+  </div>
+
+  <div class="flex flex-row justify-between mt-5">
+
+    <section class="flex flex-col" style="width: 1000px;">
+
+      <div class="pb-3 border-b-2 border-gray-100 border-solid">
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">案例详情</span>
+        <span class="text-xl font-light">Project Details</span>
+      </div>
+
+      <div
+        class="flex flex-col relative mt-4"
+        data-controller="material-carousel"
+        data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
+        data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
+        data-material-carousel-duration-value="0.5"
+        data-material-carousel-dot-normal-class-value="border-transparent"
+        data-material-carousel-dot-active-class-value="border-gray-900"
+      >
+        <% if @project.banners.present? %>
+          <div class="relative overflow-hidden" style="width: 1000px; height: 750px;" data-controller="picture-viewer">
+            <% @project.banners.each_with_index do |banner, i| %>
+              <div class="absolute top-0 left-0 w-full h-full cursor-pointer" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+                <img class="w-full h-full object-cover" src="<%= mat_img_url(banner, "") -%>" alt="" data-picture-viewer-target="image">
+              </div>
+            <% end %>
+          </div>
+          <div class="flex flex-nowrap overflow-x-auto" style="margin-top: 15px; padding-bottom: 10px; gap: 15px;">
+            <% @project.banners.each_with_index do |banner, i| %>
+              <div
+                class="flex-none cursor-pointer border <%= i == 0 ? 'border-gray-900' : 'border-transparent' %>"
+                style="width: 188px; height: 188px;"
+                data-material-carousel-target="dotItem"
+                data-action="click->material-carousel#toDotIndex"
+              >
+                <img class="w-full h-full object-cover" src="<%= mat_img_url(banner, "") -%>" alt="">
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div style="width: 1000px; height: 750px;">
+            <img class="w-full h-full object-cover" src="<%= @project.web_cover.present? ? mat_img_url(@project.web_cover) : image_pack_path('materials-applications-default.jpg') -%>" alt="">
+          </div>
+        <% end %>
+      </div>
+
+      <div class="pb-3 border-b-2 border-gray-100 border-solid flex justify-between" style="margin-top: 80px;">
+        <div>
+          <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">案例信息</span>
+          <span class="text-xl font-light">Project Information</span>
+        </div>
+        <a class="more-btn" href="<%= root_path -%>">查看项目详情</a>
+      </div>
+      
+      <div style="margin-top: 30px;">
+        <div class="text-lg font-semibold">
+          <span>案例名称: </span>
+          <span><%= @project.project_name %></span>
+        </div>
+        <div class="flex mt-4">
+          <div class="w-1/2 flex-none">
+            <% if @project.no.present? %>
+              <div class="text-lg font-medium">
+                <span>项目编号: </span>
+                <span><%= @project.no %></span>
+              </div>
+            <% end %>
+            <% if @project.finish_year.present? %>
+              <div class="text-lg font-medium">
+                <span>完工年份:</span>
+                <span><%= @project.finish_year %></span>
+              </div>
+            <% end %>
+            <% if @project.project_location.present? %>
+              <div class="text-lg font-medium">
+                <span>项目地区:</span>
+                <span><%= @project.project_location %></span>
+              </div>
+            <% end %>
+            <% if @project.project_type.present? %>
+              <div class="text-lg font-medium">
+                <span>项目类型:</span>
+                <span><%= @project.project_type %></span>
+              </div>
+            <% end %>
+          </div>
+          <div class="w-1/2 flex-none">
+            <% if @project.design_unit.present? %>
+              <div class="text-lg font-medium">
+                <span>设计单位:</span>
+                <span><%= @project.design_unit %></span>
+              </div>
+            <% end %>
+            <% if @project.build_unit.present? %>
+              <div class="text-lg font-medium">
+                <span>开发建设单位: </span>
+                <span><%= @project.build_unit %></span>
+              </div>
+            <% end %>
+            <% if @project.business_type.present? %>
+              <div class="text-lg font-medium">
+                <span>业务类型: </span>
+                <span><%= @project.business_type %></span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <% if @project.materials.length > 0 || @project.samples.length > 0 %>
+        <div class="pb-3 border-b-2 border-gray-100 border-solid" style="margin-top: 80px;">
+          <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">材料使用</span>
+          <span class="text-xl font-light">Material</span>
+        </div>
+
+        <div class="grid grid-cols-5" style="margin-top: 30px; gap: 15px;">
+          <% @project.materials.each do |material| %>
+            <div>
+              <div style="width: 188px; height: 188px;">
+                <img class="w-full h-full" src="<%= get_first_url(material.cover) %>" alt="">
+              </div>
+              <div class="mt-3 text-sm">
+                <%= material.name %>
+              </div>
+              <div class="mt-3 text-sm">
+                <div class="flex justify-between">
+                  <span>色系:</span>
+                  <span><%= material.color %></span>
+                </div>
+                <div class="flex justify-between">
+                  <span>表面效果:</span>
+                  <span><%= material.surface_effect_descriptions %></span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <% @project.samples.each do |sample| %>
+            <div>
+              <div style="width: 188px; height: 188px;">
+                <img class="w-full h-full" src="<%= mat_img_url(sample.pic) %>" alt="">
+              </div>
+              <div class="mt-3 text-sm">
+                <%= sample.material&.name %>（样品）
+              </div>
+              <div class="mt-3 text-sm">
+                <div class="flex justify-between">
+                  <span>色系:</span>
+                  <span><%= sample.color_str %></span>
+                </div>
+                <div class="flex justify-between">
+                  <span>表面效果:</span>
+                  <span><%= sample.surface_effect_descriptions %></span>
+                </div>
+                <div class="flex justify-between">
+                  <span>规格:</span>
+                  <span><%= sample.spec_model %></span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @project.facade.length > 0 %>
+        <div class="pb-3 border-b-2 border-gray-100 border-solid" style="margin-top: 80px;">
+          <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">立面控制手册</span>
+          <span class="text-xl font-light">Facade</span>
+        </div>
+
+        <div class="grid grid-cols-3" style="margin-top: 30px;">
+          <% @project.facade.each do |item| %>
+            <div class="flex justify-between items-center bg-white px-4" style="height: 60px; box-shadow: 0px 0px 10px 0px rgba(158, 158, 158, 0.3);">
+              <div class="flex items-center flex-1">
+                <img class="flex-none" src="<%= image_pack_path(item[:tag_icon]) %>" alt="" style="width: 32px; height: 36px;">
+                <div class="ml-3 flex-1 w-0 truncate" title="<%= item[:name] %>"><%= item[:name] %></div>
+              </div>
+              <div class="flex justify-end items-center flex-none ml-3" style="width: 50px; gap: 10px;">
+                <% if item[:tag_name] === 'pdf' %>
+                  <a href="<%= mat_img_url(item[:url]) %>" target="_blank" title="预览">
+                    <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-preview.svg') %>" alt="">
+                  </a>
+                <% end %>
+                <a href="<%= mat_img_url(item[:url]) %>" target="_blank" download="<%= item[:name] %>" title="下载">
+                  <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-download.svg') %>" alt="">
+                </a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @project.related_files.length > 0 %>
+        <div class="pb-3 border-b-2 border-gray-100 border-solid" style="margin-top: 80px;">
+          <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">相关文件</span>
+          <span class="text-xl font-light">Related Files</span>
+        </div>
+
+        <div class="grid grid-cols-3" style="margin-top: 30px;">
+          <% @project.related_files.each do |item| %>
+            <div class="flex justify-between items-center bg-white px-4" style="height: 60px; box-shadow: 0px 0px 10px 0px rgba(158, 158, 158, 0.3);">
+              <div class="flex items-center flex-1">
+                <img class="flex-none" src="<%= image_pack_path(item[:tag_icon]) %>" alt="" style="width: 32px; height: 36px;">
+                <div class="ml-3 flex-1 w-0 truncate" title="<%= item[:name] %>"><%= item[:name] %></div>
+              </div>
+              <div class="flex justify-end items-center flex-none ml-3" style="width: 50px; gap: 10px;">
+                <% if item[:tag_name] === 'pdf' %>
+                  <a href="<%= mat_img_url(item[:url]) %>" target="_blank" title="预览">
+                    <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-preview.svg') %>" alt="">
+                  </a>
+                <% end %>
+                <a href="<%= mat_img_url(item[:url]) %>" target="_blank" download="<%= item[:name] %>" title="下载">
+                  <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-download.svg') %>" alt="">
+                </a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+    <section style="width: 400px;">
+      <div class="pb-3 border-b-2 border-gray-100 border-solid">
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">相关案例</span>
+        <span class="text-xl font-light">Relative Projects</span>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4" style="margin-top: 30px;">
+        <% @other_projects.each do |item| %>
+          <div class="flex">
+            <div class="flex-none" style="width: 170px; height: 128px;">
+              <img class="w-full h-full object-cover" src="<%= mat_img_url(item.web_cover) %>" alt="">
+            </div>
+            <div class="flex-1 flex flex-col justify-end w-0" style="margin-left: 10px;">
+              <div class="text-sm font-semibold truncate" title="<%= item.project_name %>">
+                <%= item.project_name %>
+              </div>
+              <div class="text-xs mt-3 truncate" style="color: #8C8C8C;" title="<%= item.project_location %>">
+                <%= item.project_location %>
+              </div>
+              <div class="text-xs mt-1 truncate" style="color: #8C8C8C;" title="<%= item.design_unit %>">
+                <%= item.design_unit %>
+              </div>
+              <div class="text-xs mt-1 truncate" style="color: #8C8C8C;">
+                <%= item.is_th ? '内部案例' : '外部案例' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</div>
+
