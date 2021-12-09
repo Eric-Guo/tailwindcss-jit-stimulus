@@ -20,12 +20,12 @@
 
   <div class="mx-4 mt-4 grid grid-cols-3 gap-8">
     <% cases.each do |project_case| %>
-      <div>
+      <a class="block" href="<%= project_path(project_case) %>">
         <img class="w-full my-3 h-52 object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
         <h3 class="text-lg font-bold"><%= project_case.project_name -%></h3>
         <p class="text-sm mt-1"><%= project_case.project_location -%></p>
         <p class="text-sm mt-1"><%= project_case.design_unit -%></p>
-      </div>
+      </a>
     <% end %>
   </div>
 </section>
