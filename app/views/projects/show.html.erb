@@ -127,7 +127,7 @@
 
         <div class="grid grid-cols-5" style="margin-top: 30px; gap: 15px;">
           <% @project.materials.each do |material| %>
-            <div>
+            <a class="block" href="<%= material_path(material) %>">
               <div style="width: 188px; height: 188px;">
                 <img class="w-full h-full" src="<%= get_first_url(material.cover) %>" alt="">
               </div>
@@ -148,10 +148,10 @@
                   </div>
                 <% end %>
               </div>
-            </div>
+            </a>
           <% end %>
           <% @project.samples.each do |sample| %>
-            <div>
+            <a class="block" href="<%= sample_path(sample) %>">
               <div style="width: 188px; height: 188px;">
                 <img class="w-full h-full" src="<%= mat_img_url(sample.pic) %>" alt="">
               </div>
@@ -178,7 +178,7 @@
                   </div>
                 <% end %>
               </div>
-            </div>
+            </a>
           <% end %>
         </div>
       <% end %>
