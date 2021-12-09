@@ -2,14 +2,16 @@
 
 class ApplicationController < ActionController::Base
   include DetectDevice
+  wechat_api
+  before_action :make_sure_wechat_user_login_in_phone, if: -> { request.variant.any?(:phone) }
   before_action :set_ie_warning
   before_action :set_tree_materials
   before_action :set_sidebar_nav
   before_action :set_footer_info
 
-  protected
+  private
 
-    def make_sure_wechat_user_login
+    def make_sure_wechat_user_login_in_phone
       wechat_oauth2 do |user_name|
         Current.user = User.find_by wecom_id: user_name
         Current.user = User.find_by email: "#{user_name}@thape.com.cn" if Current.user.blank?
@@ -20,8 +22,6 @@ class ApplicationController < ActionController::Base
         end
       end unless Current.user.present?
     end
-
-  private
 
     def set_ie_warning
       if @browser.ie?
