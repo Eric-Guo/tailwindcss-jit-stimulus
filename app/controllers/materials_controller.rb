@@ -2,8 +2,6 @@
 
 class MaterialsController < ApplicationController
   include ApplicationHelper
-  wechat_api
-  before_action :make_sure_wechat_user_login, only: %i[show], if: -> { request.variant.any?(:phone) }
 
   def index
   end
