@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include DetectDevice
   wechat_api
   before_action :make_sure_wechat_user_login_in_phone, if: -> { request.variant.any?(:phone) }
-  before_action :only_allow_access_to_home_page, if: -> { !(request.remote_ip.start_with?('172.16.') || request.remote_ip.start_with?('10.') || request.remote_ip == '::1') && !request.variant.any?(:phone) }
+  before_action :only_allow_access_to_home_page, if: -> { !(request.remote_ip.start_with?('172.') || request.remote_ip.start_with?('10.') || request.remote_ip == '::1') && !request.variant.any?(:phone) }
   before_action :set_ie_warning
   before_action :set_tree_materials
   before_action :set_sidebar_nav
