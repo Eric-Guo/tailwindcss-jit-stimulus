@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 
     def make_sure_wechat_user_login_in_phone
       wechat_oauth2 do |user_name|
+        Rails.logger.info "make_sure_wechat_user_login_in_phone: #{user_name}"
         Current.user = User.find_by wecom_id: user_name
         Current.user = User.find_by email: "#{user_name}@thape.com.cn" if Current.user.blank?
         if Current.user.present?
