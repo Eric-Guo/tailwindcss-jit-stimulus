@@ -11,7 +11,7 @@
       <p class="text-xs break-all">样品描述：
         <span class="font-medium"><%= @sample.material_text %></span>
       </p>
-      <p class="text-xs break-all">价格：
+      <p class="text-xs break-all">价格：&emsp;&emsp;
         <span class="font-medium"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</span>
       </p>
       <p class="text-xs break-all">产品分类：
@@ -19,10 +19,10 @@
           <span class="font-medium"><%= @sample.material&.name -%>(<%= @sample.material&.no -%>)</span>
         </a>
       </p>
-      <p class="text-xs break-all">色系：
+      <p class="text-xs break-all">色系：&emsp;&emsp;
         <span class="font-medium"><%= @sample.color_str -%></span>
       </p>
-      <p class="text-xs break-all">色号：
+      <p class="text-xs break-all">色号：&emsp;&emsp;
         <span class="font-medium"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></span>
       </p>
       <p class="text-xs break-all">原厂型号：
