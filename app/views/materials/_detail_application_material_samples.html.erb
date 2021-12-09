@@ -82,9 +82,6 @@
               <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 whitespace-nowrap text-center text-sm text-gray-900">
                 表面工艺
               </th>
-              <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 whitespace-nowrap text-center text-sm text-gray-900">
-                剩余库存
-              </th>
               <th scope="col" class="sticky top-0 bg-gray-50 px-1 py-2 border border-t-0 border-r-0 whitespace-nowrap text-center text-sm text-gray-900">
                 存放位置
               </th>
@@ -101,9 +98,6 @@
                 </td>
                 <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 whitespace-nowrap text-xs">
                   <%= sample&.surface_effects&.pluck(:description)&.join(',') %>
-                </td>
-                <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 whitespace-nowrap text-xs">
-                    未知
                 </td>
                 <td class="bg-white px-1 2xl:px-2 py-2 text-center border border-b-0 border-r-0 whitespace-nowrap text-xs">
                   <%= sample.position %>
