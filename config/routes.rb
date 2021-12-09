@@ -28,5 +28,6 @@ Rails.application.routes.draw do
 
   resources :material_types, only: %i[show]
 
+  resource :wechat, only: [:show, :create]
   root 'home#index'
 end
