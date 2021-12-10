@@ -103,7 +103,11 @@
         <p class="my-1">联系我们：建筑委</p>
         <p class="my-1">电话：<%= @footer_info[:phone_number] %> 邮箱：<%= @footer_info[:email] %></p>
         <p class="mb-1 mt-4">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</p>
-        <p class="my-1">友情链接：<span class="mx-1">建筑委</span><span class="mx-1">材料在线</span><span class="mx-1">阿奇找找</span></p>
+        <p class="my-1">友情链接：
+          <% @footer_info[:links].each do |link| %>
+            <a href="<%= link[:url] %>" target="_blank" class="mx-1"><%= link[:title] %></a>
+          <% end %>
+        </p>
       </footer>
     <% else %>
       <footer class="bottom-0 bg-black py-6 text-white text-base">
