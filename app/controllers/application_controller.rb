@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
         else
           return redirect_to root_path
         end
-      end unless Current.user.present?
+      end unless Current.user.present? || request.path == '/'
     end
 
     def only_allow_access_to_home_page
