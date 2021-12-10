@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
     def make_sure_wechat_user_login_in_phone
       wechat_oauth2 do |user_name|
-        return root_path if user_name.blank?
+        return redirect_to root_path if user_name.blank?
 
         Rails.logger.info "make_sure_wechat_user_login_in_phone: #{user_name}"
         Current.user = User.find_by wecom_id: user_name
