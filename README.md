@@ -2,6 +2,6 @@
 
 # README
 
-This is a template with Rails 7.0, Webpacker 6.0.0, Tailwindcss JIT 2.2.7 and Stimulus 2.0.0.
+This is a template with Rails 7.0, Webpacker 6.0.0, TailwindCSS 3 and Stimulus 3.0.1.
 
 Need using Chrome to make JIT mode works, Safari 14.1.2 will failed to loading `application.css`.
