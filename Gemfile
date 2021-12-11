@@ -3,8 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "~> 3.0.2"
 
-# bundle config local.rails /Users/guochunzhong/git/oss/rails
-gem "rails", git: 'https://gitee.com/Eric-Guo/Rails.git', branch: :eric_read
+gem "rails", "~> 7.0.0.rc1"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
