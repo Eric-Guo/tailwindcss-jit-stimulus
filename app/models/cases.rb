@@ -29,6 +29,15 @@ class Cases < ApplicationRecord
     end
   end
 
+  def self.project_locations
+    where.not(project_location: nil)
+    where.not(project_location: '')
+    .order('project_location ASC')
+    .select(:project_location)
+    .distinct
+    .collect { |o| [o.project_location , o.project_location ] }
+  end
+
   # 立面控制手册
   def facade
     arr = self.ecm_files.is_a?(String) ? JSON.parse(self.ecm_files) : self.ecm_files;
