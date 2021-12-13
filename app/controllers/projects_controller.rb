@@ -11,7 +11,10 @@ class ProjectsController < ApplicationController
       Material.none
     end
     @locations = (params[:l].presence || []).reject(&:blank?)
+    @need_ecm_files = params[:ecm_files] == 'on'
+
     @materials = Material.where(parent_id: Material.find_by(name: '石材').id, display: 1, deleted_at: nil).order(id: :asc)
+
     cases_with_query = if @q.present?
       Cases.where('project_name LIKE ? OR business_type LIKE ? OR project_type LIKE ? OR project_location LIKE ? OR design_unit LIKE ?',
         "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
@@ -25,7 +28,13 @@ class ProjectsController < ApplicationController
       cases_with_query
     end
 
-    @cases = cases_with_location.limit(40)
+    cases_ecm = if @need_ecm_files
+      cases_with_location.where.not(ecm_files: '[]')
+    else
+      cases_with_location
+    end
+
+    @cases = cases_ecm.limit(40)
   end
 
   def show
