@@ -6,9 +6,9 @@ class ManufacturersController < ApplicationController
 
   def show
     @manufacturer = Manufacturer.find(params[:id])
-    @other_manufacturers = Manufacturer.limit(4)
     @materials = @manufacturer.materials.where(level: 3)
     @samples = @manufacturer.samples
     @cases = Cases.joins(:materials).where(materials: { id: @materials.pluck(:id) }).distinct
+    @other_manufacturers = Manufacturer.joins(:materials).where.not(id: @manufacturer.id).where(materials: { id: @materials.pluck(:id) }).limit(4).distinct
   end
 end
