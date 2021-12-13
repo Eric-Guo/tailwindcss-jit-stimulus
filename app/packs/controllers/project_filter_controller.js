@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [
-    'selectAll', 'selectItem', 'materialSpan', 'areaSpan', 'materialIconSvg', 'areaIconSvg',
+    'selectAllMaterials', 'selectMaterialItem', 'materialSpan', 'areaSpan', 'materialIconSvg', 'areaIconSvg',
     'materialTypeDiv', 'materialDetailDiv', 'additionalDiv', 'matTypeLink'
   ]
   static values = {
@@ -11,7 +11,7 @@ export default class extends Controller {
   }
 
   connect() {
-    this.selectAllTarget.indeterminate  = true;
+    this.selectAllMaterialsTarget.indeterminate  = true;
   }
 
   disconnect() {
@@ -22,11 +22,11 @@ export default class extends Controller {
     e.preventDefault();
   }
 
-  select_all(e) {
-    if(this.selectAllTarget.checked) {
-      this.selectItemTargets.map(function(t) { t.checked = true; });
+  select_all_materials(e) {
+    if(this.selectAllMaterialsTarget.checked) {
+      this.selectMaterialItemTargets.map(function(t) { t.checked = true; });
     } else {
-      this.selectItemTargets.map(function(t) { t.checked = false; });
+      this.selectMaterialItemTargets.map(function(t) { t.checked = false; });
     }
     e.preventDefault();
   }
