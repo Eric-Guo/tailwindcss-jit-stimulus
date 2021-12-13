@@ -30,4 +30,9 @@ class Manufacturer < ApplicationRecord
       []
     end
   end
+
+  # 主营材料
+  def main_materials
+    self.materials.pluck(:name).join(',')
+  end
 end
