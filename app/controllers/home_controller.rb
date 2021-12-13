@@ -56,6 +56,7 @@ class HomeController < ApplicationController
         name: manufacturer_cate.name,
         manufacturers: manufacturers.map do |manufacturer|
           {
+            id: manufacturer.id,
             name: manufacturer.name,
             logo: manufacturer.logo,
           }
