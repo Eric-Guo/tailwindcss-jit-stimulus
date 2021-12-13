@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
         {
           title: '案例',
           subtitle: 'Projects',
-          url: '',
+          url: projects_path,
         },
         {
           title: '供应商',
