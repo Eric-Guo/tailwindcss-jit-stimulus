@@ -4,9 +4,9 @@ class ProjectsController < ApplicationController
   def index
     @q = params[:q].presence
     @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(id: :asc)
-    @mat_ids = params[:ms].presence || []
+    @mat_ids = (params[:ms].presence || []).reject(&:blank?)
     @selected_mats = Material.where(id: @mat_ids)
-    @locations = params[:l].presence || []
+    @location = (params[:l].presence || []).reject(&:blank?)
     @materials = Material.where(parent_id: Material.find_by(name: '石材').id, display: 1, deleted_at: nil).order(id: :asc)
     cases_with_query = if @q.present?
       Cases.where('project_name LIKE ? OR business_type LIKE ? OR project_type LIKE ? OR project_location LIKE ? OR design_unit LIKE ?',
