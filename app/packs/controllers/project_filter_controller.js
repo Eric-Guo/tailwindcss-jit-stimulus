@@ -2,8 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [
-    'selectAllMaterials', 'selectMaterialItem', 'materialSpan', 'areaSpan', 'materialIconSvg', 'areaIconSvg',
-    'materialTypeDiv', 'materialDetailDiv', 'additionalDiv', 'matTypeLink'
+    'selectAllMaterials', 'selectMaterialItem',
+    'selectAllLocations', 'selectLocationItem',
+    'materialSpan', 'areaSpan', 'materialIconSvg', 'areaIconSvg',
+    'materialTypeDiv',
+    'materialDetailDiv', 'locationDetailDiv', 'additionalDiv',
+    'matTypeLink'
   ]
   static values = {
     materialBarOpen: Boolean,
@@ -12,6 +16,7 @@ export default class extends Controller {
 
   connect() {
     this.selectAllMaterialsTarget.indeterminate  = true;
+    this.selectAllLocationsTarget.indeterminate  = true;
   }
 
   disconnect() {
@@ -27,6 +32,15 @@ export default class extends Controller {
       this.selectMaterialItemTargets.map(function(t) { t.checked = true; });
     } else {
       this.selectMaterialItemTargets.map(function(t) { t.checked = false; });
+    }
+    e.preventDefault();
+  }
+
+  select_all_locations(e) {
+    if(this.selectAllLocationsTarget.checked) {
+      this.selectLocationItemTargets.map(function(t) { t.checked = true; });
+    } else {
+      this.selectLocationItemTargets.map(function(t) { t.checked = false; });
     }
     e.preventDefault();
   }
@@ -53,11 +67,13 @@ export default class extends Controller {
     if (this.areaBarOpenValue) {
       this.areaSpanTarget.classList.remove('under-text-border');
       this.areaIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>`;
+      this.locationDetailDivTarget.classList.add('hidden');
       this.additionalDivTarget.classList.add('hidden');
       this.areaBarOpenValue = false;
     } else {
       this.areaSpanTarget.classList.add('under-text-border');
       this.areaIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 16H4L12 8L20 16Z"></path>`;
+      this.locationDetailDivTarget.classList.remove('hidden');
       this.additionalDivTarget.classList.remove('hidden');
       this.areaBarOpenValue = true;
     }
