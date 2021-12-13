@@ -1,4 +1,4 @@
 <div class="my-2.5 flex items-start">
-  <input id="<%= dom_id(material) -%>" name="mts[]" type="checkbox" <%= checked ? 'checked="checked"' : '' -%> class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-project-filter-target="selectMaterialItem">
+  <input id="<%= dom_id(material) -%>" name="ms[]" value="<%= material.id -%>" type="checkbox" <%= checked ? 'checked="checked"' : '' -%> class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-project-filter-target="selectMaterialItem" data-action="project-filter#checkbox_submit">
   <label for="<%= dom_id(material) -%>" class="text-gray-700 ml-2 mt-px"><%= material.name -%></label>
 </div>

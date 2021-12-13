@@ -81,6 +81,11 @@ export default class extends Controller {
     e.preventDefault();
   }
 
+  checkbox_submit(e) {
+    const form = document.getElementById('project-form');
+    form.submit();
+  }
+
   clean_active(e) {
     this.matTypeLinkTargets.map(function(a) { a.classList.remove('font-bold'); });
   }
