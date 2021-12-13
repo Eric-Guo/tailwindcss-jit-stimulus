@@ -110,7 +110,7 @@
           </div>
           <div class="flex-1 border-l border-gray-300 border-solid px-2.5">
             <div class="text-gray-400 truncate">是否愿意送样</div>
-            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.is_allow.present? ? '是' : '去电详询' -%>"><%= @sample.manufacturer&.is_allow.present? ? '是' : '去电详询' -%></div>
+            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.offer_sample -%>"><%= @sample.manufacturer&.offer_sample -%></div>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
       <h5 class="text-base font-medium my-2"><%= manufacturer.name %></h5>
       <p class="text-sm text-gray-700">所在地：<%= manufacturer.location %></p>
       <p class="text-sm text-gray-700">联系方式：<%= manufacturer.contact_information %></p>
-      <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= manufacturer.is_allow.present? ? '是' : '去电详询' -%></p>
+      <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= manufacturer.offer_sample -%></p>
     </div>
   </div>
 <% end %>
