@@ -11,9 +11,10 @@
   </section>
 </div>
 
+<% need_area_bar_open = @locations.present? || @need_ecm_files %>
 <%= form_with url: projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', id: 'project-form', method: :get, data: { controller: 'project-filter',
     'project-filter-material-bar-open-value': @mats.present?,
-    'project-filter-area-bar-open-value': @locations.present?,
+    'project-filter-area-bar-open-value': need_area_bar_open,
   } do |f| %>
   <div class="flex flex-row mb-5">
     <% @selected_mats.each do |select_material| %>
@@ -22,7 +23,9 @@
     <% @locations.each do |location_name| %>
       <%= render partial: 'search_item', locals: { name: location_name } %>
     <% end %>
-    <%= render partial: 'search_item', locals: { name: '有实体样品信息' } %>
+    <% if @need_ecm_files %>
+      <%= render partial: 'search_item', locals: { name: '有立面控制手册' } %>
+    <% end %>
   </div>
   <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
     <div class="flex flex-row w-1/3 p-1">
@@ -73,7 +76,7 @@
       <% end %>
     </turbo-frame>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @locations.present? ? '' : 'hidden' -%>" data-project-filter-target="locationDetailDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= need_area_bar_open ? '' : 'hidden' -%>" data-project-filter-target="locationDetailDiv">
     <div class="w-80">
       <div class="my-4 ml-8 flex items-start">
         <input id="checkbox-select-location-all" data-project-filter-target="selectAllLocations" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->project-filter#select_all_locations">
@@ -86,7 +89,7 @@
       <% end %>
     </div>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @locations.present? ? '' : 'hidden' -%>" data-project-filter-target="additionalDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= need_area_bar_open ? '' : 'hidden' -%>" data-project-filter-target="additionalDiv">
     <div class="w-80">
       <div class="my-4 ml-8">
         高级筛选
@@ -98,8 +101,8 @@
         <%= select_tag :project_type, options_for_select([ "VISA", "MasterCard" ]), class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded', id: 'project_type' %>
       </div>
       <div class="my-2.5 flex items-start">
-        <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
-        <label for="m1" class="text-gray-700 ml-2 mt-px">有立面控制手册</label>
+        <input id="chk-ecm-files" name="ecm_files" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @need_ecm_files.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">
+        <label for="chk-ecm-files" class="text-gray-700 ml-2 mt-px">有立面控制手册</label>
       </div>
       <div class="my-2.5 flex items-start">
         <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
