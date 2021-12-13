@@ -35,7 +35,7 @@ class Cases < ApplicationRecord
     .order('project_location ASC')
     .select(:project_location)
     .distinct
-    .collect { |o| [o.project_location , o.project_location ] }
+    .pluck(:project_location)
   end
 
   # 立面控制手册
