@@ -1,5 +1,5 @@
 <% manufacturers&.each do |manufacturer| %>
-  <div class="flex items-center border border-gray-200 border-solid">
+  <a class="flex items-center border border-gray-200 border-solid" href="<%= manufacturer_path(manufacturer.id) %>">
     <div class="flex-none p-1" style="width: 140px; height: 140px;">
       <img class="w-full h-full object-contain object-center" src="<%= mat_img_url(manufacturer.logo, 'manufacturer_default_cover.png') -%>" alt="">
     </div>
@@ -10,5 +10,5 @@
       <p class="text-sm text-gray-700">联系方式：<%= manufacturer.contact_information %></p>
       <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= manufacturer.offer_sample -%></p>
     </div>
-  </div>
+  </a>
 <% end %>

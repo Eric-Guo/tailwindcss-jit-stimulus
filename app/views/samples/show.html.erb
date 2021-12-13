@@ -81,9 +81,9 @@
       <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">厂家信息</span><span class="text-xl font-light">Information</span>
     </div>
     <div class="mx-4 mt-4 flex flex-row justify-start">
-      <div class="flex-none border border-gray-300 border-solid p-4" style="width: 180px; height: 180px;">
+      <a class="block flex-none border border-gray-300 border-solid p-4" style="width: 180px; height: 180px;" href="<%= manufacturer_path(@sample.manufacturer) %>">
         <img class="w-full h-full object-scale-down" src="<%= mat_img_url(@sample.manufacturer.logo, 'manufacturer_default_cover.png') -%>" alt="">
-      </div>
+      </a>
       <div class="flex-1 flex flex-col justify-center" style="margin-left: 22px;">
         <div class="flex flex-row">
           <div class="flex-none border-l border-gray-300 border-solid px-2.5" style="width: 200px;">
