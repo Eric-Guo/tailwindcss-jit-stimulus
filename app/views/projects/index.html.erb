@@ -16,8 +16,9 @@
     'project-filter-area-bar-open-value': false,
   } do |f| %>
   <div class="flex flex-row mb-5">
-    <%= render partial: 'search_item', locals: { name: '花岗石' } %>
-    <%= render partial: 'search_item', locals: { name: '石灰石' } %>
+    <% @selected_mats.each do |select_material| %>
+      <%= render partial: 'search_item', locals: { name: select_material.name } %>
+    <% end %>
     <%= render partial: 'search_item', locals: { name: '北京' } %>
     <%= render partial: 'search_item', locals: { name: '上海' } %>
     <%= render partial: 'search_item', locals: { name: '有实体样品信息' } %>
@@ -46,7 +47,7 @@
       </svg>
     </div>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @mats.present? ? '' : 'hidden' -%>" data-project-filter-target="materialTypeDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @mat_ids.present? ? '' : 'hidden' -%>" data-project-filter-target="materialTypeDiv">
     <div class="w-80"></div>
     <div class="grid grid-flow-row grid-cols-6 w-full">
       <% @material_types.each_with_index do |material_type, index| %>
@@ -58,7 +59,7 @@
       <% end %>
     </div>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @mats.present? ? '' : 'hidden' -%>" data-project-filter-target="materialDetailDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @mat_ids.present? ? '' : 'hidden' -%>" data-project-filter-target="materialDetailDiv">
     <div class="w-80">
       <div class="my-4 ml-8 flex items-start">
         <input id="checkbox-select-material-all" data-project-filter-target="selectAllMaterials" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->project-filter#select_all_materials">
@@ -67,7 +68,7 @@
     </div>
     <turbo-frame id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1">
       <% @materials.each do |material| %>
-        <%= render partial: 'projects/material_item', locals: { material: material, checked: @mats.include?(material.id.to_s) } %>
+        <%= render partial: 'projects/material_item', locals: { material: material, checked: @mat_ids.include?(material.id.to_s) } %>
       <% end %>
     </turbo-frame>
   </div>
