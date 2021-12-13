@@ -129,50 +129,68 @@
           </div>
         </div>
         <%# 案例 %>
-        <div class="grid grid-cols-3 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="cases" data-tabs-target="tabContent">
-          <% @cases.each do |project_case| %>
-            <a class="block mb-4" href="<%= project_path(project_case) %>">
-              <div class="relative" style="padding-top: 74.78%;">
-                <div class="absolute top-0 left-0 w-full h-full">
-                  <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
+        <% if @cases.length > 0 %>
+          <div class="grid grid-cols-3 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="cases" data-tabs-target="tabContent">
+            <% @cases.each do |project_case| %>
+              <a class="block mb-4" href="<%= project_path(project_case) %>">
+                <div class="relative" style="padding-top: 74.78%;">
+                  <div class="absolute top-0 left-0 w-full h-full">
+                    <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
+                  </div>
                 </div>
-              </div>
-              <div class="flex flex-row justify-between items-baseline mt-2">
-                <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
-                  <%= project_case.project_name_and_location -%>
-                </p>
-                <p class="text-xs text-gray-400 flex-none ml-3">
-                  <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
-                </p>
-              </div>
-              <p class="text-sm font-medium truncate" title="<%= project_case.material_tags.join(' | ') -%>"><%= project_case.material_tags.join(' | ') %></p>
-            </a>
-          <% end %>
-        </div>
+                <div class="flex flex-row justify-between items-baseline mt-2">
+                  <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
+                    <%= project_case.project_name_and_location -%>
+                  </p>
+                  <p class="text-xs text-gray-400 flex-none ml-3">
+                    <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+                  </p>
+                </div>
+                <p class="text-sm font-medium truncate" title="<%= project_case.material_tags.join(' | ') -%>"><%= project_case.material_tags.join(' | ') %></p>
+              </a>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="cases" data-tabs-target="tabContent">
+            暂无案例数据
+          </div>
+        <% end %>
         <%# 产品 %>
-        <div class="grid grid-cols-4 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="materials" data-tabs-target="tabContent">
-          <% @materials.each do |material| %>
-            <%= link_to material_path(material.id) do %>
-              <div class="relative" style="padding-top: 100%;">
-                <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
-              </div>
-              <h3 class="text-center mt-2 font-medium"><%= material.name -%></h3>
-              <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
+        <% if @materials.length > 0 %>
+          <div class="grid grid-cols-4 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="materials" data-tabs-target="tabContent">
+            <% @materials.each do |material| %>
+              <%= link_to material_path(material.id) do %>
+                <div class="relative" style="padding-top: 100%;">
+                  <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
+                </div>
+                <h3 class="text-center mt-2 font-medium"><%= material.name -%></h3>
+                <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% else %>
+          <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="materials" data-tabs-target="tabContent">
+            暂无产品数据
+          </div>
+        <% end %>
         <%# 样品 %>
-        <div class="grid grid-cols-4 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="samples" data-tabs-target="tabContent">
-          <% @samples.each do |sample| %>
-            <%= link_to sample_path(sample.id) do %>
-              <div class="relative" style="padding-top: 100%;">
-                <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= mat_img_url(sample.pic, "") -%>" alt="">
-              </div>
-              <h3 class="text-center mt-2 font-medium"><%= sample.material&.name -%>（样品）</h3>
-              <h4 class="text-center text-sm text-gray-400"><%= sample.material&.level_name -%></h4>
+        <% if @materials.length > 0 %>
+          <div class="grid grid-cols-4 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="samples" data-tabs-target="tabContent">
+            <% @samples.each do |sample| %>
+              <%= link_to sample_path(sample.id) do %>
+                <div class="relative" style="padding-top: 100%;">
+                  <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= mat_img_url(sample.pic, "") -%>" alt="">
+                </div>
+                <h3 class="text-center mt-2 font-medium"><%= sample.material&.name -%>（样品）</h3>
+                <h4 class="text-center text-sm text-gray-400"><%= sample.material&.level_name -%></h4>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% else %>
+          <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="samples" data-tabs-target="tabContent">
+            暂无样品数据
+          </div>
+        <% end %>
       </div>
     </section>
     <section style="width: 400px;">
