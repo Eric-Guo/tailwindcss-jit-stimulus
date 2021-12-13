@@ -20,37 +20,37 @@
       </div>
 
       <div class="flex" style="margin-top: 30px">
-        <div class="p-3 flex-none" style="width: 235px; height: 235px;">
+        <div class="p-3 flex-none border border-gray-200" style="width: 235px; height: 235px;">
           <img class="w-full h-full object-scale-down" src="<%= mat_img_url(@manufacturer.logo) %>" alt="">
         </div>
-        <div class="ml-5 flex-1 text-lg text-black">
+        <div class="ml-5 flex-1 text-lg text-black grid grid-cols-1 gap-3">
           <div class="flex">
-            <div class="w-30 flex-none">供应商名称：</div>
-            <div class="flex-1"><%= @manufacturer.name %></div>
+            <div class="w-30 flex-none">供应商名称:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.name %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none">所在地：</div>
-            <div class="flex-1"><%= @manufacturer.address %></div>
+            <div class="w-30 flex-none">所在地:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.address %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none">网址：</div>
-            <div class="flex-1"><%= @manufacturer.website %></div>
+            <div class="w-30 flex-none">网址:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.website %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none">主营材料：</div>
-            <div class="flex-1"><%= @manufacturer.name %></div>
+            <div class="w-30 flex-none">主营材料:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.main_materials %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none">是否与天华合作过：</div>
-            <div class="flex-1">——</div>
+            <div class="w-30 flex-none">是否与天华合作过:</div>
+            <div class="flex-1" style="margin-left: 50px;">——</div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none">是否愿意提供材料样品：</div>
-            <div class="flex-1"><%= @manufacturer.offer_sample %></div>
+            <div class="w-30 flex-none">是否愿意提供材料样品:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.offer_sample %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none">主营产品、业务：</div>
-            <div class="flex-1"><%= @manufacturer.main_material_remark %></div>
+            <div class="w-30 flex-none">主营产品、业务:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.main_material_remark %></div>
           </div>
         </div>
       </div>
@@ -161,7 +161,13 @@
             <% @materials.each do |material| %>
               <%= link_to material_path(material.id) do %>
                 <div class="relative" style="padding-top: 100%;">
-                  <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
+                  <% if material.cover.present? %>
+                    <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
+                  <% else %>
+                    <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center" style="background: #f2f2f2;">
+                      暂无相关图片
+                    </div>
+                  <% end %>
                 </div>
                 <h3 class="text-center mt-2 font-medium"><%= material.name -%></h3>
                 <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
@@ -174,7 +180,7 @@
           </div>
         <% end %>
         <%# 样品 %>
-        <% if @materials.length > 0 %>
+        <% if @samples.length > 0 %>
           <div class="grid grid-cols-4 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="samples" data-tabs-target="tabContent">
             <% @samples.each do |sample| %>
               <%= link_to sample_path(sample.id) do %>
