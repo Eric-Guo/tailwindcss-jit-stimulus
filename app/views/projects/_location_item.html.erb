@@ -1,4 +1,4 @@
 <div class="my-2.5 flex items-start">
-  <input id="<%= "location-#{name}" -%>" name="comments" type="checkbox" <%= checked ? 'checked="checked"' : '' -%> class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-project-filter-target="selectLocationItem">
+  <input id="<%= "location-#{name}" -%>" name="l[]" value="<%= name -%>" type="checkbox" <%= checked ? 'checked="checked"' : '' -%> class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-project-filter-target="selectLocationItem" data-action="project-filter#checkbox_submit">
   <label for="<%= "location-#{name}" -%>" class="text-gray-700 ml-2 mt-px"><%= name -%></label>
 </div>

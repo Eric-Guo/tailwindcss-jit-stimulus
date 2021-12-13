@@ -13,14 +13,15 @@
 
 <%= form_with url: projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', id: 'project-form', method: :get, data: { controller: 'project-filter',
     'project-filter-material-bar-open-value': @mats.present?,
-    'project-filter-area-bar-open-value': false,
+    'project-filter-area-bar-open-value': @locations.present?,
   } do |f| %>
   <div class="flex flex-row mb-5">
     <% @selected_mats.each do |select_material| %>
       <%= render partial: 'search_item', locals: { name: select_material.name } %>
     <% end %>
-    <%= render partial: 'search_item', locals: { name: '北京' } %>
-    <%= render partial: 'search_item', locals: { name: '上海' } %>
+    <% @locations.each do |location_name| %>
+      <%= render partial: 'search_item', locals: { name: location_name } %>
+    <% end %>
     <%= render partial: 'search_item', locals: { name: '有实体样品信息' } %>
   </div>
   <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
@@ -72,7 +73,7 @@
       <% end %>
     </turbo-frame>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-filter-target="locationDetailDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @locations.present? ? '' : 'hidden' -%>" data-project-filter-target="locationDetailDiv">
     <div class="w-80">
       <div class="my-4 ml-8 flex items-start">
         <input id="checkbox-select-location-all" data-project-filter-target="selectAllLocations" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->project-filter#select_all_locations">
@@ -81,11 +82,11 @@
     </div>
     <div class="grid grid-flow-row grid-cols-6 w-full py-1">
       <% Cases.project_locations.each do |location_name| %>
-        <%= render partial: 'projects/location_item', locals: { name: location_name, checked: false } %>
+        <%= render partial: 'projects/location_item', locals: { name: location_name, checked: @locations.include?(location_name) } %>
       <% end %>
     </div>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-filter-target="additionalDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @locations.present? ? '' : 'hidden' -%>" data-project-filter-target="additionalDiv">
     <div class="w-80">
       <div class="my-4 ml-8">
         高级筛选
