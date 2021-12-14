@@ -21,25 +21,25 @@
   } do |f| %>
   <div class="flex flex-wrap w-full mb-3">
     <% @selected_mats.each do |select_material| %>
-      <%= render partial: 'search_item', locals: { name: select_material.name } %>
+      <%= render partial: 'search_item', locals: { name: select_material.name, check_id: dom_id(select_material) } %>
     <% end %>
     <% @locations.each do |location_name| %>
-      <%= render partial: 'search_item', locals: { name: location_name } %>
+      <%= render partial: 'search_item', locals: { name: location_name, check_id: "location-#{location_name}" } %>
     <% end %>
     <% if @project_type.present? %>
-      <%= render partial: 'search_item', locals: { name: "项目类型：#{@project_type}" } %>
+      <%= render partial: 'search_item', locals: { name: "项目类型：#{@project_type}", check_id: 'sel-project-type' } %>
     <% end %>
     <% if @need_ecm_files %>
-      <%= render partial: 'search_item', locals: { name: '有立面控制手册' } %>
+      <%= render partial: 'search_item', locals: { name: '有立面控制手册', check_id: 'chk-ecm-files' } %>
     <% end %>
     <% if @has_sample %>
-      <%= render partial: 'search_item', locals: { name: '有实体样品信息' } %>
+      <%= render partial: 'search_item', locals: { name: '有实体样品信息', check_id: 'chk-has-sample' } %>
     <% end %>
     <% if @has_demonstration %>
-      <%= render partial: 'search_item', locals: { name: '示范区' } %>
+      <%= render partial: 'search_item', locals: { name: '示范区', check_id: 'chk-demonstration' } %>
     <% end %>
     <% if @is_th_internal %>
-      <%= render partial: 'search_item', locals: { name: '天华内部项目' } %>
+      <%= render partial: 'search_item', locals: { name: '天华内部项目', check_id: 'chk-th-internal' } %>
     <% end %>
   </div>
   <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
@@ -100,7 +100,7 @@
     </div>
     <div class="grid grid-flow-row grid-cols-6 w-full py-1">
       <% Cases.project_locations.each do |location_name| %>
-        <%= render partial: 'projects/location_item', locals: { name: location_name, checked: @locations.include?(location_name) } %>
+      <%= render partial: 'projects/location_item', locals: { name: location_name, checked: @locations.include?(location_name) } %>
       <% end %>
     </div>
   </div>
@@ -112,8 +112,8 @@
     </div>
     <div class="grid grid-flow-row grid-cols-6 w-full py-1">
       <div class="my-2.5 flex items-start">
-        <label for="project_type" class="text-gray-700 mt-px">项目类型</label>
-        <%= select_tag :project_type, options_for_select(Cases.project_type, @project_type), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-20', id: 'project_type', data: {action: 'project-filter#checkbox_submit'} } %>
+        <label for="sel-project-type" class="text-gray-700 mt-px">项目类型</label>
+        <%= select_tag :project_type, options_for_select(Cases.project_type, @project_type), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-20', id: 'sel-project-type', data: {action: 'project-filter#checkbox_submit'} } %>
       </div>
       <div class="my-2.5 flex items-start">
         <input id="chk-ecm-files" name="ecm_files" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @need_ecm_files.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">

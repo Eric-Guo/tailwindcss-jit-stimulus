@@ -29,8 +29,10 @@ export default class extends Controller {
   }
 
   remove(e) {
-    e.target.parentNode.remove();
-    e.preventDefault();
+    const check_box = document.getElementById(e.target.dataset.checkId);
+    check_box.checked = false;
+    const form = document.getElementById('project-form');
+    form.submit();
   }
 
   select_all_materials(e) {
