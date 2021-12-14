@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
     else
       Material.none
     end
+    @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first
     @locations = (params[:l].presence || []).reject(&:blank?)
     @project_type = params[:project_type]
     @need_ecm_files = params[:ecm_files] == 'on'
@@ -17,7 +18,7 @@ class ProjectsController < ApplicationController
     @has_demonstration = params[:has_demonstration] == 'on'
     @is_th_internal = params[:is_th_internal] == 'on'
 
-    @materials = Material.where(parent_id: Material.find_by(name: '石材').id, display: 1, deleted_at: nil).order(id: :asc)
+    @materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
 
     cases_with_query = if @q.present?
       Cases.where('project_name LIKE ? OR business_type LIKE ? OR project_type LIKE ? OR project_location LIKE ? OR design_unit LIKE ?',
