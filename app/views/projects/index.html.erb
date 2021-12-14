@@ -54,7 +54,7 @@
         <span class="<%= need_material_bar_open ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-project-filter-target="materialSpan">材料</span>
       </p>
       <svg data-project-filter-target="materialIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>
+        <path fill="currentColor" d="<%= need_material_bar_open ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
       </svg>
     </div>
     <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->project-filter#expend_area">
@@ -62,7 +62,7 @@
         <span class="<%= need_area_bar_open ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-project-filter-target="areaSpan">所在地区</span>
       </p>
       <svg data-project-filter-target="areaIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>
+        <path fill="currentColor" d="<%= need_area_bar_open ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
       </svg>
     </div>
   </div>
