@@ -16,7 +16,7 @@
     'project-filter-material-bar-open-value': @mats.present?,
     'project-filter-area-bar-open-value': need_area_bar_open,
   } do |f| %>
-  <div class="flex flex-wrap w-full mb-5">
+  <div class="flex flex-wrap w-full mb-3">
     <% @selected_mats.each do |select_material| %>
       <%= render partial: 'search_item', locals: { name: select_material.name } %>
     <% end %>
