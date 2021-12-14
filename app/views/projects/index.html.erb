@@ -26,6 +26,15 @@
     <% if @need_ecm_files %>
       <%= render partial: 'search_item', locals: { name: '有立面控制手册' } %>
     <% end %>
+    <% if @has_sample %>
+      <%= render partial: 'search_item', locals: { name: '有实体样品信息' } %>
+    <% end %>
+    <% if @has_demonstration %>
+      <%= render partial: 'search_item', locals: { name: '示范区' } %>
+    <% end %>
+    <% if @is_th_internal %>
+      <%= render partial: 'search_item', locals: { name: '天华内部项目' } %>
+    <% end %>
   </div>
   <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
     <div class="flex flex-row w-1/3 p-1">
@@ -105,18 +114,17 @@
         <label for="chk-ecm-files" class="text-gray-700 ml-2 mt-px">有立面控制手册</label>
       </div>
       <div class="my-2.5 flex items-start">
-        <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
-        <label for="m1" class="text-gray-700 ml-2 mt-px">有实体样品信息</label>
+        <input id="chk-has-sample" name="has_sample" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_sample.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">
+        <label for="chk-has-sample" class="text-gray-700 ml-2 mt-px">有实体样品信息</label>
       </div>
       <div class="my-2.5 flex items-start">
-        <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
-        <label for="m1" class="text-gray-700 ml-2 mt-px">示范区</label>
+        <input id="chk-demonstration" name="has_demonstration" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_demonstration.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">
+        <label for="chk-demonstration" class="text-gray-700 ml-2 mt-px">示范区</label>
       </div>
       <div class="my-2.5 flex items-start">
-        <input id="m1" name="comments" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
-        <label for="m1" class="text-gray-700 ml-2 mt-px">天华内部项目</label>
+        <input id="chk-th-internal" name="is_th_internal" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @is_th_internal.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">
+        <label for="chk-th-internal" class="text-gray-700 ml-2 mt-px">天华内部项目</label>
       </div>
-
     </div>
   </div>
 <% end %>
