@@ -207,7 +207,7 @@
 
       <div class="grid grid-cols-1 gap-4" style="margin-top: 30px;">
         <% @other_manufacturers.each do |other_manufacturer| %>
-          <a class="flex items-center border border-gray-200" href="<%= project_path(other_manufacturer) %>" style="width: 400px; height: 145px;">
+          <a class="flex items-center border border-gray-200" href="<%= manufacturer_path(other_manufacturer) %>" style="width: 400px; height: 145px;">
             <div class="flex-none h-full border-r border-gray-200" style="width: 130px;">
               <img class="w-full h-full object-scale-down" src="<%= mat_img_url(other_manufacturer.logo) %>" alt="">
             </div>
