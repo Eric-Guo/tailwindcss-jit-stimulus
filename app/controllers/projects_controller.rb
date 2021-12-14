@@ -22,6 +22,9 @@ class ProjectsController < ApplicationController
     @selected_all_materials = @materials.pluck(:id) == mat_ids.collect(&:to_i)
     @selected_none_materials = (@materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
+    @selected_all_locations = Cases.project_locations == @locations
+    @selected_none_locations = (Cases.project_locations & @locations).blank?
+
     cases_with_query = if @q.present?
       Cases.where('project_name LIKE ? OR business_type LIKE ? OR project_type LIKE ? OR project_location LIKE ? OR design_unit LIKE ?',
         "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
