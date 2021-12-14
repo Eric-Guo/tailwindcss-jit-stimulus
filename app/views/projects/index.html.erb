@@ -152,7 +152,8 @@
           <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
         </p>
       </div>
-      <p class="text-sm font-medium truncate" title="<%= project_case.material_tags.join(' | ') -%>"><%= project_case.material_tags.join(' | ') %></p>
+      <% material_tags = @material_in_cases.find_all { |m| m[0] ==  project_case.id }[0..3]&.collect(&:second)&.join(' | ') %>
+      <p class="text-sm font-medium truncate" title="<%= material_tags -%>"><%= material_tags %></p>
     </a>
   <% end %>
 </div>

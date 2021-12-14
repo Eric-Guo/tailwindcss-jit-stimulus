@@ -17,7 +17,7 @@ class Cases < ApplicationRecord
   end
 
   def material_tags
-    self.materials.limit(3).pluck(:name)
+    @material_tags ||= materials.limit(3).pluck(:name)
   end
 
   def banners
