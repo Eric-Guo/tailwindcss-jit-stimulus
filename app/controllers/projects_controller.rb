@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
         "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
     else
       Cases.all
-    end
+    end.select('cases.id, cases.is_th, cases.web_cover, cases.project_name, cases.project_location')
 
     cases_with_location = if @locations.present?
       cases_with_query.where(project_location: @locations)
@@ -45,6 +45,7 @@ class ProjectsController < ApplicationController
     end
 
     @cases = cases_ecm.limit(40)
+    @material_in_cases = CasesMaterial.joins(:material).where(case_id: @cases.collect(&:id)).pluck('case_id, materials.name')
   end
 
   def show
