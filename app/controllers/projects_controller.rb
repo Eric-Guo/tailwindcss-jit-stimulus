@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
       Material.none
     end
     @locations = (params[:l].presence || []).reject(&:blank?)
+    @project_type = params[:project_type]
     @need_ecm_files = params[:ecm_files] == 'on'
     @has_sample = params[:has_sample] == 'on'
     @has_demonstration = params[:has_demonstration] == 'on'

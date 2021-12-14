@@ -23,6 +23,9 @@
     <% @locations.each do |location_name| %>
       <%= render partial: 'search_item', locals: { name: location_name } %>
     <% end %>
+    <% if @project_type %>
+      <%= render partial: 'search_item', locals: { name: "项目类型：#{@project_type}" } %>
+    <% end %>
     <% if @need_ecm_files %>
       <%= render partial: 'search_item', locals: { name: '有立面控制手册' } %>
     <% end %>
@@ -107,7 +110,7 @@
     <div class="grid grid-flow-row grid-cols-6 w-full py-1">
       <div class="my-2.5 flex items-start">
         <label for="project_type" class="text-gray-700 mt-px">项目类型</label>
-        <%= select_tag :project_type, options_for_select([ "VISA", "MasterCard" ]), class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded', id: 'project_type' %>
+        <%= select_tag :project_type, options_for_select(Cases.project_type, @project_type), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-20', id: 'project_type', data: {action: 'project-filter#checkbox_submit'} } %>
       </div>
       <div class="my-2.5 flex items-start">
         <input id="chk-ecm-files" name="ecm_files" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @need_ecm_files.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">

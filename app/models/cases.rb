@@ -38,6 +38,15 @@ class Cases < ApplicationRecord
     .pluck(:project_location)
   end
 
+  def self.project_type
+    where.not(project_type: nil)
+    where.not(project_type: '')
+    .order('project_type ASC')
+    .select(:project_type)
+    .distinct
+    .pluck(:project_type)
+  end
+
   # 立面控制手册
   def facade
     arr = self.ecm_files.is_a?(String) ? JSON.parse(self.ecm_files) : self.ecm_files;
