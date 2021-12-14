@@ -23,7 +23,7 @@
     <% @locations.each do |location_name| %>
       <%= render partial: 'search_item', locals: { name: location_name } %>
     <% end %>
-    <% if @project_type %>
+    <% if @project_type.present? %>
       <%= render partial: 'search_item', locals: { name: "项目类型：#{@project_type}" } %>
     <% end %>
     <% if @need_ecm_files %>
