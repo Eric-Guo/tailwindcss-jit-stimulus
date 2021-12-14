@@ -12,6 +12,9 @@ class ProjectsController < ApplicationController
     end
     @locations = (params[:l].presence || []).reject(&:blank?)
     @need_ecm_files = params[:ecm_files] == 'on'
+    @has_sample = params[:has_sample] == 'on'
+    @has_demonstration = params[:has_demonstration] == 'on'
+    @is_th_internal = params[:is_th_internal] == 'on'
 
     @materials = Material.where(parent_id: Material.find_by(name: '石材').id, display: 1, deleted_at: nil).order(id: :asc)
 
