@@ -12,10 +12,13 @@ export default class extends Controller {
   static values = {
     materialBarOpen: Boolean,
     areaBarOpen: Boolean,
+    indeterminateMaterial: Boolean,
   }
 
   connect() {
-    this.selectAllMaterialsTarget.indeterminate  = true;
+    if (this.indeterminateMaterialValue) {
+      this.selectAllMaterialsTarget.indeterminate  = true;
+    }
     this.selectAllLocationsTarget.indeterminate  = true;
   }
 
@@ -33,6 +36,8 @@ export default class extends Controller {
     } else {
       this.selectMaterialItemTargets.map(function(t) { t.checked = false; });
     }
+    const form = document.getElementById('project-form');
+    form.submit();
     e.preventDefault();
   }
 
@@ -42,6 +47,8 @@ export default class extends Controller {
     } else {
       this.selectLocationItemTargets.map(function(t) { t.checked = false; });
     }
+    const form = document.getElementById('project-form');
+    form.submit();
     e.preventDefault();
   }
 
@@ -59,7 +66,6 @@ export default class extends Controller {
       this.materialDetailDivTarget.classList.remove('hidden');
       this.materialBarOpenValue = true;
     }
-    console.log(this.materialBarOpenValue);
     e.preventDefault();
   }
 
@@ -77,7 +83,6 @@ export default class extends Controller {
       this.additionalDivTarget.classList.remove('hidden');
       this.areaBarOpenValue = true;
     }
-    console.log(this.areaBarOpenValue);
     e.preventDefault();
   }
 
