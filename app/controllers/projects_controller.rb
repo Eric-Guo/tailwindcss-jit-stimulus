@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
     else
       Material.none
     end
-    @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first
+    @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
     @locations = (params[:l].presence || []).reject(&:blank?)
     @project_type = params[:project_type]
     @need_ecm_files = params[:ecm_files] == 'on'
