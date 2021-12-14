@@ -13,13 +13,16 @@ export default class extends Controller {
     materialBarOpen: Boolean,
     areaBarOpen: Boolean,
     indeterminateMaterial: Boolean,
+    indeterminateLocation: Boolean,
   }
 
   connect() {
     if (this.indeterminateMaterialValue) {
       this.selectAllMaterialsTarget.indeterminate  = true;
     }
-    this.selectAllLocationsTarget.indeterminate  = true;
+    if (this.indeterminateLocationValue) {
+      this.selectAllLocationsTarget.indeterminate  = true;
+    }
   }
 
   disconnect() {

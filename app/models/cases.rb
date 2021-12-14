@@ -30,7 +30,7 @@ class Cases < ApplicationRecord
   end
 
   def self.project_locations
-    where.not(project_location: nil)
+    @project_locations ||= where.not(project_location: nil)
     where.not(project_location: '')
     .order('project_location ASC')
     .select(:project_location)
@@ -39,7 +39,7 @@ class Cases < ApplicationRecord
   end
 
   def self.project_type
-    where.not(project_type: nil)
+    @project_type ||= where.not(project_type: nil)
     where.not(project_type: '')
     .order('project_type ASC')
     .select(:project_type)
