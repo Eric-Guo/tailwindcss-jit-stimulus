@@ -82,7 +82,7 @@ class ApplicationController < ActionController::Base
         {
           title: '供应商',
           subtitle: 'Manufacturer',
-          url: '',
+          url: manufacturers_path,
         },
         {
           title: '需求登记',
