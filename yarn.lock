@@ -926,7 +926,7 @@
   resolved "https://registry.npmmirror.com/@hotwired/stimulus-webpack-helpers/download/@hotwired/stimulus-webpack-helpers-1.0.1.tgz#4cd74487adeca576c9865ac2b9fe5cb20cef16dd"
   integrity sha1-TNdEh63spXbJhlrCuf5csgzvFt0=
 
-"@hotwired/stimulus@^3.0.1":
+"@hotwired/stimulus@>=3.0.0", "@hotwired/stimulus@^3.0.1":
   version "3.0.1"
   resolved "https://registry.npmmirror.com/@hotwired/stimulus/download/@hotwired/stimulus-3.0.1.tgz#141f15645acaa3b133b7c247cad58ae252ffae85"
   integrity sha1-FB8VZFrKo7Ezt8JHytWK4lL/roU=
@@ -4455,6 +4455,13 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
+tailwindcss-stimulus-components@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmmirror.com/tailwindcss-stimulus-components/download/tailwindcss-stimulus-components-3.0.1.tgz#d2238d2c3d3c66dbf207ccb28fd4d741d131f9b1"
+  integrity sha1-0iONLD08ZtvyB8yyj9TXQdEx+bE=
+  dependencies:
+    "@hotwired/stimulus" ">=3.0.0"
+
 tailwindcss@^3.0.1:
   version "3.0.5"
   resolved "https://registry.npmmirror.com/tailwindcss/download/tailwindcss-3.0.5.tgz#468e20347b8c4b59bb0585361682126edb1dd9e3"
@@ -4621,6 +4628,11 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmmirror.com/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+viewerjs@^1.10.2:
+  version "1.10.2"
+  resolved "https://registry.npmmirror.com/viewerjs/download/viewerjs-1.10.2.tgz#de16fa10668e4da6325969836a3264a046e3ef9a"
+  integrity sha1-3hb6EGaOTaYyWWmDajJkoEbj75o=
 
 watchpack@^2.3.1:
   version "2.3.1"
