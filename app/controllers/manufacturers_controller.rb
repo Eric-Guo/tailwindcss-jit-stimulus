@@ -2,6 +2,14 @@
 
 class ManufacturersController < ApplicationController
   def index
+    @q = ActiveRecord::Base::sanitize_sql(params[:q])
+
+    @manufacturers = if @q.present?
+      Manufacturer.where('name LIKE ? OR location LIKE ? OR contact LIKE ? OR contact_information LIKE ? OR address LIKE ? OR website LIKE ?',
+        "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").sort_by_logo(:desc).order(is_allow: :desc)
+    else
+      Manufacturer.all
+    end.limit(40)
   end
 
   def show

@@ -10,3 +10,8 @@
     </div>
   </section>
 </div>
+
+<%# 供应商 %>
+<div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-8">
+  <%= render partial: 'shared/manufacturers', locals: { manufacturers: @manufacturers } -%>
+</div>
