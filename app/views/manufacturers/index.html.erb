@@ -12,7 +12,7 @@
 </div>
 
 <% need_material_bar_open = @selected_mats.present? || @selected_all_materials %>
-<% need_area_bar_open = @locations.present? || @project_type || @need_ecm_files || @has_sample || @has_demonstration || @is_th_internal %>
+<% need_area_bar_open = @locations.present? || @project_type || @has_related_cases || @has_cooperate_th %>
 <%= form_with url: manufacturers_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', id: 'manufacturer-form', method: :get, data: { controller: 'manufacturer-filter',
     'manufacturer-filter-material-bar-open-value': need_material_bar_open,
     'manufacturer-filter-area-bar-open-value': need_area_bar_open,
@@ -29,17 +29,11 @@
     <% if @project_type.present? %>
       <%= render partial: 'search_item', locals: { name: "项目类型：#{@project_type}", check_id: 'sel-project-type' } %>
     <% end %>
-    <% if @need_ecm_files %>
-      <%= render partial: 'search_item', locals: { name: '有立面控制手册', check_id: 'chk-ecm-files' } %>
+    <% if @has_related_cases %>
+      <%= render partial: 'search_item', locals: { name: '有关联案例', check_id: 'chk-has-related-cases' } %>
     <% end %>
-    <% if @has_sample %>
-      <%= render partial: 'search_item', locals: { name: '有实体样品信息', check_id: 'chk-has-sample' } %>
-    <% end %>
-    <% if @has_demonstration %>
-      <%= render partial: 'search_item', locals: { name: '示范区', check_id: 'chk-demonstration' } %>
-    <% end %>
-    <% if @is_th_internal %>
-      <%= render partial: 'search_item', locals: { name: '天华内部项目', check_id: 'chk-th-internal' } %>
+    <% if @has_cooperate_th %>
+      <%= render partial: 'search_item', locals: { name: '与天华合作过', check_id: 'chk-has-cooperate-th' } %>
     <% end %>
   </div>
   <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
@@ -116,20 +110,12 @@
         <%= select_tag :project_type, options_for_select(Cases.project_type, @project_type), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-20', id: 'sel-project-type', data: {action: 'manufacturer-filter#checkbox_submit'} } %>
       </div>
       <div class="my-2.5 flex items-start">
-        <input id="chk-ecm-files" name="ecm_files" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @need_ecm_files.present? ? 'checked' : '' -%> data-action="manufacturer-filter#checkbox_submit">
-        <label for="chk-ecm-files" class="text-gray-700 ml-2 mt-px">有立面控制手册</label>
+        <input id="chk-has-related-cases" name="has_related_cases" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_related_cases.present? ? 'checked' : '' -%> data-action="manufacturer-filter#checkbox_submit">
+        <label for="chk-ecm-files" class="text-gray-700 ml-2 mt-px">有关联案例</label>
       </div>
       <div class="my-2.5 flex items-start">
-        <input id="chk-has-sample" name="has_sample" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_sample.present? ? 'checked' : '' -%> data-action="manufacturer-filter#checkbox_submit">
-        <label for="chk-has-sample" class="text-gray-700 ml-2 mt-px">有实体样品信息</label>
-      </div>
-      <div class="my-2.5 flex items-start">
-        <input id="chk-demonstration" name="has_demonstration" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_demonstration.present? ? 'checked' : '' -%> data-action="manufacturer-filter#checkbox_submit">
-        <label for="chk-demonstration" class="text-gray-700 ml-2 mt-px">示范区</label>
-      </div>
-      <div class="my-2.5 flex items-start">
-        <input id="chk-th-internal" name="is_th_internal" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @is_th_internal.present? ? 'checked' : '' -%> data-action="manufacturer-filter#checkbox_submit">
-        <label for="chk-th-internal" class="text-gray-700 ml-2 mt-px">天华内部项目</label>
+        <input id="chk-has-cooperate-th" name="has_cooperate_th" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_cooperate_th.present? ? 'checked' : '' -%> data-action="manufacturer-filter#checkbox_submit">
+        <label for="chk-has-sample" class="text-gray-700 ml-2 mt-px">与天华合作过</label>
       </div>
     </div>
   </div>
