@@ -14,10 +14,8 @@ class ManufacturersController < ApplicationController
     @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
     @locations = (params[:l].presence || []).reject(&:blank?)
     @project_type = params[:project_type].presence
-    @need_ecm_files = params[:ecm_files] == 'on'
-    @has_sample = params[:has_sample] == 'on'
-    @has_demonstration = params[:has_demonstration] == 'on'
-    @is_th_internal = params[:is_th_internal] == 'on'
+    @has_related_cases = params[:has_related_cases] == 'on'
+    @has_cooperate_th = params[:has_cooperate_th] == 'on'
 
     @materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
     @selected_all_materials = @materials.pluck(:id) == mat_ids.collect(&:to_i)
