@@ -12,6 +12,15 @@ class Manufacturer < ApplicationRecord
     order(Arel.sql("CASE WHEN logo IS NULL THEN 0 WHEN logo = '' THEN 1 ELSE 2 END #{sort}"))
   end
 
+  def self.manufacturer_locations
+    @manufacturer_locations ||= where.not(location: nil)
+    where.not(location: '')
+    .order('location ASC')
+    .select(:location)
+    .distinct
+    .pluck(:location)
+  end
+
   def offer_sample
     if self.is_allow == 1 || self.is_allow == true
       '是'

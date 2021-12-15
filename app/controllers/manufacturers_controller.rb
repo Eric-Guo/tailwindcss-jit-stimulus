@@ -4,12 +4,42 @@ class ManufacturersController < ApplicationController
   def index
     @q = ActiveRecord::Base::sanitize_sql(params[:q])
 
-    @manufacturers = if @q.present?
+    @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(id: :asc)
+    mat_ids = (params[:ms].presence || []).reject(&:blank?)
+    @selected_mats = if mat_ids.present?
+      Material.where(id: mat_ids)
+    else
+      Material.none
+    end
+    @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
+    @locations = (params[:l].presence || []).reject(&:blank?)
+    @project_type = params[:project_type].presence
+    @need_ecm_files = params[:ecm_files] == 'on'
+    @has_sample = params[:has_sample] == 'on'
+    @has_demonstration = params[:has_demonstration] == 'on'
+    @is_th_internal = params[:is_th_internal] == 'on'
+
+    @materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
+    @selected_all_materials = @materials.pluck(:id) == mat_ids.collect(&:to_i)
+    @selected_none_materials = (@materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
+
+    @selected_all_locations = Manufacturer.manufacturer_locations == @locations
+    @selected_none_locations = (Manufacturer.manufacturer_locations & @locations).blank?
+
+    manufacturer_with_query = if @q.present?
       Manufacturer.where('name LIKE ? OR location LIKE ? OR contact LIKE ? OR contact_information LIKE ? OR address LIKE ? OR website LIKE ?',
         "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").sort_by_logo(:desc).order(is_allow: :desc)
     else
       Manufacturer.all
     end.limit(40)
+
+    manufacturer_with_location = if @locations.present?
+      manufacturer_with_query.where(location: @locations)
+    else
+      manufacturer_with_query
+    end
+
+    @manufacturers = manufacturer_with_location.limit(40)
   end
 
   def show
