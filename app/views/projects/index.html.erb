@@ -72,7 +72,7 @@
       <% @material_types.each_with_index do |material_type, index| %>
         <turbo-frame id="<%= dom_id(material_type) -%>">
           <div class="my-4 <%= material_type.id == @selected_mat_parent_id ? 'font-bold' : '' -%>" data-project-filter-target="matTypeLink">
-            <%= link_to material_type.name, material_type_path(id: material_type.id), data: { action: 'click->project-filter#clean_active' } -%>
+            <%= link_to material_type.name, material_type_path(id: material_type.id, from: 'projects'), data: { action: 'click->project-filter#clean_active' } -%>
           </div>
         </turbo-frame>
       <% end %>
