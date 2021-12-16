@@ -5,14 +5,13 @@ export default class extends Controller {
     'activePanel',
     'selectAllMaterials', 'selectMaterialItem',
     'selectAllLocations', 'selectLocationItem',
-    'materialSpan', 'areaSpan', 'materialIconSvg', 'areaIconSvg',
+    'materialSpan', 'materialIconSvg',
     'materialTypeDiv',
-    'materialDetailDiv', 'locationDetailDiv', 'additionalDiv',
+    'materialDetailDiv', 'additionalDiv',
     'matTypeLink'
   ]
   static values = {
     materialBarOpen: Boolean,
-    areaBarOpen: Boolean,
     indeterminateMaterial: Boolean,
     indeterminateLocation: Boolean,
   }
@@ -67,26 +66,10 @@ export default class extends Controller {
       this.materialIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 16H4L12 8L20 16Z"></path>`;
       this.materialTypeDivTarget.classList.remove('hidden');
       this.materialDetailDivTarget.classList.remove('hidden');
+      this.additionalDivTarget.classList.remove('hidden');
       this.materialBarOpenValue = true;
       this.activePanelTarget.value = 'material';
     }
-    this.closeAreaPanel();
-    e.preventDefault();
-  }
-
-  expend_area(e) {
-    if (this.areaBarOpenValue) {
-      this.closeAreaPanel();
-      this.activePanelTarget.value = '';
-    } else {
-      this.areaSpanTarget.classList.add('under-text-border');
-      this.areaIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 16H4L12 8L20 16Z"></path>`;
-      this.locationDetailDivTarget.classList.remove('hidden');
-      this.additionalDivTarget.classList.remove('hidden');
-      this.areaBarOpenValue = true;
-      this.activePanelTarget.value = 'area';
-    }
-    this.closeMaterialPanel();
     e.preventDefault();
   }
 
@@ -104,14 +87,7 @@ export default class extends Controller {
     this.materialIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>`;
     this.materialTypeDivTarget.classList.add('hidden');
     this.materialDetailDivTarget.classList.add('hidden');
-    this.materialBarOpenValue = false;
-  }
-
-  closeAreaPanel() {
-    this.areaSpanTarget.classList.remove('under-text-border');
-    this.areaIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>`;
-    this.locationDetailDivTarget.classList.add('hidden');
     this.additionalDivTarget.classList.add('hidden');
-    this.areaBarOpenValue = false;
+    this.materialBarOpenValue = false;
   }
 }
