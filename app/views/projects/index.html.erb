@@ -11,14 +11,13 @@
   </section>
 </div>
 
-<% need_material_bar_open = @selected_mats.present? || @selected_all_materials %>
-<% need_area_bar_open = @locations.present? || @project_type || @need_ecm_files || @has_sample || @has_demonstration || @is_th_internal %>
 <%= form_with url: projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', id: 'project-form', method: :get, data: { controller: 'project-filter',
-    'project-filter-material-bar-open-value': need_material_bar_open,
-    'project-filter-area-bar-open-value': need_area_bar_open,
+    'project-filter-material-bar-open-value': @panel_name == 'material',
+    'project-filter-area-bar-open-value': @panel_name == 'area',
     'project-filter-indeterminate-material-value': !@selected_all_materials && !@selected_none_materials,
     'project-filter-indeterminate-location-value': !@selected_all_locations && !@selected_none_locations,
   } do |f| %>
+  <%= hidden_field_tag 'pn', @panel_name,  data: { "project-filter-target" => "activePanel" } -%>
   <div class="flex flex-wrap w-full mb-3">
     <% @selected_mats.each do |select_material| %>
       <%= render partial: 'search_item', locals: { name: select_material.name, check_id: dom_id(select_material) } %>
@@ -51,22 +50,22 @@
     </div>
     <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->project-filter#expend_material">
       <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
-        <span class="<%= need_material_bar_open ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-project-filter-target="materialSpan">材料</span>
+        <span class="<%= @panel_name == 'material' ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-project-filter-target="materialSpan">材料</span>
       </p>
       <svg data-project-filter-target="materialIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path fill="currentColor" d="<%= need_material_bar_open ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
+        <path fill="currentColor" d="<%= @panel_name == 'material' ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
       </svg>
     </div>
     <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->project-filter#expend_area">
       <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
-        <span class="<%= need_area_bar_open ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-project-filter-target="areaSpan">所在地区</span>
+        <span class="<%= @panel_name == 'area' ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-project-filter-target="areaSpan">所在地区</span>
       </p>
       <svg data-project-filter-target="areaIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path fill="currentColor" d="<%= need_area_bar_open ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
+        <path fill="currentColor" d="<%= @panel_name == 'area' ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
       </svg>
     </div>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= need_material_bar_open ? '' : 'hidden' -%>" data-project-filter-target="materialTypeDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'material' ? '' : 'hidden' -%>" data-project-filter-target="materialTypeDiv">
     <div class="w-80"></div>
     <div class="grid grid-flow-row grid-cols-6 w-full">
       <% @material_types.each_with_index do |material_type, index| %>
@@ -78,7 +77,7 @@
       <% end %>
     </div>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= need_material_bar_open ? '' : 'hidden' -%>" data-project-filter-target="materialDetailDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'material' ? '' : 'hidden' -%>" data-project-filter-target="materialDetailDiv">
     <div class="w-80">
       <div class="my-4 ml-8 flex items-start">
         <input id="checkbox-select-material-all" data-project-filter-target="selectAllMaterials" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->project-filter#select_all_materials" <%= @selected_all_materials ? 'checked' : '' -%>>
@@ -91,7 +90,7 @@
       <% end %>
     </turbo-frame>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= need_area_bar_open ? '' : 'hidden' -%>" data-project-filter-target="locationDetailDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'area' ? '' : 'hidden' -%>" data-project-filter-target="locationDetailDiv">
     <div class="w-80">
       <div class="my-4 ml-8 flex items-start">
         <input id="checkbox-select-location-all" data-project-filter-target="selectAllLocations" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->project-filter#select_all_locations" <%= @selected_all_locations ? 'checked' : '' -%>>
@@ -104,7 +103,7 @@
       <% end %>
     </div>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= need_area_bar_open ? '' : 'hidden' -%>" data-project-filter-target="additionalDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'area' ? '' : 'hidden' -%>" data-project-filter-target="additionalDiv">
     <div class="w-80">
       <div class="my-4 ml-8">
         高级筛选
