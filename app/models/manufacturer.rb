@@ -44,4 +44,13 @@ class Manufacturer < ApplicationRecord
   def main_materials
     self.materials.pluck(:name).join(',')
   end
+
+  # 是否与天华合作过
+  def tho_co_str
+    if self.is_tho_co == 1 || self.is_tho_co == true
+      '是'
+    else
+      '—'
+    end
+  end
 end
