@@ -70,6 +70,7 @@ class ApplicationController < ActionController::Base
         {
           title: '材料',
           subtitle: 'Materials',
+          url: materials_path,
           children: @tree_materials.map do |item|
             { **item, children: item[:children].map { |it| { **it, url: material_path(it[:id]), children: nil } } }
           end,

@@ -10,3 +10,114 @@
     </div>
   </section>
 </div>
+
+<%= form_with url: materials_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', id: 'material-form', method: :get, data: { controller: 'material-filter',
+    'material-filter-material-bar-open-value': @panel_name == 'material',
+    'material-filter-area-bar-open-value': @panel_name == 'area',
+    'material-filter-indeterminate-material-value': !@selected_all_materials && !@selected_none_materials,
+    'material-filter-indeterminate-location-value': !@selected_all_locations && !@selected_none_locations,
+  } do |f| %>
+  <%= hidden_field_tag 'pn', @panel_name,  data: { "material-filter-target" => "activePanel" } -%>
+  <div class="flex flex-wrap w-full mb-3">
+    <% @selected_mats.each do |select_material| %>
+      <%= render partial: 'search_item', locals: { name: select_material.name, check_id: dom_id(select_material) } %>
+    <% end %>
+    <% @locations.each do |location_name| %>
+      <%= render partial: 'search_item', locals: { name: location_name, check_id: "location-#{location_name}" } %>
+    <% end %>
+    <% if @project_type.present? %>
+      <%= render partial: 'search_item', locals: { name: "项目类型：#{@project_type}", check_id: 'sel-project-type' } %>
+    <% end %>
+    <% if @has_related_cases %>
+      <%= render partial: 'search_item', locals: { name: '有关联案例', check_id: 'chk-has-related-cases' } %>
+    <% end %>
+    <% if @has_cooperate_th %>
+      <%= render partial: 'search_item', locals: { name: '与天华合作过', check_id: 'chk-has-cooperate-th' } %>
+    <% end %>
+  </div>
+  <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
+    <div class="flex flex-row w-1/3 p-1">
+      <%= text_field_tag :q, @q, placeholder: '黄金麻/镀膜玻璃/PC板', class: 'block flex-grow bg-transparent text-base placeholder-gray-300 border-0 focus:outline-none focus:ring-gray-100 focus:border-gray-100 focus:ring-offset-gray-100', id: 'search-box', autocomplete: "off" -%>
+      <button data-action="material-filter#checkbox_submit" class="cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="flex-none mx-4 my-3 h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->material-filter#expend_material">
+      <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
+        <span class="<%= @panel_name == 'material' ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-material-filter-target="materialSpan">材料</span>
+      </p>
+      <svg data-material-filter-target="materialIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path fill="currentColor" d="<%= @panel_name == 'material' ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
+      </svg>
+    </div>
+    <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->material-filter#expend_area">
+      <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
+        <span class="<%= @panel_name == 'area' ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-material-filter-target="areaSpan">所在地区</span>
+      </p>
+      <svg data-material-filter-target="areaIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path fill="currentColor" d="<%= @panel_name == 'area' ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'material' ? '' : 'hidden' -%>" data-material-filter-target="materialTypeDiv">
+    <div class="w-80"></div>
+    <div class="grid grid-flow-row grid-cols-6 w-full">
+      <% @material_types.each_with_index do |material_type, index| %>
+        <turbo-frame id="<%= dom_id(material_type) -%>">
+          <div class="my-4 <%= material_type.id == @selected_mat_parent_id ? 'font-bold' : '' -%>" data-material-filter-target="matTypeLink">
+            <%= link_to material_type.name, material_type_path(id: material_type.id, from: 'materials'), data: { action: 'click->material-filter#clean_active' } -%>
+          </div>
+        </turbo-frame>
+      <% end %>
+    </div>
+  </div>
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'material' ? '' : 'hidden' -%>" data-material-filter-target="materialDetailDiv">
+    <div class="w-80">
+      <div class="my-4 ml-8 flex items-start">
+        <input id="checkbox-select-material-all" data-material-filter-target="selectAllMaterials" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->material-filter#select_all_materials" <%= @selected_all_materials ? 'checked' : '' -%>>
+        <label for="checkbox-select-material-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
+      </div>
+    </div>
+    <turbo-frame id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1">
+      <% @materials.each do |material| %>
+        <%= render partial: 'material_item', locals: { material: material, checked: @selected_mats.pluck(:id).include?(material.id) } %>
+      <% end %>
+    </turbo-frame>
+  </div>
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'area' ? '' : 'hidden' -%>" data-material-filter-target="locationDetailDiv">
+    <div class="w-80">
+      <div class="my-4 ml-8 flex items-start">
+        <input id="checkbox-select-location-all" data-material-filter-target="selectAllLocations" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->material-filter#select_all_locations" <%= @selected_all_locations ? 'checked' : '' -%>>
+        <label for="checkbox-select-location-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
+      </div>
+    </div>
+    <div class="grid grid-flow-row grid-cols-6 w-full py-1">
+      <% Manufacturer.manufacturer_locations.each do |location_name| %>
+      <%= render partial: 'location_item', locals: { name: location_name, checked: @locations.include?(location_name) } %>
+      <% end %>
+    </div>
+  </div>
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'area' ? '' : 'hidden' -%>" data-material-filter-target="additionalDiv">
+    <div class="w-80">
+      <div class="my-4 ml-8">
+        高级筛选
+      </div>
+    </div>
+    <div class="grid grid-flow-row grid-cols-6 w-full py-1">
+      <div class="my-2.5 flex items-start">
+        <label for="sel-project-type" class="text-gray-700 mt-px">项目类型</label>
+        <%= select_tag :project_type, options_for_select(Cases.project_type, @project_type), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-20', id: 'sel-project-type', data: { action: 'material-filter#checkbox_submit' } } %>
+      </div>
+      <div class="my-2.5 flex items-start">
+        <input id="chk-has-related-cases" name="has_related_cases" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_related_cases.present? ? 'checked' : '' -%> data-action="material-filter#checkbox_submit">
+        <label for="chk-ecm-files" class="text-gray-700 ml-2 mt-px">有关联案例</label>
+      </div>
+      <div class="my-2.5 flex items-start">
+        <input id="chk-has-cooperate-th" name="has_cooperate_th" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_cooperate_th.present? ? 'checked' : '' -%> data-action="material-filter#checkbox_submit">
+        <label for="chk-has-sample" class="text-gray-700 ml-2 mt-px">与天华合作过</label>
+      </div>
+    </div>
+  </div>
+<% end %>
