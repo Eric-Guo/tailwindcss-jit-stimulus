@@ -1,6 +1,6 @@
 <%= turbo_stream.replace dom_id(@material_type) do %>
   <turbo-frame id="<%= dom_id(@material_type) -%>">
-    <div class="my-4 font-bold" data-project-filter-target="matTypeLink">
+    <div class="my-4 font-bold" data-project-filter-target="matTypeLink" data-manufacturer-filter-target="matTypeLink">
       <%= link_to @material_type.name, material_type_path(id: @material_type.id) -%>
     </div>
   </turbo-frame>
