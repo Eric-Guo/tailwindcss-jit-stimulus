@@ -7,7 +7,7 @@
 <% end %>
 <%= turbo_stream.replace 'material_details' do %>
   <turbo-frame id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1">
-    <% @materials.each do |material| %>
+    <% @all_materials.each do |material| %>
       <%= render partial: "#{@from}/material_item", locals: { material: material, checked: false } %>
     <% end %>
   </turbo-frame>

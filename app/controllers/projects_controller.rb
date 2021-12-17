@@ -20,9 +20,9 @@ class ProjectsController < ApplicationController
     @has_demonstration = params[:has_demonstration] == 'on'
     @is_th_internal = params[:is_th_internal] == 'on'
 
-    @materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
-    @selected_all_materials = @materials.pluck(:id) == mat_ids.collect(&:to_i)
-    @selected_none_materials = (@materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
+    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
+    @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
+    @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
     @selected_all_locations = Cases.project_locations == @locations
     @selected_none_locations = (Cases.project_locations & @locations).blank?

@@ -19,9 +19,9 @@ class MaterialsController < ApplicationController
     @price_start = params[:price_start].presence
     @price_end = params[:price_end].presence
 
-    @materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
-    @selected_all_materials = @materials.pluck(:id) == mat_ids.collect(&:to_i)
-    @selected_none_materials = (@materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
+    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
+    @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
+    @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
   end
 
   def show

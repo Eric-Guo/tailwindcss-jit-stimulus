@@ -18,9 +18,9 @@ class ManufacturersController < ApplicationController
     @has_related_cases = params[:has_related_cases] == 'on'
     @has_cooperate_th = params[:has_cooperate_th] == 'on'
 
-    @materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
-    @selected_all_materials = @materials.pluck(:id) == mat_ids.collect(&:to_i)
-    @selected_none_materials = (@materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
+    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
+    @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
+    @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
     @selected_all_locations = Manufacturer.manufacturer_locations == @locations
     @selected_none_locations = (Manufacturer.manufacturer_locations & @locations).blank?

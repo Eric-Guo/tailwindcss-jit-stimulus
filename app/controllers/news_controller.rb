@@ -14,9 +14,9 @@ class NewsController < ApplicationController
     end
     @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
 
-    @materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
-    @selected_all_materials = @materials.pluck(:id) == mat_ids.collect(&:to_i)
-    @selected_none_materials = (@materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
+    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
+    @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
+    @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
     @news = if @q.present?
       News.where('title LIKE ? OR subtitle LIKE ? OR mold_name LIKE ?',
