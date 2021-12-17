@@ -15,15 +15,13 @@ class MaterialsController < ApplicationController
       Material.none
     end
     @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
-    @locations = (params[:l].presence || []).reject(&:blank?)
     @color_system = ColorSystem.find_by id: params[:color_system].presence
-    @has_related_cases = params[:has_related_cases] == 'on'
-    @has_cooperate_th = params[:has_cooperate_th] == 'on'
+    @price_start = params[:price_start].presence
+    @price_end = params[:price_end].presence
 
     @materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
     @selected_all_materials = @materials.pluck(:id) == mat_ids.collect(&:to_i)
     @selected_none_materials = (@materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
-
   end
 
   def show
