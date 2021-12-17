@@ -14,11 +14,11 @@ class Manufacturer < ApplicationRecord
 
   def self.manufacturer_locations
     @manufacturer_locations ||= where.not(location: nil)
-    where.not(location: '')
-    .order('location ASC')
-    .select(:location)
-    .distinct
-    .pluck(:location)
+      .where.not(location: '')
+      .order('location ASC')
+      .select(:location)
+      .distinct
+      .pluck(:location)
   end
 
   def offer_sample
