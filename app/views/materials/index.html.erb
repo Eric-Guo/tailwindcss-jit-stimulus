@@ -64,7 +64,7 @@
       </div>
     </div>
     <turbo-frame id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1">
-      <% @materials.each do |material| %>
+      <% @all_materials.each do |material| %>
         <%= render partial: 'material_item', locals: { material: material, checked: @selected_mats.pluck(:id).include?(material.id) } %>
       <% end %>
     </turbo-frame>
@@ -78,7 +78,7 @@
     <div class="grid grid-flow-row grid-cols-6 w-full py-1">
       <div class="my-2.5 flex items-start">
         <label for="sel-color-system" class="text-gray-700 mt-px">色系</label>
-        <%= select_tag :color_system, options_for_select(ColorSystem.color_system_lists, @color_system.id), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-32', id: 'sel-color-system', data: { action: 'material-filter#checkbox_submit' } } %>
+        <%= select_tag :color_system, options_for_select(ColorSystem.color_system_lists, @color_system&.id), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-32', id: 'sel-color-system', data: { action: 'material-filter#checkbox_submit' } } %>
       </div>
       <div class="my-2.5 flex items-start col-span-2">
         <label for="text-price-range" class="text-gray-700 mt-px">价格区间</label>
@@ -86,7 +86,7 @@
       </div>
       <div class="my-2.5 flex items-start">
         <label for="sel-place-of-origin" class="text-gray-700 mt-px">产地</label>
-        <%= select_tag :color_system, options_for_select(ColorSystem.color_system_lists, @color_system.id), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-32', id: 'sel-place-of-origin', data: { action: 'material-filter#checkbox_submit' } } %>
+        <%= select_tag :color_system, options_for_select(ColorSystem.color_system_lists, @color_system&.id), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-32', id: 'sel-place-of-origin', data: { action: 'material-filter#checkbox_submit' } } %>
       </div>
     </div>
   </div>
