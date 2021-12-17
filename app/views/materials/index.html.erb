@@ -13,25 +13,15 @@
 
 <%= form_with url: materials_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', id: 'material-form', method: :get, data: { controller: 'material-filter',
     'material-filter-material-bar-open-value': @panel_name == 'material',
-    'material-filter-indeterminate-material-value': !@selected_all_materials && !@selected_none_materials,
-    'material-filter-indeterminate-location-value': !@selected_all_locations && !@selected_none_locations,
+    'material-filter-indeterminate-material-value': !@selected_all_materials && !@selected_none_materials
   } do |f| %>
   <%= hidden_field_tag 'pn', @panel_name,  data: { "material-filter-target" => "activePanel" } -%>
   <div class="flex flex-wrap w-full mb-3">
     <% @selected_mats.each do |select_material| %>
       <%= render partial: 'search_item', locals: { name: select_material.name, check_id: dom_id(select_material) } %>
     <% end %>
-    <% @locations.each do |location_name| %>
-      <%= render partial: 'search_item', locals: { name: location_name, check_id: "location-#{location_name}" } %>
-    <% end %>
     <% if @color_system.present? %>
       <%= render partial: 'search_item', locals: { name: "色系：#{@color_system.description}", check_id: 'sel-color-system' } %>
-    <% end %>
-    <% if @has_related_cases %>
-      <%= render partial: 'search_item', locals: { name: '有关联案例', check_id: 'chk-has-related-cases' } %>
-    <% end %>
-    <% if @has_cooperate_th %>
-      <%= render partial: 'search_item', locals: { name: '与天华合作过', check_id: 'chk-has-cooperate-th' } %>
     <% end %>
   </div>
   <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
@@ -90,13 +80,13 @@
         <label for="sel-color-system" class="text-gray-700 mt-px">色系</label>
         <%= select_tag :color_system, options_for_select(ColorSystem.color_system_lists, @color_system.id), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-32', id: 'sel-color-system', data: { action: 'material-filter#checkbox_submit' } } %>
       </div>
-      <div class="my-2.5 flex items-start">
-        <input id="chk-has-related-cases" name="has_related_cases" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_related_cases.present? ? 'checked' : '' -%> data-action="material-filter#checkbox_submit">
-        <label for="chk-ecm-files" class="text-gray-700 ml-2 mt-px">有关联案例</label>
+      <div class="my-2.5 flex items-start col-span-2">
+        <label for="text-price-range" class="text-gray-700 mt-px">价格区间</label>
+        <%= number_field_tag 'price_start', @price_start, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-24' -%><span class="text-gray-300">&nbsp; —— &nbsp;</span><%= number_field_tag 'price_end', @price_end, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-24' -%>
       </div>
       <div class="my-2.5 flex items-start">
-        <input id="chk-has-cooperate-th" name="has_cooperate_th" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_cooperate_th.present? ? 'checked' : '' -%> data-action="material-filter#checkbox_submit">
-        <label for="chk-has-sample" class="text-gray-700 ml-2 mt-px">与天华合作过</label>
+        <label for="sel-place-of-origin" class="text-gray-700 mt-px">产地</label>
+        <%= select_tag :color_system, options_for_select(ColorSystem.color_system_lists, @color_system.id), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-32', id: 'sel-place-of-origin', data: { action: 'material-filter#checkbox_submit' } } %>
       </div>
     </div>
   </div>
