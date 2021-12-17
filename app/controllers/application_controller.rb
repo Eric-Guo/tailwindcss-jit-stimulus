@@ -86,6 +86,11 @@ class ApplicationController < ActionController::Base
           url: manufacturers_path,
         },
         {
+          title: '新闻',
+          subtitle: 'News',
+          url: news_index_path,
+        },
+        {
           title: '需求登记',
           subtitle: 'Your Demand',
           url: '',
