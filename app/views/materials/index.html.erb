@@ -24,8 +24,8 @@
     <% @locations.each do |location_name| %>
       <%= render partial: 'search_item', locals: { name: location_name, check_id: "location-#{location_name}" } %>
     <% end %>
-    <% if @project_type.present? %>
-      <%= render partial: 'search_item', locals: { name: "项目类型：#{@project_type}", check_id: 'sel-project-type' } %>
+    <% if @color_system.present? %>
+      <%= render partial: 'search_item', locals: { name: "色系：#{@color_system.description}", check_id: 'sel-color-system' } %>
     <% end %>
     <% if @has_related_cases %>
       <%= render partial: 'search_item', locals: { name: '有关联案例', check_id: 'chk-has-related-cases' } %>
@@ -87,8 +87,8 @@
     </div>
     <div class="grid grid-flow-row grid-cols-6 w-full py-1">
       <div class="my-2.5 flex items-start">
-        <label for="sel-project-type" class="text-gray-700 mt-px">项目类型</label>
-        <%= select_tag :project_type, options_for_select(Cases.project_type, @project_type), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-20', id: 'sel-project-type', data: { action: 'material-filter#checkbox_submit' } } %>
+        <label for="sel-color-system" class="text-gray-700 mt-px">色系</label>
+        <%= select_tag :color_system, options_for_select(ColorSystem.color_system_lists, @color_system.id), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-32', id: 'sel-color-system', data: { action: 'material-filter#checkbox_submit' } } %>
       </div>
       <div class="my-2.5 flex items-start">
         <input id="chk-has-related-cases" name="has_related_cases" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_related_cases.present? ? 'checked' : '' -%> data-action="material-filter#checkbox_submit">

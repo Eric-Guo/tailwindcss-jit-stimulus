@@ -16,7 +16,7 @@ class MaterialsController < ApplicationController
     end
     @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
     @locations = (params[:l].presence || []).reject(&:blank?)
-    @project_type = params[:project_type].presence
+    @color_system = ColorSystem.find_by id: params[:color_system].presence
     @has_related_cases = params[:has_related_cases] == 'on'
     @has_cooperate_th = params[:has_cooperate_th] == 'on'
 
