@@ -38,7 +38,13 @@ class ManufacturersController < ApplicationController
       manufacturer_with_query
     end
 
-    @manufacturers = manufacturer_with_location.limit(40)
+    manufacturer_has_cooperate_th = if @has_cooperate_th.present?
+      manufacturer_with_location.where(is_tho_co: true)
+    else
+      manufacturer_with_location
+    end
+
+    @manufacturers = manufacturer_has_cooperate_th.limit(40)
   end
 
   def show
