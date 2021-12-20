@@ -34,10 +34,16 @@ class ProjectsController < ApplicationController
       Cases.all
     end.select('cases.id, cases.is_th, cases.web_cover, cases.project_name, cases.project_location')
 
-    cases_with_location = if @locations.present?
-      cases_with_query.where(project_location: @locations)
+    cases_with_materials = if mat_ids.present?
+      cases_with_query.includes(:case_materials).where(case_materials: { material_id: mat_ids.append(@selected_mat_parent_id) })
     else
       cases_with_query
+    end
+
+    cases_with_location = if @locations.present?
+      cases_with_materials.where(project_location: @locations)
+    else
+      cases_with_materials
     end
 
     cases_ecm = if @need_ecm_files
