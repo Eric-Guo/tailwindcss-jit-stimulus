@@ -276,7 +276,7 @@
 <%# 材料 %>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-8">
   <span class="text-2xl font-bold ml-px mr-2">材料</span><span class="text-xl font-light">Materials</span>
-  <a class="more-btn inline hidden" href="<%= root_path -%>">MORE+</a>
+  <a class="more-btn inline" href="<%= materials_path -%>">MORE+</a>
 </div>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 grid grid-cols-5 gap-1.5">
   <% @material_cates.each do |material_cate| %>
@@ -296,7 +296,7 @@
 <%# 案例 %>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-8">
   <span class="text-2xl font-bold ml-px mr-2">案例</span><span class="text-xl font-light">Projects</span>
-  <a class="more-btn inline" href="<%= root_path -%>">MORE+</a>
+  <a class="more-btn inline" href="<%= projects_path -%>">MORE+</a>
 </div>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 grid grid-cols-4 gap-1.5">
   <% @projects.each do |project_case| %>
@@ -320,7 +320,7 @@
 <%# 供应商 %>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-8">
   <span class="text-2xl font-bold ml-px mr-2">供应商</span><span class="text-xl font-light">Manufacturer</span>
-  <a class="more-btn inline" href="<%= root_path -%>">MORE+</a>
+  <a class="more-btn inline" href="<%= manufacturers_path -%>">MORE+</a>
 </div>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 grid grid-cols-5 xl:grid-cols-10 gap-4">
   <% @manufacturer_cates.each do |manufacturer_cate| %>
