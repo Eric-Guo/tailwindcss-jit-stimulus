@@ -248,7 +248,7 @@
   <div class="relative flex-1 ml-12" style="width: 740px;">
     <div class="flex flex-col h-full">
       <% @latest_news.each_with_index do |news, index| %>
-        <a class="flex flex-1 items-center border-b <%= index == 0 ? 'border-t' : '' -%>" href="<%= news.url %>" target="_self">
+        <a class="flex flex-1 items-center border-b <%= index == 0 ? 'border-t' : '' -%>" href="<%= news.url %>" target="_blank">
           <div class="flex-none flex flex-col justify-around">
             <p class="text-center text-base font-normal tracking-wider leading-none"><%= Date::ABBR_MONTHNAMES[news.published_at.month].upcase -%></p>
             <p class="text-3xl text-center font-semibold tracking-widest leading-none mt-5"><%= news.published_at.day -%></p>

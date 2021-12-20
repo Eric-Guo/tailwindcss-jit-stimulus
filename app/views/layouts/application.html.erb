@@ -113,7 +113,7 @@
         <p class="mb-1 mt-4">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</p>
         <p class="my-1">友情链接：
           <% @footer_info[:links].each do |link| %>
-            <a href="<%= link[:url] %>" target="_self" class="mx-1"><%= link[:title] %></a>
+            <a href="<%= link[:url] %>" target="_blank" class="mx-1"><%= link[:title] %></a>
           <% end %>
         </p>
       </footer>
@@ -130,7 +130,7 @@
           <div class="w-0 flex-1 flex justify-end gap-4">
             <div>友情链接:</div>
             <% @footer_info[:links].each do |link| %>
-              <a href="<%= link[:url] %>" target="_self"><%= link[:title] %></a>
+              <a href="<%= link[:url] %>" target="_blank"><%= link[:title] %></a>
             <% end %>
           </div>
         </nav>
