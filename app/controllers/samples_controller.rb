@@ -32,9 +32,9 @@ class SamplesController < ApplicationController
         sample_ids.push(*other_material_ids)
       end
       other_samples = Sample.where.not(id: sample.id).where(obj_id: sample_ids)
-      if material.present?
+      if material.present? && brother_material_ids.present?
         other_samples = other_samples.order(Arel.sql("CASE WHEN obj_id = #{material_id} THEN 2 WHEN obj_id IN (#{brother_material_ids.join(',')}) THEN 1 ELSE 0 END DESC, id ASC"))
       end
-      other_samples = other_samples.page(page).per(page_size)
+      other_samples.page(page).per(page_size)
     end
 end
