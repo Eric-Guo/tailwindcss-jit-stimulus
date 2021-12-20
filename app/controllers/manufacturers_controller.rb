@@ -38,10 +38,16 @@ class ManufacturersController < ApplicationController
       manufacturer_with_query
     end
 
-    manufacturer_has_cooperate_th = if @has_cooperate_th.present?
-      manufacturer_with_location.where(is_tho_co: true)
+    manufacturer_has_related_cases = if @has_related_cases.present?
+      manufacturer_with_location.where.not(cases: ['null', '', '[]']).where.not(cases: nil)
     else
       manufacturer_with_location
+    end
+
+    manufacturer_has_cooperate_th = if @has_cooperate_th.present?
+      manufacturer_has_related_cases.where(is_tho_co: true)
+    else
+      manufacturer_has_related_cases
     end
 
     @manufacturers = manufacturer_has_cooperate_th.limit(40)
