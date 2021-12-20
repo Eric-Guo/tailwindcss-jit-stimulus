@@ -198,11 +198,11 @@
               </div>
               <div class="flex justify-end items-center flex-none ml-3" style="width: 50px; gap: 10px;">
                 <% if item[:tag_name] === 'pdf' %>
-                  <a href="<%= mat_img_url(item[:url]) %>" target="_self" title="预览">
+                  <a href="<%= mat_img_url(item[:url]) %>" target="_blank" title="预览">
                     <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-preview.svg') %>" alt="">
                   </a>
                 <% end %>
-                <a href="<%= mat_img_url(item[:url]) %>" target="_self" download="<%= item[:name] %>" title="下载">
+                <a href="<%= mat_img_url(item[:url]) %>" target="_blank" download="<%= item[:name] %>" title="下载">
                   <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-download.svg') %>" alt="">
                 </a>
               </div>
@@ -226,11 +226,11 @@
               </div>
               <div class="flex justify-end items-center flex-none ml-3" style="width: 50px; gap: 10px;">
                 <% if item[:tag_name] === 'pdf' %>
-                  <a href="<%= mat_img_url(item[:url]) %>" target="_self" title="预览">
+                  <a href="<%= mat_img_url(item[:url]) %>" target="_blank" title="预览">
                     <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-preview.svg') %>" alt="">
                   </a>
                 <% end %>
-                <a href="<%= mat_img_url(item[:url]) %>" target="_self" download="<%= item[:name] %>" title="下载">
+                <a href="<%= mat_img_url(item[:url]) %>" target="_blank" download="<%= item[:name] %>" title="下载">
                   <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-download.svg') %>" alt="">
                 </a>
               </div>
