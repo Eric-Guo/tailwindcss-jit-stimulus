@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
       mat_2_level_ids = Material.where(level: 2).joins(:parent_material, :children_materials)
         .where(parent_material: { name: @q })
         .pluck('children_materials_materials.id')
-      mat_3_level_ids = Material.where(level: 2).where(name: @q).pluck(:id)
+      mat_3_level_ids = Material.where(level: 3).where(name: @q).pluck(:id)
       mat_ids = (mat_2_level_ids + [nil] + mat_3_level_ids).uniq
 
       if mat_ids.present?
