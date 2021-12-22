@@ -28,11 +28,7 @@ class ProjectsController < ApplicationController
     @selected_none_locations = (Cases.project_locations & @locations).blank?
 
     cases_with_query = if @q.present?
-      mat_2_level_ids = Material.where(level: 2).joins(:parent_material, :children_materials)
-        .where(parent_material: { name: @q })
-        .pluck('children_materials_materials.id')
-      mat_3_level_ids = Material.where(level: 3).where(name: @q).pluck(:id)
-      mat_ids = (mat_2_level_ids + [nil] + mat_3_level_ids).uniq
+      mat_ids = q_return_mat_ids(@q)
 
       if mat_ids.present?
         Cases.left_joins(:case_materials).where(case_materials: { material_id:  mat_ids})
