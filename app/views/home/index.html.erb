@@ -223,7 +223,7 @@
         >
           <% @recently_projects.each_with_index do |project, i| %>
             <a class="block absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem" href="<%= project_path(project.home_top_case) %>">
-              <img class="w-full h-full object-cover" src="<%= mat_img_url(project.cover) -%>" alt="">
+              <img class="w-full h-full object-cover" src="<%= mat_img_url(project.cover, "static/news_project_#{i}.jpg") -%>" alt="">
               <div class="absolute left-0 bottom-0 w-full text-white text-lg text-center truncate p-2">
                 <%= project.name -%>
               </div>
