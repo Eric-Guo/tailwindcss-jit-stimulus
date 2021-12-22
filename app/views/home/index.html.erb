@@ -302,7 +302,7 @@
   <% @projects.each do |project_case| %>
     <a class="relative block" style="padding-top: 74.78%;" href="<%= project_path(project_case.home_top_case) %>">
       <div class="absolute top-0 left-0 w-full h-full">
-        <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.cover) -%>" alt="">
+        <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.cover, 'static/project_new_g1.jpg') -%>" alt="">
         <div class="absolute left-0 bottom-0 p-3 w-full text-white black-mask">
           <p class="text-lg leading-tight truncate" title="<%= project_case.home_top_case&.project_name_and_location -%>">
             <%= project_case.home_top_case&.project_name_and_location -%>
@@ -329,7 +329,7 @@
       <% manufacturer_cate[:manufacturers].each do |manufacturer| %>
         <a class="block relative w-full" style="padding-top: 100%;" href="<%= manufacturer_path(manufacturer[:id]) %>">
           <div class="absolute top-0 left-0 w-full h-full p-4">
-            <img class="w-full h-full object-scale-down" src="<%= mat_img_url(manufacturer[:logo]) -%>" alt="">
+            <img class="w-full h-full object-scale-down" src="<%= mat_img_url(manufacturer[:logo], 'manufacturer_default_cover.png') -%>" alt="">
           </div>
         </a>
       <% end %>
