@@ -19,8 +19,12 @@ class NewsController < ApplicationController
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
     news_with_query = if @q.present?
-      News.where('title LIKE ? OR subtitle LIKE ? OR mold_name LIKE ?',
-        "%#{@q}%", "%#{@q}%", "%#{@q}%")
+      mat_q_ids = q_return_mat_ids(@q)
+      if mat_q_ids.present?
+        News.where(material_id: mat_q_ids)
+      else
+        News.where('title LIKE ? OR subtitle LIKE ? OR mold_name LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%")
+      end
     else
       News.all
     end
