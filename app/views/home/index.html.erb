@@ -178,7 +178,7 @@
                 <% @recently_materials.slice(i * 8, (i + 1) * 8).each do |material| %>
                   <a class="relative block w-full cursor-pointer" style="padding-top: 100%;" href="<%= material_path(material.material_id) %>">
                     <div class="absolute top-0 left-0 w-full h-full">
-                      <img class="w-full h-full object-cover" src="<%= mat_img_url(material.cover) -%>" alt="">
+                      <img class="w-full h-full object-cover" src="<%= mat_img_url(material.cover, "static/new_mat_g#{i}.jpg") -%>" alt="">
                       <div class="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-all flex items-center px-1" style="background-color: rgba(16, 24, 32, .6);">
                         <p class="w-full text-sm lg:text-base fond-medium 2xl:text-lg whitespace-nowrap text-white truncate text-center" title="<%= material.name %>">
                           <%= material.name %>
