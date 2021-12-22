@@ -29,7 +29,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "@webpack-cli/serve": "^1.6.0",
-    "webpack-dev-server": "^4.6.0"
+    "webpack-dev-server": "^4.7.0"
   },
   "babel": {
     "presets": [
