@@ -32,10 +32,16 @@ class ManufacturersController < ApplicationController
       Manufacturer.all
     end.limit(40)
 
-    manufacturer_with_location = if @locations.present?
-      manufacturer_with_query.where(location: @locations)
+    manufacturer_with_materials = if mat_ids.present?
+      manufacturer_with_query.includes(:materials).where(materials: { id: mat_ids.append(@selected_mat_parent_id) })
     else
       manufacturer_with_query
+    end
+
+    manufacturer_with_location = if @locations.present?
+      manufacturer_with_materials.where(location: @locations)
+    else
+      manufacturer_with_materials
     end
 
     manufacturer_has_related_cases = if @has_related_cases.present?
