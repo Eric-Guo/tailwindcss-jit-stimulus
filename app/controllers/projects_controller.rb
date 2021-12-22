@@ -28,8 +28,17 @@ class ProjectsController < ApplicationController
     @selected_none_locations = (Cases.project_locations & @locations).blank?
 
     cases_with_query = if @q.present?
-      Cases.where('project_name LIKE ? OR business_type LIKE ? OR project_type LIKE ? OR project_location LIKE ? OR design_unit LIKE ?',
-        "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
+      mat_2_level_ids = Material.where(level: 2).joins(:parent_material, :children_materials)
+        .where(parent_material: { name: @q })
+        .pluck('children_materials_materials.id')
+      mat_3_level_ids = Material.where(level: 2).where(name: @q).pluck(:id)
+      mat_ids = (mat_2_level_ids + [nil] + mat_3_level_ids).uniq
+
+      if mat_ids.present?
+        Cases.left_joins(:case_materials).where(case_materials: { material_id:  mat_ids})
+      else
+        Cases.where('project_name LIKE ? OR business_type LIKE ? OR project_type LIKE ? OR project_location LIKE ? OR design_unit LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%")
+      end
     else
       Cases.all
     end.select('cases.id, cases.is_th, cases.web_cover, cases.project_name, cases.project_location')
