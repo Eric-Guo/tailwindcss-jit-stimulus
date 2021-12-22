@@ -10,6 +10,16 @@ class ApplicationController < ActionController::Base
   before_action :set_sidebar_nav
   before_action :set_footer_info
 
+  protected
+
+    def q_return_mat_ids(q)
+      mat_2_level_ids = Material.where(level: 2).joins(:parent_material, :children_materials)
+        .where(parent_material: { name: q })
+        .pluck('children_materials_materials.id')
+      mat_3_level_ids = Material.where(level: 3).where(name: q).pluck(:id)
+      (mat_2_level_ids + [nil] + mat_3_level_ids).uniq
+    end
+
   private
 
     def make_sure_wechat_user_login_in_phone

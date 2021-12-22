@@ -24,8 +24,14 @@ class MaterialsController < ApplicationController
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
     materila_with_query = if @q.present?
-      Material.left_joins(:samples).includes(:samples).where('materials.level <> 1')
-        .where('materials.name LIKE ? OR sample.genus LIKE ? OR sample.species LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%").distinct
+      mat_ids = q_return_mat_ids(@q)
+
+      if mat_ids.present?
+        Material.where(id: mat_ids)
+      else
+        Material.left_joins(:samples).includes(:samples).where('materials.level <> 1')
+          .where('materials.name LIKE ? OR sample.genus LIKE ? OR sample.species LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%").distinct
+      end
     else
       Material.where('materials.level <> 1')
     end
