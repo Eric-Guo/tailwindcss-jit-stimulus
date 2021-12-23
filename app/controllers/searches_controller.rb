@@ -4,6 +4,22 @@ class SearchesController < ApplicationController
   before_action :set_q_params
   before_action :set_data_and_count_hash
 
+  def show
+    if @q.present?
+      if @count_hash[:material] > 0
+        redirect_to material_search_path(q: @q)
+      elsif @count_hash[:project] > 0
+        redirect_to project_search_path(q: @q)
+      elsif @count_hash[:manufacturer] > 0
+        redirect_to manufacturer_search_path(q: @q)
+      elsif @count_hash[:news] > 0
+        redirect_to news_search_path(q: @q)
+      else
+        redirect_to material_search_path(q: @q)
+      end      
+    end
+  end
+
   def material
   end
 

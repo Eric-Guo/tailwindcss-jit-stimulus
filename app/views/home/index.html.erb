@@ -18,7 +18,7 @@
     <a href="#" class="font-medium" style="font-size: 26px;">天华建造研究中心 THTRI</a>
   </div>
   <div class="w-0 flex-1 flex justify-end">
-    <a href="<%= material_search_path %>">
+    <a href="<%= search_path %>">
       <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
@@ -54,7 +54,7 @@
     </div>
 
     <div class="relative mt-6 max-w-4xl px-4 pb-0">
-      <%= form_with url: material_search_path, method: :get, id: 'search-form' do |f| %>
+      <%= form_with url: search_path, method: :get, id: 'search-form' do |f| %>
         <label for="search-box" class="sr-only">搜索</label>
         <span class="absolute inset-y-0 pl-4 pt-4 cursor-pointer" onclick="document.getElementById('search-form').submit();">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :manufacturers, only: %i[index show]
   resources :news, only: %i[index]
 
-  resource :search, only: [] do
+  resource :search, only: [:show] do
     get :material
     get :project
     get :manufacturer
