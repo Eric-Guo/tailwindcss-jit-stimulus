@@ -50,8 +50,13 @@ class SearchesController < ApplicationController
       end
 
       @manufacturers = if @q.present?
-        Manufacturer.where('name LIKE ? OR location LIKE ? OR contact LIKE ? OR contact_information LIKE ? OR address LIKE ? OR website LIKE ?',
-          "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").sort_by_logo(:desc).order(is_allow: :desc)
+        mat_q_ids = q_return_mat_ids(@q)
+        if mat_q_ids.present?
+          Manufacturer.joins(:materials).where(materials: { id: mat_q_ids })
+        else
+          Manufacturer.where('name LIKE ? OR location LIKE ? OR contact LIKE ? OR contact_information LIKE ? OR address LIKE ? OR website LIKE ?',
+            "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").sort_by_logo(:desc).order(is_allow: :desc)
+        end
       else
         Manufacturer.none
       end
