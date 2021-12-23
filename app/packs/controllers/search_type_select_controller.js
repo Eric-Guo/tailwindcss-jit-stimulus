@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   all_as_material() {
-    document.getElementById('search-form').action = '/search/material';
+    document.getElementById('search-form').action = '/search';
     const current_node_class = document.getElementById('div-select-all-as-material').classList;
     this.remove_active();
     if(!current_node_class.contains('active-search')) {
