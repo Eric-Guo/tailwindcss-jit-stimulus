@@ -5,7 +5,7 @@ class MaterialsController < ApplicationController
 
   def index
     @panel_name = params[:pn].presence
-    @q = ActiveRecord::Base::sanitize_sql(params[:q])
+    @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
     @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(id: :asc)
     mat_ids = (params[:ms].presence || []).reject(&:blank?)
