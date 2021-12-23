@@ -17,7 +17,9 @@ class ApplicationController < ActionController::Base
         .where(parent_material: { name: q })
         .pluck('children_materials_materials.id')
       mat_3_level_ids = Material.where(level: [1, 2, 3]).where(name: q).pluck(:id)
-      (mat_2_level_ids + [nil] + mat_3_level_ids).uniq
+      if mat_2_level_ids.present? || mat_3_level_ids.present?
+        (mat_2_level_ids + [nil] + mat_3_level_ids).uniq
+      end
     end
 
   private
