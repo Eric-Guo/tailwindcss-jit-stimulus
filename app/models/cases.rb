@@ -82,4 +82,13 @@ class Cases < ApplicationRecord
       []
     end
   end
+
+  # 详情链接
+  def detail_url
+    if is_th
+      jzw_url
+    else
+      cl_online_id.present? ? "http://www.clzx.net/case/#{cl_online_id}" : nil
+    end
+  end
 end
