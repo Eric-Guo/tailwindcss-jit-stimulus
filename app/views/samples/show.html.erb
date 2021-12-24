@@ -39,7 +39,7 @@
             <dt class="mt-2 inline-block w-1/2">色号：</dt>
             <dd class="mt-2 inline"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></dd>
 
-            <dt class="mt-2 inline-block w-1/2">原厂型号</dt>
+            <dt class="mt-2 inline-block w-1/2">原厂型号：</dt>
             <dd class="mt-2 inline"><%= @sample.model -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">产品规格：</dt>
@@ -80,9 +80,9 @@
       </div>
     </div>
 
-    <%# 厂家信息 %>
+    <%# 供应商信息 %>
     <div class="mx-4 mt-16 mb-4 border-b-2 border-gray-100 border-solid pb-3">
-      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">厂家信息</span><span class="text-xl font-light">Information</span>
+      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">供应商信息</span><span class="text-xl font-light">Information</span>
     </div>
     <div class="mx-4 mt-4 flex flex-row justify-start">
       <a class="block flex-none border border-gray-300 border-solid p-4" style="width: 180px; height: 180px;" href="<%= manufacturer_path(@sample.manufacturer) %>">
@@ -91,7 +91,7 @@
       <div class="flex-1 flex flex-col justify-center" style="margin-left: 22px;">
         <div class="flex flex-row">
           <div class="flex-none border-l border-gray-300 border-solid px-2.5" style="width: 200px;">
-            <div class="text-gray-400 truncate">厂家名称</div>
+            <div class="text-gray-400 truncate">供应商名称</div>
             <div class="mt-1 truncate" title="<%= @sample.manufacturer&.name -%>"><%= @sample.manufacturer&.name -%></div>
           </div>
           <div class="flex-none border-l border-gray-300 border-solid px-2.5" style="width: 200px;">
@@ -105,7 +105,7 @@
         </div>
         <div class="flex flex-row" style="margin-top: 34px;">
           <div class="flex-none border-l border-gray-300 border-solid px-2.5" style="width: 200px;">
-            <div class="text-gray-400 truncate">厂家地址</div>
+            <div class="text-gray-400 truncate">供应商地址</div>
             <div class="mt-1 truncate" title="<%= @sample.manufacturer&.location -%>"><%= @sample.manufacturer&.location -%></div>
           </div>
           <div class="flex-none border-l border-gray-300 border-solid px-2.5" style="width: 200px;">

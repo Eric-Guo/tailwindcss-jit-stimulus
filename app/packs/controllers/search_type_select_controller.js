@@ -30,7 +30,7 @@ export default class extends Controller {
     if(!current_node_class.contains('active-search')) {
       current_node_class.remove('cursor-pointer');
       current_node_class.add('active-search');
-      document.getElementById('search-box').placeholder = '项目名称';
+      document.getElementById('search-box').placeholder = '项目名称/石材/建筑一所';
     }
   }
 
@@ -41,7 +41,7 @@ export default class extends Controller {
     if(!current_node_class.contains('active-search')) {
       current_node_class.remove('cursor-pointer');
       current_node_class.add('active-search');
-      document.getElementById('search-box').placeholder = '东丽石业';
+      document.getElementById('search-box').placeholder = '东丽石业/真石漆';
     }
 
   }
