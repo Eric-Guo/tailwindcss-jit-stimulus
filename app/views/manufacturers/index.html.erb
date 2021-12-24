@@ -99,7 +99,7 @@
       <% end %>
     </div>
   </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'area' ? '' : 'hidden' -%>" data-manufacturer-filter-target="additionalDiv">
+  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= (@panel_name == 'material' || @panel_name == 'area') ? '' : 'hidden' -%>" data-manufacturer-filter-target="additionalDiv">
     <div class="w-80">
       <div class="my-4 ml-8">
         高级筛选

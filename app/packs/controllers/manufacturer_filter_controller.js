@@ -61,12 +61,14 @@ export default class extends Controller {
   expend_material(e) {
     if (this.materialBarOpenValue) {
       this.closeMaterialPanel();
+      this.additionalDivTarget.classList.add('hidden');
       this.activePanelTarget.value = '';
     } else {
       this.materialSpanTarget.classList.add('under-text-border');
       this.materialIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 16H4L12 8L20 16Z"></path>`;
       this.materialTypeDivTarget.classList.remove('hidden');
       this.materialDetailDivTarget.classList.remove('hidden');
+      this.additionalDivTarget.classList.remove('hidden');
       this.materialBarOpenValue = true;
       this.activePanelTarget.value = 'material';
     }
@@ -77,6 +79,7 @@ export default class extends Controller {
   expend_area(e) {
     if (this.areaBarOpenValue) {
       this.closeAreaPanel();
+      this.additionalDivTarget.classList.add('hidden');
       this.activePanelTarget.value = '';
     } else {
       this.areaSpanTarget.classList.add('under-text-border');
@@ -111,7 +114,6 @@ export default class extends Controller {
     this.areaSpanTarget.classList.remove('under-text-border');
     this.areaIconSvgTarget.innerHTML = `<path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>`;
     this.locationDetailDivTarget.classList.add('hidden');
-    this.additionalDivTarget.classList.add('hidden');
     this.areaBarOpenValue = false;
   }
 }
