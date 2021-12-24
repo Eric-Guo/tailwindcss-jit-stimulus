@@ -150,7 +150,7 @@
           <%= project_case.project_name_and_location -%>
         </p>
         <p class="text-xs text-gray-400 flex-none ml-3">
-          <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+          <%= project_case.project_type %>
         </p>
       </div>
       <% material_tags = @material_in_cases.find_all { |m| m[0] ==  project_case.id }[0..3]&.collect(&:second)&.join(' | ') %>

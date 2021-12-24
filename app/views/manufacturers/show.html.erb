@@ -143,7 +143,7 @@
                     <%= project_case.project_name_and_location -%>
                   </p>
                   <p class="text-xs text-gray-400 flex-none ml-3">
-                    <%= project_case.is_th == 1 ? '内部项目' : '外部项目' %>
+                    <%= project_case.project_type %>
                   </p>
                 </div>
                 <p class="text-sm font-medium truncate" title="<%= project_case.material_tags.join(' | ') -%>"><%= project_case.material_tags.join(' | ') %></p>
