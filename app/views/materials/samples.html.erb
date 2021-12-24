@@ -27,14 +27,14 @@
         <% end %>
         <h3 class="text-lg font-bold"><%= @material.name -%>(样品)</h3>
         <p class="text-xs text-gray-400"><span>样品编号：</span><%= sample.no -%></p>
-        <p class="text-xs text-gray-400"><span>表面效果：</span><%= sample&.surface_effects&.collect(&:description)&.join(' ') -%></p>
+        <p class="text-xs text-gray-400"><span>表面效果：</span><%= sample.surface_effect_descriptions -%></p>
         <p class="text-xs text-gray-400">
           <%# 色系 %>
-          <span>色&#x3000;&#x3000;系：</span><%= sample&.color_systems&.collect(&:description)&.join(' ') -%>
+          <span>色&#x3000;&#x3000;系：</span><%= sample.color_str -%>
         </p>
         <p class="text-xs text-gray-400">
-          <%# 厂家 %>
-          <span>厂&#x3000;&#x3000;家：</span><%= sample.manufacturer&.name -%>
+          <%# 供应商 %>
+          <span>供&ensp;应&ensp;商：</span><%= sample.manufacturer&.name -%>
         </p>
       </div>
     <% end %>

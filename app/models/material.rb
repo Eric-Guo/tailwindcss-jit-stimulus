@@ -19,7 +19,7 @@ class Material < ApplicationRecord
   # 孙子级
   has_many :grandpa_materials, class_name: :Material, foreign_key: :grandpa_id
 
-  # 厂家信息
+  # 供应商信息
   has_many :material_manufacturers
   has_many :manufacturers, through: :material_manufacturers
 
