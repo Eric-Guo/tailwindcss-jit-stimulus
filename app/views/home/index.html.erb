@@ -368,7 +368,7 @@
           </p>
           <div class="flex flex-row items-center justify-center">
             <p class="text-sm leading-tight flex-1 truncate" title="<%= project_case.home_top_case&.material_tags&.join(' | ') -%>"><%= project_case.home_top_case&.material_tags&.join(' | ') %></p>
-            <p class="text-sm flex-none"><%= project_case.home_top_case&.is_th == 1 ? '内部项目' : '外部项目' %></p>
+            <p class="text-sm flex-none"><%= project_case.home_top_case&.project_type %></p>
           </div>
         </div>
       </div>

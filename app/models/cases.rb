@@ -91,4 +91,13 @@ class Cases < ApplicationRecord
       cl_online_id.present? ? "http://www.clzx.net/case/#{cl_online_id}" : nil
     end
   end
+
+  # 项目类型
+  def project_type
+    if is_th
+      '内部项目'
+    else
+      '外部项目'
+    end
+  end
 end
