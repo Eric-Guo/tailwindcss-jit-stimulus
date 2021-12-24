@@ -11,7 +11,7 @@
     <%= stylesheet_pack_tag 'application', media: "all", "data-turbo-track" => "reload" %>
     <%= javascript_pack_tag "application", "data-turbo-track" => "reload" %>
   </head>
-  <body class="flex flex-col text-black min-h-screen <%= @browser.mobile? ? 'bg-gray-200' : 'bg-white' -%>">
+  <body class="w-full flex flex-col text-black min-h-screen <%= @browser.mobile? ? 'bg-gray-200' : 'bg-white' -%>">
     <% flash.each do |type, message| %>
       <% if type == "alert" %>
         <div class="w-full fixed z-50" style="background-color: #e02424">

@@ -21,9 +21,13 @@
   <%= link_to "新闻 （#{@count_hash[:news]}）", news_search_path(q: @q), class: "mx-3" -%>
 </div>
 
-<%# 供应商 %>
-<div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-8">
-  <%= render partial: 'shared/manufacturers', locals: { manufacturers: @manufacturers } -%>
-</div>
+<% if @manufacturers.length > 0 %>
+  <%# 供应商 %>
+  <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-8">
+    <%= render partial: 'shared/manufacturers', locals: { manufacturers: @manufacturers } -%>
+  </div>
+<% else %>
+  <%= render 'empty' %>
+<% end %>
 
 <% end %>
