@@ -1,0 +1,14 @@
+<div class="max-w-4xl mx-auto px-4 mt-10">
+  <div class="pl-52 py-9 text-sm text-neutral-400" style="background: #F5F5F5; border: 1px solid #EBEBEB; border-radius: 10px;">
+    <div>您可以尝试：</div>
+    <div>1、搜索更短、更简单的条目。</div>
+    <div>2、扩大搜索范围，选择更笼统的关键词。</div>
+    <div>3、搜索材料的其他名称。</div>
+    <div data-controller="modal" data-modal-allow-background-close="true" data-modal-disable-backdrop="true">
+      <span>如果您的需求依然无法被满足，请在</span>
+      <button class="text-black underline" data-action="click->modal#open">此处</button>
+      <span>反馈给我们，我们将尽力解决。</span>
+      <%= render 'shared/need_register_modal' %>
+    </div>
+  </div>
+</div>
