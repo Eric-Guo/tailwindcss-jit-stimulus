@@ -36,7 +36,13 @@ class MaterialsController < ApplicationController
       Material.where('materials.level <> 1')
     end
 
-    @materials = materila_with_query.limit(40)
+    materila_with_materials = if mat_ids.present?
+      materila_with_query.where(id: mat_ids.append(@selected_mat_parent_id))
+    else
+      materila_with_query
+    end
+
+    @materials = materila_with_materials.limit(40)
   end
 
   def show
