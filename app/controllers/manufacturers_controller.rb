@@ -76,6 +76,7 @@ class ManufacturersController < ApplicationController
     @materials = @manufacturer.materials
     @samples = @manufacturer.samples
     @cases = Cases.joins(:samples).where(samples: { id: @samples.pluck(:id) }).distinct
+    @news = @manufacturer.news
     material3_ids = @manufacturer.materials.where(level: 3).pluck(:id)
     material2_ids = @manufacturer.materials.where(level: 2).pluck(:id)
     if material2_ids.present?
