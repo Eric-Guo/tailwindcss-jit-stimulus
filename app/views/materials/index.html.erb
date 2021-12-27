@@ -86,7 +86,7 @@
       </div>
       <div class="my-2.5 flex items-start">
         <label for="sel-place-of-origin" class="text-gray-700 mt-px">产地</label>
-        <%= select_tag :color_system, options_for_select(ColorSystem.color_system_lists, @color_system&.id), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-32', id: 'sel-place-of-origin', data: { action: 'material-filter#checkbox_submit' } } %>
+        <%= select_tag :origin_place, options_for_select(ColorSystem.color_system_lists, @color_system&.id), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-32', id: 'sel-place-of-origin', data: { action: 'material-filter#checkbox_submit' } } %>
       </div>
     </div>
   </div>

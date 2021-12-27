@@ -15,6 +15,7 @@ class MaterialsController < ApplicationController
       Material.none
     end
     @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
+
     @color_system = ColorSystem.find_by id: params[:color_system].presence
     @price_start = params[:price_start].presence
     @price_end = params[:price_end].presence
