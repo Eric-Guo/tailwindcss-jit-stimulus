@@ -6,6 +6,8 @@ class Manufacturer < ApplicationRecord
   has_many :material_manufacturers
   has_many :materials, through: :material_manufacturers
 
+  has_many :news
+
   default_scope { where(deleted_at: nil) }
 
   def self.sort_by_logo(sort = :desc)

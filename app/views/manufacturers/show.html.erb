@@ -109,9 +109,23 @@
           <% end %>
         </div>
       <% end %>
+      <%
+        default_tab_name = case
+          when @cases.length > 0
+            'cases'
+          when @materials.length > 0
+            'materials'
+          when @samples.length > 0
+            'samples'
+          when @news.length > 0
+            'news'
+          else
+            'cases'
+          end
+      %>
       <div
         data-controller="tabs"
-        data-tabs-default-tab-name-value="cases"
+        data-tabs-default-tab-name-value="<%= default_tab_name %>"
         data-tabs-tab-active-class-value="under-text-border"
       >
         <div class="flex border-b-2 border-gray-100 border-solid" style="margin-top: 80px; gap: 45px;">
@@ -126,6 +140,10 @@
           <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="samples" data-tabs-target="tab" data-action="click->tabs#activeTab">
             <span class="text-2xl font-bold ml-px mr-2">样品</span>
             <span class="text-xl font-light">Sample（<%= @samples.length %>）</span>
+          </div>
+          <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="news" data-tabs-target="tab" data-action="click->tabs#activeTab">
+            <span class="text-2xl font-bold ml-px mr-2">新闻</span>
+            <span class="text-xl font-light">News（<%= @news.length %>）</span>
           </div>
         </div>
         <%# 案例 %>
@@ -195,6 +213,39 @@
         <% else %>
           <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="samples" data-tabs-target="tabContent">
             暂无样品数据
+          </div>
+        <% end %>
+        <%# 新闻 %>
+        <% if @news.length > 0 %>
+          <div class="grid grid-cols-2 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="news" data-tabs-target="tabContent">
+            <% @news.each do |news| %>
+              <a class="flex-grow flex border border-gray-100 border-solid" href="<%= news.url %>" target="_blank">
+                <div class="flex-none w-36 h-36 flex flex-col justify-around bg-gray-100 m-2">
+                  <img class="w-full h-full object-cover" src="<%= mat_img_url(news.cover, '') -%>" alt="">
+                </div>
+                <div class="flex-1 flex flex-col justify-between px-8 py-5">
+                  <div>
+                    <div class="flex text-2xl text-left leading-tight">
+                      <h1 class="flex-1 w-0 font-bold truncate" title="<%= news.title -%>"><%= news.title -%></h1>
+                      <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
+                        材料在线
+                      </span>
+                      <% if news.mold_name.present? %>
+                        <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
+                          <%= news.mold_name -%>
+                        </span>
+                      <% end %>
+                    </div>
+                    <h2 class="mt-3 text-1xl text-left line-clamp-2" title="<%= news.subtitle -%>"><%= news.subtitle -%></h2>
+                  </div>
+                  <time><%= news.created_at.strftime('%Y-%m-%d') %></time>
+                </div>
+              </a>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="news" data-tabs-target="tabContent">
+            暂无新闻数据
           </div>
         <% end %>
       </div>
