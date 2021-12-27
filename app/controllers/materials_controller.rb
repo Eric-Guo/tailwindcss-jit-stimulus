@@ -49,7 +49,17 @@ class MaterialsController < ApplicationController
       materila_with_materials
     end
 
-    @materials = materila_with_color_system.limit(40)
+    materila_with_price = if @price_start.present? && @price_end.present?
+      materila_with_color_system.joins(:material_info).where('material_infos.high_price <= ?', @price_end).where('material_infos.low_price >= ?', @price_start)
+    elsif @price_start.present?
+      materila_with_color_system.joins(:material_info).where('material_infos.low_price >= ?', @price_start)
+    elsif @price_end.present?
+      materila_with_color_system.joins(:material_info).where('material_infos.high_price <= ?', @price_end)
+    else
+      materila_with_color_system
+    end
+
+    @materials = materila_with_price.limit(40)
   end
 
   def show
