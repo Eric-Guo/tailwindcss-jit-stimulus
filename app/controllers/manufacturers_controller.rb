@@ -87,16 +87,22 @@ class ManufacturersController < ApplicationController
       material_ids = Material.where(level: [2, 3]).where("parent_id IN (:ids) OR grandpa_id IN (:ids)", ids: material1_ids)
       material1_ids.push(*material1_ids) if material_ids.present?
     end
-    @other_manufacturers = Manufacturer.select('manufacturers.*, materials.id as material_id').joins(:materials)
+    manufacturer_fields = ['id', 'logo', 'name', 'address', 'is_allow', 'contact_information']
+    @other_manufacturers = Manufacturer
+      .select(Arel.sql("#{manufacturer_fields.map { |field| '`manufacturers`.' + field }.join(',')}, \
+        MAX(( \
+          CASE \
+          WHEN `materials`.id IN (#{material3_ids.join(',').presence || 'null'}) THEN 3 \
+          WHEN `materials`.id IN (#{material2_ids.join(',').presence || 'null'}) THEN 2 \
+          WHEN `materials`.id IN (#{material1_ids.join(',').presence || 'null'}) THEN 1 \
+          ELSE 0 \
+          END \
+        )) AS sort_num \
+      "))
+      .joins(:materials)
       .where.not(id: @manufacturer.id)
-      .order(Arel.sql("( \
-        CASE \
-        WHEN materials.id IN (#{material3_ids.join(',').presence || 'null'}) THEN 3 \
-        WHEN materials.id IN (#{material2_ids.join(',').presence || 'null'}) THEN 2 \
-        WHEN materials.id IN (#{material1_ids.join(',').presence || 'null'}) THEN 1 \
-        ELSE 0 \
-        END \
-      ) DESC, id ASC"))
-      .limit(4).distinct
+      .group(manufacturer_fields.map { |field| '`manufacturers`.' + field }.join(','))
+      .order(Arel.sql("sort_num DESC, id ASC"))
+      .limit(4)
   end
 end
