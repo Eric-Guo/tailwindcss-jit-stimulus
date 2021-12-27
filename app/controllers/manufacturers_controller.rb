@@ -14,7 +14,7 @@ class ManufacturersController < ApplicationController
     end
     @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
     @locations = (params[:l].presence || []).reject(&:blank?)
-    @project_type = params[:project_type].presence
+    @sample_is_allow = params[:sample_is_allow] == 'on'
     @has_related_cases = params[:has_related_cases] == 'on'
     @has_cooperate_th = params[:has_cooperate_th] == 'on'
 
@@ -50,10 +50,16 @@ class ManufacturersController < ApplicationController
       manufacturer_with_materials
     end
 
-    manufacturer_has_related_cases = if @has_related_cases.present?
-      manufacturer_with_location.where.not(cases: ['null', '', '[]']).where.not(cases: nil)
+    manufacturer_sample_allow = if @sample_is_allow.present?
+      manufacturer_with_location.where(is_allow: true)
     else
       manufacturer_with_location
+    end
+
+    manufacturer_has_related_cases = if @has_related_cases.present?
+      manufacturer_sample_allow.where.not(cases: ['null', '', '[]']).where.not(cases: nil)
+    else
+      manufacturer_sample_allow
     end
 
     manufacturer_has_cooperate_th = if @has_cooperate_th.present?
