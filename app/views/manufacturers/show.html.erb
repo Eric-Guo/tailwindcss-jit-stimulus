@@ -111,16 +111,16 @@
       <% end %>
       <%
         default_tab_name = case
-          when @cases.length > 0
-            'cases'
           when @materials.length > 0
             'materials'
           when @samples.length > 0
             'samples'
+          when @cases.length > 0
+            'cases'
           when @news.length > 0
             'news'
           else
-            'cases'
+            'materials'
           end
       %>
       <div
@@ -129,10 +129,6 @@
         data-tabs-tab-active-class-value="under-text-border"
       >
         <div class="flex border-b-2 border-gray-100 border-solid" style="margin-top: 80px; gap: 45px;">
-          <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="cases" data-tabs-target="tab" data-action="click->tabs#activeTab">
-            <span class="text-2xl font-bold ml-px mr-2">案例</span>
-            <span class="text-xl font-light">Projects（<%= @cases.length %>）</span>
-          </div>
           <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="materials" data-tabs-target="tab" data-action="click->tabs#activeTab">
             <span class="text-2xl font-bold ml-px mr-2">产品</span>
             <span class="text-xl font-light">Material（<%= @materials.length %>）</span>
@@ -140,6 +136,10 @@
           <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="samples" data-tabs-target="tab" data-action="click->tabs#activeTab">
             <span class="text-2xl font-bold ml-px mr-2">样品</span>
             <span class="text-xl font-light">Sample（<%= @samples.length %>）</span>
+          </div>
+          <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="cases" data-tabs-target="tab" data-action="click->tabs#activeTab">
+            <span class="text-2xl font-bold ml-px mr-2">案例</span>
+            <span class="text-xl font-light">Projects（<%= @cases.length %>）</span>
           </div>
           <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="news" data-tabs-target="tab" data-action="click->tabs#activeTab">
             <span class="text-2xl font-bold ml-px mr-2">新闻</span>
