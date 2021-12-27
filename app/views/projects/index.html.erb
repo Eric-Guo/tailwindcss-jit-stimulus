@@ -136,25 +136,29 @@
   </div>
 <% end %>
 
-<%# 案例 %>
-<div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
-  <% @cases.each do |project_case| %>
-    <a class="block mb-4" href="<%= project_path(project_case) %>">
-      <div class="relative" style="padding-top: 74.78%;">
-        <div class="absolute top-0 left-0 w-full h-full">
-          <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
+<% if @cases.length > 0 %>
+  <%# 案例 %>
+  <div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
+    <% @cases.each do |project_case| %>
+      <a class="block mb-4" href="<%= project_path(project_case) %>">
+        <div class="relative" style="padding-top: 74.78%;">
+          <div class="absolute top-0 left-0 w-full h-full">
+            <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
+          </div>
         </div>
-      </div>
-      <div class="flex flex-row justify-between items-baseline mt-2">
-        <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
-          <%= project_case.project_name_and_location -%>
-        </p>
-        <p class="text-xs text-gray-400 flex-none ml-3">
-          <%= project_case.project_type %>
-        </p>
-      </div>
-      <% material_tags = @material_in_cases.find_all { |m| m[0] ==  project_case.id }[0..3]&.collect(&:second)&.join(' | ') %>
-      <p class="text-sm font-medium truncate" title="<%= material_tags -%>"><%= material_tags %></p>
-    </a>
-  <% end %>
-</div>
+        <div class="flex flex-row justify-between items-baseline mt-2">
+          <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
+            <%= project_case.project_name_and_location -%>
+          </p>
+          <p class="text-xs text-gray-400 flex-none ml-3">
+            <%= project_case.project_type %>
+          </p>
+        </div>
+        <% material_tags = @material_in_cases.find_all { |m| m[0] ==  project_case.id }[0..3]&.collect(&:second)&.join(' | ') %>
+        <p class="text-sm font-medium truncate" title="<%= material_tags -%>"><%= material_tags %></p>
+      </a>
+    <% end %>
+  </div>
+<% else %>
+  <%= render 'shared/filter_empty' %>
+<% end %>

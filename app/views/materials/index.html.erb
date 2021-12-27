@@ -92,23 +92,26 @@
   </div>
 <% end %>
 
-<%# 材料 %>
-<div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-x-1.5 gap-y-10">
-  <% @materials.each do |material| %>
-    <%= link_to material_path(id: material.id) do %>
-      <img class="mx-auto w-full h-52 object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
-      <h3 class="text-center mt-2 font-medium"><%= material.name -%></h3>
-      <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
-    <% end %>
-    <% if material.samples.present? %>
-      <% material.samples.each do |sample| %>
-        <%= link_to sample_path(sample) do %>
-          <img class="mx-auto w-full h-52 object-cover" src="<%= sample.pic.present? ? mat_img_url(sample.pic, "") : get_first_url(material.cover) -%>" alt="">
-          <h3 class="text-center mt-2 font-medium"><%= material.name -%>（样品）</h3>
-          <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
+<% if @materials.length > 0 %>
+  <%# 材料 %>
+  <div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-x-1.5 gap-y-10">
+    <% @materials.each do |material| %>
+      <%= link_to material_path(id: material.id) do %>
+        <img class="mx-auto w-full h-52 object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
+        <h3 class="text-center mt-2 font-medium"><%= material.name -%></h3>
+        <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
+      <% end %>
+      <% if material.samples.present? %>
+        <% material.samples.each do |sample| %>
+          <%= link_to sample_path(sample) do %>
+            <img class="mx-auto w-full h-52 object-cover" src="<%= sample.pic.present? ? mat_img_url(sample.pic, "") : get_first_url(material.cover) -%>" alt="">
+            <h3 class="text-center mt-2 font-medium"><%= material.name -%>（样品）</h3>
+            <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
-
+  </div>
+<% else %>
+  <%= render 'shared/filter_empty' %>
+<% end %>
