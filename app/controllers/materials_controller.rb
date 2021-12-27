@@ -43,7 +43,13 @@ class MaterialsController < ApplicationController
       materila_with_query
     end
 
-    @materials = materila_with_materials.limit(40)
+    materila_with_color_system = if @color_system.present?
+      materila_with_materials.joins(material_product: :material_product_color_systems).where('material_product_color_systems.color_systems_id = ?', @color_system.id)
+    else
+      materila_with_materials
+    end
+
+    @materials = materila_with_color_system.limit(40)
   end
 
   def show
