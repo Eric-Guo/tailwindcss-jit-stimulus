@@ -13,7 +13,7 @@ class ManufacturersController < ApplicationController
       Material.none
     end
     @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
-    @locations = (params[:l].presence || []).reject(&:blank?)
+    @area_ids = (params[:l].presence || []).reject(&:blank?).map(&:to_i)
     @sample_is_allow = params[:sample_is_allow] == 'on'
     @has_related_cases = params[:has_related_cases] == 'on'
     @has_cooperate_th = params[:has_cooperate_th] == 'on'
@@ -22,8 +22,8 @@ class ManufacturersController < ApplicationController
     @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
-    @selected_all_locations = Manufacturer.manufacturer_locations == @locations
-    @selected_none_locations = (Manufacturer.manufacturer_locations & @locations).blank?
+    @selected_all_locations = Manufacturer.manufacturer_locations.collect(&:area_id) == @area_ids
+    @selected_none_locations = (Manufacturer.manufacturer_locations.collect(&:area_id) & @area_ids).blank?
 
     manufacturer_with_query = if @q.present?
       mat_q_ids = q_return_mat_ids(@q)

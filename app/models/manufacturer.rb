@@ -17,12 +17,9 @@ class Manufacturer < ApplicationRecord
   end
 
   def self.manufacturer_locations
-    @manufacturer_locations ||= where.not(location: nil)
-      .where.not(location: '')
-      .order('location ASC')
-      .select(:location)
+    @manufacturer_locations ||= all.joins(:areas)
       .distinct
-      .pluck(:location)
+      .select('areas.title area_title', 'manufacturer_areas.area_id')
   end
 
   def offer_sample
