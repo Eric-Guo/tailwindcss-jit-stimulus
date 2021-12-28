@@ -46,8 +46,8 @@ class ProjectsController < ApplicationController
       cases_with_query
     end
 
-    cases_with_location = if @locations.present?
-      cases_with_materials.where(project_location: @locations)
+    cases_with_location = if @area_ids.present?
+      cases_with_materials.where(area_id: @area_ids)
     else
       cases_with_materials
     end
