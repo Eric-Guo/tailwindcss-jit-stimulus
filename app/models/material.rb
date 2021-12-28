@@ -30,6 +30,10 @@ class Material < ApplicationRecord
   # 样品
   has_many :samples, foreign_key: :obj_id
 
+  # 新闻
+  has_many :news_materials
+  has_many :news, through: :news_materials
+
   default_scope { where(deleted_at: nil).where(display: 1) }
 
   def color
