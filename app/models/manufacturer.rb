@@ -5,6 +5,8 @@ class Manufacturer < ApplicationRecord
 
   has_many :material_manufacturers
   has_many :materials, through: :material_manufacturers
+  has_many :manufacturer_areas
+  has_many :areas, through: :manufacturer_areas
 
   has_many :news
 

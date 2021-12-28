@@ -2,4 +2,7 @@
 
 class Area < ApplicationRecord
   has_many :cases, class_name: 'Cases'
+
+  has_many :manufacturer_areas
+  has_many :manufacturers, through: :manufacturer_areas
 end
