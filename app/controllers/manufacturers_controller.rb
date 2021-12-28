@@ -44,8 +44,8 @@ class ManufacturersController < ApplicationController
       manufacturer_with_query
     end
 
-    manufacturer_with_location = if @locations.present?
-      manufacturer_with_materials.where(location: @locations)
+    manufacturer_with_location = if @area_ids.present?
+      manufacturer_with_materials.joins(:manufacturer_areas).where(manufacturer_areas: { area_id: @area_ids }).distinct
     else
       manufacturer_with_materials
     end
