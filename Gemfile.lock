@@ -12,7 +12,7 @@ GIT
       zeitwerk (~> 2.4)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://gems.ruby-china.com/
   specs:
     actioncable (7.0.0)
       actionpack (= 7.0.0)
