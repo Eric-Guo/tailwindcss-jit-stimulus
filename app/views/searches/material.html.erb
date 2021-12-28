@@ -30,16 +30,16 @@
           <div class="relative" style="padding-top: 100%;">
             <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= material_sample.sample_cover.present? ? mat_img_url(material_sample.sample_cover, "") : get_first_url(material_sample.material_cover) -%>" alt="">
           </div>
-          <h3 class="text-center mt-2 font-medium"><%= material_sample.material_name -%>（样品）</h3>
-          <h4 class="text-center text-sm text-gray-400"><%= material_sample.level_name -%></h4>
+          <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_sample.material_name) -%>（样品）</h3>
+          <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_sample.level_name) -%></h4>
         <% end %>
       <% else %>
         <%= link_to material_path(material_sample.material_id) do %>
           <div class="relative" style="padding-top: 100%;">
             <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= get_first_url(material_sample.material_cover) -%>" alt="">
           </div>
-          <h3 class="text-center mt-2 font-medium"><%= material_sample.material_name -%></h3>
-          <h4 class="text-center text-sm text-gray-400"><%= material_sample.level_name -%></h4>
+          <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_sample.material_name) -%></h3>
+          <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_sample.level_name) -%></h4>
         <% end %>
       <% end %>
     <% end %>

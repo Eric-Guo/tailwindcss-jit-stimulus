@@ -5,25 +5,25 @@
       <img class="w-full h-full object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
     </div>
     <div class="w-0 flex-1 ml-5">
-      <h3 class="text-lg font-medium"><%= material.name %>（<%= material.no %>）</h3>
+      <h3 class="text-lg font-medium"><%= text_with_default(material.name) %>(<%= text_with_default(material.no) %>)</h3>
       <div class="mt-4">
         <p>
           <span>色系：</span>
-          <span class="font-medium"><%= material.color %></span>
+          <span class="font-medium"><%= text_with_default(material.color) %></span>
         </p>
         <p>
           <span>产地：</span>
-          <span class="font-medium"><%= material.material_product&.origin %></span>
+          <span class="font-medium"><%= text_with_default(material.material_product&.origin) %></span>
         </p>
 
         <p>
           <span>价格区间：</span>
-          <span class="font-medium"><%= "#{material.material_product&.low_price}-#{material.material_product&.high_price}/㎡" %></span>
+          <span class="font-medium"><%= text_with_default(material.material_product&.price_range) %></span>
         </p>
 
         <p>
           <span>是否常用产品：</span>
-          <span class="font-medium"><%= material.material_product&.is_common == 1 ? '是' : '否' %></span>
+          <span class="font-medium"><%= text_with_default(material.material_product&.is_commonly_used) %></span>
         </p>
 
         <% if material.surface_effect_descriptions.present? %>
@@ -121,19 +121,19 @@
           <% material.samples.each do |sample| %>
             <tr>
               <td class="sticky left-0 bg-gray-200 px-1 py-2 text-center border border-l-0 border-gray-300 whitespace-nowrap text-xs font-medium">
-                <a class="underline" href="<%= sample_path(sample) %>"><%= sample.no -%></a>
+                <a class="underline" href="<%= sample_path(sample) %>"><%= text_with_default(sample.no) -%></a>
               </td>
               <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
-                <%= sample.material_text -%>
+                <%= text_with_default(sample.material_text) -%>
               </td>
               <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
-                <%= sample.spec_model %>
+                <%= text_with_default(sample.spec_model) %>
               </td>
               <td class="px-1 py-2 text-center border border-gray-300 whitespace-nowrap text-xs">
-                <%= sample.surface_effect_descriptions -%>
+                <%= text_with_default(sample.surface_effect_descriptions) -%>
               </td>
               <td class="px-1 py-2 text-center border border-r-0 border-gray-300 whitespace-nowrap text-xs">
-                <%= sample.position %>
+                <%= text_with_default(sample.position) %>
               </td>
             </tr>
           <% end %>
@@ -161,13 +161,13 @@
         <div class="relative w-full h-28">
           <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) %>" alt="">
           <div class="absolute bottom-0 left-0 w-full flex justify-between items-center h-6 px-2 text-white text-xs black-mask">
-            <div class="truncate" title="<%= material.name -%>"><%= material.name %></div>
-            <div class="flex-none ml-3"><%= project_case.project_type %></div>
+            <div class="truncate" title="<%= material.name -%>"><%= text_with_default(material.name) %></div>
+            <div class="flex-none ml-3"><%= text_with_default(project_case.project_type) %></div>
           </div>
         </div>
         <div class="text-black-6c mt-1">
           <div class="text-sm truncate" title="<%= project_case.project_name_and_location -%>">
-            <%= project_case.project_name_and_location -%>
+            <%= text_with_default(project_case.project_name_and_location) -%>
           </div>
         </div>
       </a>
@@ -189,7 +189,7 @@
         <div class="relative w-full" style="padding-top: 50%;">
           <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= mat_img_url(practice_detail["url"], "") -%>" alt="">
         </div>
-        <div class="mt-2 text-base"><%= practice_detail["name"] -%></div>
+        <div class="mt-2 text-base"><%= text_with_default(practice_detail["name"]) -%></div>
       </div>
     <% end %>
   </div>
@@ -211,9 +211,9 @@
         </div>
         <div class="flex-1 ml-8">
           <h5 class="text-lg font-medium"><%= manufacturer.name %></h5>
-          <p class="text-sm text-gray-700 mt-2">所在地：<%= manufacturer.location %></p>
-          <p class="text-sm text-gray-700">联系方式：<%= manufacturer.contact_information %></p>
-          <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= manufacturer.offer_sample %></p>
+          <p class="text-sm text-gray-700 mt-2">所在地：<%= text_with_default(manufacturer.location) %></p>
+          <p class="text-sm text-gray-700">联系方式：<%= text_with_default(manufacturer.contact_information) %></p>
+          <p class="text-sm text-gray-700">是否愿意提供材料样品：<%= text_with_default(manufacturer.offer_sample) %></p>
         </div>
       </div>
     <% end %>

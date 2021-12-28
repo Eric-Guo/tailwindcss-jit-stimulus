@@ -25,16 +25,16 @@
         <%= link_to sample_path(id: sample.id), class: 'mb-1 block' do %>
           <img class="w-full h-56 min-h-full object-cover" src="<%= mat_img_url(sample.pic, "") -%>" alt="">
         <% end %>
-        <h3 class="text-lg font-bold"><%= @material.name -%>(样品)</h3>
-        <p class="text-xs text-gray-400"><span>样品编号：</span><%= sample.no -%></p>
-        <p class="text-xs text-gray-400"><span>表面效果：</span><%= sample.surface_effect_descriptions -%></p>
+        <h3 class="text-lg font-bold"><%= text_with_default(@material.name) -%>(样品)</h3>
+        <p class="text-xs text-gray-400"><span>样品编号：</span><%= text_with_default(sample.no) -%></p>
+        <p class="text-xs text-gray-400"><span>表面效果：</span><%= text_with_default(sample.surface_effect_descriptions) -%></p>
         <p class="text-xs text-gray-400">
           <%# 色系 %>
-          <span>色&#x3000;&#x3000;系：</span><%= sample.color_str -%>
+          <span>色&#x3000;&#x3000;系：</span><%= text_with_default(sample.color_str) -%>
         </p>
         <p class="text-xs text-gray-400">
           <%# 供应商 %>
-          <span>供&ensp;应&ensp;商：</span><%= sample.manufacturer&.name -%>
+          <span>供&ensp;应&ensp;商：</span><%= text_with_default(sample.manufacturer&.name) -%>
         </p>
       </div>
     <% end %>

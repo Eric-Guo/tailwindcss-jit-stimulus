@@ -30,4 +30,9 @@ class Sample < ApplicationRecord
       self.aq_vein
     end
   end
+
+  def price_range
+    price = [low_price, high_price].uniq.join('-')
+    price.present? ? "#{price}/㎡" : nil
+  end
 end

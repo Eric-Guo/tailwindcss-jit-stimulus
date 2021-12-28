@@ -101,19 +101,19 @@
             <% material.samples.each do |sample| %>
               <tr>
                 <td class="px-1 py-2 border truncate">
-                  <a class="underline" href="<%= sample_path(sample) %>"><%= sample.no -%></a>
+                  <a class="underline" href="<%= sample_path(sample) %>"><%= text_with_default(sample.no) -%></a>
                 </td>
                 <td class="px-1 py-2 border truncate" title="<%= sample.material_text -%>">
-                  <%= sample.material_text -%>
+                  <%= text_with_default(sample.material_text) -%>
                 </td>
                 <td class="px-1 py-2 border truncate" title="<%= sample.spec_model -%>">
-                  <%= sample.spec_model -%>
+                  <%= text_with_default(sample.spec_model) -%>
                 </td>
                 <td class="px-1 py-2 border truncate" title="<%= sample.surface_effect_descriptions -%>">
-                  <%= sample.surface_effect_descriptions %>
+                  <%= text_with_default(sample.surface_effect_descriptions) %>
                 </td>
                 <td class="px-1 py-2 border truncate">
-                  <%= sample.position %>
+                  <%= text_with_default(sample.position) %>
                 </td>
               </tr>
             <% end %>

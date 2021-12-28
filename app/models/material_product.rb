@@ -60,4 +60,15 @@ class MaterialProduct < ApplicationRecord
       []
     end
   end
+
+  # 价格区间
+  def price_range
+    price = [low_price, high_price].uniq.join('-')
+    price.present? ? "#{price}/㎡" : nil
+  end
+
+  # 是否常用
+  def is_commonly_used
+    is_common == 1 || is_common == true ? '是' : ''
+  end
 end
