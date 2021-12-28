@@ -2,5 +2,5 @@
 
 class ManufacturerArea < ApplicationRecord
   belongs_to :manufacturer
-  belongs_to :area, foreign_key: :area_id
+  belongs_to :area
 end
