@@ -30,7 +30,7 @@ class NewsController < ApplicationController
     end
 
     news_with_materials = if mat_ids.present?
-      news_with_query.where(material_id: mat_ids.append(@selected_mat_parent_id))
+      news_with_query.joins(:news_materials).where(news_materials: { material_id: mat_ids.append(@selected_mat_parent_id) })
     else
       news_with_query
     end
