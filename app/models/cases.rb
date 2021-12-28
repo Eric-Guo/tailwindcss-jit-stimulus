@@ -5,7 +5,7 @@ class Cases < ApplicationRecord
 
   self.table_name = 'cases'
 
-  has_many :case_materials, -> { where(type_id: 2) }, class_name: 'CasesMaterial', foreign_key: :case_id
+  has_many :case_materials, -> { joins(:material).where(type_id: 2) }, class_name: 'CasesMaterial', foreign_key: :case_id
   has_many :case_samples, -> { where(type_id: 1) }, class_name: 'CasesMaterial', foreign_key: :case_id
   has_many :materials, through: :case_materials
   has_many :samples, through: :case_samples
