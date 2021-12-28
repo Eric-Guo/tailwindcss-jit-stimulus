@@ -26,31 +26,31 @@
         <div class="ml-5 flex-1 text-lg text-black grid grid-cols-1 gap-3">
           <div class="flex">
             <div class="w-30 flex-none">供应商名称:</div>
-            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.name %></div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.name) %></div>
           </div>
           <div class="flex">
             <div class="w-30 flex-none">所在地:</div>
-            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.address %></div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.address) %></div>
           </div>
           <div class="flex">
             <div class="w-30 flex-none">网址:</div>
-            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.website %></div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.website) %></div>
           </div>
           <div class="flex">
             <div class="w-30 flex-none">主营材料:</div>
-            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.main_materials %></div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.main_materials) %></div>
           </div>
           <div class="flex">
             <div class="w-30 flex-none">是否与天华合作过:</div>
-            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.tho_co_str %></div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.tho_co_str) %></div>
           </div>
           <div class="flex">
             <div class="w-30 flex-none">是否愿意提供材料样品:</div>
-            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.offer_sample %></div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.offer_sample) %></div>
           </div>
           <div class="flex">
             <div class="w-30 flex-none">主营业务:</div>
-            <div class="flex-1" style="margin-left: 50px;"><%= @manufacturer.main_material_remark %></div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.main_material_remark) %></div>
           </div>
         </div>
       </div>
@@ -66,8 +66,8 @@
             <img class="w-full h-full object-scale-down" src="<%= image_pack_path('person.svg') %>" alt="">
           </div>
           <div class="flex-1 ml-5 text-base w-0" style="color: black;">
-            <div class="truncate" title="<%= @manufacturer.contact %>"><%= @manufacturer.contact %></div>
-            <div class="truncate" title="<%= @manufacturer.contact_information %>"><%= @manufacturer.contact_information %></div>
+            <div class="truncate" title="<%= @manufacturer.contact %>"><%= text_with_default(@manufacturer.contact) %></div>
+            <div class="truncate" title="<%= @manufacturer.contact_information %>"><%= text_with_default(@manufacturer.contact_information) %></div>
           </div>
         </div>
       </div>
@@ -158,13 +158,13 @@
                 </div>
                 <div class="flex flex-row justify-between items-baseline mt-2">
                   <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
-                    <%= project_case.project_name_and_location -%>
+                    <%= text_with_default(project_case.project_name_and_location) -%>
                   </p>
                   <p class="text-xs text-gray-400 flex-none ml-3">
-                    <%= project_case.project_type %>
+                    <%= text_with_default(project_case.project_type) %>
                   </p>
                 </div>
-                <p class="text-sm font-medium truncate" title="<%= project_case.material_tags.join(' | ') -%>"><%= project_case.material_tags.join(' | ') %></p>
+                <p class="text-sm font-medium truncate" title="<%= project_case.material_tags.join(' | ') -%>"><%= text_with_default(project_case.material_tags.join(' | ')) %></p>
               </a>
             <% end %>
           </div>
@@ -187,8 +187,8 @@
                     </div>
                   <% end %>
                 </div>
-                <h3 class="text-center mt-2 font-medium"><%= material.name -%></h3>
-                <h4 class="text-center text-sm text-gray-400"><%= material.level_name -%></h4>
+                <h3 class="text-center mt-2 font-medium"><%= text_with_default(material.name) -%></h3>
+                <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material.level_name) -%></h4>
               <% end %>
             <% end %>
           </div>
@@ -205,8 +205,8 @@
                 <div class="relative" style="padding-top: 100%;">
                   <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= mat_img_url(sample.pic, "") -%>" alt="">
                 </div>
-                <h3 class="text-center mt-2 font-medium"><%= sample.material&.name -%>（样品）</h3>
-                <h4 class="text-center text-sm text-gray-400"><%= sample.material&.level_name -%></h4>
+                <h3 class="text-center mt-2 font-medium"><%= text_with_default(sample.material&.name) -%>（样品）</h3>
+                <h4 class="text-center text-sm text-gray-400"><%= text_with_default(sample.material&.level_name) -%></h4>
               <% end %>
             <% end %>
           </div>
@@ -226,7 +226,7 @@
                 <div class="flex-1 flex flex-col justify-between px-8 py-5">
                   <div>
                     <div class="flex text-2xl text-left leading-tight">
-                      <h1 class="flex-1 w-0 font-bold truncate" title="<%= news.title -%>"><%= news.title -%></h1>
+                      <h1 class="flex-1 w-0 font-bold truncate" title="<%= news.title -%>"><%= text_with_default(news.title) -%></h1>
                       <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
                         材料在线
                       </span>
@@ -236,7 +236,7 @@
                         </span>
                       <% end %>
                     </div>
-                    <h2 class="mt-3 text-1xl text-left line-clamp-2" title="<%= news.subtitle -%>"><%= news.subtitle -%></h2>
+                    <h2 class="mt-3 text-1xl text-left line-clamp-2" title="<%= news.subtitle -%>"><%= text_with_default(news.subtitle) -%></h2>
                   </div>
                   <time><%= news.created_at.strftime('%Y-%m-%d') %></time>
                 </div>
@@ -267,13 +267,13 @@
                 <%= other_manufacturer.name %>
               </div>
               <div class="text-xs mt-3 truncate" style="color: #8C8C8C;" title="<%= other_manufacturer.address %>">
-                所在地: <%= other_manufacturer.address %>
+                所在地: <%= text_with_default(other_manufacturer.address) %>
               </div>
               <div class="text-xs mt-1 truncate" style="color: #8C8C8C;" title="<%= other_manufacturer.contact_information %>">
-                联系方式: <%= other_manufacturer.contact_information %>
+                联系方式: <%= text_with_default(other_manufacturer.contact_information) %>
               </div>
               <div class="text-xs mt-1 truncate" style="color: #8C8C8C;">
-                是否愿意提供材料样品: <%= other_manufacturer.offer_sample %>
+                是否愿意提供材料样品: <%= text_with_default(other_manufacturer.offer_sample) %>
               </div>
             </div>
           </a>

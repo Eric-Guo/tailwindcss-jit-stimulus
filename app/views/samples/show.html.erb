@@ -18,43 +18,43 @@
     <div class="mx-4 mt-4 flex gap-4">
       <img class="w-80 h-80 object-scale-down" src="<%= mat_img_url(@sample.pic, "") -%>" alt="">
       <div class="ml-4 relative">
-        <h2 class="text-xl font-medium"><%= @sample.material&.name -%> (样品) (<%= @sample.material.no %>-<%= @sample.no %>)</h2>
+        <h2 class="text-xl font-medium"><%= text_with_default(@sample.material&.name) -%> (样品) (<%= text_with_default(@sample.material.no) %>-<%= text_with_default(@sample.no) %>)</h2>
         <dl class="w-120 text-sm mt-2">
             <dt class="mt-2 inline-block w-1/2">样品描述：</dt>
-            <dd class="mt-2 inline"><%= @sample.material_text %></dd>
+            <dd class="mt-2 inline"><%= text_with_default(@sample.material_text) %></dd>
 
             <dt class="mt-2 inline-block w-1/2">价格：</dt>
-            <dd class="mt-2 inline"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</dd>
+            <dd class="mt-2 inline"><%= text_with_default(@sample.price_range) -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">产品/二级分类名称(编号)：</dt>
             <dd class="mt-2 inline">
               <a href="<%= material_path(@sample.material) %>" class="underline text-blue-400">
-                <%= @sample.material&.name -%>(<%= @sample.material&.no -%>)
+                <%= text_with_default(@sample.material&.name) -%>(<%= text_with_default(@sample.material&.no) -%>)
               </a>
             </dd>
 
             <dt class="mt-2 inline-block w-1/2">色系：</dt>
-            <dd class="mt-2 inline"><%= @sample.color_str -%></dd>
+            <dd class="mt-2 inline"><%= text_with_default(@sample.color_str) -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">色号：</dt>
-            <dd class="mt-2 inline"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></dd>
+            <dd class="mt-2 inline"><%= text_with_default(@sample.color_code) -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">原厂型号：</dt>
-            <dd class="mt-2 inline"><%= @sample.model -%></dd>
+            <dd class="mt-2 inline"><%= text_with_default(@sample.model) -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">产品规格：</dt>
-            <dd class="mt-2 inline"><%= @sample.spec_model -%></dd>
+            <dd class="mt-2 inline"><%= text_with_default(@sample.spec_model) -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">效果描述：</dt>
-            <dd class="mt-2 inline"><%= @sample.visual -%></dd>
+            <dd class="mt-2 inline"><%= text_with_default(@sample.visual) -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">表面效果：</dt>
-            <dd class="mt-2 inline"><%= @sample.surface_effect_descriptions -%></dd>
+            <dd class="mt-2 inline"><%= text_with_default(@sample.surface_effect_descriptions) -%></dd>
 
             <dt class="mt-2 inline-block w-1/2">存储位置：</dt>
             <dd class="mt-2 inline" data-controller="modal" data-modal-allow-background-close="true">
               <a href="#" data-action="click->modal#open">
-                <span class="underline"><%= @sample.position -%></span>
+                <span class="underline"><%= text_with_default(@sample.position) -%></span>
               </a>
               <!-- Modal Container -->
               <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
@@ -69,7 +69,7 @@
                         <% else %>
                           <img src="<%= image_pack_path('sample_location.png') -%>" alt="">
                         <% end %>
-                        <figcaption class="text-center mt-2">样板位置: <%= @sample.position -%></figcaption>
+                        <figcaption class="text-center mt-2">样板位置: <%= text_with_default(@sample.position) -%></figcaption>
                       </figure>
                     </div>
                   </div>
@@ -92,29 +92,29 @@
         <div class="flex flex-row">
           <div class="flex-none border-l border-gray-300 border-solid px-2.5" style="width: 200px;">
             <div class="text-gray-400 truncate">供应商名称</div>
-            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.name -%>"><%= @sample.manufacturer&.name -%></div>
+            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.name -%>"><%= text_with_default(@sample.manufacturer&.name) -%></div>
           </div>
           <div class="flex-none border-l border-gray-300 border-solid px-2.5" style="width: 200px;">
             <div class="text-gray-400 truncate">联系人</div>
-            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.contact -%>"><%= @sample.manufacturer&.contact -%></div>
+            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.contact -%>"><%= text_with_default(@sample.manufacturer&.contact) -%></div>
           </div>
           <div class="flex-1 border-l border-gray-300 border-solid px-2.5">
             <div class="text-gray-400 truncate">邮箱</div>
-            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.email -%>"><%= @sample.manufacturer&.email -%></div>
+            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.email -%>"><%= text_with_default(@sample.manufacturer&.email) -%></div>
           </div>
         </div>
         <div class="flex flex-row" style="margin-top: 34px;">
           <div class="flex-none border-l border-gray-300 border-solid px-2.5" style="width: 200px;">
             <div class="text-gray-400 truncate">供应商地址</div>
-            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.location -%>"><%= @sample.manufacturer&.location -%></div>
+            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.location -%>"><%= text_with_default(@sample.manufacturer&.location) -%></div>
           </div>
           <div class="flex-none border-l border-gray-300 border-solid px-2.5" style="width: 200px;">
             <div class="text-gray-400 truncate">联系电话</div>
-            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.contact_information -%>"><%= @sample.manufacturer&.contact_information -%></div>
+            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.contact_information -%>"><%= text_with_default(@sample.manufacturer&.contact_information) -%></div>
           </div>
           <div class="flex-1 border-l border-gray-300 border-solid px-2.5">
             <div class="text-gray-400 truncate">是否愿意送样</div>
-            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.offer_sample -%>"><%= @sample.manufacturer&.offer_sample -%></div>
+            <div class="mt-1 truncate" title="<%= @sample.manufacturer&.offer_sample -%>"><%= text_with_default(@sample.manufacturer&.offer_sample) -%></div>
           </div>
         </div>
       </div>

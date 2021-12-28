@@ -76,4 +76,8 @@ module ApplicationHelper
       { name: 'file', exts: [], icon: 'icon-file-file.svg' }
     end
   end
+
+  def text_with_default(text)
+    text.present? ? text : '—'
+  end
 end

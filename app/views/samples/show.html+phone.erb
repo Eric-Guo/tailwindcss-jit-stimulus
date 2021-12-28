@@ -7,7 +7,7 @@
       </div>
     </div>
     <dl class="flex-auto ml-2">
-      <h3 class="text-base mb-2 font-medium"><%= @sample.material&.name -%> (样品) (<%= @sample.material.no %>-<%= @sample.no %>)</h3>
+      <h3 class="text-base mb-2 font-medium"><%= text_with_default(@sample.material&.name) -%> (样品) (<%= text_with_default(@sample.material.no) %>-<%= text_with_default(@sample.no) %>)</h3>
       <p class="text-xs break-all">样品描述：
         <span class="font-medium"><%= @sample.material_text %></span>
       </p>

@@ -228,7 +228,7 @@
           </div>
           <div class="flex-1 w-0 ml-4 md:ml-8 lg:ml-12 xl:ml-16 2xl:ml-20">
             <div class="flex text-2xl text-left leading-tight">
-              <h1 class="flex-1 w-0 font-bold truncate" title="<%= news.title -%>"><%= news.title -%></h1>
+              <h1 class="flex-1 w-0 font-bold truncate" title="<%= news.title -%>"><%= text_with_default(news.title) -%></h1>
               <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
                 材料在线
               </span>
@@ -238,7 +238,7 @@
                 </span>
               <% end %>
             </div>
-            <h2 class="mt-3 text-1xl text-left truncate" title="<%= news.subtitle -%>"><%= news.subtitle -%></h2>
+            <h2 class="mt-3 text-1xl text-left truncate" title="<%= news.subtitle -%>"><%= text_with_default(news.subtitle) -%></h2>
           </div>
         </a>
       <% end %>
@@ -278,11 +278,11 @@
         <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.cover, 'static/project_new_g1.jpg') -%>" alt="">
         <div class="absolute left-0 bottom-0 p-3 w-full text-white black-mask">
           <p class="text-lg leading-tight truncate" title="<%= project_case.home_top_case&.project_name_and_location -%>">
-            <%= project_case.home_top_case&.project_name_and_location -%>
+            <%= text_with_default(project_case.home_top_case&.project_name_and_location) -%>
           </p>
           <div class="flex flex-row items-center justify-center">
-            <p class="text-sm leading-tight flex-1 truncate" title="<%= project_case.home_top_case&.material_tags&.join(' | ') -%>"><%= project_case.home_top_case&.material_tags&.join(' | ') %></p>
-            <p class="text-sm flex-none"><%= project_case.home_top_case&.project_type %></p>
+            <p class="text-sm leading-tight flex-1 truncate" title="<%= project_case.home_top_case&.material_tags&.join(' | ') -%>"><%= text_with_default(project_case.home_top_case&.material_tags&.join(' | ')) %></p>
+            <p class="text-sm flex-none"><%= text_with_default(project_case.home_top_case&.project_type) %></p>
           </div>
         </div>
       </div>

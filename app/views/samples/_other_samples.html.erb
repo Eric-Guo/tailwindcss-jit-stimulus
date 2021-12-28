@@ -25,10 +25,10 @@
       </div>
       <div class="flex flex-col justify-end mx-4">
         <h2 class="text-base mb-2"><%= other_sample.material&.name %>（样品）</h2>
-        <p class="mt-1 text-xs text-gray-400">样品编号：<%= other_sample.no -%></p>
-        <p class="mt-1 text-xs text-gray-400">表面效果：<%= other_sample.surface_effect_descriptions -%></p>
-        <p class="mt-1 text-xs text-gray-400">色系：<%= other_sample.color_str -%></p>
-        <p class="mt-1 text-xs text-gray-400">供应商：<%= other_sample.manufacturer&.name -%></p>
+        <p class="mt-1 text-xs text-gray-400">样品编号：<%= text_with_default(other_sample.no) -%></p>
+        <p class="mt-1 text-xs text-gray-400">表面效果：<%= text_with_default(other_sample.surface_effect_descriptions) -%></p>
+        <p class="mt-1 text-xs text-gray-400">色系：<%= text_with_default(other_sample.color_str) -%></p>
+        <p class="mt-1 text-xs text-gray-400">供应商：<%= text_with_default(other_sample.manufacturer&.name) -%></p>
       </div>
     </a>
   <% end %>

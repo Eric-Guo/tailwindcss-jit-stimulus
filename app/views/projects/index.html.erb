@@ -148,14 +148,14 @@
         </div>
         <div class="flex flex-row justify-between items-baseline mt-2">
           <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
-            <%= project_case.project_name_and_location -%>
+            <%= text_with_default(project_case.project_name_and_location) -%>
           </p>
           <p class="text-xs text-gray-400 flex-none ml-3">
-            <%= project_case.project_type %>
+            <%= text_with_default(project_case.project_type) %>
           </p>
         </div>
         <% material_tags = @material_in_cases.find_all { |m| m[0] ==  project_case.id }[0..3]&.collect(&:second)&.join(' | ') %>
-        <p class="text-sm font-medium truncate" title="<%= material_tags -%>"><%= material_tags %></p>
+        <p class="text-sm font-medium truncate" title="<%= material_tags -%>"><%= text_with_default(material_tags) %></p>
       </a>
     <% end %>
   </div>

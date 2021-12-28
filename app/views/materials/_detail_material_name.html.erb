@@ -16,22 +16,22 @@
       <dl class="block w-72 mt-2 text-lg">
         <dt class="my-1 inline-block w-1/2">色系：</dt>
         <dd class="my-1 inline-block text-right" style="width: 48%">
-          <%= material.color %>
+          <%= text_with_default(material.color) %>
         </dd>
 
         <dt class="my-1 inline-block w-1/2">产地：</dt>
         <dd class="my-1 inline-block text-right" style="width: 48%">
-          <%= material.material_product&.origin %>
+          <%= text_with_default(material.material_product&.origin) %>
         </dd>
 
         <dt class="my-1 inline-block w-1/2">价格区间：</dt>
         <dd class="my-1 inline-block text-right" style="width: 48%">
-          <%= "#{[material.material_product&.low_price, material.material_product&.high_price].uniq.join('-')}/㎡" %>
+          <%= text_with_default(material.material_product&.price_range) %>
         </dd>
 
         <dt class="my-1 inline-block w-1/2">是否常用产品：</dt>
         <dd class="my-1 inline-block text-right" style="width: 48%">
-          <%= material.material_product&.is_common == 1 ? '是' : '' %>
+          <%= text_with_default(material.material_product&.is_commonly_used) %>
         </dd>
       </dl>
     </div>
