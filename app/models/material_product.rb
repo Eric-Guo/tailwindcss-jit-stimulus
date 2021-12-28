@@ -10,6 +10,9 @@ class MaterialProduct < ApplicationRecord
   has_many :material_product_surface_effects
   has_many :surface_effects, through: :material_product_surface_effects
 
+  has_many :material_product_areas
+  has_many :areas, through: :material_product_areas
+
   default_scope { where(deleted_at: nil) }
 
   def construction
