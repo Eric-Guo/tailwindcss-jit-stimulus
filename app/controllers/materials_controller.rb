@@ -60,7 +60,13 @@ class MaterialsController < ApplicationController
       materila_with_color_system
     end
 
-    @materials = materila_with_price.limit(40)
+    materila_with_location = if @area_id.present?
+      materila_with_price.joins(material_product: :material_product_areas).where(material_product_areas: { area_id: @area_id }).distinct
+    else
+      materila_with_price
+    end
+
+    @materials = materila_with_location.limit(40)
   end
 
   def show
