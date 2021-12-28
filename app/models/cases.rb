@@ -9,7 +9,7 @@ class Cases < ApplicationRecord
   has_many :case_samples, -> { where(type_id: 1) }, class_name: 'CasesMaterial', foreign_key: :case_id
   has_many :materials, through: :case_materials
   has_many :samples, through: :case_samples
-  belongs_to :area, foreign_key: :area_id
+  belongs_to :area
 
   default_scope { where(deleted_at: nil).where(display: 1) }
 
@@ -31,12 +31,9 @@ class Cases < ApplicationRecord
   end
 
   def self.project_locations
-    @project_locations ||= where.not(project_location: nil)
-    where.not(project_location: '')
-    .order('project_location ASC')
-    .select(:project_location)
-    .distinct
-    .pluck(:project_location)
+    @project_locations ||= all.joins(:area)
+      .distinct
+      .select('areas.title area_title', 'area_id')
   end
 
   def self.project_type

@@ -13,7 +13,8 @@ class ProjectsController < ApplicationController
       Material.none
     end
     @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
-    @locations = (params[:l].presence || []).reject(&:blank?)
+    @area_ids = (params[:l].presence || []).reject(&:blank?).map(&:to_i)
+
     @project_type = params[:project_type].presence
     @need_ecm_files = params[:ecm_files] == 'on'
     @has_sample = params[:has_sample] == 'on'
@@ -24,8 +25,8 @@ class ProjectsController < ApplicationController
     @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
-    @selected_all_locations = Cases.project_locations == @locations
-    @selected_none_locations = (Cases.project_locations & @locations).blank?
+    @selected_all_locations = Cases.project_locations.collect(&:area_id) == @area_ids
+    @selected_none_locations = (Cases.project_locations.collect(&:area_id) & @area_ids).blank?
 
     cases_with_query = if @q.present?
       mat_ids = q_return_mat_ids(@q)

@@ -22,8 +22,8 @@
     <% @selected_mats.each do |select_material| %>
       <%= render partial: 'search_item', locals: { name: select_material.name, check_id: dom_id(select_material) } %>
     <% end %>
-    <% @locations.each do |location_name| %>
-      <%= render partial: 'search_item', locals: { name: location_name, check_id: "location-#{location_name}" } %>
+    <% @area_ids.each do |area_id| %>
+      <%= render partial: 'search_item', locals: { name: Area.find(area_id).title, check_id: "location-#{area_id}" } %>
     <% end %>
     <% if @project_type.present? %>
       <%= render partial: 'search_item', locals: { name: "项目类型：#{@project_type}", check_id: 'sel-project-type' } %>
@@ -100,8 +100,8 @@
       </div>
     </div>
     <div class="grid grid-flow-row grid-cols-6 w-full py-1">
-      <% Cases.project_locations.each do |location_name| %>
-      <%= render partial: 'location_item', locals: { name: location_name, checked: @locations.include?(location_name) } %>
+      <% Cases.project_locations.each do |area| %>
+        <%= render partial: 'location_item', locals: { id: area.area_id, name: area.area_title, checked: @area_ids.include?(area.area_id) } %>
       <% end %>
     </div>
   </div>
