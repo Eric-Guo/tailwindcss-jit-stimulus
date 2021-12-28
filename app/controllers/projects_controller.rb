@@ -58,7 +58,13 @@ class ProjectsController < ApplicationController
       cases_with_location
     end
 
-    @cases = cases_ecm.limit(40)
+    cases_is_th_internal = if @is_th_internal
+      cases_ecm.where(is_th: true)
+    else
+      cases_ecm
+    end
+
+    @cases = cases_is_th_internal.limit(40)
     @material_in_cases = CasesMaterial.joins(:material).where(case_id: @cases.collect(&:id)).pluck('case_id, materials.name')
   end
 
