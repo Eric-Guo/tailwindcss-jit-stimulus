@@ -52,10 +52,16 @@ class ProjectsController < ApplicationController
       cases_with_materials
     end
 
-    cases_ecm = if @need_ecm_files
-      cases_with_location.where.not(ecm_files: '[]')
+    cases_with_project_type = if @project_type.present?
+      cases_with_location.where(project_type: @project_type)
     else
       cases_with_location
+    end
+
+    cases_ecm = if @need_ecm_files
+      cases_with_project_type.where.not(ecm_files: '[]')
+    else
+      cases_with_project_type
     end
 
     cases_has_demonstration = if @has_demonstration
