@@ -15,6 +15,12 @@ class MaterialProduct < ApplicationRecord
 
   default_scope { where(deleted_at: nil) }
 
+  def self.material_product_locations
+    @material_product_locations ||= all.joins(:areas)
+      .distinct
+      .pluck('areas.title area_title', 'material_product_areas.area_id')
+  end
+
   def construction
     if practice_details.present?
       if practice_details.is_a?(Array)
