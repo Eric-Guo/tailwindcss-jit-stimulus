@@ -128,25 +128,49 @@
         </div>
 
         <div class="grid grid-cols-5" style="margin-top: 30px; gap: 15px;">
-          <% @project.materials.each do |material| %>
-            <a class="block" href="<%= material_path(material) %>">
+          <% @project.case_materials.includes(:material).each do |case_material| %>
+            <a class="block" href="<%= material_path(case_material.material) %>">
               <div style="width: 188px; height: 188px;">
-                <img class="w-full h-full" src="<%= get_first_url(material.cover) %>" alt="">
+                <img class="w-full h-full" src="<%= get_first_url(case_material.material.cover) %>" alt="">
               </div>
               <div class="mt-3 text-sm">
-                <%= material.name %>
+                <%= case_material.material.name %>
               </div>
               <div class="mt-3 text-sm">
-                <% if material.color.present? %>
+                <% if case_material.position.present? %>
                   <div class="flex justify-between">
-                    <span>色系:</span>
-                    <span><%= material.color %></span>
+                    <span class="whitespace-nowrap mr-2">使用部位:&emsp;</span>
+                    <span class="truncate" title="<%= case_material.position %>"><%= case_material.position %></span>
                   </div>
                 <% end %>
-                <% if material.surface_effect_descriptions.present? %>
+                <% if case_material.material_color.present? %>
                   <div class="flex justify-between">
-                    <span>表面效果:</span>
-                    <span><%= material.surface_effect_descriptions %></span>
+                    <span class="whitespace-nowrap mr-2">色系/色号:&ensp;&nbsp;</span>
+                    <span class="truncate" title="<%= case_material.material_color %>"><%= case_material.material_color %></span>
+                  </div>
+                <% end %>
+                <% if case_material.material.surface_effect_descriptions.present? %>
+                  <div class="flex justify-between">
+                    <span class="whitespace-nowrap mr-2">表面效果:&emsp;</span>
+                    <span class="truncate" title="<%= case_material.material.surface_effect_descriptions %>"><%= case_material.material.surface_effect_descriptions %></span>
+                  </div>
+                <% end %>
+                <% if case_material.spec_model.present? %>
+                  <div class="flex justify-between">
+                    <span class="whitespace-nowrap mr-2">规格/型号:&ensp;&nbsp;</span>
+                    <span class="truncate" title="<%= case_material.spec_model %>"><%= case_material.spec_model %></span>
+                  </div>
+                <% end %>
+                <% if case_material.manufacturer.present? %>
+                  <div class="flex justify-between">
+                    <span class="whitespace-nowrap mr-2">供应商:&emsp;&emsp;</span>
+                    <span class="truncate" title="<%= case_material.manufacturer.name %>"><%= case_material.manufacturer.name %></span>
+                  </div>
+                <% end %>
+                <% if case_material.remark.present? %>
+                  <div class="flex justify-between">
+                    <span class="whitespace-nowrap mr-2">其他属性:&emsp;</span>
+                    <span class="text-right"><%= case_material.remark %></span>
                   </div>
                 <% end %>
               </div>
