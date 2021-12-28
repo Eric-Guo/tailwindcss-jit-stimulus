@@ -58,10 +58,16 @@ class ProjectsController < ApplicationController
       cases_with_location
     end
 
-    cases_is_th_internal = if @is_th_internal
-      cases_ecm.where(is_th: true)
+    cases_has_demonstration = if @has_demonstration
+      cases_ecm.where(is_da: true)
     else
       cases_ecm
+    end
+
+    cases_is_th_internal = if @is_th_internal
+      cases_has_demonstration.where(is_th: true)
+    else
+      cases_has_demonstration
     end
 
     @cases = cases_is_th_internal.limit(40)
