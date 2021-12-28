@@ -52,16 +52,34 @@ class ProjectsController < ApplicationController
       cases_with_materials
     end
 
-    cases_ecm = if @need_ecm_files
-      cases_with_location.where.not(ecm_files: '[]')
+    cases_with_project_type = if @project_type.present?
+      cases_with_location.where(project_type: @project_type)
     else
       cases_with_location
     end
 
-    cases_is_th_internal = if @is_th_internal
-      cases_ecm.where(is_th: true)
+    cases_ecm = if @need_ecm_files
+      cases_with_project_type.where.not(ecm_files: '[]')
+    else
+      cases_with_project_type
+    end
+
+    cases_has_sample = if @has_sample
+      cases_ecm.left_joins(:case_materials)
     else
       cases_ecm
+    end
+
+    cases_has_demonstration = if @has_demonstration
+      cases_has_sample.where(is_da: true)
+    else
+      cases_has_sample
+    end
+
+    cases_is_th_internal = if @is_th_internal
+      cases_has_demonstration.where(is_th: true)
+    else
+      cases_has_demonstration
     end
 
     @cases = cases_is_th_internal.limit(40)
