@@ -64,10 +64,16 @@ class ProjectsController < ApplicationController
       cases_with_project_type
     end
 
-    cases_has_demonstration = if @has_demonstration
-      cases_ecm.where(is_da: true)
+    cases_has_sample = if @has_sample
+      cases_ecm.left_joins(:case_materials)
     else
       cases_ecm
+    end
+
+    cases_has_demonstration = if @has_demonstration
+      cases_has_sample.where(is_da: true)
+    else
+      cases_has_sample
     end
 
     cases_is_th_internal = if @is_th_internal
