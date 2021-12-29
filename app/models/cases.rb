@@ -36,7 +36,7 @@ class Cases < ApplicationRecord
       .select('areas.title area_title', 'area_id')
   end
 
-  def self.project_type
+  def self.project_types
     @project_type ||= where.not(project_type: nil)
     where.not(project_type: '')
     .order('project_type ASC')
