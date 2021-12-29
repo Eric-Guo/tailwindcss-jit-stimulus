@@ -2,6 +2,7 @@
 
 class MaterialsController < ApplicationController
   include ApplicationHelper
+  before_action :authenticate_user!
 
   def index
     @panel_name = params[:pn].presence

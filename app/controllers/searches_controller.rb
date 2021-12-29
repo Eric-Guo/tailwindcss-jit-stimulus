@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_q_params
   before_action :set_data_and_count_hash
 
