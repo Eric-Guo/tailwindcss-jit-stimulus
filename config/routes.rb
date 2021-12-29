@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, skip: %i[registrations invitations confirmations passwords unlocks]
+
   resources :samples, only: [:show] do
     member do
       get :other_samples
