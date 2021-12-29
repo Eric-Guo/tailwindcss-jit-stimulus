@@ -15,10 +15,10 @@
 <% if @q.present? %>
 
 <div class="mx-4 xl:mx-6 2xl:mx-8 mb-4 border-b-2 border-gray-100 border-solid pb-3 text-center text-lg">
-  <%= link_to "材料 （#{@count_hash[:material]}）", material_search_path(q: @q), class: "mx-3", style: "color: #8C8C8C;" -%>
-  <%= link_to "案例 （#{@count_hash[:project]}）", project_search_path(q: @q), class: "mx-3", style: "color: #8C8C8C;" -%>
+  <%= link_to "材料 （#{@count_hash[:material]}）", material_search_path(q: @q), class: "mx-3 text-8c"-%>
+  <%= link_to "案例 （#{@count_hash[:project]}）", project_search_path(q: @q), class: "mx-3 text-8c"-%>
   <%= link_to "供应商 （#{@count_hash[:manufacturer]}）", manufacturer_search_path(q: @q), class: "mx-3 under-text-border font-bold", style: 'padding-bottom: 0.9rem' -%>
-  <%= link_to "新闻 （#{@count_hash[:news]}）", news_search_path(q: @q), class: "mx-3", style: "color: #8C8C8C;" -%>
+  <%= link_to "新闻 （#{@count_hash[:news]}）", news_search_path(q: @q), class: "mx-3 text-8c"-%>
 </div>
 
 <% if @manufacturers.length > 0 %>
