@@ -5,6 +5,7 @@ export default class extends Controller {
   static values = {
     defaultTabName: String,
     tabActiveClass: String,
+    tabNormalClass: String,
   };
 
   connect() {
@@ -19,11 +20,14 @@ export default class extends Controller {
   setTabActive(tabName) {
     if (tabName) {
       const tabActClass = this.tabActiveClassValue.split(' ');
+      const tabNorClass = this.tabNormalClassValue.split(' ');
       this.tabTargets.forEach(elem => {
         if (elem.dataset.tabName === tabName) {
+          tabNorClass.forEach(item => elem.classList.remove(item));
           tabActClass.forEach(item => elem.classList.add(item));
         } else {
           tabActClass.forEach(item => elem.classList.remove(item));
+          tabNorClass.forEach(item => elem.classList.add(item));
         }
       });
       this.tabContentTargets.forEach(elem => {
