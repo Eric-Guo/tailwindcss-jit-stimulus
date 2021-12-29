@@ -2,7 +2,7 @@
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   issuer = if Rails.env.development?
-    'https://matlib.test/'
+    'https://oauth2id.test/'
   else
     'https://sso.thape.com.cn'
   end
