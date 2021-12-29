@@ -2,5 +2,5 @@
 
 class User < ActiveRecord::Base
   establish_connection :user_info
-  devise :database_authenticatable, :lockable, :validatable, :trackable
+  devise :database_authenticatable, :lockable, :validatable
 end
