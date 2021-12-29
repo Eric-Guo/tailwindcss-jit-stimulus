@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   wechat_api
   before_action :login_in_as_dev_user, if: -> { Rails.env.development? }
   before_action :make_sure_wechat_user_login_in_phone, if: -> { request.variant.any?(:phone) }
-  before_action :only_allow_access_to_home_page, if: -> { !(request.remote_ip.start_with?('172.') || request.remote_ip.start_with?('10.') || request.remote_ip == '::1') && !request.variant.any?(:phone) }
   before_action :set_ie_warning
   before_action :set_tree_materials
   before_action :set_sidebar_nav
@@ -42,10 +41,6 @@ class ApplicationController < ActionController::Base
           return redirect_to root_path
         end
       end unless Current.user.present? || request.path == '/'
-    end
-
-    def only_allow_access_to_home_page
-      redirect_to root_path unless request.path == '/'
     end
 
     def set_ie_warning
