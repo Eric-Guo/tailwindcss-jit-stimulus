@@ -11,16 +11,6 @@ GIT
       thor
       zeitwerk (~> 2.4)
 
-GIT
-  remote: https://github.com/Eric-Guo/omniauth_openid_connect
-  revision: 1cfda54e2ad42a2166d564d51c81c5322ce4f74c
-  branch: master
-  specs:
-    omniauth_openid_connect (0.3.5)
-      addressable (~> 2.5)
-      omniauth (>= 1.9, < 3)
-      openid_connect (~> 1.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -197,10 +187,13 @@ GEM
       racc (~> 1.4)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
-    omniauth (2.0.4)
+    omniauth (1.9.1)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
-      rack-protection
+    omniauth_openid_connect (0.3.5)
+      addressable (~> 2.5)
+      omniauth (~> 1.9)
+      openid_connect (~> 1.1)
     openid_connect (1.3.0)
       activemodel
       attr_required (>= 1.0.0)
@@ -223,8 +216,6 @@ GEM
       httpclient
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
-    rack-protection (2.1.0)
-      rack
     rack-proxy (0.7.0)
       rack
     rack-test (1.1.0)
@@ -336,7 +327,7 @@ DEPENDENCIES
   http
   kaminari
   mysql2
-  omniauth_openid_connect!
+  omniauth_openid_connect
   puma
   rails (~> 7.0.0)
   rexml
