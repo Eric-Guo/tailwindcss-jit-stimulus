@@ -1,4 +1,4 @@
 
-<%= form_tag('/auth/openid_connect', method: 'post') do %>
+<%= form_tag '/auth/openid_connect', method: 'post', remote: false do %>
   <button type='submit' class="mt-20 text-center w-full">点击登陆</button>
 <% end %>
