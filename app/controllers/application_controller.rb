@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   include DetectDevice
   wechat_api
+  before_action :login_in_as_dev_user, if: -> { Rails.env.development? }
   before_action :make_sure_wechat_user_login_in_phone, if: -> { request.variant.any?(:phone) }
   before_action :only_allow_access_to_home_page, if: -> { !(request.remote_ip.start_with?('172.') || request.remote_ip.start_with?('10.') || request.remote_ip == '::1') && !request.variant.any?(:phone) }
   before_action :set_ie_warning
@@ -23,6 +24,10 @@ class ApplicationController < ActionController::Base
     end
 
   private
+
+    def login_in_as_dev_user
+      sign_in User.first
+    end
 
     def make_sure_wechat_user_login_in_phone
       wechat_oauth2 do |user_name|
