@@ -120,3 +120,7 @@
 .circle-arrow1:not(.disabled):hover {
   background: #101820;
 }
+
+.text-8c {
+  color: #8C8C8C;
+}

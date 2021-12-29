@@ -1,8 +1,8 @@
 <section class="mr-4" style="width: 400px;">
   <div class="flex flex-row justify-between items-center mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
     <div>
-      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">其他样品</span>
-      <span class="text-xl font-light">Other Samples</span>
+      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">相关样品</span>
+      <span class="text-xl font-light">Related Samples</span>
     </div>
     <div class="flex flex-row gap-2">
       <a class="circle-arrow1 w-5 h-5 <%= other_samples.first_page? ? 'cursor-not-allowed disabled' : 'cursor-pointer' %>" href="<%= other_samples_sample_path(id, page_size: other_samples.limit_value, page: other_samples.prev_page) %>">
