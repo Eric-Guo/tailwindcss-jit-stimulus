@@ -1,4 +1,4 @@
-source "https://gems.ruby-china.com"
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby ">= 3.0"
@@ -30,15 +30,6 @@ gem 'rubyzip'
 gem "http"
 # bundle config local.wechat /Users/guochunzhong/git/oss/wechat/
 gem 'wechat', git: 'https://git.thape.com.cn/Eric-Guo/wechat.git', branch: :main
-
-gem 'kaminari'
-
-gem 'rubyzip'
-
-gem "http"
-# bundle config local.wechat /Users/guochunzhong/git/oss/wechat/
-gem 'wechat', git: 'https://gitee.com/Eric-Guo/wechat.git', branch: :main
-gem "honeybadger"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
