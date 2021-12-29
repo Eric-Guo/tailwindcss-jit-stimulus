@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SamplesController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     @sample = Sample.find_by(id: params[:id]) || Sample.find_by!(no: params[:id])
 
@@ -20,6 +22,7 @@ class SamplesController < ApplicationController
   end
 
   private
+
     def get_other_samples(sample, page = 1, page_size = 2)
       material = sample.material
       sample_ids = []
