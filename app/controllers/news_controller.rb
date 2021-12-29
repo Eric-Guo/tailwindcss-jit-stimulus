@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class NewsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)

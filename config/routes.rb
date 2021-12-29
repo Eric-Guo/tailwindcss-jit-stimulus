@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :users, skip: %i[registrations invitations confirmations passwords unlocks]
+  get 'auth/openid_connect/callback', to: 'openid_connect#callback'
 
   resources :samples, only: [:show] do
     member do

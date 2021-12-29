@@ -28,6 +28,8 @@ gem "honeybadger"
 # gem "redis", "~> 4.0"
 
 gem 'devise'
+# bundle config local.omniauth-openid-connect /Users/guochunzhong/git/oss/omniauth_openid_connect/
+gem 'omniauth_openid_connect', git: 'https://github.com/Eric-Guo/omniauth_openid_connect', branch: :master
 
 # Use Active Storage variant
 # gem "image_processing", "~> 1.2"
