@@ -29,8 +29,8 @@
             <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.name) %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none">所在地:</div>
-            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.address) %></div>
+            <div class="w-30 flex-none">服务区域:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.location) %></div>
           </div>
           <div class="flex">
             <div class="w-30 flex-none">网址:</div>
@@ -267,8 +267,8 @@
               <div class="text-sm font-semibold truncate" title="<%= other_manufacturer.name %>">
                 <%= other_manufacturer.name %>
               </div>
-              <div class="text-xs mt-3 truncate" style="color: #8C8C8C;" title="<%= other_manufacturer.address %>">
-                所在地: <%= text_with_default(other_manufacturer.address) %>
+              <div class="text-xs mt-3 truncate" style="color: #8C8C8C;" title="<%= other_manufacturer.location %>">
+                服务区域: <%= text_with_default(other_manufacturer.location) %>
               </div>
               <div class="text-xs mt-1 truncate" style="color: #8C8C8C;" title="<%= other_manufacturer.contact_information %>">
                 联系方式: <%= text_with_default(other_manufacturer.contact_information) %>

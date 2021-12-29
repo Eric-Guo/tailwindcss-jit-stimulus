@@ -88,7 +88,7 @@ class ManufacturersController < ApplicationController
       material_ids = Material.where(level: [2, 3]).where("parent_id IN (:ids) OR grandpa_id IN (:ids)", ids: material1_ids)
       material1_ids.push(*material1_ids) if material_ids.present?
     end
-    manufacturer_fields = ['id', 'logo', 'name', 'address', 'is_allow', 'contact_information']
+    manufacturer_fields = ['id', 'logo', 'name', 'location', 'address', 'is_allow', 'contact_information']
     @other_manufacturers = Manufacturer
       .select(Arel.sql("#{manufacturer_fields.map { |field| '`manufacturers`.' + field }.join(',')}, \
         MAX(( \
