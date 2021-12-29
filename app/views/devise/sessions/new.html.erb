@@ -1,5 +1,5 @@
 <%= render partial: 'shared/header', locals: {} -%>
 
-<%= form_tag '/auth/openid_connect', method: 'post', remote: false, data: { turbo: false } do %>
+<%= form_tag '/auth/openid_connect', method: 'get', remote: false, data: { turbo: false } do %>
   <button type='submit' class="mt-20 text-center w-full">点击登陆</button>
 <% end %>
