@@ -16,7 +16,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   redirect_uri = if Rails.env.development?
     'https://matlib.test/auth/openid_connect/callback'
   else
-    'https://cybros.thape.com.cn/auth/openid_connect/callback'
+    'https://m-thtri.thape.com.cn/auth/openid_connect/callback'
   end
 
   provider :openid_connect,
