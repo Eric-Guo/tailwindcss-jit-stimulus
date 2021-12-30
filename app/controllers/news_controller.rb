@@ -37,6 +37,6 @@ class NewsController < ApplicationController
       news_with_query
     end
 
-    @news = news_with_materials.limit(40)
+    @news = news_with_materials
   end
 end
