@@ -1,7 +1,22 @@
 import { Controller } from '@hotwired/stimulus'
+import mrujs from "mrujs";
 
 export default class extends Controller {
   static targets =  ["materialContainer", "filesContainer", "uploadButton2Container", "fileInput", "uploadButton1"]
+  static values = {
+    uploadPath: String,
+    submitPath: String,
+  }
+
+  modalController = null
+
+  connect() {
+    const modalElems = Array.from(document.querySelectorAll('[data-controller*="modal"]'));
+    const modalElem = modalElems.find(item => item.contains(this.element));
+    if (modalElem) {
+      this.modalController = this.application.getControllerForElementAndIdentifier(modalElem, 'modal');
+    }
+  }
 
   fileInputClick() {
     this.fileInputTarget.click();
@@ -9,22 +24,41 @@ export default class extends Controller {
 
   fileInputChange(e) {
     const file = e.target.files[0];
-    if (file) {
-      const fileElem = this.buildFileElem({ name: file.name });
-      this.uploadButton2ContainerTarget.classList.add('hidden');
-      this.uploadButton1Target.classList.remove('hidden');
-      this.filesContainerTarget.classList.remove('hidden');
-      this.filesContainerTarget.appendChild(fileElem);
+    if (this.uploadPathValue && file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      mrujs.fetch(this.uploadPathValue, {
+        method: 'POST',
+        body: formData,
+      }).then(res => {
+        if (res.status !== 200) throw new Error('上传失败');
+        return res.json();
+      }).then(res => {
+        const fileElem = this.buildFileElem({ name: res.name, url: res.url });
+        this.uploadButton2ContainerTarget.classList.add('hidden');
+        this.uploadButton1Target.classList.remove('hidden');
+        this.filesContainerTarget.classList.remove('hidden');
+        this.filesContainerTarget.appendChild(fileElem);
+      }).catch(err => {
+        console.log(err.message);
+      });
     }
     this.fileInputTarget.value = '';
   }
 
-  showMaterialSelector(e) {
-    this.materialContainerTarget.classList.remove('hidden');
-  }
-
-  hideMaterialSelector() {
-    this.materialContainerTarget.classList.add('hidden');
+  cateChange(e) {
+    const materials = JSON.parse(e.target.dataset.materials);
+    const select = this.materialContainerTarget.querySelector('select');
+    if (select) {
+      if (Array.isArray(materials) && materials.length > 0) {
+        const html = materials.map(item => `<option value="${item.id}">${item.name}</option>`).join('');
+        select.innerHTML = html;
+        this.materialContainerTarget.classList.remove('hidden');
+      } else {
+        select.innerHTML = '';
+        this.materialContainerTarget.classList.add('hidden');
+      }
+    }
   }
 
   buildFileElem(file_info) {
@@ -34,16 +68,18 @@ export default class extends Controller {
     const inputElem = document.createElement('input');
     inputElem.type = 'hidden';
     inputElem.name = 'files[]';
+    inputElem.dataset.needRegisterTarget = 'file';
+    inputElem.dataset.name = file_info.name;
+    inputElem.value = file_info.url;
     wrapperElem.appendChild(inputElem);
 
     const nameElem = document.createElement('div');
     nameElem.textContent = file_info.name;
     wrapperElem.appendChild(nameElem);
-    
+
     const buttonGroupElem = document.createElement('div');
     buttonGroupElem.className = 'flex items-center';
     wrapperElem.appendChild(buttonGroupElem);
-
 
     const statusButton = document.createElement('button');
     statusButton.innerHTML = `
@@ -84,5 +120,60 @@ export default class extends Controller {
     };
 
     return wrapperElem;
+  }
+
+  getValues() {
+    const cateElem = this.element.querySelector('input[type="radio"][name="cate"]:checked');
+    const materialElem = this.element.querySelector('select[name="material"]');
+    const descriptionElem = this.element.querySelector('textarea[name="description"]');
+    const fileElems = Array.from(this.element.querySelectorAll('input[name="files[]"]'));
+
+    return {
+      cate: cateElem && cateElem.value,
+      material: materialElem && materialElem.value,
+      description: descriptionElem.value,
+      files: fileElems.map(item => ({
+        name: item.dataset.name,
+        path: item.value,
+      })),
+    };
+  }
+
+  clearValues() {
+    const cateElem = this.element.querySelector('input[type="radio"][name="cate"]:checked');
+    const descriptionElem = this.element.querySelector('textarea[name="description"]');
+    const materialSelect = this.materialContainerTarget.querySelector('select');
+    cateElem.checked = false
+    descriptionElem.value = '';
+    materialSelect.innerHTML = '';
+    this.materialContainerTarget.classList.add('hidden');
+    this.filesContainerTarget.innerHTML = '';
+    this.filesContainerTarget.classList.add('hidden');
+    this.uploadButton2ContainerTarget.classList.remove('hidden');
+    this.uploadButton1Target.classList.add('hidden');
+  }
+
+  submit() {
+    if (this.modalController) {
+      const values = this.getValues();
+      if (!values.cate) return alert('需求类型不能为空');
+      if (!values.description) return alert('具体描述不能为空');
+      mrujs.fetch(this.submitPathValue, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values),
+      }).then(res => {
+        if (res.status !== 200) throw new Error('提交失败');
+        return res.json();
+      }).then(res => {
+        this.clearValues();
+        this.modalController.close();
+        alert('提交成功');
+      }).catch(err => {
+        console.log(err.message);
+      });
+    }
   }
 }
