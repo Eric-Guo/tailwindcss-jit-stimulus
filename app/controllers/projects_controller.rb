@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
     end
 
     cases_ecm = if @need_ecm_files
-      cases_with_project_type.where('ecm_files != "[]"')
+      cases_with_project_type.where("JSON_EXTRACT(`ecm_files`, '$[0]') is not null")
     else
       cases_with_project_type
     end
