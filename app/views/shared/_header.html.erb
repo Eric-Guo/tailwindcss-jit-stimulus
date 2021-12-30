@@ -44,7 +44,7 @@
             </p>
           </div>
           <div class="py-1" role="none">
-            <%= form_with url: destroy_user_session_path, method: :delete, role: 'none' do %>
+            <%= form_with url: destroy_user_session_path, method: :delete, role: 'none', remote: false, data: { turbo: false } do %>
               <button type="submit" class="text-gray-700 block w-full text-left px-3 py-2 text-sm text-center" role="menuitem" tabindex="-1" id="menu-item-3">
                 登出
               </button>
