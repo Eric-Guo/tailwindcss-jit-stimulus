@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
     end
 
     cases_ecm = if @need_ecm_files
-      cases_with_project_type.where.not(ecm_files: '[]')
+      cases_with_project_type.where('ecm_files != "[]"')
     else
       cases_with_project_type
     end
