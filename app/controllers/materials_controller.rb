@@ -9,7 +9,7 @@ class MaterialsController < ApplicationController
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
     @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(id: :asc)
-    mat_ids = (params[:ms].presence || []).reject(&:blank?)
+    mat_ids = (params[:ms].presence || []).reject(&:blank?).collect(&:to_i)
     @selected_mats = if mat_ids.present?
       Material.where(id: mat_ids)
     else
@@ -27,10 +27,10 @@ class MaterialsController < ApplicationController
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
     materila_with_query = if @q.present?
-      mat_ids = q_return_mat_ids(@q)
+      mat_q_ids = q_return_mat_ids(@q)
 
-      if mat_ids.present?
-        Material.where(id: mat_ids)
+      if mat_q_ids.present?
+        Material.where(id: mat_q_ids)
       else
         Material.left_joins(:samples).includes(:samples).where('materials.level <> 1')
           .where('materials.name LIKE ? OR sample.genus LIKE ? OR sample.species LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%").distinct
@@ -40,7 +40,8 @@ class MaterialsController < ApplicationController
     end
 
     materila_with_materials = if mat_ids.present?
-      materila_with_query.where(id: mat_ids.append(@selected_mat_parent_id))
+      child_mat_ids = Material.where(parent_id: mat_ids, display: 1, deleted_at: nil).pluck(:id)
+      materila_with_query.where(id: mat_ids.append(@selected_mat_parent_id).append(child_mat_ids).flatten)
     else
       materila_with_query
     end
