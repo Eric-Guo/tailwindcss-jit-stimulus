@@ -49,7 +49,7 @@ class HomeController < ApplicationController
       cate[:subtitle] = material&.en_name
     end
 
-    @manufacturer_cates = Material.where(level: 1).map do |manufacturer_cate|
+    @manufacturer_cates = Material.where(level: 1).includes(:children_materials).map do |manufacturer_cate|
       material_ids = Material.where('id = :id OR parent_id = :id OR grandpa_id = :id', id: manufacturer_cate.id).pluck(:id)
       manufacturers = Manufacturer.joins(:material_manufacturers).where(material_manufacturers: { material_id: material_ids }).order(top_at: :desc).limit(2).distinct
       {
@@ -61,6 +61,7 @@ class HomeController < ApplicationController
             logo: manufacturer.logo,
           }
         end,
+        children: manufacturer_cate.children_materials,
       }
     end
   end
