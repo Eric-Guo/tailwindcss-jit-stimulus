@@ -67,7 +67,7 @@ class ProjectsController < ApplicationController
     end
 
     cases_has_sample = if @has_sample
-      cases_ecm.left_joins(:case_materials)
+      cases_ecm.joins(:case_materials)
     else
       cases_ecm
     end
