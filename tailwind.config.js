@@ -16,6 +16,7 @@ module.exports = {
       colors: {
         'black': '#101820',
         'black-6c': '#0F1820',
+        '8c': '#8c8c8c',
       },
       gap: {
         '18': '4.5rem',
