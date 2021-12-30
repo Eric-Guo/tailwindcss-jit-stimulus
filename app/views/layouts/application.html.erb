@@ -69,6 +69,28 @@
                     <% end %>
                   </div>
                 <% end %>
+                <div
+                  class="flex justify-between items-center sidebar-nav-item pl-1 pr-4 hidden"
+                  data-controller="modal"
+                  data-modal-allow-background-close="true"
+                  data-modal-disable-backdrop="true"
+                >
+                  <div class="sidebar-nav-item-content truncate">
+                    <% if user_signed_in? %>
+                      <span class="relative" title="需求登记 Your Demand">
+                        <span class="text-2xl">需求登记</span>
+                        <span class="text-lg">Your Demand</span>
+                        <span class="sidebar-nav-text-underline"></span>
+                      </span>
+                    <% else %>
+                      <a class="relative" href="/users/sign_in" title="需求登记 Your Demand">
+                        <span class="text-2xl">需求登记</span>
+                        <span class="text-lg">Your Demand</span>
+                        <span class="sidebar-nav-text-underline"></span>
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
               </nav>
               <div class="sidebar-border"></div>
               <div class="absolute text-white text-sm" style="left: 40px; bottom: 40px;">
