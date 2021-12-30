@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def user_image_url(user)
+    return if user.blank?
+    hash = Digest::MD5.hexdigest(user.clerk_code + "af8f0885aa412d7923855")
+    "https://portal.thape.com.cn/uploads/wcavatars/#{hash}.jpg"
+  end
+
   def mat_img_url(path, fallback_path = '')
     if path.present?
       "https://matlib.thape.com.cn/#{path}"
