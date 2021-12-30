@@ -1,5 +1,5 @@
 <header
-  class="sticky top-0 h-16 flex items-center justify-center text-white px-4 sm:px-6 lg:px-8 transition-all duration-300"
+  class="sticky h-16 flex items-center justify-center text-white px-4 sm:px-6 lg:px-8 transition-all duration-300 <%= flash.present? ? 'top-10' : 'top-0' -%>"
   style="z-index: 1000;"
   aria-label="Global"
   data-controller="home-navbar"

@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, skip: %i[registrations invitations confirmations passwords unlocks]
+  devise_for :users, skip: %i[registrations invitations confirmations passwords unlocks], controllers: {
+    sessions: 'sessions'
+  }
+
   get 'auth/openid_connect/callback', to: 'openid_connect#callback'
 
   resources :samples, only: [:show] do
