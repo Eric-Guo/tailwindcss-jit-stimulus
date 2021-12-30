@@ -30,7 +30,7 @@
     <div class="-ml-2 px-2 overflow-y-hidden transition-all" style="height: <%= expanded ? max_height : min_height %>px;" data-material-color-system-target="list">
       <div class="grid grid-cols-12 gap-x-2.5 gap-y-3" style="width: 1166px;">
         <% projects.each do |project| %>
-          <a href="<%= material_path(project.id, request.GET) %>" class="block relative transition-shadow material-color-system-project <%= project.id == material.id ? 'active' : '' %>" style="width: 88px; height: 116px; border: 1px solid #EBEBEB;" data-turbo-frame="_top">
+          <a href="<%= material_path(project.id, request.GET) %>" class="block relative transition-shadow material-color-system-project border border-neutral-235 <%= project.id == material.id ? 'active' : '' %>" style="width: 88px; height: 116px;" data-turbo-frame="_top">
             <img class="mx-auto object-cover" style="width: 86px; height: 86px;" src="<%= get_first_url(project.cover) -%>" alt="">
             <h3 class="text-center text-sm truncate" style="height: 28px; line-height: 28px; margin: 0 10px;" title="<%= project.name %>"><%= project.name -%></h3>
           </a>

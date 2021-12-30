@@ -75,46 +75,46 @@
           <div class="w-0 flex-1">
             <% if @project.no.present? %>
               <div class="flex text-lg font-medium">
-                <span class="flex-none text-8c">项目编号：</span>
-                <span class="break-all"><%= @project.no %></span>
+                <span class="flex-none text-neutral-140">项目编号：</span>
+                <span class="break-words"><%= @project.no %></span>
               </div>
             <% end %>
             <% if @project.finish_year.present? %>
               <div class="flex text-lg font-medium">
-                <span class="flex-none text-8c">完工年份：</span>
-                <span class="break-all"><%= @project.finish_year %></span>
+                <span class="flex-none text-neutral-140">完工年份：</span>
+                <span class="break-words"><%= @project.finish_year %></span>
               </div>
             <% end %>
             <% if @project.project_location.present? %>
               <div class="flex text-lg font-medium">
-                <span class="flex-none text-8c">项目地区：</span>
-                <span class="break-all"><%= @project.project_location %></span>
+                <span class="flex-none text-neutral-140">项目地区：</span>
+                <span class="break-words"><%= @project.project_location %></span>
               </div>
             <% end %>
             <% if @project.project_type.present? %>
               <div class="flex text-lg font-medium">
-                <span class="flex-none text-8c">项目类型：</span>
-                <span class="break-all"><%= @project.project_type %></span>
+                <span class="flex-none text-neutral-140">项目类型：</span>
+                <span class="break-words"><%= @project.project_type %></span>
               </div>
             <% end %>
           </div>
           <div class="w-0 flex-1">
             <% if @project.design_unit.present? %>
               <div class="flex text-lg font-medium">
-                <span class="flex-none text-8c">设计单位：&emsp;&emsp;</span>
-                <span class="break-all"><%= @project.design_unit %></span>
+                <span class="flex-none text-neutral-140">设计单位：&emsp;&emsp;</span>
+                <span class="break-words"><%= @project.design_unit %></span>
               </div>
             <% end %>
             <% if @project.build_unit.present? %>
               <div class="flex text-lg font-medium">
-                <span class="flex-none text-8c">开发建设单位：</span>
-                <span class="break-all"><%= @project.build_unit %></span>
+                <span class="flex-none text-neutral-140">开发建设单位：</span>
+                <span class="break-words"><%= @project.build_unit %></span>
               </div>
             <% end %>
             <% if @project.business_type.present? %>
               <div class="flex text-lg font-medium">
-                <span class="flex-none text-8c">业务类型：&emsp;&emsp;</span>
-                <span class="break-all"><%= @project.business_type %></span>
+                <span class="flex-none text-neutral-140">业务类型：&emsp;&emsp;</span>
+                <span class="break-words"><%= @project.business_type %></span>
               </div>
             <% end %>
           </div>
@@ -281,13 +281,13 @@
               <div class="text-sm font-semibold truncate" title="<%= project_case.project_name %>">
                 <%= project_case.project_name %>
               </div>
-              <div class="text-xs mt-3 truncate text-8c" title="<%= project_case.project_location %>">
+              <div class="text-xs mt-3 truncate text-neutral-140" title="<%= project_case.project_location %>">
                 <%= project_case.project_location %>
               </div>
-              <div class="text-xs mt-1 truncate text-8c" title="<%= project_case.design_unit %>">
+              <div class="text-xs mt-1 truncate text-neutral-140" title="<%= project_case.design_unit %>">
                 <%= project_case.design_unit %>
               </div>
-              <div class="text-xs mt-1 truncate text-8c">
+              <div class="text-xs mt-1 truncate text-neutral-140">
                 <%= project_case.is_th ? '内部案例' : '外部案例' %>
               </div>
             </div>

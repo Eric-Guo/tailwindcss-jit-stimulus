@@ -8,36 +8,36 @@
     </div>
     <dl class="flex-auto ml-2">
       <h3 class="text-base mb-2 font-medium"><%= text_with_default(@sample.material&.name) -%> (样品) (<%= text_with_default(@sample.material.no) %>-<%= text_with_default(@sample.no) %>)</h3>
-      <p class="text-xs break-all">样品描述：
+      <p class="text-xs break-words">样品描述：
         <span class="font-medium"><%= @sample.material_text %></span>
       </p>
-      <p class="text-xs break-all">价格：&emsp;&emsp;
+      <p class="text-xs break-words">价格：&emsp;&emsp;
         <span class="font-medium"><%= @sample.low_price -%>-<%= @sample.high_price -%>/㎡</span>
       </p>
-      <p class="text-xs break-all">产品分类：
+      <p class="text-xs break-words">产品分类：
         <a href="<%= material_path(@sample.material) %>" class="underline text-blue-400">
           <span class="font-medium"><%= @sample.material&.name -%>(<%= @sample.material&.no -%>)</span>
         </a>
       </p>
-      <p class="text-xs break-all">色系：&emsp;&emsp;
+      <p class="text-xs break-words">色系：&emsp;&emsp;
         <span class="font-medium"><%= @sample.color_str -%></span>
       </p>
-      <p class="text-xs break-all">色号：&emsp;&emsp;
+      <p class="text-xs break-words">色号：&emsp;&emsp;
         <span class="font-medium"><%= @sample.color_code.present? ? @sample.color_code : '—' -%></span>
       </p>
-      <p class="text-xs break-all">原厂型号：
+      <p class="text-xs break-words">原厂型号：
         <span class="font-medium"><%= @sample.model -%></span>
       </p>
-      <p class="text-xs break-all">产品规格：
+      <p class="text-xs break-words">产品规格：
         <span class="font-medium"><%= @sample.spec_model -%></span>
       </p>
-      <p class="text-xs break-all">效果描述：
+      <p class="text-xs break-words">效果描述：
         <span class="font-medium"><%= @sample.visual -%></span>
       </p>
-      <p class="text-xs break-all">表面效果：
+      <p class="text-xs break-words">表面效果：
         <span class="font-medium"><%= @sample.surface_effect_descriptions -%></span>
       </p>
-      <div class="text-xs break-all" data-controller="modal" data-modal-allow-background-close="true">储存位置：
+      <div class="text-xs break-words" data-controller="modal" data-modal-allow-background-close="true">储存位置：
         <a href="#" data-action="click->modal#open">
           <span class="font-medium underline"><%= @sample.position -%></span>
         </a>
@@ -67,7 +67,7 @@
           <div class="absolute top-0 left-0 w-full h-full">
             <img class="w-full h-full object-cover" src="<%= mat_img_url(other_sample.pic, "") -%>" alt="">
           </div>
-          <div class="absolute bottom-0 left-0 w-full break-all text-xs text-center p-1 black-mask text-white truncate">
+          <div class="absolute bottom-0 left-0 w-full break-words text-xs text-center p-1 black-mask text-white truncate">
             <%= other_sample.material&.name -%>
           </div>
         </a>

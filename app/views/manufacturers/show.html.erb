@@ -25,31 +25,31 @@
         </div>
         <div class="ml-5 flex-1 text-lg text-black grid grid-cols-1 gap-3">
           <div class="flex">
-            <div class="w-30 flex-none text-8c">供应商名称:</div>
+            <div class="w-30 flex-none text-neutral-140">供应商名称:</div>
             <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.name) %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none text-8c">服务区域:</div>
+            <div class="w-30 flex-none text-neutral-140">服务区域:</div>
             <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.location) %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none text-8c">网址:</div>
+            <div class="w-30 flex-none text-neutral-140">网址:</div>
             <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.website) %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none text-8c">主营材料:</div>
+            <div class="w-30 flex-none text-neutral-140">主营材料:</div>
             <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.main_materials) %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none text-8c">是否与天华合作过:</div>
+            <div class="w-30 flex-none text-neutral-140">是否与天华合作过:</div>
             <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.tho_co_str) %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none text-8c">是否愿意提供材料样品:</div>
+            <div class="w-30 flex-none text-neutral-140">是否愿意提供材料样品:</div>
             <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.offer_sample) %></div>
           </div>
           <div class="flex">
-            <div class="w-30 flex-none text-8c">主营业务:</div>
+            <div class="w-30 flex-none text-neutral-140">主营业务:</div>
             <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.main_material_remark) %></div>
           </div>
         </div>
@@ -65,7 +65,7 @@
           <div class="w-9 h-9 flex-none">
             <img class="w-full h-full object-scale-down" src="<%= image_pack_path('person.svg') %>" alt="">
           </div>
-          <div class="flex-1 ml-5 text-base w-0" style="color: black;">
+          <div class="flex-1 ml-5 text-base w-0 text-neutral-0">
             <div class="truncate" title="<%= @manufacturer.contact %>"><%= text_with_default(@manufacturer.contact) %></div>
             <div class="truncate" title="<%= @manufacturer.contact_information %>"><%= text_with_default(@manufacturer.contact_information) %></div>
           </div>
@@ -127,9 +127,9 @@
         data-controller="tabs"
         data-tabs-default-tab-name-value="<%= default_tab_name %>"
         data-tabs-tab-active-class-value="under-text-border text-black font-bold"
-        data-tabs-tab-normal-class-value="text-8c"
+        data-tabs-tab-normal-class-value="text-neutral-140"
       >
-        <div class="flex border-b-2 border-gray-100 border-solid text-8c" style="margin-top: 80px; gap: 45px;">
+        <div class="flex border-b-2 border-gray-100 border-solid text-neutral-140" style="margin-top: 80px; gap: 45px;">
           <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="materials" data-tabs-target="tab" data-action="click->tabs#activeTab">
             <span class="text-2xl ml-px mr-2">产品</span>
             <span class="text-xl font-light">Materials（<%= @materials.length %>）</span>
@@ -267,13 +267,13 @@
               <div class="text-sm font-semibold truncate" title="<%= other_manufacturer.name %>">
                 <%= other_manufacturer.name %>
               </div>
-              <div class="text-xs mt-3 truncate text-8c" title="<%= other_manufacturer.location %>">
+              <div class="text-xs mt-3 truncate text-neutral-140" title="<%= other_manufacturer.location %>">
                 服务区域: <%= text_with_default(other_manufacturer.location) %>
               </div>
-              <div class="text-xs mt-1 truncate text-8c" title="<%= other_manufacturer.contact_information %>">
+              <div class="text-xs mt-1 truncate text-neutral-140" title="<%= other_manufacturer.contact_information %>">
                 联系方式: <%= text_with_default(other_manufacturer.contact_information) %>
               </div>
-              <div class="text-xs mt-1 truncate text-8c">
+              <div class="text-xs mt-1 truncate text-neutral-140">
                 是否愿意提供材料样品: <%= text_with_default(other_manufacturer.offer_sample) %>
               </div>
             </div>
