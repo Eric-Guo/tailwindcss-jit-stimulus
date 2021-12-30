@@ -8,20 +8,21 @@ export default class extends Controller {
 
   click(e) {
     if (this.openingValue) {
-      this.close_menu();
-      this.openingValue = false;
+      this.close_menu(e);
     } else {
-      this.open_menu();
-      this.openingValue = true;
+      this.open_menu(e);
     }
+  }
+
+  open_menu(e) {
+    this.dropdownMenuTarget.classList.remove('hidden');
+    this.openingValue = false;
     e.preventDefault();
   }
 
-  open_menu() {
-    this.dropdownMenuTarget.classList.remove('hidden');
-  }
-
-  close_menu() {
+  close_menu(e) {
     this.dropdownMenuTarget.classList.add('hidden');
+    this.openingValue = true;
+    e.preventDefault();
   }
 }
