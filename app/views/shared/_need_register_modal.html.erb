@@ -1,6 +1,13 @@
 <div data-modal-target="container" data-action="click->modal#close keyup@window->modal#closeWithKeyboard" class="animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center hidden" style="z-index: 9999; background: rgba(0, 0, 0, .4);">
   <!-- Modal Inner Container -->
-  <div class="overflow-hidden bg-white text-left" style="width: 780px; border-radius: 10px;" onclick="event.stopPropagation();" data-controller="need-register">
+  <div
+    class="overflow-hidden bg-white text-left"
+    style="width: 780px; border-radius: 10px;"
+    onclick="event.stopPropagation();"
+    data-controller="need-register"
+    data-need-register-submit-path-value="<%= demand_path %>"
+    data-need-register-upload-path-value="<%= upload_file_demand_path %>"
+  >
     <div class="relative h-10 flex justify-center items-center bg-black text-lg text-white">
       <span>需求登记</span>
       <button class="absolute right-5 top-3.5 w-3 h-3 text-white" data-action="click->modal#close">
@@ -15,31 +22,26 @@
         <div class="w-0 flex-1">
           <div class="text-base">需求类型</div>
           <div class="flex flex-col items-start gap-3.5 mt-3.5 text-sm">
-            <label class="flex items-center" data-action="click->need-register#showMaterialSelector">
-              <input type="radio" name="type" class="form-input text-black transition-all duration-300" style="--tw-ring-color: transparent;">
-              <span class="ml-2.5">品类相关</span>
-            </label>
-            <label class="flex items-center" data-action="click->need-register#showMaterialSelector">
-              <input type="radio" name="type" class="form-input text-black transition-all duration-300" style="--tw-ring-color: transparent;">
-              <span class="ml-2.5">样品相关</span>
-            </label>
-            <label class="flex items-center" data-action="click->need-register#hideMaterialSelector">
-              <input type="radio" name="type" class="form-input text-black transition-all duration-300" style="--tw-ring-color: transparent;">
-              <span class="ml-2.5">项目/案例相关</span>
-            </label>
-            <label class="flex items-center" data-action="click->need-register#showMaterialSelector">
-              <input type="radio" name="type" class="form-input text-black transition-all duration-300" style="--tw-ring-color: transparent;">
-              <span class="ml-2.5">供应商相关</span>
-            </label>
+            <% Demand.cates.each do |cate| %>
+              <label class="flex items-center">
+                <input
+                  type="radio"
+                  value="<%= cate[:id] %>"
+                  name="cate"
+                  class="form-input text-black transition-all duration-300"
+                  style="--tw-ring-color: transparent;"
+                  data-materials="<%= cate[:materials].to_json %>"
+                  data-action="change->need-register#cateChange"
+                >
+                <span class="ml-2.5"><%= cate[:name] %></span>
+              </label>
+            <% end %>
           </div>
         </div>
         <div class="w-0 flex-1 hidden" data-need-register-target="materialContainer">
           <div class="text-base">材料大类</div>
           <div class="mt-3.5">
-            <select name="material" class="text-sm form-select w-40 h-9 border border-neutral-200 rounded focus:border-black transition-all duration-300" style="--tw-ring-color: rgb(16 24 32);">
-              <% Material.where(level: 1).each do |material| %>
-                <option value="<%= material.id %>"><%= material.name %></option>
-              <% end %>
+            <select name="material" class="text-sm py-0 form-select w-40 h-9 leading-8 border border-neutral-200 rounded focus:border-black transition-all duration-300" style="--tw-ring-color: rgb(16 24 32);">
             </select>
           </div>
         </div>
@@ -78,7 +80,7 @@
       </div>
     </div>
     <div class="flex justify-center gap-5 p-5 border-t" style="border-color: #EBEBEB; color: rgb(140, 140, 140);">
-      <button class="w-20 h-10 border border-neutral-200 rounded hover:border-black hover:text-black transition-all duration-300">提交</button>
+      <button class="w-20 h-10 border border-neutral-200 rounded hover:border-black hover:text-black transition-all duration-300" data-action="click->need-register#submit">提交</button>
       <button class="w-20 h-10 border border-neutral-200 rounded hover:border-black hover:text-black transition-all duration-300" data-action="click->modal#close">取消</button>
     </div>
   </div>

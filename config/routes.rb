@@ -31,6 +31,10 @@ Rails.application.routes.draw do
 
   resources :material_types, only: %i[show]
 
+  resource :demand, only: %i[create] do
+    post :upload_file
+  end
+
   resource :wechat, only: [:show, :create]
   root 'home#index'
 end
