@@ -15,7 +15,7 @@
     <% flash.each do |type, message| %>
       <% if type == "alert" %>
         <div class="w-full fixed z-50" style="background-color: #e02424">
-          <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans"><%= message %></div>
+          <div class="container px-2 mx-auto py-3 text-white text-center font-medium font-sans"><%= message %></div>
         </div>
       <% end %>
     <% end %>
@@ -28,7 +28,7 @@
       data-slideover-leave-timeout="300,0"
       data-slideover-active-target="#slideover-target">
       <%= yield %>
-      <div id="sidebar" class="fixed top-0 left-0" style="z-index: 9999;">
+      <div id="sidebar" class="fixed left-0 <%= flash.present? ? 'top-10' : 'top-0' -%>" style="z-index: 9999;">
         <div data-slideover-target="overlay" class="fixed inset-0 flex z-40 transition-opacity ease-linear duration-300 opacity-0 hidden">
           <div class="fixed inset-0">
             <div class="absolute inset-0 cursor-pointer" style="background: rgba(0, 0, 0, 0.6);" data-action="click->slideover#toggle click->sidebar-nav#reset"></div>
