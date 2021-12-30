@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class SessionsController < ApplicationController
+class SessionsController < Devise::SessionsController
   def new
+    super
   end
 
   def destroy
