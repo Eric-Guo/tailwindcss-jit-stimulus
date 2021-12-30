@@ -38,7 +38,7 @@ class ManufacturersController < ApplicationController
       end
     else
       Manufacturer.all
-    end.limit(40)
+    end
 
     manufacturer_with_materials = if mat_ids.present?
       manufacturer_with_query.includes(:materials).where(materials: { id: mat_ids.append(@selected_mat_parent_id) })
@@ -70,7 +70,7 @@ class ManufacturersController < ApplicationController
       manufacturer_has_related_cases
     end
 
-    @manufacturers = manufacturer_has_cooperate_th.limit(40)
+    @manufacturers = manufacturer_has_cooperate_th
   end
 
   def show
