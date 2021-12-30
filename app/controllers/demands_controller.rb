@@ -9,7 +9,7 @@ class DemandsController < ApplicationController
       UserName: current_user.chinese_name,
       ClerkCode: current_user.clerk_code,
       demandType: data[:cate],
-      material: data[:material],
+      material_id: data[:material],
       description: data[:description],
       references: data[:files]
     })
