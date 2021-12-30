@@ -1,5 +1,5 @@
-<header class="sticky bg-white border-b-2 border-gray-100 border-solid <%= flash.present? ? 'top-10' : 'top-0' -%>" style="z-index: 1000">
-  <nav class="flex items-center justify-center p-4 sm:px-6 lg:px-8" aria-label="Global">
+<header class="sticky bg-white border-b-2 border-gray-100 border-solid top-0" style="z-index: 1000">
+  <nav class="flex items-center justify-center px-4 sm:px-6 lg:px-8 h-16" aria-label="Global">
     <div class="w-0 flex-1 flex justify-begin">
       <%= link_to root_path, class: 'inline' do %>
         <span class="sr-only">天华</span>
@@ -12,49 +12,55 @@
     <div>
       <a href="/" class="font-medium text-black-6c" style="font-size: 26px;">天华建造研究中心 THTRI</a>
     </div>
-    <div class="w-0 flex-1 text-black-6c flex justify-end h-10" data-controller="profile-dropdown" data-profile-dropdown-opening-value="false">
+    <div class="w-0 flex-1 text-black-6c flex justify-end items-center h-full" data-controller="profile-dropdown" data-profile-dropdown-opening-value="false">
       <%= link_to search_path, class: 'mr-4' do %>
         <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
       <% end %>
-      <% if img_path = user_image_url(current_user) %>
-        <a href="<%= root_path -%>" class="flex-shrink-0 group block" data-action="click->profile-dropdown#click  mouseenter->profile-dropdown#open_menu mouseleave->profile-dropdown#close_menu">
-          <div class="flex items-center">
-            <div>
-              <img class="inline-block h-8 w-8 rounded-full" src="<%= img_path -%>" alt="">
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                <%= current_user.chinese_name %>
-              </p>
-              <p class="text-xs font-medium text-gray-600 group-hover:text-gray-900">
-                <%= current_user.position_title %>
-              </p>
+      <% if user_signed_in? %>
+        <div class="relative h-full">
+          <% img_path = user_image_url(current_user) %>
+          <div class="flex-shrink-0 group h-full flex items-center" data-action="click->profile-dropdown#click mouseenter->profile-dropdown#open_menu mouseleave->profile-dropdown#close_menu">
+            <div class="flex items-center">
+              <% if img_path.present? %>
+                <img class="inline-block h-8 w-8 rounded-full" src="<%= img_path -%>" alt="">
+              <% else %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              <% end %>
             </div>
           </div>
-        </a>
-        <div class="origin-top-right absolute right-0 mt-10 mr-8 w-32 rounded-sm shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none hidden" role="menu" data-profile-dropdown-target="dropdownMenu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" data-action="mouseenter->profile-dropdown#open_menu mouseleave->profile-dropdown#close_menu">
-          <div class="px-3 py-3" role="none">
-            <p class="text-sm" role="none">
-              已经登陆为：
-            </p>
-            <p class="text-sm font-medium text-gray-900 truncate text-right" role="none">
-              <%= current_user.chinese_name -%>
-            </p>
-          </div>
-          <div class="py-1" role="none">
-            <%= form_with url: destroy_user_session_path, method: :delete, role: 'none', remote: false, data: { turbo: false } do %>
-              <button type="submit" class="text-gray-700 block w-full text-left px-3 py-2 text-sm text-center" role="menuitem" tabindex="-1" id="menu-item-3">
-                登出
-              </button>
-            <% end %>
+          <div
+            class="origin-top-right absolute -right-1 w-32 rounded shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none hidden"
+            role="menu"
+            data-profile-dropdown-target="dropdownMenu"
+            aria-orientation="vertical"
+            aria-labelledby="menu-button"
+            tabindex="-1"
+            data-action="mouseenter->profile-dropdown#open_menu mouseleave->profile-dropdown#close_menu"
+          >
+            <div class="px-3 py-2 text-right">
+              <div class="text-black text-lg"><%= current_user.chinese_name %></div>
+              <div class="text-neutral-140 text-sm mt-2"><%= current_user.position_title %></div>
+            </div>
+            <div class="py-2" role="none">
+              <%= form_with url: destroy_user_session_path, method: :delete, role: 'none', remote: false, data: { turbo: false } do %>
+                <button type="submit" class="text-neutral-140 hover:text-black block w-full px-3 py-2 text-sm text-right" role="menuitem" tabindex="-1" id="menu-item-3">
+                  登出
+                </button>
+              <% end %>
+            </div>
           </div>
         </div>
       <% else %>
-        <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+        <a href="/auth/openid_connect" class="flex items-center" data-turbo="false">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="text-base ml-1">请登录</span>
+        </a>
       <% end %>
     </div>
   </nav>
