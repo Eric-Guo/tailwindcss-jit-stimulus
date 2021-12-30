@@ -55,7 +55,7 @@ class ProjectsController < ApplicationController
     end
 
     cases_with_project_type = if @project_type.present?
-      cases_with_location.where(project_type: @project_type)
+      cases_with_location.where('FIND_IN_SET(?,project_type)', @project_type)
     else
       cases_with_location
     end

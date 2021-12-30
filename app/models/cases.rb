@@ -37,12 +37,7 @@ class Cases < ApplicationRecord
   end
 
   def self.project_types
-    @project_type ||= where.not(project_type: nil)
-    where.not(project_type: '')
-    .order('project_type ASC')
-    .select(:project_type)
-    .distinct
-    .pluck(:project_type)
+    %w[公建 住宅]
   end
 
   # 立面控制手册
