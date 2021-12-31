@@ -70,7 +70,7 @@ class ManufacturersController < ApplicationController
       manufacturer_has_related_cases
     end
 
-    @manufacturers = manufacturer_has_cooperate_th
+    @manufacturers = manufacturer_has_cooperate_th.limit(120)
   end
 
   def show

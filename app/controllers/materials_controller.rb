@@ -68,7 +68,7 @@ class MaterialsController < ApplicationController
       materila_with_price
     end
 
-    @materials = materila_with_location
+    @materials = materila_with_location.limit(120)
   end
 
   def show
