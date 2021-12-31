@@ -18,6 +18,7 @@ class Manufacturer < ApplicationRecord
 
   def self.manufacturer_locations
     @manufacturer_locations ||= all.joins(:areas)
+      .order('manufacturer_areas.area_id')
       .distinct
       .select('areas.title area_title', 'manufacturer_areas.area_id')
   end
