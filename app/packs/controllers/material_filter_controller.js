@@ -24,8 +24,13 @@ export default class extends Controller {
   }
 
   remove(e) {
-    const check_box = document.getElementById(e.target.dataset.checkId);
-    check_box.checked = false;
+    const check_id = e.target.dataset.checkId;
+    const check_box = document.getElementById(check_id);
+    if (check_box.tagName == "SELECT") {
+      check_box.selectedIndex = -1;
+    } else {
+      check_box.checked = false;
+    }
     const form = document.getElementById('material-form');
     form.submit();
   }
