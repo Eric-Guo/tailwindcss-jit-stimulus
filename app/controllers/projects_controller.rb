@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
       end
     else
       Cases.all
-    end.select('cases.id, cases.is_th, cases.web_cover, cases.project_name, cases.project_location')
+    end.select('cases.id, cases.is_th, cases.web_cover, cases.project_name, cases.project_location, cases.area_id')
 
     cases_with_materials = if mat_ids.present?
       cases_with_query.includes(:case_materials).where(case_materials: { material_id: mat_ids.append(@selected_mat_parent_id) })
