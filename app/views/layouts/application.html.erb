@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
-    <title>天华材料库</title>
+    <title>天华建造研究中心 THTRI</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="天华材料库">
-    <%= stylesheet_pack_tag 'application', "data-turbo-track" => "reload" %>
+    <meta name="description" content="请PC电脑端打开，移动端开发中">
+    <%= stylesheet_pack_tag 'application', media: "all", "data-turbo-track" => "reload" %>
     <%= javascript_pack_tag "application", "data-turbo-track" => "reload" %>
   </head>
   <body class="w-full flex flex-col text-black min-h-screen <%= @browser.mobile? ? 'bg-gray-200' : 'bg-white' -%>" data-controller="app">
@@ -43,7 +43,7 @@
               </button>
               <%# 一级菜单 %>
               <nav class="sidebar-nav">
-                <% @sidebar_nav.each do |navItem| %>
+                <% @sidebar_nav&.each do |navItem| %>
                   <div class="flex justify-between items-center sidebar-nav-item pl-1 pr-4" data-sidebar-nav-target="nav1Item" data-action="click->sidebar-nav#nav1ItemClick" data-children="<%= navItem[:children].to_json %>">
                     <div class="sidebar-nav-item-content truncate">
                       <% if navItem[:url].present? %>
@@ -69,6 +69,7 @@
                     <% end %>
                   </div>
                 <% end %>
+                <% unless visitor_signed_in? %>
                 <div class="flex justify-between items-center sidebar-nav-item pl-1 pr-4">
                   <div class="sidebar-nav-item-content truncate">
                     <% if user_signed_in? %>
@@ -86,6 +87,7 @@
                     <% end %>
                   </div>
                 </div>
+                <% end %>
               </nav>
               <div class="sidebar-border"></div>
               <div class="absolute text-white text-sm" style="left: 40px; bottom: 40px;">
@@ -127,7 +129,7 @@
       <footer class="bg-gray-800 text-white text-xs p-4">
         <p class="my-1">联系我们：建筑委</p>
         <p class="my-1">电话：<%= @footer_info[:phone_number] %> 邮箱：<%= @footer_info[:email] %></p>
-        <p class="mb-1 mt-4">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</p>
+        <p class="mb-1 mt-4">©2021 TIANHUA | 由 天华集团运营与信息化部 提供技术服务</p>
         <p class="my-1">友情链接：
           <% @footer_info[:links].each do |link| %>
             <a href="<%= link[:url] %>" target="_blank" class="mx-1"><%= link[:title] %></a>
@@ -142,12 +144,15 @@
             <p>电话：<%= @footer_info[:phone_number] %> 邮箱：<%= @footer_info[:email] %></p>
           </div>
           <div>
-            <a href="#" class="font-medium">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</a>
+            <a href="#" class="font-medium">©2021 TIANHUA | 由 天华集团运营与信息化部 提供技术服务</a>
           </div>
-          <div class="w-0 flex-1 flex justify-end gap-4">
-            <div>友情链接:</div>
-            <% @footer_info[:links].each do |link| %>
+          <div class="w-0 flex-1 flex justify-end items-center">
+            <div>友情链接：</div>
+            <% @footer_info[:links].each_with_index do |link, index| %>
               <a href="<%= link[:url] %>" target="_blank"><%= link[:title] %></a>
+              <% unless index === @footer_info[:links].length - 1 %>
+                <span>&nbsp;|&nbsp;</span>
+              <% end %>
             <% end %>
           </div>
         </nav>
