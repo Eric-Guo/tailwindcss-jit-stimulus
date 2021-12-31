@@ -33,6 +33,7 @@ class Cases < ApplicationRecord
   def self.project_locations
     @project_locations ||= all.joins(:area)
       .where('areas.area_id = 0')
+      .order('areas.id')
       .distinct
       .select('areas.title area_title', 'area_id')
   end
