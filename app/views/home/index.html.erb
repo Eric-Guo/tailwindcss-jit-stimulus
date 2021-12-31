@@ -326,7 +326,7 @@
           </p>
           <div class="flex flex-row items-center justify-center">
             <p class="text-sm leading-tight flex-1 truncate" title="<%= project_case.home_top_case&.material_tags&.join(' | ') -%>"><%= text_with_default(project_case.home_top_case&.material_tags&.join(' | ')) %></p>
-            <p class="text-sm flex-none"><%= text_with_default(project_case.home_top_case&.project_type) %></p>
+            <p class="text-sm flex-none"><%= text_with_default(project_case.home_top_case&.is_th_str) %></p>
           </div>
         </div>
       </div>

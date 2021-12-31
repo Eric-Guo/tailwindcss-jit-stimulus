@@ -9,7 +9,7 @@ class Cases < ApplicationRecord
   has_many :case_samples, -> { where(type_id: 1) }, class_name: 'CasesMaterial', foreign_key: :case_id
   has_many :materials, through: :case_materials
   has_many :samples, through: :case_samples
-  belongs_to :area
+  belongs_to :area, optional: true
 
   default_scope { where(deleted_at: nil).where(display: 1) }
 
@@ -86,8 +86,13 @@ class Cases < ApplicationRecord
     end
   end
 
-  # 项目类型
-  def project_type
+  # 项目地区
+  def project_location
+    area&.title
+  end
+
+  # 是否天华项目
+  def is_th_str
     if is_th
       '内部项目'
     else
