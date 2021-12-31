@@ -6,11 +6,10 @@ export default class extends Controller {
     const needRegisterModalElem = modalElems.find(elem => elem.dataset.controller.includes('need-register'));
     if (needRegisterModalElem) {
       const slideoverElems = Array.from(document.querySelectorAll('[data-controller*="slideover"]'));
-      console.log(slideoverElems);
       modalElems.forEach(elem => {
         if (elem !== needRegisterModalElem) {
           const modalController = this.application.getControllerForElementAndIdentifier(elem, 'modal');
-          if (modalController) modalController.close();
+          if (modalController && modalController.containerTarget) modalController.close();
         }
       });
       slideoverElems.forEach(elem => {
@@ -18,7 +17,7 @@ export default class extends Controller {
         if (slideoverController) slideoverController.openValue = false;
       });
       const needRegisterModalController = this.application.getControllerForElementAndIdentifier(needRegisterModalElem, 'modal');
-      if (needRegisterModalController) needRegisterModalController.open(e);
+      if (needRegisterModalController && needRegisterModalController.containerTarget) needRegisterModalController.open(e);
     }
   }
 }
