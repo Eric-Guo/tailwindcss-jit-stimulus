@@ -47,26 +47,9 @@
     <div class="w-80"></div>
     <div class="grid grid-flow-row grid-cols-6 w-full">
       <% @material_types.each_with_index do |material_type, index| %>
-        <turbo-frame id="<%= dom_id(material_type) -%>">
-          <div class="my-4 <%= material_type.id == @selected_mat_parent_id ? 'font-bold' : '' -%>" data-news-filter-target="matTypeLink">
-            <%= link_to material_type.name, material_type_path(id: material_type.id, from: 'news'), data: { action: 'click->news-filter#clean_active' } -%>
-          </div>
-        </turbo-frame>
+        <%= render partial: 'material_item', locals: { material: material_type, checked: @selected_mats.pluck(:id).include?(material_type.id) } %>
       <% end %>
     </div>
-  </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'material' ? '' : 'hidden' -%>" data-news-filter-target="materialDetailDiv">
-    <div class="w-80">
-      <div class="my-4 ml-8 flex items-start">
-        <input id="checkbox-select-material-all" data-news-filter-target="selectAllMaterials" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->news-filter#select_all_materials" <%= @selected_all_materials ? 'checked' : '' -%>>
-        <label for="checkbox-select-material-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
-      </div>
-    </div>
-    <turbo-frame id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1">
-      <% @all_materials.each do |material| %>
-        <%= render partial: 'material_item', locals: { material: material, checked: @selected_mats.pluck(:id).include?(material.id) } %>
-      <% end %>
-    </turbo-frame>
   </div>
 <% end %>
 
