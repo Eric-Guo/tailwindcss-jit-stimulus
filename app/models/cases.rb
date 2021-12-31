@@ -14,7 +14,7 @@ class Cases < ApplicationRecord
   default_scope { where(deleted_at: nil).where(display: 1) }
 
   def project_name_and_location
-    [self.project_name, self.project_location.gsub('上海市','')].select { |str| str.present? }.join('/')
+    [self.project_name, self.project_location&.gsub('上海市','')].select { |str| str.present? }.join('/')
   end
 
   def material_tags
