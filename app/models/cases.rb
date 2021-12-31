@@ -79,11 +79,9 @@ class Cases < ApplicationRecord
 
   # 详情链接
   def detail_url
-    if is_th
-      jzw_url
-    else
-      cl_online_id.present? ? "http://www.clzx.net/case/#{cl_online_id}" : nil
-    end
+    return jzw_url if is_th && (zz_online_id == 0 || zz_online_id == nil)
+    return "http://www.clzx.net/case/#{cl_online_id}" if !is_th && cl_online_id > 0
+    return nil
   end
 
   # 项目地区
