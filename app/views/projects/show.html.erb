@@ -155,6 +155,18 @@
                     <span class="truncate" title="<%= case_material.material.surface_effect_descriptions %>"><%= case_material.material.surface_effect_descriptions %></span>
                   </div>
                 <% end %>
+                <% if case_material.effect_description.present? %>
+                  <div class="flex justify-between">
+                    <span class="whitespace-nowrap mr-2">效果描述:&emsp;</span>
+                    <span class="truncate" title="<%= case_material.effect_description %>"><%= case_material.effect_description %></span>
+                  </div>
+                <% end %>
+                <% if case_material.treatment_process.present? %>
+                  <div class="flex justify-between">
+                    <span class="whitespace-nowrap mr-2">处理工艺:&emsp;</span>
+                    <span class="truncate" title="<%= case_material.treatment_process %>"><%= case_material.treatment_process %></span>
+                  </div>
+                <% end %>
                 <% if case_material.spec_model.present? %>
                   <div class="flex justify-between">
                     <span class="whitespace-nowrap mr-2">规格/型号:&ensp;&nbsp;</span>
