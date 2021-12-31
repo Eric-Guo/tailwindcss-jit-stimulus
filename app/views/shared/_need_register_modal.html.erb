@@ -1,87 +1,92 @@
-<div data-modal-target="container" data-action="click->modal#close keyup@window->modal#closeWithKeyboard" class="animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center hidden" style="z-index: 9999; background: rgba(0, 0, 0, .4);">
-  <!-- Modal Inner Container -->
-  <div
-    class="overflow-hidden bg-white text-left rounded-2.5"
-    style="width: 780px;"
-    onclick="event.stopPropagation();"
-    data-controller="need-register"
-    data-need-register-submit-path-value="<%= demand_path %>"
-    data-need-register-upload-path-value="<%= upload_file_demand_path %>"
-  >
-    <div class="relative h-10 flex justify-center items-center bg-black text-lg text-white">
-      <span>需求登记</span>
-      <button class="absolute right-5 top-3.5 w-3 h-3 text-white" data-action="click->modal#close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-          <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-        </svg>
-      </button>
-    </div>
-    <div class="p-5">
-      <div class="flex gap-10">
-        <div class="w-0 flex-1">
-          <div class="text-base">需求类型</div>
-          <div class="flex flex-col items-start gap-3.5 mt-3.5 text-sm">
-            <% Demand.cates.each do |cate| %>
-              <label class="flex items-center">
-                <input
-                  type="radio"
-                  value="<%= cate[:id] %>"
-                  name="cate"
-                  class="form-input text-black transition-all duration-300"
-                  style="--tw-ring-color: transparent;"
-                  data-materials="<%= cate[:materials].to_json %>"
-                  data-action="change->need-register#cateChange"
-                >
-                <span class="ml-2.5"><%= cate[:name] %></span>
-              </label>
-            <% end %>
-          </div>
-        </div>
-        <div class="w-0 flex-1 hidden" data-need-register-target="materialContainer">
-          <div class="text-base">材料大类</div>
-          <div class="mt-3.5">
-            <select name="material" class="text-sm py-0 form-select w-40 h-9 leading-8 border border-neutral-200 rounded focus:border-black transition-all duration-300" style="--tw-ring-color: rgb(16 24 32);">
-            </select>
-          </div>
-        </div>
+<div
+  data-controller="modal need-register"
+  data-modal-allow-background-close="true"
+  data-modal-disable-backdrop="true"
+  data-need-register-submit-path-value="<%= demand_path %>"
+  data-need-register-upload-path-value="<%= upload_file_demand_path %>"
+>
+  <div data-modal-target="container" data-action="click->modal#close keyup@window->modal#closeWithKeyboard" class="animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center hidden" style="z-index: 9999; background: rgba(0, 0, 0, .4);">
+    <!-- Modal Inner Container -->
+    <div
+      class="overflow-hidden bg-white text-left rounded-2.5"
+      style="width: 780px;"
+      onclick="event.stopPropagation();"
+    >
+      <div class="relative h-10 flex justify-center items-center bg-black text-lg text-white">
+        <span>需求登记</span>
+        <button class="absolute right-5 top-3.5 w-3 h-3 text-white" data-action="click->modal#close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+          </svg>
+        </button>
       </div>
-      <div class="flex gap-10 mt-5">
-        <div class="w-0 flex-1">
-          <div class="text-base"><span class="text-red">*</span>具体描述</div>
-          <div class="mt-3.5" style="height: 110px;">
-            <textarea
-              name="description"
-              placeholder="“如图屋瓦，需要寄样板，选完推荐给甲方”&#13;&#10;“项目急需类似绩溪博物馆的白色质感涂料”&#13;&#10;“这种（图片）材料是什么？”&#13;&#10;“有更多陶板的供应商吗？”"
-              class="w-full h-full border border-neutral-200 rounded focus:border-black resize-none text-sm placeholder:text-neutral-300 transition-all duration-300"
-              style="--tw-ring-color: rgb(16 24 32);"
-            ></textarea>
-          </div>
-        </div>
-        <div class="w-0 flex-1">
-          <input type="file" class="hidden" data-need-register-target="fileInput" data-action="change->need-register#fileInputChange">
-          <div class="text-base flex items-center">
-            <span>相关参考</span>
-            <button class="w-4 h-4 text-neutral-200 hover:text-black transition-all duration-300 ml-2.5 hidden" data-need-register-target="uploadButton1" data-action="click->need-register#fileInputClick">
-              <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-              </svg>
-            </button>
-          </div>
-          <div class="mt-3.5 border border-neutral-200 rounded text-sm" style="height: 110px;">
-            <div class="w-full h-full flex justify-center items-center text-neutral-140" data-need-register-target="uploadButton2Container">
-              <button class="underline" data-need-register-target="uploadButton2" data-action="click->need-register#fileInputClick">点击上传</button>
+      <div class="p-5">
+        <div class="flex gap-10">
+          <div class="w-0 flex-1">
+            <div class="text-base">需求类型</div>
+            <div class="flex flex-col items-start gap-3.5 mt-3.5 text-sm">
+              <% Demand.cates.each do |cate| %>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    value="<%= cate[:id] %>"
+                    name="cate"
+                    class="form-input text-black transition-all duration-300"
+                    style="--tw-ring-color: transparent;"
+                    data-materials="<%= cate[:materials].to_json %>"
+                    data-action="change->need-register#cateChange"
+                  >
+                  <span class="ml-2.5"><%= cate[:name] %></span>
+                </label>
+              <% end %>
             </div>
-            <div class="w-full h-full p-2.5 overflow-auto hidden" data-need-register-target="filesContainer">
+          </div>
+          <div class="w-0 flex-1 hidden" data-need-register-target="materialContainer">
+            <div class="text-base">材料大类</div>
+            <div class="mt-3.5">
+              <select name="material" class="text-sm py-0 form-select w-40 h-9 leading-8 border border-neutral-200 rounded focus:border-black transition-all duration-300" style="--tw-ring-color: rgb(16 24 32);">
+              </select>
             </div>
           </div>
         </div>
+        <div class="flex gap-10 mt-5">
+          <div class="w-0 flex-1">
+            <div class="text-base"><span class="text-red">*</span>具体描述</div>
+            <div class="mt-3.5" style="height: 110px;">
+              <textarea
+                name="description"
+                placeholder="“如图屋瓦，需要寄样板，选完推荐给甲方”&#13;&#10;“项目急需类似绩溪博物馆的白色质感涂料”&#13;&#10;“这种（图片）材料是什么？”&#13;&#10;“有更多陶板的供应商吗？”"
+                class="w-full h-full border border-neutral-200 rounded focus:border-black resize-none text-sm placeholder:text-neutral-300 transition-all duration-300"
+                style="--tw-ring-color: rgb(16 24 32);"
+              ></textarea>
+            </div>
+          </div>
+          <div class="w-0 flex-1">
+            <input type="file" class="hidden" data-need-register-target="fileInput" data-action="change->need-register#fileInputChange">
+            <div class="text-base flex items-center">
+              <span>相关参考</span>
+              <button class="w-4 h-4 text-neutral-200 hover:text-black transition-all duration-300 ml-2.5 hidden" data-need-register-target="uploadButton1" data-action="click->need-register#fileInputClick">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="mt-3.5 border border-neutral-200 rounded text-sm" style="height: 110px;">
+              <div class="w-full h-full flex justify-center items-center text-neutral-140" data-need-register-target="uploadButton2Container">
+                <button class="underline" data-need-register-target="uploadButton2" data-action="click->need-register#fileInputClick">点击上传</button>
+              </div>
+              <div class="w-full h-full p-2.5 overflow-auto hidden" data-need-register-target="filesContainer">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="flex justify-center gap-5 p-5 border-t text-neutral-140 border-neutral-235">
-      <button class="w-20 h-10 border border-neutral-200 rounded hover:border-black hover:text-black transition-all duration-300" data-action="click->need-register#submit">提交</button>
-      <button class="w-20 h-10 border border-neutral-200 rounded hover:border-black hover:text-black transition-all duration-300" data-action="click->modal#close">取消</button>
+      <div class="flex justify-center gap-5 p-5 border-t text-neutral-140 border-neutral-235">
+        <button class="w-20 h-10 border border-neutral-200 rounded hover:border-black hover:text-black transition-all duration-300" data-action="click->need-register#submit">提交</button>
+        <button class="w-20 h-10 border border-neutral-200 rounded hover:border-black hover:text-black transition-all duration-300" data-action="click->modal#close">取消</button>
+      </div>
     </div>
   </div>
 </div>
