@@ -8,17 +8,12 @@ class NewsController < ApplicationController
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
     @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(id: :asc)
-    mat_ids = (params[:ms].presence || []).reject(&:blank?)
-    @selected_mats = if mat_ids.present?
-      Material.where(id: mat_ids)
+    @selected_material_type_ids = (params[:ms].presence || []).reject(&:blank?)
+    @selected_mats = if @selected_material_type_ids.present?
+      Material.where(id: @selected_material_type_ids)
     else
       Material.none
     end
-    @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
-
-    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
-    @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
-    @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
     news_with_query = if @q.present?
       mat_q_ids = q_return_mat_ids(@q)
@@ -31,8 +26,8 @@ class NewsController < ApplicationController
       News.all
     end
 
-    news_with_materials = if mat_ids.present?
-      news_with_query.joins(:news_materials).where(news_materials: { material_id: mat_ids.append(@selected_mat_parent_id) })
+    news_with_materials = if @selected_material_type_ids.present?
+      news_with_query.joins(:news_materials).where(news_materials: { material_id: @selected_material_type_ids })
     else
       news_with_query
     end
