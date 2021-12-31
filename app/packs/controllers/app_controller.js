@@ -2,10 +2,10 @@ import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
   openNeedRegisterModal(e) {
-    const modalElems = Array.from(document.querySelectorAll('[data-controller*="modal"]'));
+    const modalElems = Array.from(document.querySelectorAll('[data-controller~="modal"]'));
     const needRegisterModalElem = modalElems.find(elem => elem.dataset.controller.includes('need-register'));
     if (needRegisterModalElem) {
-      const slideoverElems = Array.from(document.querySelectorAll('[data-controller*="slideover"]'));
+      const slideoverElems = Array.from(document.querySelectorAll('[data-controller~="slideover"]'));
       modalElems.forEach(elem => {
         if (elem !== needRegisterModalElem) {
           const modalController = this.application.getControllerForElementAndIdentifier(elem, 'modal');
