@@ -84,7 +84,7 @@ class ProjectsController < ApplicationController
       cases_has_demonstration
     end
 
-    @cases = cases_is_th_internal
+    @cases = cases_is_th_internal.limit(120)
     @material_in_cases = CasesMaterial.joins(:material).where(case_id: @cases.collect(&:id)).pluck('case_id, materials.name')
   end
 

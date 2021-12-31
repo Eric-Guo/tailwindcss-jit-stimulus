@@ -24,6 +24,9 @@
     <% if @color_system.present? %>
       <%= render partial: 'search_item', locals: { name: "色系：#{@color_system.description}", check_id: 'sel-color-system' } %>
     <% end %>
+    <% if @area_id.present? %>
+      <%= render partial: 'search_item', locals: { name: "产地：#{Area.find(@area_id).title}", check_id: 'sel-place-of-origin' } %>
+    <% end %>
   </div>
   <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
     <div class="flex flex-row w-1/3 p-1">
