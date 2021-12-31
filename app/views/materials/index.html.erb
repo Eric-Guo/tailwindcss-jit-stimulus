@@ -24,6 +24,12 @@
     <% if @color_system.present? %>
       <%= render partial: 'search_item', locals: { name: "色系：#{@color_system.description}", check_id: 'sel-color-system' } %>
     <% end %>
+    <% if @price_start.present? %>
+      <%= render partial: 'search_item', locals: { name: "不低于：#{@price_start}", check_id: 'txt-price-start' } %>
+    <% end %>
+    <% if @price_end.present? %>
+      <%= render partial: 'search_item', locals: { name: "不高于：#{@price_end}", check_id: 'txt-price-end' } %>
+    <% end %>
     <% if @area_id.present? %>
       <%= render partial: 'search_item', locals: { name: "产地：#{Area.find(@area_id).title}", check_id: 'sel-place-of-origin' } %>
     <% end %>
@@ -86,7 +92,7 @@
       </div>
       <div class="my-2.5 flex items-start col-span-2">
         <label for="text-price-range" class="text-gray-700 mt-px">价格区间</label>
-        <%= number_field_tag 'price_start', @price_start, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-24' -%><span class="text-gray-300">&nbsp; —— &nbsp;</span><%= number_field_tag 'price_end', @price_end, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-24' -%>
+        <%= number_field_tag 'price_start', @price_start, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-24', id: 'txt-price-start' -%><span class="text-gray-300">&nbsp; —— &nbsp;</span><%= number_field_tag 'price_end', @price_end, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-24', id: 'txt-price-end' -%>
       </div>
       <div class="my-2.5 flex items-start">
         <label for="sel-place-of-origin" class="text-gray-700 mt-px">产地</label>
