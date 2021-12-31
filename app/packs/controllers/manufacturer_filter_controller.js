@@ -26,14 +26,13 @@ export default class extends Controller {
     }
   }
 
-  disconnect() {
-  }
-
   remove(e) {
     const check_id = e.target.dataset.checkId;
     const check_box = document.getElementById(check_id);
     if (check_box.tagName == "SELECT") {
       check_box.selectedIndex = -1;
+    } else if (check_box.tagName == "INPUT") {
+      check_box.value = "";
     } else {
       check_box.checked = false;
     }
