@@ -1,6 +1,9 @@
 {
   "name": "tailwind-jit",
   "private": true,
+  "scripts": {
+    "postinstall": "patch-package"
+  },
   "dependencies": {
     "@fontsource/montserrat": "^4.5.1",
     "@fullhuman/postcss-purgecss": "^4.1.3",
