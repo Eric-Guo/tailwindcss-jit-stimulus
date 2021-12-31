@@ -4,11 +4,10 @@
     <div>1、搜索更短、更简单的条目。</div>
     <div>2、扩大搜索范围，选择更笼统的关键词。</div>
     <div>3、搜索材料的其他名称。</div>
-    <div data-controller="modal" data-modal-allow-background-close="true" data-modal-disable-backdrop="true">
+    <div>
       <span>如果您的需求依然无法被满足，请在</span>
-      <button class="text-black underline" data-action="click->modal#open">此处</button>
+      <button class="text-black underline" data-action="click->app#openNeedRegisterModal">此处</button>
       <span>反馈给我们，我们将尽力解决。</span>
-      <%= render 'shared/need_register_modal' %>
     </div>
   </div>
 </div>

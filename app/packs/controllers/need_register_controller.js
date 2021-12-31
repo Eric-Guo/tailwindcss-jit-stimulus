@@ -11,11 +11,7 @@ export default class extends Controller {
   modalController = null
 
   connect() {
-    const modalElems = Array.from(document.querySelectorAll('[data-controller*="modal"]'));
-    const modalElem = modalElems.find(item => item.contains(this.element));
-    if (modalElem) {
-      this.modalController = this.application.getControllerForElementAndIdentifier(modalElem, 'modal');
-    }
+    this.modalController = this.application.getControllerForElementAndIdentifier(this.element, 'modal');
   }
 
   fileInputClick() {

@@ -11,7 +11,7 @@
     <%= stylesheet_pack_tag 'application', media: "all", "data-turbo-track" => "reload" %>
     <%= javascript_pack_tag "application", "data-turbo-track" => "reload" %>
   </head>
-  <body class="w-full flex flex-col text-black min-h-screen <%= @browser.mobile? ? 'bg-gray-200' : 'bg-white' -%>">
+  <body class="w-full flex flex-col text-black min-h-screen <%= @browser.mobile? ? 'bg-gray-200' : 'bg-white' -%>" data-controller="app">
     <% flash.each do |type, message| %>
       <% if type == "alert" %>
         <div class="w-full fixed z-50 hidden" style="background-color: #e02424">
@@ -69,15 +69,10 @@
                     <% end %>
                   </div>
                 <% end %>
-                <div
-                  class="flex justify-between items-center sidebar-nav-item pl-1 pr-4 hidden"
-                  data-controller="modal"
-                  data-modal-allow-background-close="true"
-                  data-modal-disable-backdrop="true"
-                >
+                <div class="flex justify-between items-center sidebar-nav-item pl-1 pr-4">
                   <div class="sidebar-nav-item-content truncate">
                     <% if user_signed_in? %>
-                      <span class="relative" title="需求登记 Your Demand">
+                      <span class="relative" title="需求登记 Your Demand" data-action="click->app#openNeedRegisterModal">
                         <span class="text-2xl">需求登记</span>
                         <span class="text-lg">Your Demand</span>
                         <span class="sidebar-nav-text-underline"></span>
@@ -158,5 +153,6 @@
         </nav>
       </footer>
     <% end %>
+    <%= render 'shared/need_register_modal' %>
   </body>
 </html>

@@ -1,9 +1,8 @@
 <div class="mx-auto my-14 flex flex-col justify-center items-center text-sm text-neutral-140 leading-6 bg-neutral-100 border border-neutral-235 rounded-2.5" style="width: 620px; height: 120px;">
   <div>暂无筛选结果</div>
-  <div data-controller="modal" data-modal-allow-background-close="true" data-modal-disable-backdrop="true">
+  <div>
     <span>请尝试更换选项，或将需求在</span>
-    <button class="text-black underline" data-action="click->modal#open">此处</button>
+    <button class="text-black underline" data-action="click->app#openNeedRegisterModal">此处</button>
     <span>反应给我们。</span>
-    <%= render 'shared/need_register_modal' %>
   </div>
 </div>
