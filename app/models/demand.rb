@@ -31,8 +31,11 @@ class Demand
     }
   end
 
-  def self.submit(data)
-    response = HTTP.post("https://matlib.thape.com.cn/api/demands", json: data)
+  def self.submit(data, ip)
+    response = HTTP.headers({
+      'X-Forwarded-For': ip,
+      'X-Real-IP': ip,
+    }).post("https://matlib.thape.com.cn/api/demands", json: data)
     body = JSON.parse(response.body.to_s)
     {
       code: body['code'],

@@ -12,7 +12,7 @@ class DemandsController < ApplicationController
       material_id: data[:material].to_i,
       description: data[:description],
       references: data[:files]
-    })
+    }, request.remote_ip)
     render json: res
   end
 
