@@ -55,7 +55,7 @@
     </div>
     <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->manufacturer-filter#expend_area">
       <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
-        <span class="<%= @panel_name == 'area' ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-manufacturer-filter-target="areaSpan">所在地区</span>
+        <span class="<%= @panel_name == 'area' ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-manufacturer-filter-target="areaSpan">服务区域</span>
       </p>
       <svg data-manufacturer-filter-target="areaIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path fill="currentColor" d="<%= @panel_name == 'area' ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
