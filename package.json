@@ -29,6 +29,8 @@
   "version": "0.1.0",
   "devDependencies": {
     "@webpack-cli/serve": "^1.6.0",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "webpack-dev-server": "^4.7.1"
   },
   "babel": {
