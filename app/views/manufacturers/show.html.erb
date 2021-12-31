@@ -162,7 +162,7 @@
                     <%= text_with_default(project_case.project_name_and_location) -%>
                   </p>
                   <p class="text-xs text-gray-400 flex-none ml-3">
-                    <%= text_with_default(project_case.project_type) %>
+                    <%= text_with_default(project_case.is_th_str) %>
                   </p>
                 </div>
                 <p class="text-sm font-medium truncate" title="<%= project_case.material_tags.join(' | ') -%>"><%= text_with_default(project_case.material_tags.join(' | ')) %></p>
