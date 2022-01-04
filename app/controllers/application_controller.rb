@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :set_tree_materials
   before_action :set_sidebar_nav
   before_action :set_footer_info
+  after_action :record_user_view_history
 
   protected
 
@@ -36,11 +37,15 @@ class ApplicationController < ActionController::Base
         Current.user = User.find_by wecom_id: user_name
         Current.user = User.find_by email: "#{user_name}@thape.com.cn" if Current.user.blank?
         if Current.user.present?
-          return
+          sign_in Current.user
         else
           return redirect_to root_path
         end
-      end unless Current.user.present? || request.path == '/'
+      end unless current_user.present? || request.path == '/'
+    end
+
+    def record_user_view_history
+      ReportViewHistory.create(controller_name: controller_path, action_name: action_name, clerk_code: current_user&.clerk_code)
     end
 
     def set_ie_warning
