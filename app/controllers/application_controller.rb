@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
 
     def record_user_view_history
       ReportViewHistory.create(controller_name: controller_path, action_name: action_name,
-        clerk_code: current_user&.clerk_code, request_path: request.path)
+        clerk_code: current_user&.clerk_code, request_path: request.fullpath)
     end
 
     def set_ie_warning
