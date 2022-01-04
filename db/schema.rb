@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_083026) do
+ActiveRecord::Schema.define(version: 2022_01_04_085825) do
 
   create_table "aq_manufacturers", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.datetime "created_at"
@@ -600,6 +600,7 @@ ActiveRecord::Schema.define(version: 2022_01_04_083026) do
     t.string "action_name"
     t.string "clerk_code"
     t.datetime "created_at", precision: 6, null: false
+    t.text "request_path"
   end
 
   create_table "sample", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
