@@ -1,0 +1,2 @@
+class ReportViewHistory < ApplicationRecord
+end
