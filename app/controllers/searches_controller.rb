@@ -43,7 +43,7 @@ class SearchesController < ApplicationController
     def set_data_and_count_hash
       @material_samples = if @q.present?
         MaterialAndSample.where('material_level IN (2,3)')
-          .where('material_no = :no OR material_name LIKE :keywords OR parent_material_name LIKE :keywords OR grandpa_material_name LIKE :keywords', no: @q, keywords: "%#{@q}%")
+          .where('material_no LIKE :keywords OR material_name LIKE :keywords OR parent_material_name LIKE :keywords OR grandpa_material_name LIKE :keywords', keywords: "%#{@q}%")
       else
         MaterialAndSample.none
       end

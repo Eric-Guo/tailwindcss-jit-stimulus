@@ -33,7 +33,7 @@ class MaterialsController < ApplicationController
         Material.where(id: mat_q_ids)
       else
         Material.left_joins(:samples).includes(:samples).where('materials.level <> 1')
-          .where('materials.no = ? OR materials.name LIKE ? OR sample.genus LIKE ? OR sample.species LIKE ?', @q, "%#{@q}%", "%#{@q}%", "%#{@q}%").distinct
+          .where('materials.no LIKE ? OR materials.name LIKE ? OR sample.genus LIKE ? OR sample.species LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").distinct
       end
     else
       Material.where('materials.level <> 1')
