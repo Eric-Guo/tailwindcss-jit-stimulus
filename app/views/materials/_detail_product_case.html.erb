@@ -1,34 +1,64 @@
 <%# 产品案例 %>
-<% cases = material.parent_material&.cases&.limit(6) %>
-<% if cases.present? %>
-  <div class="mt-20">
+<% if material.cases.present? %>
+  <div
+    class="mt-20"
+    data-controller="material-carousel picture-viewer"
+    data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
+    data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
+    data-material-carousel-duration-value="0.5"
+  >
     <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
       <div>
         <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem"><%= material.parent_material.name.strip %>案例</span>
         <span class="text-xl font-light">Projects</span>
       </div>
-      <a class="more-btn hidden" href="<%= root_path -%>">MORE+</a>
+      <% if material.cases.length > 3 %>
+        <div class="flex flex-row gap-2">
+          <div class="circle-arrow1 w-5 h-5 cursor-pointer" data-action="click->material-carousel#toPrev">
+            <svg class="-ml-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="6.2" height="10.5" viewBox="0 0 9.062 16.125">
+              <path d="M564.707,561.636L558.343,568l6.364,6.364a1,1,0,0,1-1.414,1.414l-7.071-7.071a1,1,0,0,1,0-1.414l7.071-7.071A1,1,0,0,1,564.707,561.636Z" transform="translate(-555.938 -559.938)"/>
+            </svg>
+          </div>
+          <div class="circle-arrow1 w-5 h-5 cursor-pointer" data-action="click->material-carousel#toNext">
+            <svg class="-mr-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="6.2" height="10.5" viewBox="0 0 9 16">
+              <path d="M556.291,561.685l6.32,6.315-6.32,6.315a0.992,0.992,0,0,0,1.4,1.4l7.023-7.016a0.994,0.994,0,0,0,0-1.4l-7.023-7.016A0.992,0.992,0,0,0,556.291,561.685Z" transform="translate(-556 -560)"/>
+            </svg>
+          </div>
+        </div>
+      <% end %>
     </div>
 
-    <div class="grid grid-cols-3 gap-1.5 mt-4">
-      <% cases.each do |project_case| %>
-        <a class="bg-cover bg-center bg-no-repeat flex flex-col" style="height: 296px; background-image: url('<%= mat_img_url(project_case.web_cover) %>');" href="<%= project_path(project_case) %>">
-          <div class="flex flex-row p-2.5 justify-end gap-1">
-            <% project_case.material_tags.each do |name| %>
-              <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2"><%= name %></div>
-            <% end %>
-          </div>
-          <div class="mt-auto h-20 pl-4 pr-5 pb-2.5 flex flex-row items-end black-mask">
-            <div class="text-white flex-1 w-0">
-              <div class="truncate" title="<%= project_case.project_name_and_location -%>">
-                <span class="text-lg"><%= text_with_default(project_case.project_name_and_location) -%></span>
+    <div class="relative overflow-hidden mt-4" style="height: 296px;">
+      <% for i in 0...(material.cases.length.to_f / 3).ceil %>
+        <div class="absolute top-0 left-0 w-full h-full grid grid-cols-3 grid-rows-1 gap-1.5" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+          <% list = material.cases.slice(i * 3, (i + 1) * 3) %>
+          <% list.each do |project_case| %>
+            <a class="bg-cover bg-center bg-no-repeat flex flex-col" style="height: 296px; background-image: url('<%= mat_img_url(project_case.web_cover) %>');" href="<%= project_path(project_case) %>">
+              <div class="flex flex-row p-2.5 justify-end gap-1">
+                <% project_case.material_tags.each do |name| %>
+                  <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2"><%= name %></div>
+                <% end %>
               </div>
-            </div>
-            <div class="text-white text-sm whitespace-nowrap flex-none ml-12">
-              <%= text_with_default(project_case.is_th_str) %>
-            </div>
-          </div>
-        </a>
+              <div class="mt-auto h-20 pl-4 pr-5 pb-2.5 flex flex-row items-end black-mask">
+                <div class="text-white flex-1 w-0">
+                  <div class="truncate" title="<%= project_case.project_name_and_location -%>">
+                    <span class="text-lg"><%= text_with_default(project_case.project_name_and_location) -%></span>
+                  </div>
+                </div>
+                <div class="text-white text-sm whitespace-nowrap flex-none ml-12">
+                  <%= text_with_default(project_case.is_th_str) %>
+                </div>
+              </div>
+            </a>
+          <% end %>
+          <% if list.length < 3 %>
+            <% Array.new(3 - list.length).each do %>
+              <div class="w-full h-full flex items-center justify-center" style="background: #f2f2f2;">
+                <span>暂无相关图片</span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
