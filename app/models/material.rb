@@ -40,6 +40,15 @@ class Material < ApplicationRecord
     material_product&.color_systems&.pluck(:description)&.join(',')
   end
 
+  def cover_arr
+    arr = cover.is_a?(String) ? JSON.parse(cover) : cover;
+    if arr.present? && arr.is_a?(Array)
+      arr
+    else
+      nil
+    end
+  end
+
   def parent_color_systems
     material_ids = case level
       when 1
@@ -83,6 +92,8 @@ class Material < ApplicationRecord
       material_product.construction
     elsif level == 3 && parent_material.material_info&.construction.present?
       parent_material.material_info.construction
+    elsif level == 2 && material_info.construction.present?
+      material_info.construction
     else
       nil
     end

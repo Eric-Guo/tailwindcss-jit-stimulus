@@ -83,12 +83,7 @@ class MaterialsController < ApplicationController
         @projects = []
       end
     when 2
-      material = Material.where(parent_id: @material.id).first
-      if material
-        redirect_to material_path(material)
-      else
-        @projects = []
-      end
+      @projects = get_color_system_projects(@material)
     when 3
       @color_id = params["color_id"]&.strip
       @projects = get_color_system_projects(@material, @color_id)

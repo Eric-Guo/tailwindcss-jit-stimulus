@@ -1,0 +1,309 @@
+<%# 材料名称与封面图 %>
+<div class="mt-20">
+  <div class="flex flex-row items-center border-b-2 border-gray-100 border-solid pb-3">
+    <div>
+      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem"><%= @material.name %></span>
+      <span class="text-xl font-light"><%= @material.en_name %>（<%= @material.no %>）</span>
+    </div>
+  </div>
+
+  <div
+    class="flex flex-col relative mt-20"
+    style="height: 500px; padding-left: 60px; padding-right: 60px;"
+    data-controller="material-carousel"
+    data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
+    data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
+    data-material-carousel-duration-value="0.5"
+    data-material-carousel-dot-normal-class-value="border-transparent"
+    data-material-carousel-dot-active-class-value="border-gray-900"
+  >
+    <% if @material.cover_arr.present? %>
+      <div class="relative w-full h-full overflow-hidden" data-controller="picture-viewer">
+        <% @material.cover_arr.each_with_index do |img, i| %>
+          <div class="w-full h-full absolute top-0 left-0 cursor-pointer flex justify-center" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+            <img class="w-full h-full object-center object-contain" src="<%= mat_img_url(img, "") -%>" alt="" data-picture-viewer-target="image">
+          </div>
+        <% end %>
+      </div>
+      <% if @material.cover_arr.length > 1 %>
+        <div class="absolute cursor-pointer" style="left: 21px; top: 240px;" data-action="click->material-carousel#toPrev">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18.125" height="32.81" viewBox="0 0 18.125 32.81">
+            <path fill="#999" fill-rule="evenodd" d="M599.627,1492.29l-13.54,13.54,13.674,13.68a1.641,1.641,0,1,1-2.321,2.32l-14.846-14.85a1.647,1.647,0,0,1-.011-2.33l14.7-14.7A1.656,1.656,0,0,1,599.627,1492.29Z" transform="translate(-582.125 -1489.5)"/>
+          </svg>
+        </div>
+        <div class="absolute cursor-pointer" style="right: 21px; top: 240px;" data-action="click->material-carousel#toNext">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="33.03" viewBox="0 0 18 33.03">
+            <path fill="#999" fill-rule="evenodd" class="cls-1" d="M599.534,1558.58l-14.743,14.93a1.62,1.62,0,0,1-2.317.01,1.667,1.667,0,0,1,.012-2.34l13.579-13.75-13.446-13.62a1.678,1.678,0,0,1,.011-2.35,1.628,1.628,0,0,1,2.316-.01l14.6,14.79A1.666,1.666,0,0,1,599.534,1558.58Z" transform="translate(-582.031 -1540.97)"/>
+          </svg>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="mt-12">
+        <img class="w-full h-full object-scale-down" src="<%= image_pack_path('materials-applications-default.jpg') -%>" alt="">
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# 基本信息、技术信息 %>
+<div
+  class="mt-20"
+  data-controller="tabs"
+  data-tabs-default-tab-name-value="basic"
+  data-tabs-tab-active-class-value="under-text-border text-black font-bold"
+  data-tabs-tab-normal-class-value="text-neutral-140"
+>
+  <div class="flex border-b-2 border-gray-100 border-solid text-neutral-140" style="gap: 45px;">
+    <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="basic" data-tabs-target="tab" data-action="click->tabs#activeTab">
+      <span class="text-2xl ml-px mr-2">基本信息</span>
+      <span class="text-xl font-light">Basic Information</span>
+    </div>
+    <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="technology" data-tabs-target="tab" data-action="click->tabs#activeTab">
+      <span class="text-2xl ml-px mr-2">技术信息</span>
+      <span class="text-xl font-light">Technical Information</span>
+    </div>
+  </div>
+
+  <%# 基本信息 %>
+  <div class="flex flex-col gap-5" style="margin-top: 30px; display: none;" data-tab-name="basic" data-tabs-target="tabContent">
+    <div class="flex items-start gap-10 text-lg">
+      <div class="flex-none text-neutral-140">材料简介：</div>
+      <div class="break-words"><%= text_with_default(@material.remark) %></div>
+    </div>
+    <div class="flex items-start gap-10 text-lg">
+      <div class="flex-none text-neutral-140">处理工艺：</div>
+      <div class="break-words"><%= text_with_default(@material.material_info&.technology_str) %></div>
+    </div>
+    <div class="flex items-start gap-10 text-lg">
+      <div class="flex-none text-neutral-140">价格区间：</div>
+      <div class="break-words"><%= text_with_default(@material.material_info&.price_range) %></div>
+    </div>
+    <div class="flex items-start gap-10 text-lg">
+      <div class="flex-none text-neutral-140">优点：&emsp;&emsp;</div>
+      <div class="break-words"><%= text_with_default(@material.material_info&.advantage) %></div>
+    </div>
+    <div class="flex items-start gap-10 text-lg">
+      <div class="flex-none text-neutral-140">缺点：&emsp;&emsp;</div>
+      <div class="break-words"><%= text_with_default(@material.material_info&.shortcoming) %></div>
+    </div>
+    <div class="flex items-start gap-10 text-lg">
+      <div class="flex-none text-neutral-140">适用范围：</div>
+      <div class="break-words"><%= text_with_default(@material.material_info&.scope) %></div>
+    </div>
+  </div>
+
+  <%# 技术信息 %>
+  <div class="flex flex-col gap-5" style="margin-top: 30px; display: none;" data-tab-name="technology" data-tabs-target="tabContent">
+    <div class="flex items-start gap-10 text-lg">
+      <div class="flex-none text-neutral-140">常用参数：&emsp;&emsp;</div>
+      <div class="break-words"><%= text_with_default(@material.material_info&.common_parameters) %></div>
+    </div>
+    <div class="flex items-start gap-10 text-lg">
+      <div class="flex-none text-neutral-140">安装施工要点：</div>
+      <div class="break-words"><%= text_with_default(@material.material_info&.points) %></div>
+    </div>
+    <div class="flex items-start gap-10 text-lg">
+      <div class="flex-none text-neutral-140">设计注意事项：</div>
+      <div class="break-words"><%= text_with_default(@material.material_info&.design_considerations) %></div>
+    </div>
+  </div>
+</div>
+
+<%# 案例 %>
+<% project_cases = @material.cases.limit(3) %>
+<% if project_cases.length > 0 %>
+  <div class="mt-20">
+    <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
+      <div>
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem"><%= @material.name %>案例</span>
+        <span class="text-xl font-light">Projects</span>
+      </div>
+      <a class="more-btn" href="<%= projects_path(pn: 'material', q: '', ms: [@material.id], project_type: '') %>">MORE+</a>
+    </div>
+    <div class="grid grid-cols-3 gap-2.5" style="margin-top: 30px;">
+      <% project_cases.each do |project_case| %>
+        <a class="bg-cover bg-center bg-no-repeat flex flex-col" style="height: 296px; background-image: url('<%= mat_img_url(project_case.web_cover) %>');" href="<%= project_path(project_case) %>">
+          <div class="flex flex-row p-2.5 justify-end gap-1">
+            <% project_case.material_tags.each do |name| %>
+              <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2"><%= name %></div>
+            <% end %>
+          </div>
+          <div class="mt-auto h-20 pl-4 pr-5 pb-2.5 flex flex-row items-end black-mask">
+            <div class="text-white flex-1 w-0">
+              <div class="truncate" title="<%= project_case.project_name_and_location -%>">
+                <span class="text-lg"><%= text_with_default(project_case.project_name_and_location) -%></span>
+              </div>
+            </div>
+            <div class="text-white text-sm whitespace-nowrap flex-none ml-12">
+              <%= text_with_default(project_case.is_th_str) %>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%# 构造做法、相关文件 %>
+<div
+  class="mt-20"
+  data-controller="tabs"
+  data-tabs-default-tab-name-value="construction"
+  data-tabs-tab-active-class-value="under-text-border text-black font-bold"
+  data-tabs-tab-normal-class-value="text-neutral-140"
+>
+  <div class="flex border-b-2 border-gray-100 border-solid text-neutral-140" style="gap: 45px;">
+    <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="construction" data-tabs-target="tab" data-action="click->tabs#activeTab">
+      <span class="text-2xl ml-px mr-2">构造做法</span>
+      <span class="text-xl font-light">Construction</span>
+    </div>
+    <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="files" data-tabs-target="tab" data-action="click->tabs#activeTab">
+      <span class="text-2xl ml-px mr-2">相关文件</span>
+      <span class="text-xl font-light">Related Files</span>
+    </div>
+  </div>
+
+  <%# 构造做法 %>
+  <div
+    class="relative"
+    style="margin-top: 30px; display: none;"
+    data-tab-name="construction"
+    data-tabs-target="tabContent"
+    data-controller="material-carousel picture-viewer"
+    data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
+    data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
+    data-material-carousel-duration-value="0.5"
+  >
+    <% if @material.construction.length > 3 %>
+      <div class="flex flex-row gap-2 absolute right-0" style="top: -64px;">
+        <div class="circle-arrow1 w-5 h-5 cursor-pointer" data-action="click->material-carousel#toPrev">
+          <svg class="-ml-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="6.2" height="10.5" viewBox="0 0 9.062 16.125">
+            <path d="M564.707,561.636L558.343,568l6.364,6.364a1,1,0,0,1-1.414,1.414l-7.071-7.071a1,1,0,0,1,0-1.414l7.071-7.071A1,1,0,0,1,564.707,561.636Z" transform="translate(-555.938 -559.938)"/>
+          </svg>
+        </div>
+        <div class="circle-arrow1 w-5 h-5 cursor-pointer" data-action="click->material-carousel#toNext">
+          <svg class="-mr-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="6.2" height="10.5" viewBox="0 0 9 16">
+            <path d="M556.291,561.685l6.32,6.315-6.32,6.315a0.992,0.992,0,0,0,1.4,1.4l7.023-7.016a0.994,0.994,0,0,0,0-1.4l-7.023-7.016A0.992,0.992,0,0,0,556.291,561.685Z" transform="translate(-556 -560)"/>
+          </svg>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="relative overflow-hidden mt-4" style="height: 296px;">
+      <% for i in 0...(@material.construction.length.to_f / 3).ceil %>
+        <div class="absolute top-0 left-0 w-full h-full grid grid-cols-3 grid-rows-1 gap-1.5" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+          <% list = @material.construction.slice(i * 3, (i + 1) * 3) %>
+          <% list.each do |practice_detail| %>
+            <div class="w-full h-full">
+              <img class="w-full h-full object-cover cursor-pointer" src="<%= mat_img_url(practice_detail["url"], "") %>" alt="" data-picture-viewer-target="image">
+            </div>
+          <% end %>
+          <% if list.length < 3 %>
+            <% Array.new(3 - list.length).each do %>
+              <div class="w-full h-full flex items-center justify-center" style="background: #f2f2f2;">
+                <span>暂无相关图片</span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# 相关文件 %>
+  <% if @material.material_info&.related_files.present? %>
+    <div class="grid grid-cols-3 gap-5" style="margin-top: 30px; display: none;" data-tab-name="files" data-tabs-target="tabContent">
+      <% @material.material_info&.related_files.each do |item| %>
+        <div class="flex justify-between items-center bg-white px-4" style="height: 60px; box-shadow: 0px 0px 10px 0px rgba(158, 158, 158, 0.3);">
+          <div class="flex items-center flex-1">
+            <img class="flex-none" src="<%= image_pack_path(item[:tag_icon]) %>" alt="" style="width: 32px; height: 36px;">
+            <div class="ml-3 flex-1 w-0 truncate" title="<%= item[:name] %>"><%= item[:name] %></div>
+          </div>
+          <div class="flex justify-end items-center flex-none ml-3" style="width: 50px; gap: 10px;">
+            <% if item[:tag_name] === 'pdf' %>
+              <a href="<%= mat_img_url(item[:url]) %>" target="_blank" title="预览">
+                <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-preview.svg') %>" alt="">
+              </a>
+            <% end %>
+            <a href="<%= mat_img_url(item[:url]) %>" target="_blank" download="<%= item[:name] %>" title="下载">
+              <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-download.svg') %>" alt="">
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="files" data-tabs-target="tabContent">
+      暂无相关文件数据
+    </div>
+  <% end %>
+</div>
+
+<%# 细节品控、施工构造、相关新闻 %>
+<div
+  class="mt-20"
+  data-controller="tabs"
+  data-tabs-default-tab-name-value="details"
+  data-tabs-tab-active-class-value="under-text-border text-black font-bold"
+  data-tabs-tab-normal-class-value="text-neutral-140"
+>
+  <div class="flex border-b-2 border-gray-100 border-solid text-neutral-140" style="gap: 45px;">
+    <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="details" data-tabs-target="tab" data-action="click->tabs#activeTab">
+      <span class="text-2xl ml-px mr-2"><%= @material.parent_material&.name %>细节品控</span>
+      <span class="text-xl font-light">Details</span>
+    </div>
+    <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="construction" data-tabs-target="tab" data-action="click->tabs#activeTab">
+      <span class="text-2xl ml-px mr-2"><%= @material.parent_material&.name %>施工构造</span>
+      <span class="text-xl font-light">Construction</span>
+    </div>
+    <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="news" data-tabs-target="tab" data-action="click->tabs#activeTab">
+      <span class="text-2xl ml-px mr-2">相关新闻</span>
+      <span class="text-xl font-light">News</span>
+    </div>
+  </div>
+
+  <%# 细节品控 %>
+  <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="details" data-tabs-target="tabContent">
+    暂无<%= @material.parent_material&.name %>细节品控数据
+  </div>
+
+  <%# 施工构造 %>
+  <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="construction" data-tabs-target="tabContent">
+    暂无<%= @material.parent_material&.name %>施工构造数据
+  </div>
+
+  <%# 相关新闻 %>
+  <% material_news = @material.parent_material.news.limit(4) %>
+  <% if material_news.length > 0 %>
+    <div class="grid grid-cols-2 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="news" data-tabs-target="tabContent">
+      <% material_news.each do |news| %>
+        <a class="flex-grow flex border border-gray-100 border-solid" href="<%= news.url %>" target="_blank">
+          <div class="flex-none w-36 h-36 flex flex-col justify-around bg-gray-100 m-2">
+            <img class="w-full h-full object-cover" src="<%= mat_img_url(news.cover, '') -%>" alt="">
+          </div>
+          <div class="flex-1 flex flex-col justify-between px-8 py-5">
+            <div>
+              <div class="flex text-2xl text-left leading-tight">
+                <h1 class="flex-1 w-0 font-bold truncate" title="<%= news.title -%>"><%= text_with_default(news.title) -%></h1>
+                <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
+                  材料在线
+                </span>
+                <% if news.mold_name.present? %>
+                  <span class="flex-none ml-1 px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-400">
+                    <%= news.mold_name -%>
+                  </span>
+                <% end %>
+              </div>
+              <h2 class="mt-3 text-1xl text-left line-clamp-2" title="<%= news.subtitle -%>"><%= text_with_default(news.subtitle) -%></h2>
+            </div>
+            <time><%= news.created_at.strftime('%Y-%m-%d') %></time>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="news" data-tabs-target="tabContent">
+      暂无相关新闻数据
+    </div>
+  <% end %>
+</div>
