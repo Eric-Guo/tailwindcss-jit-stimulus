@@ -64,15 +64,12 @@
       <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">材料产品详情</span>
       <span class="text-xl font-light">Material Details</span>
     </div>
-    <%= render partial: 'color_system_list', locals: { projects: @projects, material: @material, color_id: @color_id, expanded: true } %>
-    <%# 材料名称 %>
-    <%= render partial: 'detail_material_name', locals: { material: @material } if @material.level == 3 %>
-    <%# 实际应用 材料样品 %>
-    <%= render partial: 'detail_application_material_samples', locals: { material: @material } if @material.level == 3 %>
-    <%# 产品案例 %>
-    <%= render partial: 'detail_product_case', locals: { material: @material } if @material.level == 3 %>
-    <%# 构造做法 %>
-    <%= render partial: 'detail_construction_method', locals: { material: @material } %>
-    <%= render partial: 'detail', locals: { material: @material } if @material.level == 3 %>
+    <%= render partial: 'color_system_list', locals: { projects: @projects, material: @material, color_id: @color_id, expanded: @material.level == 3 } %>
+
+    <%# 三级产品 %>
+    <%= render partial: 'show_level_3' if @material.level == 3 %>
+
+    <%# 二级分类 %>
+    <%= render partial: 'show_level_2' if @material.level == 2 %>
   </section>
 </div>

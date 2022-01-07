@@ -1,0 +1,9 @@
+<%# 材料名称 %>
+<%= render partial: 'detail_material_name', locals: { material: @material } %>
+<%# 实际应用 材料样品 %>
+<%= render partial: 'detail_application_material_samples', locals: { material: @material } %>
+<%# 产品案例 %>
+<%= render partial: 'detail_product_case', locals: { material: @material } %>
+<%# 构造做法 %>
+<%= render partial: 'detail_construction_method', locals: { material: @material } %>
+<%= render partial: 'detail', locals: { material: @material } %>
