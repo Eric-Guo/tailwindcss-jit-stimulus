@@ -263,14 +263,60 @@
   </div>
 
   <%# 细节品控 %>
-  <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="details" data-tabs-target="tabContent">
-    暂无<%= @material.parent_material&.name %>细节品控数据
-  </div>
+  <% if @material.parent_material&.qc_details.present? %>
+    <div
+      class="grid grid-cols-3 gap-x-1.5 gap-y-7"
+      style="margin-top: 30px; display: none;"
+      data-tab-name="details"
+      data-tabs-target="tabContent"
+    >
+      <% @material.parent_material.qc_details.each do |item| %>
+        <div class="w-full">
+          <div class="relative w-full overflow-hidden" style="padding-top: 56.31%;">
+            <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= mat_img_url(item.cover, '') -%>" alt="">
+            <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center opacity-0 hover:opacity-100 transition-all">
+              <a class="bg-black bg-opacity-70 px-4 py-1 rounded-full text-white text-base" href="<%= mat_img_url(item.path) %>" target="_blank">查看</a>
+            </div>
+          </div>
+          <div class="mt-4 text-lg text-black break-words">
+            <%= item.title %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="details" data-tabs-target="tabContent">
+      暂无<%= @material.parent_material&.name %>细节品控数据
+    </div>
+  <% end %>
 
   <%# 施工构造 %>
-  <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="construction" data-tabs-target="tabContent">
-    暂无<%= @material.parent_material&.name %>施工构造数据
-  </div>
+  <% if @material.parent_material&.qc_constructions.present? %>
+    <div
+      class="grid grid-cols-3 gap-x-1.5 gap-y-7"
+      style="margin-top: 30px; display: none;"
+      data-tab-name="construction"
+      data-tabs-target="tabContent"
+    >
+      <% @material.parent_material.qc_constructions.each do |item| %>
+        <div class="w-full">
+          <div class="relative w-full overflow-hidden" style="padding-top: 56.31%;">
+            <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= mat_img_url(item.cover, '') -%>" alt="">
+            <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center opacity-0 hover:opacity-100 transition-all">
+              <a class="bg-black bg-opacity-70 px-4 py-1 rounded-full text-white text-base" href="<%= mat_img_url(item.path) %>" target="_blank">查看</a>
+            </div>
+          </div>
+          <div class="mt-4 text-lg text-black break-words">
+            <%= item.title %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="construction" data-tabs-target="tabContent">
+      暂无<%= @material.parent_material&.name %>施工构造数据
+    </div>
+  <% end %>
 
   <%# 相关新闻 %>
   <% material_news = @material.parent_material.news.limit(4) %>

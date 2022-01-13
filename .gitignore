@@ -42,5 +42,6 @@ tailwind-jit.sublime-workspace
 yarn-debug.log*
 .yarn-integrity
 /.idea
+/public/pdfjs
 
 .DS_Store
