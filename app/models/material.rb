@@ -34,6 +34,12 @@ class Material < ApplicationRecord
   has_many :news_materials
   has_many :news, through: :news_materials
 
+  # 细节品控
+  has_many :qc_details, -> { where(type_id: 1) }, class_name: 'QualityControl'
+
+  # 施工构造
+  has_many :qc_constructions, -> { where(type_id: 2) }, class_name: 'QualityControl'
+
   default_scope { where(deleted_at: nil).where(display: 1) }
 
   def color
