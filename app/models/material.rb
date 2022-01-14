@@ -55,6 +55,16 @@ class Material < ApplicationRecord
     end
   end
 
+  def picture_arr
+    if level == 2 && material_info.practical_applications_json.present?
+      material_info.practical_applications_json.map { |item| item[:url] }
+    elsif level == 2 && cover_arr.present?
+      cover_arr
+    else
+      nil
+    end
+  end
+
   def parent_color_systems
     material_ids = case level
       when 1
