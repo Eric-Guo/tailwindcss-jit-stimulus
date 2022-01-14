@@ -45,4 +45,13 @@ class MaterialInfo < ApplicationRecord
       []
     end
   end
+
+  def practical_applications_json
+    arr = self.practical_applications.is_a?(String) ? JSON.parse(self.practical_applications) : self.practical_applications
+    if arr.present? && arr.is_a?(Array)
+      arr.map { |item| item.with_indifferent_access }
+    else
+      []
+    end
+  end
 end

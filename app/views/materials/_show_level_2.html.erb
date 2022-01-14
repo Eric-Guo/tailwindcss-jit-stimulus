@@ -17,15 +17,15 @@
     data-material-carousel-dot-normal-class-value="border-transparent"
     data-material-carousel-dot-active-class-value="border-gray-900"
   >
-    <% if @material.cover_arr.present? %>
+    <% if @material.picture_arr.present? %>
       <div class="relative w-full h-full overflow-hidden" data-controller="picture-viewer">
-        <% @material.cover_arr.each_with_index do |img, i| %>
+        <% @material.picture_arr.each_with_index do |img, i| %>
           <div class="w-full h-full absolute top-0 left-0 cursor-pointer flex justify-center" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
             <img class="w-full h-full object-center object-contain" src="<%= mat_img_url(img, "") -%>" alt="" data-picture-viewer-target="image">
           </div>
         <% end %>
       </div>
-      <% if @material.cover_arr.length > 1 %>
+      <% if @material.picture_arr.length > 1 %>
         <div class="absolute cursor-pointer" style="left: 21px; top: 240px;" data-action="click->material-carousel#toPrev">
           <svg xmlns="http://www.w3.org/2000/svg" width="18.125" height="32.81" viewBox="0 0 18.125 32.81">
             <path fill="#999" fill-rule="evenodd" d="M599.627,1492.29l-13.54,13.54,13.674,13.68a1.641,1.641,0,1,1-2.321,2.32l-14.846-14.85a1.647,1.647,0,0,1-.011-2.33l14.7-14.7A1.656,1.656,0,0,1,599.627,1492.29Z" transform="translate(-582.125 -1489.5)"/>
