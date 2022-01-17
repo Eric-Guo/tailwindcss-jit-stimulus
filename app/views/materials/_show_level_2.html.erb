@@ -66,27 +66,27 @@
 
   <%# 基本信息 %>
   <div class="flex flex-col gap-5" style="margin-top: 30px; display: none;" data-tab-name="basic" data-tabs-target="tabContent">
-    <div class="flex items-start gap-10 text-lg">
+    <div class="flex items-start gap-10 text-lg" style="line-height: 22px;">
       <div class="flex-none text-neutral-140">材料简介：</div>
       <div class="break-words"><%= text_with_default(@material.remark) %></div>
     </div>
-    <div class="flex items-start gap-10 text-lg">
+    <div class="flex items-start gap-10 text-lg" style="line-height: 22px;">
       <div class="flex-none text-neutral-140">处理工艺：</div>
       <div class="break-words"><%= text_with_default(@material.material_info&.technology_str) %></div>
     </div>
-    <div class="flex items-start gap-10 text-lg">
+    <div class="flex items-start gap-10 text-lg" style="line-height: 22px;">
       <div class="flex-none text-neutral-140">价格区间：</div>
       <div class="break-words"><%= text_with_default(@material.material_info&.price_range) %></div>
     </div>
-    <div class="flex items-start gap-10 text-lg">
+    <div class="flex items-start gap-10 text-lg" style="line-height: 22px;">
       <div class="flex-none text-neutral-140">优点：&emsp;&emsp;</div>
       <div class="break-words"><%= text_with_default(@material.material_info&.advantage) %></div>
     </div>
-    <div class="flex items-start gap-10 text-lg">
+    <div class="flex items-start gap-10 text-lg" style="line-height: 22px;">
       <div class="flex-none text-neutral-140">缺点：&emsp;&emsp;</div>
       <div class="break-words"><%= text_with_default(@material.material_info&.shortcoming) %></div>
     </div>
-    <div class="flex items-start gap-10 text-lg">
+    <div class="flex items-start gap-10 text-lg" style="line-height: 22px;">
       <div class="flex-none text-neutral-140">适用范围：</div>
       <div class="break-words"><%= text_with_default(@material.material_info&.scope) %></div>
     </div>
@@ -94,15 +94,15 @@
 
   <%# 技术信息 %>
   <div class="flex flex-col gap-5" style="margin-top: 30px; display: none;" data-tab-name="technology" data-tabs-target="tabContent">
-    <div class="flex items-start gap-10 text-lg">
+    <div class="flex items-start gap-10 text-lg" style="line-height: 22px;">
       <div class="flex-none text-neutral-140">常用参数：&emsp;&emsp;</div>
       <div class="break-words"><%= text_with_default(@material.material_info&.common_parameters) %></div>
     </div>
-    <div class="flex items-start gap-10 text-lg">
+    <div class="flex items-start gap-10 text-lg" style="line-height: 22px;">
       <div class="flex-none text-neutral-140">安装施工要点：</div>
       <div class="break-words"><%= text_with_default(@material.material_info&.points) %></div>
     </div>
-    <div class="flex items-start gap-10 text-lg">
+    <div class="flex items-start gap-10 text-lg" style="line-height: 22px;">
       <div class="flex-none text-neutral-140">设计注意事项：</div>
       <div class="break-words"><%= text_with_default(@material.material_info&.design_considerations) %></div>
     </div>
@@ -118,7 +118,9 @@
         <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem"><%= @material.name %>案例</span>
         <span class="text-xl font-light">Projects</span>
       </div>
-      <a class="more-btn" href="<%= projects_path(pn: 'material', q: '', ms: [@material.id], project_type: '') %>">MORE+</a>
+      <% if @material.cases.count > 3 %>
+        <a class="more-btn" href="<%= projects_path(pn: 'material', q: '', ms: [@material.id], project_type: '') %>" target="_blank">MORE+</a>
+      <% end %>
     </div>
     <div class="grid grid-cols-3 gap-2.5" style="margin-top: 30px;">
       <% project_cases.each do |project_case| %>
@@ -321,7 +323,10 @@
   <%# 相关新闻 %>
   <% material_news = @material.parent_material.news.limit(4) %>
   <% if material_news.length > 0 %>
-    <div class="grid grid-cols-2 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="news" data-tabs-target="tabContent">
+    <div class="relative grid grid-cols-2 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="news" data-tabs-target="tabContent">
+      <% if @material.parent_material.news.count > 4 %>
+        <a class="more-btn absolute right-0" style="top: -76px;" href="<%= news_index_path(pn: 'material', q: '', ms: [@material.parent_material.id]) %>" target="_blank">MORE+</a>
+      <% end %>
       <% material_news.each do |news| %>
         <a class="flex-grow flex border border-gray-100 border-solid" href="<%= news.url %>" target="_blank">
           <div class="flex-none w-36 h-36 flex flex-col justify-around bg-gray-100 m-2">
