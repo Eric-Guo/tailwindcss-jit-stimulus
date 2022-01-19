@@ -28,7 +28,7 @@ gem "honeybadger"
 # gem "redis", "~> 4.0"
 
 gem 'devise'
-gem 'omniauth_openid_connect'
+gem 'gitlab-omniauth-openid-connect', '~> 0.9.1', require: 'omniauth_openid_connect'
 
 # Use Active Storage variant
 # gem "image_processing", "~> 1.2"
