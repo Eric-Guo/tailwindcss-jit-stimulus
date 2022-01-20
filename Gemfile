@@ -9,8 +9,7 @@ gem "mysql2"
 
 # Use Puma as the app server
 gem 'puma'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "~> 6.0.0.rc.6"
+gem "shakapacker"
 gem "turbo-rails"
 
 gem "browser", require: "browser/browser"
