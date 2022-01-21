@@ -44,12 +44,6 @@
           <p class="text-sm mt-3 truncate" title="<%= material.surface_effect_descriptions %>"><%= material.surface_effect_descriptions %></p>
         </div>
       <% end %>
-      <% if material.installation_and_construction_points.present? %>
-        <div>
-          <h5 class="text-lg font-medium">安装施工要点：</h5>
-          <p class="text-sm mt-3 whitespace-pre-wrap <%= material.surface_effect_descriptions.present? ? 'line-clamp-14' : 'line-clamp-20' %>" title="<%= material.installation_and_construction_points %>"><%= material.installation_and_construction_points %></p>
-        </div>
-      <% end %>
       <% if false && material.customizable_effect.present? %>
         <div>
           <h5 class="text-lg font-medium">可定制效果：</h5>

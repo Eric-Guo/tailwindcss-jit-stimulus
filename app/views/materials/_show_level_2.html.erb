@@ -241,11 +241,24 @@
   <% end %>
 </div>
 
+<%
+  default_tab_name = case
+    when @material.parent_material&.qc_details.present? && @material.parent_material.qc_details.length > 0
+      'details'
+    when @material.parent_material&.qc_constructions.present? && @material.parent_material.qc_constructions.length > 0
+      'construction'
+    when @material.parent_material.news.count > 0
+      'news'
+    else
+      'details'
+    end
+%>
+
 <%# 细节品控、施工构造、相关新闻 %>
 <div
   class="mt-20"
   data-controller="tabs"
-  data-tabs-default-tab-name-value="details"
+  data-tabs-default-tab-name-value="<%= default_tab_name %>"
   data-tabs-tab-active-class-value="under-text-border text-black font-bold"
   data-tabs-tab-normal-class-value="text-neutral-140"
 >
