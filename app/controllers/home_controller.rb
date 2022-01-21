@@ -26,7 +26,7 @@ class HomeController < ApplicationController
     @total[:recently_project] = @recently_projects.count
     @recently_projects = Tops.where('top_model = ?', 'home_new_cases').where('case_id > ?', 0).order(top_sort: :desc)
 
-    @latest_news = News.order(published_at: :desc).limit(4)
+    @latest_news = News.order(top: :desc).order(published_at: :desc).limit(4)
 
     @projects = Tops.where('top_model = ?', 'home_top_cases').where('case_id > ?', 0).order(top_sort: :desc)
 
