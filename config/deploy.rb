@@ -4,7 +4,7 @@
 lock '~> 3.16.0'
 
 set :application, 'matlib'
-set :repo_url, 'git@e.coding.net:sew/cybros_portal/matlib.git'
+set :repo_url, 'https://git.thape.com.cn/rails/matlib.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
