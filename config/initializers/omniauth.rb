@@ -31,8 +31,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            client_options: {
              scheme: 'https',
              host: host,
-             identifier: Rails.application.credentials.openid_connect_identifier!,
-             secret: Rails.application.credentials.openid_connect_secret!,
+             identifier: Rails.application.credentials.openid_connect_identifier,
+             secret: Rails.application.credentials.openid_connect_secret,
              redirect_uri: redirect_uri,
              authorization_endpoint: '/oauth/authorize',
              token_endpoint: '/oauth/token',
