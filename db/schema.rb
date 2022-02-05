@@ -232,7 +232,10 @@ ActiveRecord::Schema.define(version: 2022_01_04_085825) do
     t.text "practice_details"
     t.text "source_file"
     t.bigint "cl_online_id", unsigned: true
-    t.json "practical_applications"
+    t.binary "practical_applications"
+    t.text "qa_proposal"
+    t.text "combination_proposal"
+    t.binary "sku_picture_ids", size: :long
     t.index ["deleted_at"], name: "idx_cl_material_infos_deleted_at"
   end
 
@@ -466,7 +469,10 @@ ActiveRecord::Schema.define(version: 2022_01_04_085825) do
     t.text "design_considerations", comment: "设计注意事项\r"
     t.json "practice_details", comment: "做法详图"
     t.json "source_file", comment: "做法详图源文件"
-    t.json "practical_applications"
+    t.binary "practical_applications"
+    t.text "combination_proposal"
+    t.binary "sku_picture_ids", size: :long
+    t.text "qa_proposal"
     t.index ["deleted_at"], name: "idx_material_infos_deleted_at"
   end
 
@@ -565,6 +571,7 @@ ActiveRecord::Schema.define(version: 2022_01_04_085825) do
     t.datetime "published_at"
     t.bigint "manufacturer_id", unsigned: true
     t.bigint "material_id", unsigned: true
+    t.integer "top", default: 0
     t.index ["deleted_at"], name: "idx_news_deleted_at"
   end
 
@@ -593,6 +600,18 @@ ActiveRecord::Schema.define(version: 2022_01_04_085825) do
     t.index ["deleted_at"], name: "idx_practical_applications_deleted_at"
     t.index ["deleted_at"], name: "idx_sections_deleted_at"
     t.index ["deleted_at"], name: "idx_surface_effects_deleted_at"
+  end
+
+  create_table "quality_controls", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "deleted_at"
+    t.bigint "type_id"
+    t.string "cover", limit: 191
+    t.string "title", limit: 191
+    t.string "path", limit: 191
+    t.bigint "material_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_quality_controls_deleted_at"
   end
 
   create_table "report_view_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
