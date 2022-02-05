@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/wechat.git
-  revision: 2e5031d2601dafd2793e244e7a6b7454247b905c
+  revision: d2a3ee3bdaee854b52edd7641c2a12ad87839e65
   branch: main
   specs:
     wechat (0.15.0)
@@ -283,7 +283,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    shakapacker (6.0.2)
+    shakapacker (6.1.0)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -369,4 +369,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.3.4
+   2.3.6
