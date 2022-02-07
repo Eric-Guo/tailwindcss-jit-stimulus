@@ -1,0 +1,44 @@
+diff --git a/node_modules/viewerjs/dist/viewer.css b/node_modules/viewerjs/dist/viewer.css
+index ff7c482..a0a90ef 100644
+--- a/node_modules/viewerjs/dist/viewer.css
++++ b/node_modules/viewerjs/dist/viewer.css
+@@ -244,10 +244,10 @@
+       border-radius: 50%;
+       cursor: pointer;
+       float: left;
+-      height: 24px;
++      height: 48px;
+       overflow: hidden;
+       transition: background-color 0.15s;
+-      width: 24px
++      width: 48px;
+     }
+ 
+ .viewer-toolbar > ul > li:focus,
+@@ -263,7 +263,7 @@
+       }
+ 
+ .viewer-toolbar > ul > li::before {
+-        margin: 2px;
++        margin: 14px;
+       }
+ 
+ .viewer-toolbar > ul > li + li {
+@@ -282,14 +282,14 @@
+       }
+ 
+ .viewer-toolbar > ul > .viewer-large {
+-      height: 30px;
++      height: 56px;
+       margin-bottom: -3px;
+       margin-top: -3px;
+-      width: 30px
++      width: 56px
+     }
+ 
+ .viewer-toolbar > ul > .viewer-large::before {
+-        margin: 5px;
++        margin: 18px;
+       }
+ 
+ .viewer-tooltip {
