@@ -21,3 +21,10 @@ test:
 production:
   <<: *default
   database: matlib_prod
+
+user_info:
+  <<: *default
+  database: <%= ENV.fetch('USER_INFO_DB', nil) %>
+  host: <%= ENV.fetch('USER_INFO_HOST', nil) %>
+  username: <%= ENV.fetch('USER_INFO_USER', nil) %>
+  password: <%= ENV.fetch('USER_INFO_PASSWORD', nil) %>
