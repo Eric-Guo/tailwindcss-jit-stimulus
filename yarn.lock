@@ -4790,9 +4790,9 @@ vary@~1.1.2:
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
 viewerjs@^1.10.2:
-  version "1.10.3"
-  resolved "https://registry.npmmirror.com/viewerjs/-/viewerjs-1.10.3.tgz#b400c769aa22e3891962b65b0ae93399a92d8d69"
-  integrity sha512-X6dSO8aa6+Majmhx2GQcDSOzLClmj9zjsa89lGyG3cKGM2ca8rpGwL+iSRaAtRZalL5+VQ9osg+zfYVcAUyH8g==
+  version "1.10.4"
+  resolved "https://registry.npmmirror.com/viewerjs/-/viewerjs-1.10.4.tgz#34ced11cc55a203d570fcfc5cac030b0179e5d53"
+  integrity sha512-CjMt64yC9D+XUx2t3F0TPbh/Yt5+/ke8/s3IizXa6NtksdJUFDoCcNxi/KRZ9eiZPR/D77pHnnQzAtCoLDaGIw==
 
 watchpack@^2.3.1:
   version "2.3.1"
