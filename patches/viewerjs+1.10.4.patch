@@ -1,8 +1,8 @@
 diff --git a/node_modules/viewerjs/dist/viewer.css b/node_modules/viewerjs/dist/viewer.css
-index ff7c482..a0a90ef 100644
+index f705c03..28db8ec 100644
 --- a/node_modules/viewerjs/dist/viewer.css
 +++ b/node_modules/viewerjs/dist/viewer.css
-@@ -244,10 +244,10 @@
+@@ -245,10 +245,10 @@
        border-radius: 50%;
        cursor: pointer;
        float: left;
@@ -15,7 +15,7 @@ index ff7c482..a0a90ef 100644
      }
  
  .viewer-toolbar > ul > li:focus,
-@@ -263,7 +263,7 @@
+@@ -264,7 +264,7 @@
        }
  
  .viewer-toolbar > ul > li::before {
@@ -24,7 +24,7 @@ index ff7c482..a0a90ef 100644
        }
  
  .viewer-toolbar > ul > li + li {
-@@ -282,14 +282,14 @@
+@@ -283,14 +283,14 @@
        }
  
  .viewer-toolbar > ul > .viewer-large {
