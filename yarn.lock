@@ -3,9 +3,9 @@
 
 
 "@ampproject/remapping@^2.1.0":
-  version "2.1.1"
-  resolved "https://registry.npmmirror.com/@ampproject/remapping/-/remapping-2.1.1.tgz#7922fb0817bf3166d8d9e258c57477e3fd1c3610"
-  integrity sha512-Aolwjd7HSC2PyY0fDj/wA/EimQT4HfEnFYNp5s9CQlrdhyvWTtvZ5YzrUPu6R6/1jKiUlxu8bUhkdSnKHNAHMA==
+  version "2.1.2"
+  resolved "https://registry.npmmirror.com/@ampproject/remapping/-/remapping-2.1.2.tgz#4edca94973ded9630d20101cd8559cedb8d8bd34"
+  integrity sha512-hoyByceqwKirw7w3Z7gnIIZC3Wx3J484Y3L/cMpXFbr7d9ZQj2mODrirNzcJa+SM3UlpWXYvKV4RlRpFXlWgXg==
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.0"
 
@@ -4626,9 +4626,9 @@ tailwindcss-stimulus-components@^3.0.1:
     "@hotwired/stimulus" ">=3.0.0"
 
 tailwindcss@^3.0.8:
-  version "3.0.22"
-  resolved "https://registry.npmmirror.com/tailwindcss/-/tailwindcss-3.0.22.tgz#5f1aac83810261300ae5b2f98fd4a2fa2ded2c42"
-  integrity sha512-F8lt74RlNZirnkaSk310+vGQta7c0/hgx7/bqxruM4wS9lp8oqV93lzavajC3VT0Lp4UUtUVIt8ifKcmGzkr0A==
+  version "3.0.23"
+  resolved "https://registry.npmmirror.com/tailwindcss/-/tailwindcss-3.0.23.tgz#c620521d53a289650872a66adfcb4129d2200d10"
+  integrity sha512-+OZOV9ubyQ6oI2BXEhzw4HrqvgcARY38xv3zKcjnWtMIZstEsXdI9xftd1iB7+RbOnj2HOEzkA0OyB5BaSxPQA==
   dependencies:
     arg "^5.0.1"
     chalk "^4.1.2"
