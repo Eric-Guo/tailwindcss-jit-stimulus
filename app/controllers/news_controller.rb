@@ -20,8 +20,8 @@ class NewsController < ApplicationController
       if mat_q_ids.present?
         News.where(material_id: mat_q_ids)
       else
-        News.all
-      end.or(News.where('title LIKE ? OR subtitle LIKE ? OR mold_name LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%"))
+        News.where('title LIKE ? OR subtitle LIKE ? OR mold_name LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%")
+      end
     else
       News.all
     end
