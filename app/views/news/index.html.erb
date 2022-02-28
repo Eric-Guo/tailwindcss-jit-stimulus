@@ -79,7 +79,7 @@
             </div>
             <h2 class="mt-3 text-1xl text-left line-clamp-2" title="<%= news.subtitle -%>"><%= text_with_default(news.subtitle) -%></h2>
           </div>
-          <time><%= news.created_at.strftime('%Y-%m-%d') %></time>
+          <time><%= news.published_at&.strftime('%Y-%m-%d') %></time>
         </div>
       </a>
     <% end %>
