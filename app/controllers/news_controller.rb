@@ -32,6 +32,6 @@ class NewsController < ApplicationController
       news_with_query
     end
 
-    @news = news_with_materials.includes(:materials).order(created_at: :desc).limit(120)
+    @news = news_with_materials.includes(:materials).order(published_at: :desc).limit(120)
   end
 end
