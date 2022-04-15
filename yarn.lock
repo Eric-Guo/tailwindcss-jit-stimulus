@@ -2108,9 +2108,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.84:
-  version "1.4.107"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.107.tgz#564257014ab14033b4403a309c813123c58a3fb9"
-  integrity sha512-Huen6taaVrUrSy8o7mGStByba8PfOWWluHNxSHGBrCgEdFVLtvdQDBr9LBCF9Uci8SYxh28QNNMO0oC17wbGAg==
+  version "1.4.108"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.108.tgz#380b01ff68e958d2b9fdf4572e054020a506c568"
+  integrity sha512-/36KkMuL6+WTrodVlOjtHhH9Ro7BgRaQrh0bfKckwDtdRSjTBuZCOddeXxzK1PkwphoeTxGUFVT9xnmvQ7xEdw==
 
 emojis-list@^3.0.0:
   version "3.0.0"
