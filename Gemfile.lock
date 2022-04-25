@@ -268,7 +268,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
-    regexp_parser (2.3.0)
+    regexp_parser (2.3.1)
     reline (0.3.1)
       io-console (~> 0.5)
     responders (3.0.1)
