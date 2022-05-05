@@ -163,7 +163,7 @@
         }
       }
       run_when_ready(function(){
-        window.localStorage.setItem('user_id', <%= current_user&.id || 'null' -%>);
+        window.localStorage.setItem('vuex', '<%= raw(vuex_json) -%>');
       });
     </script>
   </body>

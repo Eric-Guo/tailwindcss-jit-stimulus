@@ -86,4 +86,21 @@ module ApplicationHelper
   def text_with_default(text)
     text.present? ? text : '—'
   end
+
+  def vuex_json()
+    return { user: nil }.to_json if current_user.blank?
+
+    {
+      user: {
+        userInfo: {
+          nickName: current_user.chinese_name,
+          headerImg: user_image_url(current_user),
+          authority: '',
+          id: current_user.id
+        },
+        adminToken: '',
+        host: 'm-thtri.thape.com.cn'
+      }
+    }.to_json
+  end
 end
