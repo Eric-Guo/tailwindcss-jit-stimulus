@@ -98,7 +98,7 @@ module ApplicationHelper
           authority: '',
           id: current_user.id
         },
-        adminToken: '',
+        adminToken: JWT.encode({ sub: current_user.email, scp: 'user', aud: 'matlib', iat: Time.now.to_i, exp: 1.hour.after.to_i }, Rails.application.credentials.devise_jwt_secret_key!),
         host: 'm-thtri.thape.com.cn'
       }
     }.to_json
