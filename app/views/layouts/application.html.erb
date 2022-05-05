@@ -154,5 +154,17 @@
       </footer>
     <% end %>
     <%= render 'shared/need_register_modal' %>
+    <script type="text/javascript">
+      function run_when_ready(fn) {
+        if (document.readyState != 'loading'){
+          fn();
+        } else {
+          document.addEventListener('DOMContentLoaded', fn);
+        }
+      }
+      run_when_ready(function(){
+        window.localStorage.setItem('user_id', <%= current_user&.id || 'null' -%>);
+      });
+    </script>
   </body>
 </html>
