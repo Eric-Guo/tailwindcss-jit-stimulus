@@ -45,3 +45,5 @@ yarn-debug.log*
 /public/pdfjs
 
 .DS_Store
+
+/.history
