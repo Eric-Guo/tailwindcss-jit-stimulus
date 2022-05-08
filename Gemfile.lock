@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/wechat.git
-  revision: 2b55c353805c48814938f95c66d953165ab1395d
+  revision: 36d382ed82f8a594364a0cad72708264e78b45d3
   branch: main
   specs:
     wechat (0.15.1)
@@ -108,7 +108,7 @@ GEM
       capistrano (~> 3.7)
       capistrano-bundler
       puma (>= 4.0, < 6.0)
-    capybara (3.36.0)
+    capybara (3.37.0)
       addressable
       matrix
       mini_mime (>= 0.1.3)
