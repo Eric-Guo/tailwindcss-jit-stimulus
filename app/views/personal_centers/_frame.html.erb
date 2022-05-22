@@ -1,0 +1,93 @@
+<%
+  pages = {
+    projects: {
+      zh: '我的案例',
+      en: 'My Projects',
+    },
+    messages: {
+      zh: '我的消息',
+      en: 'My Messages',
+    },
+    demands: {
+      zh: '需求登记',
+      en: 'My Demands',
+    },
+    suppliers: {
+      zh: '供应商推荐',
+      en: '',
+    },
+  }
+  page = (local_assigns[:full] || params[:action]).to_sym
+%>
+
+<%= render partial: 'shared/header', locals: {} -%>
+
+<div class="mx-auto" style="width: 1780px;">
+  <div class="pt-8 text-sm text-gray-500">
+    <%= link_to '首页', root_path -%> > 
+    <span class="text-black">个人中心</span> >
+    <span class="text-black"><%= pages[page]&.fetch(:zh, '') %></span>
+  </div>
+
+  <div class="flex flex-row justify-between mt-5">
+    <div class="material-nav pt-3" style="width: 250px;" data-controller="material-nav">
+      <div class="material-nav-item mb-5 <%= page == :projects ? 'active' : '' %>" data-material-nav-target="navItem">
+        <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
+          <div class="material-nav-item-header-title truncate">
+            <span><%= pages[:projects][:zh] %></span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="material-nav-item-header-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </div>
+        <div class="material-nav-item-children flex flex-col px-5 text-lg">
+          <div class="relative mt-4 material-nav-item-children-item <%= page == :projects && params[:status].blank? ? 'active' : '' %>">
+            <span class="relative">
+              <a data-turbo="false" href="<%= projects_personal_center_path %>">全部&emsp;</a>
+              <div class="material-nav-item-children-text-border"></div>
+            </span>
+          </div>
+          <% CaseDelegate.status_hash.each do |key, value| %>
+            <div class="relative mt-4 material-nav-item-children-item <%= page == :projects && params[:status] == key.to_s ? 'active' : '' %>">
+              <span class="relative">
+                <a data-turbo="false" href="<%= projects_personal_center_path(status: key) %>" class="text-gray-400"><%= value %></a>
+                <div class="material-nav-item-children-text-border"></div>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="material-nav-item mb-5 <%= page == :messages ? 'active' : '' %>" data-material-nav-target="navItem">
+        <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
+          <a data-turbo="false" href="<%= messages_personal_center_path %>" class="material-nav-item-header-title truncate">
+            <span><%= pages[:messages][:zh] %></span>
+            <% if @no_read_message_count.to_i > 0 %>
+              <span class="text-red relative" style="top: -2px;">●</span>
+            <% end %>
+          </a>
+        </div>
+      </div>
+      <div class="material-nav-item mb-5 <%= page == :demands ? 'active' : '' %>" data-material-nav-target="navItem">
+        <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
+          <a data-turbo="false" href="<%= demands_personal_center_path %>" class="material-nav-item-header-title truncate">
+            <span><%= pages[:demands][:zh] %></span>
+          </a>
+        </div>
+      </div>
+      <div class="material-nav-item mb-5 <%= page == :suppliers ? 'active' : '' %>" data-material-nav-target="navItem">
+        <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
+          <a data-turbo="false" href="<%= suppliers_personal_center_path %>" class="material-nav-item-header-title truncate">
+            <span><%= pages[:suppliers][:zh] %></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="flex-none" style="width: 1480px;">
+      <div class="border-b-2 border-gray-100 border-solid pb-3">
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem"><%= pages[page]&.fetch(:zh, '') %></span>
+        <span class="text-xl font-light"><%= pages[page]&.fetch(:en, '') %></span>
+      </div>
+      <%= yield %>
+    </div>
+  </div>
+</div>

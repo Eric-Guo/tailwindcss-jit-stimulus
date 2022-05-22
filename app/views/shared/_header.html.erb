@@ -12,56 +12,6 @@
     <div>
       <a href="/" class="font-medium text-black-6c" style="font-size: 26px;">天华建造研究中心 THTRI</a>
     </div>
-    <div class="w-0 flex-1 text-black-6c flex justify-end items-center h-full" data-controller="profile-dropdown" data-profile-dropdown-opening-value="false">
-      <%= link_to search_path, class: 'mr-4' do %>
-        <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-      <% end %>
-      <% if user_signed_in? %>
-        <div class="relative h-full">
-          <% img_path = user_image_url(current_user) %>
-          <div class="flex-shrink-0 group h-full flex items-center" data-action="click->profile-dropdown#click mouseenter->profile-dropdown#open_menu mouseleave->profile-dropdown#close_menu">
-            <div class="flex items-center">
-              <% if img_path.present? %>
-                <img class="inline-block h-8 w-8 rounded-full" src="<%= img_path -%>" alt="">
-              <% else %>
-                <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              <% end %>
-            </div>
-          </div>
-          <div
-            class="origin-top-right absolute -right-1 w-32 rounded shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none hidden"
-            role="menu"
-            data-profile-dropdown-target="dropdownMenu"
-            aria-orientation="vertical"
-            aria-labelledby="menu-button"
-            tabindex="-1"
-            data-action="mouseenter->profile-dropdown#open_menu mouseleave->profile-dropdown#close_menu"
-          >
-            <div class="px-3 py-2 text-right">
-              <div class="text-black text-lg"><%= current_user.chinese_name %></div>
-              <div class="text-neutral-140 text-sm mt-2"><%= current_user.position_title %></div>
-            </div>
-            <div class="py-2" role="none">
-              <%= form_with url: destroy_user_session_path, method: :delete, role: 'none', remote: false, data: { turbo: false } do %>
-                <button type="submit" class="text-neutral-140 hover:text-black block w-full px-3 py-2 text-sm text-right" role="menuitem" tabindex="-1" id="menu-item-3">
-                  登出
-                </button>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% else %>
-        <a href="/auth/openid_connect" class="flex items-center" data-turbo="false">
-          <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span class="text-base ml-1">请登录</span>
-        </a>
-      <% end %>
-    </div>
+    <%= render partial: 'shared/header_right' %>
   </nav>
 </header>

@@ -1,0 +1,48 @@
+<%= render 'frame', locals: { page: 'messages' } do -%>
+  <div class="mb-8">
+    <% if @list.present? %>
+      <% @list.each do |notification| %>
+        <div class="border rounded-lg flex flex-row px-11 py-6" style="margin-top: 30px;">
+          <div class="flex-none relative">
+            <img src="<%= notification.format_data&.fetch(:fromUser, {})&.fetch(:headerImg, '') %>" alt="" class="border rounded-full object-cover overflow-hidden" style="width: 70px; height: 70px;">
+            <% if notification.read_at.blank? %>
+              <div class="absolute bg-red rounded-full" style="width: 10px; height: 10px; left: -16px; top: 35px;"></div>
+            <% end %>
+          </div>
+          <div class="flex-1 ml-7 text-gray-400 relative">
+            <div class="text-lg font-semibold"><%= notification.format_data&.fetch(:subject, '') %></div>
+            <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
+            <div class="text-sm"><%= notification.format_data&.fetch(:demands, {})&.fetch(:description, '') %></div>
+
+            <% replies = notification.format_data&.fetch(:demands, {})&.fetch(:DemandReplies, []) %>
+            <% if replies.present? %>
+              <% replies.each do |reply| %>
+                <div class="mt-5 border rounded-lg bg-gray-50 p-4 text-sm">
+                  <div><%= Time.parse(reply[:CreatedAt]).strftime('%Y-%m-%d %H:%M:%S') %></div>
+                  <div class="mt-2"><%= reply[:content] %></div>
+                </div>
+              <% end %>
+            <% end %>
+
+            <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
+              <% if notification.read_at.blank? %>
+                <%= form_tag set_message_read_personal_center_path(id: notification.id), method: :put, data: {
+                  turbo: false
+                } do %>
+                  <button class="px-3 py-1 bg-black text-white text-sm" type="submit">
+                    标记已读
+                  </button>
+                <% end %>
+              <% end %>
+              <button class="px-3 py-1 bg-black text-white text-sm">删除</button>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="mt-12">
+        <%= render partial: 'empty' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
