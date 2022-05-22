@@ -38,6 +38,17 @@ Rails.application.routes.draw do
     post :upload_file
   end
 
+  resource :personal_center, only: [] do
+    member do
+      get :projects
+      get :messages
+      get :demands
+      get :suppliers
+      put :set_message_read
+      delete :rm_message
+    end
+  end
+
   resource :wechat, only: [:show, :create]
   root 'home#index'
 end

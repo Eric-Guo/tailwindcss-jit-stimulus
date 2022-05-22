@@ -1,0 +1,46 @@
+<%= render 'frame', locals: { page: 'demands' } do -%>
+  <% if @list.present? %>
+    <table class="border text-sm my-8">
+      <thead>
+        <tr class="bg-gray-50">
+          <td class="border p-5 whitespace-nowrap font-semibold">日期</td>
+          <td class="border p-5 whitespace-nowrap font-semibold">需求类型</td>
+          <td class="border p-5 whitespace-nowrap font-semibold">材料大类</td>
+          <td class="border p-5 whitespace-nowrap font-semibold">具体描述</td>
+          <td class="border p-5 whitespace-nowrap font-semibold">相关参考</td>
+          <td class="border p-5 whitespace-nowrap font-semibold">状态</td>
+          <td class="border p-5 whitespace-nowrap font-semibold">建筑委回复</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @list.each do |demand| %>
+          <tr>
+            <td class="border p-5"><%= demand.created_at&.strftime('%Y-%m-%d %H:%M:%S') %></td>
+            <td class="border p-5"><%= demand.cate_name %></td>
+            <td class="border p-5"><%= demand.material&.name %></td>
+            <td class="border p-5"><%= demand.description %></td>
+            <td class="border p-5">
+              <% demand.references_json.each do |reference| %>
+                <div>
+                  <a href="<%= mat_img_url(reference[:path]) %>" class="underline text-blue-500" target="_blank"><%= reference[:name] %></a>
+                </div>
+              <% end %>
+            </td>
+            <td class="border p-5">
+              <span class="bg-gray-200 text-gray-400 px-2 py-1 rounded-lg whitespace-nowrap text-xs">待回复</span>
+            </td>
+            <td class="border p-5">
+              <% demand.replies.each do |reply| %>
+                <div><%= reply.content %></div>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="mt-12">
+      <%= render partial: 'empty' %>
+    </div>
+  <% end %>
+<% end %>
