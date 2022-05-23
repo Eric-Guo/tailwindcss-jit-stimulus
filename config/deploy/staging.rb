@@ -5,5 +5,6 @@ set :branch, :matlib
 set :puma_service_unit_name, :puma_matlib_staging
 set :puma_systemctl_user, :system
 set :deploy_to, '/var/www/matlib_staging'
+set :rails_env, 'staging'
 
 server 'thape_matlib', user: 'matlib_staging', roles: %w{app db web}
