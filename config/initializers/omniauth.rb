@@ -15,8 +15,22 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   redirect_uri = if Rails.env.development?
     'https://matlib.test/auth/openid_connect/callback'
+  elsif ENV['REAL_RAILS_ENV'] == 'staging'
+    'https://m-thtri-staging.thape.com.cn/auth/openid_connect/callback'
   else
     'https://m-thtri.thape.com.cn/auth/openid_connect/callback'
+  end
+
+  openid_connect_identifier = if ENV['REAL_RAILS_ENV'] == 'staging'
+    Rails.application.credentials.staging_connect_identifier
+  else
+    Rails.application.credentials.openid_connect_identifier
+  end
+
+  openid_connect_secret = if ENV['REAL_RAILS_ENV'] == 'staging'
+    Rails.application.credentials.staging_connect_secret
+  else
+    Rails.application.credentials.openid_connect_secret
   end
 
   provider :openid_connect,
@@ -31,8 +45,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            client_options: {
              scheme: 'https',
              host: host,
-             identifier: Rails.application.credentials.openid_connect_identifier,
-             secret: Rails.application.credentials.openid_connect_secret,
+             identifier: openid_connect_identifier,
+             secret: openid_connect_secret,
              redirect_uri: redirect_uri,
              authorization_endpoint: '/oauth/authorize',
              token_endpoint: '/oauth/token',
