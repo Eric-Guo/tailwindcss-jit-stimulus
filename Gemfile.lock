@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/wechat.git
-  revision: bdc57ee1378d85fed13c8f98628ab9c2c241869b
+  revision: fe5ff7382a6a960c70c9df9d2c48415e44aba7dc
   branch: main
   specs:
     wechat (0.15.1)
@@ -299,8 +299,9 @@ GEM
       httpclient (>= 2.4)
     thor (1.2.1)
     timeout (0.2.0)
-    turbo-rails (1.0.1)
+    turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
       railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
