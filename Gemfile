@@ -13,7 +13,7 @@ gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 # Use Puma as the app server
 gem 'puma'
 gem "shakapacker"
-gem "turbo-rails"
+gem "turbo-rails", '~> 1.0.1' # need lock to make cookie works.
 
 gem "browser", require: "browser/browser"
 
