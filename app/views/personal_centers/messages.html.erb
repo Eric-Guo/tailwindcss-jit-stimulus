@@ -15,7 +15,6 @@
                   <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
                   <div class="text-sm"><%= notification.format_data&.fetch(:description, '') %></div>
 
-
                   <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
                     <% if notification.read_at.blank? %>
                       <%= form_tag set_message_read_personal_center_path(id: notification.id), method: :put, data: {
