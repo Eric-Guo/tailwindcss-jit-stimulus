@@ -36,7 +36,7 @@
       <% @list.each do |project| %>
         <div>
           <div class="relative">
-            <img src="<%= mat_img_url(project.record.show_cover) %>" alt="" class="w-full" style="height: 270px;" />
+            <img src="<%= project.record.show_cover %>" alt="" class="w-full" style="height: 270px;" />
             <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-all">
               <span class="text-lg text-white"> <%= project.web_status_title %> </span>
             </div>
