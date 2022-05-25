@@ -25,7 +25,11 @@
                         </button>
                       <% end %>
                     <% end %>
-                    <button class="px-3 py-1 bg-black text-white text-sm">删除</button>
+                    <%= form_tag rm_message_personal_center_path(id: notification.id), method: :delete, data: {
+                        turbo: false
+                      } do %>
+                       <button class="px-3 py-1 bg-black text-white text-sm" type="submit">删除</button>
+                      <% end %>
                   </div>
                 </div>
               </div>
@@ -62,7 +66,12 @@
                         </button>
                       <% end %>
                     <% end %>
-                    <button class="px-3 py-1 bg-black text-white text-sm">删除</button>
+                      <%= form_tag rm_message_personal_center_path(id: notification.id), method: :put, data: {
+                        turbo: false
+                      } do %>
+                       <button class="px-3 py-1 bg-black text-white text-sm" type="submit">删除</button>
+                      <% end %>
+                    
                   </div>
                 </div>
               </div>
