@@ -3,4 +3,10 @@
 class User < ActiveRecord::Base
   establish_connection :user_info
   devise :database_authenticatable
+
+  has_many :department_users, dependent: :destroy
+  has_many :departments, through: :department_users
+
+  has_many :position_users, -> { order(main_position: :desc) }, dependent: :destroy
+  has_many :positions, through: :position_users
 end
