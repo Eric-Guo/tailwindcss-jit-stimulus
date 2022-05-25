@@ -3,7 +3,7 @@
 class CaseDelegate < ApplicationRecord
   self.table_name = 'case_delegates'
 
-  default_scope { where(deleted_at: nil).where.not(closed_at: nil) }
+  default_scope { where(deleted_at: nil).where(closed_at: nil) }
 
   has_one :record, class_name: 'CaseDelegateRecord', foreign_key: :case_id, primary_key: :case_id
 

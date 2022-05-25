@@ -13,13 +13,14 @@ class PersonalCentersController < ApplicationController
     if lv10_positions.present?
       @list = @list.where('delegate_user_id = ? OR department_id IN (?)', current_user.id, lv10_positions.pluck(:department_id))
     else
-      @list = @list.where(delegate_user_id: current_user.id)
+      @list = @list.where(delegate_user_id: current_user.id).group("id")
     end
     @list = @list.where("`case_delegate_records`.project_name LIKE ?", "%#{title}%") if title.present?
     if status.present?
       s = CaseDelegate.web_status_hash[status.to_sym]
       @list = @list.where(status: s[:names]) if status.present? if s.present?
     end
+
   end
 
   def messages
