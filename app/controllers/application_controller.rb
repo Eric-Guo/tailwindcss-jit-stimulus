@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   private
 
     def login_in_as_dev_user
-      sign_in User.first
+      sign_in User.where('clerk_code = ?', '019795').first
     end
 
     def make_sure_wechat_user_login_in_phone

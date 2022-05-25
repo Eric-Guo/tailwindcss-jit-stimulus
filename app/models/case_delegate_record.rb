@@ -8,8 +8,12 @@ class CaseDelegateRecord < ApplicationRecord
   belongs_to :delegate, class_name: 'CaseDelegate', foreign_key: :case_id, primary_key: :case_id
 
   def show_cover
-    c = web_cover.presence || source_cover.presence
-    c && File.join('images', c)
+    if web_cover != "" 
+      File.join('images', web_coverc)
+    end
+    if source_web_cover != "" 
+      source_web_cover.sub( "http://jzw.thape.com.cn/upload/", "https://matlib.thape.com.cn/jzw_image/" )
+    end
   end
 
 end
