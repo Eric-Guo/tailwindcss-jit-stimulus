@@ -102,6 +102,10 @@
 .material-nav-item-children-item:hover .material-nav-item-children-text-border {
   width: 100%;
 }
+.material-nav-item-children-item.active .personal-center-nav,
+.material-nav-item-children-item:hover .personal-center-nav {
+  color: #101820;
+}
 
 .material-nav-item-children-item-children {
   display: inline-block;
