@@ -11,9 +11,9 @@
                   <% end %>
                 </div>
                 <div class="flex-1 ml-7 text-gray-400 relative">
-                  <div class="text-lg font-semibold"><%= notification.format_data&.fetch(:subject, '') %></div>
-                  <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
-                  <div class="text-sm"><%= notification.format_data&.fetch(:description, '') %></div>
+                  <div class="text-lg font-semibold <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= notification.format_data&.fetch(:subject, '') %></div>
+                  <div class="text-sm <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
+                  <div class="text-sm <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= notification.format_data&.fetch(:description, '') %></div>
 
                   <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
                     <% if notification.read_at.blank? %>
