@@ -15,5 +15,5 @@ class CaseDelegateRecord < ApplicationRecord
     else
       "https://matlib.thape.com.cn/test/uploads/project_bg.png"
     end
-
+  end
 end
