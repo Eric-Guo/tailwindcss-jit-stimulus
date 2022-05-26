@@ -9,7 +9,7 @@ class CaseDelegateRecord < ApplicationRecord
 
   def show_cover
     if web_cover != "" 
-      File.join('images', web_cover)
+      "https://matlib.thape.com.cn/test/" + web_cover
     elsif source_web_cover != "" 
       source_web_cover.sub( "http://jzw.thape.com.cn/upload/", "https://matlib.thape.com.cn/jzw_image/" )
     else
