@@ -14,7 +14,7 @@ class CaseDelegateRecord < ApplicationRecord
     if source_web_cover != "" 
       source_web_cover.sub( "http://jzw.thape.com.cn/upload/", "https://matlib.thape.com.cn/jzw_image/" )
     end
-    "https://matlib.thape.com.cn/test/uploads/project_bg.jpeg"
+    "https://matlib.thape.com.cn/test/uploads/project_bg.png"
   end
 
 end
