@@ -1,81 +1,77 @@
 <%= render 'frame', locals: { page: 'messages' } do -%>
-  <div class="mb-8">
+  <div class="mb-8" data-controller="personal-center-messages">
     <% if @list.present? %>
       <% @list.each do |notification| %>
-            <% if notification.type_id == "DefaultNotify" ||
-                  notification.type_id == "SysUserNotify" %>
-              <div class="border rounded-lg flex flex-row px-11 py-6" style="margin-top: 30px;">
-                <div class="flex-none relative">
-                  <img src="<%= notification.format_data&.fetch(:fromUser, {})&.fetch(:headerImg, '') %>" alt="" class="border rounded-full object-cover overflow-hidden" style="width: 70px; height: 70px;">
-                  <% if notification.read_at.blank? %>
-                    <div class="absolute bg-red rounded-full" style="width: 10px; height: 10px; left: -16px; top: 35px;"></div>
-                  <% end %>
-                </div>
-                <div class="flex-1 ml-7 text-gray-400 relative">
-                  <div class="text-lg font-semibold <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= notification.format_data&.fetch(:subject, '') %></div>
-                  <div class="text-sm <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
-                  <div class="text-sm <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= markdown(notification.format_data&.fetch(:description, '')) %></div>
-
-                  <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
-                    <% if notification.read_at.blank? %>
-                      <%= form_tag set_message_read_personal_center_path(id: notification.id), method: :put, data: {
-                        turbo: false
-                      } do %>
-                        <button class="px-3 py-1 bg-black text-white text-sm" type="submit">
-                          标记已读
-                        </button>
-                      <% end %>
-                    <% end %>
-        <a href="javascript:void(0)" data-id="<%= notification.id %>" data-action="click->app#openConfirmModal" class="text-2xl text-blue-150 font-medium border-b-2 border-gray-100 border-solid pb-1">
-                       <button class="px-3 py-1 bg-black text-white text-sm" type="submit">删除</button>
-        </a>
-                  </div>
-                </div>
-              </div>
-            <% else %>
-              <div class="border rounded-lg flex flex-row px-11 py-6" style="margin-top: 30px;">
-                <div class="flex-none relative">
-                  <img src="<%= notification.format_data&.fetch(:fromUser, {})&.fetch(:headerImg, '') %>" alt="" class="border rounded-full object-cover overflow-hidden" style="width: 70px; height: 70px;">
-                  <% if notification.read_at.blank? %>
-                    <div class="absolute bg-red rounded-full" style="width: 10px; height: 10px; left: -16px; top: 35px;"></div>
-                  <% end %>
-                </div>
-                <div class="flex-1 ml-7 text-gray-400 relative">
-                  <div class="text-lg font-semibold"><%= notification.format_data&.fetch(:subject, '') %></div>
-                  <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
-                  <div class="text-sm"><%= notification.format_data&.fetch(:demands, {})&.fetch(:description, '') %></div>
-
-                  <% replies = notification.format_data&.fetch(:demands, {})&.fetch(:DemandReplies, []) %>
-                  <% if replies.present? %>
-                    <% replies.each do |reply| %>
-                      <div class="mt-5 border rounded-lg bg-gray-50 p-4 text-sm">
-                        <div><%= Time.parse(reply[:CreatedAt]).strftime('%Y-%m-%d %H:%M:%S') %></div>
-                        <div class="mt-2"><%= reply[:content] %></div>
-                      </div>
-                    <% end %>
-                  <% end %>
-
-                  <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
-                    <% if notification.read_at.blank? %>
-                      <%= form_tag set_message_read_personal_center_path(id: notification.id), method: :put, data: {
-                        turbo: false
-                      } do %>
-                        <button class="px-3 py-1 bg-black text-white text-sm" type="submit">
-                          标记已读
-                        </button>
-                      <% end %>
-                    <% end %>
-                      <%= form_tag rm_message_personal_center_path(id: notification.id), method: :put, data: {
-                        turbo: false
-                      } do %>
-                       <button class="px-3 py-1 bg-black text-white text-sm" type="submit">删除</button>
-                      <% end %>
-                  </div>
-                </div>
-              </div>
+        <div class="border rounded-lg flex flex-row px-11 py-6" style="margin-top: 30px;">
+          <div class="flex-none relative">
+            <img src="<%= notification.format_data&.fetch(:fromUser, {})&.fetch(:headerImg, '') %>" alt="" class="border rounded-full object-cover overflow-hidden" style="width: 70px; height: 70px;">
+            <% if notification.read_at.blank? %>
+              <div class="absolute bg-red rounded-full" style="width: 10px; height: 10px; left: -16px; top: 35px;"></div>
             <% end %>
-        
+          </div>
+          <div class="flex-1 ml-7 relative <%= notification.read_at.blank? ? 'text-black-6c' : 'text-gray-400' %>">
+            <div class="text-lg font-semibold"><%= notification.format_data&.fetch(:subject, '') %></div>
+            <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
+            <div class="text-sm"><%= notification.format_data&.fetch(:demands, {})&.fetch(:description, '') %></div>
+
+            <% replies = notification.format_data&.fetch(:demands, {})&.fetch(:DemandReplies, []) %>
+            <% if replies.present? %>
+              <% replies.each do |reply| %>
+                <div class="mt-5 border rounded-lg bg-gray-50 p-4 text-sm">
+                  <div><%= Time.parse(reply[:CreatedAt]).strftime('%Y-%m-%d %H:%M:%S') %></div>
+                  <div class="mt-2"><%= reply[:content] %></div>
+                </div>
+              <% end %>
+            <% end %>
+
+            <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
+              <% if notification.read_at.blank? %>
+                <%= form_tag set_message_read_personal_center_path(id: notification.id), method: :put, data: {
+                  turbo: false
+                } do %>
+                  <button class="px-3 py-1 bg-black text-white text-sm" type="submit">
+                    标记已读
+                  </button>
+                <% end %>
+              <% end %>
+                <button
+                  class="px-3 py-1 bg-black text-white text-sm"
+                  data-form-path="<%= rm_message_personal_center_path(id: notification.id) %>"
+                  data-action="click->personal-center-messages#setRmId"
+                >删除</button>
+            </div>
+          </div>
+        </div>
       <% end %>
+      <div
+       data-controller="modal"
+       data-modal-allow-background-close="true"
+       data-modal-disable-backdrop="true"
+       data-personal-center-messages-target="modal"
+      >
+        <div
+          data-modal-target="container"
+          data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"
+          class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center"
+          style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
+        >
+            <div class="relative bg-white rounded-lg overflow-hidden" style="width: 330px;">
+              <div class="bg-black text-white text-sm flex items-center px-3" style="height: 30px;">温馨提示</div>
+              <div class="mb-5 flex justify-center flex-col items-center">
+                <div class="mt-12">确定删除选中的1项？</div>
+                <div class="mt-4 mb-5 text-sm flex justify-center">
+                  <%= form_tag rm_message_personal_center_path, method: :delete, data: {
+                    turbo: false,
+                    personal_center_messages_target: 'modalRmForm',
+                  } do %>
+                    <button class="bg-black text-white px-6 py-2 rounded-lg" type="submit">确定</button>
+                  <% end %>
+                  <button class="text-gray-400 px-6 py-2 rounded-lg border ml-4" data-action="click->modal#close">取消</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
     <% else %>
       <div class="mt-12">
         <%= render partial: 'empty' %>
