@@ -2,7 +2,8 @@
   <div class="mb-8">
     <% if @list.present? %>
       <% @list.each do |notification| %>
-            <% if notification.type_id == "DefaultNotify" %>
+            <% if notification.type_id == "DefaultNotify" ||
+                  notification.type_id == "SysUserNotify" %>
               <div class="border rounded-lg flex flex-row px-11 py-6" style="margin-top: 30px;">
                 <div class="flex-none relative">
                   <img src="<%= notification.format_data&.fetch(:fromUser, {})&.fetch(:headerImg, '') %>" alt="" class="border rounded-full object-cover overflow-hidden" style="width: 70px; height: 70px;">
@@ -13,7 +14,7 @@
                 <div class="flex-1 ml-7 text-gray-400 relative">
                   <div class="text-lg font-semibold <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= notification.format_data&.fetch(:subject, '') %></div>
                   <div class="text-sm <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
-                  <div class="text-sm <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= notification.format_data&.fetch(:description, '') %></div>
+                  <div class="text-sm <% if notification.read_at.blank? %>text-black-6c<% end %>"><%= markdown(notification.format_data&.fetch(:description, '')) %></div>
 
                   <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
                     <% if notification.read_at.blank? %>
@@ -25,11 +26,9 @@
                         </button>
                       <% end %>
                     <% end %>
-                    <%= form_tag rm_message_personal_center_path(id: notification.id), method: :delete, data: {
-                        turbo: false
-                      } do %>
+        <a href="javascript:void(0)" data-id="<%= notification.id %>" data-action="click->app#openConfirmModal" class="text-2xl text-blue-150 font-medium border-b-2 border-gray-100 border-solid pb-1">
                        <button class="px-3 py-1 bg-black text-white text-sm" type="submit">删除</button>
-                      <% end %>
+        </a>
                   </div>
                 </div>
               </div>
@@ -71,7 +70,6 @@
                       } do %>
                        <button class="px-3 py-1 bg-black text-white text-sm" type="submit">删除</button>
                       <% end %>
-                    
                   </div>
                 </div>
               </div>

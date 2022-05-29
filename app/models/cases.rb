@@ -11,6 +11,8 @@ class Cases < ApplicationRecord
   has_many :samples, through: :case_samples
   belongs_to :area, optional: true
 
+  has_many :live_photos, class_name: 'CaseLivePhoto', foreign_key: :case_id
+
   default_scope { where(deleted_at: nil).where(display: 1) }
 
   def project_name_and_location

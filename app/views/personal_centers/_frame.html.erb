@@ -44,14 +44,14 @@
           <div class="relative mt-4 material-nav-item-children-item <%= page == :projects && params[:status].blank? ? 'active' : '' %>">
             <span class="relative">
               <a class="personal-center-nav" data-turbo="false" href="<%= projects_personal_center_path %>">全部&emsp;</a>
-              <%# <div class="material-nav-item-children-text-border"></div> %>
+              <div class="material-nav-item-children-text-border"></div>
             </span>
           </div>
           <% CaseDelegate.web_status_hash.each do |key, value| %>
             <div class="relative mt-4 material-nav-item-children-item <%= page == :projects && params[:status] == key.to_s ? 'active' : '' %>">
               <span class="relative">
                 <a class="personal-center-nav" data-turbo="false" href="<%= projects_personal_center_path(status: key) %>" class="text-gray-400"><%= value[:title] %></a>
-                <%# <div class="material-nav-item-children-text-border"></div> %>
+                <div class="material-nav-item-children-text-border"></div>
               </span>
             </div>
           <% end %>

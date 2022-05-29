@@ -5,7 +5,7 @@ class CaseDelegate < ApplicationRecord
 
   default_scope { where(deleted_at: nil).where(closed_at: nil) }
 
-  has_one :record, class_name: 'CaseDelegateRecord', foreign_key: :case_id, primary_key: :case_id
+  has_one :record, class_name: 'CaseDelegateRecord', foreign_key: :id, primary_key: :case_delegate_record_id
 
   def self.status_hash
     {
