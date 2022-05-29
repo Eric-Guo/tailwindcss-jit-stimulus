@@ -2,8 +2,16 @@
 
 class CaseDelegateRecord < ApplicationRecord
   self.table_name = 'case_delegate_records'
-  
   default_scope { where(deleted_at: nil) }
+
+  has_many :case_materials, -> { joins(:material).where(type_id: 2) }, class_name: 'CasesMaterial', foreign_key: :case_delegate_record_id
+  has_many :case_samples, -> { where(type_id: 1) }, class_name: 'CasesMaterial', foreign_key: :case_delegate_record_id
+  has_many :materials, through: :case_materials
+  has_many :samples, through: :case_samples
+  belongs_to :area, optional: true
+
+  has_many :live_photos, class_name: 'CaseLivePhoto', foreign_key: :case_delegate_record_id
+
 
   belongs_to :delegate, class_name: 'CaseDelegate', foreign_key: :case_id, primary_key: :case_id
 
@@ -15,5 +23,11 @@ class CaseDelegateRecord < ApplicationRecord
     else
       "https://matlib.thape.com.cn/test/uploads/project_bg.png"
     end
+  end
+
+  # 详情链接
+  def detail_url
+    return jzw_url if is_th && (zz_online_id == 0 || zz_online_id == nil)
+    nil
   end
 end
