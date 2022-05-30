@@ -4,15 +4,13 @@ class DemandsController < ApplicationController
   before_action :authenticate_user!
   
   def create
-    data = create_params
-    
     res = Demand.submit({
       UserName: current_user.chinese_name,
       ClerkCode: current_user.clerk_code,
-      demandType: data[:cate].to_i,
-      material_id: data[:material].to_i,
-      description: data[:description],
-      references: data[:files]
+      demandType: params[:cate].to_i,
+      material_id: params[:material].to_i,
+      description: params[:description],
+      references: params[:files]
     }, request.remote_ip)
     render json: res
   end
@@ -21,9 +19,4 @@ class DemandsController < ApplicationController
     res = Demand.upload_file(params[:file])
     render json: res
   end
-
-  private
-    def create_params
-      params.require(:demand)
-    end
 end
