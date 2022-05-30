@@ -35,6 +35,10 @@ gem 'devise'
 gem 'gitlab-omniauth-openid-connect', '~> 0.9.1', require: 'omniauth_openid_connect'
 gem 'jwt'
 
+# markdown
+gem 'redcarpet'
+gem 'coderay'
+
 # Use Active Storage variant
 # gem "image_processing", "~> 1.2"
 
@@ -57,9 +61,6 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
-  # markdown
-  gem 'redcarpet'
-  gem 'coderay'
 end
 
 group :test do
