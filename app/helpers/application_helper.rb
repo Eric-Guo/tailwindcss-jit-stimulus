@@ -113,7 +113,7 @@ module ApplicationHelper
       :hard_wrap => true,           
       :strikethrough =>true         
       }       
-    markdown = Redcarpet::Markdown.new(HTMLwithCodeRay, options)
+    markdown = Redcarpet::Markdown.new(HTMLWithCodeRay, options)
     markdown.render(h(text)).html_safe
   end
 end
