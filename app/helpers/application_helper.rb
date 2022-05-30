@@ -113,12 +113,7 @@ module ApplicationHelper
       :hard_wrap => true,           
       :strikethrough =>true         
       }       
-      markdown = Redcarpet::Markdown.new(HTMLwithCodeRay,options)       
-      markdown.render(h(text)).html_safe     
-    end     
-    class HTMLwithCodeRay < Redcarpet::Render::HTML      
-       def block_code(code, language)         
-        CodeRay.scan(code, language).div(:tab_width=>2)       
-      end     
-    end
+    markdown = Redcarpet::Markdown.new(HTMLwithCodeRay, options)
+    markdown.render(h(text)).html_safe
+  end
 end
