@@ -1,14 +1,6 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  openConfirmModal(e) {
-    const modalElems = Array.from(document.querySelectorAll('[data-controller~="modal"]'));
-    const needRegisterModalElem = modalElems.find(elem => elem.dataset.controller.includes('confirm'));
-    if (needRegisterModalElem) {
-      const needRegisterModalController = this.application.getControllerForElementAndIdentifier(needRegisterModalElem, 'modal');
-      if (needRegisterModalController && needRegisterModalController.containerTarget) needRegisterModalController.open(e);
-    }
-  }
   openNeedRegisterModal(e) {
     const modalElems = Array.from(document.querySelectorAll('[data-controller~="modal"]'));
     const needRegisterModalElem = modalElems.find(elem => elem.dataset.controller.includes('need-register'));
