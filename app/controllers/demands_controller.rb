@@ -5,6 +5,7 @@ class DemandsController < ApplicationController
   
   def create
     data = create_params
+    
     res = Demand.submit({
       UserName: current_user.chinese_name,
       ClerkCode: current_user.clerk_code,

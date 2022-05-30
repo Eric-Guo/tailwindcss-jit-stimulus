@@ -10,7 +10,7 @@ class Demand < ApplicationRecord
   belongs_to :material, class_name: 'Material', foreign_key: :material_id
 
   def self.cates
-    response = HTTP.get("https://matlib.thape.com.cn/api/demand_types")
+    response = HTTP.get("http://172.17.1.48:8000/admin_api/demand_types")
     JSON.parse(response.body.to_s)['data'].map do |cate|
       {
         id: cate['id'],
@@ -27,7 +27,7 @@ class Demand < ApplicationRecord
 
   def self.upload_file(file)
     filename = file.original_filename
-    response = HTTP.post("https://matlib.thape.com.cn/api/demand_files", form: {
+    response = HTTP.post("http://172.17.1.48:8000/admin_api/demand_files", form: {
       file: HTTP::FormData::File.new(file)
     })
     body = JSON.parse(response.body.to_s)
@@ -43,7 +43,7 @@ class Demand < ApplicationRecord
     response = HTTP.headers({
       'X-Forwarded-For': ip,
       'X-Real-IP': ip,
-    }).post("https://matlib.thape.com.cn/api/demands", json: data)
+    }).post("http://172.17.1.48:8000/admin_api/demands", json: data)
     body = JSON.parse(response.body.to_s)
     {
       code: body['code'],
