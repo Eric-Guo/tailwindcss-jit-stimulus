@@ -60,7 +60,7 @@ class PersonalCentersController < ApplicationController
   def demands
     @list = Demand
       .includes(:replies, :material)
-      .where(clerk_code: current_user.clerk_code)
+      .where(clerk_code: current_user.clerk_code).order(created_at: :desc)
       .all
     puts @list
   end
