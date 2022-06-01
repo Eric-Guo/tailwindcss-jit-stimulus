@@ -1,12 +1,13 @@
 GIT
   remote: https://gitee.com/Eric-Guo/wechat.git
-  revision: f05d648dfd53a977cbdd9ae2827e0c1f1ff55518
+  revision: dec0ec787b2c6d482b5614dd90f121163cb5c039
   branch: main
   specs:
     wechat (0.15.1)
       activesupport (>= 6.0)
       http (>= 1.0.4, < 6)
       nokogiri (>= 1.6.0)
+      psych (>= 3.3.2)
       rexml
       thor
       zeitwerk (~> 2.4)
@@ -229,6 +230,8 @@ GEM
       validate_url
       webfinger (>= 1.0.1)
     orm_adapter (0.5.0)
+    psych (4.0.4)
+      stringio
     public_suffix (4.0.7)
     puma (5.6.4)
       nio4r (~> 2.0)
@@ -293,6 +296,7 @@ GEM
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    stringio (3.0.2)
     strscan (3.0.3)
     swd (1.3.0)
       activesupport (>= 3)
@@ -376,4 +380,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.3.14
+   2.3.15
