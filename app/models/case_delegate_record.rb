@@ -30,4 +30,13 @@ class CaseDelegateRecord < ApplicationRecord
     return jzw_url if is_th && (zz_online_id == 0 || zz_online_id == nil)
     nil
   end
+
+  # 是否天华案例
+  def is_th_str
+    if is_th
+      '内部案例'
+    else
+      '外部案例'
+    end
+  end
 end
