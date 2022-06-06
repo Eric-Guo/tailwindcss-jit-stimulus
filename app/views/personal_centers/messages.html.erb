@@ -1,8 +1,17 @@
 <%= render 'frame', locals: { page: 'messages' } do -%>
-  <div class="mb-8" data-controller="personal-center-messages">
+  <div class="relative py-8 flex flex-col gap-8" data-controller="personal-center-messages">
+    <% if @no_read_message_count.to_i > 0 %>
+      <%= form_tag set_message_read_personal_center_path(all: true), method: :put, class: 'absolute right-0 -top-10 ', onsubmit: 'this.querySelector(\'button\').disabled = true', data: {
+        turbo: false
+      } do %>
+        <button class="px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all">
+          全部已读
+        </button>
+      <% end %>
+    <% end %>
     <% if @list.present? %>
       <% @list.each do |notification| %>
-        <div class="border rounded-lg flex flex-row px-11 py-6" style="margin-top: 30px;">
+        <div class="border rounded-lg flex flex-row px-11 py-6">
           <div class="flex-none relative">
             <img src="<%= notification.format_data&.fetch(:fromUser, {})&.fetch(:headerImg, '') %>" alt="" class="border rounded-full object-cover overflow-hidden" style="width: 70px; height: 70px;">
             <% if notification.read_at.blank? %>
@@ -12,7 +21,9 @@
           <div class="flex-1 ml-7 relative <%= notification.read_at.blank? ? 'text-black-6c' : 'text-gray-400' %>">
             <div class="text-lg font-semibold"><%= notification.format_data&.fetch(:subject, '') %></div>
             <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
-            <div class="text-sm"><%= notification.format_data&.fetch(:demands, {})&.fetch(:description, '') %></div>
+            <div class="text-sm">
+              <%= notification.msg&.gsub(/\[(.*)\]\((.*)\)/, '<a class="underline text-blue-400" href="\2">\1</a>').html_safe %>
+            </div>
 
             <% replies = notification.format_data&.fetch(:demands, {})&.fetch(:DemandReplies, []) %>
             <% if replies.present? %>
