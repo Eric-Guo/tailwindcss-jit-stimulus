@@ -22,7 +22,7 @@
             <div class="text-lg font-semibold"><%= notification.format_data&.fetch(:subject, '') %></div>
             <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
             <div class="text-sm">
-              <%= notification.msg&.gsub(/\[(.*)\]\((.*)\)/, '<a class="underline text-blue-400" href="\2">\1</a>').html_safe %>
+              <%= notification.msg&.gsub(/\[(.*)\]\((.*)\)/, '<a class="underline text-blue-400" href="\2" target="_blank">\1</a>').html_safe %>
             </div>
 
             <% replies = notification.format_data&.fetch(:demands, {})&.fetch(:DemandReplies, []) %>
