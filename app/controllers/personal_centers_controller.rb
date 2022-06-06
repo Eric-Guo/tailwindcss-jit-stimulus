@@ -32,14 +32,27 @@ class PersonalCentersController < ApplicationController
   end
 
   def set_message_read
-    message = Notification
+    if params[:all].present?
+      messages = Notification
       .where(notifiable_type: 'cybros.user')
       .where(notifiable_id: current_user.id)
-      .find(params[:id])
-
-    if message.read_at.blank?
-      message.read_at = Time.now
-      message.save
+      .where(read_at: nil)
+      .all
+      read_at = Time.now
+      messages.each do |message|
+        message.read_at = read_at
+        message.save
+      end
+    else
+      message = Notification
+        .where(notifiable_type: 'cybros.user')
+        .where(notifiable_id: current_user.id)
+        .find(params[:id])
+  
+      if message.read_at.blank?
+        message.read_at = Time.now
+        message.save
+      end
     end
 
     redirect_to messages_personal_center_path

@@ -6,7 +6,8 @@ class Notification < ApplicationRecord
   default_scope { where(deleted_at: nil) }
 
   def format_data
-    if data.present?
+    return @_format_data if @_format_data.present?
+    @_format_data = if data.present?
       if data.is_a?(Hash)
         data
       else
@@ -15,5 +16,10 @@ class Notification < ApplicationRecord
     else
       nil
     end
+    @_format_data
+  end
+
+  def msg
+    format_data&.fetch(:description, nil) || format_data&.fetch(:demands, {})&.fetch(:description, '')
   end
 end
