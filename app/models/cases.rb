@@ -13,7 +13,7 @@ class Cases < ApplicationRecord
 
   has_many :live_photos, class_name: 'CaseLivePhoto', foreign_key: :case_id
 
-  default_scope { where(deleted_at: nil).where(display: 1) }
+  default_scope { where(deleted_at: nil).where(display: 1).where(status: 'case_published') }
 
   def project_name_and_location
     [self.project_name, self.project_location&.gsub('上海市','')].select { |str| str.present? }.join('/')
