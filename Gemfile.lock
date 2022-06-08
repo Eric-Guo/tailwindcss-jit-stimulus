@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/wechat.git
-  revision: 1ac476aa307deae92bb91e66046e6d0ed0983d5b
+  revision: 29946fc6c75510ce7ff49235ce244d338ad01939
   branch: main
   specs:
     wechat (0.16.0)
@@ -165,7 +165,7 @@ GEM
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
-    jwt (2.4.0)
+    jwt (2.4.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
