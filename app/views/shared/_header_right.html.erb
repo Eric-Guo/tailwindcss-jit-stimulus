@@ -39,8 +39,17 @@
         </div>
         <div class="py-2" role="none">
           <%= form_with url: destroy_user_session_path, method: :delete, role: 'none', remote: false, data: { turbo: false } do %>
-            <button type="submit" class="text-neutral-140 hover:text-black block w-full px-3 py-2 text-sm text-left" role="menuitem" tabindex="-1" id="menu-item-3">
-              登出
+            <button type="submit" class="text-black w-full px-3 py-2 text-sm text-left flex items-center" role="menuitem" tabindex="-1" id="menu-item-3">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="Group">
+                  <path id="Vector" d="M4 2H1V15H4V2Z" fill="#101820"/>
+                  <path id="Vector_2" d="M9 13H1V15H9V13Z" fill="#101820"/>
+                  <path id="Vector_3" d="M9 2H1V4H9V2Z" fill="#101820"/>
+                  <path id="Vector_4" d="M11 7H5V10H11V7Z" fill="#101820"/>
+                  <path id="Vector_5" d="M16 8.5L11 2V15L16 8.5Z" fill="#101820"/>
+                </g>
+              </svg>
+              <span class="ml-2">登出</span>
             </button>
           <% end %>
         </div>

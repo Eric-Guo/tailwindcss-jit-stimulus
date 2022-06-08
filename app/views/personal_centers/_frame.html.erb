@@ -59,10 +59,14 @@
       </div>
       <div class="material-nav-item mb-5 <%= page == :messages ? 'active' : '' %>" data-material-nav-target="navItem">
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
-          <a data-turbo="false" href="<%= messages_personal_center_path %>" class="material-nav-item-header-title truncate block w-full">
+          <a data-turbo="false" href="<%= messages_personal_center_path %>" class="material-nav-item-header-title truncate flex w-full items-center">
             <span><%= pages[:messages][:zh] %></span>
             <% if @no_read_message_count.to_i > 0 %>
-              <span class="text-red relative" style="top: -2px;">●</span>
+              <svg class="ml-2" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <path id="Vector" d="M4 7C5.65685 7 7 5.65685 7 4C7 2.34315 5.65685 1 4 1C2.34315 1 1 2.34315 1 4C1 5.65685 2.34315 7 4 7Z" fill="#FF0000"/>
+                </g>
+              </svg>
             <% end %>
           </a>
         </div>
