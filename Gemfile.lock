@@ -348,7 +348,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bcrypt_pbkdf (>= 1.0, < 2.0)
+  bcrypt_pbkdf
   browser
   capistrano
   capistrano-rails
@@ -357,7 +357,7 @@ DEPENDENCIES
   capybara
   debug
   devise
-  ed25519 (>= 1.2, < 2.0)
+  ed25519
   gitlab-omniauth-openid-connect (~> 0.9.1)
   honeybadger
   http

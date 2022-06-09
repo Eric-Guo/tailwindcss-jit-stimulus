@@ -7,9 +7,6 @@ gem "rails", "~> 7.0.3"
 
 gem "mysql2"
 
-gem 'ed25519', '>= 1.2', '< 2.0'
-gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
-
 # Use Puma as the app server
 gem 'puma'
 gem "shakapacker", '~> 6.4.1'
@@ -57,6 +54,8 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do
