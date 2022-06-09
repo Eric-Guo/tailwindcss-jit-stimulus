@@ -1,6 +1,6 @@
 <%= render 'frame', locals: { page: 'demands' } do -%>
   <% if @list.present? %>
-    <table class="border text-sm my-8 w-full">
+    <table class="border text-sm my-8 w-full table-fixed">
       <thead>
         <tr class="bg-gray-50">
           <td class="border px-5 py-4 whitespace-nowrap font-semibold w-48">日期</td>
@@ -24,10 +24,12 @@
                 <div class="flex justify-center">--</div>
               <% end %>
             </td>
-            <td class="border p-5"><%= demand.description %></td>
-            <td class="border p-5">
+            <td class="border p-5 truncate" title="<%= demand.description %>">
+              <%= demand.description %>
+            </td>
+            <td class="border p-5 truncate">
               <% if demand.references_json.present? %>
-                <a href="<%= mat_img_url(demand.references_json[0][:path]) %>" class="underline text-blue-500" target="_blank">
+                <a href="<%= mat_img_url(demand.references_json[0][:path]) %>" class="underline text-blue-500 truncate" target="_blank" title="<%= demand.references_json[0][:name] %>">
                   <%= demand.references_json[0][:name] %>
                 </a>
               <% else %>
@@ -60,9 +62,9 @@
                 <% end %>                
               <% end %>
             </td>
-            <td class="border p-5">
+            <td class="border p-5 truncate">
               <% if demand.replies.present? %>
-                <div><%= demand.replies.last.content %></div>
+                <div class="truncate" title="<%= demand.replies.last.content %>"><%= demand.replies.last.content %></div>
               <% else %>
                 <div class="flex justify-center">--</div>
               <% end %>
