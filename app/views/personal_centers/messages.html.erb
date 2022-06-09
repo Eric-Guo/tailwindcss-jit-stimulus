@@ -25,7 +25,7 @@
           <div class="flex-1 ml-7 relative <%= notification.read_at.blank? ? 'text-black-6c' : 'text-gray-400' %>">
             <div class="text-lg font-semibold"><%= notification.format_data&.fetch(:subject, '') %></div>
             <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
-            <div class="text-sm">
+            <div class="text-sm break-all">
               <%= notification.msg&.gsub(/\[(.*)\]\((.*)\)/, '<a class="underline text-blue-400" href="\2" target="_blank">\1</a>').html_safe %>
             </div>
 
@@ -34,7 +34,7 @@
               <% reply = replies.shift %>
               <div class="mt-5 rounded-lg bg-gray-50 p-4 text-sm">
                 <div><%= Time.parse(reply[:CreatedAt]).strftime('%Y-%m-%d %H:%M:%S') %></div>
-                <div class="mt-2"><%= reply[:content] %></div>
+                <div class="mt-2 break-all"><%= reply[:content] %></div>
               </div>
               <% if replies.present? %>
                 <div class="flex justify-center mt-5">
