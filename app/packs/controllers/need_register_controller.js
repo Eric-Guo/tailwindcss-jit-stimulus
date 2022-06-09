@@ -71,10 +71,12 @@ export default class extends Controller {
 
     const nameElem = document.createElement('div');
     nameElem.textContent = file_info.name;
+    nameElem.title = file_info.name;
+    nameElem.className = 'truncate';
     wrapperElem.appendChild(nameElem);
 
     const buttonGroupElem = document.createElement('div');
-    buttonGroupElem.className = 'flex items-center';
+    buttonGroupElem.className = 'flex items-center ml-2';
     wrapperElem.appendChild(buttonGroupElem);
 
     const statusButton = document.createElement('button');
