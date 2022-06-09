@@ -24,7 +24,7 @@
       <div class="p-5">
         <div class="flex gap-10">
           <div class="w-0 flex-1">
-            <div class="text-base">需求类型</div>
+            <div class="text-base"><span class="text-red">*</span>需求类型</div>
             <div class="flex flex-col items-start gap-3.5 mt-3.5 text-sm">
               <% Demand.cates.each do |cate| %>
                 <label class="flex items-center">
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="w-0 flex-1 hidden" data-need-register-target="materialContainer">
-            <div class="text-base">材料大类</div>
+            <div class="text-base"><span class="text-red">*</span>材料大类</div>
             <div class="mt-3.5">
               <select name="material" class="text-sm py-0 form-select w-40 h-9 leading-8 border border-neutral-200 rounded focus:border-black transition-all duration-300" style="--tw-ring-color: rgb(16 24 32);">
               </select>
