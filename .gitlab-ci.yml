@@ -1,40 +1,37 @@
 ---
 image: circleci/ruby:3.0.3-node-browsers
 
-# Pick zero or more services to be used on all builds.
-# Only needed when using a docker container to run your tests in.
-# Check out: http://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service
-services:
-  - mysql:8.0
-
 variables:
-  # Configure mysql environment variables (https://hub.docker.com/_/mysql/)
-  MYSQL_DATABASE: matlib_test
-  MYSQL_HOST: mysql
-  MYSQL_ALLOW_EMPTY_PASSWORD: "true"
   CACHE_FALLBACK_KEY: $CI_COMMIT_REF_SLUG
-
-# Cache gems in between builds
-cache:
-  - key:
-      files:
-        - Gemfile.lock
-    paths:
-      - vendor/ruby
-  - key:
-      files:
-        - yarn.lock
-    paths:
-      - .yarn-cache/
 
 before_script:
   - bundle config mirror.https://rubygems.org https://gems.ruby-china.com
   - bundle config set path 'vendor'  # Install dependencies into ./vendor/ruby
-  - bundle install -j $(nproc)
-  - yarn install --cache-folder .yarn-cache
 
-rails:
+stages:
+  - test
+
+test:
+  services:
+    - mysql:8.0
+  variables:
+    MYSQL_DATABASE: matlib_test
+    MYSQL_HOST: mysql
+    MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+  cache:
+    - key:
+        files:
+          - Gemfile.lock
+      paths:
+        - vendor/ruby
+    - key:
+        files:
+          - yarn.lock
+      paths:
+        - .yarn-cache/
   script:
+    - bundle install -j $(nproc)
+    - yarn install --cache-folder .yarn-cache
     - cp config/database.yml.sample config/database.yml
     - cp config/credentials.yml.example config/credentials.yml
     - bin/rails credentials:encrypt
