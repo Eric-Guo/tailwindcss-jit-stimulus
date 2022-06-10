@@ -3,8 +3,8 @@
     <div class="flex flex-row border bg-gray-50 mt-4" style="height: 50px; padding: 10px 20px;">
       <div class="h-full flex-none border-r border-gray-200 text-gray-300 flex items-center" style="width: 350px;">
         <input
-          class="h-full border-none bg-transparent outline-none placeholder:text-gray-300"
-          style="--tw-ring-color: transparent; width: 280px;"
+          class="h-full border-none bg-transparent outline-none placeholder:text-gray-300 ring-transparent"
+          style="width: 280px;"
           type="text"
           placeholder="案例名称"
           name="title"
@@ -23,8 +23,7 @@
       <div class="h-full flex-1 relative">
         <select
           name="status"
-          class="h-full border-none bg-transparent outline-none py-0 text-gray-400 bg-none"
-          style="--tw-ring-color: transparent;"
+          class="h-full border-none bg-transparent outline-none py-0 text-gray-400 bg-none ring-transparent"
           data-action="change->personal-center-project-form#submit"
         >
           <option value="" <%= params[:status] == '' ? 'selected' : '' %>>全部</option>
