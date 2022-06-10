@@ -32,8 +32,7 @@
                     type="radio"
                     value="<%= cate[:id] %>"
                     name="cate"
-                    class="form-input text-black transition-all duration-300"
-                    style="--tw-ring-color: transparent;"
+                    class="form-input text-black transition-all duration-300 focus:ring-transparent"
                     data-materials="<%= cate[:materials].to_json %>"
                     data-action="change->need-register#cateChange"
                   >
@@ -45,7 +44,7 @@
           <div class="w-0 flex-1 hidden" data-need-register-target="materialContainer">
             <div class="text-base"><span class="text-red">*</span>材料大类</div>
             <div class="mt-3.5">
-              <select name="material" class="text-sm py-0 form-select w-40 h-9 leading-8 border border-neutral-200 rounded focus:border-black transition-all duration-300" style="--tw-ring-color: rgb(16 24 32);">
+              <select name="material" class="text-sm py-0 form-select w-40 h-9 leading-8 border border-neutral-200 rounded focus:border-black focus:ring-black transition-all duration-300">
               </select>
             </div>
           </div>
@@ -57,8 +56,7 @@
               <textarea
                 name="description"
                 placeholder="“如图屋瓦，需要寄样板，选完推荐给甲方”&#13;&#10;“项目急需类似绩溪博物馆的白色质感涂料”&#13;&#10;“这种（图片）材料是什么？”&#13;&#10;“有更多陶板的供应商吗？”"
-                class="w-full h-full border border-neutral-200 rounded focus:border-black resize-none text-sm placeholder:text-neutral-300 transition-all duration-300"
-                style="--tw-ring-color: rgb(16 24 32);"
+                class="w-full h-full border border-neutral-200 rounded focus:border-black focus:ring-black resize-none text-sm placeholder:text-neutral-300 transition-all duration-300"
               ></textarea>
             </div>
           </div>
