@@ -1,0 +1,68 @@
+<div
+  data-controller="modal"
+  data-modal-allow-background-close="false"
+  data-modal-disable-backdrop="true"
+  data-personal-center-suppliers-target="matlibProjectsModal"
+>
+  <div
+    data-modal-target="container"
+    data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"
+    class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center"
+    style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
+  >
+      <div class="relative bg-white rounded-lg overflow-hidden" style="width: 700px;">
+        <div class="bg-black text-white text-sm flex justify-center items-center px-3" style="height: 35px;">
+          从材料库选择外部案例
+        </div>
+        <div class="px-10 py-6 overflow-auto" style="height: 580px;">
+          <div class="relative">
+            <%= render partial: 'shared/matlib_form/input_text', locals: { class_name: 'w-full pr-8 text-xs', placeholder: '请输入项目名称' } %>
+            <button class="absolute right-2 top-2">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <path d="M11.7095 11L10.9976 11.7048L15.2939 16L15.9976 15.2952L11.7095 11Z" fill="#CCCCCC"/>
+                  <path d="M6.99999 1C8.18668 1 9.34667 1.35188 10.3334 2.01117C11.3201 2.67046 12.0892 3.60753 12.5433 4.70389C12.9975 5.80024 13.1163 7.00665 12.8848 8.17053C12.6532 9.33442 12.0818 10.4035 11.2427 11.2426C10.4036 12.0818 9.33441 12.6532 8.17052 12.8847C7.00664 13.1162 5.80021 12.9974 4.70385 12.5433C3.60749 12.0891 2.67051 11.3201 2.01122 10.3334C1.35193 9.34674 0.999991 8.18669 0.999991 7C0.999991 5.4087 1.6321 3.88257 2.75732 2.75735C3.88253 1.63214 5.40869 1 6.99999 1ZM6.99999 0C5.61552 0 4.2621 0.410548 3.11095 1.17972C1.95981 1.94889 1.06264 3.04215 0.532828 4.32123C0.00301462 5.60031 -0.135584 7.00776 0.134513 8.36563C0.404609 9.7235 1.07132 10.9708 2.05028 11.9497C3.02925 12.9287 4.27652 13.5954 5.63439 13.8655C6.99226 14.1356 8.39974 13.997 9.67882 13.4672C10.9579 12.9373 12.0511 12.0401 12.8203 10.889C13.5895 9.73783 14 8.38447 14 7C14 5.14348 13.2625 3.36302 11.9497 2.05026C10.6369 0.737508 8.85651 0 6.99999 0Z" fill="#CCCCCC"/>
+                </g>
+              </svg>
+            </button>
+          </div>
+          <div class="mt-5">
+            <table class="w-full text-center table-fixed text-xs">
+              <thead>
+                <tr class="bg-gray-100 font-bold">
+                  <td style="width: 32px;"></td>
+                  <td class="py-1.5" style="width: 400px;">项目名称</td>
+                  <td class="py-1.5">封面图</td>
+                </tr>
+              </thead>
+              <% projects = [
+                { title: '旭辉西青大南河后端' },
+                { title: '旭辉集团南平市建瓯一中前端' },
+                { title: '旭辉集团成都市旭辉金科棠府…' },
+                { title: '旭辉集团济南市银盛泰铂悦凤…' },
+              ] %>
+              <tbody>
+                <% projects.each do |project| %>
+                  <tr class="border-b">
+                    <td class="text-base">
+                      <div class="flex items-center justify-center">
+                        <%= render partial: 'shared/matlib_form/radio', locals: { class_name: 'icon-checked', name: 'pm_project_id' } %>
+                      </div>
+                    </td>
+                    <td class="py-5 truncate"><%= project[:title] %></td>
+                    <td class="py-5 truncate">
+                      <div class="bg-gray-300" style="width: 140px; height: 105px;"></div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="text-sm flex justify-center py-6">
+          <button class="w-20 py-1 rounded-lg border text-gray-400 hover:bg-black hover:text-white" type="button">确定</button>
+          <button class="w-20 py-1 rounded-lg border ml-4 text-gray-400 hover:bg-gray-300 hover:text-gray-500" type="button" data-action="click->modal#close">取消</button>
+        </div>
+      </div>
+  </div>
+</div>
