@@ -13,8 +13,6 @@ export default class extends Controller {
       modal.open(e);
     }
     if (formPath && this.hasModalRmFormTarget) {
-      console.log(formPath);
-
       this.modalRmFormTarget.action = formPath;
     }
   }

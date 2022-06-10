@@ -1,6 +1,7 @@
 @import "viewerjs/dist/viewer.css";
 @import "sidebar.css";
 @import "material_nav.css";
+@import "matlib_form.css";
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";

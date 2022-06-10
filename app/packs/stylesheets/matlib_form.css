@@ -1,0 +1,55 @@
+.matlib-form-radio {
+  display: inline-flex;
+}
+
+.matlib-form-radio input[type='radio'] {
+  visibility: hidden;
+  position: absolute;
+}
+
+.matlib-form-radio label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.matlib-form-radio label::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url('../images/matlib-radio-unchecked.svg');
+  transition: all ease-in-out .3s;
+}
+
+.matlib-form-radio input[type='radio']:checked+label::before {
+  background-image: url('../images/matlib-radio-checked.svg');
+}
+
+.matlib-form-radio.icon-checked label::before {
+  background-image: url('../images/matlib-icon-unchecked.svg');
+}
+
+.matlib-form-radio.icon-checked input[type='radio']:checked+label::before {
+  background-image: url('../images/matlib-icon-checked.svg');
+}
+
+.matlib-form-button.icon-add::before {
+  content: '';
+  margin-right: 8px;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url('../images/matlib-icon-add-1.svg');
+  vertical-align: middle;
+}
+
+.matlib-form-button.icon-add:hover::before {
+  background-image: url('../images/matlib-icon-add.svg');
+}

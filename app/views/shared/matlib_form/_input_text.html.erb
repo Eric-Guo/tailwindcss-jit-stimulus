@@ -1,0 +1,14 @@
+<% id ||= SecureRandom.uuid %>
+<% value ||= '' %>
+<% name ||= '' %>
+<% class_name ||= '' %>
+<% placeholder ||= '' %>
+
+<input
+  id="<%= id %>"
+  name="<%= name %>"
+  value="<%= value %>"
+  type="text"
+  placeholder="<%= placeholder %>"
+  class="border border-gray-300 h-8 rounded px-2 text-gray-500 focus:border-black focus:ring-black <%= class_name %>"
+/>
