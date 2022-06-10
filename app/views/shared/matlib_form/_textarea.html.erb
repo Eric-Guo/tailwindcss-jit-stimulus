@@ -1,0 +1,12 @@
+<% id ||= SecureRandom.uuid %>
+<% value ||= '' %>
+<% name ||= '' %>
+<% class_name ||= '' %>
+<% placeholer ||= '' %>
+
+<textarea
+  id=<%= id %>
+  name="<%= name %>"
+  placeholer="<%= placeholer %>"
+  class="border border-gray-300 rounded px-2 text-gray-500 focus:border-black focus:ring-black <%= class_name %>"
+><%= value %></textarea>
