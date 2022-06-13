@@ -1,4 +1,4 @@
-<%= render 'frame', locals: { page: 'suppliers' } do -%>
+<%= render 'frame', page: 'suppliers' do -%>
   <div class="relative" data-controller="personal-center-suppliers">
     <button
       class="absolute right-0 -top-20 px-3 py-1 border rounded-lg border-black text-sm hover:bg-black hover:text-white"
@@ -30,7 +30,10 @@
                 <%= item[:num] %>
               </td>
               <td class="border p-5">
-                <button class="border border-gray-300 rounded-lg px-5 hover:bg-black hover:text-white">查看详情</button>
+                <button
+                  class="border border-gray-300 rounded-lg px-5 hover:bg-black hover:text-white"
+                  data-action="click->personal-center-suppliers#showDetailModal"
+                >查看详情</button>
               </td>
               <td class="border p-5">
                 <%= item[:created_at] %>
@@ -78,5 +81,6 @@
     <%= render partial: 'suppliers_modal_form' %>
     <%= render partial: 'suppliers_modal_pm_projects' %>
     <%= render partial: 'suppliers_modal_matlib_projects' %>
+    <%= render partial: 'suppliers_modal_detail' %>
   </div>
 <% end %>

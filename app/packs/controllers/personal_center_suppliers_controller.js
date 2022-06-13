@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['modal', 'modalForm', 'pmProjectsModal', 'matlibProjectsModal']
+  static targets = ['modal', 'modalForm', 'pmProjectsModal', 'matlibProjectsModal', 'detailModal']
 
   showFormModal(e) {
     console.log(123)
@@ -28,6 +28,16 @@ export default class extends Controller {
     let modal = null;
     if (this.hasMatlibProjectsModalTarget) {
       modal = this.application.getControllerForElementAndIdentifier(this.matlibProjectsModalTarget, 'modal');
+    }
+    if (modal) {
+      modal.open(e);
+    }
+  }
+
+  showDetailModal(e) {
+    let modal = null;
+    if (this.hasDetailModalTarget) {
+      modal = this.application.getControllerForElementAndIdentifier(this.detailModalTarget, 'modal');
     }
     if (modal) {
       modal.open(e);

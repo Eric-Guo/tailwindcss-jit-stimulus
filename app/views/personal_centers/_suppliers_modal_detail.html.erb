@@ -1,0 +1,69 @@
+<div
+  data-controller="modal"
+  data-modal-allow-background-close="false"
+  data-modal-disable-backdrop="true"
+  data-personal-center-suppliers-target="detailModal"
+>
+  <div
+    data-modal-target="container"
+    data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"
+    class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center"
+    style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
+  >
+      <div class="relative bg-white rounded-lg overflow-hidden" style="width: 1080px;">
+        <div class="bg-black text-white text-sm flex justify-center items-center px-3" style="height: 35px;">
+          新增供应商推荐
+        </div>
+        <div class="px-10 py-6 overflow-auto" style="height: 605px;">
+          <div class="flex border-b border-gray-200">
+            <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;">供应商信息</span>
+          </div>
+          <div class="grid grid-cols-4 gap-7 mt-3">
+            <div class="flex flex-col">
+              <label>供应商名称:</label>
+              <%= render 'suppliers_modal_text_div', class_name: 'mt-1' do %>
+                正金石材
+              <% end %>
+            </div>
+            <div class="flex flex-col">
+              <label>联系人:</label>
+              <%= render 'suppliers_modal_text_div', class_name: 'mt-1' do %>
+                张经理
+              <% end %>
+            </div>
+            <div class="flex flex-col row-span-2 col-span-2">
+              <label>推荐理由:</label>
+              <%= render 'suppliers_modal_text_div', class_name: 'mt-1 flex-1 overflow-auto max-h-30' do %>
+                供应商主营业务、特点、优势等
+              <% end %>
+            </div>
+            <div class="flex flex-col">
+              <label>供应商类型:</label>
+              <%= render 'suppliers_modal_text_div', class_name: 'mt-1' do %>
+                石材
+              <% end %>
+            </div>
+            <div class="flex flex-col">
+              <label>联系电话:</label>
+              <%= render 'suppliers_modal_text_div', class_name: 'mt-1' do %>
+                15900585481
+              <% end %>
+            </div>
+            <div class="flex flex-col">
+              <label>是否与天华合作过:</label>
+              <div class="mt-1 px-2 py-1.5 text-gray-500 text-sm">是</div>
+            </div>
+          </div>
+          <div class="flex border-b border-gray-200 mt-11">
+            <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;">供应商优秀案例</span>
+          </div>
+          <div class="py-3">
+            <%= render partial: 'suppliers_modal_project_detail' %>
+          </div>
+        </div>
+        <div class="text-sm flex justify-center py-6">
+          <button class="w-20 py-1 rounded-lg border ml-4 text-gray-400 hover:bg-gray-300 hover:text-gray-500" type="button" data-action="click->modal#close">关闭</button>
+        </div>
+      </div>
+  </div>
+</div>
