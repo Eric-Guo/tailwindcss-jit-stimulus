@@ -1,4 +1,4 @@
-<%= render 'frame', locals: { page: 'messages' } do -%>
+<%= render 'frame', page: 'messages' do -%>
   <div class="relative py-8 flex flex-col gap-8" data-controller="personal-center-messages">
     <% if @no_read_message_count.to_i > 0 %>
       <%= form_tag set_message_read_personal_center_path(all: true), method: :put, class: 'absolute right-0 -top-10 ', onsubmit: 'this.querySelector(\'button\').disabled = true', data: {

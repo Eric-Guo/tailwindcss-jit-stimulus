@@ -17,7 +17,7 @@
       en: '',
     },
   }
-  page = (local_assigns[:full] || params[:action]).to_sym
+  page = (local_assigns[:page] || params[:action]).to_sym
 %>
 
 <%= render partial: 'shared/header', locals: {} -%>
