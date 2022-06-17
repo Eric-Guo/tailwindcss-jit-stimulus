@@ -1,6 +1,6 @@
 GIT
   remote: https://gitee.com/Eric-Guo/wechat.git
-  revision: 33dd923abd345243fbc4f5f0e3e8e3a9f9bec53d
+  revision: e877507d25121880b8e4f21e73b853ea0329893b
   branch: main
   specs:
     wechat (0.16.0)
@@ -191,7 +191,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.16.2)
+    minitest (5.16.0)
     mysql2 (0.5.4)
     net-imap (0.2.3)
       digest
@@ -384,4 +384,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.3.17
+   2.3.16
