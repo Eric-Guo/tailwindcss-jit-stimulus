@@ -1,9 +1,9 @@
 GIT
   remote: https://gitee.com/Eric-Guo/wechat.git
-  revision: dec0ec787b2c6d482b5614dd90f121163cb5c039
+  revision: e877507d25121880b8e4f21e73b853ea0329893b
   branch: main
   specs:
-    wechat (0.15.1)
+    wechat (0.16.0)
       activesupport (>= 6.0)
       http (>= 1.0.4, < 6)
       nokogiri (>= 1.6.0)
@@ -166,7 +166,7 @@ GEM
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
-    jwt (2.3.0)
+    jwt (2.4.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -191,7 +191,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.15.0)
+    minitest (5.16.0)
     mysql2 (0.5.4)
     net-imap (0.2.3)
       digest
@@ -265,7 +265,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.2)
+    rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
     railties (7.0.3)
       actionpack (= 7.0.3)
@@ -341,7 +341,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.4)
+    zeitwerk (2.6.0)
 
 PLATFORMS
   arm64-darwin-21
@@ -384,4 +384,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.3.15
+   2.3.16
