@@ -147,7 +147,7 @@ GEM
       activesupport (>= 5.0)
     hashie (5.0.0)
     honeybadger (4.12.1)
-    http (5.0.4)
+    http (5.1.0)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
