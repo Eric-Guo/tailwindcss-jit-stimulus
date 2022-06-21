@@ -1,0 +1,119 @@
+<%= render partial: 'shared/header', locals: {} -%>
+
+<div class="mx-auto mt-12" style="width: 1500px; padding-bottom: 50px;">
+
+  <div class="text-sm text-gray-500">
+    <a href="<%= root_path %>">首页</a>
+    <span> > </span>
+    <a href="<%= manufacturers_path %>">供应商列表</a>
+    <span> > </span>
+    <span>供应商详情</span>
+  </div>
+
+  <div class="flex flex-row justify-between mt-5">
+
+    <section class="flex flex-col" style="width: 1000px;">
+
+      <div class="pb-3 border-b-2 border-gray-100 border-solid">
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">供应商详情</span>
+        <span class="text-xl font-light">Manufacturer Details</span>
+      </div>
+
+      <div class="flex" style="margin-top: 30px">
+        <div class="p-3 flex-none border border-gray-200" style="width: 235px; height: 235px;">
+          <img class="w-full h-full object-scale-down" src="<%= mat_img_url(@manufacturer.logo, 'manufacturer_default_cover.png') -%>" alt="">
+        </div>
+        <div class="ml-5 flex-1 text-lg text-black grid grid-cols-1 gap-3">
+          <div class="flex">
+            <div class="w-30 flex-none text-neutral-140">供应商名称:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.name) %></div>
+          </div>
+          <div class="flex">
+            <div class="w-30 flex-none text-neutral-140">服务区域:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.location) %></div>
+          </div>
+          <div class="flex">
+            <div class="w-30 flex-none text-neutral-140">网址:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.website) %></div>
+          </div>
+          <div class="flex">
+            <div class="w-30 flex-none text-neutral-140">主营材料:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.main_materials) %></div>
+          </div>
+          <div class="flex">
+            <div class="w-30 flex-none text-neutral-140">是否与天华合作过:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.tho_co_str) %></div>
+          </div>
+          <div class="flex">
+            <div class="w-30 flex-none text-neutral-140">是否愿意提供材料样品:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.offer_sample) %></div>
+          </div>
+          <div class="flex">
+            <div class="w-30 flex-none text-neutral-140">主营业务:</div>
+            <div class="flex-1" style="margin-left: 50px;"><%= text_with_default(@manufacturer.main_material_remark) %></div>
+          </div>
+        </div>
+      </div>
+
+      <% if @manufacturer.contacts.present? %>
+        <div class="pb-3 border-b-2 border-gray-100 border-solid" style="margin-top: 80px;">
+          <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">联系方式</span>
+          <span class="text-xl font-light">Contact</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-5" style="margin-top: 30px;">
+          <% @manufacturer.contacts.each do |contact| %>
+            <div class="flex items-center px-5 py-4" style="width: 100%; height: 76px; background: #FFFFFF; box-shadow: 0px 0px 10px 0px rgba(158, 158, 158, 0.3);">
+              <div class="w-9 h-9 flex-none">
+                <img class="w-full h-full object-scale-down" src="<%= image_pack_path('person.svg') %>" alt="">
+              </div>
+              <div class="flex-1 ml-5 text-base w-0 text-neutral-0">
+                <div class="truncate" title="<%= @manufacturer.contact %>"><%= text_with_default(contact.name) %></div>
+                <div class="truncate" title="<%= @manufacturer.contact_information %>"><%= text_with_default(contact.tel) %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @manufacturer.banners.present? %>
+        <div class="pb-3 border-b-2 border-gray-100 border-solid" style="margin-top: 80px;">
+          <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">作品展示</span>
+          <span class="text-xl font-light">Works</span>
+        </div>
+
+        <div
+          class="flex flex-col relative"
+          style="margin-top: 30px;"
+          data-controller="material-carousel"
+          data-material-carousel-enter-class-value="<%= ['-animation-transition-x-full-reverse', 'animation-transition-x-full-reverse'].to_json %>"
+          data-material-carousel-leave-class-value="<%= ['animation-transition-x-full', '-animation-transition-x-full'].to_json %>"
+          data-material-carousel-duration-value="0.5"
+          data-material-carousel-dot-normal-class-value="border-transparent"
+          data-material-carousel-dot-active-class-value="border-gray-900"
+        >
+          <div class="relative overflow-hidden" style="width: 1000px; height: 300px;" data-controller="picture-viewer">
+            <% @manufacturer.banners.each_with_index do |banner, i| %>
+              <div class="absolute top-0 left-0 w-full h-full cursor-pointer" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem">
+                <img class="w-full h-full object-cover" src="<%= mat_img_url(banner[:url], "") -%>" alt="<%= banner[:name] %>" data-picture-viewer-target="image">
+              </div>
+            <% end %>
+          </div>
+          <% if @manufacturer.banners.length > 1 %>
+            <div class="absolute left-2 flex items-center justify-center cursor-pointer circle-arrow text-lg" style="width: 30px; height: 30px; top: calc((100% - 30px) / 2);" data-action="click->material-carousel#toPrev">
+              <svg class="-ml-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="9.062" height="16.125" viewBox="0 0 9.062 16.125">
+                <path d="M564.707,561.636L558.343,568l6.364,6.364a1,1,0,0,1-1.414,1.414l-7.071-7.071a1,1,0,0,1,0-1.414l7.071-7.071A1,1,0,0,1,564.707,561.636Z" transform="translate(-555.938 -559.938)"/>
+              </svg>
+            </div>
+            <div class="absolute right-2 flex items-center justify-center cursor-pointer circle-arrow text-lg" style="width: 30px; height: 30px; top: calc((100% - 30px) / 2);" data-action="click->material-carousel#toNext">
+              <svg class="-mr-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16">
+                <path d="M556.291,561.685l6.32,6.315-6.32,6.315a0.992,0.992,0,0,0,1.4,1.4l7.023-7.016a0.994,0.994,0,0,0,0-1.4l-7.023-7.016A0.992,0.992,0,0,0,556.291,561.685Z" transform="translate(-556 -560)"/>
+              </svg>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  </div>
+</div>
+
