@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-class Manufacturer < ApplicationRecord
-  has_many :samples
-
-  has_many :material_manufacturers
-  has_many :materials, through: :material_manufacturers
-  has_many :manufacturer_areas
-  has_many :areas, through: :manufacturer_areas
-
-  has_many :news
+class ManufacturerRecord < ApplicationRecord
+  has_many :material_manufacturer_records
+  has_many :materials, through: :material_manufacturer_records
+  has_many :manufacturer_record_areas
+  has_many :areas, through: :manufacturer_record_areas
+  has_many :contacts, class_name: "ManufacturerContact"
 
   default_scope { where(deleted_at: nil) }
 
@@ -56,8 +53,11 @@ class Manufacturer < ApplicationRecord
     end
   end
 
-  # 服务区域
   def location
     @_location ||= areas.pluck(:title).join(',')
+  end
+
+  def website
+    web_site
   end
 end

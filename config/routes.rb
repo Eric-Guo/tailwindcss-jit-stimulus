@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :records, only: %i[show]
   resources :projects, only: %i[index show]
   resources :manufacturers, only: %i[index show]
+  resources :manufacturer_records, only: %i[show]
   resources :news, only: %i[index]
 
   resource :search, only: [:show] do
