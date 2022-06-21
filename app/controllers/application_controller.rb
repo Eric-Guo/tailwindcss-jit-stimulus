@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :set_tree_materials
   before_action :set_sidebar_nav
   before_action :set_footer_info
-  after_action :record_user_view_history
+  after_action :record_user_view_history, if: -> { Rails.env.production? }
 
   protected
 
