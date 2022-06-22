@@ -148,7 +148,7 @@ GEM
       activesupport (>= 5.0)
     hashie (5.0.0)
     honeybadger (4.12.1)
-    http (5.0.4)
+    http (5.1.0)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
@@ -191,7 +191,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.16.0)
+    minitest (5.16.1)
     mysql2 (0.5.4)
     net-imap (0.2.3)
       digest
