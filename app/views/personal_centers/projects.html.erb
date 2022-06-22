@@ -1,84 +1,93 @@
 <%= render 'frame', page: 'projects' do -%>
-  <form action="<%= projects_personal_center_path %>" data-turbo="false" data-controller="personal-center-project-form">
-    <div class="flex flex-row border bg-gray-50 mt-4" style="height: 50px; padding: 10px 20px;">
-      <div class="h-full flex-none border-r border-gray-200 text-gray-300 flex items-center" style="width: 350px;">
-        <input
-          class="h-full border-none bg-transparent outline-none placeholder:text-gray-300 focus:ring-transparent"
-          style="width: 280px;"
-          type="text"
-          placeholder="案例名称"
-          name="title"
-          value="<%= params[:title].presence.to_s %>"
-        >
-        <button class="border-none outline-none p-0 m-0" type="submit">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g>
-              <path id="Vector" d="M9.83533 3.45282C11.0974 3.45282 12.3311 3.82684 13.3804 4.52759C14.4298 5.22834 15.2477 6.22435 15.7306 7.38966C16.2136 8.55496 16.34 9.83722 16.0938 11.0743C15.8476 12.3114 15.2398 13.4477 14.3474 14.3396C13.455 15.2315 12.318 15.8389 11.0802 16.085C9.84238 16.331 8.5594 16.2047 7.39342 15.722C6.22743 15.2394 5.23085 14.422 4.52969 13.3732C3.82853 12.3245 3.45428 11.0915 3.45428 9.83016C3.45687 8.13958 4.13 6.51898 5.32612 5.32356C6.52224 4.12814 8.14376 3.45542 9.83533 3.45282V3.45282ZM9.83533 1C8.08787 1 6.37966 1.51788 4.92671 2.48815C3.47375 3.45842 2.34127 4.8375 1.67255 6.451C1.00382 8.0645 0.828861 9.83995 1.16977 11.5528C1.51069 13.2657 2.35219 14.8391 3.58783 16.074C4.82347 17.3089 6.39778 18.1499 8.11166 18.4906C9.82554 18.8314 11.602 18.6565 13.2165 17.9882C14.8309 17.3198 16.2108 16.188 17.1816 14.7359C18.1524 13.2838 18.6706 11.5766 18.6706 9.83016C18.6706 7.48825 17.7398 5.24226 16.0828 3.58629C14.4259 1.93031 12.1786 1 9.83533 1V1Z" fill="#E0E0E0"/>
-              <rect id="Rectangle 1" x="14" y="16.1213" width="3" height="10" transform="rotate(-45 14 16.1213)" fill="#E0E0E0"/>
-              <ellipse id="Ellipse 1" cx="22.1317" cy="22.1317" rx="1.5" ry="1" transform="rotate(-45 22.1317 22.1317)" fill="#E0E0E0"/>
-            </g>
-          </svg>
-        </button>
-      </div>
-      <div class="h-full flex-1 relative">
-        <select
-          name="status"
-          class="h-full border-none bg-transparent outline-none py-0 text-gray-400 bg-none focus:ring-transparent"
-          data-action="change->personal-center-project-form#submit"
-        >
-          <option value="" <%= params[:status] == '' ? 'selected' : '' %>>全部</option>
-          <% CaseDelegate.web_status_hash.each do |key, value| %>
-            <option value="<%= key %>" <%= params[:status] == key.to_s ? 'selected' : '' %>><%= value[:title] %></option>
-          <% end %>
-        </select>
-        <svg class="absolute inline top-1.5 -ml-8" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g>
-            <path id="Vector" d="M7.5 12L14 5H1L7.5 12Z" fill="#7A7A7A"/>
-          </g>
-        </svg>
-      </div>
-    </div>
-  </form>
-  <% if @list.present? %>
-    <div class="grid grid-cols-4 gap-x-3 gap-y-10 my-4">
-      <% @list.each do |project| %>
-        <div class="relative">
-          <div class="relative">
-            <img src="<%= project.record.show_cover %>" alt="" class="w-full" style="height: 270px;" />
-            <a href="<%= ['delegate_published', 'delegate_unpublishing', 'delegate_unpublished'].include?(project.status) ? "/projects/#{project.case_id}" : "/records/#{project.record.id}" %>" target="_blank">
-              <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-all">
-                <span class="text-lg text-white"> <%= project.web_status_title %> </span>
-              </div>
-            </a>
-          </div>
-          <div class="mt-3 flex justify-between items-center">
-            <div class="font-semibold flex-1 truncate" title="<%= project.record.project_name %>">
-              <%= project.record.project_name %>
-            </div>
-            <div class="flex-none ml-2 text-gray-400">
-              <%= project.record.is_th_str %>
-            </div>
-          </div>
-          <a href="/layout/caseEditor?id=<%= project.id %>" class="absolute top-2 right-2" data-turbo="false" target="_blank">
+  <div class="relative">
+    <a
+      class="absolute right-0 -top-16 px-3 py-1 border rounded-lg border-black text-sm hover:bg-black hover:text-white"
+      href="/layout/caseEditor"
+      target="_blank"
+    >
+      新增外部案例
+    </a>
+    <form action="<%= projects_personal_center_path %>" data-turbo="false" data-controller="personal-center-project-form">
+      <div class="flex flex-row border bg-gray-50 mt-4" style="height: 50px; padding: 10px 20px;">
+        <div class="h-full flex-none border-r border-gray-200 text-gray-300 flex items-center" style="width: 350px;">
+          <input
+            class="h-full border-none bg-transparent outline-none placeholder:text-gray-300 focus:ring-transparent"
+            style="width: 280px;"
+            type="text"
+            placeholder="案例名称"
+            name="title"
+            value="<%= params[:title].presence.to_s %>"
+          >
+          <button class="border-none outline-none p-0 m-0" type="submit">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g>
-                <g>
-                  <path id="Vector" d="M20 0H4C1.79086 0 0 1.79086 0 4V20C0 22.2091 1.79086 24 4 24H20C22.2091 24 24 22.2091 24 20V4C24 1.79086 22.2091 0 20 0Z" fill="#101820"/>
-                  <g>
-                    <path id="Vector_2" d="M15.6 5.07999L18.42 7.89999L8.76007 17.57L5.46008 18.04L5.93005 14.74L15.6 5.07999V5.07999ZM15.6 3.66L5.00006 14.27L4.29004 19.27L9.29004 18.56L19.9001 7.95001L15.66 3.70999L15.6 3.66Z" fill="#FAFAFA"/>
-                    <path id="Vector_3" d="M14.08 6.39001L13.37 7.10001L16.4 10.13L17.11 9.42001L14.08 6.39001Z" fill="#FAFAFA"/>
-                  </g>
-                  <path id="Vector_4" d="M20 18H13V19H20V18Z" fill="#E0E0E0"/>
-                </g>
+                <path id="Vector" d="M9.83533 3.45282C11.0974 3.45282 12.3311 3.82684 13.3804 4.52759C14.4298 5.22834 15.2477 6.22435 15.7306 7.38966C16.2136 8.55496 16.34 9.83722 16.0938 11.0743C15.8476 12.3114 15.2398 13.4477 14.3474 14.3396C13.455 15.2315 12.318 15.8389 11.0802 16.085C9.84238 16.331 8.5594 16.2047 7.39342 15.722C6.22743 15.2394 5.23085 14.422 4.52969 13.3732C3.82853 12.3245 3.45428 11.0915 3.45428 9.83016C3.45687 8.13958 4.13 6.51898 5.32612 5.32356C6.52224 4.12814 8.14376 3.45542 9.83533 3.45282V3.45282ZM9.83533 1C8.08787 1 6.37966 1.51788 4.92671 2.48815C3.47375 3.45842 2.34127 4.8375 1.67255 6.451C1.00382 8.0645 0.828861 9.83995 1.16977 11.5528C1.51069 13.2657 2.35219 14.8391 3.58783 16.074C4.82347 17.3089 6.39778 18.1499 8.11166 18.4906C9.82554 18.8314 11.602 18.6565 13.2165 17.9882C14.8309 17.3198 16.2108 16.188 17.1816 14.7359C18.1524 13.2838 18.6706 11.5766 18.6706 9.83016C18.6706 7.48825 17.7398 5.24226 16.0828 3.58629C14.4259 1.93031 12.1786 1 9.83533 1V1Z" fill="#E0E0E0"/>
+                <rect id="Rectangle 1" x="14" y="16.1213" width="3" height="10" transform="rotate(-45 14 16.1213)" fill="#E0E0E0"/>
+                <ellipse id="Ellipse 1" cx="22.1317" cy="22.1317" rx="1.5" ry="1" transform="rotate(-45 22.1317 22.1317)" fill="#E0E0E0"/>
               </g>
             </svg>
-          </a>
+          </button>
         </div>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="mt-28">
-      <%= render partial: 'empty' %>
-    </div>
-  <% end %>
+        <div class="h-full flex-1 relative">
+          <select
+            name="status"
+            class="h-full border-none bg-transparent outline-none py-0 text-gray-400 bg-none focus:ring-transparent"
+            data-action="change->personal-center-project-form#submit"
+          >
+            <option value="" <%= params[:status] == '' ? 'selected' : '' %>>全部</option>
+            <% CaseDelegate.web_status_hash.each do |key, value| %>
+              <option value="<%= key %>" <%= params[:status] == key.to_s ? 'selected' : '' %>><%= value[:title] %></option>
+            <% end %>
+          </select>
+          <svg class="absolute inline top-1.5 -ml-8" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g>
+              <path id="Vector" d="M7.5 12L14 5H1L7.5 12Z" fill="#7A7A7A"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </form>
+    <% if @list.present? %>
+      <div class="grid grid-cols-4 gap-x-3 gap-y-10 my-4">
+        <% @list.each do |project| %>
+          <div class="relative">
+            <div class="relative">
+              <img src="<%= project.record.show_cover %>" alt="" class="w-full" style="height: 270px;" />
+              <a href="<%= ['delegate_published', 'delegate_unpublishing', 'delegate_unpublished'].include?(project.status) ? "/projects/#{project.case_id}" : "/records/#{project.record.id}" %>" target="_blank">
+                <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-all">
+                  <span class="text-lg text-white"> <%= project.web_status_title %> </span>
+                </div>
+              </a>
+            </div>
+            <div class="mt-3 flex justify-between items-center">
+              <div class="font-semibold flex-1 truncate" title="<%= project.record.project_name %>">
+                <%= project.record.project_name %>
+              </div>
+              <div class="flex-none ml-2 text-gray-400">
+                <%= project.record.is_th_str %>
+              </div>
+            </div>
+            <a href="/layout/caseEditor?id=<%= project.id %>" class="absolute top-2 right-2" data-turbo="false" target="_blank">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <g>
+                    <path id="Vector" d="M20 0H4C1.79086 0 0 1.79086 0 4V20C0 22.2091 1.79086 24 4 24H20C22.2091 24 24 22.2091 24 20V4C24 1.79086 22.2091 0 20 0Z" fill="#101820"/>
+                    <g>
+                      <path id="Vector_2" d="M15.6 5.07999L18.42 7.89999L8.76007 17.57L5.46008 18.04L5.93005 14.74L15.6 5.07999V5.07999ZM15.6 3.66L5.00006 14.27L4.29004 19.27L9.29004 18.56L19.9001 7.95001L15.66 3.70999L15.6 3.66Z" fill="#FAFAFA"/>
+                      <path id="Vector_3" d="M14.08 6.39001L13.37 7.10001L16.4 10.13L17.11 9.42001L14.08 6.39001Z" fill="#FAFAFA"/>
+                    </g>
+                    <path id="Vector_4" d="M20 18H13V19H20V18Z" fill="#E0E0E0"/>
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="mt-28">
+        <%= render partial: 'empty' %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
