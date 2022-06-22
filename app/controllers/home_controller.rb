@@ -3,18 +3,29 @@
 class HomeController < ApplicationController
   def index
     @total = {
-      material: Material.count,
+      material: Material.count + Sample.joins(:material).count,
       project: Cases.count,
       manufacturer: Manufacturer.count,
     }
 
-    recently_material = Material.where('level = ?', 3).order(created_at: :desc).first
-    @recently_materials = if recently_material.present?
-      Material.where('level = ?', 3).order(created_at: :desc).where("date_format(created_at, '%Y%m%d') = ?", recently_material.created_at.strftime('%Y%m%d'))
+    # 新增材料数据计算
+    recently_material_created_time = Material.where('level = ?', 3).order(created_at: :desc).first&.created_at.strftime('%Y%m%d')
+    recently_ms_created_time = recently_material_created_time
+    recently_sample_created_time = Sample.joins(:material).order(created_at: :desc).first&.created_at.strftime('%Y%m%d')
+    recently_ms_created_time = recently_sample_created_time if recently_sample_created_time > recently_ms_created_time
+    puts recently_ms_created_time, recently_sample_created_time, recently_ms_created_time
+    @recently_materials = if recently_ms_created_time.present?
+      Material.where('level = ?', 3).where("date_format(created_at, '%Y%m%d') = ?", recently_ms_created_time)
     else
       Material.none
     end
-    @total[:recently_materials] = @recently_materials.count
+    @recently_samples = if recently_ms_created_time.present?
+      Sample.joins(:material).where("date_format(sample.created_at, '%Y%m%d') = ?", recently_ms_created_time)
+    else
+      Sample.none
+    end
+    @total[:recently_materials] = @recently_materials.count + @recently_samples.count
+
     @recently_materials = Tops.where('top_model = ?', 'home_new_material').where('material_id > ?', 0).order(top_sort: :desc)
 
     recently_project = Cases.order(created_at: :desc).first
