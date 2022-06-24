@@ -21,6 +21,7 @@
     "compression-webpack-plugin": "^9.2.0",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
+    "dayjs": "^1.11.3",
     "mini-css-extract-plugin": "^2.4.5",
     "mrujs": "^0.7.4",
     "patch-package": "^6.4.7",
