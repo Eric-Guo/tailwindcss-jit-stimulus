@@ -3,7 +3,7 @@
 class PersonalCentersController < ApplicationController
   before_action :authenticate_user!
   before_action :get_no_read_message_count
-  
+
   def projects
     title = params[:title].presence&.strip
     status = params[:status].presence&.strip
@@ -48,7 +48,7 @@ class PersonalCentersController < ApplicationController
         .where(notifiable_type: 'cybros.user')
         .where(notifiable_id: current_user.id)
         .find(params[:id])
-  
+
       if message.read_at.blank?
         message.read_at = Time.now
         message.save
@@ -69,16 +69,16 @@ class PersonalCentersController < ApplicationController
     redirect_to messages_personal_center_path
   end
 
-
   def demands
     @list = Demand
       .includes(:replies, :material)
-      .where(clerk_code: current_user.clerk_code).order(created_at: :desc)
+      .where(clerk_code: current_user.clerk_code)
+      .order(created_at: :desc)
       .all
-    puts @list
   end
 
   def suppliers
+    @list = ManufacturerRecommend.all
   end
 
   private
