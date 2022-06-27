@@ -11,13 +11,26 @@
     style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
   >
       <div class="relative bg-white rounded-lg overflow-hidden" style="width: 700px;">
+        <button class="absolute top-2.5 right-2.5 z-50" data-action="click->modal#close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+          </svg>
+        </button>
         <div class="bg-black text-white text-sm flex justify-center items-center px-3" style="height: 35px;">
           从材料库选择外部案例
         </div>
         <div class="px-10 py-6 overflow-auto" style="height: 580px;">
           <div class="relative">
-            <%= render partial: 'shared/matlib_form/input_text', locals: { class_name: 'w-full pr-8 text-xs', placeholder: '请输入项目名称' } %>
-            <button class="absolute right-2 top-2">
+            <%= render partial: 'shared/matlib_form/input_text', locals: {
+              class_name: 'w-full pr-8 text-xs',
+              placeholder: '请输入项目名称',
+              html_attr: {
+                'data-personal-center-suppliers-target': 'matlibProjectsSearchInput',
+                'data-action': 'keydown->personal-center-suppliers#matlibProjectInputEnter',
+              }
+            } %>
+            <button type="button" class="absolute right-2 top-2" data-action="click->personal-center-suppliers#searchMatlibProjects">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g>
                   <path d="M11.7095 11L10.9976 11.7048L15.2939 16L15.9976 15.2952L11.7095 11Z" fill="#CCCCCC"/>
@@ -27,40 +40,23 @@
             </button>
           </div>
           <div class="mt-5">
-            <table class="w-full text-center table-fixed text-xs">
-              <thead>
-                <tr class="bg-gray-100 font-bold">
-                  <td style="width: 32px;"></td>
-                  <td class="py-1.5" style="width: 400px;">项目名称</td>
-                  <td class="py-1.5">封面图</td>
-                </tr>
-              </thead>
-              <% projects = [
-                { title: '旭辉西青大南河后端' },
-                { title: '旭辉集团南平市建瓯一中前端' },
-                { title: '旭辉集团成都市旭辉金科棠府…' },
-                { title: '旭辉集团济南市银盛泰铂悦凤…' },
-              ] %>
-              <tbody>
-                <% projects.each do |project| %>
-                  <tr class="border-b">
-                    <td class="text-base">
-                      <div class="flex items-center justify-center">
-                        <%= render partial: 'shared/matlib_form/radio', locals: { class_name: 'icon-checked', name: 'pm_project_id' } %>
-                      </div>
-                    </td>
-                    <td class="py-5 truncate"><%= project[:title] %></td>
-                    <td class="py-5 truncate">
-                      <div class="bg-gray-300" style="width: 140px; height: 105px;"></div>
-                    </td>
+            <div class="overflow-auto" style="height: 440px;">
+              <table class="w-full text-center table-fixed text-xs">
+                <thead class="sticky top-0">
+                  <tr class="bg-gray-100 font-bold">
+                    <td style="width: 32px;"></td>
+                    <td class="py-1.5" style="width: 400px;">项目名称</td>
+                    <td class="py-1.5">封面图</td>
                   </tr>
-                <% end %>
-              </tbody>
-            </table>
+                </thead>
+                <tbody data-personal-center-suppliers-target="matlibProjectsContainer"></tbody>
+              </table>
+            </div>
+            <div class="mt-2" data-personal-center-suppliers-target="matlibPagesContainer"></div>
           </div>
         </div>
         <div class="text-sm flex justify-center py-6">
-          <button class="w-20 py-1 rounded-lg border text-gray-400 hover:bg-black hover:text-white" type="button">确定</button>
+          <button class="w-20 py-1 rounded-lg border text-gray-400 hover:bg-black hover:text-white" type="button" data-action="click->personal-center-suppliers#selectExternalCase">确定</button>
           <button class="w-20 py-1 rounded-lg border ml-4 text-gray-400 hover:bg-gray-300 hover:text-gray-500" type="button" data-action="click->modal#close">取消</button>
         </div>
       </div>

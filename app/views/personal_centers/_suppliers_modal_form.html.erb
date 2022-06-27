@@ -11,11 +11,17 @@
     style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
   >
       <div class="relative bg-white rounded-lg overflow-hidden" style="width: 1080px;">
+        <button class="absolute top-2.5 right-2.5 z-50" data-action="click->modal#close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+          </svg>
+        </button>
         <div class="bg-black text-white text-sm flex justify-center items-center px-3" style="height: 35px;">
           新增供应商推荐
         </div>
         <div class="px-10 py-6 overflow-auto" style="height: 605px;">
-          <%= form_tag rm_message_personal_center_path, method: :delete, data: {
+          <%= form_tag create_supplier_personal_center_path, method: :post, id: 'createManufacturerRecommend', data: {
             turbo: false,
             personal_center_suppliers_target: 'modalForm',
           } do %>
@@ -27,21 +33,33 @@
                 <label for="supplier_title">供应商名称:</label>
                 <%= render partial: 'shared/matlib_form/input_text', locals: {
                   id: 'supplier_title',
+                  name: 'name',
                   class_name: 'mt-1',
+                  html_attr: {
+                    'required': 'true',
+                  }
                 } %>
               </div>
               <div class="flex flex-col">
                 <label for="supplier_contact">联系人:</label>
                 <%= render partial: 'shared/matlib_form/input_text', locals: {
                   id: 'supplier_contact',
+                  name: 'contactName',
                   class_name: 'mt-1',
+                  html_attr: {
+                    'required': 'true',
+                  }
                 } %>
               </div>
               <div class="flex flex-col row-span-2 col-span-2">
                 <label for="supplier_recommended_reason">推荐理由:</label>
                 <%= render partial: 'shared/matlib_form/textarea', locals: {
                   id: 'supplier_recommended_reason',
+                  name: 'reason',
                   class_name: 'mt-1 flex-1 resize-none',
+                  html_attr: {
+                    'required': 'true',
+                  }
                 } %>
               </div>
               <div class="flex flex-col">
@@ -49,10 +67,14 @@
                 <%= render partial: 'shared/matlib_form/select', locals: {
                   id: 'supplier_type',
                   class_name: 'mt-1',
-                  value: '石材',
-                  options: [
-                    { label: '石材', value: '石材' },
-                  ],
+                  name: 'materialID',
+                  value: 1,
+                  options: Material.where(level: 1).all.map do |m|
+                    {
+                      label: m.name,
+                      value: m.id,
+                    }
+                  end,
                 } %>
               </div>
               <div class="flex flex-col">
@@ -60,13 +82,35 @@
                 <%= render partial: 'shared/matlib_form/input_text', locals: {
                   id: 'supplier_contact_phone',
                   class_name: 'mt-1',
+                  name: 'contactTel',
+                  html_attr: {
+                    'required': 'true',
+                  }
                 } %>
               </div>
               <div class="flex flex-col">
                 <label for="">是否与天华合作过:</label>
                 <div class="mt-1">
-                  <%= render partial: 'shared/matlib_form/radio', locals: { label: '是', value: true, name: 'is_th' } %>
-                  <%= render partial: 'shared/matlib_form/radio', locals: { label: '否', value: false, name: 'is_th', class_name: 'ml-10' } %>
+                  <%= render partial: 'shared/matlib_form/radio', locals: {
+                    label: '是',
+                    value: true,
+                    name: 'isThCo',
+                    html_attr: {
+                      'data-action': "click->personal-center-suppliers#isThCoChange",
+                      'data-personal-center-suppliers-value-param': 'true',
+                    },
+                  } %>
+                  <%= render partial: 'shared/matlib_form/radio', locals: {
+                    label: '否',
+                    value: false,
+                    name: 'isThCo',
+                    class_name: 'ml-10',
+                    checked: true,
+                    html_attr: {
+                      'data-action': "click->personal-center-suppliers#isThCoChange",
+                      'data-personal-center-suppliers-value-param': 'false',
+                    },
+                  } %>
                 </div>
               </div>
             </div>
@@ -74,17 +118,26 @@
               <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;">供应商优秀案例</span>
               <span class="text-gray-300 relative text-lg" style="bottom: -1px;">（需选择或添加至少一个）</span>
             </div>
-            <div class="py-3">
-              <div class="flex gap-12">
-                <button class="matlib-form-button icon-add text-xs" type="button" data-action="click->personal-center-suppliers#showPmProjectsModal">从PM库选择天华内部案例</button>
+            <div class="pb-3">
+              <input type="hidden" name="cases" data-personal-center-suppliers-target="casesInput" data-action="change->personal-center-suppliers#casesValueChange" />
+              <div data-personal-center-suppliers-target="casesContainer"></div>
+              <div class="mt-3 flex gap-12">
+                <button
+                  class="matlib-form-button icon-add text-xs hidden"
+                  type="button"
+                  data-action="click->personal-center-suppliers#showPmProjectsModal"
+                  data-personal-center-suppliers-target="addInternalCaseBtn"
+                >
+                  从PM库选择天华内部案例
+                </button>
                 <button class="matlib-form-button icon-add text-xs" type="button" data-action="click->personal-center-suppliers#showMatlibProjectsModal">从材料库选择外部案例 (选填)</button>
-                <button class="matlib-form-button icon-add text-xs" type="button">新增外部案例 (选填)</button>
+                <button class="matlib-form-button icon-add text-xs" type="button" data-action="click->personal-center-suppliers#addExternalCase">新增外部案例 (选填)</button>
               </div>
             </div>
           <% end %>
         </div>
         <div class="text-sm flex justify-center py-6">
-          <button class="w-20 py-1 rounded-lg border text-gray-400 hover:bg-black hover:text-white" type="submit">提交审核</button>
+          <button class="w-20 py-1 rounded-lg border text-gray-400 hover:bg-black hover:text-white" type="submit" form="createManufacturerRecommend">提交审核</button>
           <button class="w-20 py-1 rounded-lg border ml-4 text-gray-400 hover:bg-gray-300 hover:text-gray-500" type="button" data-action="click->modal#close">取消</button>
         </div>
       </div>
