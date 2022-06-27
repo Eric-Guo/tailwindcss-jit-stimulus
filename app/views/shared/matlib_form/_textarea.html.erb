@@ -4,6 +4,7 @@
 <% class_name ||= '' %>
 <% placeholer ||= '' %>
 <% disabled ||= false %>
+<% html_attr ||= {} %>
 
 <textarea
   id=<%= id %>
@@ -11,4 +12,5 @@
   placeholer="<%= placeholer %>"
   class="border border-gray-300 rounded px-2 text-gray-500 focus:border-black focus:ring-black <%= class_name %>"
   <%= disabled ? 'disabled' : '' %>
+  <%= html_attr.keys.map{ |key| "#{key}=\"#{html_attr[key]}\"" }.join(' ').html_safe %>
 ><%= value %></textarea>

@@ -78,7 +78,26 @@ class PersonalCentersController < ApplicationController
   end
 
   def suppliers
-    @list = ManufacturerRecommend.all
+    @list = ManufacturerRecommend.where(user_id: current_user.id).all
+  end
+
+  def create_supplier
+    raise Exception.new('供应商名称不能为空') if params[:name].presence&.strip.blank?
+    raise Exception.new('联系人不能为空') if params[:contactName].presence&.strip.blank?
+    raise Exception.new('供应商类型不能为空') if params[:materialID].presence&.strip.blank?
+    raise Exception.new('联系电话不能为空') if params[:contactTel].presence&.strip.blank?
+    raise Exception.new('推荐理由不能为空') if params[:reason].presence&.strip.blank?
+    raise Exception.new('供应商优秀案例不能为空') if params[:cases].presence&.strip.blank?
+    res = ThtriApi.create_manufacturer_recommend({
+      name: params[:name],
+      contactName: params[:contactName],
+      materialID: params[:materialID].to_i,
+      contactTel: params[:contactTel],
+      isThCo: params[:isThCo] == 'true',
+      reason: params[:reason],
+      cases: JSON.parse(params[:cases])
+    }, { 'Cookie': request.headers['HTTP_COOKIE'] })
+    redirect_to suppliers_personal_center_path
   end
 
   private
