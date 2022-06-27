@@ -44,10 +44,19 @@ Rails.application.routes.draw do
     member do
       get :projects
       get :messages
-      get :demands
-      get :suppliers
       put :set_message_read
       delete :rm_message
+      get :demands
+      get :suppliers
+      post :create_supplier
+    end
+  end
+
+  resource :thtri_api, only: [] do
+    member do
+      post :upload_img
+      get :pm_projects
+      get :matlib_projects
     end
   end
 

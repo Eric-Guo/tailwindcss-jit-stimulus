@@ -4,6 +4,7 @@
 <% class_name ||= '' %>
 <% placeholder ||= '' %>
 <% disabled ||= false %>
+<% html_attr ||= {} %>
 
 <input
   id="<%= id %>"
@@ -13,4 +14,5 @@
   placeholder="<%= placeholder %>"
   class="border border-gray-300 h-8 rounded px-2 text-gray-500 focus:border-black focus:ring-black <%= class_name %>"
   <%= disabled ? 'disabled' : '' %>
+  <%= html_attr.keys.map{ |key| "#{key}=\"#{html_attr[key]}\"" }.join(' ').html_safe %>
 />
