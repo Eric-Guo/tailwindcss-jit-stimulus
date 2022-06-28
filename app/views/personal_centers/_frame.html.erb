@@ -33,9 +33,9 @@
     <div class="material-nav pt-3" style="width: 250px;" data-controller="material-nav">
       <div class="material-nav-item mb-5 <%= page == :projects ? 'active' : '' %>" data-material-nav-target="navItem">
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
-          <div class="material-nav-item-header-title truncate">
+          <a data-turbo="false" href="<%= projects_personal_center_path %>" class="material-nav-item-header-title truncate" onclick="event.stopPropagation();">
             <span><%= pages[:projects][:zh] %></span>
-          </div>
+          </a>
           <svg xmlns="http://www.w3.org/2000/svg" class="material-nav-item-header-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
