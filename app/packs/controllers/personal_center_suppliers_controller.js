@@ -146,7 +146,7 @@ export default class extends Controller {
           }
           if (c.typeId === 'pm') inCount++;
         }
-        if (isThCo && inCount <= 0) msg = '与天华合作过的供应商需要选择一个内部案例';
+        if (isThCo && inCount <= 0 && !msg) msg = '与天华合作过的供应商需要选择一个内部案例';
         if (msg) {
           e.preventDefault();
           alert(msg);
