@@ -12,6 +12,7 @@ class Cases < ApplicationRecord
   belongs_to :area, optional: true
 
   has_many :live_photos, class_name: 'CaseLivePhoto', foreign_key: :case_id
+  has_many :documents, class_name: 'CaseRelevantDocument'
 
   default_scope { where(deleted_at: nil).where(display: 1).where(status: 'case_published') }
 
@@ -64,15 +65,14 @@ class Cases < ApplicationRecord
 
   # 相关文件
   def related_files
-    arr = self.documents.is_a?(String) ? JSON.parse(self.documents) : self.documents;
-    if arr.present? && arr.is_a?(Array)
-      arr.select { |item| item['url'].present? }.map do |item|
-        file_tag = get_file_tag(item['url'])
+    if documents.present?
+      documents.select { |item| item.path.present? }.map do |item|
+        file_tag = get_file_tag(item.path)
         {
           tag_name: file_tag[:name],
           tag_icon: file_tag[:icon],
-          name: item['name'],
-          url: item['url'],
+          name: item.title,
+          url: item.path,
         }
       end
     else
