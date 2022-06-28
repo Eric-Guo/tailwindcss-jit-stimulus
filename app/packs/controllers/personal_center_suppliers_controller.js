@@ -201,7 +201,7 @@ export default class extends Controller {
                 <span><span class="text-red">*</span>项目名称:</span>
                 <input
                   type="text"
-                  class="border border-gray-300 h-7 leading-7 rounded px-2 text-gray-500 focus:border-none focus:ring-black mt-1"
+                  class="border border-gray-300 h-7 leading-7 rounded px-2 text-gray-500 focus:border-none focus:ring-black text-sm mt-1"
                   data-action="change->personal-center-suppliers#caseTextChange"
                   value="${item.name}"
                   data-personal-center-suppliers-index-param="${index}"
@@ -213,9 +213,22 @@ export default class extends Controller {
           <div class="flex-1" style="margin-left: 30px;">
             <label><span class="text-red">*</span>实景照:</label>
             <div class="mt-1 grid grid-cols-3 gap-3">
-              ${item.livePhotos.map(it => `
-                <div style="height: 180px;">
+              ${item.livePhotos.map((it, ind) => `
+                <div class="relative" style="height: 180px;">
                   <img class="w-full h-full object-cover" src="${this.filePathPrefixValue}${it.path}" alt="${it.title}">
+                  <div class="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100">
+                    <button
+                      class="absolute top-2.5 right-2.5" title="删除"
+                      data-action="click->personal-center-suppliers#caseRmLivePhoto"
+                      data-personal-center-suppliers-index-param="${index}"
+                      data-personal-center-suppliers-index2-param="${ind}"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z" fill="#101820"/>
+                        <path d="M12.0898 7.41998H3.91992V8.59003H12.0898V7.41998Z" fill="white"/>
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               `).join('')}
               <label class="flex justify-center items-center bg-gray-100 cursor-pointer" style="height: 180px;">
@@ -321,6 +334,13 @@ export default class extends Controller {
   caseTextChange({ params: { index, key }, target }) {
     this.casesData[index][key] = target.value;
     this.dispatchCasesChange();
+  }
+
+  caseRmLivePhoto({ params: { index, index2 } }) {
+    if (confirm('确定要删除么？')) {
+      this.casesData[index]['livePhotos'] = this.casesData[index]['livePhotos'].filter((_, ind) => ind !== index2);
+      this.dispatchCasesChange();
+    }
   }
 
   pmProjectInputEnter(e) {
