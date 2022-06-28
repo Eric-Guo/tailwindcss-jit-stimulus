@@ -16,7 +16,7 @@
         <tbody>
           <% @list.each do |demand| %>
             <tr
-              class="hover:bg-orange-50 cursor-pointer"
+              class="hover:bg-gray-50 cursor-pointer"
               data-action="click->personal-center-demands#showDetailModal"
               data-json="<%= {
                 cate_name: demand.cate_name,
