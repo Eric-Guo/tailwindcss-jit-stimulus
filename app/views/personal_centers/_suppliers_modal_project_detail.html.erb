@@ -11,21 +11,21 @@
       <% if project.type_id == 'pm' %>
         <div>
           <label>项目编号:</label>
-          <div class="border border-gray-300 bg-gray-200 h-8 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate">
+          <div class="border border-gray-300 bg-gray-200 h-7 rounded px-2 leading-7 text-gray-500 text-sm mt-1 truncate">
             <%= project.no %>
           </div>
         </div>
         <div>
           <label>PM项目名称:</label>
-          <div class="border border-gray-300 bg-gray-200 h-8 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate" title="<%= project.pm_project_name %>">
+          <div class="border border-gray-300 bg-gray-200 h-7 rounded px-2 leading-7 text-gray-500 text-sm mt-1 truncate" title="<%= project.pm_project_name %>">
             <%= project.pm_project_name %>
           </div>
         </div>
       <% end %>
       <div>
         <label>项目名称:</label>
-        <div class="border border-gray-300 bg-gray-200 h-8 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate" title="<%= project.name %>">
-         <%= project.name %>
+        <div class="border border-gray-300 bg-gray-200 h-7 rounded px-2 leading-7 text-gray-500 text-sm mt-1 truncate" title="<%= project.name %>">
+          <%= project.name %>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
       <div class="mt-1 grid grid-cols-3 gap-3">
         <% project.live_photos.each do |live_photo| %>
           <div style="height: 180px;">
-            <img class="w-full h-full object-cover" src="<%= mat_img_url(live_photo.path) %>" alt="<%= live_photo.title %>">
+            <img class="w-full h-full object-cover bg-gray-400" src="<%= mat_img_url(live_photo.path) %>" alt="<%= live_photo.title %>">
           </div>
         <% end %>
       </div>
