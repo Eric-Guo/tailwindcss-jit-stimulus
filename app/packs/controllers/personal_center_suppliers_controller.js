@@ -114,6 +114,25 @@ export default class extends Controller {
     this.casesInputTarget.dispatchEvent(event);
   }
 
+  formSubmit(e) {
+    const formData = new FormData(e.target);
+    const names = [
+      { key: 'name', title: '供应商名称' },
+      { key: 'contactName', title: '联系人' },
+      { key: 'reason', title: '推荐理由' },
+      { key: 'materialID', title: '供应商类型' },
+      { key: 'contactTel', title: '联系电话' },
+      { key: 'cases', title: '供应商优秀案例' },
+    ];
+    for (const name of names) {
+      const value = formData.get(name.key).trim();
+      if (!value || (name.key === 'cases' && /^\[\s*\]$/.test(value))) {
+        e.preventDefault();
+        alert(`${name.title}不能为空`);
+      }
+    };
+  }
+
   renderCases(data = []) {
     const html = data.map((item, index) => `
       <div class="first:mt-3 mb-3 pb-3 border-b border-gray-200">

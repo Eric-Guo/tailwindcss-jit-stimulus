@@ -24,13 +24,14 @@
           <%= form_tag create_supplier_personal_center_path, method: :post, id: 'createManufacturerRecommend', data: {
             turbo: false,
             personal_center_suppliers_target: 'modalForm',
+            action: 'submit->personal-center-suppliers#formSubmit'
           } do %>
             <div class="flex border-b border-gray-200">
               <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;">供应商信息</span>
             </div>
             <div class="grid grid-cols-4 gap-7 mt-3">
               <div class="flex flex-col">
-                <label for="supplier_title">供应商名称:</label>
+                <label for="supplier_title"><span class="text-red">*</span>供应商名称:</label>
                 <%= render partial: 'shared/matlib_form/input_text', locals: {
                   id: 'supplier_title',
                   name: 'name',
@@ -41,7 +42,7 @@
                 } %>
               </div>
               <div class="flex flex-col">
-                <label for="supplier_contact">联系人:</label>
+                <label for="supplier_contact"><span class="text-red">*</span>联系人:</label>
                 <%= render partial: 'shared/matlib_form/input_text', locals: {
                   id: 'supplier_contact',
                   name: 'contactName',
@@ -52,7 +53,7 @@
                 } %>
               </div>
               <div class="flex flex-col row-span-2 col-span-2">
-                <label for="supplier_recommended_reason">推荐理由:</label>
+                <label for="supplier_recommended_reason"><span class="text-red">*</span>推荐理由:</label>
                 <%= render partial: 'shared/matlib_form/textarea', locals: {
                   id: 'supplier_recommended_reason',
                   name: 'reason',
@@ -63,7 +64,7 @@
                 } %>
               </div>
               <div class="flex flex-col">
-                <label for="supplier_type">供应商类型:</label>
+                <label for="supplier_type"><span class="text-red">*</span>供应商类型:</label>
                 <%= render partial: 'shared/matlib_form/select', locals: {
                   id: 'supplier_type',
                   class_name: 'mt-1',
@@ -78,7 +79,7 @@
                 } %>
               </div>
               <div class="flex flex-col">
-                <label for="supplier_contact_phone">联系电话:</label>
+                <label for="supplier_contact_phone"><span class="text-red">*</span>联系电话:</label>
                 <%= render partial: 'shared/matlib_form/input_text', locals: {
                   id: 'supplier_contact_phone',
                   class_name: 'mt-1',
@@ -89,7 +90,7 @@
                 } %>
               </div>
               <div class="flex flex-col">
-                <label for="">是否与天华合作过:</label>
+                <label for=""><span class="text-red">*</span>是否与天华合作过:</label>
                 <div class="mt-1">
                   <%= render partial: 'shared/matlib_form/radio', locals: {
                     label: '是',
@@ -115,7 +116,7 @@
               </div>
             </div>
             <div class="flex border-b border-gray-200 mt-11">
-              <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;">供应商优秀案例</span>
+              <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;"><span class="text-red">*</span>供应商优秀案例</span>
               <span class="text-gray-300 relative text-lg" style="bottom: -1px;">（需选择或添加至少一个）</span>
             </div>
             <div class="pb-3">
