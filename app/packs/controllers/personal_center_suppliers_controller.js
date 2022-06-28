@@ -165,7 +165,7 @@ export default class extends Controller {
                 <span>项目名称:</span>
                 <input
                   type="text"
-                  class="border border-gray-300 h-8 rounded px-2 text-gray-500 focus:border-black focus:ring-black mt-1"
+                  class="border border-gray-300 h-8 rounded px-2 text-gray-500 focus:border-none focus:ring-black mt-1"
                   data-action="change->personal-center-suppliers#caseTextChange"
                   value="${item.name}"
                   data-personal-center-suppliers-index-param="${index}"
