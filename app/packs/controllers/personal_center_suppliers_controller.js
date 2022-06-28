@@ -129,6 +129,7 @@ export default class extends Controller {
       if (!value || (name.key === 'cases' && /^\[\s*\]$/.test(value))) {
         e.preventDefault();
         alert(`${name.title}不能为空`);
+        break;
       }
     };
   }
