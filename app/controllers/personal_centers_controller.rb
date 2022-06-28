@@ -92,14 +92,24 @@ class PersonalCentersController < ApplicationController
     raise Exception.new('供应商类型不能为空') if params[:materialID].presence&.strip.blank?
     raise Exception.new('联系电话不能为空') if params[:contactTel].presence&.strip.blank?
     raise Exception.new('供应商优秀案例不能为空') if params[:cases].presence&.strip.blank?
+    cases = JSON.parse(params[:cases])
+    raise Exception.new('供应商优秀案例不能为空') unless cases.is_a?(Array) && cases.length > 0
+    is_th_co = params[:isThCo] == 'true'
+    inCount = 0
+    cases.each do |c|
+      raise Exception.new('每个案例的项目名称不能为空') if c['typeId'] != 'thtri' && c['name']&.strip.blank?
+      raise Exception.new('每个案例的实景照至少上传一张图片') unless c['livePhotos'].is_a?(Array) && c['livePhotos'].length > 0
+      inCount+=1 if ['typeId'] == 'pm'
+    end
+    raise Exception.new('与天华合作过的供应商需要选择一个内部案例') if is_th_co && inCount <= 0
     res = ThtriApi.create_manufacturer_recommend({
       name: params[:name],
       contactName: params[:contactName],
       materialID: params[:materialID].to_i,
       contactTel: params[:contactTel],
-      isThCo: params[:isThCo] == 'true',
+      isThCo: is_th_co,
       reason: params[:reason],
-      cases: JSON.parse(params[:cases])
+      cases: cases
     }, { 'Cookie': request.headers['HTTP_COOKIE'] })
     redirect_to suppliers_personal_center_path
   end

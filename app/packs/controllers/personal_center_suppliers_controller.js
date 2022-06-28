@@ -125,10 +125,39 @@ export default class extends Controller {
     ];
     for (const name of names) {
       const value = formData.get(name.key).trim();
-      if (!value || (name.key === 'cases' && /^\[\s*\]$/.test(value))) {
-        e.preventDefault();
-        alert(`${name.title}不能为空`);
-        break;
+      if (name.key === 'cases') {
+        if (!value || /^\[\s*\]$/.test(value)) {
+          e.preventDefault();
+          alert(`${name.title}不能为空`);
+          break;
+        }
+        const cases = JSON.parse(value);
+        const isThCo = formData.get('isThCo') === 'true';
+        const inCount = 0; // 内部案例数量
+        let msg = '';
+        for (const c of cases) {
+          if (c.typeId !== 'thtri' && (!c.name || !c.name.trim())) {
+            msg = '每个案例的项目名称不能为空';
+            break;
+          }
+          if (!Array.isArray(c.livePhotos) || c.livePhotos.length === 0) {
+            msg = '每个案例的实景照至少上传一张图片';
+            break;
+          }
+          if (c.typeId === 'pm') inCount++;
+        }
+        if (isThCo && inCount <= 0) msg = '与天华合作过的供应商需要选择一个内部案例';
+        if (msg) {
+          e.preventDefault();
+          alert(msg);
+          break;
+        }
+      } else {
+        if (!value) {
+          e.preventDefault();
+          alert(`${name.title}不能为空`);
+          break;
+        }
       }
     };
   }
@@ -149,40 +178,40 @@ export default class extends Controller {
             ${item.typeId === 'pm' ? `
               <div>
                 <label>项目编号:</label>
-                <div class="border border-gray-300 bg-gray-200 h-8 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate">
+                <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate">
                   ${item.no}
                 </div>
               </div>
               <div>
                 <label>PM项目名称:</label>
-                <div class="border border-gray-300 bg-gray-200 h-8 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate" title="${item.pmProjectName}">
+                <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate" title="${item.pmProjectName}">
                   ${item.pmProjectName}
                 </div>
               </div>
             ` : ''}
-            ${item.typeId === 'add' ? `
+            ${item.typeId === 'thtri' ? `
+              <div>
+                <label>项目名称:</label>
+                <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate" title="${item.name}">
+                ${item.name}
+                </div>
+              </div>
+            ` : `
               <label>
-                <span>项目名称:</span>
+                <span><span class="text-red">*</span>项目名称:</span>
                 <input
                   type="text"
-                  class="border border-gray-300 h-8 rounded px-2 text-gray-500 focus:border-none focus:ring-black mt-1"
+                  class="border border-gray-300 h-7 leading-7 rounded px-2 text-gray-500 focus:border-none focus:ring-black mt-1"
                   data-action="change->personal-center-suppliers#caseTextChange"
                   value="${item.name}"
                   data-personal-center-suppliers-index-param="${index}"
                   data-personal-center-suppliers-key-param="name"
                 />
               </label>
-            ` : `
-              <div>
-                <label>项目名称:</label>
-                <div class="border border-gray-300 bg-gray-200 h-8 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate" title="${item.name}">
-                  ${item.name}
-                </div>
-              </div>
             `}
           </div>
           <div class="flex-1" style="margin-left: 30px;">
-            <label>实景照:</label>
+            <label><span class="text-red">*</span>实景照:</label>
             <div class="mt-1 grid grid-cols-3 gap-3">
               ${item.livePhotos.map(it => `
                 <div style="height: 180px;">

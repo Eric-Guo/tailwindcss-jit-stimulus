@@ -31,6 +31,12 @@ module.exports = {
       screens: {
         '3xl': '1850px',
       },
+      height: {
+        '7.5': '30px',
+      },
+      lineHeight: {
+        '7.5': '30px',
+      },
       spacing: {
         '30': '7.5rem',
         '50': '12.5rem',
