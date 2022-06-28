@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       get :demands
       get :suppliers
       post :create_supplier
+      get :show_supplier
     end
   end
 
