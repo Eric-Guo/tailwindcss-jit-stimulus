@@ -81,6 +81,11 @@ class PersonalCentersController < ApplicationController
     @list = ManufacturerRecommend.where(user_id: current_user.id).all
   end
 
+  def show_supplier
+    manufacturer_recommend = ManufacturerRecommend.find(params[:id])
+    render content_type: 'text/vnd.turbo-stream.html', turbo_stream: turbo_stream.replace('supplier_detail_modal_body', partial: 'personal_centers/supplier_detail_modal_body', locals: { manufacturer_recommend: manufacturer_recommend })
+  end
+
   def create_supplier
     raise Exception.new('供应商名称不能为空') if params[:name].presence&.strip.blank?
     raise Exception.new('联系人不能为空') if params[:contactName].presence&.strip.blank?

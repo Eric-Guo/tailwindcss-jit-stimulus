@@ -31,7 +31,6 @@ export default class extends Controller {
   casesData = []
 
   showFormModal(e) {
-    console.log(123)
     let modal = null;
     if (this.hasModalTarget) {
       modal = this.application.getControllerForElementAndIdentifier(this.modalTarget, 'modal');
@@ -168,7 +167,7 @@ export default class extends Controller {
             <div class="mt-1 grid grid-cols-3 gap-3">
               ${item.livePhotos.map(it => `
                 <div style="height: 180px;">
-                  <img class="w-full h-full object-cover bg-gray-200" src="${this.filePathPrefixValue}${it.path}" alt="${it.title}">
+                  <img class="w-full h-full object-cover" src="${this.filePathPrefixValue}${it.path}" alt="${it.title}">
                 </div>
               `).join('')}
               <label class="flex justify-center items-center bg-gray-100 cursor-pointer" style="height: 180px;">
@@ -243,7 +242,6 @@ export default class extends Controller {
   }
 
   removeCase({ params: { index } }) {
-    console.log(index);
     if (confirm('确定要删除么？')) {
       this.casesData = this.casesData.filter((_, ind) => index !== ind);
       this.dispatchCasesChange();
@@ -290,7 +288,6 @@ export default class extends Controller {
 
   fetchPmProjects({ keywords = '', page = 1, pageSize = 10 }) {
     if (!keywords) return alert('请输入关键词搜索！');
-    console.log(this.pmProjectsPathValue);
     const url = new URL(this.pmProjectsPathValue, window.location.origin);
     url.searchParams.set('page', page);
     url.searchParams.set('pageSize', pageSize);
@@ -383,7 +380,8 @@ export default class extends Controller {
     if (!container) return;
     const pagination = this.getPagination(page, pageSize, total, showPages);
     const html = `
-      <ul class="flex justify-center items-center gap-1 text-sm">
+      <ul class="flex justify-end items-center gap-1 text-sm">
+        <li class="text-gray-400">总计 ${total} 条结果</li>
         <li
           class="px-1 h-6 flex items-center rounded ${pagination.backward ? 'hover:text-white hover:bg-gray-200 cursor-pointer' : 'text-gray-300 cursor-not-allowed'}"
           data-personal-center-suppliers-type-param="${type}"
@@ -478,7 +476,6 @@ export default class extends Controller {
 
   fetchMatlibProjects({ keywords = '', page = 1, pageSize = 10 }) {
     if (!keywords) return alert('请输入关键词搜索！');
-    console.log(this.matlibProjectsPathValue);
     const url = new URL(this.matlibProjectsPathValue, window.location.origin);
     url.searchParams.set('page', page);
     url.searchParams.set('pageSize', pageSize);
