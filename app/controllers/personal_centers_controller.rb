@@ -91,7 +91,6 @@ class PersonalCentersController < ApplicationController
     raise Exception.new('联系人不能为空') if params[:contactName].presence&.strip.blank?
     raise Exception.new('供应商类型不能为空') if params[:materialID].presence&.strip.blank?
     raise Exception.new('联系电话不能为空') if params[:contactTel].presence&.strip.blank?
-    raise Exception.new('推荐理由不能为空') if params[:reason].presence&.strip.blank?
     raise Exception.new('供应商优秀案例不能为空') if params[:cases].presence&.strip.blank?
     res = ThtriApi.create_manufacturer_recommend({
       name: params[:name],
