@@ -119,7 +119,6 @@ export default class extends Controller {
     const names = [
       { key: 'name', title: '供应商名称' },
       { key: 'contactName', title: '联系人' },
-      { key: 'reason', title: '推荐理由' },
       { key: 'materialID', title: '供应商类型' },
       { key: 'contactTel', title: '联系电话' },
       { key: 'cases', title: '供应商优秀案例' },
