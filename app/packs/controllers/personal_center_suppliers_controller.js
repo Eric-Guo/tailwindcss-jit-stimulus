@@ -133,7 +133,7 @@ export default class extends Controller {
         }
         const cases = JSON.parse(value);
         const isThCo = formData.get('isThCo') === 'true';
-        const inCount = 0; // 内部案例数量
+        let inCount = 0; // 内部案例数量
         let msg = '';
         for (const c of cases) {
           if (c.typeId !== 'thtri' && (!c.name || !c.name.trim())) {
@@ -178,13 +178,13 @@ export default class extends Controller {
             ${item.typeId === 'pm' ? `
               <div>
                 <label>项目编号:</label>
-                <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate">
+                <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 text-gray-500 text-sm mt-1 truncate">
                   ${item.no}
                 </div>
               </div>
               <div>
                 <label>PM项目名称:</label>
-                <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate" title="${item.pmProjectName}">
+                <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 text-gray-500 text-sm mt-1 truncate" title="${item.pmProjectName}">
                   ${item.pmProjectName}
                 </div>
               </div>
@@ -192,7 +192,7 @@ export default class extends Controller {
             ${item.typeId === 'thtri' ? `
               <div>
                 <label>项目名称:</label>
-                <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 py-1.5 text-gray-500 text-sm mt-1 truncate" title="${item.name}">
+                <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 text-gray-500 text-sm mt-1 truncate" title="${item.name}">
                 ${item.name}
                 </div>
               </div>
