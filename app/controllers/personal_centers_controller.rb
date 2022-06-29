@@ -99,7 +99,7 @@ class PersonalCentersController < ApplicationController
     cases.each do |c|
       raise Exception.new('每个案例的项目名称不能为空') if c['typeId'] != 'thtri' && c['name']&.strip.blank?
       raise Exception.new('每个案例的实景照至少上传一张图片') unless c['livePhotos'].is_a?(Array) && c['livePhotos'].length > 0
-      inCount+=1 if ['typeId'] == 'pm'
+      inCount+=1 if c['typeId'] == 'pm'
     end
     raise Exception.new('与天华合作过的供应商需要选择一个内部案例') if is_th_co && inCount <= 0
     res = ThtriApi.create_manufacturer_recommend({
