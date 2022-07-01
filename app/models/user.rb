@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
 
   has_many :position_users, -> { order(main_position: :desc) }, dependent: :destroy
   has_many :positions, through: :position_users
+
+  def main_position
+    @_main_position ||= positions.where(position_users: { main_position: true }).first
+  end
 end

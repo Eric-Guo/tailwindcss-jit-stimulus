@@ -67,9 +67,12 @@
       </div>
 
       <div style="margin-top: 30px;">
-        <div class="text-lg font-semibold">
-          <span>案例名称: </span>
+        <div class="text-lg font-semibold flex items-center">
+          <span>案例名称：</span>
           <span><%= @project.project_name %></span>
+          <% if !@project.in_secret_time? %>
+            <span class="ml-2 text-xs font-normal px-2 py-1 bg-blue-100 bg-opacity-60 text-blue-400 rounded-2xl">保密项目</span>
+          <% end %>
         </div>
         <div class="flex gap-2 mt-4">
           <div class="w-0 flex-1">
@@ -221,7 +224,7 @@
         </div>
       <% end %>
 
-      <% if false && @project.facade.length > 0 %>
+      <% if @project.permissions(current_user)[:facade_manual] && @project.facade.length > 0 %>
         <div class="pb-3 border-b-2 border-gray-100 border-solid" style="margin-top: 80px;">
           <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">立面控制手册</span>
           <span class="text-xl font-light">Facade</span>
@@ -249,7 +252,7 @@
         </div>
       <% end %>
 
-      <% if false && @project.related_files.length > 0 %>
+      <% if @project.permissions(current_user)[:related_files] && @project.related_files.length > 0 %>
         <div class="pb-3 border-b-2 border-gray-100 border-solid" style="margin-top: 80px;">
           <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">相关文件</span>
           <span class="text-xl font-light">Related Files</span>
