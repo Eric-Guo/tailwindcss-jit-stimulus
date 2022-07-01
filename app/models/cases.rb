@@ -12,7 +12,9 @@ class Cases < ApplicationRecord
   belongs_to :area, optional: true
 
   has_many :live_photos, class_name: 'CaseLivePhoto', foreign_key: :case_id
-  has_many :documents, class_name: 'CaseRelevantDocument'
+  has_many :documents, class_name: 'CaseRelevantDocument', foreign_key: :case_id
+
+  belongs_to :lmkzsc
 
   default_scope { where(deleted_at: nil).where(display: 1).where(status: 'case_published') }
 
@@ -47,17 +49,16 @@ class Cases < ApplicationRecord
 
   # 立面控制手册
   def facade
-    arr = self.ecm_files.is_a?(String) ? JSON.parse(self.ecm_files) : self.ecm_files;
-    if self.is_th && arr.present? && arr.is_a?(Array)
-      arr.select { |item| item['url'].present? }.map do |item|
-        file_tag = get_file_tag(item['url'])
+    if self.is_th && self.lmkzsc.present?
+      file_tag = get_file_tag(lmkzsc.path)
+      [
         {
           tag_name: file_tag[:name],
           tag_icon: file_tag[:icon],
-          name: item['name'],
-          url: item['url'],
+          name: lmkzsc.name,
+          url: lmkzsc.path,
         }
-      end
+      ]
     else
       []
     end
@@ -98,5 +99,32 @@ class Cases < ApplicationRecord
     else
       '外部项目'
     end
+  end
+
+  # 是否在保密时间内
+  def in_secret_time?
+    visibility == 2 && confidential_time > Time.now()
+  end
+
+  # 用户可以查看案例的权限
+  def permissions(current_user)
+    show_detail = current_user&.main_position.present? \
+      && Position.architecture?(current_user.main_position.b_postcode) \
+      && (in_secret_time? ? current_user.main_position.post_level.to_i > 11 : true)
+    @_permissions ||= {
+      base: true, # 基础信息，项目列表
+      info: show_detail, # 全部信息，包括案例信息与材料信息
+      facade_manual: show_detail, # 立面手册
+      related_files: show_detail && current_user.main_position.post_level.to_i > 8, # 其他文件
+      download_file_count: if show_detail && current_user.main_position.post_level.to_i > 11
+        9999
+      elsif show_detail && (9..11) === current_user.main_position.post_level.to_i
+        3
+      elsif show_detail
+        1
+      else
+        0
+      end,
+    }
   end
 end
