@@ -1,14 +1,36 @@
 <%= render 'frame', page: 'messages' do -%>
   <div class="relative py-8 flex flex-col gap-8" data-controller="personal-center-messages">
     <% if @no_read_message_count.to_i > 0 %>
-      <%= form_tag set_message_read_personal_center_path(all: true), method: :put, class: 'absolute right-0 -top-10 ', onsubmit: 'this.querySelector(\'button\').disabled = true', data: {
+    <% end %>
+    <div class="absolute right-0 -top-10 flex items-center">
+      <input
+       type="checkbox"
+       class="focus:ring-gray-50 text-gray-600 border-gray-300"
+       data-personal-center-messages-target="allCheckbox"
+       data-action="change->personal-center-messages#activeAllCheckbox"
+       <%= @list.present? ? '' : 'disabled' %>
+      />
+      <button
+        type="button"
+        class="ml-4 px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all disabled:text-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        <%= @list.present? ? '' : 'disabled' %>
+        data-action="click->personal-center-messages#removeItems"
+      >
+        删除
+      </button>
+      <%= form_tag set_message_read_personal_center_path, method: :put, onsubmit: 'this.querySelector(\'button\').disabled = true', data: {
         turbo: false
       } do %>
-        <button class="px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all">
-          全部已读
+        <input type="hidden" name="id" data-personal-center-messages-target="idsInput" />
+        <button
+          type="submit"
+          class="ml-2 px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all disabled:text-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+          <%= @list.present? && @list.any?{ |msg| msg.read_at.blank? } ? '' : 'disabled' %>
+        >
+          标记已读
         </button>
       <% end %>
-    <% end %>
+    </div>
     <% if @list.present? %>
       <% @list.each do |notification| %>
         <div class="border rounded-xl flex flex-row px-11 py-6">
@@ -55,20 +77,13 @@
             <% end %>
 
             <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
-              <% if notification.read_at.blank? %>
-                <%= form_tag set_message_read_personal_center_path(id: notification.id), method: :put, data: {
-                  turbo: false
-                } do %>
-                  <button class="px-3 py-1 bg-black text-white text-sm" type="submit">
-                    标记已读
-                  </button>
-                <% end %>
-              <% end %>
-                <button
-                  class="px-3 py-1 bg-black text-white text-sm"
-                  data-form-path="<%= rm_message_personal_center_path(id: notification.id) %>"
-                  data-action="click->personal-center-messages#setRmId"
-                >删除</button>
+              <input
+                type="checkbox"
+                class="focus:ring-gray-50 text-gray-600 border-gray-300"
+                data-personal-center-messages-target="itemCheckbox"
+                data-id="<%= notification.id %>"
+                data-action="change->personal-center-messages#activeItemCheckbox"
+              />
             </div>
           </div>
         </div>
@@ -88,12 +103,13 @@
             <div class="relative bg-white rounded-lg overflow-hidden" style="width: 330px;">
               <div class="bg-black text-white text-sm flex items-center px-3" style="height: 30px;">温馨提示</div>
               <div class="mb-5 flex justify-center flex-col items-center">
-                <div class="mt-12">确定删除选中的1项？</div>
+                <div class="mt-12">确定删除选中的 <span data-personal-center-messages-target="activeCount">0</span> 项？</div>
                 <div class="mt-4 mb-5 text-sm flex justify-center">
                   <%= form_tag rm_message_personal_center_path, method: :delete, data: {
                     turbo: false,
                     personal_center_messages_target: 'modalRmForm',
                   } do %>
+                    <input type="hidden" name="id" data-personal-center-messages-target="idsInput" />
                     <button class="bg-black text-white px-6 py-2 rounded-lg" type="submit">确定</button>
                   <% end %>
                   <button class="text-gray-400 px-6 py-2 rounded-lg border ml-4" data-action="click->modal#close">取消</button>
