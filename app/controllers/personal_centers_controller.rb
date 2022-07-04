@@ -32,23 +32,14 @@ class PersonalCentersController < ApplicationController
   end
 
   def set_message_read
-    if params[:all].present?
-      messages = Notification
+    ids = params[:id]&.split(',')&.map { |id| id.to_i }
+    raise Exception.new('ID不能为空') unless ids.present?
+    messages = Notification
       .where(notifiable_type: 'cybros.user')
       .where(notifiable_id: current_user.id)
-      .where(read_at: nil)
+      .where(id: ids)
       .all
-      read_at = Time.now
-      messages.each do |message|
-        message.read_at = read_at
-        message.save
-      end
-    else
-      message = Notification
-        .where(notifiable_type: 'cybros.user')
-        .where(notifiable_id: current_user.id)
-        .find(params[:id])
-
+    messages.each do |message|
       if message.read_at.blank?
         message.read_at = Time.now
         message.save
@@ -59,12 +50,17 @@ class PersonalCentersController < ApplicationController
   end
 
   def rm_message
-    message = Notification
+    ids = params[:id]&.split(',')&.map { |id| id.to_i }
+    raise Exception.new('ID不能为空') unless ids.present?
+    messages = Notification
       .where(notifiable_type: 'cybros.user')
       .where(notifiable_id: current_user.id)
-      .find(params[:id])
-    message.deleted_at = Time.now
-    message.save
+      .where(id: ids)
+      .all
+    messages.each do |message|
+      message.deleted_at = Time.now
+      message.save
+    end
 
     redirect_to messages_personal_center_path
   end
