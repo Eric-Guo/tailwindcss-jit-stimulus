@@ -232,7 +232,7 @@ export default class extends Controller {
                 </div>
               `).join('')}
               <label class="flex justify-center items-center bg-gray-100 cursor-pointer" style="height: 180px;">
-                <input class="hidden" type="file" accept="image/png, image/jpeg" data-personal-center-suppliers-index-param="${index}" data-action="change->personal-center-suppliers#uploadImg" />
+                <input class="hidden" type="file" accept="image/png, image/jpeg" multiple data-personal-center-suppliers-index-param="${index}" data-action="change->personal-center-suppliers#uploadImg" />
                 <svg width="32" height="32" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z" fill="white"/>
                   <path d="M9.5 5.5H2.5V6.5H9.5V5.5Z" fill="#E0E0E0"/>
@@ -310,24 +310,26 @@ export default class extends Controller {
   }
 
   uploadImg({ params: { index }, target }) {
-    const file = target.files[0];
-    if (file) {
-      const formData = new FormData();
-      formData.append('file', file);
-      mrujs.fetch(this.uploadImgPathValue, {
-        body: formData,
-        method: 'POST',
-      })
-      .then(res => res.json())
-      .then(res => {
-        this.casesData[index].livePhotos.push({
-          title: res.name,
-          path: res.url,
-        });
-        this.dispatchCasesChange();
-      })
-      .catch(err => alert(err.message));
-    }
+    const files = Array.from(target.files);
+    files.forEach(file => {
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        mrujs.fetch(this.uploadImgPathValue, {
+          body: formData,
+          method: 'POST',
+        })
+        .then(res => res.json())
+        .then(res => {
+          this.casesData[index].livePhotos.push({
+            title: res.name,
+            path: res.url,
+          });
+          this.dispatchCasesChange();
+        })
+        .catch(err => alert(err.message));
+      }
+    });
     target.value = '';
   }
 
