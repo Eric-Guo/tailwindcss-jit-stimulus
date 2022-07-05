@@ -1,5 +1,5 @@
 <%= render 'frame', page: 'messages' do -%>
-  <div class="relative py-8 flex flex-col gap-8" data-controller="personal-center-messages">
+  <div class="relative py-8" data-controller="personal-center-messages">
     <div class="absolute right-0 -top-10 flex items-center">
       <input
         type="checkbox"
@@ -32,63 +32,65 @@
       <% end %>
     </div>
     <% if @list.present? %>
-      <% @list.each do |notification| %>
-        <div class="border rounded-xl flex flex-row px-11 py-6">
-          <div class="flex-none relative">
-            <img src="<%= notification.format_data&.fetch(:fromUser, {})&.fetch(:headerImg, '') %>" alt="" class="border rounded-full object-cover overflow-hidden" style="width: 70px; height: 70px;">
-            <% if notification.read_at.blank? %>
-              <svg class="absolute" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="left: -18px; top: 30px;">
-                <g>
-                  <path id="Vector" d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11Z" fill="#FF0000"/>
-                </g>
-              </svg>
-            <% end %>
-          </div>
-          <div class="flex-1 ml-7 relative <%= notification.read_at.blank? ? 'text-black-6c' : 'text-gray-400' %>">
-            <div class="text-lg font-semibold"><%= notification.format_data&.fetch(:subject, '') %></div>
-            <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
-            <div class="text-sm break-all">
-              <%= notification.msg&.gsub(/\[(.*)\]\((.*)\)/, '<a class="underline text-blue-400" href="\2" target="_blank">\1</a>').html_safe %>
-            </div>
-
-            <% replies = notification.format_data&.fetch(:demands, {})&.fetch(:DemandReplies, [])&.reverse() %>
-            <% if replies.present? %>
-              <% reply = replies.shift %>
-              <div class="mt-5 rounded-lg bg-gray-50 p-4 text-sm">
-                <div><%= Time.parse(reply[:CreatedAt]).strftime('%Y-%m-%d %H:%M:%S') %></div>
-                <div class="mt-2 break-all"><%= reply[:content] %></div>
-              </div>
-              <% if replies.present? %>
-                <div class="flex justify-center mt-5">
-                  <button class="text-gray-400 text-sm" onclick="this.parentElement.style.display = 'none'; this.parentElement.nextElementSibling.style.display = '';">查看更多</button>
-                </div>
-                <div style="display: none;">
-                  <% replies.each do |reply| %>
-                    <div class="mt-5 rounded-lg bg-gray-50 p-4 text-sm">
-                      <div><%= Time.parse(reply[:CreatedAt]).strftime('%Y-%m-%d %H:%M:%S') %></div>
-                      <div class="mt-2"><%= reply[:content] %></div>
-                    </div>
-                  <% end %>
-                  <div class="flex justify-center mt-5" onclick="this.parentElement.style.display = 'none'; this.parentElement.previousElementSibling.style.display = '';">
-                    <button class="text-gray-400 text-sm">收起</button>
-                  </div>
-                </div>
+      <div class="flex flex-col gap-8">
+        <% @list.each do |notification| %>
+          <div class="border rounded-xl flex flex-row px-11 py-6">
+            <div class="flex-none relative">
+              <img src="<%= notification.format_data&.fetch(:fromUser, {})&.fetch(:headerImg, '') %>" alt="" class="border rounded-full object-cover overflow-hidden" style="width: 70px; height: 70px;">
+              <% if notification.read_at.blank? %>
+                <svg class="absolute" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="left: -18px; top: 30px;">
+                  <g>
+                    <path id="Vector" d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11Z" fill="#FF0000"/>
+                  </g>
+                </svg>
               <% end %>
-            <% end %>
+            </div>
+            <div class="flex-1 ml-7 relative <%= notification.read_at.blank? ? 'text-black-6c' : 'text-gray-400' %>">
+              <div class="text-lg font-semibold"><%= notification.format_data&.fetch(:subject, '') %></div>
+              <div class="text-sm"><%= Time.parse(notification.format_data&.fetch(:DateTime, '')).strftime('%Y-%m-%d %H:%M:%S') %></div>
+              <div class="text-sm break-all">
+                <%= notification.msg&.gsub(/\[(.*)\]\((.*)\)/, '<a class="underline text-blue-400" href="\2" target="_blank">\1</a>').html_safe %>
+              </div>
 
-            <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
-              <input
-                type="checkbox"
-                class="focus:ring-gray-50 text-gray-600 border-gray-300"
-                data-personal-center-messages-target="itemCheckbox"
-                data-id="<%= notification.id %>"
-                data-is-read="<%= notification.read_at.present? %>"
-                data-action="change->personal-center-messages#activeItemCheckbox"
-              />
+              <% replies = notification.format_data&.fetch(:demands, {})&.fetch(:DemandReplies, [])&.reverse() %>
+              <% if replies.present? %>
+                <% reply = replies.shift %>
+                <div class="mt-5 rounded-lg bg-gray-50 p-4 text-sm">
+                  <div><%= Time.parse(reply[:CreatedAt]).strftime('%Y-%m-%d %H:%M:%S') %></div>
+                  <div class="mt-2 break-all"><%= reply[:content] %></div>
+                </div>
+                <% if replies.present? %>
+                  <div class="flex justify-center mt-5">
+                    <button class="text-gray-400 text-sm" onclick="this.parentElement.style.display = 'none'; this.parentElement.nextElementSibling.style.display = '';">查看更多</button>
+                  </div>
+                  <div style="display: none;">
+                    <% replies.each do |reply| %>
+                      <div class="mt-5 rounded-lg bg-gray-50 p-4 text-sm">
+                        <div><%= Time.parse(reply[:CreatedAt]).strftime('%Y-%m-%d %H:%M:%S') %></div>
+                        <div class="mt-2"><%= reply[:content] %></div>
+                      </div>
+                    <% end %>
+                    <div class="flex justify-center mt-5" onclick="this.parentElement.style.display = 'none'; this.parentElement.previousElementSibling.style.display = '';">
+                      <button class="text-gray-400 text-sm">收起</button>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+
+              <div class="absolute flex flex-row gap-2" style="right: 0; top: 10px;">
+                <input
+                  type="checkbox"
+                  class="focus:ring-gray-50 text-gray-600 border-gray-300"
+                  data-personal-center-messages-target="itemCheckbox"
+                  data-id="<%= notification.id %>"
+                  data-is-read="<%= notification.read_at.present? %>"
+                  data-action="change->personal-center-messages#activeItemCheckbox"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
       <div
        data-controller="modal"
        data-modal-allow-background-close="true"
@@ -119,7 +121,7 @@
             </div>
         </div>
       </div>
-      <div class="flex justify-end">
+      <div class="flex justify-end mt-8">
         <%= render partial: 'shared/pagination', locals: {
           total: @total,
           page: @page,
