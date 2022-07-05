@@ -137,36 +137,47 @@
   </div>
 <% end %>
 
-<% if @cases.length > 0 %>
-  <%# 案例 %>
-  <div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
-    <% @cases.each do |project_case| %>
-      <a class="block mb-4" <%= project_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case)}\"".html_safe : '' %>>
-        <div class="relative" style="padding-top: 74.78%;">
-          <div class="absolute top-0 left-0 w-full h-full">
-            <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
-          </div>
-          <% if project_case.in_secret_time? %>
-            <div class="absolute right-2 bottom-2 text-black">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-              </svg>
+<div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16">
+  <% if @cases.length > 0 %>
+    <%# 案例 %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
+      <% @cases.each do |project_case| %>
+        <a class="block mb-4" <%= project_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case)}\"".html_safe : '' %>>
+          <div class="relative" style="padding-top: 74.78%;">
+            <div class="absolute top-0 left-0 w-full h-full">
+              <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
             </div>
-          <% end %>
-        </div>
-        <div class="flex flex-row justify-between items-baseline mt-2">
-          <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
-            <%= text_with_default(project_case.project_name_and_location) -%>
-          </p>
-          <p class="text-xs text-gray-400 flex-none ml-3">
-            <%= text_with_default(project_case.is_th_str) %>
-          </p>
-        </div>
-        <% material_tags = @material_in_cases.find_all { |m| m[0] ==  project_case.id }[0..3]&.collect(&:second)&.join(' | ') %>
-        <p class="text-sm font-medium truncate" title="<%= material_tags -%>"><%= text_with_default(material_tags) %></p>
-      </a>
-    <% end %>
-  </div>
-<% else %>
-  <%= render 'shared/filter_empty' %>
-<% end %>
+            <% if project_case.in_secret_time? %>
+              <div class="absolute right-2 bottom-2 text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                </svg>
+              </div>
+            <% end %>
+          </div>
+          <div class="flex flex-row justify-between items-baseline mt-2">
+            <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
+              <%= text_with_default(project_case.project_name_and_location) -%>
+            </p>
+            <p class="text-xs text-gray-400 flex-none ml-3">
+              <%= text_with_default(project_case.is_th_str) %>
+            </p>
+          </div>
+          <% material_tags = @material_in_cases.find_all { |m| m[0] ==  project_case.id }[0..3]&.collect(&:second)&.join(' | ') %>
+          <p class="text-sm font-medium truncate" title="<%= material_tags -%>"><%= text_with_default(material_tags) %></p>
+        </a>
+      <% end %>
+    </div>
+    <div class="flex justify-end mt-8">
+      <%= render partial: 'shared/pagination', locals: {
+        total: @total,
+        page: @page,
+        page_size: @page_size,
+        path: projects_path(request.GET),
+        page_size_options: [10, 15, 25, 40, 60, 85],
+      } %>
+    </div>
+  <% else %>
+    <%= render 'shared/filter_empty' %>
+  <% end %>
+</div>
