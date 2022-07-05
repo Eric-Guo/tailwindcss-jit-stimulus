@@ -19,25 +19,27 @@ export default class extends Controller {
   }
 
   fileInputChange(e) {
-    const file = e.target.files[0];
-    if (this.uploadPathValue && file) {
-      const formData = new FormData();
-      formData.append("file", file);
-      mrujs.fetch(this.uploadPathValue, {
-        method: 'POST',
-        body: formData,
-      }).then(res => {
-        if (res.status !== 200) throw new Error('上传失败');
-        return res.json();
-      }).then(res => {
-        const fileElem = this.buildFileElem({ name: res.name, url: res.url });
-        this.uploadButton2ContainerTarget.classList.add('hidden');
-        this.uploadButton1Target.classList.remove('hidden');
-        this.filesContainerTarget.classList.remove('hidden');
-        this.filesContainerTarget.appendChild(fileElem);
-      }).catch(err => {
-        console.log(err.message);
-      });
+    const files = Array.from(e.target.files);
+    if (this.uploadPathValue) {
+      files.forEach(file => {
+        const formData = new FormData();
+        formData.append("file", file);
+        mrujs.fetch(this.uploadPathValue, {
+          method: 'POST',
+          body: formData,
+        }).then(res => {
+          if (res.status !== 200) throw new Error('上传失败');
+          return res.json();
+        }).then(res => {
+          const fileElem = this.buildFileElem({ name: res.name, url: res.url });
+          this.uploadButton2ContainerTarget.classList.add('hidden');
+          this.uploadButton1Target.classList.remove('hidden');
+          this.filesContainerTarget.classList.remove('hidden');
+          this.filesContainerTarget.appendChild(fileElem);
+        }).catch(err => {
+          console.log(err.message);
+        });
+      })
     }
     this.fileInputTarget.value = '';
   }
