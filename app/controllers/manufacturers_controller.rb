@@ -2,6 +2,10 @@
 
 class ManufacturersController < ApplicationController
   before_action :authenticate_user!
+  before_action do
+    @page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 12
+  end
 
   def index
     @panel_name = params[:pn].presence
@@ -70,7 +74,8 @@ class ManufacturersController < ApplicationController
       manufacturer_has_related_cases
     end
 
-    @manufacturers = manufacturer_has_cooperate_th.limit(120)
+    @total = manufacturer_has_cooperate_th.count
+    @manufacturers = manufacturer_has_cooperate_th.page(@page).per(@page_size)
   end
 
   def show
