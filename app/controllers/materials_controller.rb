@@ -3,6 +3,10 @@
 class MaterialsController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!
+  before_action do
+    @page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 16
+  end
 
   def index
     @panel_name = params[:pn].presence
@@ -68,7 +72,8 @@ class MaterialsController < ApplicationController
       materila_with_price
     end
 
-    @materials = materila_with_location.limit(120)
+    @total = materila_with_location.count
+    @materials = materila_with_location.page(@page).per(@page_size)
   end
 
   def show
