@@ -2,6 +2,10 @@
 
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
+  before_action do
+    @page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 10
+  end
 
   def index
     @panel_name = params[:pn].presence
@@ -40,7 +44,7 @@ class ProjectsController < ApplicationController
       end
     else
       Cases.all
-    end.select('cases.id, cases.is_th, cases.web_cover, cases.project_name, cases.project_location, cases.area_id, cases.visibility, cases.confidential_time')
+    end
 
     cases_with_materials = if mat_ids.present?
       cases_with_query.includes(:case_materials).where(case_materials: { material_id: mat_ids.append(@selected_mat_parent_id) })
@@ -84,7 +88,8 @@ class ProjectsController < ApplicationController
       cases_has_demonstration
     end
 
-    @cases = cases_is_th_internal.limit(120)
+    @total = cases_is_th_internal.count
+    @cases = cases_is_th_internal.page(@page).per(@page_size)
     @material_in_cases = CasesMaterial.joins(:material).where(case_id: @cases.collect(&:id)).pluck('case_id, materials.name')
   end
 
