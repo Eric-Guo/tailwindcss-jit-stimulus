@@ -1,9 +1,14 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['modal', 'modalRmForm', 'itemCheckbox', 'allCheckbox', 'idsInput', 'activeCount']
+  static targets = ['modal', 'modalRmForm', 'itemCheckbox', 'allCheckbox', 'idsInput', 'activeCount', 'rmButton', 'readButton']
 
   activeIds = []
+  noReadIds = []
+
+  connect() {
+    this.allCheckboxTarget.disabled = this.itemCheckboxTargets.length === 0;
+  }
 
   removeItems(e) {
     let modal = null;
@@ -13,17 +18,17 @@ export default class extends Controller {
     if (modal) {
       modal.open(e);
     }
-    if (this.hasModalRmFormTarget) {
-      this.modalRmFormTarget.action = formPath;
-    }
   }
 
   activeItemCheckbox({ target }) {
     const id = target.dataset.id;
+    const isRead = target.dataset.isRead === 'true';
     if (target.checked) {
       if (!this.activeIds.includes(id)) this.activeIds.push(id);
+      if (!isRead && !this.noReadIds.includes(id)) this.noReadIds.push(id);
     } else {
       this.activeIds = this.activeIds.filter(item => item !== id);
+      if (!isRead) this.noReadIds = this.noReadIds.filter(item => item !== id);
     }
     this.refreshAllCheckbox();
   }
@@ -49,6 +54,12 @@ export default class extends Controller {
       item.value = this.activeIds.join(',');
     });
     this.activeCountTarget.textContent = this.activeIds.length;
+    this.refreshButtonDisabled();
+  }
+  
+  refreshButtonDisabled() {
+    this.rmButtonTarget.disabled = this.activeIds.length === 0;
+    this.readButtonTarget.disabled = this.noReadIds.length === 0;
   }
 
   activeAllCheckbox(e) {
@@ -56,10 +67,13 @@ export default class extends Controller {
     this.itemCheckboxTargets.forEach(item => {
       item.checked = e.target.checked;
       const id = item.dataset.id;
+      const isRead = item.dataset.isRead === 'true';
       if (item.checked) {
         if (!this.activeIds.includes(id)) this.activeIds.push(id);
+        if (!isRead && !this.noReadIds.includes(id)) this.noReadIds.push(id);
       } else {
         this.activeIds = this.activeIds.filter(it => it !== id);
+        if (!isRead) this.noReadIds = this.noReadIds.filter(item => item !== id);
       }
     });
     this.refreshIdsInputValue();

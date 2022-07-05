@@ -37,13 +37,12 @@ class PersonalCentersController < ApplicationController
     messages = Notification
       .where(notifiable_type: 'cybros.user')
       .where(notifiable_id: current_user.id)
+      .where(read_at: nil)
       .where(id: ids)
       .all
     messages.each do |message|
-      if message.read_at.blank?
-        message.read_at = Time.now
-        message.save
-      end
+      message.read_at = Time.now
+      message.save
     end
 
     redirect_to messages_personal_center_path
