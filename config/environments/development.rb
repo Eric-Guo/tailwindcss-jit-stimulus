@@ -64,4 +64,6 @@ Rails.application.configure do
 
   config.hosts << 'matlib.test'
   config.action_mailer.default_url_options = { host: 'matlib.test', port: 3000 }
+
+  config.secret_key_base = Rails.application.credentials.secret_key_base
 end
