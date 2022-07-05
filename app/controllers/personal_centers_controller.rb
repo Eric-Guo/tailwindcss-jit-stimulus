@@ -3,6 +3,10 @@
 class PersonalCentersController < ApplicationController
   before_action :authenticate_user!
   before_action :get_no_read_message_count
+  before_action do
+    @page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 10
+  end
 
   def projects
     title = params[:title].presence&.strip
@@ -28,7 +32,8 @@ class PersonalCentersController < ApplicationController
       .where(notifiable_type: 'cybros.user')
       .where(notifiable_id: current_user.id)
       .order(created_at: :desc)
-      .all
+    @total = @list.count
+    @list = @list.page(@page).per(@page_size)
   end
 
   def set_message_read

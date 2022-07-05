@@ -1,7 +1,5 @@
 <%= render 'frame', page: 'messages' do -%>
   <div class="relative py-8 flex flex-col gap-8" data-controller="personal-center-messages">
-    <% if @no_read_message_count.to_i > 0 %>
-    <% end %>
     <div class="absolute right-0 -top-10 flex items-center">
       <input
         type="checkbox"
@@ -120,6 +118,15 @@
               </div>
             </div>
         </div>
+      </div>
+      <div class="flex justify-end">
+        <%= render partial: 'shared/pagination', locals: {
+          total: @total,
+          page: @page,
+          page_size: @page_size,
+          path: messages_personal_center_path,
+          page_size_options: [5, 10, 20, 30, 50, 100],
+        } %>
       </div>
     <% else %>
       <div class="mt-12">
