@@ -5,16 +5,17 @@
     <div class="absolute right-0 -top-10 flex items-center">
       <input
        type="checkbox"
-       class="focus:ring-gray-50 text-gray-600 border-gray-300"
+       class="focus:ring-gray-50 text-gray-600 border-gray-300 disabled:bg-gray-50 disabled:cursor-not-allowed"
        data-personal-center-messages-target="allCheckbox"
        data-action="change->personal-center-messages#activeAllCheckbox"
-       <%= @list.present? ? '' : 'disabled' %>
+       disabled
       />
       <button
         type="button"
-        class="ml-4 px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all disabled:text-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-        <%= @list.present? ? '' : 'disabled' %>
+        class="ml-4 px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all disabled:text-gray-400 disabled:bg-gray-50 disabled:cursor-not-allowed"
+        disabled
         data-action="click->personal-center-messages#removeItems"
+        data-personal-center-messages-target="rmButton"
       >
         删除
       </button>
@@ -24,8 +25,9 @@
         <input type="hidden" name="id" data-personal-center-messages-target="idsInput" />
         <button
           type="submit"
-          class="ml-2 px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all disabled:text-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-          <%= @list.present? && @list.any?{ |msg| msg.read_at.blank? } ? '' : 'disabled' %>
+          class="ml-2 px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all disabled:text-gray-400 disabled:bg-gray-50 disabled:cursor-not-allowed"
+          disabled
+          data-personal-center-messages-target="readButton"
         >
           标记已读
         </button>
@@ -82,6 +84,7 @@
                 class="focus:ring-gray-50 text-gray-600 border-gray-300"
                 data-personal-center-messages-target="itemCheckbox"
                 data-id="<%= notification.id %>"
+                data-is-read="<%= notification.read_at.present? %>"
                 data-action="change->personal-center-messages#activeItemCheckbox"
               />
             </div>
