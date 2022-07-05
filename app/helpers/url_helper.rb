@@ -5,7 +5,7 @@ module UrlHelper
     if uri.query.present?
       uri.query.split('&').each do |str|
         arr = str.split('=')
-        query[arr[0]] = URI.decode_www_form_component(arr[1]) if arr[1].present?
+        query[arr[0].to_sym] = URI.decode_www_form_component(arr[1]) if arr[1].present?
       end
     end
     uri.query = URI.encode_www_form(query.merge(params))

@@ -25,7 +25,7 @@
     <li>
       <a
         class="<%= pgnt[:backward] ? 'hover:text-black' : 'cursor-not-allowed' %>"
-        href="<%= pgnt[:backward] && path ? addUrlQuery(path, page: page - 1, page_size: page_size) : disabled_href %>"
+        href="<%= pgnt[:backward] && path ? addUrlQuery(path, page: page - 1) : disabled_href %>"
         title="上一页"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
@@ -37,7 +37,7 @@
       <li>
         <a
           class="hover:text-black"
-          href="<%= path ? addUrlQuery(path, page: pgnt[:first_page], page_size: page_size) : disabled_href %>"
+          href="<%= path ? addUrlQuery(path, page: pgnt[:first_page]) : disabled_href %>"
           title="第<%= pgnt[:first_page] %>页"
         >
           <%= pgnt[:first_page] %>
@@ -48,7 +48,7 @@
       <li>
         <a
           class="hover:text-black"
-          href="<%= path ? addUrlQuery(path, page: pgnt[:backward_more], page_size: page_size) : disabled_href %>"
+          href="<%= path ? addUrlQuery(path, page: pgnt[:backward_more]) : disabled_href %>"
           title="后退<%= show_pages %>页"
         >
           ...
@@ -59,7 +59,7 @@
       <li>
         <a
           class="hover:text-black <%= page == i ? 'text-black' : '' %>"
-          href="<%= path ? addUrlQuery(path, page: i, page_size: page_size) : disabled_href %>"
+          href="<%= path ? addUrlQuery(path, page: i) : disabled_href %>"
           title="第<%= i %>页"
         >
           <%= i %>
@@ -70,7 +70,7 @@
       <li>
         <a
           class="hover:text-black"
-          href="<%= path ? addUrlQuery(path, page: pgnt[:forward_more], page_size: page_size) : disabled_href %>"
+          href="<%= path ? addUrlQuery(path, page: pgnt[:forward_more]) : disabled_href %>"
           title="前进<%= show_pages %>页"
         >
           ...
@@ -81,7 +81,7 @@
       <li>
         <a
           class="hover:text-black"
-          href="<%= path ? addUrlQuery(path, page: pgnt[:last_page], page_size: page_size) : disabled_href %>"
+          href="<%= path ? addUrlQuery(path, page: pgnt[:last_page]) : disabled_href %>"
           title="第<%= pgnt[:last_page] %>页"
         >
           <%= pgnt[:last_page] %>
@@ -91,7 +91,7 @@
     <li>
       <a
         class="<%= pgnt[:forward] ? 'hover:text-black' : 'cursor-not-allowed' %>"
-        href="<%= pgnt[:forward] && path ? addUrlQuery(path, page: page + 1, page_size: page_size) : disabled_href %>"
+        href="<%= pgnt[:forward] && path ? addUrlQuery(path, page: page + 1) : disabled_href %>"
         title="下一页"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">

@@ -126,7 +126,7 @@
           total: @total,
           page: @page,
           page_size: @page_size,
-          path: messages_personal_center_path,
+          path: messages_personal_center_path(request.GET),
           page_size_options: [5, 10, 20, 30, 50, 100],
         } %>
       </div>
