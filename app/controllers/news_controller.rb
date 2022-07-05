@@ -2,6 +2,10 @@
 
 class NewsController < ApplicationController
   before_action :authenticate_user!
+  before_action do
+    @page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 9
+  end
 
   def index
     @panel_name = params[:pn].presence
@@ -32,6 +36,8 @@ class NewsController < ApplicationController
       news_with_query
     end
 
-    @news = news_with_materials.includes(:materials).order(published_at: :desc).limit(120)
+    @news = news_with_materials.includes(:materials).order(published_at: :desc)
+    @total = @news.count
+    @news = @news.page(@page).per(@page_size)
   end
 end
