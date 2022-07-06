@@ -91,7 +91,7 @@
         page: @page,
         page_size: @page_size,
         path: news_index_path(request.GET),
-        page_size_options: [9, 12, 18, 30, 54, 108],
+        page_size_options: @page_size_options,
       } %>
     </div>
   <% else %>

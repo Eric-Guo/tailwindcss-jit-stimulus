@@ -129,7 +129,7 @@
         page: @page,
         page_size: @page_size,
         path: materials_path(request.GET),
-        page_size_options: [16, 24, 40, 72, 136],
+        page_size_options: @page_size_options,
       } %>
     </div>
   <% else %>

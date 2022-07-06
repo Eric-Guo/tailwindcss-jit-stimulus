@@ -4,10 +4,12 @@ class ManufacturersController < ApplicationController
   before_action :authenticate_user!
   before_action do
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
-    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 12
   end
 
   def index
+    @page_size_options = [12, 20, 32, 56, 104]
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
