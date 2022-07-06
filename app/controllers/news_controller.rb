@@ -4,10 +4,12 @@ class NewsController < ApplicationController
   before_action :authenticate_user!
   before_action do
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
-    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 9
   end
 
   def index
+    @page_size_options = [9, 12, 18, 30, 54]
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 

@@ -135,7 +135,7 @@
         page: @page,
         page_size: @page_size,
         path: manufacturers_path(request.GET),
-        page_size_options: [12, 20, 32, 48, 68, 92],
+        page_size_options: @page_size_options,
       } %>
     </div>
   <% else %>

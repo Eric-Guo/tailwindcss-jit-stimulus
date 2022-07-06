@@ -5,13 +5,16 @@ class PersonalCentersController < ApplicationController
   before_action :get_no_read_message_count
   before_action do
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
-    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 10
   end
 
   def projects
+    @page_size_options = [8, 12, 20, 36, 68]
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+
     title = params[:title].presence&.strip
     status = params[:status].presence&.strip
     lv10_positions = current_user.positions.where('post_level >= 10')
+
     @list = CaseDelegate.joins(:record)
     # 如果存在部门10级及以上的职位，则获取该部门下所有的案例信息，否则只获取被委派的案例
     if lv10_positions.present?
@@ -30,6 +33,9 @@ class PersonalCentersController < ApplicationController
   end
 
   def messages
+    @page_size_options = [5, 10, 20, 30, 50]
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+
     @list = Notification
       .where(notifiable_type: 'cybros.user')
       .where(notifiable_id: current_user.id)
@@ -41,6 +47,7 @@ class PersonalCentersController < ApplicationController
   def set_message_read
     ids = params[:id]&.split(',')&.map { |id| id.to_i }
     raise Exception.new('ID不能为空') unless ids.present?
+
     messages = Notification
       .where(notifiable_type: 'cybros.user')
       .where(notifiable_id: current_user.id)
@@ -58,6 +65,7 @@ class PersonalCentersController < ApplicationController
   def rm_message
     ids = params[:id]&.split(',')&.map { |id| id.to_i }
     raise Exception.new('ID不能为空') unless ids.present?
+
     messages = Notification
       .where(notifiable_type: 'cybros.user')
       .where(notifiable_id: current_user.id)
@@ -72,15 +80,22 @@ class PersonalCentersController < ApplicationController
   end
 
   def demands
+    @page_size_options = [10, 20, 40, 80, 160]
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+
     @list = Demand
       .includes(:replies, :material)
       .where(clerk_code: current_user.clerk_code)
       .order(created_at: :desc)
+
     @total = @list.count
     @list = @list.page(@page).per(@page_size)
   end
 
   def suppliers
+    @page_size_options = [10, 20, 40, 80, 160]
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+
     @list = ManufacturerRecommend.where(user_id: current_user.id)
 
     @total = @list.count
@@ -98,16 +113,21 @@ class PersonalCentersController < ApplicationController
     raise Exception.new('供应商类型不能为空') if params[:materialID].presence&.strip.blank?
     raise Exception.new('联系电话不能为空') if params[:contactTel].presence&.strip.blank?
     raise Exception.new('供应商优秀案例不能为空') if params[:cases].presence&.strip.blank?
+
     cases = JSON.parse(params[:cases])
     raise Exception.new('供应商优秀案例不能为空') unless cases.is_a?(Array) && cases.length > 0
+
     is_th_co = params[:isThCo] == 'true'
     inCount = 0
+
     cases.each do |c|
       raise Exception.new('每个案例的项目名称不能为空') if c['typeId'] != 'thtri' && c['name']&.strip.blank?
       raise Exception.new('每个案例的实景照至少上传一张图片') unless c['livePhotos'].is_a?(Array) && c['livePhotos'].length > 0
       inCount+=1 if c['typeId'] == 'pm'
     end
+
     raise Exception.new('与天华合作过的供应商需要选择一个内部案例') if is_th_co && inCount <= 0
+
     res = ThtriApi.create_manufacturer_recommend({
       name: params[:name],
       contactName: params[:contactName],
@@ -117,6 +137,7 @@ class PersonalCentersController < ApplicationController
       reason: params[:reason],
       cases: cases
     }, { 'Cookie': request.headers['HTTP_COOKIE'] })
+
     redirect_to suppliers_personal_center_path
   end
 

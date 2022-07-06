@@ -91,7 +91,7 @@
             page: @page,
             page_size: @page_size,
             path: projects_personal_center_path(request.GET),
-            page_size_options: [8, 12, 20, 36, 68],
+            page_size_options: @page_size_options,
           } %>
         </div>
       <% else %>

@@ -84,7 +84,7 @@
             page: @page,
             page_size: @page_size,
             path: suppliers_personal_center_path(request.GET),
-            page_size_options: [10, 20, 40, 80, 160],
+            page_size_options: @page_size_options,
           } %>
         </div>
       <% else %>
