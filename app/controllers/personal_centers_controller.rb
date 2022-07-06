@@ -25,6 +25,8 @@ class PersonalCentersController < ApplicationController
       @list = @list.where(status: s[:names]) if status.present? if s.present?
     end
 
+    @total = @list.count
+    @list = @list.page(@page).per(@page_size)
   end
 
   def messages
@@ -74,11 +76,15 @@ class PersonalCentersController < ApplicationController
       .includes(:replies, :material)
       .where(clerk_code: current_user.clerk_code)
       .order(created_at: :desc)
-      .all
+    @total = @list.count
+    @list = @list.page(@page).per(@page_size)
   end
 
   def suppliers
-    @list = ManufacturerRecommend.where(user_id: current_user.id).all
+    @list = ManufacturerRecommend.where(user_id: current_user.id)
+
+    @total = @list.count
+    @list = @list.page(@page).per(@page_size)
   end
 
   def show_supplier
