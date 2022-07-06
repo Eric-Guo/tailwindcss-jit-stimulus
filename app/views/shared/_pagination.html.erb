@@ -58,7 +58,7 @@
     <% pgnt[:range].each do |i| %>
       <li>
         <a
-          class="flex justify-center items-center rounded w-7 h-7 hover:text-white hover:bg-black <%= page == i ? 'text-white bg-black' : '' %>"
+          class="flex justify-center items-center rounded px-3 h-7 hover:text-white hover:bg-black <%= page == i ? 'text-white bg-black' : '' %>"
           href="<%= path ? addUrlQuery(path, page: i) : disabled_href %>"
           title="第<%= i %>页"
         >
