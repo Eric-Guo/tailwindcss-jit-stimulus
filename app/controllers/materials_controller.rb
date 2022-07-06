@@ -3,14 +3,8 @@
 class MaterialsController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!
-  before_action do
-    @page = params[:page].to_i > 0 ? params[:page].to_i : 1
-  end
 
   def index
-    @page_size_options = [16, 24, 40, 72, 136]
-    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
-
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
@@ -38,7 +32,7 @@ class MaterialsController < ApplicationController
       if mat_q_ids.present?
         Material.where(id: mat_q_ids)
       else
-        Material.left_joins(:samples).includes(:samples).where('materials.level <> 1')
+        Material.left_joins(:samples).where('materials.level <> 1')
           .where('materials.no LIKE ? OR materials.name LIKE ? OR sample.genus LIKE ? OR sample.species LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").distinct
       end
     else
@@ -74,8 +68,7 @@ class MaterialsController < ApplicationController
       materila_with_price
     end
 
-    @total = materila_with_location.count
-    @materials = materila_with_location.page(@page).per(@page_size)
+    @materials = materila_with_location.includes(:samples).all
   end
 
   def show

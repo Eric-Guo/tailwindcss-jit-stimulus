@@ -123,15 +123,6 @@
         <% end %>
       <% end %>
     </div>
-    <div class="flex justify-center mt-8">
-      <%= render partial: 'shared/pagination', locals: {
-        total: @total,
-        page: @page,
-        page_size: @page_size,
-        path: materials_path(request.GET),
-        page_size_options: @page_size_options,
-      } %>
-    </div>
   <% else %>
     <%= render 'shared/filter_empty' %>
   <% end %>
