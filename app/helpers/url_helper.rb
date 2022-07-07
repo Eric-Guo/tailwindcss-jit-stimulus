@@ -5,7 +5,15 @@ module UrlHelper
     if uri.query.present?
       uri.query.split('&').each do |str|
         arr = str.split('=')
-        query[arr[0].to_sym] = URI.decode_www_form_component(arr[1]) if arr[1].present?
+        if arr[1]
+          key = URI.decode_www_form_component(arr[0])
+          value = URI.decode_www_form_component(arr[1])
+          if key.end_with?('[]')
+            query[key.to_sym] = [*query[key.to_sym], value]
+          else
+            query[key.to_sym] = value
+          end
+        end
       end
     end
     uri.query = URI.encode_www_form(query.merge(params))
