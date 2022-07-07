@@ -8,7 +8,7 @@ class MaterialsController < ApplicationController
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
-    @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(id: :asc)
+    @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(no: :asc)
     mat_ids = (params[:ms].presence || []).reject(&:blank?).collect(&:to_i)
     @selected_mats = if mat_ids.present?
       Material.where(id: mat_ids)
@@ -22,7 +22,7 @@ class MaterialsController < ApplicationController
     @price_end = params[:price_end].presence
     @area_id = params[:area_id].presence
 
-    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
+    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(no: :asc)
     @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
@@ -68,7 +68,7 @@ class MaterialsController < ApplicationController
       materila_with_price
     end
 
-    @materials = materila_with_location.includes(:samples).all
+    @materials = materila_with_location.order(no: :asc).includes(:samples).all
   end
 
   def show
@@ -144,7 +144,7 @@ class MaterialsController < ApplicationController
   private
 
     def get_color_system_projects(material, color_id = nil)
-      projects = Material.joins(:material_product)
+      projects = Material.joins(:material_product).order(no: :asc)
 
       if color_id.present?
         projects = projects.where(material_product: { id: MaterialProductColorSystem.select(:material_product_id).where(color_systems_id: color_id) })
