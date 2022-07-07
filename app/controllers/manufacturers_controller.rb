@@ -13,7 +13,7 @@ class ManufacturersController < ApplicationController
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
-    @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(id: :asc)
+    @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(no: :asc)
     mat_ids = (params[:ms].presence || []).reject(&:blank?)
     @selected_mats = if mat_ids.present?
       Material.where(id: mat_ids)
@@ -26,7 +26,7 @@ class ManufacturersController < ApplicationController
     @has_related_cases = params[:has_related_cases] == 'on'
     @has_cooperate_th = params[:has_cooperate_th] == 'on'
 
-    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(id: :asc)
+    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(no: :asc)
     @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 

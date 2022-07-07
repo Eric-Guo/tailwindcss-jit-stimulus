@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_tree_materials
-      materials = Material.where(level: [1, 2, 3]).all
+      materials = Material.where(level: [1, 2, 3]).order(no: :asc).all
       @tree_materials = tree_materials(materials)
     end
 
