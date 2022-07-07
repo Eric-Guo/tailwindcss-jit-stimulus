@@ -3,15 +3,21 @@
 class MaterialsController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!
+  before_action do
+    @page = params[:page].to_i > 0 ? params[:page].to_i : 1
+  end
 
   def index
+    @page_size_options = [24, 32, 48, 72, 104]
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
     @material_types = Material.where(level: 1).order(no: :asc)
     mat_ids = (params[:ms].presence || []).reject(&:blank?).collect(&:to_i)
     @selected_mats = if mat_ids.present?
-      Material.where(id: mat_ids)
+      Material.where(id: mat_ids).order(no: :asc)
     else
       Material.none
     end
@@ -26,49 +32,50 @@ class MaterialsController < ApplicationController
     @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
-    materila_with_query = if @q.present?
-      mat_q_ids = q_return_mat_ids(@q)
+    @list = MaterialAndSample.where.not(material_level: 1).order(material_no: :asc, sample_id: :asc)
 
-      if mat_q_ids.present?
-        Material.where(id: mat_q_ids)
-      else
-        Material.left_joins(:samples).where('materials.level <> 1')
-          .where('materials.no LIKE ? OR materials.name LIKE ? OR sample.genus LIKE ? OR sample.species LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").distinct
-      end
-    else
-      Material.where('materials.level <> 1')
+    # 关键词
+    if @q.present?
+      @list = @list.where('material_name LIKE :q_like OR parent_material_name LIKE :q_like OR grandpa_material_name LIKE :q_like', q_like: "%#{@q}%")
     end
 
-    materila_with_materials = if mat_ids.present?
-      child_mat_ids = Material.where(parent_id: mat_ids).pluck(:id)
-      materila_with_query.where(id: mat_ids.append(@selected_mat_parent_id).append(child_mat_ids).flatten)
-    else
-      materila_with_query
+    # 材料筛选
+    if mat_ids.present?
+      @list = @list.where('material_id IN (:ids) OR parent_material_id IN (:ids)', ids: mat_ids)
     end
 
-    materila_with_color_system = if @color_system.present?
-      materila_with_materials.joins(material_product: :material_product_color_systems).where('material_product_color_systems.color_systems_id = ?', @color_system.id)
-    else
-      materila_with_materials
+    # 色系
+    if @color_system.present?
+      color_mat_ids = MaterialProduct.joins(:material_product_color_systems).where(material_product_color_systems: { color_systems_id: @color_system.id }).pluck(:material_id)
+      color_sam_ids = SampleColorSystem.where(color_systems_id: @color_system.id).pluck(:sample_id)
+      @list = @list.where('(sample IS NULL AND material_id IN (?)) OR (sample_id IN (?))', color_mat_ids, color_sam_ids)
     end
 
-    materila_with_price = if @price_start.present? && @price_end.present?
-      materila_with_color_system.joins(:material_info).where('material_infos.high_price <= ?', @price_end).where('material_infos.low_price >= ?', @price_start)
+    # 价格
+    if @price_start.present? && @price_end.present?
+      price_mat2_ids = MaterialInfo.where('low_price <= ? AND high_price >= ?', @price_start, @price_end).pluck(:material_id)
+      price_mat3_ids = MaterialProduct.where('low_price <= ? AND high_price >= ?', @price_start, @price_end).pluck(:material_id)
+      price_sam_ids = Sample.where('low_price <= ? AND high_price >= ?', @price_start, @price_end).pluck(:id)
+      @list = @list.where('(sample IS NULL AND material_id IN (?)) OR (sample_id IN (?))', [*price_mat2_ids, *price_mat3_ids], price_sam_ids)
     elsif @price_start.present?
-      materila_with_color_system.joins(:material_info).where('material_infos.low_price >= ?', @price_start)
+      price_mat2_ids = MaterialInfo.where('low_price <= ?', @price_start, @price_end).pluck(:material_id)
+      price_mat3_ids = MaterialProduct.where('low_price <= ?', @price_start, @price_end).pluck(:material_id)
+      price_sam_ids = Sample.where('low_price <= ?', @price_start, @price_end).pluck(:id)
+      @list = @list.where('(sample IS NULL AND material_id IN (?)) OR (sample_id IN (?))', [*price_mat2_ids, *price_mat3_ids], price_sam_ids)
     elsif @price_end.present?
-      materila_with_color_system.joins(:material_info).where('material_infos.high_price <= ?', @price_end)
-    else
-      materila_with_color_system
+      price_mat2_ids = MaterialInfo.where('high_price >= ?', @price_start, @price_end).pluck(:material_id)
+      price_mat3_ids = MaterialProduct.where('high_price >= ?', @price_start, @price_end).pluck(:material_id)
+      price_sam_ids = Sample.where('high_price >= ?', @price_start, @price_end).pluck(:id)
+      @list = @list.where('(sample IS NULL AND material_id IN (?)) OR (sample_id IN (?))', [*price_mat2_ids, *price_mat3_ids], price_sam_ids)
     end
 
-    materila_with_location = if @area_id.present?
-      materila_with_price.joins(material_product: :material_product_areas).where(material_product_areas: { area_id: @area_id }).distinct
-    else
-      materila_with_price
+    if @area_id.present?
+      area_mat_ids = MaterialProduct.join(:material_product_areas).where(material_product_areas: { area_id: @area_id }).pluck(:material_id)
+      @list = @list.where('material_id IN (?)', area_mat_ids)
     end
 
-    @materials = materila_with_location.order(no: :asc).includes(:samples).all
+    @total = @list.count
+    @list = @list.page(@page).per(@page_size)
   end
 
   def show
