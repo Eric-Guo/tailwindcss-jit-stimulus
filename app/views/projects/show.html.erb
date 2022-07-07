@@ -71,7 +71,7 @@
           <span>案例名称：</span>
           <span><%= @project.project_name %></span>
           <% if @project.in_secret_time? %>
-            <span class="ml-2 text-xs font-normal px-2 py-1 bg-blue-100 bg-opacity-60 text-blue-400 rounded-2xl">保密项目</span>
+            <span class="ml-2 text-xs font-normal px-2 py-1 rounded-2xl" style="background: #ffebeb; color: red;">保密项目</span>
           <% end %>
         </div>
         <div class="flex gap-2 mt-4">
