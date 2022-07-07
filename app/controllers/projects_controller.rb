@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
-    @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(no: :asc)
+    @material_types = Material.where(level: 1).order(no: :asc)
     mat_ids = (params[:ms].presence || []).reject(&:blank?)
     @selected_mats = if mat_ids.present?
       Material.where(id: mat_ids)
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
     @has_demonstration = params[:has_demonstration] == 'on'
     @is_th_internal = params[:is_th_internal] == 'on'
 
-    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(no: :asc)
+    @all_materials = Material.where(parent_id: @selected_mat_parent_id).order(no: :asc)
     @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 

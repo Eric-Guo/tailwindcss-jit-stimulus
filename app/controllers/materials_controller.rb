@@ -8,7 +8,7 @@ class MaterialsController < ApplicationController
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
-    @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(no: :asc)
+    @material_types = Material.where(level: 1).order(no: :asc)
     mat_ids = (params[:ms].presence || []).reject(&:blank?).collect(&:to_i)
     @selected_mats = if mat_ids.present?
       Material.where(id: mat_ids)
@@ -22,7 +22,7 @@ class MaterialsController < ApplicationController
     @price_end = params[:price_end].presence
     @area_id = params[:area_id].presence
 
-    @all_materials = Material.where(parent_id: @selected_mat_parent_id, display: 1, deleted_at: nil).order(no: :asc)
+    @all_materials = Material.where(parent_id: @selected_mat_parent_id).order(no: :asc)
     @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
     @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
 
@@ -40,7 +40,7 @@ class MaterialsController < ApplicationController
     end
 
     materila_with_materials = if mat_ids.present?
-      child_mat_ids = Material.where(parent_id: mat_ids, display: 1, deleted_at: nil).pluck(:id)
+      child_mat_ids = Material.where(parent_id: mat_ids).pluck(:id)
       materila_with_query.where(id: mat_ids.append(@selected_mat_parent_id).append(child_mat_ids).flatten)
     else
       materila_with_query
