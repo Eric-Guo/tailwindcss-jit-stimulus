@@ -59,7 +59,11 @@ class PersonalCentersController < ApplicationController
       message.save
     end
 
-    redirect_to messages_personal_center_path
+    if request.headers['HTTP_REFERER'].present?
+      redirect_to request.headers['HTTP_REFERER']
+    else
+      redirect_to messages_personal_center_path
+    end
   end
 
   def rm_message
@@ -96,7 +100,7 @@ class PersonalCentersController < ApplicationController
     @page_size_options = [10, 20, 40, 80, 160]
     @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
 
-    @list = ManufacturerRecommend.where(user_id: current_user.id)
+    @list = ManufacturerRecommend.where(user_id: current_user.id).order(created_at: :desc)
 
     @total = @list.count
     @list = @list.page(@page).per(@page_size)
