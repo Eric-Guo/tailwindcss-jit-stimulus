@@ -70,7 +70,7 @@
                   class_name: 'mt-1',
                   name: 'materialID',
                   value: 1,
-                  options: Material.where(level: 1).all.map do |m|
+                  options: Material.where(level: 1).order(no: :asc).all.map do |m|
                     {
                       label: m.name,
                       value: m.id,

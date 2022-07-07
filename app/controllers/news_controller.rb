@@ -13,7 +13,7 @@ class NewsController < ApplicationController
     @panel_name = params[:pn].presence
     @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
-    @material_types = Material.where(level: 1, display: 1, deleted_at: nil).order(no: :asc)
+    @material_types = Material.where(level: 1).order(no: :asc)
     @selected_material_type_ids = (params[:ms].presence || []).reject(&:blank?)
     @selected_mats = if @selected_material_type_ids.present?
       Material.where(id: @selected_material_type_ids)
