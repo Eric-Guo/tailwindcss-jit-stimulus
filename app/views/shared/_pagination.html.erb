@@ -10,16 +10,18 @@
 <div class="flex items-center text-sm text-neutral-140 gap-4">
   <div>共 <%= total %> 条</div>
   <% if page_size_options.present? %>
-    <select class="py-0.5 pr-8 h-7 text-sm rounded border-neutral-235 focus:border-neutral-400 focus:ring-transparent" onchange="location.href=this.value">
-      <% page_size_options.each do |item| %>
-        <option
-          value="<%= path ? addUrlQuery(path, page: 1, page_size: item) : disabled_href %>"
-          <%= item === page_size ? 'selected' : '' %>
-        >
-          <%= item %>条/页
-        </option>
-      <% end %>
-    </select>
+    <form action="<%= path %>" method="GET">
+      <select name="page_size" class="py-0.5 pr-8 h-7 text-sm rounded border-neutral-235 focus:border-neutral-400 focus:ring-transparent" onchange="this.form.requestSubmit();">
+        <% page_size_options.each do |item| %>
+          <option
+            value="<%= item %>"
+            <%= item === page_size ? 'selected' : '' %>
+          >
+            <%= item %>条/页
+          </option>
+        <% end %>
+      </select>
+    </form>
   <% end %>
   <ul class="flex items-center gap-1">
     <li>
@@ -102,12 +104,14 @@
   </ul>
   <div class="flex items-center gap-1">
     <span>前往</span>
-    <input
-      type="text"
-      class="px-0 py-0 w-11 h-7 rounded border-neutral-235 focus:border-neutral-400 focus:ring-transparent text-center text-sm"
-      onkeydown="if(/\d+/.test(this.value.trim()) && ['Enter', 'NumpadEnter'].includes(event.code)) {const url = new window.URL(location.href); url.searchParams.set('page', this.value.trim()); location.href=url.toString();}"
-      value="<%= page %>"
-    />
+    <form action="<%= path %>" method="GET">
+      <input
+        name="page"
+        type="text"
+        class="px-0 py-0 w-11 h-7 rounded border-neutral-235 focus:border-neutral-400 focus:ring-transparent text-center text-sm"
+        value="<%= page %>"
+      />
+    </form>
     <span>页</span>
   </div>
 </div>
