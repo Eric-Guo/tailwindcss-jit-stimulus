@@ -13,7 +13,7 @@
     </section>
   </div>
 
-  <%= form_tag projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', method: :get, data: {
+  <%= form_tag projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2 select-none', method: :get, data: {
     project_form_list_target: 'form',
     turbo_frame: 'project_list',
   } do %>
@@ -44,7 +44,7 @@
         <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
           <span style="padding-bottom: 1.1rem">所在地区</span>
         </p>
-        <svg data-project-form-list-target="areaIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>
         </svg>
       </div>

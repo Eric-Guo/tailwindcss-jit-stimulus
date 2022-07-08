@@ -1,0 +1,21 @@
+<%= turbo_frame_tag :manufacturer_list do %>
+  <div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16">
+    <% if @manufacturers.length > 0 %>
+      <%# 供应商 %>
+      <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-8">
+        <%= render partial: 'shared/manufacturers', locals: { manufacturers: @manufacturers } -%>
+      </div>
+      <div class="flex justify-center mt-8">
+        <%= render partial: 'shared/pagination', locals: {
+          total: @total,
+          page: @page,
+          page_size: @page_size,
+          path: manufacturers_path(request.GET),
+          page_size_options: @page_size_options,
+        } %>
+      </div>
+    <% else %>
+      <%= render 'shared/filter_empty' %>
+    <% end %>
+  </div>
+<% end %>
