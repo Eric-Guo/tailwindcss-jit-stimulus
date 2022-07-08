@@ -7,77 +7,55 @@ class ManufacturersController < ApplicationController
   end
 
   def index
-    @page_size_options = [12, 20, 32, 56, 104]
-    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+    if turbo_frame_request?
+      @page_size_options = [12, 20, 32, 56, 104]
+      @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
 
-    @panel_name = params[:pn].presence
-    @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
+      @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
 
-    @material_types = Material.where(level: 1).order(no: :asc)
-    mat_ids = (params[:ms].presence || []).reject(&:blank?)
-    @selected_mats = if mat_ids.present?
-      Material.where(id: mat_ids)
-    else
-      Material.none
-    end
-    @selected_mat_parent_id = @selected_mats.collect(&:parent_id).first || 1
-    @area_ids = (params[:l].presence || []).reject(&:blank?).map(&:to_i)
-    @sample_is_allow = params[:sample_is_allow] == 'on'
-    @has_related_cases = params[:has_related_cases] == 'on'
-    @has_cooperate_th = params[:has_cooperate_th] == 'on'
+      mat_ids = (params[:ms].presence || []).reject(&:blank?)
 
-    @all_materials = Material.where(parent_id: @selected_mat_parent_id).order(no: :asc)
-    @selected_all_materials = @all_materials.pluck(:id) == mat_ids.collect(&:to_i)
-    @selected_none_materials = (@all_materials.pluck(:id) & mat_ids.collect(&:to_i)).blank?
+      @area_ids = (params[:l].presence || []).reject(&:blank?).map(&:to_i)
 
-    @selected_all_locations = Manufacturer.manufacturer_locations.collect(&:area_id) == @area_ids
-    @selected_none_locations = (Manufacturer.manufacturer_locations.collect(&:area_id) & @area_ids).blank?
+      @sample_is_allow = params[:sample_is_allow] == 'on'
+      @has_related_cases = params[:has_related_cases] == 'on'
+      @has_cooperate_th = params[:has_cooperate_th] == 'on'
 
-    manufacturer_with_query = if @q.present?
-      mat_q_ids = q_return_mat_ids(@q)
-      if mat_q_ids.present?
-        manu_ids = Manufacturer.joins(:materials).where(materials: { id: mat_q_ids }).pluck(:id)
-        Manufacturer.where(id: manu_ids)
-      else
-        Manufacturer.where('name LIKE ? OR location LIKE ? OR contact LIKE ? OR contact_information LIKE ? OR address LIKE ? OR website LIKE ?',
-          "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").sort_by_logo(:desc).order(is_allow: :desc)
+      @manufacturers = Manufacturer.sort_by_logo.order(is_allow: :desc)
+
+      if @q.present?
+        q_mat_ids = MaterialAndSample.where(sample_id: nil).where('material_name LIKE :q_like OR parent_material_name LIKE :q_like OR grandpa_material_name LIKE :q_like', q_like: "%#{@q}%").pluck(:material_id)
+        manufacturer_ids = MaterialManufacturer.where(material_id: q_mat_ids).pluck(:manufacturer_id)
+        @manufacturers = @manufacturers.where('name LIKE :q_like OR location LIKE :q_like OR contact LIKE :q_like OR contact_information LIKE :q_like OR address LIKE :q_like OR website LIKE :q_like OR id IN (:manufacturer_ids)', q_like: "%#{@q}%", manufacturer_ids: manufacturer_ids)
       end
-    else
-      Manufacturer.all
-    end
 
-    manufacturer_with_materials = if mat_ids.present?
-      manufacturer_with_query.includes(:materials).where(materials: { id: mat_ids.append(@selected_mat_parent_id) })
-    else
-      manufacturer_with_query
-    end
+      if mat_ids.present?
+        manufacturer_ids = MaterialManufacturer.where(material_id: mat_ids).pluck(:manufacturer_id)
+        @manufacturers = @manufacturers.where('id IN (?)', manufacturer_ids)
+      end
 
-    manufacturer_with_location = if @area_ids.present?
-      manufacturer_with_materials.joins(:manufacturer_areas).where(manufacturer_areas: { area_id: @area_ids }).distinct
-    else
-      manufacturer_with_materials
-    end
+      if @area_ids.present?
+        manufacturer_ids = ManufacturerArea.where(area_id: @area_ids).pluck(:manufacturer_id)
+        @manufacturers = @manufacturers.where('id IN (?)', manufacturer_ids)
+      end
 
-    manufacturer_sample_allow = if @sample_is_allow.present?
-      manufacturer_with_location.where(is_allow: true)
-    else
-      manufacturer_with_location
-    end
+      if @sample_is_allow.present?
+        @manufacturers = @manufacturers.where(is_allow: true)
+      end
 
-    manufacturer_has_related_cases = if @has_related_cases.present?
-      manufacturer_sample_allow.where.not(cases: ['null', '', '[]']).where.not(cases: nil)
-    else
-      manufacturer_sample_allow
-    end
+      if @has_related_cases.present?
+        @manufacturers = @manufacturers.where('id IN (?)', CaseManufacturer.select(:manufacturer_id).where.not(manufacturer_id: nil))
+      end
 
-    manufacturer_has_cooperate_th = if @has_cooperate_th.present?
-      manufacturer_has_related_cases.where(is_tho_co: true)
-    else
-      manufacturer_has_related_cases
-    end
+      if @has_cooperate_th.present?
+        @manufacturers = @manufacturers.where(is_tho_co: true)
+      end
 
-    @total = manufacturer_has_cooperate_th.count
-    @manufacturers = manufacturer_has_cooperate_th.page(@page).per(@page_size)
+      @total = @manufacturers.count
+      @manufacturers = @manufacturers.page(@page).per(@page_size)
+
+      render 'list'
+    end
   end
 
   def show

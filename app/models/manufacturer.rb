@@ -8,9 +8,12 @@ class Manufacturer < ApplicationRecord
   has_many :manufacturer_areas
   has_many :areas, through: :manufacturer_areas
 
+  has_many :cases_manufacturers
+  has_many :cases, through: :cases_manufacturers, class_name: 'Cases'
+
   has_many :news
 
-  default_scope { where(deleted_at: nil) }
+  default_scope { where(display: 1).where(deleted_at: nil).where(status: 'manufacturer_published') }
 
   def self.sort_by_logo(sort = :desc)
     order(Arel.sql("CASE WHEN logo IS NULL THEN 0 WHEN logo = '' THEN 1 ELSE 2 END #{sort}"))
