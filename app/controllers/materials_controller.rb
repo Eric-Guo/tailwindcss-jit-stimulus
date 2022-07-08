@@ -18,8 +18,8 @@ class MaterialsController < ApplicationController
 
       @color_system = ColorSystem.find_by id: params[:color_system].presence
 
-      @price_start = params[:price_start].presence
-      @price_end = params[:price_end].presence
+      @price_start = params[:price_start].presence&.to_f
+      @price_end = params[:price_end].presence&.to_f
 
       @area_id = params[:area_id].presence
 
@@ -44,19 +44,19 @@ class MaterialsController < ApplicationController
 
       # 价格
       if @price_start.present? && @price_end.present?
-        price_mat2_ids = MaterialInfo.where('low_price <= ? AND high_price >= ?', @price_start, @price_end).pluck(:material_id)
-        price_mat3_ids = MaterialProduct.where('low_price <= ? AND high_price >= ?', @price_start, @price_end).pluck(:material_id)
-        price_sam_ids = Sample.where('low_price <= ? AND high_price >= ?', @price_start, @price_end).pluck(:id)
+        price_mat2_ids = MaterialInfo.where('CONVERT(low_price, SIGNED) <= ? AND CONVERT(high_price, SIGNED) >= ?', @price_start, @price_end).pluck(:material_id)
+        price_mat3_ids = MaterialProduct.where('CONVERT(low_price, SIGNED) <= ? AND CONVERT(high_price, SIGNED) >= ?', @price_start, @price_end).pluck(:material_id)
+        price_sam_ids = Sample.where('CONVERT(low_price, SIGNED) <= ? AND CONVERT(high_price, SIGNED) >= ?', @price_start, @price_end).pluck(:id)
         @list = @list.where('(sample_id IS NULL AND material_id IN (?)) OR (sample_id IN (?))', [*price_mat2_ids, *price_mat3_ids], price_sam_ids)
       elsif @price_start.present?
-        price_mat2_ids = MaterialInfo.where('low_price <= ?', @price_start).pluck(:material_id)
-        price_mat3_ids = MaterialProduct.where('low_price <= ?', @price_start).pluck(:material_id)
-        price_sam_ids = Sample.where('low_price <= ?', @price_start).pluck(:id)
+        price_mat2_ids = MaterialInfo.where('CONVERT(low_price, SIGNED) <= ?', @price_start).pluck(:material_id)
+        price_mat3_ids = MaterialProduct.where('CONVERT(low_price, SIGNED) <= ?', @price_start).pluck(:material_id)
+        price_sam_ids = Sample.where('CONVERT(low_price, SIGNED) <= ?', @price_start).pluck(:id)
         @list = @list.where('(sample_id IS NULL AND material_id IN (?)) OR (sample_id IN (?))', [*price_mat2_ids, *price_mat3_ids], price_sam_ids)
       elsif @price_end.present?
-        price_mat2_ids = MaterialInfo.where('high_price >= ?', @price_end).pluck(:material_id)
-        price_mat3_ids = MaterialProduct.where('high_price >= ?', @price_end).pluck(:material_id)
-        price_sam_ids = Sample.where('high_price >= ?', @price_end).pluck(:id)
+        price_mat2_ids = MaterialInfo.where('CONVERT(high_price, SIGNED) >= ?', @price_end).pluck(:material_id)
+        price_mat3_ids = MaterialProduct.where('CONVERT(high_price, SIGNED) >= ?', @price_end).pluck(:material_id)
+        price_sam_ids = Sample.where('CONVERT(high_price, SIGNED) >= ?', @price_end).pluck(:id)
         @list = @list.where('(sample_id IS NULL AND material_id IN (?)) OR (sample_id IN (?))', [*price_mat2_ids, *price_mat3_ids], price_sam_ids)
       end
 
