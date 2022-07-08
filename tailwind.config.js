@@ -63,6 +63,16 @@ module.exports = {
         18: '18',
         19: '19',
         20: '20',
+      },
+      keyframes: {
+        fade: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        }
+      },
+      animation: {
+        'fade-in-0.5': 'fade 0.5s ease-in-out',
+        'fade-in-1': 'fade 1s ease-in-out',
       }
     },
   },
