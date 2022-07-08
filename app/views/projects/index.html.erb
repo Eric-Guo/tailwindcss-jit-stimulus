@@ -2,182 +2,160 @@
 
 <p class="px-4 sm:px-6 lg:px-8 pt-8 text-sm text-gray-500"><%= link_to '首页', root_path -%> > <span class="text-black">案例列表</span></p>
 
-<div class="flex flex-row px-4 sm:px-6 lg:px-8">
-  <section class="w-full flex flex-col">
-    <%# 案例 %>
-    <div class="mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
-      <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">案例列表</span>
-      <span class="text-xl font-light">Project List</span>
-    </div>
-  </section>
-</div>
-
-<%= form_with url: projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', id: 'project-form', method: :get, data: { controller: 'project-filter',
-    'project-filter-material-bar-open-value': @panel_name == 'material',
-    'project-filter-area-bar-open-value': @panel_name == 'area',
-    'project-filter-indeterminate-material-value': !@selected_all_materials && !@selected_none_materials,
-    'project-filter-indeterminate-location-value': !@selected_all_locations && !@selected_none_locations,
-  } do |f| %>
-  <%= hidden_field_tag 'pn', @panel_name,  data: { "project-filter-target" => "activePanel" } -%>
-  <div class="flex flex-wrap w-full mb-3">
-    <% @selected_mats.each do |select_material| %>
-      <%= render partial: 'search_item', locals: { name: select_material.name, check_id: dom_id(select_material) } %>
-    <% end %>
-    <% @area_ids.each do |area_id| %>
-      <%= render partial: 'search_item', locals: { name: Area.find(area_id).title, check_id: "location-#{area_id}" } %>
-    <% end %>
-    <% if @project_type.present? %>
-      <%= render partial: 'search_item', locals: { name: "项目类型：#{@project_type}", check_id: 'sel-project-type' } %>
-    <% end %>
-    <% if @need_ecm_files %>
-      <%= render partial: 'search_item', locals: { name: '有立面控制手册', check_id: 'chk-ecm-files' } %>
-    <% end %>
-    <% if @has_sample %>
-      <%= render partial: 'search_item', locals: { name: '有实体样品信息', check_id: 'chk-has-sample' } %>
-    <% end %>
-    <% if @has_demonstration %>
-      <%= render partial: 'search_item', locals: { name: '示范区', check_id: 'chk-demonstration' } %>
-    <% end %>
-    <% if @is_th_internal %>
-      <%= render partial: 'search_item', locals: { name: '天华内部项目', check_id: 'chk-th-internal' } %>
-    <% end %>
+<div data-controller="project-form-list">
+  <div class="flex flex-row px-4 sm:px-6 lg:px-8">
+    <section class="w-full flex flex-col">
+      <%# 案例 %>
+      <div class="mt-7 mb-4 border-b-2 border-gray-100 border-solid pb-3">
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">案例列表</span>
+        <span class="text-xl font-light">Project List</span>
+      </div>
+    </section>
   </div>
-  <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
-    <div class="flex flex-row w-1/3 p-1">
-      <%= text_field_tag :q, @q, placeholder: '黄金麻/镀膜玻璃/PC板', class: 'block flex-grow bg-transparent text-base placeholder-gray-300 border-0 focus:outline-none focus:ring-gray-100 focus:border-gray-100 focus:ring-offset-gray-100', id: 'search-box', autocomplete: "off" -%>
-      <button data-action="project-filter#checkbox_submit" class="cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" class="flex-none mx-4 my-3 h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+
+  <%= form_tag projects_path, class: 'px-4 sm:px-6 lg:px-8 mt-2', method: :get, data: {
+    project_form_list_target: 'form',
+    turbo_frame: 'project_list',
+  } do %>
+    <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
+      <div class="flex flex-row w-1/3 p-1">
+        <input
+          name="q"
+          type="text"
+          placeholder="项目名称/石材/建筑一所"
+          class="block flex-grow bg-transparent text-base placeholder-gray-300 border-0 focus:outline-none focus:ring-gray-100 focus:border-gray-100 focus:ring-offset-gray-100"
+          autocomplete="off"
+        />
+        <button type="submit" class="cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="flex-none mx-4 my-3 h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->project-form-list#togglePanel" data-project-form-list-target="materialPanelControl">
+        <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
+          <span style="padding-bottom: 1.1rem">材料</span>
+        </p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>
         </svg>
-      </button>
-    </div>
-    <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->project-filter#expend_material">
-      <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
-        <span class="<%= @panel_name == 'material' ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-project-filter-target="materialSpan">材料</span>
-      </p>
-      <svg data-project-filter-target="materialIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path fill="currentColor" d="<%= @panel_name == 'material' ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
-      </svg>
-    </div>
-    <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->project-filter#expend_area">
-      <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
-        <span class="<%= @panel_name == 'area' ? 'under-text-border' : '' -%>" style="padding-bottom: 1.1rem" data-project-filter-target="areaSpan">所在地区</span>
-      </p>
-      <svg data-project-filter-target="areaIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path fill="currentColor" d="<%= @panel_name == 'area' ? 'M20 16H4L12 8L20 16Z' : 'M20 8H4L12 16L20 8Z' -%>"></path>
-      </svg>
-    </div>
-  </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'material' ? '' : 'hidden' -%>" data-project-filter-target="materialTypeDiv">
-    <div class="w-80"></div>
-    <div class="grid grid-flow-row grid-cols-6 w-full">
-      <% @material_types.each_with_index do |material_type, index| %>
-        <turbo-frame id="<%= dom_id(material_type) -%>">
-          <div class="my-4 <%= material_type.id == @selected_mat_parent_id ? 'font-bold' : '' -%>" data-project-filter-target="matTypeLink">
-            <%= link_to material_type.name, material_type_path(id: material_type.id, from: 'projects'), data: { action: 'click->project-filter#clean_active' } -%>
-          </div>
-        </turbo-frame>
-      <% end %>
-    </div>
-  </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'material' ? '' : 'hidden' -%>" data-project-filter-target="materialDetailDiv">
-    <div class="w-80">
-      <div class="my-4 ml-8 flex items-start">
-        <input id="checkbox-select-material-all" data-project-filter-target="selectAllMaterials" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->project-filter#select_all_materials" <%= @selected_all_materials ? 'checked' : '' -%>>
-        <label for="checkbox-select-material-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
+      </div>
+      <div class="flex flex-row w-1/3 p-1 cursor-pointer" data-action="click->project-form-list#togglePanel" data-project-form-list-target="areaPanelControl">
+        <p class="flex-none pl-4 pr-2 my-3 text-gray-500 border-l border-gray-300">
+          <span style="padding-bottom: 1.1rem">所在地区</span>
+        </p>
+        <svg data-project-form-list-target="areaIconSvg" xmlns="http://www.w3.org/2000/svg" class="flex-none my-4 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path fill="currentColor" d="M20 8H4L12 16L20 8Z"></path>
+        </svg>
       </div>
     </div>
-    <turbo-frame id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1">
-      <% @all_materials.each do |material| %>
-        <%= render partial: 'material_item', locals: { material: material, checked: @selected_mats.pluck(:id).include?(material.id) } %>
-      <% end %>
-    </turbo-frame>
-  </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= @panel_name == 'area' ? '' : 'hidden' -%>" data-project-filter-target="locationDetailDiv">
-    <div class="w-80">
-      <div class="my-4 ml-8 flex items-start">
-        <input id="checkbox-select-location-all" data-project-filter-target="selectAllLocations" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="input->project-filter#select_all_locations" <%= @selected_all_locations ? 'checked' : '' -%>>
-        <label for="checkbox-select-location-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
-      </div>
-    </div>
-    <div class="grid grid-flow-row grid-cols-6 w-full py-1">
-      <% Cases.project_locations.each do |area| %>
-        <%= render partial: 'location_item', locals: { id: area.area_id, name: area.area_title, checked: @area_ids.include?(area.area_id) } %>
-      <% end %>
-    </div>
-  </div>
-  <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 <%= (@panel_name == 'material' || @panel_name == 'area') ? '' : 'hidden' -%>" data-project-filter-target="additionalDiv">
-    <div class="w-80">
-      <div class="my-4 ml-8">
-        高级筛选
-      </div>
-    </div>
-    <div class="grid grid-flow-row grid-cols-6 w-full py-1">
-      <div class="my-2.5 flex items-start">
-        <label for="sel-project-type" class="text-gray-700 mt-px">项目类型</label>
-        <%= select_tag :project_type, options_for_select(Cases.project_types, @project_type), { include_blank: true, class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-20', id: 'sel-project-type', data: { action: 'project-filter#checkbox_submit' } } %>
-      </div>
-      <div class="my-2.5 flex items-start">
-        <input id="chk-ecm-files" name="ecm_files" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @need_ecm_files.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">
-        <label for="chk-ecm-files" class="text-gray-700 ml-2 mt-px">有立面控制手册</label>
-      </div>
-      <div class="my-2.5 flex items-start">
-        <input id="chk-has-sample" name="has_sample" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_sample.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">
-        <label for="chk-has-sample" class="text-gray-700 ml-2 mt-px">有实体样品信息</label>
-      </div>
-      <div class="my-2.5 flex items-start">
-        <input id="chk-demonstration" name="has_demonstration" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @has_demonstration.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">
-        <label for="chk-demonstration" class="text-gray-700 ml-2 mt-px">示范区</label>
-      </div>
-      <div class="my-2.5 flex items-start">
-        <input id="chk-th-internal" name="is_th_internal" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" <%= @is_th_internal.present? ? 'checked' : '' -%> data-action="project-filter#checkbox_submit">
-        <label for="chk-th-internal" class="text-gray-700 ml-2 mt-px">天华内部项目</label>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16">
-  <% if @cases.length > 0 %>
-    <%# 案例 %>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
-      <% @cases.each do |project_case| %>
-        <a class="block mb-4" <%= project_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case)}\"".html_safe : '' %>>
-          <div class="relative" style="padding-top: 74.78%;">
-            <div class="absolute top-0 left-0 w-full h-full">
-              <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
-            </div>
-            <% if project_case.in_secret_time? %>
-              <div class="absolute right-2 bottom-2 text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-                </svg>
-              </div>
+    <div class="hidden" data-project-form-list-target="panel">
+      <div class="hidden" data-project-form-list-target="materialPanel">
+        <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50">
+          <div class="w-80"></div>
+          <div class="grid grid-flow-row grid-cols-6 w-full">
+            <% @tree_materials.each_with_index do |material, index| %>
+              <button
+                type="button"
+                class="py-4 <%= index == 0 ? 'font-bold' : '' %>"
+                data-id="<%= material[:id] %>"
+                data-children="<%= material[:children].to_json %>"
+                data-project-form-list-target="material1"
+                data-action="click->project-form-list#activeMaterial1"
+              >
+                <%= material[:title] -%>
+              </button>
             <% end %>
           </div>
-          <div class="flex flex-row justify-between items-baseline mt-2">
-            <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
-              <%= text_with_default(project_case.project_name_and_location) -%>
-            </p>
-            <p class="text-xs text-gray-400 flex-none ml-3">
-              <%= text_with_default(project_case.is_th_str) %>
-            </p>
+        </div>
+        <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50">
+          <div class="w-80">
+            <div class="my-4 ml-8 flex items-start">
+              <input
+                id="checkbox-select-material-all"
+                type="checkbox"
+                class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300"
+                data-project-form-list-target="materialAllCheckbox"
+                data-action="change->project-form-list#changeMaterialAllCheckbox"
+              >
+              <label for="checkbox-select-material-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
+            </div>
           </div>
-          <% material_tags = @material_in_cases.find_all { |m| m[0] ==  project_case.id }[0..3]&.collect(&:second)&.join(' | ') %>
-          <p class="text-sm font-medium truncate" title="<%= material_tags -%>"><%= text_with_default(material_tags) %></p>
-        </a>
-      <% end %>
+          <div id="material_details" class="grid grid-flow-row grid-cols-6 w-full py-1" data-project-form-list-target="material2List"></div>
+        </div>
+      </div>
+      <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50 hidden" data-project-form-list-target="areaPanel">
+        <div class="w-80">
+          <div class="my-4 ml-8 flex items-start">
+            <input
+              id="checkbox-select-location-all"
+              type="checkbox"
+              class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300"
+              data-project-form-list-target="areaAllCheckbox"
+              data-action="change->project-form-list#changeAreaAllCheckbox"
+            >
+            <label for="checkbox-select-location-all" class="font-medium text-gray-700 ml-2 mt-px">全部</label>
+          </div>
+        </div>
+        <div class="grid grid-flow-row grid-cols-6 w-full py-1">
+          <% Cases.project_locations.each do |area| %>
+            <div class="my-2.5 flex items-start">
+              <input
+                id="<%= "location-#{area.area_id}" -%>"
+                name="l[]"
+                value="<%= area.area_id -%>"
+                type="checkbox"
+                class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300"
+                data-project-form-list-target="areaItemCheckbox"
+                data-action="change->project-form-list#changeAreaItemCheckbox"
+              >
+              <label for="<%= "location-#{area.area_id}" -%>" class="text-gray-700 ml-2 mt-px"><%= area.area_title -%></label>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="flex flex-row text-gray-700 border-b border-l border-r border-gray-200 bg-gray-50">
+        <div class="w-80">
+          <div class="my-4 ml-8">
+            高级筛选
+          </div>
+        </div>
+        <div class="grid grid-flow-row grid-cols-6 w-full py-1">
+          <div class="my-2.5 flex items-start">
+            <label for="sel-project-type" class="text-gray-700 mt-px">项目类型</label>
+            <%= select_tag :project_type, options_for_select(Cases.project_types, @project_type), {
+              include_blank: true,
+              class: 'ml-2 -mt-px p-1 bg-gray-100 text-sm border-gray-300 focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm rounded w-20',
+              id: 'sel-project-type',
+              data: {
+                action: 'change->project-form-list#submitForm'
+              }
+            } %>
+          </div>
+          <div class="my-2.5 flex items-start">
+            <input id="chk-ecm-files" name="ecm_files" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="change->project-form-list#submitForm">
+            <label for="chk-ecm-files" class="text-gray-700 ml-2 mt-px">有立面控制手册</label>
+          </div>
+          <div class="my-2.5 flex items-start">
+            <input id="chk-has-sample" name="has_sample" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="change->project-form-list#submitForm">
+            <label for="chk-has-sample" class="text-gray-700 ml-2 mt-px">有实体样品信息</label>
+          </div>
+          <div class="my-2.5 flex items-start">
+            <input id="chk-demonstration" name="has_demonstration" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="change->project-form-list#submitForm">
+            <label for="chk-demonstration" class="text-gray-700 ml-2 mt-px">示范区</label>
+          </div>
+          <div class="my-2.5 flex items-start">
+            <input id="chk-th-internal" name="is_th_internal" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300" data-action="change->project-form-list#submitForm">
+            <label for="chk-th-internal" class="text-gray-700 ml-2 mt-px">天华内部项目</label>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="flex justify-center mt-8">
-      <%= render partial: 'shared/pagination', locals: {
-        total: @total,
-        page: @page,
-        page_size: @page_size,
-        path: projects_path(request.GET),
-        page_size_options: [10, 15, 25, 40, 60, 85],
-      } %>
-    </div>
-  <% else %>
-    <%= render 'shared/filter_empty' %>
   <% end %>
+
+  <%= turbo_frame_tag :project_list, src: projects_path(turbo: true), data: {
+    controller: 'turbo-frame',
+    project_form_list_target: 'list',
+  } %>
+
 </div>
