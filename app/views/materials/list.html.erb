@@ -1,0 +1,35 @@
+<%= turbo_frame_tag :material_list do %>
+  <div class="px-4 sm:px-6 lg:px-8 mt-6 2xl:mt-8 mb-16">
+    <% if @list.length > 0 %>
+      <%# 材料 %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-x-1.5 gap-y-10">
+        <% @list.each do |material_and_sample| %>
+          <% if material_and_sample.sample_id.present? %>
+            <%= link_to sample_path(id: material_and_sample.sample_id), data: { turbo: false } do %>
+              <img class="mx-auto w-full h-52 object-cover" src="<%= material_and_sample.sample_cover.present? ? mat_img_url(material_and_sample.sample_cover, "") : get_first_url(material_and_sample.material_cover) -%>" alt="">
+              <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_and_sample.material_name) -%>（样品）</h3>
+              <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_and_sample.level_name) -%></h4>
+            <% end %>
+          <% else %>
+            <%= link_to material_path(id: material_and_sample.material_id), data: { turbo: false } do %>
+              <img class="mx-auto w-full h-52 object-cover" src="<%= get_first_url(material_and_sample.material_cover) -%>" alt="">
+              <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_and_sample.material_name) -%></h3>
+              <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_and_sample.level_name) -%></h4>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="flex justify-center mt-8">
+        <%= render partial: 'shared/pagination', locals: {
+          total: @total,
+          page: @page,
+          page_size: @page_size,
+          path: materials_path(request.GET),
+          page_size_options: @page_size_options,
+        } %>
+      </div>
+    <% else %>
+      <%= render 'shared/filter_empty' %>
+    <% end %>
+  </div>
+<% end %>
