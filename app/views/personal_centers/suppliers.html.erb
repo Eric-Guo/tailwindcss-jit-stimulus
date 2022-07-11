@@ -27,10 +27,10 @@
             </tr>
           </thead>
           <tbody>
-            <% @list.each do |item| %>
+            <% @list.each_with_index do |item, index| %>
               <tr class="text-gray-400">
                 <td class="border p-5">
-                  <%= item.id %>
+                  <%= index + 1 %>
                 </td>
                 <td class="border p-5">
                   <turbo-frame data-action="turbo:before-fetch-response->personal-center-suppliers#showDetailModal">
