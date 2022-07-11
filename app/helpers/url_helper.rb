@@ -23,12 +23,14 @@ module UrlHelper
   def url_parse_query(url)
     uri = URI.parse(url)
     query = []
-    uri.query.split('&').each do |str|
-      arr = str.split('=')
-      if arr[1].present?
-        key = URI.decode_www_form_component(arr[0])
-        value = URI.decode_www_form_component(arr[1])
-        query.push([key, value])
+    if uri.query.present?
+      uri.query.split('&').each do |str|
+        arr = str.split('=')
+        if arr[1].present?
+          key = URI.decode_www_form_component(arr[0])
+          value = URI.decode_www_form_component(arr[1])
+          query.push([key, value])
+        end
       end
     end
     query
