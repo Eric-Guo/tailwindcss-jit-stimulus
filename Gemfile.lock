@@ -157,7 +157,7 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     httpclient (2.8.3)
-    i18n (1.12.0)
+    i18n (1.11.0)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
     irb (1.4.1)
@@ -191,7 +191,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.16.1)
+    minitest (5.16.2)
     mysql2 (0.5.4)
     net-imap (0.2.3)
       digest
@@ -238,7 +238,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
-    rack-oauth2 (1.21.2)
+    rack-oauth2 (1.19.0)
       activesupport
       attr_required
       httpclient
@@ -384,4 +384,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.3.16
+   2.3.17
