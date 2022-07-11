@@ -44,7 +44,11 @@
                   <%= item.created_at&.strftime('%Y-%m-%d %H:%M:%S') %>
                 </td>
                 <td class="border p-5 truncate" title="<%= item.name %>">
-                  <%= item.name %>
+                  <% if item.status == 'manufacturer_recommend_approved' && item.manufacturer_id.present? %>
+                    <a href="<%= manufacturers_path(item.manufacturer_id) %>" class="underline text-blue-500"><%= item.name %></a>
+                  <% else %>
+                    <%= item.name %>
+                  <% end %>
                 </td>
                 <td class="border p-5">
                   <%= item.material&.name %>
