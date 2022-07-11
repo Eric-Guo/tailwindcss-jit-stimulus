@@ -11,6 +11,9 @@
   <div>共 <%= total %> 条</div>
   <% if page_size_options.present? %>
     <form action="<%= path %>" method="GET">
+      <% url_parse_query(path).each do |item| %>
+        <input type="hidden" name="<%= item[0] %>" value="<%= item[1] %>" />
+      <% end %>
       <select name="page_size" class="py-0.5 pr-8 h-7 text-sm rounded border-neutral-235 focus:border-neutral-400 focus:ring-transparent" onchange="this.form.requestSubmit();">
         <% page_size_options.each do |item| %>
           <option
@@ -105,6 +108,9 @@
   <div class="flex items-center gap-1">
     <span>前往</span>
     <form action="<%= path %>" method="GET">
+      <% url_parse_query(path).each do |item| %>
+        <input type="hidden" name="<%= item[0] %>" value="<%= item[1] %>" />
+      <% end %>
       <input
         name="page"
         type="text"
