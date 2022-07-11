@@ -17,6 +17,7 @@
     project_form_list_target: 'form',
     turbo_frame: 'project_list',
   } do %>
+    <input type="hidden" name="page_size" />
     <div class="flex flex-row justify-between border border-gray-200 bg-gray-100">
       <div class="flex flex-row w-1/3 p-1">
         <input
@@ -156,6 +157,6 @@
   <%= turbo_frame_tag :project_list, src: projects_path(turbo: true), data: {
     controller: 'turbo-frame',
     project_form_list_target: 'list',
+    action: 'turbo:before-fetch-request->project-form-list#setFormPageSize',
   } %>
-
 </div>

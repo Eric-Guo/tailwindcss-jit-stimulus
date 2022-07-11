@@ -106,4 +106,11 @@ export default class extends Controller {
   submitForm() {
     this.formTarget.requestSubmit();
   }
+
+  setFormPageSize(e) {
+    const url = e.detail.url;
+    const pageSize = url.searchParams.get('page_size') || '';
+    const pageSizeInput = this.formTarget.querySelector('input[name=page_size]');
+    if (pageSizeInput) pageSizeInput.value = pageSize;
+  }
 }

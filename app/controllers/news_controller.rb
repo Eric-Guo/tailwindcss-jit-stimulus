@@ -7,39 +7,30 @@ class NewsController < ApplicationController
   end
 
   def index
-    @page_size_options = [9, 12, 18, 30, 54]
-    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+    if turbo_frame_request?
+      @page_size_options = [9, 12, 18, 30, 54]
+      @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
 
-    @panel_name = params[:pn].presence
-    @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
+      @q = ActiveRecord::Base::sanitize_sql(params[:q]&.strip)
+      @material_type_ids = (params[:ms].presence || []).reject(&:blank?)
 
-    @material_types = Material.where(level: 1).order(no: :asc)
-    @selected_material_type_ids = (params[:ms].presence || []).reject(&:blank?)
-    @selected_mats = if @selected_material_type_ids.present?
-      Material.where(id: @selected_material_type_ids)
-    else
-      Material.none
-    end
+      @news = News.order(published_at: :desc)
 
-    news_with_query = if @q.present?
-      mat_q_ids = q_return_mat_ids(@q)
-      if mat_q_ids.present?
-        News.where(material_id: mat_q_ids)
-      else
-        News.where('title LIKE ? OR subtitle LIKE ? OR mold_name LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%")
+      if @q.present?
+        q_mat_ids = MaterialAndSample.where(sample_id: nil).where('material_name LIKE :q_like OR parent_material_name LIKE :q_like OR grandpa_material_name LIKE :q_like', q_like: "%#{@q}%").pluck(:material_id)
+        news_ids = NewsMaterial.where(material_id: q_mat_ids).pluck(:news_id)
+        @news = @news.where('title LIKE :q_like OR subtitle LIKE :q_like OR mold_name LIKE :q_like OR id IN (:news_ids)', q_like: "%#{@q}%", news_ids: news_ids)
       end
-    else
-      News.all
-    end
 
-    news_with_materials = if @selected_material_type_ids.present?
-      news_with_query.joins(:news_materials).where(news_materials: { material_id: @selected_material_type_ids })
-    else
-      news_with_query
-    end
+      if @material_type_ids.present?
+        news_ids = NewsMaterial.where(material_id: @material_type_ids).pluck(:news_id)
+        @news = @news.where('id IN (?)', news_ids)
+      end
 
-    @news = news_with_materials.includes(:materials).order(published_at: :desc)
-    @total = @news.count
-    @news = @news.page(@page).per(@page_size)
+      @total = @news.count
+      @news = @news.page(@page).per(@page_size)
+
+      render 'list'
+    end
   end
 end
