@@ -141,7 +141,7 @@ export default class extends Controller {
             break;
           }
           if (!Array.isArray(c.livePhotos) || c.livePhotos.length === 0) {
-            msg = '每个案例的实景照至少上传一张图片';
+            msg = '每个案例的项目图片至少上传一张图片';
             break;
           }
           if (c.typeId === 'pm') inCount++;
@@ -211,7 +211,7 @@ export default class extends Controller {
             `}
           </div>
           <div class="flex-1" style="margin-left: 30px;">
-            <label><span class="text-red">*</span>实景照:</label>
+            <label><span class="text-red">*</span>项目图片:</label>
             <div class="mt-1 grid grid-cols-3 gap-3">
               ${item.livePhotos.map((it, ind) => `
                 <div class="relative" style="height: 180px;">
