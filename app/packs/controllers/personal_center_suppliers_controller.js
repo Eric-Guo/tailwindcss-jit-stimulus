@@ -197,17 +197,17 @@ export default class extends Controller {
                 </div>
               </div>
             ` : `
-              <label>
-                <span><span class="text-red">*</span>项目名称:</span>
+              <div>
+                <label><span class="text-red">*</span>项目名称:</label>
                 <input
                   type="text"
-                  class="border border-gray-300 h-7 leading-7 rounded px-2 text-gray-500 focus:border-none focus:ring-black text-sm mt-1"
+                  class="w-full border border-gray-300 h-7 leading-7 rounded px-2 text-gray-500 focus:border-transparent focus:ring-black text-sm mt-1"
                   data-action="change->personal-center-suppliers#caseTextChange"
                   value="${item.name}"
                   data-personal-center-suppliers-index-param="${index}"
                   data-personal-center-suppliers-key-param="name"
                 />
-              </label>
+              </div>
             `}
           </div>
           <div class="flex-1" style="margin-left: 30px;">
