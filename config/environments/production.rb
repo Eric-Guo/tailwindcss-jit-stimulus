@@ -102,5 +102,7 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
+  config.active_record.yaml_column_permitted_classes = [Symbol]
+
   config.action_mailer.default_url_options = { host: 'm-thtri.thape.com.cn', port: 443 }
 end
