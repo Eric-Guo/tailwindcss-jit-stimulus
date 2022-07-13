@@ -68,8 +68,8 @@
                 <img class="w-full h-full object-scale-down" src="<%= image_pack_path('person.svg') %>" alt="">
               </div>
               <div class="flex-1 ml-5 text-base w-0 text-neutral-0">
-                <div class="truncate" title="<%= @manufacturer.contact %>"><%= text_with_default(contact.name) %></div>
-                <div class="truncate" title="<%= @manufacturer.contact_information %>"><%= text_with_default(contact.tel) %></div>
+                <div class="truncate" title="<%= text_with_default(contact.name) %>"><%= text_with_default(contact.name) %></div>
+                <div class="truncate" title="<%= text_with_default(contact.tel) %>"><%= text_with_default(contact.tel) %></div>
               </div>
             </div>
           <% end %>
