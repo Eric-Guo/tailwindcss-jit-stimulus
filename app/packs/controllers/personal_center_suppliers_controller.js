@@ -398,9 +398,9 @@ export default class extends Controller {
           </div>
         </td>
         <td class="py-5 truncate">${project.code}</td>
-        <td class="py-5 truncate">${project.title}</td>
-        <td class="py-5 truncate">${project.company}</td>
-        <td class="py-5 truncate">${project.department}</td>
+        <td class="py-5 truncate" title="${project.title}">${project.title}</td>
+        <td class="py-5 truncate" title="${project.company}">${project.company}</td>
+        <td class="py-5 truncate" title="${project.department}">${project.department}</td>
       </tr>
     `).join('');
     this.pmProjectsContainerTarget.innerHTML = html;
@@ -585,7 +585,7 @@ export default class extends Controller {
             </div>
           </div>
         </td>
-        <td class="py-5 truncate">${project.title}</td>
+        <td class="py-5 truncate" title="${project.title}">${project.title}</td>
         <td class="py-5 truncate">
           <div class="bg-gray-300" style="width: 140px; height: 105px;"></div>
         </td>
