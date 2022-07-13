@@ -103,7 +103,7 @@ class Cases < ApplicationRecord
 
   # 是否在保密时间内
   def in_secret_time?
-    [1, 2].include?(visibility) && end_visibility_at > Time.now()
+    visibility == 2 && end_visibility_at > Time.now()
   end
 
   # 用户可以查看案例的权限
