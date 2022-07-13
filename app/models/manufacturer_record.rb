@@ -6,6 +6,7 @@ class ManufacturerRecord < ApplicationRecord
   has_many :manufacturer_record_areas
   has_many :areas, through: :manufacturer_record_areas
   has_many :contacts, class_name: "ManufacturerContact"
+  has_one :external_user
 
   default_scope { where(deleted_at: nil) }
 

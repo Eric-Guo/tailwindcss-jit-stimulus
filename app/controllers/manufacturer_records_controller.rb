@@ -2,6 +2,6 @@
 
 class ManufacturerRecordsController < ApplicationController
   def show
-    @manufacturer = ManufacturerRecord.find_by!(external_user_id: params[:id])
+    @manufacturer = ManufacturerRecord.joins(:external_user).where(external_user: { id: params[:id] }).take!()
   end
 end
