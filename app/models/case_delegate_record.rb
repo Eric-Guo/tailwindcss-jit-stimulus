@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CaseDelegateRecord < ApplicationRecord
+  include ApplicationHelper
+
   self.table_name = 'case_delegate_records'
   default_scope { where(deleted_at: nil) }
 
@@ -25,11 +27,11 @@ class CaseDelegateRecord < ApplicationRecord
 
   def show_cover
     if web_cover != "" 
-      "https://matlib.thape.com.cn/test/" + web_cover
+      matlib_file_path_prefix + web_cover
     elsif source_web_cover != "" 
       source_web_cover.sub( "http://jzw.thape.com.cn/upload/", "https://matlib.thape.com.cn/jzw_image/" )
     else
-      "https://matlib.thape.com.cn/test/uploads/project_bg.png"
+      "#{matlib_file_path_prefix}uploads/project_bg.png"
     end
   end
 
