@@ -42,21 +42,22 @@ class HomeController < ApplicationController
     @projects = Tops.where('top_model = ?', 'home_top_cases').where('case_id > ?', 0).order(top_sort: :desc)
 
     @material_cates = [
-      { title: '石材', cover: 'mat_nav_g1.jpg' },
-      { title: '金属', cover: 'mat_nav_g6.jpg' },
-      { title: '陶瓷', cover: 'mat_nav_g3.jpg' },
-      { title: '涂料', cover: 'mat_nav_g7.jpg' },
-      { title: '玻璃', cover: 'mat_nav_g2.jpg' },
-      { title: '混凝土/水泥', cover: 'mat_nav_g4.jpg' },
-      { title: '木材', cover: 'mat_nav_g5.jpg' },
-      { title: '高分子材料', cover: 'mat_nav_g8.jpg' },
-      { title: '生态', cover: 'mat_nav_g9.jpg' },
-      { title: '新型', cover: 'mat_nav_g10.jpg' },
+      { no: 'A', cover: 'mat_nav_g1.jpg' },
+      { no: 'B', cover: 'mat_nav_g6.jpg' },
+      { no: 'C', cover: 'mat_nav_g3.jpg' },
+      { no: 'D', cover: 'mat_nav_g7.jpg' },
+      { no: 'E', cover: 'mat_nav_g2.jpg' },
+      { no: 'F', cover: 'mat_nav_g4.jpg' },
+      { no: 'G', cover: 'mat_nav_g5.jpg' },
+      { no: 'H', cover: 'mat_nav_g8.jpg' },
+      { no: 'Y', cover: 'mat_nav_g9.jpg' },
+      { no: 'Z', cover: 'mat_nav_g10.jpg' },
     ]
-    materials = Material.where(name: @material_cates.pluck(:title)).where(level: 1).order(no: :asc).all
-    @material_cates.each do |cate|
-      material = materials.detect { |m| m.name == cate[:title] }
+    materials = Material.where(no: @material_cates.pluck(:no)).where(level: 1).order(no: :asc).all
+    @material_cates = @material_cates.each do |cate|
+      material = materials.detect { |m| m.no == cate[:no] }
       cate[:mat] = material
+      cate[:title] = material&.name
       cate[:subtitle] = material&.en_name
     end
 
