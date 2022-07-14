@@ -15,6 +15,14 @@ class CaseDelegateRecord < ApplicationRecord
 
   belongs_to :delegate, class_name: 'CaseDelegate', foreign_key: :case_id, primary_key: :case_id
 
+  def project_name_and_location
+    [self.project_name, self.project_location&.gsub('上海市','')].select { |str| str.present? }.join('/')
+  end
+
+  def material_tags
+    @material_tags ||= materials.limit(3).pluck(:name)
+  end
+
   def show_cover
     if web_cover != "" 
       "https://matlib.thape.com.cn/test/" + web_cover
