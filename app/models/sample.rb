@@ -33,6 +33,6 @@ class Sample < ApplicationRecord
 
   def price_range
     price = [low_price, high_price].uniq.join('-')
-    price.present? ? "#{price}/㎡" : nil
+    price.present? ? "#{price} 元/㎡" : nil
   end
 end
