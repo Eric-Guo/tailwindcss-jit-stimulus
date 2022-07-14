@@ -7,7 +7,10 @@ class Cases < ApplicationRecord
 
   has_many :case_materials, -> { joins(:material) }, class_name: 'CasesMaterial', foreign_key: :case_id
   has_many :materials, through: :case_materials
-  has_many :samples
+
+  has_many :case_material_samples, through: :case_materials
+  has_many :samples, through: :case_material_samples
+
   belongs_to :area, optional: true
 
   has_many :live_photos, class_name: 'CaseLivePhoto', foreign_key: :case_id

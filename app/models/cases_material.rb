@@ -10,7 +10,7 @@ class CasesMaterial < ApplicationRecord
   has_many :case_material_samples
   has_many :samples, through: :case_material_samples
 
-  default_scope { where(deleted_at: nil) }
+  default_scope { where(deleted_at: nil).where.not(case_id: 0) }
 
   def material_color
     arr = []
