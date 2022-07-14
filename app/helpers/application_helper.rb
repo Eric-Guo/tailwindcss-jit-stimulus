@@ -13,7 +13,7 @@ module ApplicationHelper
 
   def mat_img_url(path, fallback_path = '')
     if path.present?
-      "https://matlib.thape.com.cn/test/#{path}"
+      "#{matlib_file_path_prefix}#{path}"
     elsif fallback_path.present?
       image_pack_path(fallback_path)
     else
@@ -23,11 +23,11 @@ module ApplicationHelper
 
   def get_first_url(paths)
     if paths.class == Array
-      "https://matlib.thape.com.cn/test/#{paths[0]}"
+      "#{matlib_file_path_prefix}#{paths[0]}"
     else
       begin
           paths = JSON.parse(paths)
-          "https://matlib.thape.com.cn/test/#{paths[0]}"
+          "#{matlib_file_path_prefix}#{paths[0]}"
       rescue JSON::ParserError
         # Handle error
       end
