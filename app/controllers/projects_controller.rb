@@ -74,8 +74,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Cases.find(params[:id])
     material_ids = @project.materials.pluck(:id)
-    sample_ids = @project.samples.pluck(:id)
-    case_ids = CasesMaterial.where('(type_id = 2 AND material_id IN (?)) OR (type_id = 1 AND sample_id IN (?))', material_ids, sample_ids).pluck(:case_id).uniq
+    case_ids = CasesMaterial.where('material_id IN (?)', material_ids).pluck(:case_id).uniq
     @other_projects = Cases.where.not(id: @project.id).order(Arel.sql("CASE WHEN id IN (#{case_ids.join(',').presence || 'NULL'}) THEN 2 ELSE 1 END DESC")).limit(5)
   end
 end
