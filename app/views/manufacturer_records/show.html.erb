@@ -5,9 +5,7 @@
   <div class="text-sm text-gray-500">
     <a href="<%= root_path %>">首页</a>
     <span> > </span>
-    <a href="<%= manufacturers_path %>">供应商列表</a>
-    <span> > </span>
-    <span>供应商详情</span>
+    <span>供应商详情预览</span>
   </div>
 
   <div class="flex flex-row justify-between mt-5">
@@ -113,6 +111,109 @@
           <% end %>
         </div>
       <% end %>
+
+      <%
+        default_tab_name = case
+          when @materials.present?
+            'materials'
+          when @samples.present?
+            'samples'
+          when @cases.present?
+            'cases'
+          else
+            'materials'
+          end
+      %>
+      <div
+        data-controller="tabs"
+        data-tabs-default-tab-name-value="<%= default_tab_name %>"
+        data-tabs-tab-active-class-value="under-text-border text-black font-bold"
+        data-tabs-tab-normal-class-value="text-neutral-140"
+      >
+        <div class="flex border-b-2 border-gray-100 border-solid text-neutral-140" style="margin-top: 80px; gap: 45px;">
+          <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="materials" data-tabs-target="tab" data-action="click->tabs#activeTab">
+            <span class="text-2xl ml-px mr-2">产品</span>
+            <span class="text-xl font-light">Materials（<%= @materials&.length || 0 %>）</span>
+          </div>
+          <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="samples" data-tabs-target="tab" data-action="click->tabs#activeTab">
+            <span class="text-2xl ml-px mr-2">样品</span>
+            <span class="text-xl font-light">Samples（<%= @samples&.length || 0 %>）</span>
+          </div>
+          <div class="relative cursor-pointer" style="padding-bottom: 0.9rem; top: 2px;" data-tab-name="cases" data-tabs-target="tab" data-action="click->tabs#activeTab">
+            <span class="text-2xl ml-px mr-2">案例</span>
+            <span class="text-xl font-light">Projects（<%= @cases&.length || 0 %>）</span>
+          </div>
+        </div>
+        <%# 案例 %>
+        <% if @cases.present? %>
+          <div class="grid grid-cols-3 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="cases" data-tabs-target="tabContent">
+            <% @cases.each do |project_case| %>
+              <div class="mb-4">
+                <div class="relative" style="padding-top: 74.78%;">
+                  <div class="absolute top-0 left-0 w-full h-full">
+                    <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
+                  </div>
+                </div>
+                <div class="flex flex-row justify-between items-baseline mt-2">
+                  <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
+                    <%= text_with_default(project_case.project_name_and_location) -%>
+                  </p>
+                  <p class="text-xs text-gray-400 flex-none ml-3">
+                    <%= text_with_default(project_case.is_th_str) %>
+                  </p>
+                </div>
+                <p class="text-sm font-medium truncate" title="<%= project_case.material_tags.join(' | ') -%>"><%= text_with_default(project_case.material_tags.join(' | ')) %></p>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="cases" data-tabs-target="tabContent">
+            暂无案例数据
+          </div>
+        <% end %>
+        <%# 产品 %>
+        <% if @materials.present? %>
+          <div class="grid grid-cols-4 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="materials" data-tabs-target="tabContent">
+            <% @materials.each do |material| %>
+              <div>
+                <div class="relative" style="padding-top: 100%;">
+                  <% if material.cover.present? %>
+                    <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= get_first_url(material.cover) -%>" alt="">
+                  <% else %>
+                    <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center" style="background: #f2f2f2;">
+                      暂无相关图片
+                    </div>
+                  <% end %>
+                </div>
+                <h3 class="text-center mt-2 font-medium"><%= text_with_default(material.name) -%></h3>
+                <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material.level_name) -%></h4>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="materials" data-tabs-target="tabContent">
+            暂无产品数据
+          </div>
+        <% end %>
+        <%# 样品 %>
+        <% if @samples.present? %>
+          <div class="grid grid-cols-4 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="samples" data-tabs-target="tabContent">
+            <% @samples.each do |sample| %>
+              <div>
+                <div class="relative" style="padding-top: 100%;">
+                  <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= mat_img_url(sample.pic, "") -%>" alt="">
+                </div>
+                <h3 class="text-center mt-2 font-medium"><%= text_with_default(sample.material&.name) -%>（样品）</h3>
+                <h4 class="text-center text-sm text-gray-400"><%= text_with_default(sample.material&.level_name) -%></h4>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="py-10 text-center text-gray-500" style="margin-top: 30px; display: none;" data-tab-name="samples" data-tabs-target="tabContent">
+            暂无样品数据
+          </div>
+        <% end %>
+      </div>
     </section>
   </div>
 </div>
