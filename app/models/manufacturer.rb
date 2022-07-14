@@ -5,11 +5,12 @@ class Manufacturer < ApplicationRecord
 
   has_many :material_manufacturers
   has_many :materials, through: :material_manufacturers
+
   has_many :manufacturer_areas
   has_many :areas, through: :manufacturer_areas
 
-  has_many :cases_manufacturers
-  has_many :cases, through: :cases_manufacturers, class_name: 'Cases'
+  has_many :case_manufacturers, foreign_key: :manufacturer_id
+  has_many :cases, through: :case_manufacturers, class_name: 'Cases', source: :project
 
   has_many :news
 

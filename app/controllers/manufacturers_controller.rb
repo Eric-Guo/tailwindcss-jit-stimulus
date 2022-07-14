@@ -60,9 +60,9 @@ class ManufacturersController < ApplicationController
 
   def show
     @manufacturer = Manufacturer.find(params[:id])
-    @materials = @manufacturer.materials.where(level: 3)
     @samples = @manufacturer.samples
-    @cases = Cases.joins(:samples).where(samples: { id: @samples.pluck(:id) }).distinct
+    @cases = @manufacturer.cases
+    @materials = @manufacturer.materials.where(level: 3)
     @news = @manufacturer.news
     material3_ids = @manufacturer.materials.where(level: 3).pluck(:id)
     material2_ids = @manufacturer.materials.where(level: 2).pluck(:id)
