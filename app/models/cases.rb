@@ -74,7 +74,7 @@ class Cases < ApplicationRecord
 
   # 详情链接
   def detail_url
-    return jzw_url if is_th && (zz_online_id == 0 || zz_online_id == nil)
+    return jzw_url if (is_th == true || is_th == 1) && (zz_online_id == 0 || zz_online_id == nil)
     nil
   end
 
