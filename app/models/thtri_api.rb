@@ -2,7 +2,7 @@
 
 class ThtriApi
   def self.generate_url(path)
-    File.join('http://172.17.1.48:8000/admin_api/thtri', path)
+    File.join(Rails.application.credentials.thtri_api_prefix!, 'admin_api/thtri', path)
   end
 
   def self.upload_img(file, headers = {})
