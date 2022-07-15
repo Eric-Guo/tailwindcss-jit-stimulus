@@ -33,6 +33,16 @@
           <div class="absolute top-0 left-0 w-full h-full">
             <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
           </div>
+          <% if project_case.in_secret_time? %>
+            <div class="absolute right-2 bottom-2 text-black">
+              <div class="absolute right-2 bottom-2 text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                  <circle cx="16" cy="16" r="16" fill="#101820" />
+                  <path fill="#fff" fill-rule="evenodd" d="M1859.33,1139.26h-0.41v-1.55a4.925,4.925,0,0,0-9.84,0v1.55h-0.41a1.62,1.62,0,0,0-1.67,1.56v6.62a1.62,1.62,0,0,0,1.67,1.56h10.66a1.62,1.62,0,0,0,1.67-1.56v-6.62A1.62,1.62,0,0,0,1859.33,1139.26Zm-8.84-1.6a3.517,3.517,0,0,1,7.02,0v1.6h-7.02v-1.6Zm4.21,6.42v1.74a0.7,0.7,0,0,1-1.4,0v-1.74a1.3,1.3,0,0,1-.71-1.14,1.408,1.408,0,0,1,2.81,0A1.289,1.289,0,0,1,1854.7,1144.08Z" transform="translate(-1838 -1125)"/>
+                </svg>
+              </div>
+            </div>
+          <% end %>
         </div>
         <div class="flex flex-row justify-between items-baseline mt-2">
           <p class="text-sm font-bold flex-1 truncate" title="<%= project_case.project_name_and_location %>">
