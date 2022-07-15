@@ -56,12 +56,13 @@ class SearchesController < ApplicationController
         sample_ids = material_and_samples.pluck(:sample_id).uniq.select { |sample_id| sample_id.present? }
 
         # 再查出这些材料或样品关联的案例
-        case_materials = CasesMaterial.where('(type_id = 2 AND material_id IN (?)) OR (type_id = 1 AND sample_id IN (?))', material_ids, sample_ids)
+        case_materials = CasesMaterial.where('material_id IN (?)', material_ids)
+        case_material_samples = CasesMaterial.joins(:case_material_samples).where(case_material_samples: { sample_id: sample_ids })
 
         Cases.where(
           '(id IN (:ids)) OR project_name LIKE :keywords OR business_type LIKE :keywords OR project_type LIKE :keywords OR project_location LIKE :keywords OR design_unit LIKE :keywords',
           keywords: "%#{@q}%",
-          ids: case_materials.pluck(:case_id)
+          ids: [*case_materials.pluck(:case_id), *case_material_samples.pluck(:case_id)],
         )
       else
         Cases.none
