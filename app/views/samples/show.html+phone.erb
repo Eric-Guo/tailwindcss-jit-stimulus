@@ -119,7 +119,10 @@
 
     <div class="grid grid-cols-1 gap-y-4 mt-2">
       <% @cases.each_with_index do |project_case, i| %>
-        <a class="block" href="<%= project_path(project_case) %>">
+        <a
+          class="block"
+          <%= project_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case)}\"".html_safe : '' %>
+        >
           <div class="relative">
             <img class="w-full h-36 object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
             <div class="absolute right-1 bottom-1 text-white text-xs">

@@ -112,9 +112,12 @@ class Cases < ApplicationRecord
 
   # 用户可以查看案例的权限
   def permissions(current_user)
-    show_detail = current_user&.main_position.present? \
+    show_detail = current_user&.super_staff?.present? || \
+    (
+      current_user&.main_position.present? \
       && Position.architecture?(current_user.main_position.b_postcode) \
       && (in_secret_time? ? current_user.main_position.post_level.to_i > 11 : true)
+    )
     @_permissions ||= {
       base: true, # 基础信息，项目列表
       info: show_detail, # 全部信息，包括案例信息与材料信息

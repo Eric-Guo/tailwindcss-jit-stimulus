@@ -20,7 +20,10 @@
 
   <div class="mx-4 mt-4 grid grid-cols-3 gap-8">
     <% cases.each do |project_case| %>
-      <a class="block" href="<%= project_path(project_case) %>">
+      <a
+        class="block"
+        <%= project_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case)}\"".html_safe : '' %>
+      >
         <img class="w-full my-3 h-52 object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
         <h3 class="text-lg font-bold"><%= text_with_default(project_case.project_name) -%></h3>
         <p class="text-sm mt-1"><%= text_with_default(project_case.project_location) -%></p>

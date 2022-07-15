@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   def main_position
     @_main_position ||= positions.where(position_users: { main_position: true }).first
   end
+
+  def super_staff?
+    SuperStaff.where(clerk_code: clerk_code).exists?
+  end
 end

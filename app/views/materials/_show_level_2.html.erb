@@ -124,7 +124,11 @@
     </div>
     <div class="grid grid-cols-3 gap-2.5" style="margin-top: 30px;">
       <% project_cases.each do |project_case| %>
-        <a class="bg-cover bg-center bg-no-repeat flex flex-col" style="height: 296px; background-image: url('<%= mat_img_url(project_case.web_cover) %>');" href="<%= project_path(project_case) %>">
+        <a
+          class="bg-cover bg-center bg-no-repeat flex flex-col"
+          style="height: 296px; background-image: url('<%= mat_img_url(project_case.web_cover) %>');"
+          <%= project_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case)}\"".html_safe : '' %>
+        >
           <div class="flex flex-row p-2.5 justify-end gap-1">
             <% project_case.material_tags.each do |name| %>
               <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2"><%= name %></div>

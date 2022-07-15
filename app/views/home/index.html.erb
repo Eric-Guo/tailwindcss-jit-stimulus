@@ -189,7 +189,12 @@
           data-material-carousel-duration-value="0.5"
         >
           <% @recently_projects.each_with_index do |project, i| %>
-            <a class="block absolute top-0 left-0 w-full h-full" style="display: <%= i == 0 ? '' : 'none;' %>" data-material-carousel-target="carouselItem" href="<%= project_path(project.home_top_case) %>">
+            <a
+              class="block absolute top-0 left-0 w-full h-full"
+              style="display: <%= i == 0 ? '' : 'none;' %>"
+              data-material-carousel-target="carouselItem"
+              <%= project.home_top_case.permissions(current_user)[:info] ? "href=\"#{project_path(project.home_top_case)}\"".html_safe : '' %>
+            >
               <img class="w-full h-full object-cover" src="<%= mat_img_url(project.cover, "static/news_project_#{i}.jpg") -%>" alt="">
               <div class="absolute left-0 bottom-0 w-full text-white text-lg text-center truncate p-2">
                 <%= project.name -%>
@@ -271,7 +276,7 @@
 </div>
 <div class="mx-4 xl:mx-6 2xl:mx-8 mt-4 mb-16 grid grid-cols-4 gap-1.5">
   <% @projects.each do |project_case| %>
-    <a class="relative block" style="padding-top: 74.78%;" href="<%= project_path(project_case.home_top_case) %>">
+    <a class="relative block" style="padding-top: 74.78%;" <%= project_case.home_top_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case.home_top_case)}\"".html_safe : '' %>>
       <div class="absolute top-0 left-0 w-full h-full">
         <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.cover, 'static/project_new_g1.jpg') -%>" alt="">
         <div class="absolute left-0 bottom-0 p-3 w-full text-white black-mask">
