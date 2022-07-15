@@ -230,7 +230,7 @@
         </div>
       <% end %>
 
-      <% if @project.permissions(current_user)[:facade_manual] && @project.facade.length > 0 %>
+      <% if @project.permissions(current_user)[:facade_manual] && @project.facade.present? %>
         <div class="pb-3 border-b-2 border-gray-100 border-solid" style="margin-top: 80px;">
           <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">立面控制手册</span>
           <span class="text-xl font-light">Facade</span>
@@ -258,7 +258,7 @@
         </div>
       <% end %>
 
-      <% if @project.permissions(current_user)[:related_files] && @project.related_files.length > 0 %>
+      <% if @project.permissions(current_user)[:related_files] && @project.related_files.present? %>
         <div class="pb-3 border-b-2 border-gray-100 border-solid" style="margin-top: 80px;">
           <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">相关文件</span>
           <span class="text-xl font-light">Related Files</span>
