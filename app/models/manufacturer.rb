@@ -14,6 +14,8 @@ class Manufacturer < ApplicationRecord
 
   has_many :news
 
+  has_many :contacts, class_name: 'ManufacturerContact'
+
   default_scope { where(display: 1).where(deleted_at: nil).where(status: 'manufacturer_published') }
 
   def self.sort_by_logo(sort = :desc)
