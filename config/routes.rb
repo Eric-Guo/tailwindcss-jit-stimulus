@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :records, only: %i[show]
+  resources :project_records, only: %i[show]
   resources :projects, only: %i[index show]
   resources :manufacturers, only: %i[index show]
   resources :manufacturer_records, only: %i[show]
