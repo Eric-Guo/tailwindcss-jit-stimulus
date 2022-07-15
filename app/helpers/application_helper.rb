@@ -2,9 +2,9 @@
 
 module ApplicationHelper
   def matlib_file_path_prefix
-    'https://matlib.thape.com.cn/test/'
+    Rails.application.credentials.matlib_file_path_prefix!
   end
-  
+
   def user_image_url(user)
     return if user&.clerk_code.blank?
     hash = Digest::MD5.hexdigest(user.clerk_code + 'af8f0885aa412d7923855')
