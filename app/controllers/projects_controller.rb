@@ -27,12 +27,12 @@ class ProjectsController < ApplicationController
       
       if @q.present?
         q_mat_ids = MaterialAndSample.where(sample_id: nil).where('material_name LIKE :q_like OR parent_material_name LIKE :q_like OR grandpa_material_name LIKE :q_like', q_like: "%#{@q}%").pluck(:material_id)
-        case_ids = CasesMaterial.where(type_id: 2).where(material_id: q_mat_ids).pluck(:case_id)
+        case_ids = CasesMaterial.where(material_id: q_mat_ids).pluck(:case_id)
         @cases = @cases.where('project_name LIKE :q_like OR business_type LIKE :q_like OR project_type LIKE :q_like OR project_location LIKE :q_like OR design_unit LIKE :q_like OR id IN (:case_ids)', q_like: "%#{@q}%", case_ids: case_ids)
       end
 
       if mat_ids.present?
-        case_ids = CasesMaterial.where(type_id: 2).where(material_id: mat_ids).pluck(:case_id)
+        case_ids = CasesMaterial.where(material_id: mat_ids).pluck(:case_id)
         @cases = @cases.where('id IN (?)', case_ids)
       end
 
@@ -45,11 +45,12 @@ class ProjectsController < ApplicationController
       end
 
       if @need_ecm_files.present?
-        @cases = @cases.where(lmkzsc_id: Lmkzsc.pluck(:id))
+        case_ids = CaseLmkzsc.pluck(:cases_id)
+        @cases = @cases.where('id IN (?)', case_ids)
       end
 
       if @has_sample.present?
-        case_ids = CasesMaterial.where(type_id: 1).pluck(:case_id)
+        case_ids = CasesMaterial.joins(:case_material_samples).pluck(:case_id)
         @cases = @cases.where('id IN (?)', case_ids)
       end
 
@@ -64,7 +65,7 @@ class ProjectsController < ApplicationController
       @total = @cases.count
       @cases = @cases.page(@page).per(@page_size)
 
-      @material_in_cases = CasesMaterial.joins(:material).where(type_id: 2).where(case_id: @cases.collect(&:id)).pluck('case_id, materials.name')
+      @material_in_cases = CasesMaterial.joins(:material).where(case_id: @cases.collect(&:id)).pluck('case_id, materials.name')
 
       render 'list'
     end
