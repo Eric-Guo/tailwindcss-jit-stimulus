@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_15_034241) do
   create_table "application_sites", id: { type: :bigint, unsigned: true }, charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -144,7 +144,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "confidentiality_agreement_name", limit: 191
     t.integer "visibility", limit: 1
     t.string "confidentiality_agreement_path", limit: 191
-    t.string "confidential_time", limit: 191
+    t.integer "confidential_time"
     t.string "confidentiality_agreement_size", limit: 191
     t.index ["deleted_at"], name: "idx_case_delegate_records_deleted_at"
   end
@@ -204,6 +204,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "rejected_content", limit: 191
     t.binary "data", size: :long
     t.bigint "case_delegate_record_id", unsigned: true
+    t.string "re_reason", limit: 191
+    t.bigint "sys_user_id", unsigned: true
     t.index ["deleted_at"], name: "idx_case_examines_deleted_at"
   end
 
@@ -300,11 +302,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "source_cover", limit: 191
     t.string "source_web_cover", limit: 191
     t.boolean "is_external_case"
-    t.string "confidential_time", limit: 191
+    t.integer "confidential_time"
     t.string "confidentiality_agreement_path", limit: 191
     t.integer "visibility", limit: 1
     t.string "confidentiality_agreement_size", limit: 191
     t.string "confidentiality_agreement_name", limit: 191
+    t.datetime "end_visibility_at", precision: nil
     t.index ["deleted_at"], name: "idx_cases_deleted_at"
   end
 
@@ -366,6 +369,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "effect_description", limit: 191
     t.bigint "case_delegate_record_id", comment: "案例id", unsigned: true
     t.bigint "application_site_id", unsigned: true
+    t.boolean "has_sample"
+    t.string "application_site_desc", limit: 191
+    t.string "sample_image", limit: 191
     t.index ["deleted_at"], name: "idx_cases_material_deleted_at"
   end
 
@@ -595,6 +601,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.index ["deleted_at"], name: "idx_export_excels_deleted_at"
   end
 
+  create_table "external_case_examines", id: { type: :bigint, unsigned: true }, charset: "utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.datetime "closed_at", precision: nil
+    t.bigint "external_case_id", unsigned: true
+    t.bigint "case_id", unsigned: true
+    t.bigint "case_delegate_record_id", unsigned: true
+    t.string "status", limit: 191
+    t.string "reason", limit: 191
+    t.bigint "external_user_id", unsigned: true
+    t.string "re_reason", limit: 191
+    t.bigint "sys_user_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_external_case_examines_deleted_at"
+  end
+
   create_table "external_cases", id: { type: :bigint, unsigned: true }, charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -604,6 +626,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "status", limit: 191
     t.bigint "case_id", unsigned: true
     t.string "unpublish_text", limit: 191
+    t.boolean "is_temporarily"
     t.index ["deleted_at"], name: "idx_external_cases_deleted_at"
   end
 
@@ -614,6 +637,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "name", limit: 191
     t.string "mobile", limit: 191
     t.string "password", limit: 191
+    t.bigint "manufacturer_record_id", unsigned: true
     t.index ["deleted_at"], name: "idx_external_users_deleted_at"
   end
 
@@ -644,6 +668,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "code", limit: 191
     t.bigint "manufacturer_id", unsigned: true
     t.datetime "used_at", precision: nil
+    t.bigint "external_user_id", unsigned: true
+    t.bigint "type_id", unsigned: true
+    t.string "manufacturer_name", limit: 191
     t.index ["deleted_at"], name: "idx_invitation_codes_deleted_at"
   end
 
@@ -680,6 +707,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.bigint "brands_id", null: false, unsigned: true
   end
 
+  create_table "manufacturer_brochures", id: { type: :bigint, unsigned: true }, charset: "utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "title", limit: 191
+    t.bigint "case_id", unsigned: true
+    t.string "path", limit: 191
+    t.string "cover", limit: 191
+    t.bigint "manufacturer_record_id", unsigned: true
+    t.bigint "manufacturer_id", unsigned: true
+    t.bigint "manufacturer_history_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_manufacturer_brochures_deleted_at"
+  end
+
   create_table "manufacturer_contacts", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -695,6 +736,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.bigint "type_id", unsigned: true
     t.bigint "manufacturer_history_id", unsigned: true
     t.index ["deleted_at"], name: "idx_manufacturer_contacts_deleted_at"
+  end
+
+  create_table "manufacturer_examines", id: { type: :bigint, unsigned: true }, charset: "utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "manufacturer_record_id", unsigned: true
+    t.datetime "closed_at", precision: nil
+    t.bigint "manufacturer_id", unsigned: true
+    t.string "status", limit: 191
+    t.string "reason", limit: 191
+    t.string "re_reason", limit: 191
+    t.bigint "sys_user_id", unsigned: true
+    t.bigint "external_user_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_manufacturer_examines_deleted_at"
   end
 
   create_table "manufacturer_histories", id: { type: :bigint, unsigned: true }, charset: "utf8", force: :cascade do |t|
@@ -733,6 +789,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.bigint "display"
     t.bigint "external_user_id", unsigned: true
     t.string "status", limit: 191
+    t.string "company_tel", limit: 191
     t.index ["deleted_at"], name: "idx_manufacturer_histories_deleted_at"
   end
 
@@ -768,10 +825,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.bigint "material_id", comment: "供应商类型", unsigned: true
     t.string "contact_tel", limit: 191, comment: "联系电话"
     t.boolean "is_th_co", comment: "是否和天华合作过"
-    t.string "reason", limit: 191, comment: "推荐理由"
+    t.text "reason", comment: "推荐理由"
     t.bigint "user_id", comment: "推荐用户ID", unsigned: true
     t.string "status", limit: 191, comment: "未审核:manufacturer_recommend_reviewing,审核通过:manufacturer_recommend_approved,审核不通过:manufacturer_recommend_rejected"
     t.bigint "invitation_code_id", unsigned: true
+    t.bigint "manufacturer_id", unsigned: true
     t.index ["deleted_at"], name: "idx_manufacturer_recommends_deleted_at"
   end
 
@@ -865,6 +923,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "staff_size", limit: 191
     t.string "status", limit: 191
     t.string "brand_list", limit: 191
+    t.string "company_tel", limit: 191
     t.index ["deleted_at"], name: "idx_manufacturers_deleted_at"
   end
 
@@ -1047,6 +1106,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "type_id", limit: 191
     t.binary "we_data", size: :long
     t.index ["deleted_at"], name: "idx_notifications_deleted_at"
+  end
+
+  create_table "once_downloads", id: { type: :bigint, unsigned: true }, charset: "utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "cybros_user_id", unsigned: true
+    t.string "download_code", limit: 191
+    t.string "path", limit: 191
+    t.datetime "closed_at", precision: nil
+    t.string "file_name", limit: 191
+    t.index ["deleted_at"], name: "idx_once_downloads_deleted_at"
   end
 
   create_table "one_by_ones", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -1235,6 +1306,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_093500) do
     t.string "path", limit: 191
     t.index ["deleted_at"], name: "idx_sections_deleted_at"
     t.index ["deleted_at"], name: "idx_surface_effects_deleted_at"
+  end
+
+  create_table "super_staffs", charset: "utf8", force: :cascade do |t|
+    t.string "clerk_code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clerk_code"], name: "index_super_staffs_on_clerk_code", unique: true
   end
 
   create_table "surface_effects", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

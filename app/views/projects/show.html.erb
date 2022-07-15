@@ -120,6 +120,12 @@
                 <span class="break-words"><%= @project.business_type %></span>
               </div>
             <% end %>
+            <% if @project.in_secret_time? %>
+              <div class="flex text-lg font-medium">
+                <span class="flex-none text-neutral-140">保密期限：&emsp;&emsp;</span>
+                <span class="break-words"><%= @project.end_visibility_at&.strftime('至 %Y-%m-%d') %></span>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -288,7 +294,10 @@
 
       <div class="grid grid-cols-1 gap-4" style="margin-top: 30px;">
         <% @other_projects.each do |project_case| %>
-          <a class="flex" href="<%= project_path(project_case) %>">
+          <a
+            class="flex"
+            <%= project_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case)}\"".html_safe : '' %>
+          >
             <div class="flex-none" style="width: 170px; height: 128px;">
               <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) %>" alt="">
             </div>

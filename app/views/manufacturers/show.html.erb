@@ -151,7 +151,10 @@
         <% if @cases.length > 0 %>
           <div class="grid grid-cols-3 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="cases" data-tabs-target="tabContent">
             <% @cases.each do |project_case| %>
-              <a class="block mb-4" href="<%= project_path(project_case) %>">
+              <a
+                class="block mb-4"
+                <%= project_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case)}\"".html_safe : '' %>
+              >
                 <div class="relative" style="padding-top: 74.78%;">
                   <div class="absolute top-0 left-0 w-full h-full">
                     <img class="w-full h-full object-cover" src="<%= mat_img_url(project_case.web_cover) -%>" alt="">
