@@ -16,6 +16,8 @@ class CasesMaterial < ApplicationRecord
   has_many :case_material_samples
   has_many :samples, through: :case_material_samples
 
+  belongs_to :application_site
+
   default_scope { where(deleted_at: nil).where.not(case_id: 0) }
 
   def material_color
@@ -23,5 +25,9 @@ class CasesMaterial < ApplicationRecord
     arr.push(material.color) if material.color.present?
     arr.push(color_code) if color_code.present?
     arr.join(';')
+  end
+
+  def position
+    application_site&.name
   end
 end
