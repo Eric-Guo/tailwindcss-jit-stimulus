@@ -77,7 +77,7 @@ class CaseDelegateRecord < ApplicationRecord
 
   # 是否天华案例
   def is_th_str
-    if is_th
+    if is_th == true || is_th == 1
       '内部案例'
     else
       '外部案例'

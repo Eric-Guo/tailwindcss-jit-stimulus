@@ -85,7 +85,7 @@ class Cases < ApplicationRecord
 
   # 是否天华项目
   def is_th_str
-    if is_th
+    if is_th == true || is_th == 1
       '内部项目'
     else
       '外部项目'
