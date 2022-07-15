@@ -5,7 +5,7 @@ class Cases < ApplicationRecord
 
   self.table_name = 'cases'
 
-  has_many :case_materials, -> { joins(:material) }, class_name: 'CasesMaterial', foreign_key: :case_id
+  has_many :case_materials, class_name: 'CasesMaterial', foreign_key: :case_id
   has_many :materials, through: :case_materials
 
   has_many :case_material_samples, through: :case_materials
@@ -13,13 +13,17 @@ class Cases < ApplicationRecord
 
   belongs_to :area, optional: true
 
-  has_many :live_photos, class_name: 'CaseLivePhoto', foreign_key: :case_id
-  has_many :documents, class_name: 'CaseRelevantDocument', foreign_key: :case_id
+  has_many :case_many_live_photos, foreign_key: :cases_id
+  has_many :live_photos, class_name: 'CaseLivePhoto', through: :case_many_live_photos, source: :project
+
+  has_many :case_many_relevant_document, foreign_key: :cases_id
+  has_many :documents, class_name: 'CaseRelevantDocument', through: :case_many_relevant_document, source: :project
+
+  has_many :case_lmkzscs, foreign_key: :cases_id
+  has_many :lmkzscs, through: :case_lmkzscs, source: :project
 
   has_many :case_manufacturers, foreign_key: :cases_id
-
-  belongs_to :lmkzsc
-
+  
   default_scope { where(deleted_at: nil).where(display: 1).where(status: 'case_published') }
 
   def project_name_and_location
@@ -28,15 +32,6 @@ class Cases < ApplicationRecord
 
   def material_tags
     @material_tags ||= materials.limit(3).pluck(:name)
-  end
-
-  def banners
-    arr = self.live_photos.is_a?(String) ? JSON.parse(self.live_photos) : self.live_photos;
-    if arr.present? && arr.is_a?(Array)
-      arr
-    else
-      []
-    end
   end
 
   def self.project_locations
@@ -53,35 +48,27 @@ class Cases < ApplicationRecord
 
   # 立面控制手册
   def facade
-    if self.is_th && self.lmkzsc.present?
-      file_tag = get_file_tag(lmkzsc.path)
-      [
-        {
-          tag_name: file_tag[:name],
-          tag_icon: file_tag[:icon],
-          name: lmkzsc.name,
-          url: lmkzsc.path,
-        }
-      ]
-    else
-      []
+    lmkzscs.map do |item|
+      file_tag = get_file_tag(item.path)
+      {
+        tag_name: file_tag[:name],
+        tag_icon: file_tag[:icon],
+        name: item.name,
+        url: item.path,
+      }
     end
   end
 
   # 相关文件
   def related_files
-    if documents.present?
-      documents.select { |item| item.path.present? }.map do |item|
-        file_tag = get_file_tag(item.path)
-        {
-          tag_name: file_tag[:name],
-          tag_icon: file_tag[:icon],
-          name: item.title,
-          url: item.path,
-        }
-      end
-    else
-      []
+    documents.select { |item| item.path.present? }.map do |item|
+      file_tag = get_file_tag(item.path)
+      {
+        tag_name: file_tag[:name],
+        tag_icon: file_tag[:icon],
+        name: item.title,
+        url: item.path,
+      }
     end
   end
 

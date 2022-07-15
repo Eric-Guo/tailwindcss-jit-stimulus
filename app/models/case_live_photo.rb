@@ -12,6 +12,7 @@ class CaseLivePhoto < ApplicationRecord
       "#{matlib_file_path_prefix}uploads/project_bg.png"
     end
   end
+
   def show_path
     if path != "" 
       matlib_file_path_prefix + path

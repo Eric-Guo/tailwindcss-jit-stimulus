@@ -6,16 +6,24 @@ class CaseDelegateRecord < ApplicationRecord
   self.table_name = 'case_delegate_records'
   default_scope { where(deleted_at: nil) }
 
-  has_many :case_materials, -> { joins(:material).where(type_id: 2) }, class_name: 'CasesMaterial', foreign_key: :case_delegate_record_id
-  has_many :case_samples, -> { where(type_id: 1) }, class_name: 'CasesMaterial', foreign_key: :case_delegate_record_id
+  has_many :case_materials, class_name: 'CasesMaterial', foreign_key: :case_delegate_record_id
   has_many :materials, through: :case_materials
-  has_many :samples, through: :case_samples
+
+  has_many :case_material_samples, through: :case_materials
+  has_many :samples, through: :case_material_samples
+
   belongs_to :area, optional: true
 
-  has_many :live_photos, class_name: 'CaseLivePhoto', foreign_key: :case_delegate_record_id
+  has_many :case_record_live_photos, foreign_key: :case_delegate_record_id
+  has_many :live_photos, class_name: 'CaseLivePhoto', through: :case_record_live_photos, source: :project
 
+  has_many :case_record_relevant_document, foreign_key: :case_delegate_record_id
+  has_many :documents, class_name: 'CaseRelevantDocument', through: :case_record_relevant_document, source: :project
 
-  belongs_to :delegate, class_name: 'CaseDelegate', foreign_key: :case_id, primary_key: :case_id
+  has_many :case_record_lmkzscs, foreign_key: :case_delegate_record_id
+  has_many :lmkzscs, through: :case_record_lmkzscs, source: :project
+
+  has_one :delegate, class_name: 'CaseDelegate', foreign_key: :case_delegate_record_id
 
   def project_name_and_location
     [self.project_name, self.project_location&.gsub('上海市','')].select { |str| str.present? }.join('/')
@@ -35,6 +43,32 @@ class CaseDelegateRecord < ApplicationRecord
     end
   end
 
+  # 立面控制手册
+  def facade
+    lmkzscs.map do |item|
+      file_tag = get_file_tag(item.path)
+      {
+        tag_name: file_tag[:name],
+        tag_icon: file_tag[:icon],
+        name: item.name,
+        url: item.path,
+      }
+    end
+  end
+
+  # 相关文件
+  def related_files
+    documents.select { |item| item.path.present? }.map do |item|
+      file_tag = get_file_tag(item.path)
+      {
+        tag_name: file_tag[:name],
+        tag_icon: file_tag[:icon],
+        name: item.title,
+        url: item.path,
+      }
+    end
+  end
+
   # 详情链接
   def detail_url
     return jzw_url if is_th && (zz_online_id == 0 || zz_online_id == nil)
@@ -48,5 +82,10 @@ class CaseDelegateRecord < ApplicationRecord
     else
       '外部案例'
     end
+  end
+
+  # 项目地区
+  def project_location
+    area&.title
   end
 end

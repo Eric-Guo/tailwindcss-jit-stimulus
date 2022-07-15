@@ -2,9 +2,15 @@
 
 class CasesMaterial < ApplicationRecord
   self.table_name = 'cases_material'
+
   belongs_to :case, class_name: 'Cases'
+
+  belongs_to :case_delegate_record
+
   belongs_to :material
+
   belongs_to :sample
+
   belongs_to :manufacturer
 
   has_many :case_material_samples
