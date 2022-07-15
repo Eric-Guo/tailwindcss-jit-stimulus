@@ -26,7 +26,7 @@ class ManufacturersController < ApplicationController
       if @q.present?
         q_mat_ids = MaterialAndSample.where(sample_id: nil).where('material_name LIKE :q_like OR parent_material_name LIKE :q_like OR grandpa_material_name LIKE :q_like', q_like: "%#{@q}%").pluck(:material_id)
         manufacturer_ids = MaterialManufacturer.where(material_id: q_mat_ids).pluck(:manufacturer_id)
-        @manufacturers = @manufacturers.where('name LIKE :q_like OR location LIKE :q_like OR contact LIKE :q_like OR contact_information LIKE :q_like OR address LIKE :q_like OR website LIKE :q_like OR id IN (:manufacturer_ids)', q_like: "%#{@q}%", manufacturer_ids: manufacturer_ids)
+        @manufacturers = @manufacturers.where('name LIKE :q_like OR location LIKE :q_like OR address LIKE :q_like OR website LIKE :q_like OR id IN (:manufacturer_ids)', q_like: "%#{@q}%", manufacturer_ids: manufacturer_ids)
       end
 
       if mat_ids.present?
@@ -75,7 +75,7 @@ class ManufacturersController < ApplicationController
       material_ids = Material.where(level: [2, 3]).where("parent_id IN (:ids) OR grandpa_id IN (:ids)", ids: material1_ids)
       material1_ids.push(*material1_ids) if material_ids.present?
     end
-    manufacturer_fields = ['id', 'logo', 'name', 'location', 'address', 'is_allow', 'contact_information']
+    manufacturer_fields = ['id', 'logo', 'name', 'location', 'address', 'is_allow', 'company_tel']
     @other_manufacturers = Manufacturer
       .select(Arel.sql("#{manufacturer_fields.map { |field| '`manufacturers`.' + field }.join(',')}, \
         MAX(( \
