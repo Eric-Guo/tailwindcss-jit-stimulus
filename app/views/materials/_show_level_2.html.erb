@@ -119,7 +119,7 @@
         <span class="text-xl font-light">Projects</span>
       </div>
       <% if @material.cases.count > 3 %>
-        <a class="more-btn" href="<%= projects_path(pn: 'material', q: '', ms: [@material.id], project_type: '') %>" target="_blank">MORE+</a>
+        <a class="more-btn" href="<%= projects_path %>" target="_blank">MORE+</a>
       <% end %>
     </div>
     <div class="grid grid-cols-3 gap-2.5" style="margin-top: 30px;">
@@ -342,7 +342,7 @@
   <% if material_news.length > 0 %>
     <div class="relative grid grid-cols-2 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="news" data-tabs-target="tabContent">
       <% if @material.parent_material.news.count > 4 %>
-        <a class="more-btn absolute right-0" style="top: -76px;" href="<%= news_index_path(pn: 'material', q: '', ms: [@material.parent_material.id]) %>" target="_blank">MORE+</a>
+        <a class="more-btn absolute right-0" style="top: -76px;" href="<%= news_index_path %>" target="_blank">MORE+</a>
       <% end %>
       <% material_news.each do |news| %>
         <a class="flex-grow flex border border-gray-100 border-solid" href="<%= news.url %>" target="_blank">
