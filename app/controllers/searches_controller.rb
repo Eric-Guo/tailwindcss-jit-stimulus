@@ -74,8 +74,7 @@ class SearchesController < ApplicationController
           manu_ids = Manufacturer.joins(:materials).where(materials: { id: mat_q_ids }).pluck(:id)
           Manufacturer.where(id: manu_ids)
         else
-          Manufacturer.where('name LIKE ? OR location LIKE ? OR address LIKE ? OR website LIKE ?',
-            "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%").sort_by_logo(:desc).order(is_allow: :desc)
+          Manufacturer.where('name LIKE :q_like OR location LIKE :q_like OR address LIKE :q_like OR website LIKE :q_like', q_like: "%#{@q}%").sort_by_logo(:desc).order(is_allow: :desc)
         end
       else
         Manufacturer.none
@@ -87,7 +86,7 @@ class SearchesController < ApplicationController
           News.where(material_id: mat_q_ids)
         else
           News.all
-        end.or(News.where('title LIKE ? OR subtitle LIKE ? OR mold_name LIKE ?', "%#{@q}%", "%#{@q}%", "%#{@q}%"))
+        end.or(News.where('title LIKE :keywords OR subtitle LIKE :keywords OR mold_name LIKE :keywords', keywords: "%#{@q}%"))
       else
         News.none
       end
