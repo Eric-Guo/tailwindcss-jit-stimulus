@@ -14,13 +14,13 @@ class Cases < ApplicationRecord
   belongs_to :area, optional: true
 
   has_many :case_many_live_photos, foreign_key: :cases_id
-  has_many :live_photos, class_name: 'CaseLivePhoto', through: :case_many_live_photos, source: :project
+  has_many :live_photos, class_name: 'CaseLivePhoto', through: :case_many_live_photos, source: :live_photo
 
   has_many :case_many_relevant_document, foreign_key: :cases_id
-  has_many :documents, class_name: 'CaseRelevantDocument', through: :case_many_relevant_document, source: :project
+  has_many :documents, class_name: 'CaseRelevantDocument', through: :case_many_relevant_document, source: :document
 
   has_many :case_lmkzscs, foreign_key: :cases_id
-  has_many :lmkzscs, through: :case_lmkzscs, source: :project
+  has_many :lmkzscs, through: :case_lmkzscs, source: :lmkzsc
 
   has_many :case_manufacturers, foreign_key: :cases_id
   
