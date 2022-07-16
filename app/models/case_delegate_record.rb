@@ -15,13 +15,13 @@ class CaseDelegateRecord < ApplicationRecord
   belongs_to :area, optional: true
 
   has_many :case_record_live_photos, foreign_key: :case_delegate_record_id
-  has_many :live_photos, class_name: 'CaseLivePhoto', through: :case_record_live_photos, source: :project
+  has_many :live_photos, class_name: 'CaseLivePhoto', through: :case_record_live_photos, source: :live_photo
 
   has_many :case_record_relevant_document, foreign_key: :case_delegate_record_id
-  has_many :documents, class_name: 'CaseRelevantDocument', through: :case_record_relevant_document, source: :project
+  has_many :documents, class_name: 'CaseRelevantDocument', through: :case_record_relevant_document, source: :document
 
   has_many :case_record_lmkzscs, foreign_key: :case_delegate_record_id
-  has_many :lmkzscs, through: :case_record_lmkzscs, source: :project
+  has_many :lmkzscs, through: :case_record_lmkzscs, source: :lmkzsc
 
   has_one :delegate, class_name: 'CaseDelegate', foreign_key: :case_delegate_record_id
 
