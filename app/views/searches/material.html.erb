@@ -1,51 +1,28 @@
-<%= render partial: 'shared/header', locals: { } -%>
-
-<div class="relative mt-6 max-w-4xl mx-auto px-4 pb-8">
-  <%= form_with url: material_search_path, method: :get do |f| %>
-    <label for="search-box" class="sr-only">搜索</label>
-    <span class="absolute inset-y-0 pl-4 pt-3">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    </span>
-    <%= text_field_tag :q, @q, placeholder: '黄金麻/镀膜玻璃/PC板', class: 'block w-full pl-12 pr-5 py-3 rounded-full border-2 border-gray-300 border-solid text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-500 focus:border-gray-500 focus:ring-offset-gray-500', id: 'search-box', autocomplete: "off" %>
-  <% end %>
-</div>
-
-<% if @q.present? %>
-
-<div class="mx-4 xl:mx-6 2xl:mx-8 mb-4 border-b-2 border-gray-100 border-solid pb-3 text-center text-lg">
-  <%= link_to "材料 （#{@count_hash[:material]}）", material_search_path(q: @q), class: "mx-3 under-text-border font-bold", style: 'padding-bottom: 0.9rem' -%>
-  <%= link_to "案例 （#{@count_hash[:project]}）", project_search_path(q: @q), class: "mx-3 text-neutral-140" -%>
-  <%= link_to "供应商 （#{@count_hash[:manufacturer]}）", manufacturer_search_path(q: @q), class: "mx-3 text-neutral-140" -%>
-  <%= link_to "新闻 （#{@count_hash[:news]}）", news_search_path(q: @q), class: "mx-3 text-neutral-140" -%>
-</div>
-
-<% if @material_samples.length > 0 %>
-  <%# 材料 %>
-  <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-x-1.5 gap-y-10">
-    <% @material_samples.each do |material_sample| %>
-      <% if material_sample.sample_id.present? %>
-        <%= link_to sample_path(material_sample.sample_id) do %>
-          <div class="relative" style="padding-top: 100%;">
-            <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= material_sample.sample_cover.present? ? mat_img_url(material_sample.sample_cover, "") : get_first_url(material_sample.material_cover) -%>" alt="">
-          </div>
-          <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_sample.material_name) -%>（样品）</h3>
-          <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_sample.level_name) -%></h4>
-        <% end %>
-      <% else %>
-        <%= link_to material_path(material_sample.material_id) do %>
-          <div class="relative" style="padding-top: 100%;">
-            <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= get_first_url(material_sample.material_cover) -%>" alt="">
-          </div>
-          <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_sample.material_name) -%></h3>
-          <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_sample.level_name) -%></h4>
+<%= render 'frame', tab_name: 'material' do -%>
+  <% if @material_samples.length > 0 %>
+    <%# 材料 %>
+    <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-x-1.5 gap-y-10">
+      <% @material_samples.each do |material_sample| %>
+        <% if material_sample.sample_id.present? %>
+          <%= link_to sample_path(material_sample.sample_id), class: 'animate-fade-in-0.5' do %>
+            <div class="relative" style="padding-top: 100%;">
+              <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= material_sample.sample_cover.present? ? mat_img_url(material_sample.sample_cover, "") : get_first_url(material_sample.material_cover) -%>" alt="">
+            </div>
+            <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_sample.material_name) -%>（样品）</h3>
+            <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_sample.level_name) -%></h4>
+          <% end %>
+        <% else %>
+          <%= link_to material_path(material_sample.material_id), class: 'animate-fade-in-0.5' do %>
+            <div class="relative" style="padding-top: 100%;">
+              <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= get_first_url(material_sample.material_cover) -%>" alt="">
+            </div>
+            <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_sample.material_name) -%></h3>
+            <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_sample.level_name) -%></h4>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </div>
-<% else %>
-  <%= render 'empty' %>
-<% end %>
-
+    </div>
+  <% else %>
+    <%= render 'empty' %>
+  <% end %>
 <% end %>
