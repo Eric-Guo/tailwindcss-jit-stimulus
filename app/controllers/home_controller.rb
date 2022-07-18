@@ -9,10 +9,10 @@ class HomeController < ApplicationController
     }
 
     # 新增材料数据计算
-    recently_material_created_time = Material.where('level = ?', 3).order(created_at: :desc).first&.created_at.strftime('%Y%m%d')
+    recently_material_created_time = Material.where('level = ?', 3).order(created_at: :desc).first&.created_at&.strftime('%Y%m%d')
     recently_ms_created_time = recently_material_created_time
-    recently_sample_created_time = Sample.joins(:material).order(created_at: :desc).first&.created_at.strftime('%Y%m%d')
-    recently_ms_created_time = recently_sample_created_time if recently_sample_created_time > recently_ms_created_time
+    recently_sample_created_time = Sample.joins(:material).order(created_at: :desc).first&.created_at&.strftime('%Y%m%d')
+    recently_ms_created_time = recently_sample_created_time if recently_sample_created_time.present? && recently_sample_created_time > recently_ms_created_time
 
     @recently_materials = if recently_ms_created_time.present?
       Material.where('level = ?', 3).where("date_format(created_at, '%Y%m%d') = ?", recently_ms_created_time)
