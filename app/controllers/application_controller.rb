@@ -11,18 +11,6 @@ class ApplicationController < ActionController::Base
   before_action :set_footer_info
   after_action :record_user_view_history, if: -> { Rails.env.production? }
 
-  protected
-
-    def q_return_mat_ids(q)
-      mat_2_level_ids = Material.where(level: 2).joins(:parent_material, :children_materials)
-        .where(parent_material: { name: q })
-        .pluck('children_materials_materials.id')
-      mat_3_level_ids = Material.where(level: [1, 2, 3]).where('name LIKE ?', "%#{q}%").pluck(:id)
-      if mat_2_level_ids.present? || mat_3_level_ids.present?
-        (mat_2_level_ids + [nil] + mat_3_level_ids).uniq
-      end
-    end
-
   private
 
     def login_in_as_dev_user
