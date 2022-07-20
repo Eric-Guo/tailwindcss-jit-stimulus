@@ -37,7 +37,7 @@
               </div>
             <% end %>
           </div>
-          <div class="flex flex-nowrap overflow-x-auto" style="margin-top: 15px; padding-bottom: 10px; gap: 15px;">
+          <div class="flex flex-nowrap overflow-x-auto" style="margin-top: 15px; padding-bottom: 10px; gap: 15px;" data-action="wheel->material-carousel#dotContainerScroll">
             <% @project.live_photos.each_with_index do |photo, i| %>
               <div
                 class="flex-none cursor-pointer border <%= i == 0 ? 'border-gray-900' : 'border-transparent' %>"

@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { throttle } from "lodash-es";
 
 export default class extends Controller {
   static targets = ['carouselItem', 'dotItem']
@@ -139,7 +140,20 @@ export default class extends Controller {
         break;
       }
     }
+    e.target.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
   }
+
+  // 指示器容器滚动
+  dotContainerScroll(e) {
+    e.preventDefault();
+    const elem = e.currentTarget;
+    this.throttleScroll(elem, { left: -e.wheelDelta });
+  }
+
+  // 滚动节流
+  throttleScroll = throttle((elem, { left, right }) => {
+    elem.scrollBy({ behavior: 'smooth', left, right });
+  }, 200, { leading: true, trailing: false });
 
   disconnect() {
     if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
