@@ -244,12 +244,7 @@
                 <div class="ml-3 flex-1 w-0 truncate" title="<%= item[:name] %>"><%= item[:name] %></div>
               </div>
               <div class="flex justify-end items-center flex-none ml-3" style="width: 50px; gap: 10px;">
-                <% if item[:tag_name] === 'pdf' %>
-                  <a href="<%= mat_img_url(item[:url]) %>" target="_blank" title="预览">
-                    <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-preview.svg') %>" alt="">
-                  </a>
-                <% end %>
-                <a href="<%= mat_img_url(item[:url]) %>" target="_blank" download="<%= item[:name] %>" title="下载">
+                <a href="<%= download_lmkzsc_path(item[:id], case_id: @project.id) %>" target="_blank" title="下载">
                   <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-download.svg') %>" alt="">
                 </a>
               </div>
@@ -272,12 +267,7 @@
                 <div class="ml-3 flex-1 w-0 truncate" title="<%= item[:name] %>"><%= item[:name] %></div>
               </div>
               <div class="flex justify-end items-center flex-none ml-3" style="width: 50px; gap: 10px;">
-                <% if item[:tag_name] === 'pdf' %>
-                  <a href="<%= mat_img_url(item[:url]) %>" target="_blank" title="预览">
-                    <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-preview.svg') %>" alt="">
-                  </a>
-                <% end %>
-                <a href="<%= mat_img_url(item[:url]) %>" target="_blank" download="<%= item[:name] %>" title="下载">
+                <a href="<%= download_relevant_document_path(item[:id], case_id: @project.id) %>" target="_blank" title="下载">
                   <img class="w-5 h-5 object-scale-down" src="<%= image_pack_path('icon-file-download.svg') %>" alt="">
                 </a>
               </div>

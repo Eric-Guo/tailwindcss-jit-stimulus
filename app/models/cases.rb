@@ -51,6 +51,7 @@ class Cases < ApplicationRecord
     lmkzscs.map do |item|
       file_tag = get_file_tag(item.path)
       {
+        id: item.id,
         tag_name: file_tag[:name],
         tag_icon: file_tag[:icon],
         name: item.name,
@@ -64,6 +65,7 @@ class Cases < ApplicationRecord
     documents.select { |item| item.path.present? }.map do |item|
       file_tag = get_file_tag(item.path)
       {
+        id: item.id,
         tag_name: file_tag[:name],
         tag_icon: file_tag[:icon],
         name: item.title,
@@ -101,24 +103,15 @@ class Cases < ApplicationRecord
   def permissions(current_user)
     show_detail = current_user&.super_staff?.present? || \
     (
-      current_user&.main_position.present? \
-      && Position.architecture?(current_user.main_position.b_postcode) \
-      && (in_secret_time? ? current_user.main_position.post_level.to_i > 11 : true)
+      current_user&.architecture?.present? && \
+      (in_secret_time? ? current_user.main_position_level > 11 : true)
     )
     @_permissions ||= {
       base: true, # 基础信息，项目列表
       info: show_detail, # 全部信息，包括案例信息与材料信息
       facade_manual: show_detail, # 立面手册
-      related_files: show_detail && current_user.main_position.post_level.to_i > 8, # 其他文件
-      download_file_count: if show_detail && current_user.main_position.post_level.to_i > 11
-        9999
-      elsif show_detail && (9..11) === current_user.main_position.post_level.to_i
-        3
-      elsif show_detail
-        1
-      else
-        0
-      end,
+      related_files: show_detail && current_user.show_project_relevant_document?, # 其他文件
+      download_file_count: show_detail ? current_user.project_file_download_limit : 0, # 文件下载数量
     }
   end
 end

@@ -2,7 +2,7 @@
 
 class DemandsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     res = Demand.submit({
       UserName: current_user.chinese_name,
