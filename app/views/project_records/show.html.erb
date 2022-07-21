@@ -128,7 +128,7 @@
         </div>
 
         <div class="grid grid-cols-5" style="margin-top: 30px; gap: 15px;">
-          <% @project.case_materials.includes(:material).each do |case_material| %>
+          <% @project.case_materials.joins(:material).includes(:material).each do |case_material| %>
             <a class="block" href="<%= material_path(case_material.material) %>">
               <div style="width: 188px; height: 188px;">
                 <img class="w-full h-full" src="<%= get_first_url(case_material.material.cover) %>" alt="">
