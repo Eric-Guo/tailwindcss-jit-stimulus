@@ -1,9 +1,9 @@
 GIT
   remote: https://gitee.com/Eric-Guo/wechat.git
-  revision: 834eb087060d7685a34b99c9055d1e1a11898461
+  revision: 5610d49598b2c8c8230ec576e62b953a522d0bd3
   branch: main
   specs:
-    wechat (0.16.0)
+    wechat (0.16.1)
       activesupport (>= 6.0)
       http (>= 1.0.4, < 6)
       nokogiri (>= 1.6.0)
@@ -310,7 +310,7 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
-    tzinfo (2.0.4)
+    tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
       unf_ext
