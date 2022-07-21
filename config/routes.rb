@@ -61,6 +61,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :lmkzscs, only: [] do
+    member do
+      get :download
+    end
+  end
+
+  resources :relevant_documents, only: [] do
+    member do
+      get :download
+    end
+  end
+
   resource :wechat, only: [:show, :create]
   root 'home#index'
 end

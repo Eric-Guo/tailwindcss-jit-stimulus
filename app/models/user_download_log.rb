@@ -1,0 +1,2 @@
+class UserDownloadLog < ApplicationRecord
+end
