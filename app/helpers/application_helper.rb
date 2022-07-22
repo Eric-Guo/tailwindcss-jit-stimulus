@@ -21,6 +21,12 @@ module ApplicationHelper
     end
   end
 
+  def preview_mat_pdf_url(path)
+    return nil unless path.present?
+    file_url = URI.encode_www_form_component("#{matlib_file_path_prefix}#{path}")
+    "/pdfjs/web/viewer.html?file=#{file_url}"
+  end
+
   def get_first_url(paths)
     if paths.class == Array
       "#{matlib_file_path_prefix}#{paths[0]}"
