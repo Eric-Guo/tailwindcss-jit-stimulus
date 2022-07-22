@@ -5,7 +5,8 @@
         <table class="border text-sm w-full table-fixed">
           <thead>
             <tr class="bg-gray-50">
-              <td class="border px-5 py-4 whitespace-nowrap font-semibold w-48">日期</td>
+              <td class="border px-5 py-4 whitespace-nowrap font-semibold w-32">操作</td>
+              <td class="border px-5 py-4 whitespace-nowrap font-semibold w-48">时间</td>
               <td class="border px-5 py-4 whitespace-nowrap font-semibold w-32">需求类型</td>
               <td class="border px-5 py-4 whitespace-nowrap font-semibold w-32">材料大类</td>
               <td class="border px-5 py-4 whitespace-nowrap font-semibold">具体描述</td>
@@ -16,18 +17,22 @@
           </thead>
           <tbody>
             <% @list.each do |demand| %>
-              <tr
-                class="hover:bg-gray-50 cursor-pointer"
-                data-action="click->personal-center-demands#showDetailModal"
-                data-json="<%= {
-                  cate_name: demand.cate_name,
-                  material_name: demand.material.present? ? demand.material.name : nil,
-                  description: demand.description,
-                  references_json: demand.references_json.map { |item| { name: item[:name], path: mat_img_url(item[:path]) } },
-                  resolved_at: demand.resolved_at,
-                  replies: demand.replies,
-                }.to_json %>"
-              >
+              <tr>
+                <td class="border text-center">
+                  <button
+                    type="button"
+                    class="border border-gray-300 rounded-lg px-5 text-gray-400 hover:bg-black hover:text-white"
+                    data-action="click->personal-center-demands#showDetailModal"
+                    data-json="<%= {
+                      cate_name: demand.cate_name,
+                      material_name: demand.material.present? ? demand.material.name : nil,
+                      description: demand.description,
+                      references_json: demand.references_json.map { |item| { name: item[:name], path: mat_img_url(item[:path]) } },
+                      resolved_at: demand.resolved_at,
+                      replies: demand.replies,
+                    }.to_json %>"
+                    >查看详情</button>
+                </td>
                 <td class="border p-5"><%= demand.created_at&.strftime('%Y-%m-%d %H:%M:%S') %></td>
                 <td class="border p-5"><%= demand.cate_name %></td>
                 <td class="border p-5">
