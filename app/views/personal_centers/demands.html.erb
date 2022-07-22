@@ -82,7 +82,9 @@
                 </td>
                 <td class="border p-5 truncate">
                   <% if demand.replies.present? %>
-                    <div class="truncate" title="<%= demand.replies.last.content %>"><%= demand.replies.last.content %></div>
+                    <div class="truncate" title="<%= demand.replies.map{ |reply| reply.content }.join('&#10;').html_safe %>">
+                      <%= demand.replies.last.content %>
+                    </div>
                   <% else %>
                     <div class="flex justify-center">--</div>
                   <% end %>
