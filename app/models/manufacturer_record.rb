@@ -8,6 +8,9 @@ class ManufacturerRecord < ApplicationRecord
   has_many :contacts, class_name: "ManufacturerContact"
   has_one :external_user
 
+  # 企业宣传册
+  has_many :brochures, class_name: 'ManufacturerBrochure'
+
   default_scope { where(deleted_at: nil) }
 
   def self.sort_by_logo(sort = :desc)
@@ -60,5 +63,19 @@ class ManufacturerRecord < ApplicationRecord
 
   def website
     web_site
+  end
+
+  # 相关文件
+  def brochure_files
+    @_brochure_files ||= brochures.select { |item| item.path.present? }.map do |item|
+      file_tag = get_file_tag(item.path)
+      {
+        id: item.id,
+        tag_name: file_tag[:name],
+        tag_icon: file_tag[:icon],
+        name: item.title,
+        url: item.path,
+      }
+    end
   end
 end
