@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Manufacturer < ApplicationRecord
+  include ApplicationHelper
+
   has_many :samples
 
   has_many :material_manufacturers

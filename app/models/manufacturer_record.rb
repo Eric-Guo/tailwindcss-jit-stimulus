@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ManufacturerRecord < ApplicationRecord
+  include ApplicationHelper
+
   has_many :material_manufacturer_records
   has_many :materials, through: :material_manufacturer_records
   has_many :manufacturer_record_areas
