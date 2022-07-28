@@ -1,5 +1,13 @@
 <%= render 'frame', page: 'helper_center' do -%>
-  <div class="flex justify-center">
-    <img src="<%= mat_img_url(@file_path) %>" alt="" style="width: 60%;">
+  <div class="relative flex justify-center">
+    <a
+      class="absolute right-0 -top-12 px-3 py-1 border rounded-lg border-black text-sm hover:bg-black hover:text-white"
+      href="<%= mat_img_url(@pdf_path) %>"
+      download="帮助中心.pdf"
+      target="_blank"
+    >
+      下载
+    </a>
+    <img src="<%= mat_img_url(@img_path) %>" alt="" style="width: 60%;">
   </div>
 <% end %>
