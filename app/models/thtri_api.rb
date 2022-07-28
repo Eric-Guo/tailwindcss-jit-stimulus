@@ -5,6 +5,48 @@ class ThtriApi
     File.join(Rails.application.credentials.thtri_api_prefix!, 'admin_api', path)
   end
 
+  def self.demand_cates
+    response = HTTP.get(generate_url('demand_types'))
+    JSON.parse(response.body.to_s)['data'].map do |cate|
+      {
+        id: cate['id'],
+        name: cate['name'],
+        materials: cate['Lists'].map do |item|
+          {
+            id: item['Id'],
+            name: item['Name'],
+          }
+        end
+      }
+    end
+  end
+
+  def self.demand_submit(data, ip)
+    response = HTTP.headers({
+      'X-Forwarded-For': ip,
+      'X-Real-IP': ip,
+    }).post(generate_url('demands'), json: data)
+    body = JSON.parse(response.body.to_s)
+    {
+      code: body['code'],
+      msg: body['msg']
+    }
+  end
+
+  def self.demand_upload_file(file)
+    filename = file.original_filename
+    response = HTTP.post(generate_url('demand_files'), form: {
+      file: HTTP::FormData::File.new(file)
+    })
+    body = JSON.parse(response.body.to_s)
+    file = body['data']['file']
+    {
+      name: filename,
+      url: file['url'],
+      tag: file['tag'],
+    }
+  end
+
   def self.upload_img(file, headers = {})
     filename = file.original_filename
     response = HTTP.headers(headers).post(generate_url('thtri/updateImages'), form: {

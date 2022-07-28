@@ -4,7 +4,7 @@ class DemandsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    res = Demand.submit({
+    res = ThtriApi.demand_submit({
       UserName: current_user.chinese_name,
       ClerkCode: current_user.clerk_code,
       demandType: params[:cate].to_i,
@@ -16,7 +16,7 @@ class DemandsController < ApplicationController
   end
 
   def upload_file
-    res = Demand.upload_file(params[:file])
+    res = ThtriApi.demand_upload_file(params[:file])
     render json: res
   end
 end
