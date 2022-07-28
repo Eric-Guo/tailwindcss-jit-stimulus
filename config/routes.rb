@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get :suppliers
       post :create_supplier
       get :show_supplier
+      get :helper_center
     end
   end
 

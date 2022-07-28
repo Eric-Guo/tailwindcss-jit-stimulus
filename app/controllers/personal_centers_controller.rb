@@ -145,6 +145,10 @@ class PersonalCentersController < ApplicationController
     redirect_to suppliers_personal_center_path
   end
 
+  def helper_center
+    @file_path = 'uploads/file/00e4d0a485f45450ab0e217145a1b63a_20220728180707.jpg';
+  end
+
   private
     def get_no_read_message_count
       @no_read_message_count = Notification
