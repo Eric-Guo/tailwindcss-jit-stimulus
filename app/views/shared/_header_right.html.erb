@@ -36,6 +36,7 @@
           <a href="<%= messages_personal_center_path %>">我的消息</a>
           <a href="<%= demands_personal_center_path %>">我的需求</a>
           <a href="<%= suppliers_personal_center_path %>">供应商推荐</a>
+          <a href="<%= helper_center_personal_center_path %>">帮助中心</a>
         </div>
         <div class="py-2" role="none">
           <%= form_with url: destroy_user_session_path, method: :delete, role: 'none', remote: false, data: { turbo: false } do %>

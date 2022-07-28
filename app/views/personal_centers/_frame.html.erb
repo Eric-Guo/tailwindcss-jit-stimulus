@@ -16,6 +16,10 @@
       zh: '供应商推荐',
       en: 'Recommended Manufacturers',
     },
+    helper_center: {
+      zh: '帮助中心',
+      en: 'Help Center',
+    }
   }
   page = (local_assigns[:page] || params[:action]).to_sym
 %>
@@ -82,6 +86,13 @@
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
           <a data-turbo="false" href="<%= suppliers_personal_center_path %>" class="material-nav-item-header-title truncate block w-full">
             <span><%= pages[:suppliers][:zh] %></span>
+          </a>
+        </div>
+      </div>
+      <div class="material-nav-item mb-5 <%= page == :helper_center ? 'active' : '' %>" data-material-nav-target="navItem">
+        <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
+          <a data-turbo="false" href="<%= helper_center_personal_center_path %>" class="material-nav-item-header-title truncate block w-full">
+            <span><%= pages[:helper_center][:zh] %></span>
           </a>
         </div>
       </div>
