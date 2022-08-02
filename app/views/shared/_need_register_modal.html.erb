@@ -38,7 +38,7 @@
                   >
                   <span class="ml-2.5"><%= cate[:name] %></span>
                 </label>
-              <% end unless Rails.test? %>
+              <% end unless Rails.env.test? %>
             </div>
           </div>
           <div class="w-0 flex-1 hidden" data-need-register-target="materialContainer">
