@@ -12,7 +12,7 @@
 
   <div class="flex flex-row justify-between mt-5">
 
-    <section class="flex flex-col" style="width: 1000px;">
+    <section class="flex flex-col" style="width: 1000px;" data-controller="content-feedback">
 
       <div class="pb-3 border-b-2 border-gray-100 border-solid">
         <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">供应商详情</span>
@@ -283,6 +283,17 @@
           <% end %>
         </div>
       <% end %>
+      <button class="absolute hidden" data-content-feedback-target="button" data-action="mousedown->content-feedback#showDetail">
+        <svg width="104px" height="40px" viewBox="0 0 104 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <path d="M0.5,35.5 L47.1753905,35.5 L52,39.3596876 L56.8246095,35.5 L103.5,35.5 L103.5,0.5 L0.5,0.5 L0.5,35.5 Z" stroke="#00A4FF" fill="#FFFFFF"></path>
+            <path d="M18,10 L18,12 L12,11.999 L12,23.999 L24,24 L24,16 L26,16 L26,26 L24,26 L12,25.999 L12,26 L10,26 L10,10 L18,10 Z M14,20 L22,20 L22,22 L14,22 L14,20 Z M23.1213203,10.4644661 L24.5355339,11.8786797 L16.7573593,19.6568542 L15.3431458,18.2426407 L23.1213203,10.4644661 Z" fill="#00A4FF"></path>
+            <text font-size="16" font-weight="normal" line-spacing="20" fill="#00A4FF">
+              <tspan x="30" y="25">文档反馈</tspan>
+            </text>
+          </g>
+        </svg>
+      </button>
     </section>
     <section style="width: 400px;">
       <div class="pb-3 border-b-2 border-gray-100 border-solid">
