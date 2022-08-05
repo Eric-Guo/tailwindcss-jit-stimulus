@@ -18,6 +18,18 @@ class Sample < ApplicationRecord
 
   default_scope { where(deleted_at: nil).where(display: 1) }
 
+  def name
+    if material.present?
+      "#{material.name}（样品）"
+    end
+  end
+
+  def full_no
+    if material.present?
+      "#{material.no}-#{no}"
+    end
+  end
+
   def color_str
     self.color_systems&.collect(&:description)&.join(',')
   end

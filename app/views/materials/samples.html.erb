@@ -26,7 +26,7 @@
         <%= link_to sample_path(id: sample.id), class: 'mb-1 block' do %>
           <img class="w-full h-56 min-h-full object-cover" src="<%= mat_img_url(sample.pic, "") -%>" alt="">
         <% end %>
-        <h3 class="text-lg font-bold"><%= text_with_default(@material.name) -%>(样品)</h3>
+        <h3 class="text-lg font-bold"><%= text_with_default(sample.name) -%></h3>
         <p class="text-xs text-gray-400"><span>样品编号：</span><%= text_with_default(sample.no) -%></p>
         <p class="text-xs text-gray-400"><span>表面效果：</span><%= text_with_default(sample.surface_effect_descriptions) -%></p>
         <p class="text-xs text-gray-400">
