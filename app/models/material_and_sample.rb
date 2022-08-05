@@ -8,6 +8,17 @@ class MaterialAndSample < ApplicationRecord
   belongs_to :grandpa_material, foreign_key: :grandpa_material_id, class_name: 'Material', optional: true
   belongs_to :sample, foreign_key: :sample_id, class_name: 'Sample', optional: true
 
+  def sample_name
+    if material_name.present?
+      "#{material_name}（样品）"
+    end
+  end
+
+  def sample_full_no
+    if sample_id.present? && material_no.present?
+      "#{material_no}-#{sample_no}"
+    end
+  end
 
   def level_name
     case material_level

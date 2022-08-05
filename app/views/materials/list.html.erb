@@ -7,7 +7,7 @@
           <% if material_and_sample.sample_id.present? %>
             <%= link_to sample_path(id: material_and_sample.sample_id), class: 'animate-fade-in-0.5', data: { turbo: false } do %>
               <img class="mx-auto w-full h-52 object-cover" src="<%= material_and_sample.sample_cover.present? ? mat_img_url(material_and_sample.sample_cover, "") : get_first_url(material_and_sample.material_cover) -%>" alt="">
-              <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_and_sample.material_name) -%>（样品）</h3>
+              <h3 class="text-center mt-2 font-medium"><%= text_with_default(material_and_sample.sample_name) -%></h3>
               <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_and_sample.level_name) -%></h4>
             <% end %>
           <% else %>

@@ -1,7 +1,7 @@
 <%= render partial: 'shared/header', locals: { } -%>
 
 <div class="mx-4 px-48 pt-8 text-sm text-gray-500">
-  <% breadcrumbs = material_breadcrumbs(@sample.material, append_title: "#{@sample.material&.name}（样品）") %>
+  <% breadcrumbs = material_breadcrumbs(@sample.material, append_title: "#{@sample.name}") %>
   <%= raw breadcrumbs.map { |item| \
     item[:url].present? \
     ? "<a href=\"#{item[:url]}\">#{item[:title]}</a>" \
@@ -19,7 +19,7 @@
     <div class="mx-4 mt-4 flex gap-4">
       <img class="w-80 h-80 object-scale-down" src="<%= mat_img_url(@sample.pic, "") -%>" alt="">
       <div class="ml-4 relative">
-        <h2 class="text-xl font-medium"><%= text_with_default(@sample.material&.name) -%> (样品) (<%= text_with_default(@sample.material.no) %>-<%= text_with_default(@sample.no) %>)</h2>
+        <h2 class="text-xl font-medium"><%= text_with_default(@sample.name) -%>(<%= text_with_default(@sample.full_no) %>)</h2>
         <dl class="w-120 text-sm mt-2">
             <dt class="mt-2 inline-block w-1/2">样品描述：</dt>
             <dd class="mt-2 inline"><%= text_with_default(@sample.material_text) %></dd>
