@@ -22,7 +22,7 @@ gem 'rubyzip'
 
 gem "http"
 # bundle config local.wechat /Users/guochunzhong/git/oss/wechat/
-gem 'wechat', git: 'https://gitee.com/Eric-Guo/wechat.git', branch: :main
+gem 'wechat', git: 'https://git.thape.com.cn/Eric-Guo/wechat.git', branch: :main
 gem "honeybadger"
 
 # Use Redis adapter to run Action Cable in production
