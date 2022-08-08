@@ -44,6 +44,7 @@ class SearchesController < ApplicationController
       @material_samples = if @q.present?
         MaterialAndSample.where('material_level IN (2,3)')
           .where('material_no LIKE :keywords OR material_name LIKE :keywords OR parent_material_name LIKE :keywords OR grandpa_material_name LIKE :keywords', keywords: "%#{@q}%")
+          .order(material_no: :asc)
       else
         MaterialAndSample.none
       end
@@ -76,6 +77,7 @@ class SearchesController < ApplicationController
 
       @news = if @q.present?
         News.where('material_id IN (:material_ids) OR title LIKE :keywords OR subtitle LIKE :keywords OR mold_name LIKE :keywords', material_ids: material_ids, keywords: "%#{@q}%")
+          .order(published_at: :desc)
       else
         News.none
       end
