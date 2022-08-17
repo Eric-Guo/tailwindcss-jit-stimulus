@@ -23,8 +23,8 @@ class ProjectsController < ApplicationController
       @has_demonstration = params[:has_demonstration] == 'on'
       @is_th_internal = params[:is_th_internal] == 'on'
 
-      @cases = Cases.order(updated_at: :desc)
-      
+      @cases = Cases.order(updated_at: :desc).order(id: :asc)
+
       if @q.present?
         q_mat_ids = MaterialAndSample.where(sample_id: nil).where('material_name LIKE :q_like OR parent_material_name LIKE :q_like OR grandpa_material_name LIKE :q_like', q_like: "%#{@q}%").pluck(:material_id)
         case_ids = CasesMaterial.where(material_id: q_mat_ids).pluck(:case_id)
