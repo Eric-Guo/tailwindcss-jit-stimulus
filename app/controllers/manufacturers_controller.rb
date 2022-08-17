@@ -21,7 +21,7 @@ class ManufacturersController < ApplicationController
       @has_related_cases = params[:has_related_cases] == 'on'
       @has_cooperate_th = params[:has_cooperate_th] == 'on'
 
-      @manufacturers = Manufacturer.sort_by_logo.order(is_allow: :desc)
+      @manufacturers = Manufacturer.sort_by_logo.order(is_allow: :desc).order(id: :asc)
 
       if @q.present?
         q_mat_ids = MaterialAndSample.where(sample_id: nil).where('material_name LIKE :q_like OR parent_material_name LIKE :q_like OR grandpa_material_name LIKE :q_like', q_like: "%#{@q}%").pluck(:material_id)
