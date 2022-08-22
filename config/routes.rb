@@ -23,7 +23,12 @@ Rails.application.routes.draw do
 
   resources :project_records, only: %i[show]
   resources :projects, only: %i[index show]
-  resources :manufacturers, only: %i[index show]
+  resources :manufacturers, only: %i[index show] do
+    member do
+      get :rating, action: :show_rating
+      post :rating, action: :update_rating
+    end
+  end
   resources :manufacturer_records, only: %i[show]
   resources :news, only: %i[index]
 

@@ -14,9 +14,14 @@
 
     <section class="flex flex-col" style="width: 1000px;" data-controller="content-feedback">
 
-      <div class="pb-3 border-b-2 border-gray-100 border-solid">
+      <div class="relative pb-3 border-b-2 border-gray-100 border-solid">
         <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">供应商详情</span>
         <span class="text-xl font-light">Manufacturer Details</span>
+
+        <div class="absolute right-0 top-0 flex gap-2">
+          <a class="more-btn inline hidden" href="<%= rating_manufacturer_path -%>" data-turbo-frame="manufacturer_rating_modal">供应商信息评级</a>
+          <a class="more-btn inline hidden" href="<%= news_index_path -%>">供应商信息反馈</a>
+        </div>
       </div>
 
       <div class="flex" style="margin-top: 30px">
@@ -328,3 +333,4 @@
   </div>
 </div>
 
+<%= turbo_frame_tag :manufacturer_rating_modal %>
