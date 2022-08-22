@@ -1,0 +1,62 @@
+<%= turbo_frame_tag :manufacturer_rating_modal do %>
+  <div
+    data-controller="modal turbo-modal manufacturer-rating"
+    data-modal-allow-background-close="true"
+    data-modal-disable-backdrop="true"
+    data-turbo-modal-auto-show-value="true"
+  >
+    <div data-modal-target="container" data-action="click->modal#close keyup@window->modal#closeWithKeyboard" class="animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center hidden" style="z-index: 9999; background: rgba(0, 0, 0, .4);">
+      <!-- Modal Inner Container -->
+      <div
+        class="overflow-hidden bg-white text-left rounded-2.5"
+        style="width: 780px;"
+        onclick="event.stopPropagation();"
+      >
+        <div class="relative h-10 flex justify-center items-center bg-black text-lg text-white">
+          <span>供应商信息评级</span>
+          <button class="absolute right-5 top-3.5 w-3 h-3 text-white" data-action="click->modal#close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+              <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="px-5 pt-16 pb-14">
+          <%= form_tag rating_manufacturer_path, method: :post, id: 'ratingManufacturerForm', data: {
+            action: 'turbo:submit-end->modal#close'
+          } do %>
+            <div class="flex justify-center">请给本条供应商信息的真实性和有效性评级</div>
+            <input type="hidden" name="score" value="<%= @score %>" data-manufacturer-rating-target="storeInput" />
+            <div
+              class="flex justify-center items-center mt-12 gap-10"
+              style="font-size: 42px; color: #95CEE1;"
+              data-action="mouseleave->manufacturer-rating#handleStarLeave"
+            >
+              <% 3.times do |i| %>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                  class="star cursor-pointer"
+                  data-manufacturer-rating-index-param="<%= i %>"
+                  data-manufacturer-rating-target="star"
+                  data-action="mouseenter->manufacturer-rating#handleStarEnter click->manufacturer-rating#handleStarClick"
+                >
+                  <path class="fill-line" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                  <path class="fill-area" d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+              <% end %>
+            </div>
+            <div class="mt-5 h-5 flex justify-center" style="color: #95CEE1;" data-manufacturer-rating-target="description"></div>
+          <% end %>
+        </div>
+        <div class="flex justify-center gap-5 p-5 border-t text-neutral-140 border-neutral-235">
+          <button class="w-20 py-1 rounded-lg border text-gray-400 hover:bg-black hover:text-white" type="submit" form="ratingManufacturerForm">提交评级</button>
+          <button class="w-20 py-1 rounded-lg border ml-4 text-gray-400 hover:bg-gray-300 hover:text-gray-500" type="button" data-action="click->modal#close">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

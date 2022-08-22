@@ -93,4 +93,12 @@ class ManufacturersController < ApplicationController
       .order(Arel.sql("sort_num DESC, id ASC"))
       .limit(4)
   end
+
+  def show_rating
+    @score = 2
+  end
+
+  def update_rating
+    render json: { message: '更新成功' }
+  end
 end
