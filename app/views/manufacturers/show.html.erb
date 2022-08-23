@@ -1,6 +1,11 @@
 <%= render partial: 'shared/header', locals: {} -%>
 
-<div class="mx-auto mt-12" style="width: 1500px; padding-bottom: 50px;">
+<div
+  class="mx-auto mt-12"
+  style="width: 1500px; padding-bottom: 50px;"
+  data-controller="manufacturer-feedback"
+  data-manufacturer-feedback-show-path-value="<%= feedback_manufacturer_path %>"
+>
 
   <div class="text-sm text-gray-500">
     <a href="<%= root_path %>">首页</a>
@@ -19,8 +24,12 @@
         <span class="text-xl font-light">Manufacturer Details</span>
 
         <div class="absolute right-0 top-0 flex gap-2">
-          <a class="more-btn inline hidden" href="<%= rating_manufacturer_path -%>" data-turbo-frame="manufacturer_rating_modal">供应商信息评级</a>
-          <a class="more-btn inline hidden" href="<%= news_index_path -%>">供应商信息反馈</a>
+          <a class="more-btn inline select-none hidden" href="<%= rating_manufacturer_path -%>" data-turbo-frame="manufacturer_rating_modal">供应商信息评级</a>
+          <button
+            class="more-btn inline select-none hidden"
+            data-content-feedback-full-page-param="true"
+            data-action="click->content-feedback#loadData"
+          >供应商信息反馈</button>
         </div>
       </div>
 
@@ -288,13 +297,13 @@
           <% end %>
         </div>
       <% end %>
-      <button class="absolute hidden" data-content-feedback-target="button" data-action="mousedown->content-feedback#showDetail">
+      <button class="absolute hidden" data-content-feedback-target="button" data-action="mousedown->content-feedback#loadData">
         <svg width="104px" height="40px" viewBox="0 0 104 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <path d="M0.5,35.5 L47.1753905,35.5 L52,39.3596876 L56.8246095,35.5 L103.5,35.5 L103.5,0.5 L0.5,0.5 L0.5,35.5 Z" stroke="#00A4FF" fill="#FFFFFF"></path>
-            <path d="M18,10 L18,12 L12,11.999 L12,23.999 L24,24 L24,16 L26,16 L26,26 L24,26 L12,25.999 L12,26 L10,26 L10,10 L18,10 Z M14,20 L22,20 L22,22 L14,22 L14,20 Z M23.1213203,10.4644661 L24.5355339,11.8786797 L16.7573593,19.6568542 L15.3431458,18.2426407 L23.1213203,10.4644661 Z" fill="#00A4FF"></path>
-            <text font-size="16" font-weight="normal" line-spacing="20" fill="#00A4FF">
-              <tspan x="30" y="25">文档反馈</tspan>
+            <path d="M0.5,35.5 L47.1753905,35.5 L52,39.3596876 L56.8246095,35.5 L103.5,35.5 L103.5,0.5 L0.5,0.5 L0.5,35.5 Z" stroke="#101820" fill="#FFFFFF"></path>
+            <path d="M18,10 L18,12 L12,11.999 L12,23.999 L24,24 L24,16 L26,16 L26,26 L24,26 L12,25.999 L12,26 L10,26 L10,10 L18,10 Z M14,20 L22,20 L22,22 L14,22 L14,20 Z M23.1213203,10.4644661 L24.5355339,11.8786797 L16.7573593,19.6568542 L15.3431458,18.2426407 L23.1213203,10.4644661 Z" fill="#101820"></path>
+            <text font-size="16" font-weight="normal" line-spacing="20" fill="#101820">
+              <tspan x="30" y="25">信息反馈</tspan>
             </text>
           </g>
         </svg>
@@ -331,6 +340,8 @@
       </div>
     </section>
   </div>
+
+  <%= turbo_frame_tag :manufacturer_feedback_modal %>
 </div>
 
 <%= turbo_frame_tag :manufacturer_rating_modal %>

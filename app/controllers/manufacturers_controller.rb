@@ -101,4 +101,29 @@ class ManufacturersController < ApplicationController
   def update_rating
     render json: { message: '更新成功' }
   end
+
+  def show_feedback
+    @question_types = [
+      { id: 1, title: '供应商名称' },
+      { id: 2, title: '服务区域' },
+      { id: 3, title: '网址' },
+      { id: 4, title: '主营材料' },
+      { id: 5, title: '是否与天华合作过' },
+      { id: 6, title: '主营业务' },
+      { id: 7, title: '联系方式' },
+      { id: 8, title: '产品' },
+      { id: 9, title: '样品' },
+      { id: 10, title: '案例' },
+      { id: 11, title: '其他' },
+    ]
+
+    render content_type: 'text/vnd.turbo-stream.html', turbo_stream: turbo_stream.replace(
+      :manufacturer_feedback_modal,
+      partial: 'manufacturers/show_feedback',
+      locals: { }
+    )
+  end
+
+  def create_feedback
+  end
 end

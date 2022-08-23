@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     member do
       get :rating, action: :show_rating
       post :rating, action: :update_rating
+      get :feedback, action: :show_feedback
+      post :feedback, action: :create_feedback
     end
   end
   resources :manufacturer_records, only: %i[show]
