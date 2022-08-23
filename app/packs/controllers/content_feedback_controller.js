@@ -5,6 +5,8 @@ export default class extends Controller {
 
   rangeRect = null
 
+  current = {}
+
   connect() {
     document.addEventListener('selectionchange', this.selectionChange);
     window.addEventListener('resize', this.setButton);
@@ -56,49 +58,92 @@ export default class extends Controller {
     this.buttonTarget.classList.add('hidden');
   }
 
-  showDetail = async (e) => {
-    this.clearButton();
+  getScreenshot = async (args) => {
     const url = `${location.origin}/404.html`;
-    const content = document.documentElement.innerHTML;
-    const viewport = {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
-    const scroll = {
-      root: [document.documentElement.scrollLeft, document.documentElement.scrollTop],
-    }
-    const blob = await fetch('/screenshot', {
+    const { content, viewport, scroll } = args;
+    return await fetch('/screenshot', {
       method: 'POST',
       body: JSON.stringify({ url, content, viewport, scroll }),
       headers: {
         "Content-Type": "application/json",
       }
     }).then(res => res.blob());
-    const img = await new Promise((res, rej) => {
-      const elem = document.createElement('img');
+  }
+
+  blob2Img = async (blob) => {
+    return await new Promise((res, rej) => {
+      const img = document.createElement('img');
       const url = URL.createObjectURL(blob);
-      elem.src = url;
-      elem.onload = (e) => {
-        res(elem);
+      img.src = url;
+      img.onload = (e) => {
+        res(img);
       };
-      elem.onerror = (e) => {
+      img.onerror = (e) => {
         rej(e);
       };
     });
-    const canvas = document.createElement('canvas');
-    canvas.className = 'fixed top-0 left-0';
-    canvas.width = img.width;
-    canvas.height = img.height;
-    document.body.appendChild(canvas);
-    canvas.addEventListener('click', () => {
-      canvas.remove();
-    });
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-    const { left, top, width, height } = this.rangeRect;
-    ctx.strokeStyle = 'red';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(left - 2, top - 2, width + 4, height + 4);
+  }
+
+  loadData = async ({ params }) => {
+    console.log(params);
+    try {
+      this.dispatchLoadingStart();
+      this.clearButton();
+      const rangeRect = { ...this.rangeRect };
+      const content = document.documentElement.innerHTML;
+      const viewport = params.fullPage ? {
+        width: document.documentElement.scrollWidth,
+        height: document.documentElement.scrollHeight,
+      } : {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+      const scroll = params.fullPage ? {
+        root: [0, 0],
+      } : {
+        root: [document.documentElement.scrollLeft, document.documentElement.scrollTop],
+      }
+      const blob = await this.getScreenshot({ content, viewport, scroll });
+      const img = await this.blob2Img(blob);
+      this.current.blob = blob;
+      this.current.img = img;
+      this.current.shapes = [];
+      if (!params.fullPage) {
+        const { left, top, width, height } = rangeRect;
+        this.current.shapes.push({
+          type: 'rect',
+          x: left - 2,
+          y: top - 2,
+          w: width + 4,
+          h: height + 4,
+        });
+      }
+      this.dispatchLoadingSuccess(this.current);
+    } catch (err) {
+      this.dispatchLoadingError();
+    } finally {
+      this.dispatchLoadingEnd();
+    }
+  }
+
+  dispatchLoadingStart() {
+    const event = new CustomEvent('contentFeedback:loading-start');
+    window.dispatchEvent(event);
+  }
+
+  dispatchLoadingEnd() {
+    const event = new CustomEvent('contentFeedback:loading-end');
+    window.dispatchEvent(event);
+  }
+
+  dispatchLoadingSuccess(detail) {
+    const event = new CustomEvent('contentFeedback:loading-success', { detail });
+    window.dispatchEvent(event);
+  }
+
+  dispatchLoadingError() {
+    const event = new CustomEvent('contentFeedback:loading-error');
+    window.dispatchEvent(event);
   }
 
   disconnect() {
