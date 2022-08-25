@@ -7,7 +7,13 @@ export default class extends Controller {
     showPath: String,
   }
 
-  static targets = ['screenshotCover', 'screenshotSuccess', 'screenshotLoading']
+  static targets = [
+    'screenshotCover',
+    'screenshotSuccess',
+    'screenshotLoading',
+    'screenshotEditorWrapper',
+    'screenshotEditorCanvas',
+  ]
 
   loading = false
 
@@ -23,6 +29,7 @@ export default class extends Controller {
     window.addEventListener('contentFeedback:loading-end', this.renderScreenshot);
     window.addEventListener('contentFeedback:loading-success', this.screenshotSuccess);
     window.addEventListener('contentFeedback:loading-error', this.screenshotError);
+    window.addEventListener('screenshotEditor:confirm', this.editorConfirm);
   }
 
   openModal = () => {
@@ -37,23 +44,54 @@ export default class extends Controller {
   }
 
   screenshotSuccess = ({ detail }) => {
-    this.screenshotSuccessTarget.classList.remove('hidden');
-    this.screenshotLoadingTarget.classList.add('hidden');
     this.img = detail.img;
     this.blob = detail.blob;
     this.shapes = detail.shapes;
-    this.screenshotCoverTarget.src = this.img.src;
-    console.log('获取截图数据完成');
-    console.log(detail);
+    if (this.hasScreenshotSuccessTarget) {
+      this.screenshotSuccessTarget.classList.remove('hidden');
+    }
+    if (this.hasScreenshotLoadingTarget) {
+      this.screenshotLoadingTarget.classList.add('hidden');
+    }
+    if (this.hasScreenshotCoverTarget) {
+      this.screenshotCoverTarget.src = this.img.src;
+    }
+    if (this.hasScreenshotEditorWrapperTarget) {
+      const editorController = this.application.getControllerForElementAndIdentifier(this.screenshotEditorWrapperTarget, 'screenshot-editor');
+      editorController.setImg(this.img);
+      editorController.setShapes([...this.shapes]);
+    }
   }
 
   screenshotError = () => {
     console.log('获取截图数据失败');
   }
 
-  showEditor = (e) => {
+  openEditor = (e) => {
     if (!this.img) return;
-    console.log('打开图片编辑器');
+    if (this.hasScreenshotEditorWrapperTarget) {
+      const editorController = this.application.getControllerForElementAndIdentifier(this.screenshotEditorWrapperTarget, 'screenshot-editor');
+      editorController.setShapes([...this.shapes]);
+      editorController.open();
+    }
+  }
+
+  closeEditor = (e) => {
+    if (this.hasScreenshotEditorWrapperTarget) {
+      const editorController = this.application.getControllerForElementAndIdentifier(this.screenshotEditorWrapperTarget, 'screenshot-editor');
+      editorController.close();
+    }
+  }
+
+  editorConfirm = (e) => {
+    const { blob, shapes } = e.detail;
+    console.log(e.detail);
+    this.shapes = [...shapes];
+    this.blob = blob;
+    const url = URL.createObjectURL(blob);
+    if (this.hasScreenshotCoverTarget) {
+      this.screenshotCoverTarget.src = url;
+    }
   }
 
   disconnect() {
