@@ -134,3 +134,28 @@
 .star.star-active .fill-area {
   display: initial;
 }
+
+
+.primary-button {
+  background: #101820;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.primary-button:hover {
+  background: #40464D;
+}
+
+.cancel-button {
+  background: white;
+  color: #8C8C8C;
+  border: 1px solid #E6E6E6;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.cancel-button:hover {
+  color: #101820;
+  border: 1px solid #101820;
+}
