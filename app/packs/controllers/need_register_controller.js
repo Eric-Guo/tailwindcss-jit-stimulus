@@ -7,7 +7,6 @@ export default class extends Controller {
     'referenceContainer',
   ]
   static values = {
-    uploadPath: String,
     submitPath: String,
   }
 
