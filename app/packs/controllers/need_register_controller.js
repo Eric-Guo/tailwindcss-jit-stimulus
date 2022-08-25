@@ -2,7 +2,13 @@ import { Controller } from '@hotwired/stimulus'
 import mrujs from "mrujs";
 
 export default class extends Controller {
-  static targets =  ["materialContainer", "filesContainer", "uploadButton2Container", "fileInput"]
+  static targets =  [
+    'materialContainer',
+    'filesContainer',
+    'uploadButton1Container',
+    'uploadButton2Container',
+    'fileInput'
+  ]
   static values = {
     uploadPath: String,
     submitPath: String,
@@ -32,6 +38,7 @@ export default class extends Controller {
           return res.json();
         }).then(res => {
           const fileElem = this.buildFileElem({ name: res.name, url: res.url });
+          this.uploadButton1ContainerTarget.classList.remove('hidden');
           this.uploadButton2ContainerTarget.classList.add('hidden');
           this.filesContainerTarget.classList.remove('hidden');
           this.filesContainerTarget.appendChild(fileElem);
@@ -113,6 +120,7 @@ export default class extends Controller {
       wrapperElem.remove();
       if (this.filesContainerTarget.childElementCount === 0) {
         this.filesContainerTarget.classList.add('hidden');
+        this.uploadButton1ContainerTarget.classList.add('hidden');
         this.uploadButton2ContainerTarget.classList.remove('hidden');
       }
     };
@@ -147,6 +155,7 @@ export default class extends Controller {
     this.materialContainerTarget.classList.add('hidden');
     this.filesContainerTarget.innerHTML = '';
     this.filesContainerTarget.classList.add('hidden');
+    this.uploadButton1ContainerTarget.classList.add('hidden');
     this.uploadButton2ContainerTarget.classList.remove('hidden');
   }
 
