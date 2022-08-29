@@ -12,6 +12,10 @@
       zh: '我的需求',
       en: 'My Demands',
     },
+    feedback: {
+      zh: '我的反馈',
+      en: 'My Feedback',
+    },
     suppliers: {
       zh: '供应商推荐',
       en: 'Recommended Manufacturers',
@@ -79,6 +83,13 @@
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
           <a data-turbo="false" href="<%= demands_personal_center_path %>" class="material-nav-item-header-title truncate block w-full">
             <span><%= pages[:demands][:zh] %></span>
+          </a>
+        </div>
+      </div>
+      <div class="material-nav-item mb-5 <%= page == :feedback ? 'active' : '' %>" data-material-nav-target="navItem">
+        <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
+          <a data-turbo="false" href="<%= feedback_personal_center_path %>" class="material-nav-item-header-title truncate block w-full">
+            <span><%= pages[:feedback][:zh] %></span>
           </a>
         </div>
       </div>
