@@ -95,7 +95,7 @@ class ManufacturersController < ApplicationController
   end
 
   def show_rating
-    manufacturer_vote = ManufacturerVote.where(manufactor_id: params[:id]).where(user_id: current_user.id).take
+    manufacturer_vote = ManufacturerVote.where(manufacturer_id: params[:id]).where(user_id: current_user.id).take
     @score = manufacturer_vote&.vote || 0
   end
 
