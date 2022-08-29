@@ -4,6 +4,7 @@
     data-modal-allow-background-close="false"
     data-modal-disable-backdrop="true"
     data-turbo-modal-auto-show-value="true"
+    data-manufacturer-feedback-target="turboModal"
   >
     <div data-modal-target="container" class="animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center hidden" style="z-index: 9999; background: rgba(0, 0, 0, .4);">
       <!-- Modal Inner Container -->
@@ -21,15 +22,15 @@
           </button>
         </div>
         <div class="p-5">
-          <%= form_tag feedback_manufacturer_path, method: :post, id: 'feedbackManufacturerForm', data: {
-            action: 'turbo:submit-end->turbo-modal#hide'
+          <%= form_tag feedback_manufacturer_path(manufacturer_id), method: :post, id: 'feedbackManufacturerForm', data: {
+            action: 'submit->manufacturer-feedback#formSubmit'
           } do %>
             <div>
               <div><span class="text-red">*</span> 问题类型</div>
               <div class="mt-4 grid grid-cols-4 gap-2.5">
-                <% @question_types.each do |item| %>
+                <% question_types.each do |item| %>
                   <div class="flex items-start">
-                    <input id="<%= "question_type#{item[:id]}" -%>" name="question_type[]" value="<%= item[:id] -%>" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
+                    <input id="<%= "question_type#{item[:id]}" -%>" name="question_type_ids[]" value="<%= item[:id] -%>" type="checkbox" class="mt-1 focus:ring-gray-50 text-gray-600 border-gray-300">
                     <label for="<%= "question_type#{item[:id]}" -%>" class="text-gray-700 ml-2 mt-px"><%= item[:title] -%></label>
                   </div>
                 <% end %>
@@ -133,7 +134,7 @@
               class="mt-8"
               data-controller="reference-group"
               data-reference-group-upload-path-value="<%= upload_file_demand_path %>"
-              data-need-register-target="referenceContainer"
+              data-manufacturer-feedback-target="referenceContainer"
             >
               <input type="file" class="hidden" multiple data-reference-group-target="fileInput" data-action="change->reference-group#fileInputChange">
               <div class="text-base flex items-center">

@@ -95,35 +95,40 @@ class ManufacturersController < ApplicationController
   end
 
   def show_rating
-    @score = 2
+    manufacturer_vote = ManufacturerVote.where(manufactor_id: params[:id]).where(user_id: current_user.id).take
+    @score = manufacturer_vote&.vote || 0
   end
 
   def update_rating
+    ThtriApi.vote_for_manufacturer({
+      manufacturer_id: params[:id],
+      vote: params[:score].to_i,
+    }, { 'Cookie': request.headers['HTTP_COOKIE'] })
     render json: { message: '更新成功' }
   end
 
   def show_feedback
-    @question_types = [
-      { id: 1, title: '供应商名称' },
-      { id: 2, title: '服务区域' },
-      { id: 3, title: '网址' },
-      { id: 4, title: '主营材料' },
-      { id: 5, title: '是否与天华合作过' },
-      { id: 6, title: '主营业务' },
-      { id: 7, title: '联系方式' },
-      { id: 8, title: '产品' },
-      { id: 9, title: '样品' },
-      { id: 10, title: '案例' },
-      { id: 11, title: '其他' },
-    ]
-
     render content_type: 'text/vnd.turbo-stream.html', turbo_stream: turbo_stream.replace(
       :manufacturer_feedback_modal,
       partial: 'manufacturers/show_feedback',
-      locals: { }
+      locals: {
+        question_types: QuestionType.order(order_id: :desc).all.map do |question_type|
+          { id: question_type.id, title: question_type.name }
+        end,
+        manufacturer_id: params[:id],
+      }
     )
   end
 
   def create_feedback
+    ThtriApi.create_manufacturer_feedback({
+      manufacturer_id: params[:id],
+      question_type_ids: params[:question_type_ids],
+      description: params[:description],
+      screenshot_path: params[:screenshot_path],
+      references: params[:references],
+    }, { 'Cookie': request.headers['HTTP_COOKIE'] })
+
+    render json: { message: '提交成功' }
   end
 end
