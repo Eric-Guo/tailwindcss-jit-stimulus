@@ -90,4 +90,27 @@ class ThtriApi
     code = body['data']['code']
     "#{generate_url('nologin/onceDownload')}?code=#{code}"
   end
+
+  # 给供应商投票
+  def self.vote_for_manufacturer(args, headers = {})
+    response = HTTP.headers(headers).post(generate_url("thtri/manufactors/#{args[:manufacturer_id]}/vote"), json: {
+      vote: args[:vote]
+    })
+    body = JSON.parse(response.body.to_s)
+    raise Exception.new(body['msg']) unless body['code'] == 0
+    body['data']
+  end
+
+  # 提交供应商反馈
+  def self.create_manufacturer_feedback(args, headers = {})
+    response = HTTP.headers(headers).post(generate_url("thtri/manufactors/#{args[:manufacturer_id]}/feedback"), json: {
+      opinion: args[:description],
+      questionTypeIds: args[:question_type_ids],
+      screenshotPath: args[:screenshot_path],
+      references: args[:references],
+    })
+    body = JSON.parse(response.body.to_s)
+    raise Exception.new(body['msg']) unless body['code'] == 0
+    body['data']
+  end
 end
