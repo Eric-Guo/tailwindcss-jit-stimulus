@@ -54,6 +54,7 @@ Rails.application.routes.draw do
       put :set_message_read
       delete :rm_message
       get :demands
+      get :feedback
       get :suppliers
       post :create_supplier
       get :show_supplier

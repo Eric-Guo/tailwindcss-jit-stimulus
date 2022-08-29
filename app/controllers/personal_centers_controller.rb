@@ -96,6 +96,19 @@ class PersonalCentersController < ApplicationController
     @list = @list.page(@page).per(@page_size)
   end
 
+  def feedback
+    @page_size_options = [10, 20, 40, 80, 160]
+    @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
+
+    @list = ManufacturerFeedback
+      .includes(:replies, :question_types, :manufacturer)
+      .where(user_id: current_user.id)
+      .order(created_at: :desc)
+
+    @total = @list.count
+    @list = @list.page(@page).per(@page_size)
+  end
+
   def suppliers
     @page_size_options = [10, 20, 40, 80, 160]
     @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
