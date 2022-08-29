@@ -93,7 +93,7 @@ class ThtriApi
 
   # 给供应商投票
   def self.vote_for_manufacturer(args, headers = {})
-    response = HTTP.headers(headers).post(generate_url("thtri/manufactors/#{args[:manufacturer_id]}/vote"), json: {
+    response = HTTP.headers(headers).post(generate_url("thtri/manufacturers/#{args[:manufacturer_id]}/vote"), json: {
       vote: args[:vote]
     })
     body = JSON.parse(response.body.to_s)
@@ -103,7 +103,7 @@ class ThtriApi
 
   # 提交供应商反馈
   def self.create_manufacturer_feedback(args, headers = {})
-    response = HTTP.headers(headers).post(generate_url("thtri/manufactors/#{args[:manufacturer_id]}/feedback"), json: {
+    response = HTTP.headers(headers).post(generate_url("thtri/manufacturers/#{args[:manufacturer_id]}/feedback"), json: {
       opinion: args[:description],
       questionTypeIds: args[:question_type_ids],
       screenshotPath: args[:screenshot_path],
