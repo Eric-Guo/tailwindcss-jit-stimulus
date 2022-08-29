@@ -25,9 +25,9 @@
         <span class="text-xl font-light">Manufacturer Details</span>
 
         <div class="absolute right-0 top-0 flex gap-2">
-          <a class="more-btn inline select-none <%= Rails.env == 'production' ? 'hidden' : '' %>" href="<%= rating_manufacturer_path -%>" data-turbo-frame="manufacturer_rating_modal">供应商信息评级</a>
+          <a class="more-btn inline select-none" href="<%= rating_manufacturer_path -%>" data-turbo-frame="manufacturer_rating_modal">供应商信息评级</a>
           <button
-            class="more-btn inline select-none <%= Rails.env == 'production' ? 'hidden' : '' %>"
+            class="more-btn inline select-none"
             data-content-feedback-full-page-param="true"
             data-action="click->content-feedback#loadData"
           >供应商信息反馈</button>
