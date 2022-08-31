@@ -62,6 +62,8 @@ export default class extends Controller {
       const editorController = this.application.getControllerForElementAndIdentifier(this.screenshotEditorWrapperTarget, 'screenshot-editor');
       editorController.setImg(this.img);
       editorController.setShapes([...this.shapes]);
+      editorController.render();
+      editorController.confirm();
     }
   }
 
