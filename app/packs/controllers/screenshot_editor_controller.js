@@ -267,11 +267,13 @@ export default class extends Controller {
         }
       });
     }
-    this.animate();
   }
 
   animate = () => {
-    this.animateId = requestAnimationFrame(this.render);
+    this.animateId = requestAnimationFrame(() => {
+      this.render();
+      this.animate();
+    });
   }
 
   cancelAnimate = () => {
