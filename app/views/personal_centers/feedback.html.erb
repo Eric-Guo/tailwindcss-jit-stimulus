@@ -16,6 +16,7 @@
           </thead>
           <tbody>
             <% @list.each do |feedback| %>
+              <% question_type_names = feedback.question_types.pluck(:name) %>
               <tr>
                 <td class="border text-center">
                   <button
@@ -26,7 +27,7 @@
                       resolved_at: feedback.resolved_at,
                       manufacturer_id: feedback.manufacturer&.id,
                       manufacturer_name: feedback.manufacturer&.name,
-                      question_types: feedback.question_types.pluck(:name),
+                      question_types: question_type_names,
                       description: feedback.opinion,
                       screenshot_path: feedback.screenshot_path,
                       replies: feedback.replies,
@@ -37,10 +38,8 @@
                 <td class="border p-5"><%= feedback.created_at&.strftime('%Y-%m-%d %H:%M:%S') %></td>
                 <td class="border p-5"><%= feedback.manufacturer&.name %></td>
                 <td class="border p-5">
-                  <div class="flex gap-2.5 flex-wrap">
-                    <% feedback.question_types.pluck(:name).each do |name| %>
-                      <button type="button" class="bg-black text-white px-2 py-1 rounded-2xl flex-none"><%= name %></button>
-                    <% end %>
+                  <div class="truncate" title="<%= question_type_names.join('&#10;').html_safe %>">
+                    <%= question_type_names.join('、') %>
                   </div>
                 </td>
                 <td class="border p-5 truncate" title="<%= feedback.opinion %>">
