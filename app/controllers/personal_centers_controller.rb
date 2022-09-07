@@ -109,6 +109,10 @@ class PersonalCentersController < ApplicationController
     @list = @list.page(@page).per(@page_size)
   end
 
+  def show_feedback
+    @feedback = ManufacturerFeedback.where(user_id: current_user.id).find(params[:id])
+  end
+
   def suppliers
     @page_size_options = [10, 20, 40, 80, 160]
     @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]

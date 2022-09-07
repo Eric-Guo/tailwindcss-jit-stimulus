@@ -60,6 +60,7 @@ Rails.application.routes.draw do
       get :show_supplier
       get :helper_center
     end
+    get 'feedback/:id', to: 'personal_centers#show_feedback', as: 'show_feedback'
   end
 
   resource :thtri_api, only: [] do
