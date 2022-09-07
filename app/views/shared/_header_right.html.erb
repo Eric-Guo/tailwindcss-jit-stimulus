@@ -32,12 +32,12 @@
           <div class="text-neutral-140 text-sm"><%= current_user.position_title %></div>
         </div>
         <div class="px-3 py-2 text-left text-black text-sm flex flex-col gap-2">
-          <a href="<%= projects_personal_center_path %>">我的案例</a>
-          <a href="<%= messages_personal_center_path %>">我的消息</a>
-          <a href="<%= demands_personal_center_path %>">我的需求</a>
-          <a href="<%= feedback_personal_center_path %>">我的反馈</a>
-          <a href="<%= suppliers_personal_center_path %>">供应商推荐</a>
-          <a href="<%= helper_center_personal_center_path %>">帮助中心</a>
+          <a href="<%= personal_center_projects_path %>">我的案例</a>
+          <a href="<%= personal_center_messages_path %>">我的消息</a>
+          <a href="<%= personal_center_demands_path %>">我的需求</a>
+          <a href="<%= personal_center_feedbacks_path %>">我的反馈</a>
+          <a href="<%= personal_center_suppliers_path %>">供应商推荐</a>
+          <a href="<%= personal_center_helpers_path %>">帮助中心</a>
         </div>
         <div class="py-2" role="none">
           <%= form_with url: destroy_user_session_path, method: :delete, role: 'none', remote: false, data: { turbo: false } do %>

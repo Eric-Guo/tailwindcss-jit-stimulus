@@ -21,7 +21,7 @@
           新增供应商推荐
         </div>
         <div class="px-10 py-6 overflow-auto" style="height: 605px;">
-          <%= form_tag create_supplier_personal_center_path, method: :post, id: 'createManufacturerRecommend', data: {
+          <%= form_tag personal_center_suppliers_path, method: :post, id: 'createManufacturerRecommend', data: {
             turbo: false,
             personal_center_suppliers_target: 'modalForm',
             action: 'submit->personal-center-suppliers#formSubmit'

@@ -1,4 +1,4 @@
-<%= render 'frame', page: 'feedback' do -%>
+<%= render 'personal_center/frame', page: 'feedback' do -%>
   <div class="py-8">
     <% if @list.present? %>
       <table class="border text-sm w-full table-fixed">
@@ -19,7 +19,7 @@
               <td class="border text-center">
                 <a
                   class="border border-gray-300 rounded-lg px-5 text-gray-400 hover:bg-black hover:text-white"
-                  href="<%= show_feedback_personal_center_path(feedback.id) %>"
+                  href="<%= personal_center_feedback_path(feedback.id) %>"
                   data-turbo-frame="feedback_detail_modal"
                 >查看详情</a>
               </td>
@@ -73,20 +73,19 @@
           <% end %>
         </tbody>
       </table>
-      <%= render partial: 'feedback_detail' %>
       <div class="flex justify-center mt-8">
         <%= render partial: 'shared/pagination', locals: {
           total: @total,
           page: @page,
           page_size: @page_size,
-          path: feedback_personal_center_path(request.GET),
+          path: personal_center_feedbacks_path(request.GET),
           page_size_options: @page_size_options,
         } %>
       </div>
       <%= turbo_frame_tag :feedback_detail_modal %>
     <% else %>
       <div class="mt-12">
-        <%= render partial: 'empty' %>
+        <%= render partial: 'personal_center/empty' %>
       </div>
     <% end %>
   </div>
