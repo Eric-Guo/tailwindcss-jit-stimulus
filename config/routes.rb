@@ -47,20 +47,18 @@ Rails.application.routes.draw do
     post :upload_file
   end
 
-  resource :personal_center, only: [] do
-    member do
-      get :projects
-      get :messages
-      put :set_message_read
-      delete :rm_message
-      get :demands
-      get :feedback
-      get :suppliers
-      post :create_supplier
-      get :show_supplier
-      get :helper_center
+  namespace :personal_center do
+    resources :projects, only: [:index]
+    resources :messages, only: [:index, :update, :remove] do
+      collection do
+        put :update, to: 'messages#update'
+        delete :remove, to: 'messages#remove'
+      end
     end
-    get 'feedback/:id', to: 'personal_centers#show_feedback', as: 'show_feedback'
+    resources :demands, only: [:index, :show]
+    resources :feedbacks, only: [:index, :show]
+    resources :suppliers, only: [:index, :show, :create]
+    resources :helpers, only: [:index]
   end
 
   resource :thtri_api, only: [] do

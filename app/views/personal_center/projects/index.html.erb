@@ -1,4 +1,4 @@
-<%= render 'frame', page: 'projects' do -%>
+<%= render 'personal_center/frame', page: 'projects' do -%>
   <div class="relative">
     <a
       class="absolute right-0 -top-16 px-3 py-1 border rounded-lg border-black text-sm hover:bg-black hover:text-white"
@@ -7,7 +7,7 @@
     >
       新增外部案例
     </a>
-    <form action="<%= projects_personal_center_path %>" data-turbo="false">
+    <form action="<%= personal_center_projects_path %>" data-turbo="false">
       <div class="flex flex-row border bg-gray-50 mt-4" style="height: 50px; padding: 10px 20px;">
         <div class="h-full flex-none border-r border-gray-200 text-gray-300 flex items-center" style="width: 350px;">
           <input
@@ -90,13 +90,13 @@
             total: @total,
             page: @page,
             page_size: @page_size,
-            path: projects_personal_center_path(request.GET),
+            path: personal_center_projects_path(request.GET),
             page_size_options: @page_size_options,
           } %>
         </div>
       <% else %>
         <div class="mt-28">
-          <%= render partial: 'empty' %>
+          <%= render partial: 'personal_center/empty' %>
         </div>
       <% end %>
     </div>

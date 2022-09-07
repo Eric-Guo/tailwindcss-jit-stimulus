@@ -1,4 +1,4 @@
-<%= render 'frame', page: 'suppliers' do -%>
+<%= render 'personal_center/frame', page: 'suppliers' do -%>
   <div
     class="relative"
     data-controller="personal-center-suppliers"
@@ -36,7 +36,7 @@
                   <turbo-frame data-action="turbo:before-fetch-response->personal-center-suppliers#showDetailModal">
                     <a
                       class="border border-gray-300 rounded-lg px-5 hover:bg-black hover:text-white"
-                      href="<%= show_supplier_personal_center_path(id: item.id) %>"
+                      href="<%= personal_center_supplier_path(id: item.id) %>"
                     >查看详情</a>
                   </turbo-frame>
                 </td>
@@ -87,19 +87,19 @@
             total: @total,
             page: @page,
             page_size: @page_size,
-            path: suppliers_personal_center_path(request.GET),
+            path: personal_center_suppliers_path(request.GET),
             page_size_options: @page_size_options,
           } %>
         </div>
       <% else %>
         <div class="mt-12">
-          <%= render partial: 'empty' %>
+          <%= render partial: 'personal_center/empty' %>
         </div>
       <% end %>
     </div>
-    <%= render partial: 'suppliers_modal_form' %>
-    <%= render partial: 'suppliers_modal_pm_projects' %>
-    <%= render partial: 'suppliers_modal_matlib_projects' %>
-    <%= render partial: 'suppliers_modal_detail' %>
+    <%= render partial: 'modal_form' %>
+    <%= render partial: 'modal_pm_projects' %>
+    <%= render partial: 'modal_matlib_projects' %>
+    <%= render partial: 'modal_detail' %>
   </div>
 <% end %>

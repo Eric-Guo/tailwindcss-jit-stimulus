@@ -1,4 +1,4 @@
-<%= render 'frame', page: 'messages' do -%>
+<%= render 'personal_center/frame', page: 'messages' do -%>
   <div class="relative py-8" data-controller="personal-center-messages">
     <div class="absolute right-0 -top-10 flex items-center">
       <input
@@ -17,7 +17,7 @@
       >
         删除
       </button>
-      <%= form_tag set_message_read_personal_center_path, method: :put, onsubmit: 'this.querySelector(\'button\').disabled = true', data: {
+      <%= form_tag personal_center_messages_path, method: :put, onsubmit: 'this.querySelector(\'button\').disabled = true', data: {
         turbo: false
       } do %>
         <input type="hidden" name="id" data-personal-center-messages-target="idsInput" />
@@ -108,7 +108,7 @@
               <div class="mb-5 flex justify-center flex-col items-center">
                 <div class="mt-12">确定删除选中的 <span data-personal-center-messages-target="activeCount">0</span> 项？</div>
                 <div class="mt-4 mb-5 text-sm flex justify-center">
-                  <%= form_tag rm_message_personal_center_path, method: :delete, data: {
+                  <%= form_tag remove_personal_center_messages_path, method: :delete, data: {
                     turbo: false,
                     personal_center_messages_target: 'modalRmForm',
                   } do %>
@@ -126,13 +126,13 @@
           total: @total,
           page: @page,
           page_size: @page_size,
-          path: messages_personal_center_path(request.GET),
+          path: personal_center_messages_path(request.GET),
           page_size_options: @page_size_options,
         } %>
       </div>
     <% else %>
       <div class="mt-12">
-        <%= render partial: 'empty' %>
+        <%= render partial: 'personal_center/empty' %>
       </div>
     <% end %>
   </div>

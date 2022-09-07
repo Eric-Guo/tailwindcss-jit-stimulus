@@ -5,31 +5,31 @@
   <div class="grid grid-cols-4 gap-7 mt-3">
     <div class="flex flex-col">
       <label>供应商名称:</label>
-      <%= render 'suppliers_modal_text_div', class_name: 'mt-1' do %>
+      <%= render 'modal_text_div', class_name: 'mt-1' do %>
         <%= manufacturer_recommend.name %>
       <% end %>
     </div>
     <div class="flex flex-col">
       <label>联系人:</label>
-      <%= render 'suppliers_modal_text_div', class_name: 'mt-1' do %>
+      <%= render 'modal_text_div', class_name: 'mt-1' do %>
         <%= manufacturer_recommend.contact_name %>
       <% end %>
     </div>
     <div class="flex flex-col row-span-2 col-span-2">
       <label>推荐理由:</label>
-      <%= render 'suppliers_modal_text_div', class_name: 'mt-1 flex-1 overflow-auto max-h-30' do %>
+      <%= render 'modal_text_div', class_name: 'mt-1 flex-1 overflow-auto max-h-30' do %>
         <%= manufacturer_recommend.reason %>
       <% end %>
     </div>
     <div class="flex flex-col">
       <label>供应商类型:</label>
-      <%= render 'suppliers_modal_text_div', class_name: 'mt-1' do %>
+      <%= render 'modal_text_div', class_name: 'mt-1' do %>
         <%= manufacturer_recommend.material&.name %>
       <% end %>
     </div>
     <div class="flex flex-col">
       <label>联系电话:</label>
-      <%= render 'suppliers_modal_text_div', class_name: 'mt-1' do %>
+      <%= render 'modal_text_div', class_name: 'mt-1' do %>
         <%= manufacturer_recommend.contact_tel %>
       <% end %>
     </div>
@@ -43,7 +43,7 @@
   </div>
   <div class="py-3">
     <% manufacturer_recommend.cases.each do |project| %>
-      <%= render partial: 'suppliers_modal_project_detail', locals: { project: project } %>
+      <%= render partial: 'modal_project_detail', locals: { project: project } %>
     <% end %>
   </div>
 </div>
