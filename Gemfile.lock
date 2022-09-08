@@ -233,7 +233,7 @@ GEM
       validate_url
       webfinger (>= 1.0.1)
     orm_adapter (0.5.0)
-    psych (4.0.4)
+    psych (4.0.5)
       stringio
     public_suffix (5.0.0)
     puma (5.6.5)
@@ -386,4 +386,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.3.21
+   2.3.22
