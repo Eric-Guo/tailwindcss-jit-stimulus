@@ -1,0 +1,78 @@
+<%= turbo_frame_tag :supplier_detail_modal do %>
+  <div
+    data-controller="modal turbo-modal"
+    data-modal-allow-background-close="false"
+    data-modal-disable-backdrop="true"
+    data-turbo-modal-auto-show-value="true"
+  >
+    <div
+      data-modal-target="container"
+      class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center"
+      style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
+    >
+        <div class="relative bg-white rounded-lg overflow-hidden" style="width: 1080px;">
+          <button class="absolute top-2.5 right-2.5 z-50" data-action="click->turbo-modal#hide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+              <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+            </svg>
+          </button>
+          <div class="bg-black text-white text-sm flex justify-center items-center px-3" style="height: 35px;">
+            供应商推荐
+          </div>
+          <div class="px-10 py-6 overflow-auto" style="height: 605px;">
+            <div class="flex border-b border-gray-200">
+              <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;">查看详情</span>
+            </div>
+            <div class="grid grid-cols-4 gap-7 mt-3">
+              <div class="flex flex-col">
+                <label>供应商名称:</label>
+                <%= render 'modal_text_div', class_name: 'mt-1' do %>
+                  <%= @manufacturer_recommend.name %>
+                <% end %>
+              </div>
+              <div class="flex flex-col">
+                <label>联系人:</label>
+                <%= render 'modal_text_div', class_name: 'mt-1' do %>
+                  <%= @manufacturer_recommend.contact_name %>
+                <% end %>
+              </div>
+              <div class="flex flex-col row-span-2 col-span-2">
+                <label>推荐理由:</label>
+                <%= render 'modal_text_div', class_name: 'mt-1 flex-1 overflow-auto max-h-30' do %>
+                  <%= @manufacturer_recommend.reason %>
+                <% end %>
+              </div>
+              <div class="flex flex-col">
+                <label>供应商类型:</label>
+                <%= render 'modal_text_div', class_name: 'mt-1' do %>
+                  <%= @manufacturer_recommend.material&.name %>
+                <% end %>
+              </div>
+              <div class="flex flex-col">
+                <label>联系电话:</label>
+                <%= render 'modal_text_div', class_name: 'mt-1' do %>
+                  <%= @manufacturer_recommend.contact_tel %>
+                <% end %>
+              </div>
+              <div class="flex flex-col">
+                <label>是否与天华合作过:</label>
+                <div class="mt-1 px-2 py-1.5 text-gray-500 text-sm"><%= @manufacturer_recommend.is_th_co_text %></div>
+              </div>
+            </div>
+            <div class="flex border-b border-gray-200 mt-11">
+              <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;">供应商优秀案例</span>
+            </div>
+            <div class="py-3">
+              <% @manufacturer_recommend.cases.each do |project| %>
+                <%= render partial: 'modal_project_detail', locals: { project: project } %>
+              <% end %>
+            </div>
+          </div>
+          <div class="text-sm flex justify-center py-6">
+            <button class="w-20 h-10 cancel-button transition-all duration-300" type="button" data-action="click->turbo-modal#hide">关闭</button>
+          </div>
+        </div>
+    </div>
+  </div>
+<% end %>

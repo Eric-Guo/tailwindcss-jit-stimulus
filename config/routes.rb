@@ -57,7 +57,12 @@ Rails.application.routes.draw do
     end
     resources :demands, only: [:index, :show]
     resources :feedbacks, only: [:index, :show]
-    resources :suppliers, only: [:index, :show, :create]
+    resources :suppliers, only: [:index, :show, :new, :create] do
+      collection do
+        get :pm_projects
+        get :matlib_projects
+      end
+    end
     resources :helpers, only: [:index]
   end
 

@@ -7,38 +7,19 @@ export default class extends Controller {
     'modalForm',
     'pmProjectsModal',
     'matlibProjectsModal',
-    'detailModal',
     'addInternalCaseBtn',
     'casesInput',
     'casesContainer',
-    'pmProjectsSearchInput',
-    'pmProjectsContainer',
-    'pmPagesContainer',
     'pmProjectRadio',
-    'matlibProjectsSearchInput',
-    'matlibProjectsContainer',
-    'matlibPagesContainer',
     'matlibProjectRadio',
   ]
 
   static values = {
     uploadImgPath: String,
-    pmProjectsPath: String,
-    matlibProjectsPath: String,
     filePathPrefix: String,
   }
 
   casesData = []
-
-  showFormModal(e) {
-    let modal = null;
-    if (this.hasModalTarget) {
-      modal = this.application.getControllerForElementAndIdentifier(this.modalTarget, 'modal');
-    }
-    if (modal) {
-      modal.open(e);
-    }
-  }
 
   showPmProjectsModal(e) {
     let modal = null;
@@ -77,16 +58,6 @@ export default class extends Controller {
     }
     if (modal) {
       modal.close(e);
-    }
-  }
-
-  showDetailModal(e) {
-    let modal = null;
-    if (this.hasDetailModalTarget) {
-      modal = this.application.getControllerForElementAndIdentifier(this.detailModalTarget, 'modal');
-    }
-    if (modal) {
-      modal.open(e);
     }
   }
 
@@ -343,254 +314,5 @@ export default class extends Controller {
       this.casesData[index]['livePhotos'] = this.casesData[index]['livePhotos'].filter((_, ind) => ind !== index2);
       this.dispatchCasesChange();
     }
-  }
-
-  pmProjectInputEnter(e) {
-    if (['Enter', 'NumpadEnter'].includes(e.code)) {
-      this.searchPmProjects();
-    }
-  }
-
-  searchPmProjects() {
-    const keywords = this.pmProjectsSearchInputTarget.value.trim();
-    this.fetchPmProjects({ keywords, page: 1, pageSize: 10 });
-  }
-
-  fetchPmProjects({ keywords = '', page = 1, pageSize = 10 }) {
-    if (!keywords) return alert('请输入关键词搜索！');
-    const url = new URL(this.pmProjectsPathValue, window.location.origin);
-    url.searchParams.set('page', page);
-    url.searchParams.set('pageSize', pageSize);
-    url.searchParams.set('keywords', keywords);
-    mrujs.fetch(url.toString(), {
-      method: 'GET',
-    })
-    .then(res => res.json())
-    .then(res => {
-      this.renderPmProjects(res.list);
-      this.renderPages(this.pmPagesContainerTarget, {
-        page,
-        pageSize,
-        total: res.total,
-        type: 'pmProjects',
-        keywords,
-      });
-    })
-    .catch(err => alert(err.message));
-  }
-
-  renderPmProjects(projects = []) {
-    const html = projects.map(project => `
-      <tr class="border-b">
-        <td class="text-base">
-          <div class="flex items-center justify-center">
-            <div class="matlib-form-radio icon-checked">
-              <input
-                type="radio"
-                value="${project.code}"
-                name="pm_project_code"
-                id="pm_project_${project.code}"
-                data-personal-center-suppliers-target="pmProjectRadio"
-                data-json="${encodeURIComponent(JSON.stringify(project))}"
-              />
-              <label for="pm_project_${project.code}"></label>
-            </div>
-          </div>
-        </td>
-        <td class="py-5 truncate">${project.code}</td>
-        <td class="py-5 truncate" title="${project.title}">${project.title}</td>
-        <td class="py-5 truncate" title="${project.company}">${project.company}</td>
-        <td class="py-5 truncate" title="${project.department}">${project.department}</td>
-      </tr>
-    `).join('');
-    this.pmProjectsContainerTarget.innerHTML = html;
-  }
-
-  getPagination(page = 1, pageSize = 10, total = 0, showPages = 5) {
-    const pageTotal = Math.ceil(total / pageSize)
-    let minPageRange = page,
-        maxPageRange = page,
-        leftShowPages = Math.ceil((showPages - 1) / 2),
-        rightShowPages = showPages - leftShowPages - 1;
-    if (page + rightShowPages > pageTotal) {
-      leftShowPages += (page + rightShowPages - pageTotal)
-    }
-    while (leftShowPages > 0) {
-      minPageRange -= 1
-      if (minPageRange <= 1) {
-        minPageRange = 1
-        rightShowPages += leftShowPages
-        leftShowPages = 0
-      } else {
-        leftShowPages -= 1
-      }
-    }
-    while (rightShowPages > 0) {
-      maxPageRange += 1
-      if (maxPageRange >= pageTotal) {
-        maxPageRange = pageTotal
-        rightShowPages = 0
-      } else {
-        rightShowPages -= 1
-      }
-    }
-    return {
-      pageTotal: pageTotal,
-      range: new Array(maxPageRange - minPageRange + 1).fill(null).map((_, i) => minPageRange + i),
-      firstPage: minPageRange > 1 && 1,
-      lastPage: maxPageRange < pageTotal && pageTotal,
-      backward: page > 1,
-      backwardMore: minPageRange > 2 && (page - showPages >= 1 ? page - showPages : 1),
-      forward: page < pageTotal,
-      forwardMore: maxPageRange < pageTotal - 1 && (page + showPages <= pageTotal ? page + showPages : pageTotal ),
-    };
-  }
-
-  renderPages(container, { page = 1, pageSize = 10, total = 0, showPages = 5, keywords = '', type = '' }) {
-    if (!container) return;
-    const pagination = this.getPagination(page, pageSize, total, showPages);
-    const html = `
-      <ul class="flex justify-end items-center gap-1 text-sm">
-        <li class="text-gray-400">总计 ${total} 条结果</li>
-        <li
-          class="px-1 h-6 flex items-center rounded ${pagination.backward ? 'hover:text-white hover:bg-gray-200 cursor-pointer' : 'text-gray-300 cursor-not-allowed'}"
-          data-personal-center-suppliers-type-param="${type}"
-          data-personal-center-suppliers-page-param="${page - 1}"
-          data-personal-center-suppliers-keywords-param="${keywords}"
-          ${pagination.backward ? `data-action="click->personal-center-suppliers#changePage"` : ''}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-          </svg>
-        </li>
-        ${pagination.firstPage ? `
-          <li
-            class="px-2 h-6 flex items-center rounded hover:text-white hover:bg-gray-200 cursor-pointer"
-            data-personal-center-suppliers-type-param="${type}"
-            data-personal-center-suppliers-page-param="${pagination.firstPage}"
-            data-personal-center-suppliers-keywords-param="${keywords}"
-            data-action="click->personal-center-suppliers#changePage"
-          >${pagination.firstPage}</li>
-        ` : ''}
-        ${pagination.backwardMore ? `
-          <li
-            class="px-2 h-6 flex items-center rounded hover:text-white hover:bg-gray-200 cursor-pointer"
-            data-personal-center-suppliers-type-param="${type}"
-            data-personal-center-suppliers-page-param="${pagination.backwardMore}"
-            data-personal-center-suppliers-keywords-param="${keywords}"
-            data-action="click->personal-center-suppliers#changePage"
-          >...</li>
-        ` : ''}
-        ${pagination.range.map((p) => `
-          <li
-            class="px-2 h-6 flex items-center rounded ${page === p ? 'text-white bg-gray-400 cursor-default' : 'text-black bg-white hover:text-white hover:bg-gray-200 cursor-pointer'}"
-            data-personal-center-suppliers-type-param="${type}"
-            data-personal-center-suppliers-page-param="${p}"
-            data-personal-center-suppliers-keywords-param="${keywords}"
-            ${page === p ? '' : `data-action="click->personal-center-suppliers#changePage"`}
-          >${p}</li>
-        `).join('')}
-        ${pagination.forwardMore ? `
-          <li
-            class="px-2 h-6 flex items-center rounded hover:text-white hover:bg-gray-200 cursor-pointer"
-            data-personal-center-suppliers-type-param="${type}"
-            data-personal-center-suppliers-page-param="${pagination.forwardMore}"
-            data-personal-center-suppliers-keywords-param="${keywords}"
-            data-action="click->personal-center-suppliers#changePage"
-          >...</li>
-        ` : ''}
-        ${pagination.lastPage ? `
-          <li
-            class="px-2 h-6 flex items-center rounded hover:text-white hover:bg-gray-200 cursor-pointer"
-            data-personal-center-suppliers-type-param="${type}"
-            data-personal-center-suppliers-page-param="${pagination.lastPage}"
-            data-personal-center-suppliers-keywords-param="${keywords}"
-            data-action="click->personal-center-suppliers#changePage"
-          >${pagination.lastPage}</li>
-        ` : ''}
-        <li
-          class="px-1 h-6 flex items-center rounded ${pagination.forward ? 'hover:text-white hover:bg-gray-200 cursor-pointer' : 'text-gray-300 cursor-not-allowed'}"
-          data-personal-center-suppliers-type-param="${type}"
-          data-personal-center-suppliers-page-param="${page + 1}"
-          data-personal-center-suppliers-keywords-param="${keywords}"
-          ${pagination.forward ? `data-action="click->personal-center-suppliers#changePage"` : ''}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-          </svg>
-        </li>
-      </ul>
-    `;
-    container.innerHTML = html;
-  }
-
-  changePage({ params }) {
-    if (params.type === 'pmProjects') {
-      this.fetchPmProjects({ keywords: params.keywords, page: params.page });
-    }
-    if (params.type === 'matlibProjects') {
-      this.fetchMatlibProjects({ keywords: params.keywords, page: params.page });
-    }
-  }
-
-  matlibProjectInputEnter(e) {
-    if (['Enter', 'NumpadEnter'].includes(e.code)) {
-      this.searchMatlibProjects();
-    }
-  }
-
-  searchMatlibProjects() {
-    const keywords = this.matlibProjectsSearchInputTarget.value.trim();
-    this.fetchMatlibProjects({ keywords, page: 1, pageSize: 10 });
-  }
-
-  fetchMatlibProjects({ keywords = '', page = 1, pageSize = 10 }) {
-    if (!keywords) return alert('请输入关键词搜索！');
-    const url = new URL(this.matlibProjectsPathValue, window.location.origin);
-    url.searchParams.set('page', page);
-    url.searchParams.set('pageSize', pageSize);
-    url.searchParams.set('keywords', keywords);
-    mrujs.fetch(url.toString(), {
-      method: 'GET',
-    })
-    .then(res => res.json())
-    .then(res => {
-      this.renderMatlibProjects(res.list);
-      this.renderPages(this.matlibPagesContainerTarget, {
-        page,
-        pageSize,
-        total: res.total,
-        type: 'matlibProjects',
-        keywords,
-      });
-    })
-    .catch(err => alert(err.message));
-  }
-
-  renderMatlibProjects(projects = []) {
-    const html = projects.map(project => `
-      <tr class="border-b">
-        <td class="text-base">
-          <div class="flex items-center justify-center">
-            <div class="matlib-form-radio icon-checked">
-              <input
-                type="radio"
-                value="${project.code}"
-                name="matlib_project_code"
-                id="matlib_project_${project.id}"
-                data-personal-center-suppliers-target="matlibProjectRadio"
-                data-json="${encodeURIComponent(JSON.stringify(project))}"
-              />
-              <label for="matlib_project_${project.id}"></label>
-            </div>
-          </div>
-        </td>
-        <td class="py-5 truncate" title="${project.title}">${project.title}</td>
-        <td class="py-5 truncate">
-          <div class="bg-gray-300" style="width: 140px; height: 105px;"></div>
-        </td>
-      </tr>
-    `).join('');
-    this.matlibProjectsContainerTarget.innerHTML = html;
   }
 }

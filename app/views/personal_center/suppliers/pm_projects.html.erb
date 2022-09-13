@@ -1,0 +1,48 @@
+<%= turbo_frame_tag :supplier_pm_projects do %>
+  <div class="overflow-auto" style="height: 440px;">
+    <table class="w-full text-center table-fixed text-xs">
+      <thead class="sticky top-0">
+        <tr class="bg-gray-100 font-bold">
+          <td style="width: 32px;"></td>
+          <td class="py-1.5" style="width: 80px;">项目编号</td>
+          <td class="py-1.5" style="width: 200px;">PM项目名称</td>
+          <td class="py-1.5" style="width: 180px;">所属公司</td>
+          <td class="py-1.5">所属部门</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @list.each do |project| %>
+          <tr class="border-b">
+            <td class="text-base">
+              <div class="flex items-center justify-center">
+                <div class="matlib-form-radio icon-checked">
+                  <input
+                    type="radio"
+                    value="<%= project[:code] %>"
+                    name="pm_project_code"
+                    id="pm_project_<%= project[:code] %>"
+                    data-personal-center-suppliers-target="pmProjectRadio"
+                    data-json="<%= project.to_json %>"
+                  />
+                  <label for="pm_project_<%= project[:code] %>"></label>
+                </div>
+              </div>
+            </td>
+            <td class="py-5 truncate"><%= project[:code] %></td>
+            <td class="py-5 truncate" title="<%= project[:title] %>"><%= project[:title] %></td>
+            <td class="py-5 truncate" title="<%= project[:company] %>"><%= project[:company] %></td>
+            <td class="py-5 truncate" title="<%= project[:department] %>"><%= project[:department] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-2 flex justify-center">
+    <%= render partial: 'shared/pagination', locals: {
+      total: @total,
+      page: @page,
+      page_size: @page_size,
+      path: pm_projects_personal_center_suppliers_path(request.GET),
+    } %>
+  </div>
+<% end %>
