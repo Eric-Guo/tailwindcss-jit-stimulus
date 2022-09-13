@@ -17,8 +17,10 @@ module PersonalCenter
     end
 
     def show
-      manufacturer_recommend = ManufacturerRecommend.find(params[:id])
-      render content_type: 'text/vnd.turbo-stream.html', turbo_stream: turbo_stream.replace('supplier_detail_modal_body', partial: 'personal_center/suppliers/detail_modal_body', locals: { manufacturer_recommend: manufacturer_recommend })
+      @manufacturer_recommend = ManufacturerRecommend.find(params[:id])
+    end
+
+    def new
     end
 
     def create
@@ -53,6 +55,47 @@ module PersonalCenter
       }, { 'Cookie': request.headers['HTTP_COOKIE'] })
 
       redirect_to personal_center_suppliers_path
+    end
+
+    def pm_projects
+      @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 10
+
+      res = ThtriApi.pm_projects({
+        page: @page,
+        pageSize: @page_size,
+        projectName: params[:keywords],
+      }, { 'Cookie': request.headers['HTTP_COOKIE'] })
+
+      @list = res['list'].map do |item|
+        {
+          code: item['projectCode'],
+          title: item['projectName'],
+          company: item['companyName'],
+          department: item['departmentName'],
+        }
+      end
+      @total = res['total']
+    end
+
+    def matlib_projects
+      @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : 10
+
+      res = ThtriApi.matlib_projects({
+        page: @page,
+        pageSize: @page_size,
+        projectName: params[:keywords],
+      }, { 'Cookie': request.headers['HTTP_COOKIE'] })
+
+      @list = res['list'].map do |item|
+        {
+          id: item['ID'],
+          code: item['no'],
+          title: item['projectName'],
+          livePhotoList: item['livePhotoList'],
+          cover: item['web_cover'],
+        }
+      end
+      @total = res['total']
     end
   end
 end

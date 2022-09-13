@@ -7,12 +7,13 @@
     data-personal-center-suppliers-matlib-projects-path-value="<%= matlib_projects_thtri_api_path %>"
     data-personal-center-suppliers-file-path-prefix-value="<%= matlib_file_path_prefix %>"
   >
-    <button
+    <a
       class="absolute right-0 -top-10 px-3 py-1 border rounded-lg border-black text-sm hover:bg-black hover:text-white"
-      data-action="click->personal-center-suppliers#showFormModal"
+      data-turbo-frame="supplier_new_modal"
+      href="<%= new_personal_center_supplier_path %>"
     >
       新增供应商推荐
-    </button>
+    </a>
     <div class="py-8">
       <% if @list.present? %>
         <table class="border text-sm w-full table-fixed text-center">
@@ -33,12 +34,11 @@
                   <%= index + 1 %>
                 </td>
                 <td class="border p-5">
-                  <turbo-frame data-action="turbo:before-fetch-response->personal-center-suppliers#showDetailModal">
-                    <a
-                      class="border border-gray-300 rounded-lg px-5 hover:bg-black hover:text-white"
-                      href="<%= personal_center_supplier_path(id: item.id) %>"
-                    >查看详情</a>
-                  </turbo-frame>
+                  <a
+                    class="border border-gray-300 rounded-lg px-5 hover:bg-black hover:text-white"
+                    href="<%= personal_center_supplier_path(id: item.id) %>"
+                    data-turbo-frame="supplier_detail_modal"
+                  >查看详情</a>
                 </td>
                 <td class="border p-5">
                   <%= item.created_at&.strftime('%Y-%m-%d %H:%M:%S') %>
@@ -97,9 +97,7 @@
         </div>
       <% end %>
     </div>
-    <%= render partial: 'modal_form' %>
-    <%= render partial: 'modal_pm_projects' %>
-    <%= render partial: 'modal_matlib_projects' %>
-    <%= render partial: 'modal_detail' %>
+    <%= turbo_frame_tag :supplier_detail_modal %>
+    <%= turbo_frame_tag :supplier_new_modal %>
   </div>
 <% end %>
