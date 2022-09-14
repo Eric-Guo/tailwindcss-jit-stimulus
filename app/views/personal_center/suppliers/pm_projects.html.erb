@@ -36,6 +36,11 @@
         <% end %>
       </tbody>
     </table>
+    <% unless @list.present? %>
+      <div class="mt-12">
+        <%= render partial: 'personal_center/empty' %>
+      </div>
+    <% end %>
   </div>
   <div class="mt-2 flex justify-center">
     <%= render partial: 'shared/pagination', locals: {

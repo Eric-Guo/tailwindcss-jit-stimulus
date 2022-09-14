@@ -61,6 +61,8 @@ Rails.application.routes.draw do
       collection do
         get :pm_projects
         get :matlib_projects
+        post :create_project
+        post :create_project_image
       end
     end
     resources :helpers, only: [:index]
