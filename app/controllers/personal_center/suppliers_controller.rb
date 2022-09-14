@@ -28,18 +28,28 @@ module PersonalCenter
       raise Exception.new('联系人不能为空') if params[:contactName].presence&.strip.blank?
       raise Exception.new('供应商类型不能为空') if params[:materialID].presence&.strip.blank?
       raise Exception.new('联系电话不能为空') if params[:contactTel].presence&.strip.blank?
-      raise Exception.new('供应商优秀案例不能为空') if params[:cases].presence&.strip.blank?
+      raise Exception.new('供应商优秀案例不能为空') if params[:cases].blank?
+      
+      cases = params[:cases].values.map do |project|
+        {
+          typeId: project[:type_id],
+          no: project[:no].presence || '',
+          name: project[:name].presence,
+          pmProjectName: project[:pm_project_name].presence || '',
+          caseID: project[:case_id].presence && project[:case_id].to_i,
+          livePhotos: project[:livePhotos].values,
+        }
+      end
 
-      cases = JSON.parse(params[:cases])
       raise Exception.new('供应商优秀案例不能为空') unless cases.is_a?(Array) && cases.length > 0
 
       is_th_co = params[:isThCo] == 'true'
       inCount = 0
 
       cases.each do |c|
-        raise Exception.new('每个案例的项目名称不能为空') if c['typeId'] != 'thtri' && c['name']&.strip.blank?
-        raise Exception.new('每个案例的项目图片至少上传一张图片') unless c['livePhotos'].is_a?(Array) && c['livePhotos'].length > 0
-        inCount+=1 if c['typeId'] == 'pm'
+        raise Exception.new('每个案例的项目名称不能为空') if c[:typeId] != 'thtri' && c[:name]&.strip.blank?
+        raise Exception.new('每个案例的项目图片至少上传一张图片') unless c[:livePhotos].is_a?(Array) && c[:livePhotos].length > 0
+        inCount+=1 if c[:typeId] == 'pm'
       end
 
       raise Exception.new('与天华合作过的供应商需要选择一个内部案例') if is_th_co && inCount <= 0
@@ -96,6 +106,29 @@ module PersonalCenter
         }
       end
       @total = res['total']
+    end
+
+    def create_project
+      @project = {
+        type_id: params[:type_id],
+        pm_project_name: params[:pm_project_name],
+        name: params[:name],
+        case_id: params[:case_id],
+        no: params[:no],
+      }
+      @hash_code = Time.now.to_i
+      render layout: false
+    end
+    
+    def create_project_image
+      res = ThtriApi.upload_img(params[:file], { 'Cookie': request.headers['HTTP_COOKIE'] })
+      @image = {
+        title: res[:name],
+        path: res[:url],
+      }
+      @parent_hash_code = params[:hash_code]
+      @hash_code = Time.now.to_i
+      render layout: false
     end
   end
 end

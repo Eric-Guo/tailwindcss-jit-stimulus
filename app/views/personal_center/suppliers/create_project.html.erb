@@ -1,0 +1,64 @@
+<div class="first:mt-3 mb-3 pb-3 border-b border-gray-200" data-type-id="<%= @project[:type_id] %>" data-hash-code="<%= @hash_code %>">
+  <div class="flex justify-between items-center">
+    <% if @project[:type_id] == 'pm' %>
+      <label class="px-2 py-0.5 text-xs bg-black text-white rounded-lg">内部</label>
+    <% else %>
+      <label class="px-2 py-0.5 text-xs bg-gray-200 text-gray-500 rounded-lg">外部</label>
+    <% end %>
+    <input type="hidden" name="cases[<%= @hash_code %>][type_id]" value="<%= @project[:type_id] %>" />
+    <input type="hidden" name="cases[<%= @hash_code %>][case_id]" value="<%= @project[:case_id] %>" />
+    <button type="button" class="text-xs text-gray-500" data-personal-center-suppliers-hash-code-param="<%= @hash_code %>" data-action="click->personal-center-suppliers#removeCase">删除</button>
+  </div>
+  <div class="flex flex-row mt-1">
+    <div class="flex-none flex flex-col gap-5" style="width: 228px;">
+      <% if @project[:type_id] == 'pm' %>
+        <div>
+          <label>项目编号:</label>
+          <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 text-gray-500 text-sm mt-1 truncate">
+            <%= @project[:no] %>
+          </div>
+          <input type="hidden" name="cases[<%= @hash_code %>][no]" value="<%= @project[:no] %>" />
+        </div>
+        <div>
+          <label>PM项目名称:</label>
+          <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 text-gray-500 text-sm mt-1 truncate" title="<%= @project[:pm_project_name] %>">
+            <%= @project[:pm_project_name] %>
+          </div>
+          <input type="hidden" name="cases[<%= @hash_code %>][pm_project_name]" value="<%= @project[:pm_project_name] %>" />
+        </div>
+      <% end %>
+      <% if @project[:type_id] == 'thtri' %>
+        <div>
+          <label>项目名称:</label>
+          <div class="border border-gray-300 bg-gray-200 h-7 leading-7 rounded px-2 text-gray-500 text-sm mt-1 truncate" title="<%= @project[:name] %>">
+            <%= @project[:name] %>
+          </div>
+          <input type="hidden" name="cases[<%= @hash_code %>][name]" value="<%= @project[:name] %>" />
+        </div>
+      <% else %>
+        <div>
+          <label><span class="text-red">*</span>项目名称:</label>
+          <input
+            type="text"
+            class="w-full border border-gray-300 h-7 leading-7 rounded px-2 text-gray-500 focus:border-transparent focus:ring-black text-sm mt-1"
+            name="cases[<%= @hash_code %>][name]"
+            value="<%= @project[:name] %>"
+          />
+        </div>
+      <% end %>
+    </div>
+    <div class="flex-1" style="margin-left: 30px;">
+      <label><span class="text-red">*</span>项目图片:</label>
+      <div class="mt-1 grid grid-cols-3 gap-3">
+        <label class="flex justify-center items-center bg-gray-100 cursor-pointer" style="height: 180px;">
+          <input class="hidden" type="file" accept="image/png, image/jpeg" multiple data-personal-center-suppliers-hash-code-param="<%= @hash_code %>" data-action="change->personal-center-suppliers#createProjectImage" />
+          <svg width="32" height="32" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z" fill="white"/>
+            <path d="M9.5 5.5H2.5V6.5H9.5V5.5Z" fill="#E0E0E0"/>
+            <path d="M6.5 2.5H5.5V9.5H6.5V2.5Z" fill="#E0E0E0"/>
+          </svg>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

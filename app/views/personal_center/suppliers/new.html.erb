@@ -22,9 +22,7 @@
           </div>
           <div class="px-10 py-6 overflow-auto" style="height: 605px;">
             <%= form_tag personal_center_suppliers_path, method: :post, id: 'createManufacturerRecommend', data: {
-              turbo: false,
-              personal_center_suppliers_target: 'modalForm',
-              action: 'submit->personal-center-suppliers#formSubmit'
+              turbo_frame: '_top',
             } do %>
               <div class="flex border-b border-gray-200">
                 <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;">供应商信息</span>
@@ -120,7 +118,6 @@
                 <span class="text-gray-300 relative text-lg" style="bottom: -1px;">（需选择或添加至少一个）</span>
               </div>
               <div class="pb-3">
-                <input type="hidden" name="cases" data-personal-center-suppliers-target="casesInput" data-action="change->personal-center-suppliers#casesValueChange" />
                 <div data-personal-center-suppliers-target="casesContainer"></div>
                 <div class="mt-3 flex gap-12">
                   <button
