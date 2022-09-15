@@ -61,7 +61,7 @@
                 </div>
                 <% if replies.present? %>
                   <div class="flex justify-center mt-5">
-                    <button class="text-gray-400 text-sm" onclick="this.parentElement.style.display = 'none'; this.parentElement.nextElementSibling.style.display = '';">查看更多</button>
+                    <button type="button" class="text-gray-400 text-sm" onclick="this.parentElement.style.display = 'none'; this.parentElement.nextElementSibling.style.display = '';">查看更多</button>
                   </div>
                   <div style="display: none;">
                     <% replies.each do |reply| %>
@@ -71,7 +71,7 @@
                       </div>
                     <% end %>
                     <div class="flex justify-center mt-5" onclick="this.parentElement.style.display = 'none'; this.parentElement.previousElementSibling.style.display = '';">
-                      <button class="text-gray-400 text-sm">收起</button>
+                      <button type="button" class="text-gray-400 text-sm">收起</button>
                     </div>
                   </div>
                 <% end %>
@@ -110,12 +110,11 @@
                 <div class="mt-4 mb-5 text-sm flex justify-center">
                   <%= form_tag remove_personal_center_messages_path, method: :delete, data: {
                     turbo: false,
-                    personal_center_messages_target: 'modalRmForm',
                   } do %>
                     <input type="hidden" name="id" data-personal-center-messages-target="idsInput" />
-                    <button class="bg-black text-white px-6 py-2 rounded-lg" type="submit">确定</button>
+                    <button type="submit" class="bg-black text-white px-6 py-2 rounded-lg">确定</button>
                   <% end %>
-                  <button class="text-gray-400 px-6 py-2 rounded-lg border ml-4" data-action="click->modal#close">取消</button>
+                  <button type="button" class="text-gray-400 px-6 py-2 rounded-lg border ml-4" data-action="click->modal#close">取消</button>
                 </div>
               </div>
             </div>
