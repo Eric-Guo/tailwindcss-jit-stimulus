@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['modal', 'modalRmForm', 'itemCheckbox', 'allCheckbox', 'idsInput', 'activeCount', 'rmButton', 'readButton']
+  static targets = ['modal', 'itemCheckbox', 'allCheckbox', 'idsInput', 'activeCount', 'rmButton', 'readButton']
 
   activeIds = []
   noReadIds = []

@@ -4,6 +4,7 @@
   <img class="w-full h-full object-cover" src="<%= mat_img_url(@image[:path]) %>" alt="<%= @image[:title] %>">
   <div class="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100">
     <button
+      type="button"
       class="absolute top-2.5 right-2.5"
       title="删除"
       data-action="click->personal-center-suppliers#caseRmLivePhoto"

@@ -7,7 +7,6 @@ export default class extends Controller {
     'pmProjectsModal',
     'matlibProjectsModal',
     'addInternalCaseBtn',
-    'casesInput',
     'casesContainer',
     'pmProjectRadio',
     'matlibProjectRadio',

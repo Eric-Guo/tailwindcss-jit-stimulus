@@ -11,7 +11,7 @@
       style="z-index: 1000; background-color: rgba(0, 0, 0, 0.5);"
     >
         <div class="relative bg-white rounded-lg overflow-hidden" style="width: 1080px;">
-          <button class="absolute top-2.5 right-2.5 z-50" data-action="click->turbo-modal#hide">
+          <button type="button" class="absolute top-2.5 right-2.5 z-50" data-action="click->turbo-modal#hide">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
               <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
@@ -59,13 +59,13 @@
                       <% end %>
                     </div>
                     <% if @demand.references_json.length > 6 %>
-                      <button class="ml-4 flex-none px-2 py-1 bg-gray-100 rounded-2xl text-sm truncate" onclick="this.parentElement.classList.remove('max-h-7');this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden');">
+                      <button type="button" class="ml-4 flex-none px-2 py-1 bg-gray-100 rounded-2xl text-sm truncate" onclick="this.parentElement.classList.remove('max-h-7');this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden');">
                         <span>展开</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                         </svg>
                       </button>
-                      <button class="ml-4 flex-none px-2 py-1 bg-gray-100 rounded-2xl text-sm hidden truncate" onclick="this.parentElement.classList.add('max-h-7');this.classList.add('hidden');this.previousElementSibling.classList.remove('hidden');">
+                      <button type="button" class="ml-4 flex-none px-2 py-1 bg-gray-100 rounded-2xl text-sm hidden truncate" onclick="this.parentElement.classList.add('max-h-7');this.classList.add('hidden');this.previousElementSibling.classList.remove('hidden');">
                         <span>收起</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
@@ -95,7 +95,7 @@
             </div>
           </div>
           <div class="text-sm flex justify-center py-6">
-            <button class="w-20 h-10 cancel-button transition-all duration-300" type="button" data-action="click->turbo-modal#hide">关闭</button>
+            <button type="button" class="w-20 h-10 cancel-button transition-all duration-300" data-action="click->turbo-modal#hide">关闭</button>
           </div>
         </div>
     </div>

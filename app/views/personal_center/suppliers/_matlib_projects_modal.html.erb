@@ -11,7 +11,7 @@
     style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
   >
       <div class="relative bg-white rounded-lg overflow-hidden" style="width: 700px;">
-        <button class="absolute top-2.5 right-2.5 z-50" data-action="click->modal#close">
+        <button type="button" class="absolute top-2.5 right-2.5 z-50" data-action="click->modal#close">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
             <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
@@ -45,8 +45,8 @@
           </div>
         </div>
         <div class="text-sm flex gap-5 justify-center py-6">
-          <button class="w-20 h-10 primary-button transition-all duration-300" type="button" data-action="click->personal-center-suppliers#selectExternalCase">确定</button>
-          <button class="w-20 h-10 cancel-button transition-all duration-300" type="button" data-action="click->modal#close">取消</button>
+          <button type="button" class="w-20 h-10 primary-button transition-all duration-300" data-action="click->personal-center-suppliers#selectExternalCase">确定</button>
+          <button type="button" class="w-20 h-10 cancel-button transition-all duration-300" data-action="click->modal#close">取消</button>
         </div>
       </div>
   </div>
