@@ -144,10 +144,13 @@
           <div>
             <a href="#" class="font-medium">©2021 TIANHUA | 由 天华集团流程与信息化部 提供技术服务</a>
           </div>
-          <div class="w-0 flex-1 flex justify-end gap-4">
+          <div class="w-0 flex-1 flex justify-end items-center gap-2">
             <div>友情链接:</div>
-            <% @footer_info[:links].each do |link| %>
+            <% @footer_info[:links].each_with_index do |link, index| %>
               <a href="<%= link[:url] %>" target="_blank"><%= link[:title] %></a>
+              <% unless index === @footer_info[:links].length - 1 %>
+                <div style="width: 1px; height: 16px; background: #fff;"></div>
+              <% end %>
             <% end %>
           </div>
         </nav>
