@@ -167,7 +167,7 @@ GEM
     io-console (0.5.11)
     irb (1.4.2)
       reline (>= 0.3.0)
-    json-jwt (1.16.0)
+    json-jwt (1.16.1)
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
