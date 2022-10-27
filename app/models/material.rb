@@ -47,7 +47,7 @@ class Material < ApplicationRecord
   end
 
   def cover_arr
-    arr = cover.is_a?(String) ? JSON.parse(cover) : cover;
+    arr = cover.is_a?(String) && cover.present? ? JSON.parse(cover) : cover;
     if arr.present? && arr.is_a?(Array)
       arr
     else

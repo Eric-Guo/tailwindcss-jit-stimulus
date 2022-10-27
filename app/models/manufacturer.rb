@@ -45,7 +45,7 @@ class Manufacturer < ApplicationRecord
   end
 
   def banners
-    arr = self.performance_display.is_a?(String) ? JSON.parse(self.performance_display) : self.performance_display
+    arr = self.performance_display.is_a?(String) && self.performance_display.present? ? JSON.parse(self.performance_display) : self.performance_display
     if arr.present? && arr.is_a?(Array)
       arr.map { |item| item.with_indifferent_access }
     else
