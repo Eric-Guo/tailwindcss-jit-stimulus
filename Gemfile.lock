@@ -167,6 +167,9 @@ GEM
     io-console (0.5.11)
     irb (1.5.0)
       reline (>= 0.3.0)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
     json-jwt (1.16.1)
       activesupport (>= 4.2)
       aes_key_wrap
@@ -366,6 +369,7 @@ DEPENDENCIES
   gitlab-omniauth-openid-connect (~> 0.9.1)
   honeybadger
   http
+  jbuilder
   jwt
   kaminari
   mysql2

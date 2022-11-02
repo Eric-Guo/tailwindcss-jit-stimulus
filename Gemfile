@@ -32,6 +32,9 @@ gem 'devise'
 gem 'gitlab-omniauth-openid-connect', '~> 0.9.1', require: 'omniauth_openid_connect'
 gem 'jwt'
 
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem "jbuilder"
+
 # Use Active Storage variant
 # gem "image_processing", "~> 1.2"
 
