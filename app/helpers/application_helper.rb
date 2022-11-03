@@ -126,4 +126,22 @@ module ApplicationHelper
     markdown = Redcarpet::Markdown.new(HTMLWithCodeRay, options)
     markdown.render(h(text)).html_safe
   end
+
+  def url_options
+    {
+      host: request.host,
+      protocol: request.scheme,
+      port: request.port,
+    }
+  end
+
+  def static_file_url(url)
+    return nil unless url.present?
+    prefix = if url_options.present?
+      Rails.application.routes.url_helpers.root_url(**url_options)
+    else
+      Rails.application.routes.url_helpers.root_path
+    end
+    URI.join(prefix, url).to_s
+  end
 end
