@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource :aggregation, only: [] do
       member do
         get :home
+        get :web_info
       end
     end
     

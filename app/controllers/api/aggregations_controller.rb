@@ -78,5 +78,15 @@ module Api
         }
       end
     end
+
+    def web_info
+      @phone_number = '64281588-8914'
+      @email = 'architectonic@thape.com.cn'
+      @links = [
+        { title: '建筑委', url: 'http://jzw.thape.com.cn/' },
+        { title: '材料在线', url: 'http://www.clzx.net/' },
+        { title: '阿奇找找', url: 'https://www.archifound.com/#/' },
+      ]
+    end
   end
 end
