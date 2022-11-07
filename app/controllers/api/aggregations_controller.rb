@@ -88,5 +88,9 @@ module Api
         { title: '阿奇找找', url: 'https://www.archifound.com/#/' },
       ]
     end
+
+    def materials
+      @materials = Material.where(level: [1, 2]).order(no: :asc).all
+    end
   end
 end

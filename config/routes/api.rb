@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       member do
         get :home
         get :web_info
+        get :materials
       end
     end
     
