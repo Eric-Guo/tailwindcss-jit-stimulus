@@ -9,6 +9,12 @@ Rails.application.routes.draw do
         get :materials
       end
     end
+
+    resource :user, only: [] do
+      member do
+        get :me
+      end
+    end
     
     resources :materials
   end
