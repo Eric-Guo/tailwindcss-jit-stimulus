@@ -96,5 +96,9 @@ module Api
     def color_systems
       @list = ColorSystem.color_system_lists
     end
+
+    def material_locations
+      @list = MaterialProduct.material_product_locations
+    end
   end
 end
