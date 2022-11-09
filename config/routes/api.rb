@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get :web_info
         get :materials
         get :color_systems
+        get :material_locations
       end
     end
 
