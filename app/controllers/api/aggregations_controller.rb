@@ -92,5 +92,9 @@ module Api
     def materials
       @materials = Material.where(level: [1, 2]).order(no: :asc).all
     end
+
+    def color_systems
+      @list = ColorSystem.color_system_lists
+    end
   end
 end
