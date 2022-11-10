@@ -4,19 +4,26 @@ module Api
   class MaterialsController < ApplicationController
     def index
       @list = MaterialAndSample.where.not(material_level: 1).order(material_no: :asc, sample_id: :asc)
-    
+
       # 关键词
       keywords = ActiveRecord::Base::sanitize_sql(params[:keywords]&.strip)
       if keywords.present?
         @list = @list.where('material_name LIKE :q_like OR parent_material_name LIKE :q_like OR grandpa_material_name LIKE :q_like', q_like: "%#{keywords}%")
       end
-      
+
       # 材料筛选
-      mat_ids = (params[:mat_ids].presence || []).reject(&:blank?).collect(&:to_i)
-      if mat_ids.present?
+      mat1_id = params[:mat1_id].presence&.strip
+      mat_ids = params[:mat_ids].is_a?(Array) ? params[:mat_ids] : (params[:mat_ids].presence&.split(',') || [])
+      mat_ids = mat_ids.reject(&:blank?).collect(&:to_i)
+
+      if mat_ids.blank? && mat1_id.present?
+        mat_ids = Material.where(level: 2).where(parent_id: mat1_id).pluck(:id)
+      end
+
+      if mat1_id.present?
         @list = @list.where('material_id IN (:ids) OR parent_material_id IN (:ids)', ids: mat_ids)
       end
-      
+
       # 色系
       color_system_id = params[:color_system_id].presence&.strip
       if color_system_id.present?
@@ -24,7 +31,7 @@ module Api
         color_sam_ids = SampleColorSystem.where(color_systems_id: color_system_id).pluck(:sample_id)
         @list = @list.where('(sample_id IS NULL AND material_id IN (?)) OR (sample_id IN (?))', color_mat_ids, color_sam_ids)
       end
-      
+
       # 价格
       price_start = params[:price_start].presence&.to_f
       price_end = params[:price_end].presence&.to_f
