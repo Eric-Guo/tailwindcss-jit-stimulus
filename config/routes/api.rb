@@ -17,7 +17,12 @@ Rails.application.routes.draw do
         get :me
       end
     end
-    
-    resources :materials
+
+    resources :materials, only: [:index, :show] do
+      member do
+        get :children
+        get :color_systems
+      end
+    end
   end
 end
