@@ -83,6 +83,7 @@ if @material.level == 2
     end
     json.tags tags
     json.published_at item.published_at&.strftime('%Y-%m-%d')
+    json.url item.url
   end
 end
 
