@@ -44,8 +44,8 @@ if @material.level == 2
   if @material.material_info&.related_files.present?
     json.related_files @material.material_info.related_files do |file|
       json.name file[:name]
-      json.type file[:tag_name]
       json.url mat_img_url(file[:url])
+      json.extname File.extname(file[:url]).downcase
     end
   end
 
