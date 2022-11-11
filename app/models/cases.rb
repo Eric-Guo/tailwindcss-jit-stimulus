@@ -108,7 +108,7 @@ class Cases < ApplicationRecord
     )
     @_permissions ||= {
       base: true, # 基础信息，项目列表
-      info: show_detail, # 全部信息，包括案例信息与材料信息
+      info: true, # 全部信息，包括案例信息与材料信息
       facade_manual: show_detail, # 立面手册
       related_files: show_detail && current_user.show_project_relevant_document?, # 其他文件
       download_file_count: show_detail ? current_user.project_file_download_limit : 0, # 文件下载数量
