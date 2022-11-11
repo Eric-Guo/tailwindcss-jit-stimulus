@@ -68,5 +68,16 @@ module Api
     def show
       @material = Material.find(params[:id])
     end
+
+    def children
+      @list = Material.includes(material_product: [:color_systems]).where(parent_id: params[:id]).all
+    end
+
+    def color_systems
+      material = Material.find(params[:id])
+      material_ids = material.children_materials.pluck(:id)
+      color_system_ids = MaterialProductColorSystem.where(material_product_id: MaterialProduct.select(:id).where(material_id: material_ids)).pluck(:color_systems_id)
+      @color_systems = ColorSystem.where(id: color_system_ids)
+    end
   end
 end

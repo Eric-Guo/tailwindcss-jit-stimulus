@@ -3,7 +3,7 @@ json.no @material.no
 json.name @material.name
 json.en_name @material.en_name
 json.level @material.level
-json.parent_di @material.parent_id
+json.parent_id @material.parent_id
 json.grandpa_id @material.grandpa_id
 
 if @material.level == 2
@@ -70,6 +70,7 @@ if @material.level == 2
   # 新闻
   news = @material.parent_material.news.limit(4)
   json.news news do |item|
+    json.id item.id
     json.title item.title
     json.subtitle item.subtitle
     json.cover mat_img_url(item.cover)
@@ -80,6 +81,7 @@ if @material.level == 2
     if item.materials.present?
       item.materials.each { |material| tags << material.name }
     end
+    json.tags tags
     json.published_at item.published_at&.strftime('%Y-%m-%d')
   end
 end
@@ -92,7 +94,7 @@ if @material.level == 3
   json.surface_effect @material.surface_effect_descriptions # 表面效果
   json.customizable_effect @material.customizable_effect # 可定制效果
   # 实际应用
-  if material.material_product&.practical_applications_json.present?
+  if @material.material_product&.practical_applications_json.present?
     json.practical_applications @material.material_product.practical_applications_json do |practical_application|
       json.name practical_application[:name]
       json.url mat_img_url(practical_application[:url])
