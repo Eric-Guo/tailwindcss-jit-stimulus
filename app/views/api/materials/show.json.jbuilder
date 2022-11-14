@@ -5,6 +5,7 @@ json.en_name @material.en_name
 json.level @material.level
 json.parent_id @material.parent_id
 json.grandpa_id @material.grandpa_id
+json.cover get_first_url(@material.cover)
 
 if @material.level == 2
   # 轮播图
