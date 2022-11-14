@@ -70,7 +70,7 @@ module Api
     end
 
     def children
-      @list = Material.includes(material_product: [:color_systems]).where(parent_id: params[:id]).all
+      @list = Material.includes(material_product: [:color_systems]).where(parent_id: params[:id]).order(no: :asc).all
     end
 
     def color_systems
