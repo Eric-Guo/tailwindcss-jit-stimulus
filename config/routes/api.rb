@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       member do
         get :children
         get :color_systems
+        get :paths
       end
     end
   end

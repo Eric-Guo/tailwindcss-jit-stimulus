@@ -79,5 +79,9 @@ module Api
       color_system_ids = MaterialProductColorSystem.where(material_product_id: MaterialProduct.select(:id).where(material_id: material_ids)).pluck(:color_systems_id)
       @color_systems = ColorSystem.where(id: color_system_ids)
     end
+
+    def paths
+      @material = Material.find(params[:id])
+    end
   end
 end
