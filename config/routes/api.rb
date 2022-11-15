@@ -23,6 +23,14 @@ Rails.application.routes.draw do
         get :children
         get :color_systems
         get :paths
+        get :samples
+      end
+    end
+
+    resources :samples, only: [:show] do
+      member do
+        get :projects
+        get :related_samples
       end
     end
   end
