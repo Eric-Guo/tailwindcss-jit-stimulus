@@ -83,5 +83,9 @@ module Api
     def paths
       @material = Material.find(params[:id])
     end
+
+    def samples
+      @material = Material.find(params[:id])
+    end
   end
 end
