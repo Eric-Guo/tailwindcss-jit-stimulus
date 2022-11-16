@@ -108,5 +108,9 @@ module Api
     def project_types
       @list = Cases.project_types
     end
+
+    def manufacturer_locations
+      @list = Manufacturer.manufacturer_locations
+    end
   end
 end
