@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         get :material_locations
         get :project_locations
         get :project_types
+        get :manufacturer_locations
       end
     end
 
@@ -39,6 +40,12 @@ Rails.application.routes.draw do
     resources :projects, only: [:index, :show] do
       member do
         get :related_projects
+      end
+    end
+
+    resources :manufacturers, only: [:index, :show] do
+      member do
+        get :related_manufacturers
       end
     end
   end
