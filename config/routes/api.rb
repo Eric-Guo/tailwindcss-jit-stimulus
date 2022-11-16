@@ -48,5 +48,7 @@ Rails.application.routes.draw do
         get :related_manufacturers
       end
     end
+
+    resources :news, only: [:index]
   end
 end
