@@ -100,5 +100,13 @@ module Api
     def material_locations
       @list = MaterialProduct.material_product_locations
     end
+
+    def project_locations
+      @list = Cases.project_locations
+    end
+
+    def project_types
+      @list = Cases.project_types
+    end
   end
 end
