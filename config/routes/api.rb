@@ -9,6 +9,8 @@ Rails.application.routes.draw do
         get :materials
         get :color_systems
         get :material_locations
+        get :project_locations
+        get :project_types
       end
     end
 
@@ -31,6 +33,12 @@ Rails.application.routes.draw do
       member do
         get :projects
         get :related_samples
+      end
+    end
+
+    resources :projects, only: [:index, :show] do
+      member do
+        get :related_projects
       end
     end
   end
