@@ -2,19 +2,21 @@
 
 module Api
   class AggregationsController < ApplicationController
+    skip_before_action :authenticate_user!
+
     def home
       @statistics = {
         materials: Material.count + Sample.joins(:material).count,
         projects: Cases.count,
         manufacturers: Manufacturer.count,
       }
-  
+
       # 新增材料数据计算
       recently_material_created_time = Material.where('level = ?', 3).order(created_at: :desc).first&.created_at&.strftime('%Y%m%d')
       recently_ms_created_time = recently_material_created_time
       recently_sample_created_time = Sample.joins(:material).order(created_at: :desc).first&.created_at&.strftime('%Y%m%d')
       recently_ms_created_time = recently_sample_created_time if recently_sample_created_time.present? && recently_sample_created_time > recently_ms_created_time
-  
+
       @recently_materials = if recently_ms_created_time.present?
         Material.where('level = ?', 3).where("date_format(created_at, '%Y%m%d') = ?", recently_ms_created_time)
       else
@@ -26,9 +28,9 @@ module Api
         Sample.none
       end
       @statistics[:recently_materials] = @recently_materials.count + @recently_samples.count
-  
+
       @recently_materials = Tops.where('top_model = ?', 'home_new_material').where('material_id > ?', 0).order(top_sort: :desc)
-  
+
       recently_project = Cases.order(created_at: :desc).first
       @recently_projects = if recently_project.present?
         Cases.order(created_at: :desc).where("", recently_project.created_at.strftime("%Y%m%d"))
@@ -37,11 +39,11 @@ module Api
       end
       @statistics[:recently_projects] = @recently_projects.count
       @recently_projects = Tops.where('top_model = ?', 'home_new_cases').where('case_id > ?', 0).order(top_sort: :desc)
-  
+
       @latest_news = News.order(top: :desc).order(published_at: :desc).limit(4)
   
       @projects = Tops.where('top_model = ?', 'home_top_cases').where('case_id > ?', 0).order(top_sort: :desc)
-  
+
       @material_cates = [
         { no: 'A', cover: 'mat_nav_g1.jpg' },
         { no: 'B', cover: 'mat_nav_g6.jpg' },
@@ -111,6 +113,10 @@ module Api
 
     def manufacturer_locations
       @list = Manufacturer.manufacturer_locations
+    end
+
+    def my_project_config
+      @states = CaseDelegate.web_status_hash
     end
   end
 end

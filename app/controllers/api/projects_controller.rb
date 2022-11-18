@@ -2,7 +2,7 @@
 
 module Api
   class ProjectsController < ApplicationController
-    def index    
+    def index
       @list = Cases.order(updated_at: :desc)
 
       # 关键词
