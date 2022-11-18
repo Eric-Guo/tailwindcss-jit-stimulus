@@ -13,7 +13,7 @@ module Api
       page, page_size = pagination_params
       @list = @list.page(page).per(page_size)
     end
-    
+
     def related_samples
       sample = Sample.find(params[:id])
       material = sample.material

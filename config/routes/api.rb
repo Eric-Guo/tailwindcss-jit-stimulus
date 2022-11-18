@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         get :project_locations
         get :project_types
         get :manufacturer_locations
+        get :my_project_config
       end
     end
 
@@ -50,5 +51,9 @@ Rails.application.routes.draw do
     end
 
     resources :news, only: [:index]
+
+    namespace :my do
+      resources :projects, only: [:index]
+    end
   end
 end
