@@ -54,6 +54,11 @@ Rails.application.routes.draw do
 
     namespace :my do
       resources :projects, only: [:index]
+      resources :messages, only: [:index, :destroy] do
+        member do
+          put :read
+        end
+      end
     end
   end
 end
