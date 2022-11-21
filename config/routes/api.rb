@@ -59,6 +59,7 @@ Rails.application.routes.draw do
           put :read
         end
       end
+      resources :demands, only: [:index, :show]
     end
   end
 end
