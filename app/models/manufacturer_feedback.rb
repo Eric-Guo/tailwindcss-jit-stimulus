@@ -10,7 +10,6 @@ class ManufacturerFeedback < ApplicationRecord
   has_many :replies, class_name: 'ManufacturerFeedbackReply'
 
   default_scope { where(deleted_at: nil) }
-  
 
   def references_json
     return [] unless references.present?
