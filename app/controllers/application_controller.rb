@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   include DetectDevice
   wechat_api
   before_action :login_in_as_dev_user, if: -> { Rails.env.development? }
-  before_action :make_sure_wechat_user_login_in_phone, if: -> { request.variant.any?(:phone) }
   before_action :set_ie_warning
   before_action :set_tree_materials
   before_action :set_sidebar_nav
@@ -15,21 +14,6 @@ class ApplicationController < ActionController::Base
 
     def login_in_as_dev_user
       sign_in User.where('clerk_code = ?', '019795').first unless user_signed_in?
-    end
-
-    def make_sure_wechat_user_login_in_phone
-      wechat_oauth2 do |user_name|
-        return redirect_to root_path if user_name.blank?
-
-        Rails.logger.info "make_sure_wechat_user_login_in_phone: #{user_name}"
-        Current.user = User.find_by wecom_id: user_name
-        Current.user = User.find_by email: "#{user_name}@thape.com.cn" if Current.user.blank?
-        if Current.user.present?
-          sign_in Current.user
-        else
-          return redirect_to root_path
-        end
-      end unless current_user.present? || request.path == '/'
     end
 
     def record_user_view_history
