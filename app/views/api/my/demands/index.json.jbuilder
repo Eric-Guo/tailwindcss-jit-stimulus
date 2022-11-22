@@ -18,14 +18,5 @@ json.list @list do |demand|
     json.created_at reply.created_at&.strftime('%Y-%m-%d %H:%M:%S')
   end
 
-  status, status_title = if demand.resolved_at.present?
-    [2, '已落实']
-  elsif demand.replies.present?
-    [1, '跟进中']
-  else
-    [0, '待回复']
-  end
-
-  json.status status
-  json.status_title status_title
+  json.partial! 'status', demand: demand
 end

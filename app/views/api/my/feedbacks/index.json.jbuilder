@@ -12,16 +12,7 @@ json.list @list do |feedback|
     end
   end
 
-  status, status_title = if feedback.resolved_at.present?
-    [2, '已落实']
-  elsif feedback.replies.present?
-    [1, '跟进中']
-  else
-    [0, '待回复']
-  end
-
-  json.status status
-  json.status_title status_title
+  json.partial! 'status', feedback: feedback
 
   if feedback.replies.present?
     json.replies feedback.replies do |reply|
