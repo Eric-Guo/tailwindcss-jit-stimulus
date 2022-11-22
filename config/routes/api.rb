@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resource :user, only: [] do
       member do
         get :me
+        get :helpers
       end
     end
 
