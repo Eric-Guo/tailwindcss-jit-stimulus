@@ -7,6 +7,7 @@ json.main_materials @manufacturer.main_materials # 主营材料
 json.tho_co_str @manufacturer.tho_co_str # 是否与天华合作过
 json.offer_sample @manufacturer.offer_sample # 是否愿意提供样品
 json.main_material_remark @manufacturer.main_material_remark # 主营业务
+json.company_tel @manufacturer.company_tel # 联系方式
 # 联系方式
 json.contacts @manufacturer.contacts do |contact|
   json.name contact.name
