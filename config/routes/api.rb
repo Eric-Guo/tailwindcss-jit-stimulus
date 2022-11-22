@@ -64,5 +64,7 @@ Rails.application.routes.draw do
       resources :feedbacks, only: [:index, :show]
       resources :manufacturers, only: [:index, :show]
     end
+
+    resources :project_records, only: [:show]
   end
 end
