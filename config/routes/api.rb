@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       member do
         get :me
         get :helpers
+        post :wxwork_login
       end
     end
 

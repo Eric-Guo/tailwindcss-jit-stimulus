@@ -4,9 +4,11 @@ module Api
   class ApplicationController < ActionController::API
     include ActionController::Helpers
     helper ApplicationHelper
+    include ActionController::Cookies
+    wechat_api
+    before_action :authenticate_user!
     before_action :login_in_as_dev_user, if: -> { Rails.env.development? }
     after_action :record_user_view_history, if: -> { Rails.env.production? }
-    before_action :authenticate_user!
 
     def pagination_params
       page = params[:page].to_i > 0 ? params[:page].to_i : 1
