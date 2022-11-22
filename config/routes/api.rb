@@ -61,6 +61,7 @@ Rails.application.routes.draw do
       end
       resources :demands, only: [:index, :show]
       resources :feedbacks, only: [:index, :show]
+      resources :manufacturers, only: [:index, :show]
     end
   end
 end
