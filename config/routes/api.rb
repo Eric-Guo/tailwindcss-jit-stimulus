@@ -60,6 +60,7 @@ Rails.application.routes.draw do
         end
       end
       resources :demands, only: [:index, :show]
+      resources :feedbacks, only: [:index, :show]
     end
   end
 end
