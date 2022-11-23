@@ -18,5 +18,11 @@ module Api
         render json: { message: '登录成功' }
       end
     end
+
+    def logout
+      sign_out(current_user) if current_user.present?
+
+      render json: { message: '退出成功' }
+    end
   end
 end
