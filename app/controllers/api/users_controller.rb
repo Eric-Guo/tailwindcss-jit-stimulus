@@ -25,8 +25,7 @@ module Api
         raise Exception.new('获取用户信息失败') unless Current.user.present?
 
         sign_in Current.user
-
-        render json: { message: '登录成功' }
+        return render json: { message: '登录成功' }
       end
     end
   end
