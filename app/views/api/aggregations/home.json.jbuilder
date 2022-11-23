@@ -3,7 +3,7 @@ json.statistics @statistics
 
 # 近日更新材料
 json.recently_materials @recently_materials do |material|
-  json.id material.id
+  json.id material.material_id
   json.name material.name
   json.cover mat_img_url(material.cover)
 end
