@@ -8,6 +8,8 @@ module Api
       wechat_oauth2 do |user_name|
         raise Exception.new('获取微信用户名失败') unless user_name.present?
 
+        redirect_uri = params[:redirect_uri]
+
         Current.user = User.find_by wecom_id: user_name
         Current.user = User.find_by email: "#{user_name}@thape.com.cn" if Current.user.blank?
 
@@ -15,7 +17,11 @@ module Api
 
         sign_in Current.user
 
-        render json: { message: '登录成功' }
+        if redirect_uri.present?
+          redirect_to redirect_uri
+        else
+          redirect_uri '/m/'
+        end
       end
     end
 
