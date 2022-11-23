@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     resource :auth, only: [] do
       member do
         get :wxwork
+        delete :logout
       end
     end
   end
