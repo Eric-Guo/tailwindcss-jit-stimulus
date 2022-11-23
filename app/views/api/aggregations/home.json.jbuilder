@@ -38,6 +38,10 @@ json.material_cates @material_cates do |material_cate|
   json.title material_cate[:title]
   json.subtitle material_cate[:subtitle]
   json.cover static_file_url(image_pack_path(material_cate[:cover]))
+  target = Material.where(grandpa_id: material_cate[:mat].id).first
+  if target
+    json.target_id target.id
+  end
 end
 
 # 项目列表
