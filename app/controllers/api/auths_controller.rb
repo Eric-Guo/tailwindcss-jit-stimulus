@@ -6,7 +6,7 @@ module Api
 
     def wxwork
       wechat_oauth2 do |user_name|
-        raise Exception.new('获取微信用户名失败')
+        raise Exception.new('获取微信用户名失败') unless user_name.present?
 
         Current.user = User.find_by wecom_id: user_name
         Current.user = User.find_by email: "#{user_name}@thape.com.cn" if Current.user.blank?
