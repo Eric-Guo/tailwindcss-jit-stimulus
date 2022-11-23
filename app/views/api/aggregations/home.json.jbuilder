@@ -21,6 +21,7 @@ json.latest_news @latest_news do |news|
   json.published_at news.published_at&.strftime('%Y-%m-%d %H:%M:%S')
   json.title news.title
   json.subtitle news.subtitle
+  json.url news.url
   tags = []
   tags << news.source if news.source.present?
   if news.materials.present?
