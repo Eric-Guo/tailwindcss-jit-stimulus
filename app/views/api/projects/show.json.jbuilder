@@ -18,7 +18,7 @@ json.banners @project.live_photos do |photo|
   json.url photo.show_path
 end
 # 材料
-json.materials @project.case_materials.includes(:material, :manufacturer) do |case_material|
+json.materials @project.case_materials.joins(:material).includes(:manufacturer) do |case_material|
   json.id case_material.material.id
   json.name case_material.material.name
   json.cover get_first_url(case_material.material.cover)
