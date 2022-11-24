@@ -47,7 +47,7 @@ end
 if @project.facade.present?
   json.facades @project.facade do |facade|
     json.name facade[:name]
-    json.url facade[:url]
+    json.url mat_img_url(facade[:url])
     json.extname File.extname(facade[:url]).downcase
   end
 end
@@ -55,7 +55,7 @@ end
 if @project.related_files.present?
   json.related_files @project.related_files do |file|
     json.name file[:name]
-    json.url file[:url]
+    json.url mat_img_url(file[:url])
     json.extname File.extname(file[:url]).downcase
   end
 end

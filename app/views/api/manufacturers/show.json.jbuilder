@@ -63,5 +63,5 @@ end
 json.brochures @manufacturer.brochure_files do |brochure|
   json.name brochure[:name]
   json.type brochure[:tag_name]
-  json.url mat_img_url[:url]
+  json.url mat_img_url(brochure[:url])
 end
