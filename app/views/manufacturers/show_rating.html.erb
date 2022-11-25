@@ -21,7 +21,7 @@
           </button>
         </div>
         <div class="px-5 pt-16 pb-14">
-          <%= form_tag rating_manufacturer_path, method: :post, id: 'ratingManufacturerForm', data: {
+          <%= form_tag rating_manufacturer_path(params[:id]), method: :post, id: 'ratingManufacturerForm', data: {
             action: 'turbo:submit-end->turbo-modal#hide'
           } do %>
             <div class="flex justify-center">请给本条供应商信息的真实性和有效性评级</div>

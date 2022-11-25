@@ -4,7 +4,7 @@
   class="mx-auto mt-12"
   style="width: 1500px; padding-bottom: 50px;"
   data-controller="manufacturer-feedback"
-  data-manufacturer-feedback-show-path-value="<%= feedback_manufacturer_path %>"
+  data-manufacturer-feedback-show-path-value="<%= feedback_manufacturer_path(@manufacturer.id) %>"
   data-manufacturer-feedback-upload-img-path-value="<%= upload_img_thtri_api_path %>"
 >
 
@@ -25,7 +25,7 @@
         <span class="text-xl font-light">Manufacturer Details</span>
 
         <div class="absolute right-0 top-0 flex gap-2">
-          <a class="more-btn inline select-none" href="<%= rating_manufacturer_path -%>" data-turbo-frame="manufacturer_rating_modal">供应商信息评级</a>
+          <a class="more-btn inline select-none" href="<%= rating_manufacturer_path(@manufacturer.id) -%>" data-turbo-frame="manufacturer_rating_modal">供应商信息评级</a>
           <button
             class="more-btn inline select-none"
             data-content-feedback-full-page-param="true"
