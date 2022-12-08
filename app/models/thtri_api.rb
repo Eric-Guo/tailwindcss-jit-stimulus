@@ -6,18 +6,22 @@ class ThtriApi
   end
 
   def self.demand_cates
-    response = HTTP.get(generate_url('demand_types'))
-    JSON.parse(response.body.to_s)['data'].map do |cate|
-      {
-        id: cate['id'],
-        name: cate['name'],
-        materials: cate['Lists'].map do |item|
-          {
-            id: item['Id'],
-            name: item['Name'],
-          }
-        end
-      }
+    begin
+      response = HTTP.get(generate_url('demand_types'))
+      JSON.parse(response.body.to_s)['data'].map do |cate|
+        {
+          id: cate['id'],
+          name: cate['name'],
+          materials: cate['Lists'].map do |item|
+            {
+              id: item['Id'],
+              name: item['Name'],
+            }
+          end
+        }
+      end
+    rescue StandardError => e
+      []
     end
   end
 
