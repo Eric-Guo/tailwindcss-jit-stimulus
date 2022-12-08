@@ -25,7 +25,7 @@ if @material.level == 2
   json.design_considerations @material.material_info&.design_considerations # 设计注意事项
 
   # 项目
-  projects = @material.cases.limit(3)
+  projects = @material.cases.limit(4)
   json.projects projects do |project|
     json.id project.id
     json.name project.project_name # 名称
