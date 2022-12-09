@@ -61,7 +61,7 @@ module Api
 
     def show
       @manufacturer = Manufacturer.find(params[:id])
-      @samples = @manufacturer.samples
+      @samples = @manufacturer.samples.joins(:material)
       @projects = @manufacturer.cases
       @materials = @manufacturer.materials.where(level: 3)
       @news = @manufacturer.news
