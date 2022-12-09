@@ -22,7 +22,7 @@ end
 json.materials @materials do |material|
   json.id material.id
   json.name material.name
-  json.cover mat_img_url(material.cover)
+  json.cover get_first_url(material.cover)
   json.level_name material.level_name
 end
 # 样品
