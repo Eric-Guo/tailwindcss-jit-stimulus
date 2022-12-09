@@ -3,7 +3,7 @@
 module Api
   class MaterialsController < ApplicationController
     def index
-      @list = MaterialAndSample.where.not(material_level: 1).order(material_no: :asc, sample_id: :asc)
+      @list = MaterialAndSample.where.not(material_level: 1).order(material_no: :asc).order(sample_id: :asc)
 
       # 关键词
       keywords = ActiveRecord::Base::sanitize_sql(params[:keywords]&.strip)

@@ -28,7 +28,7 @@ module Api
       end
       @list = Sample.where.not(id: sample.id).where(obj_id: sample_ids)
       if material.present? && brother_material_ids.present?
-        @list = @list.order(Arel.sql("CASE WHEN obj_id = #{material_id} THEN 2 WHEN obj_id IN (#{brother_material_ids.join(',')}) THEN 1 ELSE 0 END DESC, id ASC"))
+        @list = @list.order(Arel.sql("CASE WHEN obj_id = #{material_id} THEN 2 WHEN obj_id IN (#{brother_material_ids.join(',')}) THEN 1 ELSE 0 END DESC, id ASC")).order(id: :asc)
       end
       @total = @list.count
       page, page_size = pagination_params
