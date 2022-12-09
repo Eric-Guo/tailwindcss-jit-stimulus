@@ -4,7 +4,7 @@ module Api
   module My
     class ManufacturersController < ApplicationController
       def index
-        @list = ManufacturerRecommend.where(user_id: current_user.id).order(created_at: :desc)
+        @list = ManufacturerRecommend.where(user_id: current_user.id).order(created_at: :desc).order(id: :asc)
     
         @total = @list.count
     

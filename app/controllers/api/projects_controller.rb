@@ -3,7 +3,7 @@
 module Api
   class ProjectsController < ApplicationController
     def index
-      @list = Cases.order(updated_at: :desc)
+      @list = Cases.order(updated_at: :desc).order(id: :asc)
 
       # 关键词
       keywords = ActiveRecord::Base::sanitize_sql(params[:keywords]&.strip)
