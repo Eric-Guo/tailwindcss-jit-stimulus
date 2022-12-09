@@ -3,7 +3,7 @@
 module Api
   class ManufacturersController < ApplicationController
     def index
-      @list = Manufacturer.sort_by_logo.order(is_allow: :desc)
+      @list = Manufacturer.sort_by_logo.order(is_allow: :desc).order(id: :asc)
 
       # 关键词
       keywords = ActiveRecord::Base::sanitize_sql(params[:keywords]&.strip)
