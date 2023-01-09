@@ -80,6 +80,16 @@ class Cases < ApplicationRecord
     nil
   end
 
+  # 手机端详情链接
+  def m_detail_url
+    url = detail_url
+    return url unless url.present?
+    uri = URI.parse(url)
+    uri.host = "m.#{uri.host}"
+    uri.path = uri.path.start_with?('/home') ? uri.path : "/home#{uri.path}"
+    uri.to_s
+  end
+
   # 项目地区
   def project_location
     area&.title
