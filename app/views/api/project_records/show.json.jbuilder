@@ -1,7 +1,7 @@
 json.id @project.id
 json.name @project.project_name #项目名称
 json.no @project.no # 项目编号
-json.detail_url @project.detail_url
+json.detail_url @project.m_detail_url
 json.finish_year @project.finish_year # 完工年份
 json.location @project.project_location # 项目地区
 json.project_type @project.project_type # 项目类型
