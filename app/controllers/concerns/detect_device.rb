@@ -9,8 +9,11 @@ module DetectDevice
 
   def set_variant_and_browser
     @browser = Browser.new(request.user_agent)
-    if @browser.mobile?
+    if @browser.mobile? || @browser.ipad?
       request.variant = :phone
+      unless request.fullpath =~ /^\/samples\/\d+/
+        redirect_to '/m/'
+      end
     end
   end
 end
