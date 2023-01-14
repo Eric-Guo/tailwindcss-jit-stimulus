@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  before_action only: [:index], if: -> { request.variant.include?(:phone) } do
+    redirect_to '/m/'
+  end
+
   def index
     @total = {
       material: Material.count + Sample.joins(:material).count,

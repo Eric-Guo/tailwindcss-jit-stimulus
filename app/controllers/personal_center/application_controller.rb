@@ -2,6 +2,9 @@
 
 module PersonalCenter
   class ApplicationController < ApplicationController
+    before_action if: -> { request.variant.include?(:phone) } do
+      redirect_to '/m/user'
+    end
     before_action :authenticate_user!
     before_action :get_no_read_message_count
 

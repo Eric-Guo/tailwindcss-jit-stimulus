@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class SamplesController < ApplicationController
+  before_action only: [:show], if: -> { request.variant.include?(:phone) } do
+    redirect_to "/m/samples/#{params[:id]}"
+  end
   before_action :authenticate_user!
 
   def show

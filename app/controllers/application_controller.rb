@@ -3,11 +3,11 @@
 class ApplicationController < ActionController::Base
   include DetectDevice
   wechat_api
-  before_action :login_in_as_dev_user, if: -> { Rails.env.development? }
-  before_action :set_ie_warning
-  before_action :set_tree_materials
-  before_action :set_sidebar_nav
-  before_action :set_footer_info
+  before_action :login_in_as_dev_user, if: -> { Rails.env.development? && !request.variant.include?(:phone) }
+  before_action :set_ie_warning, unless: -> { request.variant.include?(:phone) }
+  before_action :set_tree_materials, unless: -> { request.variant.include?(:phone) }
+  before_action :set_sidebar_nav, unless: -> { request.variant.include?(:phone) }
+  before_action :set_footer_info, unless: -> { request.variant.include?(:phone) }
   after_action :record_user_view_history, if: -> { Rails.env.production? }
 
   private

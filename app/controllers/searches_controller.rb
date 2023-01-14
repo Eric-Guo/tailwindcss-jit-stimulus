@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
+  before_action if: -> { request.variant.include?(:phone) } do
+    redirect_to "/m/search"
+  end
   before_action :authenticate_user!
 
   before_action :set_q_params
