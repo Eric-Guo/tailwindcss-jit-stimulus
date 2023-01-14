@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class ProjectsController < ApplicationController
+  before_action only: [:index], if: -> { request.variant.include?(:phone) } do
+    redirect_to '/m/projects'
+  end
+  before_action only: [:show], if: -> { request.variant.include?(:phone) } do
+    redirect_to "/m/projects/#{params[:id]}"
+  end
   before_action :authenticate_user!
   before_action do
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ManufacturerRecordsController < ApplicationController
+  before_action only: [:show], if: -> { request.variant.include?(:phone) } do
+    redirect_to "/m/manufacturer_records/#{params[:id]}"
+  end
   layout 'preview'
 
   def show
