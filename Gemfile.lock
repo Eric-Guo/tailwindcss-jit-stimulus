@@ -148,7 +148,7 @@ GEM
       addressable (~> 2.7)
       omniauth (~> 1.9)
       openid_connect (~> 1.2)
-    globalid (1.0.1)
+    globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
     honeybadger (5.0.2)
