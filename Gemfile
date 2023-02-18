@@ -29,7 +29,8 @@ gem "honeybadger"
 # gem "redis", "~> 4.0"
 
 gem 'devise'
-gem 'gitlab-omniauth-openid-connect', '~> 0.9.1', require: 'omniauth_openid_connect'
+gem 'omniauth_openid_connect'
+gem 'omniauth', '~> 1.9' # lock above omniauth version
 gem 'jwt'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
