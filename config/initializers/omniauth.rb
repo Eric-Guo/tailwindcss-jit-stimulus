@@ -7,12 +7,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     'https://sso.thape.com.cn'
   end
 
-  host = if Rails.env.development?
-    'matlib.test'
-  else
-    'sso.thape.com.cn'
-  end
-
   redirect_uri = if Rails.env.development?
     'https://matlib.test/auth/openid_connect/callback'
   elsif ENV['REAL_RAILS_ENV'] == 'staging'
@@ -39,8 +33,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            response_type: :code,
            uid_field: 'email',
            issuer: issuer,
-           client_auth_method: "query",
-           discovery: true,           
+           client_auth_method: 'query',
+           discovery: true,
            client_options: {
              identifier: openid_connect_identifier,
              secret: openid_connect_secret,
