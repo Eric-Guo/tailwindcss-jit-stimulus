@@ -147,7 +147,7 @@ GEM
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
-    honeybadger (5.1.0)
+    honeybadger (5.2.0)
     http (5.1.1)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
