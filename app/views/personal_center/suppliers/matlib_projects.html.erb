@@ -28,7 +28,9 @@
             </td>
             <td class="py-5 truncate" title="<%= project[:title] %>"><%= project[:title] %></td>
             <td class="py-5 truncate">
-              <div class="bg-gray-300" style="width: 140px; height: 105px;"></div>
+              <div style="width: 140px; height: 105px;">
+                <img class="w-full h-full object-cover" src="/<%= project[:cover] %>" alt="">
+              </div>
             </td>
           </tr>
         <% end %>
