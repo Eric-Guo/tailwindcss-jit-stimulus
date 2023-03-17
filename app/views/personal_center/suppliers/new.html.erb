@@ -10,7 +10,7 @@
       class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center"
       style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
     >
-        <div class="relative bg-white rounded-lg overflow-hidden" style="width: 1080px;">
+        <div class="relative bg-white rounded-lg overflow-hidden" style="width: 1080px;" data-controller="supplier-new-form">
           <button type="button" class="absolute top-2.5 right-2.5 z-50" data-action="click->turbo-modal#hide">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
@@ -23,6 +23,7 @@
           <div class="px-10 py-6 overflow-auto" style="height: 605px;">
             <%= form_tag personal_center_suppliers_path, method: :post, id: 'createManufacturerRecommend', data: {
               turbo_frame: '_top',
+              supplier_new_form_target: 'form',
             } do %>
               <div class="flex border-b border-gray-200">
                 <span class="relative text-lg border-b border-black font-bold" style="bottom: -1px;">供应商信息</span>
@@ -135,7 +136,7 @@
             <% end %>
           </div>
           <div class="text-sm flex gap-5 justify-center py-6">
-            <button type="submit" class="w-20 h-10 primary-button transition-all duration-300" form="createManufacturerRecommend">提交审核</button>
+            <button type="button" class="w-20 h-10 primary-button transition-all duration-300" data-action="click->supplier-new-form#submit">提交审核</button>
             <button type="button" class="w-20 h-10 cancel-button transition-all duration-300" data-action="click->modal#close">取消</button>
           </div>
         </div>
