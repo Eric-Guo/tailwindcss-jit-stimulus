@@ -175,7 +175,6 @@
 .popover-card .popover-card-content {
   @apply bg-white rounded p-4;
   width: 264px;
-  height: 180px;
 }
 
 .popover-card .popover-card-arrow {
@@ -183,14 +182,14 @@
 }
 
 .popover-card[class*="placement-top-"] {
-  padding-top: 16px;
-  top: 26px;
+  padding-bottom: 16px;
+  transform: translateY(calc(-100% - 26px));
 }
 
 .popover-card[class*="placement-top-"] .popover-card-arrow {
-  top: 10px;
-  border-top: 0 solid white;
-  border-bottom: 6px solid white;
+  bottom: 10px;
+  border-top: 6px solid white;
+  border-bottom: 0 solid white;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
 }
@@ -212,14 +211,14 @@
 }
 
 .popover-card[class*="placement-bottom-"] {
-  padding-bottom: 16px;
-  top: -196px;
+  padding-top: 16px;
+  top: 26px;
 }
 
 .popover-card[class*="placement-bottom-"] .popover-card-arrow {
-  bottom: 10px;
-  border-top: 6px solid white;
-  border-bottom: 0 solid white;
+  top: 10px;
+  border-top: 0 solid white;
+  border-bottom: 6px solid white;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
 }
