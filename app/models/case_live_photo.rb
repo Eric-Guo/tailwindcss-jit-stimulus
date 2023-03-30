@@ -3,6 +3,8 @@
 class CaseLivePhoto < ApplicationRecord
   include ApplicationHelper
 
+  has_many :tags, class_name: "CaseLivePhotoTag", foreign_key: "case_live_photo_id"
+
   def show_cover
     if cover != "" 
       matlib_file_path_prefix + cover

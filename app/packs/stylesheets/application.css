@@ -159,3 +159,83 @@
   color: #101820;
   border: 1px solid #101820;
 }
+
+.popover-card {
+  position: absolute;
+  opacity: 0;
+  transition: all ease-in-out .3s;
+  pointer-events: none;
+}
+
+.popover-wrapper:hover .popover-card {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.popover-card .popover-card-content {
+  @apply bg-white rounded p-4;
+  width: 264px;
+  height: 180px;
+}
+
+.popover-card .popover-card-arrow {
+  position: absolute;
+}
+
+.popover-card[class*="placement-top-"] {
+  padding-top: 16px;
+  top: 26px;
+}
+
+.popover-card[class*="placement-top-"] .popover-card-arrow {
+  top: 10px;
+  border-top: 0 solid white;
+  border-bottom: 6px solid white;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.popover-card.placement-top-left {
+  left: 0;
+}
+
+.popover-card.placement-top-left .popover-card-arrow {
+  left: 24px;
+}
+
+.popover-card.placement-top-right {
+  right: 0;
+}
+
+.popover-card.placement-top-right .popover-card-arrow {
+  right: 24px;
+}
+
+.popover-card[class*="placement-bottom-"] {
+  padding-bottom: 16px;
+  top: -196px;
+}
+
+.popover-card[class*="placement-bottom-"] .popover-card-arrow {
+  bottom: 10px;
+  border-top: 6px solid white;
+  border-bottom: 0 solid white;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.popover-card.placement-bottom-left {
+  left: 0;
+}
+
+.popover-card.placement-bottom-left .popover-card-arrow {
+  left: 24px;
+}
+
+.popover-card.placement-bottom-right {
+  right: 0;
+}
+
+.popover-card.placement-bottom-right .popover-card-arrow {
+  right: 24px;
+}
