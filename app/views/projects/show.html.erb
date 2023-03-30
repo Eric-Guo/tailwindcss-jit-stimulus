@@ -63,7 +63,7 @@
                           <%= tag.name %>
                         </div>
                         <% if tag.material %>
-                          <div class="popover-card">
+                          <div class="popover-card drop-shadow">
                             <div class="popover-card-content">
                               <div class="flex items-center">
                                 <div class="w-[50px] h-[50px]">
@@ -78,25 +78,23 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="border-0 border-t border-neutral-235 my-3"></div>
-                              <div>
-                                <% if tag.material.color.present? %>
-                                  <div class="text-sm truncate">
-                                    <span class="text-neutral-140">色系/色号:&ensp;&nbsp;</span>
-                                    <span title="<%= tag.material.color %>">
-                                      <%= tag.material.color %>
-                                    </span>
-                                  </div>
-                                <% end %>
-                                <% if tag.material.surface_effect_descriptions.present? %>
-                                  <div class="text-sm truncate">
-                                    <span class="text-neutral-140">表面效果:&emsp;</span>
-                                    <span title="<%= tag.material.surface_effect_descriptions %>">
-                                      <%= tag.material.surface_effect_descriptions %>
-                                    </span>
-                                  </div>
-                                <% end %>
-                              </div>
+                              <% lines = [] %>
+                              <% lines.push({ title: '色系/色号:&ensp;&nbsp;', content: tag.material.color }) if tag.material.color.present? %>
+                              <% lines.push({ title: '表面效果:&emsp;', content: tag.material.surface_effect_descriptions }) if tag.material.surface_effect_descriptions.present? %>
+
+                              <% if lines.present? %>
+                                <div class="border-0 border-t border-neutral-235 my-3"></div>
+                                <div>
+                                  <% lines.each do |line| %>
+                                    <div class="text-sm truncate">
+                                      <span class="text-neutral-140"><%= line[:title].html_safe %></span>
+                                      <span title="<%= line[:content] %>">
+                                        <%= line[:content] %>
+                                      </span>
+                                    </div>
+                                  <% end %>
+                                </div>
+                              <% end %>
                             </div>
                             <div class="popover-card-arrow"></div>
                           </div>

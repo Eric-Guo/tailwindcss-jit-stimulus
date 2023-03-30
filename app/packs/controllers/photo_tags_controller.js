@@ -95,6 +95,13 @@ export default class extends Controller {
     return x >= this.imgViewRange.width[0] && x <= this.imgViewRange.width[1] && y >= this.imgViewRange.height[0] && y <= this.imgViewRange.height[1];
   }
 
+  getImgViewPosition = (x, y) => {
+    return {
+      left: x - (this.imgViewSize.width - this.wrapperSize.width) / 2,
+      top: y - (this.imgViewSize.height - this.wrapperSize.height) / 2,
+    }
+  }
+
   setTags = () => {
     this.tagTargets.forEach(tag => {
       const xRate = Number(tag.dataset.x);
@@ -102,8 +109,9 @@ export default class extends Controller {
       const x = xRate * this.imgViewSize.width;
       const y = yRate * this.imgViewSize.height;
       if (!this.inImgViewRange(x, y)) return;
-      tag.style.left = `${x}px`;
-      tag.style.top = `${y}px`;
+      const { left, top } = this.getImgViewPosition(x, y);
+      tag.style.left = `${left}px`;
+      tag.style.top = `${top}px`;
       tag.style.display = '';
       const popoverCard = tag.querySelector('.popover-card');
       if (!popoverCard) return;
@@ -112,7 +120,7 @@ export default class extends Controller {
           popoverCard.classList.remove(item);
         }
       });
-      const placementClass = `placement-${yRate > 0.5 ? 'bottom' : 'top'}-${xRate > 0.5 ? 'right' : 'left'}`;
+      const placementClass = `placement-${yRate > 0.5 ? 'top' : 'bottom'}-${xRate > 0.5 ? 'right' : 'left'}`;
       popoverCard.classList.add(placementClass);
     });
   }
