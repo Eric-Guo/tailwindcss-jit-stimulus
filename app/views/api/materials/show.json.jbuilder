@@ -7,6 +7,18 @@ json.parent_id @material.parent_id
 json.grandpa_id @material.grandpa_id
 json.cover get_first_url(@material.cover)
 
+# 项目
+projects = @material.cases.limit(4)
+json.projects projects do |project|
+  json.id project.id
+  json.name project.project_name # 名称
+  json.location project.project_location # 地区
+  json.cover mat_img_url(project.web_cover) # 封面
+  json.material_tags project.material_tags # 材料标签
+  json.is_th project.is_th # 是否内部项目
+  json.is_th_str project.is_th_str # 是否内部项目描述
+end
+
 if @material.level == 2
   # 轮播图
   if @material.picture_arr.present?
@@ -23,18 +35,6 @@ if @material.level == 2
   json.common_parameters @material.material_info&.common_parameters # 常用参数
   json.installation_points @material.material_info&.points # 安装施工要点
   json.design_considerations @material.material_info&.design_considerations # 设计注意事项
-
-  # 项目
-  projects = @material.cases.limit(4)
-  json.projects projects do |project|
-    json.id project.id
-    json.name project.project_name # 名称
-    json.location project.project_location # 地区
-    json.cover mat_img_url(project.web_cover) # 封面
-    json.material_tags project.material_tags # 材料标签
-    json.is_th project.is_th # 是否内部项目
-    json.is_th_str project.is_th_str # 是否内部项目描述
-  end
 
   # 构造做法
   json.constructions @material.construction do |construction|
