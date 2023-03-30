@@ -41,22 +41,6 @@
   </div>
 <% end %>
 
-<%# 供应商信息 %>
-<% if material.manufacturers.present? %>
-  <div class="mt-20">
-    <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
-      <div>
-        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">供应商信息</span>
-        <span class="text-xl font-light">Manufacturer Information</span>
-      </div>
-      <a class="more-btn hidden" href="<%= root_path -%>">MORE+</a>
-    </div>
-    <div class="grid grid-cols-3 gap-4 mt-4">
-      <%= render partial: 'shared/manufacturers', locals: { manufacturers: material.manufacturers } -%>
-    </div>
-  </div>
-<% end %>
-
 <%# 案例 %>
 <% project_cases = @material.cases.limit(3) %>
 <% if project_cases.length > 0 %>
@@ -94,6 +78,22 @@
           </div>
         </a>
       <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%# 供应商信息 %>
+<% if material.manufacturers.present? %>
+  <div class="mt-20">
+    <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
+      <div>
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">供应商信息</span>
+        <span class="text-xl font-light">Manufacturer Information</span>
+      </div>
+      <a class="more-btn hidden" href="<%= root_path -%>">MORE+</a>
+    </div>
+    <div class="grid grid-cols-3 gap-4 mt-4">
+      <%= render partial: 'shared/manufacturers', locals: { manufacturers: material.manufacturers } -%>
     </div>
   </div>
 <% end %>
