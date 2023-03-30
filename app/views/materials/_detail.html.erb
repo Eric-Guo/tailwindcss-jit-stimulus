@@ -56,3 +56,44 @@
     </div>
   </div>
 <% end %>
+
+<%# 案例 %>
+<% project_cases = @material.cases.limit(3) %>
+<% if project_cases.length > 0 %>
+  <div class="mt-20">
+    <div class="flex flex-row items-center justify-between border-b-2 border-gray-100 border-solid pb-3">
+      <div>
+        <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem"><%= @material.name %>案例</span>
+        <span class="text-xl font-light">Projects</span>
+      </div>
+      <% if @material.cases.count > 3 %>
+        <a class="more-btn" href="<%= projects_path %>" target="_blank">MORE+</a>
+      <% end %>
+    </div>
+    <div class="grid grid-cols-3 gap-2.5" style="margin-top: 30px;">
+      <% project_cases.each do |project_case| %>
+        <a
+          class="bg-cover bg-center bg-no-repeat flex flex-col"
+          style="height: 296px; background-image: url('<%= mat_img_url(project_case.web_cover) %>');"
+          <%= project_case.permissions(current_user)[:info] ? "href=\"#{project_path(project_case)}\"".html_safe : '' %>
+        >
+          <div class="flex flex-row p-2.5 justify-end gap-1">
+            <% project_case.material_tags.each do |name| %>
+              <div class="bg-gray-500 bg-opacity-80 text-white text-sm px-2"><%= name %></div>
+            <% end %>
+          </div>
+          <div class="mt-auto h-20 pl-4 pr-5 pb-2.5 flex flex-row items-end black-mask">
+            <div class="text-white flex-1 w-0">
+              <div class="truncate" title="<%= project_case.project_name_and_location -%>">
+                <span class="text-lg"><%= text_with_default(project_case.project_name_and_location) -%></span>
+              </div>
+            </div>
+            <div class="text-white text-sm whitespace-nowrap flex-none ml-12">
+              <%= text_with_default(project_case.is_th_str) %>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+<% end %>
