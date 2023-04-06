@@ -16,6 +16,9 @@ class Cases < ApplicationRecord
   has_many :case_many_live_photos, foreign_key: :cases_id
   has_many :live_photos, class_name: 'CaseLivePhoto', through: :case_many_live_photos, source: :live_photo
 
+  has_many :case_many_design_photos, foreign_key: :cases_id
+  has_many :design_photos, class_name: 'CaseDesignPhoto', through: :case_many_design_photos, source: :design_photo
+
   has_many :case_many_relevant_document, foreign_key: :cases_id
   has_many :documents, class_name: 'CaseRelevantDocument', through: :case_many_relevant_document, source: :document
 
@@ -70,6 +73,36 @@ class Cases < ApplicationRecord
         tag_icon: file_tag[:icon],
         name: item.title,
         url: item.path,
+      }
+    end
+  end
+
+  # 实景照
+  def real_photos
+    @real_photos ||= live_photos.map do |photo|
+      {
+        title: photo.title,
+        cover: photo.show_cover,
+        path: photo.show_path,
+        tags: photo.tags.map do |tag|
+          {
+            xrate: tag.xrate,
+            yrate: tag.yrate,
+            name: tag.name,
+            material: tag.material,
+          }
+        end
+      }
+    end
+  end
+
+  # 效果图
+  def effect_pictures
+    @effect_pictures ||= design_photos.map do |photo|
+      {
+        title: photo.title,
+        cover: photo.show_cover,
+        path: photo.show_path,
       }
     end
   end
