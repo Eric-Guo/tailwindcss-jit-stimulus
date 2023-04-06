@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-class CaseLivePhoto < ApplicationRecord
+class CaseDesignPhoto < ApplicationRecord
   include ApplicationHelper
-
-  has_many :tags, class_name: "CaseLivePhotoTag", foreign_key: "case_live_photo_id"
 
   def show_cover
     if cover.present?

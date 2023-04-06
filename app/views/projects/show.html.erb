@@ -29,9 +29,10 @@
         data-material-carousel-dot-normal-class-value="border-transparent"
         data-material-carousel-dot-active-class-value="border-gray-900"
       >
-        <% if @project.live_photos.present? %>
+        <% photos = @project.real_photos + @project.effect_pictures %>
+        <% if photos.present? %>
           <div class="relative overflow-hidden" style="width: 1000px; height: 750px;" data-controller="picture-viewer">
-            <% @project.live_photos.each_with_index do |photo, i| %>
+            <% photos.each_with_index do |photo, i| %>
               <div
                 class="absolute top-0 left-0 w-full h-full cursor-pointer"
                 style="display: <%= i == 0 ? '' : 'none;' %>"
@@ -42,17 +43,17 @@
               >
                 <img
                   class="w-full h-full object-cover"
-                  src="<%= photo.show_path %>"
+                  src="<%= photo[:path] %>"
                   alt=""
                   data-picture-viewer-target="image"
                   data-photo-tags-target="img"
                 >
-                <% photo.tags.each do |tag| %>
+                <% photo[:tags]&.each do |tag| %>
                   <div
                     class="absolute popover-wrapper"
                     style="display: none;"
-                    data-x="<%= tag.xrate %>"
-                    data-y="<%= tag.yrate %>"
+                    data-x="<%= tag[:xrate] %>"
+                    data-y="<%= tag[:yrate] %>"
                     data-photo-tags-target="tag"
                   >
                     <div class="flex items-center">
@@ -60,27 +61,27 @@
                       <div class="w-3 h-0.5 bg-white"></div>
                       <div class="relative">
                         <div class="px-5 h-[26px] border border-white bg-black bg-opacity-70 text-sm text-white leading-6 rounded-full">
-                          <%= tag.name %>
+                          <%= tag[:name] %>
                         </div>
-                        <% if tag.material %>
+                        <% if tag[:material].present? %>
                           <div class="popover-card drop-shadow">
                             <div class="popover-card-content">
                               <div class="flex items-center">
                                 <div class="w-[50px] h-[50px]">
-                                  <img class="w-full h-full object-cover" src="<%= get_first_url(tag.material.cover) %>" alt="">
+                                  <img class="w-full h-full object-cover" src="<%= get_first_url(tag[:material].cover) %>" alt="">
                                 </div>
                                 <div class="ml-2.5">
                                   <div class="text-sm text-black">
-                                    <%= tag.material.name %>
+                                    <%= tag[:material].name %>
                                   </div>
                                   <div class="text-sm text-gray-400">
-                                    <%= tag.material.level_name %>
+                                    <%= tag[:material].level_name %>
                                   </div>
                                 </div>
                               </div>
                               <% lines = [] %>
-                              <% lines.push({ title: '色系/色号:&ensp;&nbsp;', content: tag.material.color }) if tag.material.color.present? %>
-                              <% lines.push({ title: '表面效果:&emsp;', content: tag.material.surface_effect_descriptions }) if tag.material.surface_effect_descriptions.present? %>
+                              <% lines.push({ title: '色系/色号:&ensp;&nbsp;', content: tag[:material].color }) if tag[:material].color.present? %>
+                              <% lines.push({ title: '表面效果:&emsp;', content: tag[:material].surface_effect_descriptions }) if tag[:material].surface_effect_descriptions.present? %>
 
                               <% if lines.present? %>
                                 <div class="border-0 border-t border-neutral-235 my-3"></div>
@@ -107,14 +108,14 @@
             <% end %>
           </div>
           <div class="flex flex-nowrap overflow-x-auto" style="margin-top: 15px; padding-bottom: 10px; gap: 15px;" data-action="wheel->material-carousel#dotContainerScroll">
-            <% @project.live_photos.each_with_index do |photo, i| %>
+            <% photos.each_with_index do |photo, i| %>
               <div
                 class="flex-none cursor-pointer border <%= i == 0 ? 'border-gray-900' : 'border-transparent' %>"
                 style="width: 188px; height: 188px;"
                 data-material-carousel-target="dotItem"
                 data-action="click->material-carousel#toDotIndex"
               >
-                <img class="w-full h-full object-cover" src="<%= photo.show_cover %>" alt="">
+                <img class="w-full h-full object-cover" src="<%= photo[:cover] %>" alt="">
               </div>
             <% end %>
           </div>
