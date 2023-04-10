@@ -113,6 +113,17 @@ export default class extends Controller {
       tag.style.left = `${left}px`;
       tag.style.top = `${top}px`;
       tag.style.display = '';
+      const dot = tag.querySelector('[data-type=dot]');
+      const line = tag.querySelector('[data-type=line]');
+      const text = tag.querySelector('[data-type=text]');
+      console.log(xRate);
+      if (xRate > 0.5) {
+        const dotWidth = dot.offsetWidth;
+        const lineWidth = line.offsetWidth;
+        const textWidth = text.offsetWidth;
+        line.style.transform = `translateX(-${dotWidth+lineWidth}px)`;
+        text.style.transform = `translateX(-${dotWidth+lineWidth+lineWidth+textWidth}px)`;
+      }
       const popoverCard = tag.querySelector('.popover-card');
       if (!popoverCard) return;
       popoverCard.classList.forEach(item => {
