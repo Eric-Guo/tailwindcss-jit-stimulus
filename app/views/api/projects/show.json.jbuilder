@@ -13,9 +13,21 @@ if @project.in_secret_time?
   json.secret_time @project.end_visibility_at.strftime('%Y-%m-%d %H:%M:%S') # 保密时间
 end
 # 轮播图
-json.banners @project.live_photos do |photo|
-  json.cover photo.show_cover
-  json.url photo.show_path
+json.banners (@project.real_photos + @project.effect_pictures) do |photo|
+  json.title photo[:title]
+  json.cover photo[:cover]
+  json.path photo[:path]
+  if photo[:tags].present?
+    json.tags photo[:tags] do |tag|
+      json.xrate tag[:xrate]
+      json.yrate tag[:yrate]
+      json.name tag[:name]
+      if tag[:material].present?
+        json.material_id tag[:material].id
+        json.material_name tag[:material].name
+      end
+    end
+  end
 end
 # 材料
 json.materials @project.case_materials.joins(:material).includes(:manufacturer) do |case_material|
