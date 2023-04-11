@@ -36,3 +36,8 @@ Stimulus.register('slideover', Slideover)
 const context = require.context("../controllers", true, /\.js$/)
 Stimulus.load(definitionsFromContext(context))
 
+document.addEventListener('contextmenu', (e) => {
+  if (e.target?.tagName.toLowerCase() === 'img') {
+    e.preventDefault();
+  }
+});
