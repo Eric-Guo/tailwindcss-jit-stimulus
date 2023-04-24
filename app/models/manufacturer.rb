@@ -21,7 +21,7 @@ class Manufacturer < ApplicationRecord
   # 企业宣传册
   has_many :brochures, class_name: 'ManufacturerBrochure'
 
-  default_scope { where(display: 1).where(deleted_at: nil).where(status: 'manufacturer_published') }
+  default_scope { where(display: 1).where(deleted_at: nil) }
 
   def self.sort_by_logo(sort = :desc)
     order(Arel.sql("CASE WHEN logo IS NULL THEN 0 WHEN logo = '' THEN 1 ELSE 2 END #{sort}"))
