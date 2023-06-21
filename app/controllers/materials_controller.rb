@@ -90,7 +90,8 @@ class MaterialsController < ApplicationController
         @projects = []
       end
     when 2
-      @projects = get_color_system_projects(@material)
+      @color_id = params["color_id"]&.strip
+      @projects = get_color_system_projects(@material, @color_id)
     when 3
       @color_id = params["color_id"]&.strip
       @projects = get_color_system_projects(@material, @color_id)
