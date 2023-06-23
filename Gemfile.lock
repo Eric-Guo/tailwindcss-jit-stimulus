@@ -163,6 +163,11 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    shakapacker (7.0.0)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     sqlite3 (1.6.3-arm64-darwin)
     sqlite3 (1.6.3-x86_64-darwin)
     sqlite3 (1.6.3-x86_64-linux)
@@ -183,11 +188,6 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0)
-    webpacker (6.0.0.rc.6)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -209,12 +209,12 @@ DEPENDENCIES
   rails (~> 7.0.5)
   rexml
   selenium-webdriver
+  shakapacker
   sqlite3 (~> 1.4)
   turbo-rails
   tzinfo-data
   web-console
   webdrivers
-  webpacker (~> 6.0.0.rc.6)
 
 RUBY VERSION
    ruby 3.0.2p107

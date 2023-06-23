@@ -10,7 +10,7 @@ gem "sqlite3", "~> 1.4"
 # Use Puma as the app server
 gem 'puma', '< 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "~> 6.0.0.rc.6"
+gem "shakapacker"
 gem "turbo-rails"
 
 gem "browser", require: "browser/browser"

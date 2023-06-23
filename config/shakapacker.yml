@@ -1,12 +1,13 @@
-# Note: You must restart bin/webpack-dev-server for changes to take effect
-
+---
 default: &default
   source_path: app/packs
   source_entry_path: entrypoints
   public_root_path: public
   public_output_path: packs
-  cache_path: tmp/webpacker
+  cache_path: tmp/shakapacker
   webpack_compile_output: true
+  # See https://github.com/shakacode/shakapacker#deployment
+  shakapacker_precompile: true
 
   # Additional paths webpack should look up modules
   # ['app/assets', 'engine/foo/app/assets']
@@ -14,6 +15,16 @@ default: &default
 
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
+
+  # Select loader to use, available options are 'babel' (default), 'swc' or 'esbuild'
+  webpack_loader: 'babel'
+
+  # Set to true to enable check for matching versions of shakapacker gem and NPM package - will raise an error if there is a mismatch or wildcard versioning is used
+  ensure_consistent_versioning: false
+
+  # Select whether the compiler will use SHA digest ('digest' option) or most most recent modified timestamp ('mtime') to determine freshness
+  compiler_strategy: digest
+
 
 development:
   <<: *default
