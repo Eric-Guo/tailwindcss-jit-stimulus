@@ -52,7 +52,7 @@
                   <% if @sample.sample_position_picture.present? %>
                     <img src="<%= mat_img_url(@sample.sample_position_picture.path) -%>" alt="">
                   <% else %>
-                    <img src="<%= image_pack_path('sample_location.png') -%>" alt="">
+                    <img src="<%= image_pack_path('static/images/sample_location.png') -%>" alt="">
                   <% end %>
                   <figcaption class="text-center mt-2">样板位置: <%= @sample.position -%></figcaption>
                 </figure>
