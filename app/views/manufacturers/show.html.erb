@@ -36,7 +36,7 @@
 
       <div class="flex" style="margin-top: 30px">
         <div class="p-3 flex-none border border-gray-200" style="width: 235px; height: 235px;">
-          <img class="w-full h-full object-scale-down" src="<%= mat_img_url(@manufacturer.logo, 'manufacturer_default_cover.png') -%>" alt="">
+          <img class="w-full h-full object-scale-down" src="<%= mat_img_url(@manufacturer.logo, 'static/images/manufacturer_default_cover.png') -%>" alt="">
         </div>
         <div class="ml-5 flex-1 text-lg text-black grid grid-cols-1 gap-3">
           <div class="flex">
@@ -320,7 +320,7 @@
         <% @other_manufacturers.each do |other_manufacturer| %>
           <a class="flex items-center border border-gray-200" href="<%= manufacturer_path(other_manufacturer) %>" style="width: 400px; height: 145px;">
             <div class="flex-none h-full border-r border-gray-200" style="width: 130px;">
-              <img class="w-full h-full object-scale-down" src="<%= mat_img_url(other_manufacturer.logo, 'manufacturer_default_cover.png') -%>" alt="">
+              <img class="w-full h-full object-scale-down" src="<%= mat_img_url(other_manufacturer.logo, 'static/images/manufacturer_default_cover.png') -%>" alt="">
             </div>
             <div class="flex-1 flex flex-col justify-end w-0" style="padding: 0 15px;">
               <div class="text-sm font-semibold truncate" title="<%= other_manufacturer.name %>">

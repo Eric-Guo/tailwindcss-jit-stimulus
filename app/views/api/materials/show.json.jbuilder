@@ -102,7 +102,7 @@ if @material.level == 3
       json.url mat_img_url(practical_application[:url])
     end
   else
-    json.practical_applications [{ name: '无', url: static_file_url(image_pack_path('materials-applications-default.jpg')) }]
+    json.practical_applications [{ name: '无', url: static_file_url(image_pack_path('static/images/materials-applications-default.jpg')) }]
   end
   # 样品
   json.samples @material.samples do |sample|
