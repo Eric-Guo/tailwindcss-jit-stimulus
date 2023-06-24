@@ -305,7 +305,7 @@
       <% manufacturer_cate[:manufacturers].each do |manufacturer| %>
         <a class="block relative w-full" style="padding-top: 100%;" href="<%= manufacturer_path(manufacturer[:id]) %>">
           <div class="absolute top-0 left-0 w-full h-full p-4">
-            <img class="w-full h-full object-scale-down" src="<%= mat_img_url(manufacturer[:logo], 'manufacturer_default_cover.png') -%>" alt="">
+            <img class="w-full h-full object-scale-down" src="<%= mat_img_url(manufacturer[:logo], 'static/images/manufacturer_default_cover.png') -%>" alt="">
           </div>
         </a>
       <% end %>

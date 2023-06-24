@@ -1,7 +1,7 @@
 <% manufacturers&.each do |manufacturer| %>
   <a class="flex items-center border border-gray-200 border-solid animate-fade-in-0.5" href="<%= manufacturer_path(manufacturer.id) %>" data-turbo="false">
     <div class="flex-none p-1" style="width: 140px; height: 140px;">
-      <img class="w-full h-full object-contain object-center" src="<%= mat_img_url(manufacturer.logo, 'manufacturer_default_cover.png') -%>" alt="">
+      <img class="w-full h-full object-contain object-center" src="<%= mat_img_url(manufacturer.logo, 'static/images/manufacturer_default_cover.png') -%>" alt="">
     </div>
     <div class="w-0 h-full border-r border-gray-200 border-solid"></div>
     <div class="py-2 pl-4 pr-2 flex-1">
