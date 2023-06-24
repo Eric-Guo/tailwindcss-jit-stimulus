@@ -46,16 +46,16 @@ class HomeController < ApplicationController
     @projects = Tops.where('top_model = ?', 'home_top_cases').where('case_id > ?', 0).order(top_sort: :desc)
 
     @material_cates = [
-      { no: 'A', cover: 'mat_nav_g1.jpg' },
-      { no: 'B', cover: 'mat_nav_g6.jpg' },
-      { no: 'C', cover: 'mat_nav_g3.jpg' },
-      { no: 'D', cover: 'mat_nav_g7.jpg' },
-      { no: 'E', cover: 'mat_nav_g2.jpg' },
-      { no: 'F', cover: 'mat_nav_g4.jpg' },
-      { no: 'G', cover: 'mat_nav_g5.jpg' },
-      { no: 'H', cover: 'mat_nav_g8.jpg' },
-      { no: 'Y', cover: 'mat_nav_g9.jpg' },
-      { no: 'Z', cover: 'mat_nav_g10.jpg' },
+      { no: 'A', cover: 'static/images/mat_nav_g1.jpg' },
+      { no: 'B', cover: 'static/images/mat_nav_g6.jpg' },
+      { no: 'C', cover: 'static/images/mat_nav_g3.jpg' },
+      { no: 'D', cover: 'static/images/mat_nav_g7.jpg' },
+      { no: 'E', cover: 'static/images/mat_nav_g2.jpg' },
+      { no: 'F', cover: 'static/images/mat_nav_g4.jpg' },
+      { no: 'G', cover: 'static/images/mat_nav_g5.jpg' },
+      { no: 'H', cover: 'static/images/mat_nav_g8.jpg' },
+      { no: 'Y', cover: 'static/images/mat_nav_g9.jpg' },
+      { no: 'Z', cover: 'static/images/mat_nav_g10.jpg' },
     ]
     materials = Material.where(no: @material_cates.pluck(:no)).where(level: 1).order(no: :asc).all
     @material_cates = @material_cates.each do |cate|
