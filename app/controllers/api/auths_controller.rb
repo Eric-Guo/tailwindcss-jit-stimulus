@@ -2,7 +2,7 @@
 
 module Api
   class AuthsController < ApplicationController
-    skip_before_action :authenticate_user!
+    skip_before_action :authenticate_any!
 
     def wxwork
       wechat_oauth2 do |user_name|

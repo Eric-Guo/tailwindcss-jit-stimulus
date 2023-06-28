@@ -2,10 +2,18 @@
 
 module Api
   class UsersController < ApplicationController
-    skip_before_action :authenticate_user!
+    skip_before_action :authenticate_any!
 
     def me
-      unless user_signed_in?
+      if user_signed_in?
+      elsif visitor_signed_in?
+        render json: {
+          type: 'visitor',
+          id: current_visitor.id,
+          code: current_visitor.code,
+          expired_at: current_visitor.expired_at.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+      else
         render json: nil
       end
     end

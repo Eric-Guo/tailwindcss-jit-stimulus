@@ -3,6 +3,8 @@
 module Api
   module My
     class MessagesController < ApplicationController
+      before_action :authenticate_user!
+
       def index
         @list = Notification.where(notifiable_type: 'cybros.user').where(notifiable_id: current_user.id).order(created_at: :desc)
 

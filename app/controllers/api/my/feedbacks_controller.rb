@@ -3,6 +3,8 @@
 module Api
   module My
     class FeedbacksController < ApplicationController
+      before_action :authenticate_user!
+
       def index
         @list = ManufacturerFeedback
           .includes(:replies, :question_types, :manufacturer)

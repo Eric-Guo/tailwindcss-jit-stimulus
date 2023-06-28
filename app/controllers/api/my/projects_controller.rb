@@ -3,6 +3,8 @@
 module Api
   module My
     class ProjectsController < ApplicationController
+      before_action :authenticate_user!
+
       def index
         @list = CaseDelegate.joins(:record)
     

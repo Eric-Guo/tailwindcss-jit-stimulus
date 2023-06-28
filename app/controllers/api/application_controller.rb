@@ -6,8 +6,7 @@ module Api
     helper ApplicationHelper
     include ActionController::Cookies
     wechat_api
-    before_action :authenticate_user!
-    before_action :login_in_as_dev_user, if: -> { Rails.env.development? }
+    before_action :authenticate_any!
     after_action :record_user_view_history, if: -> { Rails.env.production? }
 
     def pagination_params
@@ -16,12 +15,16 @@ module Api
       [page, page_size]
     end
 
-    private
-
-      def login_in_as_dev_user
-        sign_in User.where('clerk_code = ?', '019795').first unless user_signed_in?
+    def authenticate_any!
+      unless user_signed_in? || visitor_signed_in?
+        head :unauthorized
       end
+      if visitor_signed_in? && !current_visitor.effective?
+        redirect_to visitor_logout_path
+      end
+    end
 
+    private
       def record_user_view_history
         ReportViewHistory.create(controller_name: controller_path, action_name: action_name,
           clerk_code: current_user&.clerk_code, request_path: request.fullpath)

@@ -3,6 +3,8 @@
 module Api
   module My
     class ManufacturersController < ApplicationController
+      before_action :authenticate_user!
+
       def index
         @list = ManufacturerRecommend.where(user_id: current_user.id).order(created_at: :desc).order(id: :asc)
     
