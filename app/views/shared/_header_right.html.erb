@@ -65,7 +65,10 @@
       >
         <div class="px-3 py-2 text-left">
           <div class="text-black text-sm">访客 <%= current_visitor.id %></div>
+          <div class="text-neutral-140 text-sm">邀请码：</div>
           <div class="text-neutral-140 text-sm"><%= current_visitor.code %></div>
+          <div class="text-neutral-140 text-sm">有效期至：</div>
+          <div class="text-neutral-140 text-sm"><%= current_visitor.expired_at.strftime('%Y-%m-%d') %></div>
         </div>
         <div class="px-3 py-2 text-left text-black text-sm flex flex-col gap-2">
           <a href="<%= visitor_logout_path %>">退出登录</a>

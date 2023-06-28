@@ -6,7 +6,7 @@ class VisitorController < ApplicationController
   skip_before_action :set_footer_info
 
   def login
-    visitor = Visitor.find_by!(code: params[:code])
+    visitor = Visitor.where(enabled: true).where('expired_at > ?', Time.now).find_by!(code: params[:code])
     sign_in visitor
     redirect_to root_path
   end
