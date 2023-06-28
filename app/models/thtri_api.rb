@@ -117,4 +117,24 @@ class ThtriApi
     raise Exception.new(body['msg']) unless body['code'] == 0
     body['data']
   end
+
+  # 创建访客
+  def self.create_visitor(args, headers = {})
+    puts args
+    response = HTTP.headers(headers).post(generate_url('/thtri/visitors'), json: args)
+    body = JSON.parse(response.body.to_s)
+    raise Exception.new(body['msg']) unless body['code'] == 0
+    body['data']
+  end
+
+  # 更新访客
+  def self.update_visitor(args, headers = {})
+    response = HTTP.headers(headers).patch(generate_url("/thtri/visitors/#{args[:visitor_id]}"), json: args.except(:visitor))
+    puts generate_url("/thtri/visitors/#{args[:visitor_id]}")
+    puts args
+    puts response.body.to_s
+    body = JSON.parse(response.body.to_s)
+    raise Exception.new(body['msg']) unless body['code'] == 0
+    body['data']
+  end
 end

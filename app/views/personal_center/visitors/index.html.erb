@@ -1,0 +1,80 @@
+<%= render 'personal_center/frame', page: 'visitors' do -%>
+  <div class="relative">
+    <a
+      class="absolute right-0 -top-10 px-3 py-1 border rounded-lg border-black text-sm hover:bg-black hover:text-white"
+      data-turbo-frame="visitor_new_modal"
+      href="<%= new_personal_center_visitor_path %>"
+    >
+      新增外发链接
+    </a>
+    <div class="py-8">
+      <% if @list.present? %>
+        <table class="border text-sm w-full table-fixed">
+          <thead>
+            <tr class="bg-gray-50">
+              <td class="border px-5 py-4 whitespace-nowrap font-semibold w-40">操作</td>
+              <td class="border px-5 py-4 whitespace-nowrap font-semibold w-32">生成时间</td>
+              <td class="border px-5 py-4 whitespace-nowrap font-semibold w-96">链接</td>
+              <td class="border px-5 py-4 whitespace-nowrap font-semibold w-32">有效期</td>
+              <td class="border px-5 py-4 whitespace-nowrap font-semibold w-24">状态</td>
+              <td class="border px-5 py-4 whitespace-nowrap font-semibold">备注</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @list.each do |visitor| %>
+              <tr>
+                <td class="border text-center">
+                  <a
+                    class="border border-gray-300 rounded-lg px-3 text-gray-400 hover:bg-black hover:text-white"
+                    href="<%= edit_personal_center_visitor_path(visitor.id) %>"
+                    data-turbo-frame="visitor_edit_modal"
+                  >编辑</a>
+                  <% if visitor.effective? %>
+                    <%= form_tag disable_personal_center_visitor_path(visitor.id),
+                      method: :put,
+                      class: 'inline-block',
+                      onsubmit: 'this.querySelector(\'button\').disabled = true',
+                      data: {
+                        turbo: false,
+                      } do
+                    %>
+                      <button
+                        type="submit"
+                        class="border border-gray-300 rounded-lg px-3 text-gray-400 hover:bg-black hover:text-white",
+                        data-confirm="确定要取消分享么？"
+                      >
+                        取消分享
+                      </button>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="border p-5"><%= visitor.created_at&.strftime('%Y-%m-%d') %></td>
+                <td class="border p-5 break-all"><%= visitor_login_url(visitor.code) %></td>
+                <td class="border p-5"><%= visitor.expired_at&.strftime('%Y-%m-%d') %></td>
+                <td class="border p-5">
+                  <%= render partial: 'status', locals: { visitor: visitor } %>
+                </td>
+                <td class="border p-5"><%= visitor.remark %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="flex justify-center mt-8">
+          <%= render partial: 'shared/pagination', locals: {
+            total: @total,
+            page: @page,
+            page_size: @page_size,
+            path: personal_center_visitors_path(request.GET),
+            page_size_options: @page_size_options,
+          } %>
+        </div>
+      <% else %>
+        <div class="mt-12">
+          <%= render partial: 'personal_center/empty' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= turbo_frame_tag :visitor_new_modal %>
+  <%= turbo_frame_tag :visitor_edit_modal %>
+<% end %>

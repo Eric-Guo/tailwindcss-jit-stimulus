@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
   before_action :set_footer_info, unless: -> { request.variant.include?(:phone) }
   after_action :record_user_view_history, if: -> { Rails.env.production? }
 
+  def referer_redirect_to(url)
+    referer = request.headers['Referer']
+    if referer.present?
+      redirect_to referer
+    else
+      redirect_to url
+    end
+  end
+
   private
 
     def login_in_as_dev_user

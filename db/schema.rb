@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
-  create_table "application_sites", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "application_sites", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_application_sites_deleted_at"
   end
 
-  create_table "aq_manufacturers", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "aq_manufacturers", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["code"], name: "index_architecture_positions_on_code"
   end
 
@@ -67,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_areas_deleted_at"
   end
 
-  create_table "bids", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "bids", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.boolean "taken"
     t.text "amount", size: :long
     t.datetime "deadlined_at", precision: 3
@@ -79,7 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["updated_at"], name: "idx_bids_updated_at"
   end
 
-  create_table "brands", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "brands", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -94,7 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_brands_deleted_at"
   end
 
-  create_table "casbin_rule", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "casbin_rule", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "p_type", limit: 100
     t.string "v0", limit: 100
     t.string "v1", limit: 100
@@ -131,7 +132,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.boolean "is_da"
     t.string "ecm_files", limit: 191
     t.string "ecm_documents", limit: 191
-    t.string "ecm_desc", limit: 191
+    t.string "ecm_desc", limit: 500
     t.string "live_photos", limit: 191
     t.bigint "display", comment: "分类/产品id"
     t.string "source", limit: 191
@@ -205,6 +206,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_case_examines_deleted_at"
   end
 
+  create_table "case_live_photo_tags", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "name", limit: 191
+    t.string "xrate", limit: 191
+    t.string "yrate", limit: 191
+    t.bigint "direction"
+    t.bigint "case_live_photo_id", unsigned: true
+    t.bigint "material_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_case_live_photo_tags_deleted_at"
+  end
+
   create_table "case_live_photos", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -242,7 +256,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.bigint "case_relevant_document_id", null: false, unsigned: true
   end
 
-  create_table "case_material_color_systems", primary_key: ["cases_material_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "case_material_color_systems", primary_key: ["cases_material_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "cases_material_id", null: false, unsigned: true
     t.bigint "color_systems_id", null: false, unsigned: true
   end
@@ -252,7 +266,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.bigint "sample_id", null: false, unsigned: true
   end
 
-  create_table "case_material_surface_effects", primary_key: ["cases_material_id", "surface_effect_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "case_material_surface_effects", primary_key: ["cases_material_id", "surface_effect_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "cases_material_id", null: false, unsigned: true
     t.bigint "surface_effect_id", null: false, unsigned: true
   end
@@ -308,6 +322,89 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.boolean "is_da"
     t.json "ecm_files"
     t.json "ecm_documents"
+    t.string "ecm_desc", limit: 191
+    t.json "live_photos"
+    t.json "documents"
+    t.string "no", limit: 32, comment: "'案例编号'"
+    t.bigint "sys_user_id", unsigned: true
+    t.bigint "cl_online_id", unsigned: true
+    t.bigint "display"
+    t.string "source", limit: 191
+    t.string "web_cover", limit: 191
+    t.integer "top_at"
+    t.text "content"
+    t.string "en_name", comment: "'项目名称'"
+    t.bigint "area_id", unsigned: true
+    t.string "jzw_url", limit: 191
+    t.string "th_no", limit: 191
+    t.boolean "is_jzw"
+    t.bigint "zz_online_id", unsigned: true
+    t.bigint "cybros_user_id", unsigned: true
+    t.string "source_web_cover", limit: 191
+    t.string "confidentiality_agreement_size", limit: 191
+    t.datetime "end_visibility_at", precision: nil
+    t.string "status", limit: 191
+    t.datetime "published_at", precision: nil
+    t.bigint "confidential_time"
+    t.string "source_cover", limit: 191
+    t.string "web_cover_desc", limit: 191
+    t.string "confidentiality_agreement_path", limit: 191
+    t.string "cover", limit: 191
+    t.integer "visibility", limit: 1
+    t.string "confidentiality_agreement_name", limit: 191
+    t.boolean "is_external_case"
+    t.string "ecm_desc2", limit: 500, comment: "立面控制手册资料包说明"
+    t.index ["deleted_at"], name: "idx_cases_deleted_at"
+    t.index ["updated_at"], name: "idx_cases_updated_at"
+  end
+
+  create_table "cases_copy1", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "project_name", limit: 191
+    t.boolean "is_th"
+    t.string "case_no", limit: 191
+    t.string "business_type", limit: 191
+    t.string "project_type", limit: 191
+    t.string "project_location", limit: 191
+    t.string "design_unit", limit: 191
+    t.string "build_unit", limit: 191
+    t.string "finish_year", limit: 191
+    t.boolean "is_da"
+    t.json "ecm_files"
+    t.json "ecm_documents"
+    t.string "ecm_desc", limit: 191
+    t.json "live_photos"
+    t.json "documents"
+    t.string "no", limit: 191
+    t.bigint "sys_user_id", unsigned: true
+    t.bigint "cl_online_id", unsigned: true
+    t.bigint "display"
+    t.string "source", limit: 191
+    t.string "web_cover"
+    t.integer "top_at"
+    t.text "content"
+    t.string "en_name", limit: 191
+    t.index ["deleted_at"], name: "idx_cases_deleted_at"
+  end
+
+  create_table "cases_copy2", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "project_name", comment: "'项目名称'"
+    t.boolean "is_th"
+    t.string "case_no", limit: 191
+    t.string "business_type", limit: 191
+    t.string "project_type", limit: 191
+    t.string "project_location", limit: 191
+    t.string "design_unit", limit: 191
+    t.string "build_unit", limit: 191
+    t.string "finish_year", limit: 191
+    t.boolean "is_da"
+    t.json "ecm_files"
+    t.json "ecm_documents"
     t.string "ecm_desc", limit: 500, comment: "'立面控制手册资料包说明'"
     t.json "live_photos"
     t.json "documents"
@@ -340,37 +437,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.string "confidentiality_agreement_name", limit: 191
     t.boolean "is_external_case"
     t.index ["deleted_at"], name: "idx_cases_deleted_at"
-  end
-
-  create_table "cases_copy1", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
-    t.datetime "deleted_at", precision: nil
-    t.string "project_name", limit: 191
-    t.boolean "is_th"
-    t.string "case_no", limit: 191
-    t.string "business_type", limit: 191
-    t.string "project_type", limit: 191
-    t.string "project_location", limit: 191
-    t.string "design_unit", limit: 191
-    t.string "build_unit", limit: 191
-    t.string "finish_year", limit: 191
-    t.boolean "is_da"
-    t.json "ecm_files"
-    t.json "ecm_documents"
-    t.string "ecm_desc", limit: 191
-    t.json "live_photos"
-    t.json "documents"
-    t.string "no", limit: 191
-    t.bigint "sys_user_id", unsigned: true
-    t.bigint "cl_online_id", unsigned: true
-    t.bigint "display"
-    t.string "source", limit: 191
-    t.string "web_cover"
-    t.integer "top_at"
-    t.text "content"
-    t.string "en_name", limit: 191
-    t.index ["deleted_at"], name: "idx_cases_deleted_at"
+    t.index ["updated_at"], name: "idx_cases_updated_at"
   end
 
   create_table "cases_material", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -407,78 +474,79 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_cases_material_deleted_at"
   end
 
-  create_table "cl_manufacturers", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "cl_manufacturers", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.bigint "sys_user_id", unsigned: true
     t.bigint "manufacturer_id", unsigned: true
     t.string "name", limit: 191
-    t.text "logo"
-    t.text "main_material_remark"
-    t.text "location"
+    t.text "logo", size: :medium
+    t.text "main_material_remark", size: :medium
+    t.text "location", size: :medium
     t.string "contact", limit: 191, comment: "'联系人'"
     t.string "address", limit: 191, comment: "'地址'"
-    t.text "contact_information"
-    t.text "website"
-    t.text "materials"
+    t.text "contact_information", size: :medium
+    t.text "website", size: :medium
+    t.text "materials", size: :medium
     t.bigint "cl_online_id", unsigned: true
     t.json "performance_display"
+    t.text "manufacturer_contact", size: :long, comment: "联系人"
     t.index ["deleted_at"], name: "idx_cl_manufacturers_deleted_at"
   end
 
-  create_table "cl_material_infos", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "cl_material_infos", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.string "name", limit: 191
-    t.text "remark"
-    t.text "en_name"
-    t.text "cover"
+    t.text "remark", size: :medium
+    t.text "en_name", size: :medium
+    t.text "cover", size: :medium
     t.bigint "material_id", unsigned: true
-    t.text "technologies"
-    t.text "scope"
-    t.text "common_parameters"
-    t.text "advantage"
-    t.text "shortcoming"
+    t.text "technologies", size: :medium
+    t.text "scope", size: :medium
+    t.text "common_parameters", size: :medium
+    t.text "advantage", size: :medium
+    t.text "shortcoming", size: :medium
     t.float "high_price", limit: 53
     t.float "low_price", limit: 53
-    t.text "points"
-    t.text "design_considerations"
-    t.text "practice_details"
-    t.text "source_file"
+    t.text "points", size: :medium
+    t.text "design_considerations", size: :medium
+    t.text "practice_details", size: :medium
+    t.text "source_file", size: :medium
     t.bigint "cl_online_id", unsigned: true
     t.binary "practical_applications"
-    t.text "qa_proposal"
-    t.text "combination_proposal"
+    t.text "qa_proposal", size: :medium
+    t.text "combination_proposal", size: :medium
     t.binary "sku_picture_ids", size: :long
     t.binary "body", size: :long
     t.index ["deleted_at"], name: "idx_cl_material_infos_deleted_at"
   end
 
-  create_table "cl_material_products", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "cl_material_products", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.bigint "material_id", unsigned: true
     t.string "name", limit: 191
-    t.text "remark"
-    t.text "cover"
+    t.text "remark", size: :medium
+    t.text "cover", size: :medium
     t.bigint "color_system_id", unsigned: true
-    t.text "color_system"
-    t.text "section"
-    t.text "surface_effects"
-    t.text "practical_applications"
-    t.text "origin"
+    t.text "color_system", size: :medium
+    t.text "section", size: :medium
+    t.text "surface_effects", size: :medium
+    t.text "practical_applications", size: :medium
+    t.text "origin", size: :medium
     t.integer "is_common", limit: 1
     t.integer "is_customized", limit: 1
-    t.text "customized"
-    t.text "points"
-    t.text "high_price"
-    t.text "low_price"
-    t.text "su_picture"
-    t.text "practice_details"
-    t.text "source_file"
+    t.text "customized", size: :medium
+    t.text "points", size: :medium
+    t.text "high_price", size: :medium
+    t.text "low_price", size: :medium
+    t.text "su_picture", size: :medium
+    t.text "practice_details", size: :medium
+    t.text "source_file", size: :medium
     t.string "color_systems", limit: 191
     t.bigint "manufacturer_id", unsigned: true
     t.binary "body", size: :long
@@ -486,7 +554,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["material_id"], name: "idx_cl_material_products_material_id", unique: true
   end
 
-  create_table "cl_materials", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "cl_materials", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -494,6 +562,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.string "name", limit: 191
     t.string "en_name", limit: 191
     t.index ["deleted_at"], name: "idx_cl_materials_deleted_at"
+  end
+
+  create_table "clzx_data", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "type_id", limit: 191
+    t.binary "data", size: :long
+    t.string "md5", limit: 191
+    t.bigint "obj_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_clzx_data_deleted_at"
   end
 
   create_table "color_systems", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -505,7 +584,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_one_by_ones_deleted_at"
   end
 
-  create_table "cool_website_categories", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "cool_website_categories", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -514,7 +593,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_cool_website_categories_deleted_at"
   end
 
-  create_table "cool_websites", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "cool_websites", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -554,8 +633,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.bigint "demand_type"
-    t.string "description", limit: 191
-    t.string "references", limit: 191
+    t.text "description"
+    t.text "references"
     t.string "ip", limit: 191
     t.string "user_name", limit: 191
     t.string "clerk_code", limit: 191
@@ -564,7 +643,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_demands_deleted_at"
   end
 
-  create_table "exa_customers", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "exa_customers", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -575,7 +654,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_exa_customers_deleted_at"
   end
 
-  create_table "exa_file_chunks", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "exa_file_chunks", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -585,7 +664,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_exa_file_chunks_deleted_at"
   end
 
-  create_table "exa_file_upload_and_downloads", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "exa_file_upload_and_downloads", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -598,7 +677,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_exa_file_upload_and_downloads_deleted_at"
   end
 
-  create_table "exa_files", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "exa_files", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -610,7 +689,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_exa_files_deleted_at"
   end
 
-  create_table "exa_simple_uploaders", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "exa_imgs", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "file_name", limit: 191
+    t.string "file_md5", limit: 191
+    t.string "file_path", limit: 191
+    t.bigint "size"
+    t.index ["deleted_at"], name: "idx_exa_imgs_deleted_at"
+  end
+
+  create_table "exa_simple_uploaders", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "chunk_number", limit: 191, comment: "当前切片标记"
     t.string "current_chunk_size", limit: 191, comment: "当前切片容量"
     t.string "current_chunk_path", limit: 191, comment: "切片本地路径"
@@ -672,7 +762,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_external_users_deleted_at"
   end
 
-  create_table "inspiration_pools", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "inspiration_pools", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -683,7 +773,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_inspiration_pools_deleted_at"
   end
 
-  create_table "inspirations", id: { type: :bigint, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
+  create_table "inspirations", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -705,7 +795,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_invitation_codes_deleted_at"
   end
 
-  create_table "jwt_blacklists", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "jwt_blacklists", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -731,9 +821,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
   create_table "manufacturer_areas", primary_key: ["manufacturer_id", "area_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "manufacturer_id", null: false, unsigned: true
     t.bigint "area_id", null: false, unsigned: true
+    t.bigint "manufacturer_history_id", unsigned: true
   end
 
-  create_table "manufacturer_brands", primary_key: ["manufacturer_id", "brands_id"], charset: "utf8mb3", force: :cascade do |t|
+  create_table "manufacturer_brands", primary_key: ["manufacturer_id", "brands_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "manufacturer_id", null: false, unsigned: true
     t.bigint "brands_id", null: false, unsigned: true
   end
@@ -782,6 +873,38 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.bigint "sys_user_id", unsigned: true
     t.bigint "external_user_id", unsigned: true
     t.index ["deleted_at"], name: "idx_manufacturer_examines_deleted_at"
+  end
+
+  create_table "manufacturer_feedback_question_type", primary_key: ["manufacturer_feedback_id", "question_type_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "manufacturer_feedback_id", null: false, unsigned: true
+    t.bigint "question_type_id", null: false, unsigned: true
+  end
+
+  create_table "manufacturer_feedback_replies", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "manufacturer_feedback_id", unsigned: true
+    t.string "content", limit: 191
+    t.integer "status"
+    t.bigint "sys_user_id", unsigned: true
+    t.string "sys_user_name", limit: 191
+    t.index ["deleted_at"], name: "idx_manufacturer_feedback_replies_deleted_at"
+  end
+
+  create_table "manufacturer_feedbacks", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "manufacturer_id", unsigned: true
+    t.string "opinion", limit: 191
+    t.string "screenshot_path", limit: 191
+    t.bigint "user_id", unsigned: true
+    t.binary "references", size: :long
+    t.datetime "resolved_at", precision: nil
+    t.bigint "sys_user_id", unsigned: true
+    t.integer "status"
+    t.index ["deleted_at"], name: "idx_manufacturer_feedbacks_deleted_at"
   end
 
   create_table "manufacturer_histories", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -917,6 +1040,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_manufacturer_records_deleted_at"
   end
 
+  create_table "manufacturer_votes", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "manufacturer_id", unsigned: true
+    t.bigint "vote"
+    t.bigint "user_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_manufacturer_votes_deleted_at"
+  end
+
   create_table "manufacturers", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -955,6 +1088,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.bigint "external_user_id", unsigned: true
     t.string "usc_code", limit: 191
     t.index ["deleted_at"], name: "idx_manufacturers_deleted_at"
+    t.index ["logo"], name: "idx_manufacturers_logo"
   end
 
   create_table "material_history_manufacturers", primary_key: ["manufacturer_histories_id", "material_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -1014,7 +1148,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.bigint "area_id", null: false, unsigned: true
   end
 
-  create_table "material_product_color_systems", primary_key: ["material_product_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "material_product_color_systems", primary_key: ["material_product_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "material_product_id", null: false, unsigned: true
     t.bigint "color_systems_id", null: false, unsigned: true
   end
@@ -1053,6 +1187,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.bigint "color_system_id", comment: "色系表", unsigned: true
     t.json "practical_applications"
     t.string "keyword", limit: 191
+    t.binary "su_picture_md5", size: :long
     t.index ["deleted_at"], name: "idx_material_products_deleted_at"
     t.index ["material_id"], name: "idx_material_products_material_id", unique: true
   end
@@ -1063,7 +1198,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.datetime "deleted_at", precision: nil
     t.bigint "user_id", unsigned: true
     t.string "name", limit: 191
-    t.string "cover", limit: 191
+    t.text "cover"
     t.bigint "level"
     t.string "no", limit: 191
     t.string "en_name", limit: 191
@@ -1100,12 +1235,32 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_mr_case_live_photos_deleted_at"
   end
 
-  create_table "news", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "news", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.string "title", limit: 191
-    t.string "subtitle", limit: 191
+    t.string "subtitle", limit: 191, comment: "'副标题'"
+    t.string "mold_name", limit: 191
+    t.string "cover", comment: "'图片'"
+    t.text "url"
+    t.bigint "cl_online_id", unsigned: true
+    t.bigint "display"
+    t.datetime "published_at", precision: nil
+    t.bigint "manufacturer_id", unsigned: true
+    t.bigint "material_id", unsigned: true
+    t.integer "top", default: 0
+    t.string "source", limit: 191
+    t.boolean "is_official"
+    t.index ["deleted_at"], name: "idx_news_deleted_at"
+  end
+
+  create_table "news_copy1", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "title", limit: 191
+    t.string "subtitle", limit: 191, comment: "'副标题'"
     t.string "mold_name", limit: 191
     t.string "cover", comment: "'图片'"
     t.text "url"
@@ -1192,6 +1347,71 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_quality_controls_deleted_at"
   end
 
+  create_table "question_types", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "name", limit: 191
+    t.bigint "order_id"
+    t.index ["deleted_at"], name: "idx_question_types_deleted_at"
+  end
+
+  create_table "recommend_material_product_areas", primary_key: ["recommend_material_products_id", "area_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "recommend_material_products_id", null: false, unsigned: true
+    t.bigint "area_id", null: false, unsigned: true
+  end
+
+  create_table "recommend_material_product_color_systems", primary_key: ["recommend_material_products_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "recommend_material_products_id", null: false, unsigned: true
+    t.bigint "color_systems_id", null: false, unsigned: true
+  end
+
+  create_table "recommend_material_product_surface_effects", primary_key: ["recommend_material_products_id", "surface_effect_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "recommend_material_products_id", null: false, unsigned: true
+    t.bigint "surface_effect_id", null: false, unsigned: true
+  end
+
+  create_table "recommend_material_products", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "external_user_id", unsigned: true
+    t.bigint "color_system_id"
+    t.binary "cover", size: :long
+    t.string "customized", limit: 191
+    t.string "high_price", limit: 191
+    t.boolean "is_common"
+    t.boolean "is_customized"
+    t.string "keyword", limit: 191
+    t.string "low_price", limit: 191
+    t.bigint "material_id", unsigned: true
+    t.string "origin", limit: 191
+    t.string "points", limit: 191
+    t.string "sections", limit: 191
+    t.binary "practical_applications", size: :long
+    t.binary "su_picture", size: :long
+    t.binary "practice_details", size: :long
+    t.binary "source_file", size: :long
+    t.string "name", limit: 191
+    t.string "status", limit: 191
+    t.bigint "level3_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_recommend_material_products_deleted_at"
+  end
+
+  create_table "recommend_products_examines", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.datetime "closed_at", precision: nil
+    t.bigint "recommend_material_product_id", unsigned: true
+    t.bigint "external_user_id", unsigned: true
+    t.bigint "sys_user_id", unsigned: true
+    t.string "status", limit: 191
+    t.string "reason", limit: 191
+    t.string "re_reason", limit: 191
+    t.index ["deleted_at"], name: "idx_recommend_products_examines_deleted_at"
+  end
+
   create_table "report_view_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "controller_name"
     t.string "action_name"
@@ -1248,6 +1468,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.string "aq_name", limit: 191
     t.string "aq_sample_id"
     t.string "created_date", limit: 191
+    t.string "brand_alias", limit: 191
+    t.string "sample_print_name", limit: 191
     t.index ["deleted_at"], name: "idx_sample_deleted_at"
   end
 
@@ -1274,12 +1496,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_sample_aq_info_deleted_at"
   end
 
-  create_table "sample_color_systems", primary_key: ["sample_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "sample_color_systems", primary_key: ["sample_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "sample_id", null: false, unsigned: true
     t.bigint "color_systems_id", null: false, unsigned: true
   end
 
-  create_table "sample_enclosures", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "sample_enclosures", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1321,7 +1543,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_sample_position_pictures_deleted_at"
   end
 
-  create_table "sample_surface_effects", primary_key: ["sample_id", "surface_effect_id"], charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "sample_surface_effects", primary_key: ["sample_id", "surface_effect_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "sample_id", null: false, unsigned: true
     t.bigint "surface_effect_id", null: false, unsigned: true
   end
@@ -1337,7 +1559,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_surface_effects_deleted_at"
   end
 
-  create_table "super_staffs", charset: "utf8mb3", force: :cascade do |t|
+  create_table "super_staffs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "clerk_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -1354,7 +1576,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_surface_effects_deleted_at"
   end
 
-  create_table "sys_apis", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "sys_apis", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1365,7 +1587,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_sys_apis_deleted_at"
   end
 
-  create_table "sys_authorities", primary_key: "authority_id", id: { type: :string, limit: 90, comment: "角色ID" }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "sys_authorities", primary_key: "authority_id", id: { type: :string, limit: 90, comment: "角色ID" }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1375,12 +1597,54 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["authority_id"], name: "authority_id", unique: true
   end
 
+  create_table "sys_authority_btns", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "authority_id", comment: "角色ID", unsigned: true
+    t.bigint "sys_menu_id", comment: "菜单ID", unsigned: true
+    t.bigint "sys_base_menu_btn_id", comment: "菜单按钮ID", unsigned: true
+  end
+
   create_table "sys_authority_menus", primary_key: ["sys_base_menu_id", "sys_authority_authority_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "sys_base_menu_id", null: false, unsigned: true
     t.string "sys_authority_authority_id", limit: 90, null: false, comment: "角色ID"
   end
 
-  create_table "sys_base_menu_parameters", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "sys_auto_code_histories", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: 3
+    t.datetime "updated_at", precision: 3
+    t.datetime "deleted_at", precision: 3
+    t.string "package", limit: 191
+    t.string "table_name", limit: 191
+    t.text "request_meta"
+    t.text "auto_code_path"
+    t.text "injection_meta"
+    t.string "struct_name", limit: 191
+    t.string "struct_cn_name", limit: 191
+    t.string "api_ids", limit: 191
+    t.bigint "flag"
+    t.index ["deleted_at"], name: "idx_sys_auto_code_histories_deleted_at"
+  end
+
+  create_table "sys_auto_codes", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: 3
+    t.datetime "updated_at", precision: 3
+    t.datetime "deleted_at", precision: 3
+    t.string "package_name", limit: 191, comment: "包名"
+    t.string "label", limit: 191, comment: "展示名"
+    t.string "desc", limit: 191, comment: "描述"
+    t.index ["deleted_at"], name: "idx_sys_auto_codes_deleted_at"
+  end
+
+  create_table "sys_base_menu_btns", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: 3
+    t.datetime "updated_at", precision: 3
+    t.datetime "deleted_at", precision: 3
+    t.string "name", limit: 191, comment: "按钮关键key"
+    t.string "desc", limit: 191
+    t.bigint "sys_base_menu_id", comment: "菜单ID", unsigned: true
+    t.index ["deleted_at"], name: "idx_sys_base_menu_btns_deleted_at"
+  end
+
+  create_table "sys_base_menu_parameters", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1410,12 +1674,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_sys_base_menus_deleted_at"
   end
 
-  create_table "sys_data_authority_id", primary_key: ["sys_authority_authority_id", "data_authority_id_authority_id"], charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "sys_data_authority_id", primary_key: ["sys_authority_authority_id", "data_authority_id_authority_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "sys_authority_authority_id", limit: 90, null: false, comment: "角色ID"
     t.string "data_authority_id_authority_id", limit: 90, null: false, comment: "角色ID"
   end
 
-  create_table "sys_dictionaries", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "sys_dictionaries", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1426,7 +1690,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_sys_dictionaries_deleted_at"
   end
 
-  create_table "sys_dictionary_details", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "sys_dictionary_details", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1438,7 +1702,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_sys_dictionary_details_deleted_at"
   end
 
-  create_table "sys_operation_records", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "sys_operation_records", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1452,10 +1716,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.text "body", size: :long, comment: "请求Body"
     t.text "resp", size: :long, comment: "响应Body"
     t.bigint "user_id", comment: "用户id", unsigned: true
+    t.string "app_id", limit: 191
     t.index ["deleted_at"], name: "idx_sys_operation_records_deleted_at"
   end
 
-  create_table "sys_users", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "sys_user_authority", primary_key: ["sys_user_id", "sys_authority_authority_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "sys_user_id", null: false, unsigned: true
+    t.bigint "sys_authority_authority_id", null: false, comment: "角色ID", unsigned: true
+  end
+
+  create_table "sys_users", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1479,7 +1749,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_technology_deleted_at"
   end
 
-  create_table "th_demands", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "th_api_salts", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "app_name", limit: 191
+    t.string "salt", limit: 191
+    t.string "app_id", limit: 191
+    t.index ["deleted_at"], name: "idx_th_api_salts_deleted_at"
+  end
+
+  create_table "th_demands", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1490,7 +1770,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.index ["deleted_at"], name: "idx_th_demands_deleted_at"
   end
 
-  create_table "th_users", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "th_users", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -1544,7 +1824,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.string "post_name", limit: 191
     t.string "email", limit: 191
     t.bigint "is_out"
+    t.datetime "locked_at", precision: nil
+    t.string "chinese_name", limit: 191
+    t.string "wecom_id", limit: 191
+    t.bigint "job_level"
     t.index ["deleted_at"], name: "idx_users_deleted_at"
+  end
+
+  create_table "visitors", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "code", limit: 191
+    t.bigint "user_id", unsigned: true
+    t.datetime "expired_at", precision: nil
+    t.boolean "enabled"
+    t.string "remark", limit: 191
+    t.index ["deleted_at"], name: "idx_visitors_deleted_at"
   end
 
 end

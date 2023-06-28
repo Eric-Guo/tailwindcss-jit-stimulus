@@ -20,6 +20,10 @@
       zh: '供应商推荐',
       en: 'Recommended Manufacturers',
     },
+    visitors: {
+      zh: '我的访客邀请',
+      en: 'Visitor Invitation',
+    },
     helper_center: {
       zh: '帮助中心',
       en: 'Help Center',
@@ -97,6 +101,13 @@
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
           <a data-turbo="false" href="<%= personal_center_suppliers_path %>" class="material-nav-item-header-title truncate block w-full">
             <span><%= pages[:suppliers][:zh] %></span>
+          </a>
+        </div>
+      </div>
+      <div class="material-nav-item mb-5 <%= page == :visitors ? 'active' : '' %>" data-material-nav-target="navItem">
+        <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
+          <a data-turbo="false" href="<%= personal_center_visitors_path %>" class="material-nav-item-header-title truncate block w-full">
+            <span><%= pages[:visitors][:zh] %></span>
           </a>
         </div>
       </div>

@@ -1,0 +1,82 @@
+<%= turbo_frame_tag :visitor_new_modal do %>
+  <div
+    data-controller="modal turbo-modal"
+    data-modal-allow-background-close="false"
+    data-modal-disable-backdrop="true"
+    data-turbo-modal-auto-show-value="true"
+  >
+    <div
+      data-modal-target="container"
+      class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center"
+      style="z-index: 1000; background-color: rgba(0, 0, 0, 0.5);"
+    >
+        <div class="relative bg-white rounded-lg overflow-hidden -mt-24" style="width: 540px;" data-controller="visitor-new-form">
+          <button type="button" class="absolute top-2.5 right-2.5 z-50" data-action="click->turbo-modal#hide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+              <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+            </svg>
+          </button>
+          <div class="bg-black h-10 text-white text-lg flex justify-center items-center px-3">
+            新增外发链接
+          </div>
+          <div class="px-10 my-6">
+            <%= form_tag personal_center_visitors_path, method: :post, id: 'createVisitor', data: {
+                turbo_frame: '_top',
+                visitor_new_form_target: 'form',
+              } do %>
+              <div class="flex flex-col">
+                <label for="expired_at_type"><span class="text-red">*</span>有效期:</label>
+                <%= render partial: 'shared/matlib_form/select', locals: {
+                  id: 'expired_at_type',
+                  class_name: 'mt-1',
+                  name: 'expired_at_type',
+                  value: 'today',
+                  options: [
+                    { label: '今天', value: 'today' },
+                    { label: '本周', value: 'week' },
+                    { label: '本月', value: 'month' },
+                    { label: '指定时间', value: 'custom' },
+                  ],
+                  html_attr: {
+                    'data-visitor-new-form-target': 'timeType',
+                    'data-action': 'change->visitor-new-form#timeTypeChange'
+                  }
+                } %>
+              </div>
+              <div class="mt-4 flex flex-col">
+                <label for="expired_at"><span class="text-red">*</span>结束时间:</label>
+                <%= render partial: 'shared/matlib_form/input_date', locals: {
+                  id: 'expired_at',
+                  class_name: 'mt-1 read-only:bg-gray-100',
+                  name: 'expired_at',
+                  value: Time.now.strftime('%Y-%m-%d'),
+                  html_attr: {
+                    'required': 'true',
+                    'data-visitor-new-form-target': 'time',
+                    'readonly': 'true'
+                  }
+                } %>
+              </div>
+              <div class="mt-4 flex flex-col">
+                <label for="remark">备注:</label>
+                <%= render partial: 'shared/matlib_form/textarea', locals: {
+                  id: 'remark',
+                  name: 'remark',
+                  class_name: 'mt-1 flex-1 resize-none shadow-none',
+                  html_attr: {
+                    'placeholder': '',
+                    'rows': 3,
+                  }
+                } %>
+              </div>
+            <% end %>
+          </div>
+          <div class="text-sm flex gap-5 justify-center py-6">
+            <button type="button" class="w-20 h-10 primary-button transition-all duration-300" data-action="click->visitor-new-form#submit">生成链接</button>
+            <button type="button" class="w-20 h-10 cancel-button transition-all duration-300" data-action="click->modal#close">取消</button>
+          </div>
+        </div>
+    </div>
+  </div>
+<% end %>
