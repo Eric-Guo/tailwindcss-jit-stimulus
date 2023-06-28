@@ -3,6 +3,8 @@
 class Visitor < ActiveRecord::Base
   devise :database_authenticatable
 
+  attr_accessor :encrypted_password
+
   default_scope { where(deleted_at: nil) }
 
   def effective?

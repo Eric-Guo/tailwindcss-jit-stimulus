@@ -1,5 +1,11 @@
 <%= render partial: 'shared/header', locals: {} -%>
 
-<%= form_tag '/auth/openid_connect', method: 'get', remote: false, data: { turbo: false } do %>
-  <button type='submit' class="mt-20 text-center w-full">点击登陆</button>
+<% if Rails.env.development? %>
+  <%= form_tag dev_auth_login_path, method: 'get', remote: false, data: { turbo: false } do %>
+    <button type='submit' class="mt-20 text-center w-full">点击登陆</button>
+  <% end %>
+<% else %>
+  <%= form_tag '/auth/openid_connect', method: 'get', remote: false, data: { turbo: false } do %>
+    <button type='submit' class="mt-20 text-center w-full">点击登陆</button>
+  <% end %>
 <% end %>

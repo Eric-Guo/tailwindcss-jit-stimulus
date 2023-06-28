@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   before_action if: -> { request.variant.include?(:phone) } do
     redirect_to "/m/search"
   end
-  before_action :authenticate_user!
+  before_action :authenticate_any!
 
   before_action :set_q_params
   before_action :set_data_and_count_hash

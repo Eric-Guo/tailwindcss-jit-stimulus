@@ -4,7 +4,7 @@ class SamplesController < ApplicationController
   before_action only: [:show], if: -> { request.variant.include?(:phone) } do
     redirect_to "/m/samples/#{params[:id]}"
   end
-  before_action :authenticate_user!
+  before_action :authenticate_any!
 
   def show
     @sample = Sample.find_by(id: params[:id]) || Sample.find_by!(no: params[:id])

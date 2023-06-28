@@ -39,15 +39,54 @@
           <a href="<%= personal_center_suppliers_path %>">供应商推荐</a>
           <a href="<%= personal_center_visitors_path %>">我的访客邀请</a>
           <a href="<%= personal_center_helpers_path %>">帮助中心</a>
+          <% if Rails.env.development? %>
+          <a href="<%= dev_auth_logout_path %>">退出登录</a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% elsif visitor_signed_in? %>
+    <div class="relative h-full">
+      <div class="flex-shrink-0 group h-full flex items-center" data-action="click->profile-dropdown#click mouseenter->profile-dropdown#open_menu mouseleave->profile-dropdown#close_menu">
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="origin-top-right absolute -right-1 w-32 rounded shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none hidden px-2"
+        role="menu"
+        data-profile-dropdown-target="dropdownMenu"
+        aria-orientation="vertical"
+        aria-labelledby="menu-button"
+        tabindex="-1"
+        data-action="mouseenter->profile-dropdown#open_menu mouseleave->profile-dropdown#close_menu"
+      >
+        <div class="px-3 py-2 text-left">
+          <div class="text-black text-sm">访客 <%= current_visitor.id %></div>
+          <div class="text-neutral-140 text-sm"><%= current_visitor.code %></div>
+        </div>
+        <div class="px-3 py-2 text-left text-black text-sm flex flex-col gap-2">
+          <a href="<%= visitor_logout_path %>">退出登录</a>
         </div>
       </div>
     </div>
   <% else %>
-    <a href="/auth/openid_connect" class="flex items-center" data-turbo="false">
-      <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      <span class="text-base ml-1">请登录</span>
-    </a>
+    <% if Rails.env.development? %>
+      <a href="<%= dev_auth_login_path %>" class="flex items-center" data-turbo="false">
+        <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="text-base ml-1">请登录</span>
+      </a>
+    <% else %>
+      <a href="/auth/openid_connect" class="flex items-center" data-turbo="false">
+        <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="text-base ml-1">请登录</span>
+      </a>
+    <% end %>
   <% end %>
 </div>

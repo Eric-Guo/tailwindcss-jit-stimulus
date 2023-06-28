@@ -9,6 +9,15 @@ Rails.application.routes.draw do
 
   get 'auth/openid_connect/callback', to: 'openid_connect#callback'
 
+  get 'auth/visitor/login/:code', to: 'visitor#login', as: 'visitor_login'
+
+  get 'auth/visitor/logout', to: 'visitor#logout', as: 'visitor_logout'
+  
+  if Rails.env.development?
+    get 'auth/dev_auth/login', to: 'dev_auth#login', as: 'dev_auth_login'
+    get 'auth/dev_auth/logout', to: 'dev_auth#logout', as: 'dev_auth_logout'
+  end
+
   resources :samples, only: [:show] do
     member do
       get :other_samples

@@ -3,7 +3,6 @@
 class ApplicationController < ActionController::Base
   include DetectDevice
   wechat_api
-  before_action :login_in_as_dev_user, if: -> { Rails.env.development? && !request.variant.include?(:phone) }
   before_action :set_ie_warning, unless: -> { request.variant.include?(:phone) }
   before_action :set_tree_materials, unless: -> { request.variant.include?(:phone) }
   before_action :set_sidebar_nav, unless: -> { request.variant.include?(:phone) }
@@ -19,15 +18,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
-
-    def login_in_as_dev_user
-      sign_in User.where('clerk_code = ?', '019795').first unless user_signed_in?
+  def authenticate_any!
+    unless user_signed_in? || visitor_signed_in?
+      redirect_to '/users/sign_in'
     end
+  end
 
+  private
     def record_user_view_history
       ReportViewHistory.create(controller_name: controller_path, action_name: action_name,
-        clerk_code: current_user&.clerk_code, request_path: request.fullpath)
+        clerk_code: current_user&.clerk_code, visitor_id: current_visitor&.id, request_path: request.fullpath)
     end
 
     def set_ie_warning

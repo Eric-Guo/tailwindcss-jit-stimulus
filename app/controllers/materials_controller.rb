@@ -8,7 +8,7 @@ class MaterialsController < ApplicationController
   before_action only: [:show], if: -> { request.variant.include?(:phone) } do
     redirect_to "/m/materials/#{params[:id]}"
   end
-  before_action :authenticate_user!
+  before_action :authenticate_any!
   before_action do
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
   end

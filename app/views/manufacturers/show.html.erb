@@ -24,14 +24,16 @@
         <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem">供应商详情</span>
         <span class="text-xl font-light">Manufacturer Details</span>
 
-        <div class="absolute right-0 top-0 flex gap-2">
-          <a class="more-btn inline select-none" href="<%= rating_manufacturer_path(@manufacturer.id) -%>" data-turbo-frame="manufacturer_rating_modal">供应商信息评级</a>
-          <button
-            class="more-btn inline select-none"
-            data-content-feedback-full-page-param="true"
-            data-action="click->content-feedback#loadData"
-          >供应商信息反馈</button>
-        </div>
+        <% if user_signed_in? %>
+          <div class="absolute right-0 top-0 flex gap-2">
+            <a class="more-btn inline select-none" href="<%= rating_manufacturer_path(@manufacturer.id) -%>" data-turbo-frame="manufacturer_rating_modal">供应商信息评级</a>
+            <button
+              class="more-btn inline select-none"
+              data-content-feedback-full-page-param="true"
+              data-action="click->content-feedback#loadData"
+            >供应商信息反馈</button>
+          </div>
+        <% end %>
       </div>
 
       <div class="flex" style="margin-top: 30px">
@@ -345,4 +347,6 @@
   <%= turbo_frame_tag :manufacturer_feedback_modal %>
 </div>
 
+<% if user_signed_in? %>
 <%= turbo_frame_tag :manufacturer_rating_modal %>
+<% end %>
