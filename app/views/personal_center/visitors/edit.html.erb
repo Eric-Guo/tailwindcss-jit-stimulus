@@ -1,0 +1,82 @@
+<%= turbo_frame_tag :visitor_edit_modal do %>
+  <div
+    data-controller="modal turbo-modal"
+    data-modal-allow-background-close="false"
+    data-modal-disable-backdrop="true"
+    data-turbo-modal-auto-show-value="true"
+  >
+    <div
+      data-modal-target="container"
+      class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center"
+      style="z-index: 1000; background-color: rgba(0, 0, 0, 0.5);"
+    >
+        <div class="relative bg-white rounded-lg overflow-hidden -mt-24" style="width: 540px;" data-controller="visitor-edit-form">
+          <button type="button" class="absolute top-2.5 right-2.5 z-50" data-action="click->turbo-modal#hide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+              <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+            </svg>
+          </button>
+          <div class="bg-black h-10 text-white text-lg flex justify-center items-center px-3">
+            编辑外发链接
+          </div>
+          <div class="px-10 my-6">
+            <%= form_tag personal_center_visitor_path(@visitor), method: :put, id: 'editVisitor', data: {
+                turbo_frame: '_top',
+                visitor_edit_form_target: 'form',
+              } do %>
+              <div>
+                链接: <%= visitor_login_url(@visitor.code) %>
+                <%= render partial: 'status', locals: { visitor: @visitor } %>
+              </div>
+              <div class="mt-4 flex flex-col select-none">
+                <label>延长有效期:</label>
+                <input
+                  type="checkbox"
+                  id="lengthen"
+                  name="lengthen"
+                  class="peer hidden"
+                  data-visitor-edit-form-target="lengthen"
+                  data-action="change->visitor-edit-form#lengthenChange"
+                >
+                <label for="lengthen" class="w-10 rounded-full p-0.5 mt-1 cursor-pointer flex transition-all justify-start peer-checked:justify-end bg-gray-200 peer-checked:bg-black">
+                  <div class="w-4 h-4 rounded-full bg-white"></div>
+                </label>
+              </div>
+              <div class="mt-4 flex flex-col hidden" data-visitor-edit-form-target="timeWrapper">
+                <label for="expired_at"><span class="text-red">*</span>结束时间:</label>
+                <%= render partial: 'shared/matlib_form/input_date', locals: {
+                  id: 'expired_at',
+                  class_name: 'mt-1 disabled:bg-gray-100',
+                  name: 'expired_at',
+                  value: @visitor.expired_at.strftime('%Y-%m-%d'),
+                  disabled: true,
+                  html_attr: {
+                    'required': 'true',
+                    'data-visitor-edit-form-target': 'time',
+                  }
+                } %>
+              </div>
+              <div class="mt-4 flex flex-col">
+                <label for="remark">备注:</label>
+                <%= render partial: 'shared/matlib_form/textarea', locals: {
+                  id: 'remark',
+                  name: 'remark',
+                  class_name: 'mt-1 flex-1 resize-none shadow-none',
+                  value: @visitor.remark,
+                  html_attr: {
+                    'placeholder': '',
+                    'rows': 3,
+                  }
+                } %>
+              </div>
+            <% end %>
+          </div>
+          <div class="text-sm flex gap-5 justify-center py-6">
+            <button type="button" class="w-20 h-10 primary-button transition-all duration-300" data-action="click->visitor-edit-form#submit">确定</button>
+            <button type="button" class="w-20 h-10 cancel-button transition-all duration-300" data-action="click->modal#close">取消</button>
+          </div>
+        </div>
+    </div>
+  </div>
+<% end %>

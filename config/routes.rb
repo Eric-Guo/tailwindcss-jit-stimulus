@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     sessions: 'sessions'
   }
 
+  devise_for :visitors, skip: :all
+
   get 'auth/openid_connect/callback', to: 'openid_connect#callback'
 
   resources :samples, only: [:show] do
@@ -63,6 +65,11 @@ Rails.application.routes.draw do
         get :matlib_projects
         post :create_project
         post :create_project_image
+      end
+    end
+    resources :visitors, only: [:index, :new, :create, :edit, :update] do
+      member do
+        put :disable
       end
     end
     resources :helpers, only: [:index]
