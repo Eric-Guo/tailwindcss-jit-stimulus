@@ -69,6 +69,7 @@
                     <% end %>
                   </div>
                 <% end %>
+                <% unless visitor_signed_in? %>
                 <div class="flex justify-between items-center sidebar-nav-item pl-1 pr-4">
                   <div class="sidebar-nav-item-content truncate">
                     <% if user_signed_in? %>
@@ -86,6 +87,7 @@
                     <% end %>
                   </div>
                 </div>
+                <% end %>
               </nav>
               <div class="sidebar-border"></div>
               <div class="absolute text-white text-sm" style="left: 40px; bottom: 40px;">

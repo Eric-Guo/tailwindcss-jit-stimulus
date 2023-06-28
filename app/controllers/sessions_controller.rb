@@ -7,6 +7,6 @@ class SessionsController < Devise::SessionsController
 
   def destroy
     sign_out(current_user) if current_user.present?
-    redirect_to root_path, alert: '成功登出'
+    redirect_to root_path
   end
 end

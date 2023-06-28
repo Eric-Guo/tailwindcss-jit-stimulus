@@ -7,7 +7,8 @@ class ManufacturersController < ApplicationController
   before_action only: [:show], if: -> { request.variant.include?(:phone) } do
     redirect_to "/m/manufacturers/#{params[:id]}"
   end
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show_rating, :update_rating, :show_feedback, :create_feedback]
+  before_action :authenticate_any!
   before_action do
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
   create_table "application_sites", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -1418,6 +1418,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_030548) do
     t.string "clerk_code"
     t.datetime "created_at", null: false
     t.text "request_path"
+    t.bigint "visitor_id"
   end
 
   create_table "report_view_histories_copy1", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
