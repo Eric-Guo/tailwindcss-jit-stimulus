@@ -22,6 +22,9 @@ class ApplicationController < ActionController::Base
     unless user_signed_in? || visitor_signed_in?
       redirect_to '/users/sign_in'
     end
+    if visitor_signed_in? && !current_visitor.effective?
+      redirect_to visitor_logout_path
+    end
   end
 
   private
