@@ -2,7 +2,7 @@
 
 module Api
   class AggregationsController < ApplicationController
-    skip_before_action :authenticate_user!
+    skip_before_action :authenticate_any!
 
     def home
       @statistics = {

@@ -3,6 +3,8 @@
 module Api
   module My
     class DemandsController < ApplicationController
+      before_action :authenticate_user!
+
       def index
         @list = Demand.includes(:replies, :material).where(clerk_code: current_user.clerk_code).order(created_at: :desc)
     
