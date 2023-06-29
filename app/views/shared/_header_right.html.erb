@@ -49,8 +49,9 @@
     <div class="relative h-full">
       <div class="flex-shrink-0 group h-full flex items-center" data-action="click->profile-dropdown#click mouseenter->profile-dropdown#open_menu mouseleave->profile-dropdown#close_menu">
         <div class="flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 36 36">                                                                                                    
+            <circle fill="currentColor" cx="18" cy="18" r="18"/>
+            <path filter="grayscale(1) contrast(999) invert(1)" fill="currentColor" fill-rule="evenodd" d="M384,366a5,5,0,1,1-5,5A5,5,0,0,1,384,366Zm-5.5,12h11a4.5,4.5,0,0,1,0,9h-11A4.5,4.5,0,0,1,378.5,378Z" transform="translate(-366 -358)"/>
           </svg>
         </div>
       </div>
@@ -65,8 +66,6 @@
       >
         <div class="px-3 py-2 text-left">
           <div class="text-black text-sm">访客 <%= current_visitor.id %></div>
-          <div class="text-neutral-140 text-sm">邀请码：</div>
-          <div class="text-neutral-140 text-sm"><%= current_visitor.code %></div>
           <div class="text-neutral-140 text-sm">有效期至：</div>
           <div class="text-neutral-140 text-sm"><%= current_visitor.expired_at.strftime('%Y-%m-%d') %></div>
         </div>
