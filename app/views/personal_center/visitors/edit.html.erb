@@ -30,7 +30,7 @@
                 <%= render partial: 'status', locals: { visitor: @visitor } %>
               </div>
               <div class="mt-4 flex flex-col select-none">
-                <label>延长有效期:</label>
+                <label><%= @visitor.effective? ? '延长有效期' : '恢复链接' %>:</label>
                 <input
                   type="checkbox"
                   id="lengthen"
