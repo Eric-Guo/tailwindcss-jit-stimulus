@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus";
-import dayjs from "dayjs";
 
 export default class extends Controller {
   static targets = ['form', 'lengthen', 'time', 'timeWrapper']
