@@ -15,7 +15,7 @@ module Api
       end
 
       def read
-        raise Exception.new('ID不能为空') unless params[:id].presence.present?
+        raise StandardError.new('ID不能为空') unless params[:id].presence.present?
         messages = Notification
           .where(notifiable_type: 'cybros.user')
           .where(notifiable_id: current_user.id)
@@ -32,7 +32,7 @@ module Api
       end
 
       def destroy
-        raise Exception.new('ID不能为空') unless params[:id].presence.present?
+        raise StandardError.new('ID不能为空') unless params[:id].presence.present?
         messages = Notification
           .where(notifiable_type: 'cybros.user')
           .where(notifiable_id: current_user.id)
