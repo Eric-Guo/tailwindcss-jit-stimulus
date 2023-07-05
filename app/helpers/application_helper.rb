@@ -76,20 +76,20 @@ module ApplicationHelper
   def get_file_tag(url)
     ext = File.extname(url).downcase
     file_tags = [
-      { name: 'pdf', exts: ['.pdf'], icon: 'icon-file-pdf.svg' },
-      { name: 'doc', exts: ['.doc', '.docx', '.docm', '.dotx', '.dotm'], icon: 'icon-file-doc.svg' },
-      { name: 'cad', exts: ['.dwg', '.dxf', '.dws', '.dwt'], icon: 'icon-file-cad.svg' },
-      { name: 'ppt', exts: ['.pptx', '.ppsx', '.ppam', 'potx', '.thmx', '.ppsm'], icon: 'icon-file-ppt.svg' },
-      { name: 'skp', exts: ['.skp'], icon: 'icon-file-skp.svg' },
-      { name: 'xls', exts: ['.xlsx', '.xls', '.xlt', '.xlsm', '.xltm'], icon: 'icon-file-xls.svg' },
-      { name: 'zip', exts: ['.zip', '.rar', '.gz', '.tar'], icon: 'icon-file-zip.svg' },
-      { name: 'img', exts: ['.png', '.jpg', '.jpeg', '.svg'], icon: 'icon-file-img.svg' },
+      { name: 'pdf', exts: ['.pdf'], icon: 'static/images/icon-file-pdf.svg' },
+      { name: 'doc', exts: ['.doc', '.docx', '.docm', '.dotx', '.dotm'], icon: 'static/images/icon-file-doc.svg' },
+      { name: 'cad', exts: ['.dwg', '.dxf', '.dws', '.dwt'], icon: 'static/images/icon-file-cad.svg' },
+      { name: 'ppt', exts: ['.pptx', '.ppsx', '.ppam', 'potx', '.thmx', '.ppsm'], icon: 'static/images/icon-file-ppt.svg' },
+      { name: 'skp', exts: ['.skp'], icon: 'static/images/icon-file-skp.svg' },
+      { name: 'xls', exts: ['.xlsx', '.xls', '.xlt', '.xlsm', '.xltm'], icon: 'static/images/icon-file-xls.svg' },
+      { name: 'zip', exts: ['.zip', '.rar', '.gz', '.tar'], icon: 'static/images/icon-file-zip.svg' },
+      { name: 'img', exts: ['.png', '.jpg', '.jpeg', '.svg'], icon: 'static/images/icon-file-img.svg' },
     ]
     file_tag = file_tags.detect { |item| item[:exts].include?(ext) }
     if file_tag.present?
       file_tag
     else
-      { name: 'file', exts: [], icon: 'icon-file-file.svg' }
+      { name: 'file', exts: [], icon: 'static/images/icon-file-file.svg' }
     end
   end
 
