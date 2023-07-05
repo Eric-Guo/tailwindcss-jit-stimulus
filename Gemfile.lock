@@ -84,7 +84,6 @@ GEM
     aes_key_wrap (1.1.0)
     airbrussh (1.4.1)
       sshkit (>= 1.6.1, != 1.7.0)
-    ast (2.4.2)
     attr_required (1.0.1)
     bcrypt (3.1.19)
     bcrypt_pbkdf (1.1.0)
@@ -165,7 +164,6 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.6.3)
     json-jwt (1.16.3)
       activesupport (>= 4.2)
       aes_key_wrap
@@ -185,8 +183,6 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    language_server-protocol (3.17.0.3)
-    lint_roller (1.0.0)
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
@@ -243,10 +239,6 @@ GEM
       validate_url
       webfinger (~> 2.0)
     orm_adapter (0.5.0)
-    parallel (1.23.0)
-    parser (3.2.2.3)
-      ast (~> 2.4.1)
-      racc
     public_suffix (5.0.1)
     puma (5.6.6)
       nio4r (~> 2.0)
@@ -291,7 +283,6 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
-    rainbow (3.1.1)
     rake (13.0.6)
     redcarpet (3.6.0)
     regexp_parser (2.8.1)
@@ -301,22 +292,6 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.5)
-    rubocop (1.52.1)
-      json (~> 2.3)
-      parallel (~> 1.10)
-      parser (>= 3.2.2.3)
-      rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8, < 3.0)
-      rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.28.0, < 2.0)
-      ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.29.0)
-      parser (>= 3.2.1.0)
-    rubocop-performance (1.18.0)
-      rubocop (>= 1.7.0, < 2.0)
-      rubocop-ast (>= 0.4.0)
-    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.10.0)
@@ -332,17 +307,6 @@ GEM
     sshkit (1.21.5)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    standard (1.29.0)
-      language_server-protocol (~> 3.17.0.2)
-      lint_roller (~> 1.0)
-      rubocop (~> 1.52.0)
-      standard-custom (~> 1.0.0)
-      standard-performance (~> 1.1.0)
-    standard-custom (1.0.1)
-      lint_roller (~> 1.0)
-    standard-performance (1.1.0)
-      lint_roller (~> 1.0)
-      rubocop-performance (~> 1.18.0)
     swd (2.0.2)
       activesupport (>= 3)
       attr_required (>= 0.0.5)
@@ -359,7 +323,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
-    unicode-display_width (2.4.2)
     validate_email (0.1.6)
       activemodel (>= 3.0)
       mail (>= 2.2.5)
@@ -423,7 +386,6 @@ DEPENDENCIES
   rubyzip
   selenium-webdriver
   shakapacker
-  standard
   turbo-rails (= 1.1.0)
   tzinfo-data
   web-console
