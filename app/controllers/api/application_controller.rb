@@ -25,9 +25,10 @@ module Api
     end
 
     private
+
       def record_user_view_history
         ReportViewHistory.create(controller_name: controller_path, action_name: action_name,
-          clerk_code: current_user&.clerk_code, visitor_id: current_visitor&.id request_path: request.fullpath)
+          clerk_code: current_user&.clerk_code, visitor_id: current_visitor&.id, request_path: request.fullpath)
       end
   end
 end
