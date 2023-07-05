@@ -3,9 +3,9 @@
 namespace :clzx do
   desc "导出材料在线商家及产品信息"
   task :export_all, [:dir_path, :token] => :environment do |t, args|
-    throw Exception.new('文件夹不能为空') unless args[:dir_path].present?
-    throw Exception.new('token不能为空') unless args[:token].present?
-    throw Exception.new('文件夹不存在') unless File.exist?(args[:dir_path])
+    raise StandardError.new('文件夹不能为空') unless args[:dir_path].present?
+    raise StandardError.new('token不能为空') unless args[:token].present?
+    raise StandardError.new('文件夹不存在') unless File.exist?(args[:dir_path])
 
     rootDir = Pathname(args[:dir_path]).join(Time.now.strftime('%Y%m%d%H%M%S'))
     Dir.mkdir(rootDir)

@@ -28,8 +28,8 @@ module PersonalCenter
       expired_at = params[:expired_at].presence&.strip
       remark = params[:remark]
 
-      raise Exception.new('结束时间不能为空') if expired_at.blank?
-      raise Exception.new('结束时间格式不正确') unless expired_at =~ /^\d{4}[^\d]((0[1-9])|(1[0-2]))[^\d]((0[1-9])|([1-2][0-9])|(3[0-1]))$/
+      raise StandardError.new('结束时间不能为空') if expired_at.blank?
+      raise StandardError.new('结束时间格式不正确') unless expired_at =~ /^\d{4}[^\d]((0[1-9])|(1[0-2]))[^\d]((0[1-9])|([1-2][0-9])|(3[0-1]))$/
 
       ThtriApi.create_visitor({
         expiredAt: "#{expired_at} 23:59:59 +0800".to_datetime.iso8601,
@@ -55,7 +55,7 @@ module PersonalCenter
       args[:enabled] = true if params.has_key?(:lengthen)
 
       if args[:enabled]
-        raise Exception.new('结束时间格式不正确') unless expired_at =~ /^\d{4}[^\d]((0[1-9])|(1[0-2]))[^\d]((0[1-9])|([1-2][0-9])|(3[0-1]))$/
+        raise StandardError.new('结束时间格式不正确') unless expired_at =~ /^\d{4}[^\d]((0[1-9])|(1[0-2]))[^\d]((0[1-9])|([1-2][0-9])|(3[0-1]))$/
         args[:expiredAt] = "#{expired_at} 23:59:59 +0800".to_datetime.iso8601
       end
 

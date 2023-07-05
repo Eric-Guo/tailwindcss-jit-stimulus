@@ -57,7 +57,7 @@ class ThtriApi
       file: HTTP::FormData::File.new(file)
     })
     body = JSON.parse(response.body.to_s)
-    raise Exception.new(body['msg']) unless body['code'] == 0
+    raise StandardError.new(body['msg']) unless body['code'] == 0
     file = body['data']['file']
     {
       name: filename,
@@ -69,28 +69,28 @@ class ThtriApi
   def self.pm_projects(params = {}, headers = {})
     response = HTTP.headers(headers).get(generate_url('thtri/pmProjects'), params: params)
     body = JSON.parse(response.body.to_s)
-    raise Exception.new(body['msg']) unless body['code'] == 0
+    raise StandardError.new(body['msg']) unless body['code'] == 0
     body['data']
   end
 
   def self.matlib_projects(params = {}, headers = {})
     response = HTTP.headers(headers).get(generate_url('thtri/cases'), params: params)
     body = JSON.parse(response.body.to_s)
-    raise Exception.new(body['msg']) unless body['code'] == 0
+    raise StandardError.new(body['msg']) unless body['code'] == 0
     body['data']
   end
 
   def self.create_manufacturer_recommend(json, headers = {})
     response = HTTP.headers(headers).post(generate_url('thtri/createManufacturerRecommend'), json: json)
     body = JSON.parse(response.body.to_s)
-    raise Exception.new(body['msg']) unless body['code'] == 0
+    raise StandardError.new(body['msg']) unless body['code'] == 0
     body['data']
   end
   
   def self.generate_download_url(args)
     response = HTTP.get(generate_url('nologin/getDownloadCode'), params: args)
     body = JSON.parse(response.body.to_s)
-    raise Exception.new(body['msg']) unless body['code'] == 0
+    raise StandardError.new(body['msg']) unless body['code'] == 0
     code = body['data']['code']
     "#{generate_url('nologin/onceDownload')}?code=#{code}"
   end
@@ -101,7 +101,7 @@ class ThtriApi
       vote: args[:vote]
     })
     body = JSON.parse(response.body.to_s)
-    raise Exception.new(body['msg']) unless body['code'] == 0
+    raise StandardError.new(body['msg']) unless body['code'] == 0
     body['data']
   end
 
@@ -114,7 +114,7 @@ class ThtriApi
       references: args[:references],
     })
     body = JSON.parse(response.body.to_s)
-    raise Exception.new(body['msg']) unless body['code'] == 0
+    raise StandardError.new(body['msg']) unless body['code'] == 0
     body['data']
   end
 
@@ -123,7 +123,7 @@ class ThtriApi
     puts args
     response = HTTP.headers(headers).post(generate_url('/thtri/visitors'), json: args)
     body = JSON.parse(response.body.to_s)
-    raise Exception.new(body['msg']) unless body['code'] == 0
+    raise StandardError.new(body['msg']) unless body['code'] == 0
     body['data']
   end
 
@@ -134,7 +134,7 @@ class ThtriApi
     puts args
     puts response.body.to_s
     body = JSON.parse(response.body.to_s)
-    raise Exception.new(body['msg']) unless body['code'] == 0
+    raise StandardError.new(body['msg']) unless body['code'] == 0
     body['data']
   end
 end

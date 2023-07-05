@@ -20,7 +20,7 @@ module PersonalCenter
 
     def update
       ids = params[:id]&.split(',')&.map { |id| id.to_i }
-      raise Exception.new('ID不能为空') unless ids.present?
+      raise StandardError.new('ID不能为空') unless ids.present?
 
       messages = Notification
         .where(notifiable_type: 'cybros.user')
@@ -42,7 +42,7 @@ module PersonalCenter
 
     def remove
       ids = params[:id]&.split(',')&.map { |id| id.to_i }
-      raise Exception.new('ID不能为空') unless ids.present?
+      raise StandardError.new('ID不能为空') unless ids.present?
 
       messages = Notification
         .where(notifiable_type: 'cybros.user')
