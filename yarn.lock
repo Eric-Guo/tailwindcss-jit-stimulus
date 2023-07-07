@@ -28,9 +28,9 @@
   integrity sha512-29tfsWTq2Ftu7MXmimyC0C5FDZv5DYxOZkh3XD3+QW4V/BYuv/LyEsjj3c0hqedEaDt6DBfDvexMKU8YevdqFg==
 
 "@babel/core@7":
-  version "7.22.7"
-  resolved "https://registry.npmmirror.com/@babel/core/-/core-7.22.7.tgz#b0a766ebdb776d83981a221d90b2db887b870659"
-  integrity sha512-exABdCVjEk8+IFJW0gOK6+cou8VKMXfbkLGeK5Xdsa5MsuQmem1SsnnZ+6avm2gRhZ4M7UgAnE6YoAzVg9P/pw==
+  version "7.22.8"
+  resolved "https://registry.npmmirror.com/@babel/core/-/core-7.22.8.tgz#386470abe884302db9c82e8e5e87be9e46c86785"
+  integrity sha512-75+KxFB4CZqYRXjx4NlR4J7yGvKumBuZTmV4NV6v09dVXXkuYVYLT68N6HCzLvfJ+fWCxQsntNzKwwIXL4bHnw==
   dependencies:
     "@ampproject/remapping" "^2.2.0"
     "@babel/code-frame" "^7.22.5"
@@ -40,7 +40,7 @@
     "@babel/helpers" "^7.22.6"
     "@babel/parser" "^7.22.7"
     "@babel/template" "^7.22.5"
-    "@babel/traverse" "^7.22.7"
+    "@babel/traverse" "^7.22.8"
     "@babel/types" "^7.22.5"
     "@nicolo-ribaudo/semver-v6" "^6.3.3"
     convert-source-map "^1.7.0"
@@ -48,7 +48,7 @@
     gensync "^1.0.0-beta.2"
     json5 "^2.2.2"
 
-"@babel/generator@^7.22.5", "@babel/generator@^7.22.7":
+"@babel/generator@^7.22.7":
   version "7.22.7"
   resolved "https://registry.npmmirror.com/@babel/generator/-/generator-7.22.7.tgz#a6b8152d5a621893f2c9dacf9a4e286d520633d5"
   integrity sha512-p+jPjMG+SI8yvIaxGgeW24u7q9+5+TGpZh8/CuB7RhBKd7RCy8FayNEFNNKrNK/eUcY/4ExQqLmyrvBXKsIcwQ==
@@ -264,7 +264,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.22.5", "@babel/parser@^7.22.6", "@babel/parser@^7.22.7":
+"@babel/parser@^7.22.5", "@babel/parser@^7.22.7":
   version "7.22.7"
   resolved "https://registry.npmmirror.com/@babel/parser/-/parser-7.22.7.tgz#df8cf085ce92ddbdbf668a7f186ce848c9036cae"
   integrity sha512-7NF8pOkHP5o2vpmGgNGcfAeCvOYhGLyA3Z4eBQkT1RJlWu47n63bCs93QfJ2hIAFCil7L5P2IWhs1oToVgrL0Q==
@@ -943,18 +943,18 @@
     "@babel/parser" "^7.22.5"
     "@babel/types" "^7.22.5"
 
-"@babel/traverse@^7.22.5", "@babel/traverse@^7.22.6", "@babel/traverse@^7.22.7":
-  version "7.22.6"
-  resolved "https://registry.npmmirror.com/@babel/traverse/-/traverse-7.22.6.tgz#8f2f83a5c588251584914debeee38f35f661a300"
-  integrity sha512-53CijMvKlLIDlOTrdWiHileRddlIiwUIyCKqYa7lYnnPldXCG5dUSN38uT0cA6i7rHWNKJLH0VU/Kxdr1GzB3w==
+"@babel/traverse@^7.22.5", "@babel/traverse@^7.22.6", "@babel/traverse@^7.22.8":
+  version "7.22.8"
+  resolved "https://registry.npmmirror.com/@babel/traverse/-/traverse-7.22.8.tgz#4d4451d31bc34efeae01eac222b514a77aa4000e"
+  integrity sha512-y6LPR+wpM2I3qJrsheCTwhIinzkETbplIgPBbwvqPKc+uljeA5gP+3nP8irdYt1mjQaDnlIcG+dw8OjAco4GXw==
   dependencies:
     "@babel/code-frame" "^7.22.5"
-    "@babel/generator" "^7.22.5"
+    "@babel/generator" "^7.22.7"
     "@babel/helper-environment-visitor" "^7.22.5"
     "@babel/helper-function-name" "^7.22.5"
     "@babel/helper-hoist-variables" "^7.22.5"
     "@babel/helper-split-export-declaration" "^7.22.6"
-    "@babel/parser" "^7.22.6"
+    "@babel/parser" "^7.22.7"
     "@babel/types" "^7.22.5"
     debug "^4.1.0"
     globals "^11.1.0"
@@ -3863,9 +3863,9 @@ postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.2, postcss@^7.0.32, postcss@^7.0.
     source-map "^0.6.1"
 
 postcss@^8.3.5, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.4:
-  version "8.4.24"
-  resolved "https://registry.npmmirror.com/postcss/-/postcss-8.4.24.tgz#f714dba9b2284be3cc07dbd2fc57ee4dc972d2df"
-  integrity sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==
+  version "8.4.25"
+  resolved "https://registry.npmmirror.com/postcss/-/postcss-8.4.25.tgz#4a133f5e379eda7f61e906c3b1aaa9b81292726f"
+  integrity sha512-7taJ/8t2av0Z+sQEvNzCkpDynl0tX3uJMCODi6nT3PfASC7dYCWV9aQ+uiCf+KBD4SEFcu+GvJdGdwzQ6OSjCw==
   dependencies:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
