@@ -38,7 +38,8 @@ class ProjectsController < ApplicationController
       end
 
       if mat_ids.present?
-        case_ids = CasesMaterial.where(material_id: mat_ids).pluck(:case_id)
+        all_mat_ids = Material.where('id IN (?) OR parent_id IN (?) OR grandpa_id IN (?)', mat_ids, mat_ids, mat_ids).pluck(:id)
+        case_ids = CasesMaterial.where(material_id: all_mat_ids).pluck(:case_id)
         @cases = @cases.where('id IN (?)', case_ids)
       end
 
