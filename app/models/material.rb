@@ -98,7 +98,7 @@ class Material < ApplicationRecord
     elsif level == 3 && parent_material.material_info&.points.present?
       parent_material.material_info.points
     else
-      nil
+      []
     end
   end
 
@@ -111,7 +111,7 @@ class Material < ApplicationRecord
     elsif level == 2 && material_info.construction.present?
       material_info.construction
     else
-      nil
+      []
     end
   end
 
