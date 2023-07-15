@@ -6,6 +6,10 @@ module PersonalCenter
       @page = params[:page].to_i > 0 ? params[:page].to_i : 1
     end
 
+    before_action do
+      redirect_to root_path unless Visitor.user_auth?(current_user)
+    end
+
     def index
       @page_size_options = [10, 20, 40, 80, 160]
       @page_size = params[:page_size].to_i > 0 ? params[:page_size].to_i : @page_size_options[0]
