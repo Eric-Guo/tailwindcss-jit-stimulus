@@ -1,9 +1,9 @@
 GIT
   remote: https://git.thape.com.cn/Eric-Guo/wechat.git
-  revision: efbe92e3a50d7a748d32e949553c0b184e390460
+  revision: 4ad4b0eb9c6858e30bd70b7bc6dd93e04fa344ca
   branch: main
   specs:
-    wechat (0.16.2)
+    wechat (0.17.1)
       activesupport (>= 6.0)
       http (>= 1.0.4, < 6)
       nokogiri (>= 1.6.0)
