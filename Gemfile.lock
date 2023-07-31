@@ -243,7 +243,7 @@ GEM
     puma (5.6.6)
       nio4r (~> 2.0)
     racc (1.7.1)
-    rack (2.2.7)
+    rack (2.2.8)
     rack-oauth2 (2.2.0)
       activesupport
       attr_required
@@ -350,7 +350,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.9)
+    zeitwerk (2.6.10)
 
 PLATFORMS
   arm64-darwin-21
