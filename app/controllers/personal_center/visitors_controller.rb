@@ -63,7 +63,6 @@ module PersonalCenter
         args[:expiredAt] = "#{expired_at} 23:59:59 +0800".to_datetime.iso8601
       end
 
-
       ThtriApi.update_visitor(args, { 'Cookie': request.headers['HTTP_COOKIE'] })
 
       referer_redirect_to personal_center_visitors_path
