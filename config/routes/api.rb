@@ -64,6 +64,12 @@ Rails.application.routes.draw do
       resources :feedbacks, only: [:index, :show]
       resources :manufacturers, only: [:index, :show]
       resources :statistics, only: [:index]
+      resources :visitors, only: [:index, :show, :create, :update] do
+        member do
+          put :disable
+          patch :disable
+        end
+      end
     end
 
     resources :project_records, only: [:show]
