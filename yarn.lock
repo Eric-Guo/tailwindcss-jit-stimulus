@@ -1165,9 +1165,9 @@
   integrity sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==
 
 "@types/node@*":
-  version "20.6.0"
-  resolved "https://registry.npmmirror.com/@types/node/-/node-20.6.0.tgz#9d7daa855d33d4efec8aea88cd66db1c2f0ebe16"
-  integrity sha512-najjVq5KN2vsH2U/xyh2opaSEz6cZMR2SetLIlxlj08nOcmPOemJmUK2o4kUzfLqfrWE0PIrNeE16XhYDd3nqg==
+  version "20.6.1"
+  resolved "https://registry.npmmirror.com/@types/node/-/node-20.6.1.tgz#8b589bba9b2af0128796461a0979764562687e6f"
+  integrity sha512-4LcJvuXQlv4lTHnxwyHQZ3uR9Zw2j7m1C9DfuwoTFQQP4Pmu04O6IfLYgMmHoOCt0nosItLLZAH+sOrRE0Bo8g==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -2128,9 +2128,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.477:
-  version "1.4.520"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.520.tgz#c19c25a10d87bd88a9aae2b76cae9235a50c2994"
-  integrity sha512-Frfus2VpYADsrh1lB3v/ft/WVFlVzOIm+Q0p7U7VqHI6qr7NWHYKe+Wif3W50n7JAFoBsWVsoU0+qDks6WQ60g==
+  version "1.4.522"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.522.tgz#ef29e5508571d52cf45806536dba5d397492667d"
+  integrity sha512-KGKjcafTpOxda0kqwQ72M0tDmX6RsGhUJTy0Hr7slt0+CgHh9Oex8JdjY9Og68dUkTLUlBOJC0A5W5Mw3QSGCg==
 
 emojis-list@^3.0.0:
   version "3.0.0"
@@ -3950,9 +3950,9 @@ rechoir@^0.7.0:
     resolve "^1.9.0"
 
 regenerate-unicode-properties@^10.1.0:
-  version "10.1.0"
-  resolved "https://registry.npmmirror.com/regenerate-unicode-properties/-/regenerate-unicode-properties-10.1.0.tgz#7c3192cab6dd24e21cb4461e5ddd7dd24fa8374c"
-  integrity sha512-d1VudCLoIGitcU/hEg2QqvyGZQmdC0Lf8BqdOMXGFSvJP4bNV1+XqbPQeHHLD51Jh4QJJ225dlIFvY4Ly6MXmQ==
+  version "10.1.1"
+  resolved "https://registry.npmmirror.com/regenerate-unicode-properties/-/regenerate-unicode-properties-10.1.1.tgz#6b0e05489d9076b04c436f318d9b067bba459480"
+  integrity sha512-X007RyZLsCJVVrjgEFVpLUTZwyOZk3oiL75ZcuYjlIWd6rNJtOjkBwQc5AsRrpbKVkxN6sklw/k/9m2jJYOf8Q==
   dependencies:
     regenerate "^1.4.2"
 
@@ -4020,9 +4020,9 @@ resolve-from@^5.0.0:
   integrity sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==
 
 resolve@^1.1.7, resolve@^1.14.2, resolve@^1.22.2, resolve@^1.9.0:
-  version "1.22.4"
-  resolved "https://registry.npmmirror.com/resolve/-/resolve-1.22.4.tgz#1dc40df46554cdaf8948a486a10f6ba1e2026c34"
-  integrity sha512-PXNdCiPqDqeUou+w1C2eTQbNfxKSuMxqTCuvlmmMsk1NWHL5fRrhY6Pl0qEYYc6+QqGClco1Qj8XnjPego4wfg==
+  version "1.22.5"
+  resolved "https://registry.npmmirror.com/resolve/-/resolve-1.22.5.tgz#a83c145cf04ffcd19b1f3f5f9e0ae8b9053f0615"
+  integrity sha512-qWhv7PF1V95QPvRoUGHxOtnAlEvlXBylMZcjUR9pAumMmveFtcHJRXGIr+TkjfNJVQypqv2qcDiiars2y1PsSg==
   dependencies:
     is-core-module "^2.13.0"
     path-parse "^1.0.7"
