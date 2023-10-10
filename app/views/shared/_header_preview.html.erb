@@ -1,13 +1,10 @@
 <header class="sticky bg-white border-b-2 border-gray-100 border-solid top-0" style="z-index: 1000">
   <nav class="flex items-center justify-center px-4 sm:px-6 lg:px-8 h-16" aria-label="Global">
-    <div class="w-0 flex-1 flex justify-begin">
-      <span>
-        <span class="sr-only">天华</span>
-        <%= render partial: 'shared/logo', locals: { className: 'mt-1' } -%>
-      <span>
+    <div class="w-0 flex-1 flex justify-begin items-center">
+      <%= render partial: 'shared/logo' -%>
     </div>
     <div>
-      <a class="font-medium text-black-6c" style="font-size: 26px;">天华建造研究中心 THTRI</a>
+      <a class="font-medium text-black-6c" style="font-size: 26px;" title="前往首页">天华建造研究中心 THTRI</a>
     </div>
     <div class="w-0 flex-1 flex justify-end items-center h-full">
       <a class="flex items-center" data-turbo="false">

@@ -5,17 +5,14 @@
   data-controller="home-navbar"
   data-home-navbar-target="navbar"
   data-action="scroll@window->home-navbar#onScroll">
-  <div class="w-0 flex-1 flex justify-begin">
-    <%= link_to root_path, class: 'inline' do %>
-      <span class="sr-only">天华</span>
-      <%= render partial: 'shared/logo', locals: { className: 'mt-1' } -%>
-    <% end %>
-    <svg data-action="click->slideover#toggle click->sidebar-nav#show" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline ml-4 mt-px cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <div class="w-0 flex-1 flex justify-begin items-center">
+    <%= render partial: 'shared/logo' -%>
+    <svg data-action="click->slideover#toggle click->sidebar-nav#show" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline ml-8 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
     </svg>
   </div>
   <div>
-    <a href="/" class="font-medium" style="font-size: 26px;">天华建造研究中心 THTRI</a>
+    <a href="/" class="font-medium" style="font-size: 26px;" title="前往首页">天华建造研究中心 THTRI</a>
   </div>
   <%= render partial: 'shared/header_right' %>
 </header>
