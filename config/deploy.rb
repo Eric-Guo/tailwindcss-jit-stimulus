@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.17.2'
+lock '~> 3.18.0'
 
 set :application, 'matlib'
 set :repo_url, 'git@git.thape.com.cn:rails/matlib.git'

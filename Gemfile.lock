@@ -92,7 +92,7 @@ GEM
     bindex (0.8.1)
     browser (5.3.1)
     builder (3.2.4)
-    capistrano (3.17.3)
+    capistrano (3.18.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -384,11 +384,11 @@ DEPENDENCIES
   omniauth (~> 1.9)
   omniauth_openid_connect
   puma
-  rails (~> 7.0.3)
+  rails (~> 7.0.8)
   redcarpet
   rexml
   rubyzip
-  selenium-webdriver (>= 4.11.0)
+  selenium-webdriver (>= 4.14.0)
   shakapacker
   turbo-rails (= 1.1.0)
   tzinfo-data
@@ -399,4 +399,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.4.20
+   2.4.21

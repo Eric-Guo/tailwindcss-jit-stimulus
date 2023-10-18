@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "~> 3.0"
 
-gem "rails", "~> 7.0.3"
+gem "rails", "~> 7.0.8"
 
 gem "mysql2"
 
@@ -70,7 +70,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.39'
-  gem 'selenium-webdriver', '>= 4.11.0'
+  gem 'selenium-webdriver', '>= 4.14.0'
   gem 'rexml' # required by selenium-webdriver
 end
 
