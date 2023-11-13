@@ -161,7 +161,7 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.8.3)
+    irb (1.9.0)
       rdoc
       reline (>= 0.3.8)
     jbuilder (2.11.5)
@@ -314,7 +314,7 @@ GEM
     sshkit (1.21.5)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    stringio (3.0.8)
+    stringio (3.0.9)
     swd (2.0.2)
       activesupport (>= 3)
       attr_required (>= 0.0.5)
@@ -399,4 +399,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.4.21
+   2.4.22
