@@ -4,7 +4,7 @@
     <div class="mx-4 xl:mx-6 2xl:mx-8 mt-6 2xl:mt-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-x-1.5 gap-y-10">
       <% @material_samples.each do |material_sample| %>
         <% if material_sample.sample_id.present? %>
-          <%= link_to sample_path(material_sample.sample_id), class: 'animate-fade-in-0.5' do %>
+          <%= link_to sample_path(material_sample.sample_id), class: 'animate-fade-in' do %>
             <div class="relative" style="padding-top: 100%;">
               <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= material_sample.sample_cover.present? ? mat_img_url(material_sample.sample_cover, "") : get_first_url(material_sample.material_cover) -%>" alt="">
             </div>
@@ -12,7 +12,7 @@
             <h4 class="text-center text-sm text-gray-400"><%= text_with_default(material_sample.level_name) -%></h4>
           <% end %>
         <% else %>
-          <%= link_to material_path(material_sample.material_id), class: 'animate-fade-in-0.5' do %>
+          <%= link_to material_path(material_sample.material_id), class: 'animate-fade-in' do %>
             <div class="relative" style="padding-top: 100%;">
               <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= get_first_url(material_sample.material_cover) -%>" alt="">
             </div>

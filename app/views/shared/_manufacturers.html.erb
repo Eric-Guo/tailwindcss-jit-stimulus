@@ -1,5 +1,5 @@
 <% manufacturers&.each do |manufacturer| %>
-  <a class="flex items-center border border-gray-200 border-solid animate-fade-in-0.5" href="<%= manufacturer_path(manufacturer.id) %>" data-turbo="false">
+  <a class="flex items-center border border-gray-200 border-solid animate-fade-in" href="<%= manufacturer_path(manufacturer.id) %>" data-turbo="false">
     <div class="flex-none p-1" style="width: 140px; height: 140px;">
       <img class="w-full h-full object-contain object-center" src="<%= mat_img_url(manufacturer.logo, 'static/images/manufacturer_default_cover.png') -%>" alt="">
     </div>
