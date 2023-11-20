@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get :download_texture
       get :samples
     end
+    resources :favorites, controller: 'material_favorites', only: %i[new]
   end
 
   resources :project_records, only: %i[show]

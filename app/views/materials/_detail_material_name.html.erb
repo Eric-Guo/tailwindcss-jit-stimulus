@@ -5,9 +5,18 @@
       <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem"><%= material.name %></span>
       <span class="text-xl font-light">（<%= material.no %>）</span>
     </div>
-    <% if material.samples.count > 0 %>
-      <a class="more-btn" href="<%= samples_material_path(id: material.id) -%>">进入相关样品页</a>
-    <% end %>
+    <div class="flex gap-2">
+      <% if material.samples.count > 0 %>
+        <a class="more-btn" href="<%= samples_material_path(id: material.id) -%>">进入相关样品页</a>
+      <% end %>
+      <a
+        class="more-btn"
+        data-turbo-frame="material_favorite_modal"
+        href="<%= new_material_favorite_path(material.id) %>"
+      >
+        加入材料清单
+      </a>
+    </div>
   </div>
 
   <div class="flex flex-row mt-4">
@@ -53,3 +62,5 @@
     </div>
   </div>
 </div>
+
+<%= turbo_frame_tag :material_favorite_modal %>

@@ -1,0 +1,55 @@
+<% class_name ||= '' %>
+<% placeholder ||= '' %>
+<% options ||= [] %>
+<% name ||= '' %>
+<% value ||= '' %>
+<% options_height ||= 256 %>
+<% html_attr ||= {} %>
+<% search_html_attr ||= {} %>
+
+<div
+  class="<%= class_name %>"
+  data-controller="search-select"
+  data-search-select-option-items-value="<%= options.to_json %>"
+  data-search-select-option-item-class-name-value="p-2 flex-none h-8 bg-gray-50 text-sm hover:bg-blue-100 cursor-pointer overflow-hidden transition-all"
+  data-search-select-option-item-active-class-name-value="p-2 flex-none h-8 text-sm bg-blue-300 cursor-pointer overflow-hidden"
+  data-search-select-value-value="<%= value %>"
+  data-search-select-placeholder-value="<%= placeholder %>"
+  data-search-select-options-height-value="<%= options_height %>"
+  <%= html_attr.keys.map{ |key| "#{key}=\"#{html_attr[key]}\"" }.join(' ').html_safe %>
+>
+  <input
+    type="hidden"
+    name="<%= name %>"
+    value="<%= value %>"
+    data-search-select-target="value"
+  >
+  <div
+    class="w-full flex flex-row items-center h-9 border border-gray-300 rounded px-2 focus-within:border-black cursor-pointer"
+    data-action="click->search-select#handleFocus"
+  >
+    <div class="flex-1 h-full">
+      <div
+        class="w-full h-full flex items-center"
+        data-search-select-target="label"
+      ></div>
+      <input
+        type="text"
+        class="w-full h-full p-0 border-none focus:border-none focus:outline-none focus:ring-transparent"
+        style="font-size: inherit; display: none;"
+        placeholder="<%= placeholder %>"
+        data-search-select-target="search"
+        <%= search_html_attr.keys.map{ |key| "#{key}=\"#{search_html_attr[key]}\"" }.join(' ').html_safe %>
+      >
+    </div>
+    <svg class="flex-none" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+    </svg>
+  </div>
+  <div
+    class="fixed border rounded bg-white py-1 overflow-auto flex flex-col gap-1 shadow"
+    style="display: none;"
+    data-search-select-target="options"
+  >
+  </div>
+</div>

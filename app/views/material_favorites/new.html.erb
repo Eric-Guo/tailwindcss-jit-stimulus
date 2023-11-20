@@ -1,0 +1,244 @@
+<%= turbo_frame_tag :material_favorite_modal do %>
+  <div
+    data-controller="modal turbo-modal material-favorite-modal material-favorite-form material-favorite-new"
+    data-modal-allow-background-close="false"
+    data-modal-disable-backdrop="true"
+    data-turbo-modal-auto-show-value="true"
+    data-material-favorite-form-material-id-value="<%= @material.id %>"
+  >
+    <div
+      data-modal-target="container"
+      class="animate-fade-in fixed inset-0 overflow-y-auto flex items-center justify-center"
+      style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
+    >
+        <div
+          class="relative bg-white rounded-lg overflow-hidden"
+          style="width: 790px;"
+        >
+          <button type="button" class="absolute top-2.5 right-2.5 z-50" data-action="click->turbo-modal#hide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+              <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+            </svg>
+          </button>
+          <div class="bg-black text-white text-sm flex justify-center items-center px-3" style="height: 35px;">
+            收藏进项目文件夹
+          </div>
+          <div class="px-10 py-6 overflow-auto relative" style="height: 540px;">
+            <form
+              method="post"
+              data-material-favorite-form-target="form"
+              data-action="submit->material-favorite-form#handleFormSubmit"
+            >
+              <div class="flex flex-col">
+                <label for="favorite_id"><span class="text-red">*</span>项目文件夹</label>
+                <%= render partial: 'shared/matlib_form/select', locals: {
+                  id: 'favorite_id',
+                  name: 'favorite_id',
+                  class_name: 'mt-2',
+                  html_attr: {
+                    'required': 'true',
+                    'data-material-favorite-form-target': 'favoriteSelect',
+                    'data-action': 'change->material-favorite-form#handleFavoriteChange'
+                  },
+                } %>
+              </div>
+              <div class="flex flex-row mt-4 gap-4">
+                <div class="flex flex-col flex-1">
+                  <label for="project_code">项目编号</label>
+                  <%= render partial: 'shared/matlib_form/input_text', locals: {
+                    disabled: true,
+                    class_name: 'mt-2 disabled:bg-gray-100',
+                    html_attr: {
+                      'data-material-favorite-form-target': 'projectCode',
+                    },
+                  } %>
+                </div>
+                <div class="flex flex-col flex-1">
+                  <label for="project_name">PM项目名称</label>
+                  <%= render partial: 'shared/matlib_form/input_text', locals: {
+                    disabled: true,
+                    class_name: 'mt-2 disabled:bg-gray-100',
+                    html_attr: {
+                      'data-material-favorite-form-target': 'projectName',
+                    },
+                  } %>
+                </div>
+              </div>
+              <div class="flex flex-col mt-4">
+                <label for="samples">选择样品</label>
+                <div class="mt-2 h-72 overflow-auto">
+                  <table
+                    class="w-full border text-sm"
+                    data-controller="material-favorite-sample-table"
+                    data-material-favorite-sample-table-value-value="[]"
+                    data-material-favorite-form-target="sampleTable"
+                  >
+                    <thead>
+                      <tr class="sticky top-0 outline outline-2 outline-gray-100 -outline-offset-1">
+                        <th class="border p-3 bg-gray-50">
+                          <input
+                            type="checkbox"
+                            class="focus:ring-gray-50 text-gray-600 border-gray-300"
+                            data-material-favorite-sample-table-target="selectAll"
+                            data-action="change->material-favorite-sample-table#handleSelectAllChange"
+                          />
+                        </th>
+                        <th class="border p-3 bg-gray-50">
+                          样品编号
+                        </th>
+                        <th class="border p-3 bg-gray-50">
+                          图展
+                        </th>
+                        <th class="border p-3 bg-gray-50">
+                          尺寸
+                        </th>
+                        <th class="border p-3 bg-gray-50">
+                          供应商名称
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @material.samples.each do |sample| %>
+                        <tr class="text-center">
+                          <td class="border p-3 bg-gray-50">
+                            <input
+                              type="checkbox"
+                              value="<%= sample.id %>"
+                              class="focus:ring-gray-50 text-gray-600 border-gray-300"
+                              data-material-favorite-sample-table-target="selectItem"
+                              data-action="change->material-favorite-sample-table#handleSelectItemChange"
+                            />
+                          </td>
+                          <td class="border p-3 bg-gray-50">
+                            <a
+                              class="underline"
+                              href="<%= sample_path(sample) %>"
+                              target="_blank"
+                            >
+                              <%= sample.no %>
+                            </a>
+                          </td>
+                          <td class="border p-3 bg-gray-50">
+                            <img
+                              class="w-12 h-12 object-scale-down inline-block"
+                              src="<%= mat_img_url(sample.pic, "") -%>"
+                              alt=""
+                            >
+                          </td>
+                          <td class="border p-3 bg-gray-50">
+                            <%= sample.spec_model %>
+                          </td>
+                          <td class="border p-3 bg-gray-50">
+                            <% if sample.manufacturer.present? %>
+                              <a
+                                class="underline"
+                                href="<%= manufacturer_path(sample.manufacturer) %>"
+                                target="_blank"
+                              >
+                                <%= sample.manufacturer.name %>
+                              </a>
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
+            <div
+              class="absolute inset-0 bg-gray-100 bg-opacity-40"
+              data-material-favorite-modal-target="formMask"
+              style="display: none;"
+            ></div>
+          </div>
+          <div class="px-10 py-4">
+            <button
+              class="p-2 flex items-center border w-full text-sm text-black rounded"
+              data-material-favorite-modal-target="newFavoriteBtn"
+              data-action="click->material-favorite-modal#showFavoriteForm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+              </svg>
+              <span class="ml-2">
+                新建收藏夹
+              </span>
+            </button>
+            <form
+              class="flex flex-row items-center gap-4 border border-transparent"
+              style="display: none;"
+              data-material-favorite-modal-target="newFavoriteForm"
+              data-material-favorite-new-target="form"
+              data-action="submit->material-favorite-new#handleFormSubmit"
+            >
+              <input
+                class="flex-1 border border-gray-300 h-9 rounded px-2 focus:border-transparent focus:ring-black text-sm"
+                type="text"
+                placeholder="最多可输入30个字"
+                name="name"
+                required
+              />
+              <%= render partial: 'shared/matlib_form/search_select', locals: {
+                class_name: 'flex-1 text-sm',
+                placeholder: '请选择项目编号',
+                options: [],
+                name: 'project_code',
+                value: '',
+                html_attr: {
+                  'data-material-favorite-new-target': 'projectSelect',
+                },
+                search_html_attr: {
+                  'data-action': 'input->material-favorite-new#handleSearchProjects',
+                }
+              } %>
+            </form>
+          </div>
+          <div
+            class="text-sm flex gap-5 justify-center py-6"
+            style="display: none;"
+            data-material-favorite-modal-target="newFavoriteAction"
+          >
+            <button
+              type="button"
+              class="w-20 h-10 primary-button transition-all duration-300"
+              data-material-favorite-new-target="submitBtn"
+              data-action="click->material-favorite-new#submit"
+            >
+              新建
+            </button>
+            <button
+              type="button"
+              class="w-20 h-10 cancel-button transition-all duration-300"
+              data-material-favorite-new-target="cancelBtn"
+              data-action="click->material-favorite-modal#cancelNewFavorite"
+            >
+              取消
+            </button>
+          </div>
+          <div
+            class="text-sm flex gap-5 justify-center py-6"
+            data-material-favorite-modal-target="footer"
+          >
+            <button
+              type="button"
+              class="w-20 h-10 primary-button transition-all duration-300"
+              data-material-favorite-form-target="submitBtn"
+              data-action="click->material-favorite-form#submit"
+            >
+              确定
+            </button>
+            <button
+              type="button"
+              class="w-20 h-10 cancel-button transition-all duration-300"
+              data-material-favorite-form-target="cancelBtn"
+              data-action="click->modal#close"
+            >
+              取消
+            </button>
+          </div>
+        </div>
+    </div>
+  </div>
+<% end %>

@@ -65,19 +65,21 @@ module.exports = {
         20: '20',
       },
       keyframes: {
-        fade: {
+        fadeIn: {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
         }
       },
       animation: {
-        'fade-in-0.5': 'fade 0.5s ease-in-out',
-        'fade-in-1': 'fade 1s ease-in-out',
-      }
+        'fade-in': 'fadeIn 0.15s ease-in-out',
+        'fade-in-250': 'fadeIn 0.25s ease-in-out',
+        'fade-in-500': 'fadeIn 0.5s ease-in-out',
+        'fade-in-750': 'fadeIn 0.75s ease-in-out',
+        'fade-in-1000': 'fadeIn 1s ease-in-out',
+      },
     },
   },
   plugins: [
     require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
   ],
 }
