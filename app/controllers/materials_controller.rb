@@ -149,6 +149,10 @@ class MaterialsController < ApplicationController
     end
   end
 
+  def new_favorite
+    @material = Material.find(params[:id])
+  end
+
   private
 
     def get_color_system_projects(material, color_id = nil)

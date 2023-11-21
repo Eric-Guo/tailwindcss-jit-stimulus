@@ -1,0 +1,32 @@
+<%= render 'personal_center/frame', page: 'material_favorites' do -%>
+
+  <div
+    class="relative py-8"
+    data-controller="personal-center-material-favorites"
+  >
+    <div class="absolute right-0 -top-10 flex items-center">
+      <a
+        class="ml-4 px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all"
+        href="<%= new_material_favorite_path %>"
+        data-turbo-frame="material_favorite_new_modal"
+      >
+        新建项目文件夹
+      </a>
+    </div>
+    <div class="bg-gray-50 px-7 py-5 text-gray-400 text-sm leading-6">
+      <div>关于材料清单的使用方法：</div>
+      <div>1、可以将“材料”版块收藏的三级材料和样品，自动整理为excel表格，并支持下载到本地。</div>
+      <div>2、支持根据不同项目，新建不同项目文件夹，方便管理。</div>
+      <div>3、首次使用需要先新建一个项目文件夹。</div>
+      <div>4、效果图会随材料清单一起导出。</div>
+    </div>
+    <div
+      class="mt-7 grid grid-cols-4 gap-3"
+      data-personal-center-material-favorites-target="list"
+    >
+    </div>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag :material_favorite_new_modal %>
+<%= turbo_frame_tag :material_favorite_edit_modal %>

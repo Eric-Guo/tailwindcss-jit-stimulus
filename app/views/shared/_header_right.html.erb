@@ -43,6 +43,7 @@
           <% if Visitor.user_auth?(current_user) %>
             <a href="<%= personal_center_visitors_path %>">我的访客邀请</a>
           <% end %>
+          <a href="<%= personal_center_material_favorites_path %>">我的材料清单</a>
           <a href="<%= personal_center_helpers_path %>">帮助中心</a>
           <% if Rails.env.development? %>
           <a href="<%= dev_auth_logout_path %>">退出登录</a>

@@ -1,0 +1,59 @@
+<% class_name ||= '' %>
+<% name ||= '' %>
+<% value ||= '' %>
+<% html_attr ||= {} %>
+<% file_types ||= [] %>
+<% file_max_size ||= 5 * 1024 * 1024 %>
+
+<div
+  class="<%= class_name %>"
+  data-controller="drag-upload"
+  data-drag-upload-value-value="<%= value %>"
+  data-drag-upload-file-types-value=<%= file_types.to_json %>
+  data-drag-upload-file-max-size-value=<%= file_max_size %>
+  <%= html_attr.keys.map{ |key| "#{key}=\"#{html_attr[key]}\"" }.join(' ').html_safe %>
+>
+  <input
+    type="hidden"
+    name="<%= name %>"
+    value="<%= value %>"
+    data-drag-upload-target="value"
+  >
+  <input
+    type="file"
+    class="hidden"
+    data-drag-upload-target="fileInput"
+    data-action="change->drag-upload#handleFileChange"
+  >
+  <div
+    class="w-full h-full flex justify-center items-center border border-gray-300 border-dashed rounded px-2 focus-within:border-black text-sm"
+    style="min-height: 96px"
+    data-action="dragover->drag-upload#handleDragover drop->drag-upload#handleDrop"
+  >
+    <div
+      class="flex flex-col justify-center items-center"
+      data-drag-upload-target="dropzone"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="text-gray-300" viewBox="0 0 16 16">
+        <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2z"/>
+      </svg>
+      <span class="text-gray-500">
+        将文件拖到此处，或
+        <span
+          class="text-black underline cursor-pointer"
+          data-action="click->drag-upload#handleFileClick"
+        >
+          点击上传
+        </span>
+      </span>
+    </div>
+    <img
+      class="w-full h-full object-scale-down"
+      style="display: none;"
+      src=""
+      alt=""
+      data-drag-upload-target="preview"
+      data-action="click->drag-upload#handleFileClick"
+    >
+  </div>
+</div>

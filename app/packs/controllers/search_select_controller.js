@@ -44,6 +44,7 @@ export default class extends Controller {
 
   optionItemsValueChanged(value) {
     this.setOptionItems(value);
+    this.valueValueChanged(this.valueValue);
   }
 
   handleOptionItemClick(event) {
@@ -60,7 +61,11 @@ export default class extends Controller {
       option.dataset.label = item.label;
       option.dataset.action = 'click->search-select#handleOptionItemClick';
       option.textContent = item.label;
-      option.className = this.optionItemClassNameValue;
+      if (item.value === this.valueValue) {
+        option.className = this.optionItemActiveClassNameValue;
+      } else {
+        option.className = this.optionItemClassNameValue;
+      }
       this.optionsTarget.appendChild(option);
     });
   }
