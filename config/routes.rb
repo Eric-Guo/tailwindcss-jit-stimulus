@@ -29,9 +29,11 @@ Rails.application.routes.draw do
       get :color_system_list
       get :download_texture
       get :samples
+      get :new_favorite
     end
-    resources :favorites, controller: 'material_favorites', only: %i[new]
   end
+
+  resources :material_favorites, only: %i[new edit]
 
   resources :project_records, only: %i[show]
   resources :projects, only: %i[index show]
@@ -82,6 +84,7 @@ Rails.application.routes.draw do
         put :disable
       end
     end
+    resources :material_favorites, only: [:index, :show]
     resources :helpers, only: [:index]
   end
 

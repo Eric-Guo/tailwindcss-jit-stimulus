@@ -22,6 +22,7 @@
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dayjs": "^1.11.3",
+    "filesize": "^10.1.0",
     "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^2.4.5",
     "mrujs": "^0.7.4",

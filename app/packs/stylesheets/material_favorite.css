@@ -1,0 +1,64 @@
+.material-favorite-cover {
+  display: grid;
+  gap: 4px;
+  grid-template: repeat(6, 1fr) / repeat(6, 1fr);
+}
+
+/* 1行1列 */
+.material-favorite-cover .material-favorite-cover-item {
+  width: 100%;
+  height: 100%;
+  grid-area: span 6 / span 6;
+}
+
+/* 1行2列 */
+.material-favorite-cover:has(:nth-child(2)) .material-favorite-cover-item {
+  grid-area: span 6 / span 3;
+}
+
+/* 2行2列 */
+.material-favorite-cover:has(:nth-child(3)) .material-favorite-cover-item {
+  grid-area: span 3 / span 3;
+}
+
+.material-favorite-cover:has(:nth-child(3)) .material-favorite-cover-item:nth-child(1) {
+  grid-area: span 3 / span 6;
+}
+
+.material-favorite-cover:has(:nth-child(4)) .material-favorite-cover-item:nth-child(1) {
+  grid-area: span 3 / span 3;
+}
+
+/* 2行3列 */
+.material-favorite-cover:has(:nth-child(5)) .material-favorite-cover-item {
+  grid-area: span 3 / span 2;
+}
+
+.material-favorite-cover:has(:nth-child(5)) .material-favorite-cover-item:nth-child(1) {
+  grid-area: span 3 / span 4;
+}
+
+.material-favorite-cover:has(:nth-child(6)) .material-favorite-cover-item:nth-child(1) {
+  grid-area: span 3 / span 2;
+}
+
+/* 3行3列 */
+.material-favorite-cover:has(:nth-child(7)) .material-favorite-cover-item {
+  grid-area: span 2 / span 2;
+}
+
+.material-favorite-cover:has(:nth-child(7)) .material-favorite-cover-item:nth-child(1) {
+  grid-area: span 2 / span 4;
+}
+
+.material-favorite-cover:has(:nth-child(7)) .material-favorite-cover-item:nth-child(4) {
+  grid-area: span 2 / span 4;
+}
+
+.material-favorite-cover:has(:nth-child(8)) .material-favorite-cover-item:nth-child(4) {
+  grid-area: span 2 / span 2;
+}
+
+.material-favorite-cover:has(:nth-child(9)) .material-favorite-cover-item:nth-child(1) {
+  grid-area: span 2 / span 2;
+}

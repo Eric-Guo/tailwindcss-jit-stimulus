@@ -24,6 +24,10 @@
       zh: '我的访客邀请',
       en: 'Visitor Invitation',
     },
+    material_favorites: {
+      zh: '我的材料清单',
+      en: 'My Materials List',
+    },
     helper_center: {
       zh: '帮助中心',
       en: 'Help Center',
@@ -113,6 +117,13 @@
           </div>
         </div>
       <% end %>
+      <div class="material-nav-item mb-5 <%= page == :material_favorites ? 'active' : '' %>" data-material-nav-target="navItem">
+        <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
+          <a data-turbo="false" href="<%= personal_center_material_favorites_path %>" class="material-nav-item-header-title truncate block w-full">
+            <span><%= pages[:material_favorites][:zh] %></span>
+          </a>
+        </div>
+      </div>
       <div class="material-nav-item mb-5 <%= page == :helper_center ? 'active' : '' %>" data-material-nav-target="navItem">
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
           <a data-turbo="false" href="<%= personal_center_helpers_path %>" class="material-nav-item-header-title truncate block w-full">

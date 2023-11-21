@@ -1,9 +1,10 @@
-<%= turbo_frame_tag :material_favorite_new_modal do %>
+<%= turbo_frame_tag :material_favorite_edit_modal do %>
   <div
-    data-controller="modal turbo-modal material-favorites"
+    data-controller="modal turbo-modal material-favorite-edit"
     data-modal-allow-background-close="false"
     data-modal-disable-backdrop="true"
     data-turbo-modal-auto-show-value="true"
+    data-material-favorite-edit-favorite-id-value="<%= params[:id] %>"
   >
     <div
       data-modal-target="container"
@@ -21,13 +22,13 @@
             </svg>
           </button>
           <div class="bg-black text-white text-sm flex justify-center items-center px-3" style="height: 35px;">
-            新建项目文件夹
+            编辑项目文件夹
           </div>
           <div class="px-10 py-6 overflow-auto relative" style="height: 540px;">
             <form
               method="post"
-              data-material-favorites-target="form"
-              data-action="submit->material-favorites#handleFormSubmit"
+              data-material-favorite-edit-target="form"
+              data-action="submit->material-favorite-edit#handleFormSubmit"
             >
               <div class="flex flex-col">
                 <label for="name"><span class="text-red">*</span>项目文件夹名称：</label>
@@ -37,7 +38,7 @@
                   class_name: 'mt-2 text-sm',
                   html_attr: {
                     'required': 'true',
-                    'data-material-favorites-target': 'nameInput'
+                    'data-material-favorite-edit-target': 'nameInput'
                   },
                 } %>
               </div>
@@ -50,10 +51,10 @@
                   name: 'project_code',
                   value: '',
                   html_attr: {
-                    'data-material-favorites-target': 'projectSelect',
+                    'data-material-favorite-edit-target': 'projectSelect',
                   },
                   search_html_attr: {
-                    'data-action': 'input->material-favorites#handleSearchProjects',
+                    'data-action': 'input->material-favorite-edit#handleSearchProjects',
                   }
                 } %>
               </div>
@@ -65,7 +66,7 @@
                   value: '',
                   file_types: ['image/*'],
                   html_attr: {
-                    'data-material-favorites-target': 'coverPicker',
+                    'data-material-favorite-edit-target': 'coverPicker',
                   },
                 } %>
               </div>
@@ -78,15 +79,15 @@
             <button
               type="button"
               class="w-20 h-10 primary-button transition-all duration-300"
-              data-material-favorites-target="submitBtn"
-              data-action="click->material-favorites#submit"
+              data-material-favorite-edit-target="submitBtn"
+              data-action="click->material-favorite-edit#submit"
             >
               确定
             </button>
             <button
               type="button"
               class="w-20 h-10 cancel-button transition-all duration-300"
-              data-material-favorites-target="cancelBtn"
+              data-material-favorite-edit-target="cancelBtn"
               data-action="click->modal#close"
             >
               取消

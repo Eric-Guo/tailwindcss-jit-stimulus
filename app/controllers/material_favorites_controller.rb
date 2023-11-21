@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class MaterialFavoritesController < ApplicationController
-  before_action do
-    @material = Material.find(params[:material_id])
+  def new
   end
 
-  def new
+  def edit
   end
 end
