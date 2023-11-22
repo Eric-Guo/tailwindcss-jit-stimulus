@@ -1,0 +1,72 @@
+<%= turbo_frame_tag :material_favorite_sample_edit_modal do %>
+  <div
+    data-controller="modal turbo-modal material-favorite-sample-edit"
+    data-modal-allow-background-close="false"
+    data-modal-disable-backdrop="true"
+    data-turbo-modal-auto-show-value="true"
+    data-material-favorite-sample-edit-id-value="<%= params[:id] %>"
+    data-material-favorite-sample-edit-favorite-id-value="<%= params[:material_favorite_id] %>"
+  >
+    <div
+      data-modal-target="container"
+      class="animate-fade-in fixed inset-0 overflow-y-auto flex items-center justify-center"
+      style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);"
+    >
+        <div
+          class="relative bg-white rounded-lg overflow-hidden"
+          style="width: 580px;"
+        >
+          <button type="button" class="absolute top-2.5 right-2.5 z-50" data-action="click->turbo-modal#hide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+              <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+            </svg>
+          </button>
+          <div class="bg-black text-white text-sm flex justify-center items-center px-3" style="height: 35px;">
+            修改部位
+          </div>
+          <div class="px-10 py-6 overflow-auto relative" style="height: 320px;">
+            <form
+              method="post"
+              data-material-favorite-sample-edit-target="form"
+              data-action="submit->material-favorite-sample-edit#handleFormSubmit"
+            >
+              <div class="flex flex-col">
+                <label for="part"><span class="text-red">*</span>部位：</label>
+                <%= render partial: 'shared/matlib_form/textarea', locals: {
+                  id: 'part',
+                  name: 'part',
+                  class_name: 'mt-2 text-sm resize-none',
+                  html_attr: {
+                    'required': 'true',
+                    'data-material-favorite-sample-edit-target': 'partInput',
+                    'rows': '6',
+                  },
+                } %>
+              </div>
+            </form>
+          </div>
+          <div
+            class="text-sm flex gap-5 justify-center py-6"
+          >
+            <button
+              type="button"
+              class="w-20 h-10 primary-button transition-all duration-300"
+              data-material-favorite-sample-edit-target="submitBtn"
+              data-action="click->material-favorite-sample-edit#submit"
+            >
+              确定
+            </button>
+            <button
+              type="button"
+              class="w-20 h-10 cancel-button transition-all duration-300"
+              data-material-favorite-sample-edit-target="cancelBtn"
+              data-action="click->modal#close"
+            >
+              取消
+            </button>
+          </div>
+        </div>
+    </div>
+  </div>
+<% end %>

@@ -73,9 +73,9 @@ export default class extends Controller {
           id: res.data.ID,
           name: res.data.name,
           projectNo: res.data.projectNo,
+          projectName: res.data.projectName,
           cover: res.data.isManualCover && res.data.cover?.[0] || '',
         };
-        this.getProjects(res.data.projectNo);
       } else {
         console.error(res);
       }
@@ -107,6 +107,11 @@ export default class extends Controller {
     if (!favorite || !favorite.id) return;
     this.nameInputTarget.value = favorite.name;
     const projectSearchSelectController = this.getProjectSearchSelectController();
+    if (favorite.projectNo) {
+      projectSearchSelectController.optionItemsValue = [{ label: favorite.projectName, value: favorite.projectNo }];
+    } else {
+      this.getProjects();
+    }
     projectSearchSelectController.valueValue = favorite.projectNo;
     const coverPickerController = this.getCoverPickerController();
     coverPickerController.valueValue = favorite.cover;
