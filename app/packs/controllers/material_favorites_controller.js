@@ -22,31 +22,25 @@ export default class extends Controller {
     this.getProjects();
   }
 
-  projectSearchSelectController = null
-
-  coverPickerController = null
-
-  turboModalController = null
-
   getProjectSearchSelectController = () => {
-    if (!this.projectSearchSelectController) {
-      this.projectSearchSelectController = this.application.getControllerForElementAndIdentifier(this.projectSelectTarget, 'search-select');
+    if (!this._projectSearchSelectController) {
+      this._projectSearchSelectController = this.application.getControllerForElementAndIdentifier(this.projectSelectTarget, 'search-select');
     }
-    return this.projectSearchSelectController;
+    return this._projectSearchSelectController;
   }
 
   getCoverPickerController = () => {
-    if (!this.coverPickerController) {
-      this.coverPickerController = this.application.getControllerForElementAndIdentifier(this.coverPickerTarget, 'drag-upload');
+    if (!this._coverPickerController) {
+      this._coverPickerController = this.application.getControllerForElementAndIdentifier(this.coverPickerTarget, 'drag-upload');
     }
-    return this.coverPickerController;
+    return this._coverPickerController;
   }
 
   getTurboModalController = () => {
-    if (!this.turboModalController) {
-      this.turboModalController = this.application.getControllerForElementAndIdentifier(this.element, 'turbo-modal');
+    if (!this._turboModalController) {
+      this._turboModalController = this.application.getControllerForElementAndIdentifier(this.element, 'turbo-modal');
     }
-    return this.turboModalController;
+    return this._turboModalController;
   }
 
   getProjects = debounce((keywords = '') => {
