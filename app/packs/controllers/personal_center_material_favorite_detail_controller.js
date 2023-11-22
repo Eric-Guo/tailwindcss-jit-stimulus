@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = [
     'list',
     'title',
+    'exportBtn',
   ]
 
   static values = {
@@ -94,6 +95,7 @@ export default class extends Controller {
     } else {
       this.titleTarget.textContent = favorite.name;
     }
+    this.exportBtnTarget.style.display = favorite.total > 0 ? '' : 'none';
   }
 
   getFavorite = (favoriteId) => {
@@ -105,6 +107,7 @@ export default class extends Controller {
           projectNo: res.data.projectNo,
           projectName: res.data.projectName,
           cover: res.data.isManualCover && res.data.cover?.[0] || '',
+          total: res.data.total,
         };
       } else {
         console.error(res);

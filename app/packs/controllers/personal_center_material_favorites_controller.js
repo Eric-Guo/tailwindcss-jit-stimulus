@@ -43,13 +43,13 @@ export default class extends Controller {
                 >
                   导出excel材料清单
                 </a>` : ''}
-                <button
+                ${favorite.isDefault ? '' : `<button
                   class="text-gray-400 px-2 py-1 border border-gray-400 rounded-[10px] hover:text-white hover:bg-black hover:border-white transition-all"
                   data-id="${favorite.id}"
                   data-action="click->personal-center-material-favorites#handleRemoveFavorite"
                 >
                   删除
-                </button>
+                </button>`}
               </div>
             </div>
           </div>
@@ -75,6 +75,7 @@ export default class extends Controller {
         this.favoritesValue = res.data.list.map(item => ({
           id: item.ID,
           name: item.name,
+          isDefault: item.folderType === 'default',
           cover: item.cover,
           projectName: item.projectName,
           projectNo: item.projectNo,
