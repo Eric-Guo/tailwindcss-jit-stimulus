@@ -15,35 +15,29 @@ export default class extends Controller {
     loading: Boolean,
   }
 
-  projectSearchSelectController = null
-
-  favoriteModalController = null
-
-  favoriteFormController = null
-
   connect() {
     this.getProjects();
   }
 
   getProjectSearchSelectController = () => {
-    if (!this.projectSearchSelectController) {
-      this.projectSearchSelectController = this.application.getControllerForElementAndIdentifier(this.projectSelectTarget, 'search-select');
+    if (!this._projectSearchSelectController) {
+      this._projectSearchSelectController = this.application.getControllerForElementAndIdentifier(this.projectSelectTarget, 'search-select');
     }
-    return this.projectSearchSelectController;
+    return this._projectSearchSelectController;
   }
 
   getFavoriteModalController = () => {
-    if (!this.favoriteModalController) {
-      this.favoriteModalController = this.application.getControllerForElementAndIdentifier(this.element, 'material-favorite-modal');
+    if (!this._favoriteModalController) {
+      this._favoriteModalController = this.application.getControllerForElementAndIdentifier(this.element, 'material-favorite-modal');
     }
-    return this.favoriteModalController;
+    return this._favoriteModalController;
   }
 
   getFavoriteFormController = () => {
-    if (!this.favoriteFormController) {
-      this.favoriteFormController = this.application.getControllerForElementAndIdentifier(this.element, 'material-favorite-form');
+    if (!this._favoriteFormController) {
+      this._favoriteFormController = this.application.getControllerForElementAndIdentifier(this.element, 'material-favorite-form');
     }
-    return this.favoriteFormController;
+    return this._favoriteFormController;
   }
 
   getProjects = debounce((keywords = '') => {

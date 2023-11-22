@@ -19,13 +19,6 @@ export default class extends Controller {
     loading: Boolean,
   }
 
-  /**
-   * 样品表格控制器
-   */
-  sampleTableController = null
-
-  turboModalController = null
-
   connect() {
     this.getFavorites();
   }
@@ -34,17 +27,17 @@ export default class extends Controller {
    * 获取样品表格控制器
    */
   getSampleTableController = () => {
-    if (!this.sampleTableController) {
-      this.sampleTableController = this.application.getControllerForElementAndIdentifier(this.sampleTableTarget, 'material-favorite-sample-table');
+    if (!this._sampleTableController) {
+      this._sampleTableController = this.application.getControllerForElementAndIdentifier(this.sampleTableTarget, 'material-favorite-sample-table');
     }
-    return this.sampleTableController;
+    return this._sampleTableController;
   }
 
   getTurboModalController = () => {
-    if (!this.turboModalController) {
-      this.turboModalController = this.application.getControllerForElementAndIdentifier(this.element, 'turbo-modal');
+    if (!this._turboModalController) {
+      this._turboModalController = this.application.getControllerForElementAndIdentifier(this.element, 'turbo-modal');
     }
-    return this.turboModalController;
+    return this._turboModalController;
   }
 
   /**
@@ -148,7 +141,7 @@ export default class extends Controller {
     mrujs.fetch(`/admin_api/thtri/inventories/folders/${favoriteId}/materials`, {
       method: 'POST',
       body: JSON.stringify({
-        materialId: this.materialIdValue,
+        materialID: this.materialIdValue,
         inventorySamples: sampleIds.map(item => ({
           sampleID: Number(item),
         })),
