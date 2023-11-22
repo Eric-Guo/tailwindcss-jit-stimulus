@@ -33,7 +33,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :material_favorites, only: %i[new edit]
+  resources :material_favorites, only: %i[new edit] do
+    resources :samples, controller: 'material_favorite_samples', only: %i[edit]
+  end
 
   resources :project_records, only: %i[show]
   resources :projects, only: %i[index show]

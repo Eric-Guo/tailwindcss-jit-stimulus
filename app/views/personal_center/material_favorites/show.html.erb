@@ -1,0 +1,53 @@
+<%= render 'personal_center/frame', page: 'material_favorites' do -%>
+  <div
+    class="relative py-8"
+    data-controller="personal-center-material-favorite-detail"
+    data-personal-center-material-favorite-detail-favorite-id-value="<%= params[:id] %>"
+  >
+    <div class="absolute right-0 -top-10 flex items-center">
+      <a
+        class="ml-4 px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all"
+        href="/admin_api/thtri/inventories/folders/<%= params[:id] %>/exportExcel"
+        target="_blank"
+      >
+        导出excel材料清单
+      </a>
+      <a
+        class="ml-4 px-3 py-1 text-black border rounded text-sm hover:text-white hover:bg-black hover:border-white transition-all"
+        href="<%= personal_center_material_favorites_path %>"
+      >
+        返回
+      </a>
+    </div>
+    <div class="bg-gray-50 px-7 py-5 text-gray-400 text-sm leading-6 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+      </svg>
+      <span class="ml-1">部分数据可能会实时更新，建议添加完成后导出存档</span>
+    </div>
+    <div class="mt-10">
+      <table class="w-full border text-sm">
+        <caption
+          class="border border-b-0 py-3 text-lg font-bold"
+          data-personal-center-material-favorite-detail-target="title"
+        ></caption>
+        <thead>
+          <tr>
+            <th class="p-3 border text-left">序号</th>
+            <th class="p-3 border text-left">操作</th>
+            <th class="p-3 border text-left">部位</th>
+            <th class="p-3 border text-left">材料名称</th>
+            <th class="p-3 border text-left">基础信息</th>
+            <th class="p-3 border text-left">图展</th>
+            <th class="p-3 border text-left">造价(元/㎡)</th>
+            <th class="p-3 border text-left">所属商家</th>
+          </tr>
+        </thead>
+        <tbody data-personal-center-material-favorite-detail-target="list">
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag :material_favorite_sample_edit_modal %>

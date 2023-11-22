@@ -16,7 +16,6 @@ export default class extends Controller {
   }
 
   favoritesValueChanged(favorites) {
-    this.listTarget.innerHTML = '';
     const html = favorites.map(favorite => {
       const cover = (favorite.cover || []).filter(Boolean);
       const coverHtml = cover.length > 0 ? cover.map(img => `
@@ -26,10 +25,12 @@ export default class extends Controller {
       `).join('') : `<div class="material-favorite-cover-item bg-neutral-200"></div>`;
 
       return `
-        <div class="relative">
-          <div class="material-favorite-cover aspect-[4/3]">
-            ${coverHtml}
-          </div>
+        <div class="relative animate-fade-in-250">
+          <a class="w-full" href="/personal_center/material_favorites/${favorite.id}">
+            <div class="material-favorite-cover aspect-[4/3]">
+              ${coverHtml}
+            </div>
+          </a>
           <div class="mt-4">
             <div class="text-base">${favorite.name}</div>
             <div class="text-sm flex justify-between items-center">
@@ -37,7 +38,7 @@ export default class extends Controller {
               <div class="flex gap-2">
                 ${favorite.total > 0 ? `<a
                   class="text-gray-400 px-2 py-1 border border-gray-400 rounded-[10px] hover:text-white hover:bg-black hover:border-white transition-all"
-                  href="/admin_api/thtri/inventories/folders/${favorite.id}/samples/exportExcel"
+                  href="/admin_api/thtri/inventories/folders/${favorite.id}/exportExcel"
                   target="_blank"
                 >
                   导出excel材料清单
