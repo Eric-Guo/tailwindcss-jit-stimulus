@@ -35,7 +35,7 @@ end
 # 案例
 json.projects @projects do |project|
   json.id project.id
-  json.name project.proejct_name
+  json.name project.project_name
   json.location project.project_location
   json.cover mat_img_url(project.web_cover)
   json.is_th project.is_th
