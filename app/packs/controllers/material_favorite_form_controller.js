@@ -51,8 +51,8 @@ export default class extends Controller {
           name: item.name,
           projectName: item.projectName,
           projectNo: item.projectNo,
+          recentlyUsed: item.recentlyUsed,
         }));
-        this.currentFavoriteIdValue = this.favoritesValue[0].id;
       } else {
         console.error(res);
       }
@@ -110,12 +110,21 @@ export default class extends Controller {
 
   favoritesValueChanged(favorites) {
     this.favoriteSelectTarget.innerHTML = '';
+    if (!favorites) return;
+    let recentlyFavorite = favorites[0];
     favorites.forEach(favorite => {
       const option = document.createElement('option');
       option.value = favorite.id;
       option.textContent = favorite.name;
+      if (favorite.recentlyUsed) {
+        option.selected = true;
+        recentlyFavorite = favorite;
+      }
       this.favoriteSelectTarget.appendChild(option);
     });
+    if (recentlyFavorite) {
+      this.currentFavoriteIdValue = recentlyFavorite.id;
+    }
   }
 
   loadingValueChanged(loading) {
