@@ -50,7 +50,7 @@
     "webpack-dev-server": "^4.7.3"
   },
   "resolutions": {
-    "lru-cache": "~9.1.2"
+    "glob": "~7.2.3"
   },
   "babel": {
     "presets": [
