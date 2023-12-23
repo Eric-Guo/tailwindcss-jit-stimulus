@@ -49,6 +49,9 @@
     "@webpack-cli/serve": "^1.6.0",
     "webpack-dev-server": "^4.7.3"
   },
+  "resolutions": {
+    "lru-cache": "~9.1.2"
+  },
   "babel": {
     "presets": [
       "./node_modules/shakapacker/package/babel/preset.js"
