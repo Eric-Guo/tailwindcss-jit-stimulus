@@ -71,9 +71,6 @@
       "postinstall-postinstall"
     ]
   },
-  "resolutions": {
-    "glob": "~7.2.3"
-  },
   "babel": {
     "presets": [
       "./node_modules/shakapacker/package/babel/preset.js"
