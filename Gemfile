@@ -3,12 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "~> 3.0"
 
-gem "rails", "~> 7.0.5"
+gem "rails", "~> 7.1.2"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 # Use Puma as the app server
-gem 'puma', '< 6'
+gem 'puma'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "shakapacker"
 gem "turbo-rails"
