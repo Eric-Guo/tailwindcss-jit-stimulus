@@ -38,6 +38,7 @@
     "webpack-dev-server": "^4.7.3"
   },
   "resolutions": {
+    "@types/retry": "^0.12.5",
     "glob": "~7.2.3"
   },
   "babel": {
