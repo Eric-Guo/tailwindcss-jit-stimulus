@@ -50,7 +50,8 @@
     "webpack-dev-server": "^4.7.3"
   },
   "resolutions": {
-    "glob": "~7.2.3"
+    "glob": "~7.2.3",
+    "mdn-data": "~2.0.33"
   },
   "babel": {
     "presets": [
