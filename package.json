@@ -52,7 +52,9 @@
   "resolutions": {
     "@types/retry": "^0.12.5",
     "glob": "~7.2.3",
-    "mdn-data": "~2.0.33"
+    "inherits": "~2.0.4",
+    "mdn-data": "~2.0.33",
+    "merge-descriptors": "~1.0.3"
   },
   "babel": {
     "presets": [
