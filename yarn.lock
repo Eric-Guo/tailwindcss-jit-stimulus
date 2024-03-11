@@ -119,6 +119,17 @@
     lodash.debounce "^4.0.8"
     resolve "^1.14.2"
 
+"@babel/helper-define-polyfill-provider@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.npmmirror.com/@babel/helper-define-polyfill-provider/-/helper-define-polyfill-provider-0.6.0.tgz#4d1a8b898c8299a2fcf295d7d356d2648471ab31"
+  integrity sha512-efwOM90nCG6YeT8o3PCyBVSxRfmILxCNL+TNI8CGQl7a62M0Wd9VkV+XHwIlkOz1r4b+lxu6gBjdWiOMdUCrCQ==
+  dependencies:
+    "@babel/helper-compilation-targets" "^7.22.6"
+    "@babel/helper-plugin-utils" "^7.22.5"
+    debug "^4.1.1"
+    lodash.debounce "^4.0.8"
+    resolve "^1.14.2"
+
 "@babel/helper-environment-visitor@^7.22.20":
   version "7.22.20"
   resolved "https://registry.npmmirror.com/@babel/helper-environment-visitor/-/helper-environment-visitor-7.22.20.tgz#96159db61d34a29dba454c959f5ae4a649ba9167"
@@ -1180,9 +1191,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "20.11.24"
-  resolved "https://registry.npmmirror.com/@types/node/-/node-20.11.24.tgz#cc207511104694e84e9fb17f9a0c4c42d4517792"
-  integrity sha512-Kza43ewS3xoLgCEpQrsT+xRo/EJej1y0kVYGiLFE1NEODXGzTfwiC6tXTLMQskn1X4/Rjlh0MQUvx9W+L9long==
+  version "20.11.25"
+  resolved "https://registry.npmmirror.com/@types/node/-/node-20.11.25.tgz#0f50d62f274e54dd7a49f7704cc16bfbcccaf49f"
+  integrity sha512-TBHyJxk2b7HceLVGFcpAUjsa5zIdsPWlR6XHfyGzd0SFu+/NFgQgMAl96MSDZgQDvJAvV6BKsFOrt6zIL09JDw==
   dependencies:
     undici-types "~5.26.4"
 
@@ -1532,12 +1543,12 @@ babel-loader@8:
     schema-utils "^2.6.5"
 
 babel-plugin-polyfill-corejs2@^0.4.8:
-  version "0.4.8"
-  resolved "https://registry.npmmirror.com/babel-plugin-polyfill-corejs2/-/babel-plugin-polyfill-corejs2-0.4.8.tgz#dbcc3c8ca758a290d47c3c6a490d59429b0d2269"
-  integrity sha512-OtIuQfafSzpo/LhnJaykc0R/MMnuLSSVjVYy9mHArIZ9qTCSZ6TpWCuEKZYVoN//t8HqBNScHrOtCrIK5IaGLg==
+  version "0.4.9"
+  resolved "https://registry.npmmirror.com/babel-plugin-polyfill-corejs2/-/babel-plugin-polyfill-corejs2-0.4.9.tgz#15a285f681e1c5495093d85f1cf72bd1cbed41ce"
+  integrity sha512-BXIWIaO3MewbXWdJdIGDWZurv5OGJlFNo7oy20DpB3kWDVJLcY2NRypRsRUbRe5KMqSNLuOGnWTFQQtY5MAsRw==
   dependencies:
     "@babel/compat-data" "^7.22.6"
-    "@babel/helper-define-polyfill-provider" "^0.5.0"
+    "@babel/helper-define-polyfill-provider" "^0.6.0"
     semver "^6.3.1"
 
 babel-plugin-polyfill-corejs3@^0.9.0:
@@ -1678,9 +1689,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001587, caniuse-lite@^1.0.30001591:
-  version "1.0.30001594"
-  resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001594.tgz#bea552414cd52c2d0c985ed9206314a696e685f5"
-  integrity sha512-VblSX6nYqyJVs8DKFMldE2IVCJjZ225LW00ydtUWwh5hk9IfkTOffO6r8gJNsH0qqqeAF8KrbMYA2VEwTlGW5g==
+  version "1.0.30001596"
+  resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001596.tgz#da06b79c3d9c3d9958eb307aa832ac68ead79bee"
+  integrity sha512-zpkZ+kEr6We7w63ORkoJ2pOfBwBkY/bJrG/UZ90qNb45Isblu8wzDgevEOrRL1r9dWayHjYiiyCMEXPn4DweGQ==
 
 chalk@^2.4.2:
   version "2.4.2"
@@ -2058,7 +2069,7 @@ default-gateway@^6.0.3:
   dependencies:
     execa "^5.0.0"
 
-define-data-property@^1.1.2:
+define-data-property@^1.1.4:
   version "1.1.4"
   resolved "https://registry.npmmirror.com/define-data-property/-/define-data-property-1.1.4.tgz#894dc141bb7d3060ae4366f6a0107e68fbe48c5e"
   integrity sha512-rBMvIzlpA8v6E+SJZoo++HAYqsLrkg7MSfIinMPFhmkorw7X+dOXVJQs+QT69zGkzMyfDnIMN2Wid1+NbL3T+A==
@@ -2145,9 +2156,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.668:
-  version "1.4.692"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.692.tgz#82139d20585a4b2318a02066af7593a3e6bec993"
-  integrity sha512-d5rZRka9n2Y3MkWRN74IoAsxR0HK3yaAt7T50e3iT9VZmCCQDT3geXUO5ZRMhDToa1pkCeQXuNo+0g+NfDOVPA==
+  version "1.4.699"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.699.tgz#dd53c939e13da64e94b341e563f0a3011b4ef0e9"
+  integrity sha512-I7q3BbQi6e4tJJN5CRcyvxhK0iJb34TV8eJQcgh+fR2fQ8miMgZcEInckCo1U9exDHbfz7DLDnFn8oqH/VcRKw==
 
 emojis-list@^3.0.0:
   version "3.0.0"
@@ -2445,7 +2456,7 @@ gensync@^1.0.0-beta.2:
   resolved "https://registry.npmmirror.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
 
-get-intrinsic@^1.1.3, get-intrinsic@^1.2.3, get-intrinsic@^1.2.4:
+get-intrinsic@^1.1.3, get-intrinsic@^1.2.4:
   version "1.2.4"
   resolved "https://registry.npmmirror.com/get-intrinsic/-/get-intrinsic-1.2.4.tgz#e385f5a4b5227d449c3eabbad05494ef0abbeadd"
   integrity sha512-5uYhsJH8VJBTv7oslg4BznJYhDoRI6waYCxMmCdnTrcCrHA/fCFKoTFz2JKKE0HdDFUF7/oQuhzumXJK7paBRQ==
@@ -2524,7 +2535,7 @@ has-flag@^4.0.0:
   resolved "https://registry.npmmirror.com/has-flag/-/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
-has-property-descriptors@^1.0.1:
+has-property-descriptors@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmmirror.com/has-property-descriptors/-/has-property-descriptors-1.0.2.tgz#963ed7d071dc7bf5f084c5bfbe0d1b6222586854"
   integrity sha512-55JNKuIW+vq4Ke1BjOTjM2YctQIvCT7GFzHwmfZPGo5wnrgkid0YQtnAleFSqumZm4az3n2BS+erby5ipJdgrg==
@@ -2542,9 +2553,9 @@ has-symbols@^1.0.3:
   integrity sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==
 
 hasown@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.npmmirror.com/hasown/-/hasown-2.0.1.tgz#26f48f039de2c0f8d3356c223fb8d50253519faa"
-  integrity sha512-1/th4MHjnwncwXsIW6QMzlvYL9kG5e/CpVvLRZe4XPa8TOUNbCELqmvhDmnkNsAjwaG4+I8gJJL0JBvTTLO9qA==
+  version "2.0.2"
+  resolved "https://registry.npmmirror.com/hasown/-/hasown-2.0.2.tgz#003eaf91be7adc372e84ec59dc37252cedb80003"
+  integrity sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==
   dependencies:
     function-bind "^1.1.2"
 
@@ -4208,16 +4219,16 @@ serve-static@1.15.0:
     send "0.18.0"
 
 set-function-length@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npmmirror.com/set-function-length/-/set-function-length-1.2.1.tgz#47cc5945f2c771e2cf261c6737cf9684a2a5e425"
-  integrity sha512-j4t6ccc+VsKwYHso+kElc5neZpjtq9EnRICFZtWyBsLojhmeF/ZBd/elqm22WJh/BziDe/SBiOeAt0m2mfLD0g==
+  version "1.2.2"
+  resolved "https://registry.npmmirror.com/set-function-length/-/set-function-length-1.2.2.tgz#aac72314198eaed975cf77b2c3b6b880695e5449"
+  integrity sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==
   dependencies:
-    define-data-property "^1.1.2"
+    define-data-property "^1.1.4"
     es-errors "^1.3.0"
     function-bind "^1.1.2"
-    get-intrinsic "^1.2.3"
+    get-intrinsic "^1.2.4"
     gopd "^1.0.1"
-    has-property-descriptors "^1.0.1"
+    has-property-descriptors "^1.0.2"
 
 setprototypeof@1.1.0:
   version "1.1.0"
@@ -4466,9 +4477,9 @@ terser-webpack-plugin@5, terser-webpack-plugin@^5.3.10:
     terser "^5.26.0"
 
 terser@^5.26.0:
-  version "5.28.1"
-  resolved "https://registry.npmmirror.com/terser/-/terser-5.28.1.tgz#bf00f7537fd3a798c352c2d67d67d65c915d1b28"
-  integrity sha512-wM+bZp54v/E9eRRGXb5ZFDvinrJIOaTapx3WUokyVGZu5ucVCK55zEgGd5Dl2fSr3jUo5sDiERErUWLY6QPFyA==
+  version "5.29.1"
+  resolved "https://registry.npmmirror.com/terser/-/terser-5.29.1.tgz#44e58045b70c09792ba14bfb7b4e14ca8755b9fa"
+  integrity sha512-lZQ/fyaIGxsbGxApKmoPTODIzELy3++mXhS5hOqaAWZjQtpq/hFHAc+rm29NND1rYRxRWKcjuARNwULNXa5RtQ==
   dependencies:
     "@jridgewell/source-map" "^0.3.3"
     acorn "^8.8.2"
@@ -4786,6 +4797,6 @@ yaml@^1.10.0, yaml@^1.10.2:
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
 
 yaml@^2.3.4:
-  version "2.4.0"
-  resolved "https://registry.npmmirror.com/yaml/-/yaml-2.4.0.tgz#2376db1083d157f4b3a452995803dbcf43b08140"
-  integrity sha512-j9iR8g+/t0lArF4V6NE/QCfT+CO7iLqrXAHZbJdo+LfjqP1vR8Fg5bSiaq6Q2lOD1AUEVrEVIgABvBFYojJVYQ==
+  version "2.4.1"
+  resolved "https://registry.npmmirror.com/yaml/-/yaml-2.4.1.tgz#2e57e0b5e995292c25c75d2658f0664765210eed"
+  integrity sha512-pIXzoImaqmfOrL7teGUBt/T7ZDnyeGBWyXQBvOVhLkWLN37GXv8NMLK406UY6dS51JfcQHsmcW5cJ441bHg6Lg==
