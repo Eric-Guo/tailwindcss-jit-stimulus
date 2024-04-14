@@ -82,7 +82,7 @@ GEM
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     aes_key_wrap (1.1.0)
-    airbrussh (1.5.1)
+    airbrussh (1.5.2)
       sshkit (>= 1.6.1, != 1.7.0)
     attr_required (1.0.2)
     base64 (0.2.0)
@@ -414,4 +414,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.5.8
+   2.5.9
