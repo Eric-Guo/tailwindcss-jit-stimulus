@@ -105,8 +105,8 @@ GEM
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
-    irb (1.12.0)
-      rdoc
+    irb (1.13.0)
+      rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -193,7 +193,7 @@ GEM
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
     regexp_parser (2.9.0)
-    reline (0.5.4)
+    reline (0.5.5)
       io-console (~> 0.5)
     rexml (3.2.6)
     rubyzip (2.3.2)
@@ -250,7 +250,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  browser
+  browser (< 6)
   capybara
   debug
   puma
@@ -268,4 +268,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.5.9
+   2.5.10

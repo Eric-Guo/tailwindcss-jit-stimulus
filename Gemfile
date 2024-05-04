@@ -13,7 +13,7 @@ gem 'puma'
 gem "shakapacker"
 gem "turbo-rails"
 
-gem "browser", require: "browser/browser"
+gem "browser", "< 6", require: "browser/browser" # support ruby 3.0
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
