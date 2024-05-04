@@ -90,7 +90,7 @@ GEM
     bcrypt_pbkdf (1.1.0)
     bindata (2.5.0)
     bindex (0.8.1)
-    browser (6.0.0)
+    browser (5.3.1)
     builder (3.2.4)
     capistrano (3.18.1)
       airbrussh (>= 1.0.0)
@@ -308,7 +308,7 @@ GEM
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.0)
-    reline (0.5.4)
+    reline (0.5.5)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -380,7 +380,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt_pbkdf
-  browser
+  browser (< 6)
   capistrano
   capistrano-rails
   capistrano-rbenv
@@ -414,4 +414,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.5.9
+   2.5.10
