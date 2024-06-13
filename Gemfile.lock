@@ -323,7 +323,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    shakapacker (7.2.3)
+    shakapacker (8.0.0)
       activesupport (>= 5.2)
       package_json
       rack-proxy (>= 0.6.1)
@@ -408,7 +408,7 @@ DEPENDENCIES
   rexml
   rubyzip
   selenium-webdriver (>= 4.14.0)
-  shakapacker
+  shakapacker (~> 8.0)
   turbo-rails (= 1.1.0)
   tzinfo-data
   web-console
