@@ -241,7 +241,7 @@ GEM
     omniauth (1.9.2)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
-    omniauth_openid_connect (0.7.1)
+    omniauth_openid_connect (0.8.0)
       omniauth (>= 1.9, < 3)
       openid_connect (~> 2.2)
     openid_connect (2.3.0)
