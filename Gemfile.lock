@@ -138,7 +138,7 @@ GEM
     email_validator (2.2.4)
       activemodel
     erubi (1.13.0)
-    faraday (2.10.0)
+    faraday (2.10.1)
       faraday-net_http (>= 2.0, < 3.2)
       logger
     faraday-follow_redirects (0.3.0)
