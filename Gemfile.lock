@@ -153,7 +153,8 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
-    honeybadger (5.15.6)
+    honeybadger (5.16.0)
+      logger
     http (5.2.0)
       addressable (~> 2.8)
       base64 (~> 0.1)
