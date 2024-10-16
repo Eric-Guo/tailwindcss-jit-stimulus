@@ -2235,9 +2235,9 @@ fast-json-stable-stringify@^2.0.0:
   integrity sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==
 
 fast-uri@^3.0.1:
-  version "3.0.2"
-  resolved "https://registry.npmmirror.com/fast-uri/-/fast-uri-3.0.2.tgz#d78b298cf70fd3b752fd951175a3da6a7b48f024"
-  integrity sha512-GR6f0hD7XXyNJa25Tb9BuIdN0tdr+0BMi6/CJPH3wJO1JjNG3n/VsSw38AwRdKZABm8lGbPfakLRkYzx2V9row==
+  version "3.0.3"
+  resolved "https://registry.npmmirror.com/fast-uri/-/fast-uri-3.0.3.tgz#892a1c91802d5d7860de728f18608a0573142241"
+  integrity sha512-aLrHthzCjH5He4Z2H9YZ+v6Ujb9ocRuW6ZzkJQOrTxleEijANq4v1TsaPaVG1PZcuurEzrLcWRyYBYXD5cEiaw==
 
 fastest-levenshtein@^1.0.12:
   version "1.0.16"
@@ -4456,9 +4456,9 @@ tailwindcss-stimulus-components@^3.0.1:
     "@hotwired/stimulus" ">=3.0.0"
 
 tailwindcss@^3.0.8:
-  version "3.4.13"
-  resolved "https://registry.npmmirror.com/tailwindcss/-/tailwindcss-3.4.13.tgz#3d11e5510660f99df4f1bfb2d78434666cb8f831"
-  integrity sha512-KqjHOJKogOUt5Bs752ykCeiwvi0fKVkr5oqsFNt/8px/tA8scFPIlkygsf6jXrfCqGHz7VflA6+yytWuM+XhFw==
+  version "3.4.14"
+  resolved "https://registry.npmmirror.com/tailwindcss/-/tailwindcss-3.4.14.tgz#6dd23a7f54ec197b19159e91e3bb1e55e7aa73ac"
+  integrity sha512-IcSvOcTRcUtQQ7ILQL5quRDg7Xs93PdJEk1ZLbhhvJc7uj/OAhYOnruEiwnGgBvUtaUAJ8/mhSw1o8L2jCiENA==
   dependencies:
     "@alloc/quick-lru" "^5.2.0"
     arg "^5.0.2"
