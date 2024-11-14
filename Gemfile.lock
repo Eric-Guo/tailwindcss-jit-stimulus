@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/Eric-Guo/wechat.git
-  revision: 74a0d3ef428d474e86f45100b6ec0a64e5363c4c
+  revision: 14a97baa2cc98e4a09b3a9aa389bb9a44942a549
   branch: main
   specs:
     wechat (0.17.5)
@@ -153,7 +153,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
-    honeybadger (5.20.0)
+    honeybadger (5.20.1)
       logger
     http (5.2.0)
       addressable (~> 2.8)
