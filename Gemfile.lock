@@ -311,7 +311,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.2.1)
-    rdoc (6.7.0)
+    rdoc (6.8.0)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.2)
