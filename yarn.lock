@@ -2822,9 +2822,9 @@ make-dir@^3.0.2, make-dir@^3.1.0:
     semver "^6.0.0"
 
 math-intrinsics@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmmirror.com/math-intrinsics/-/math-intrinsics-1.0.0.tgz#4e04bf87c85aa51e90d078dac2252b4eb5260817"
-  integrity sha512-4MqMiKP90ybymYvsut0CH2g4XWbfLtmlCkXmtmdcDCxNB+mQcu1w/1+L/VD7vi/PSv7X2JYV7SCcR+jiPXnQtA==
+  version "1.1.0"
+  resolved "https://registry.npmmirror.com/math-intrinsics/-/math-intrinsics-1.1.0.tgz#a0dd74be81e2aa5c2f27e65ce283605ee4e2b7f9"
+  integrity sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==
 
 mdn-data@2.0.14, mdn-data@~2.0.33:
   version "2.0.33"
