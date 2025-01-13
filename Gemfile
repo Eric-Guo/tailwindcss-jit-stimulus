@@ -5,6 +5,9 @@ ruby "~> 3.0"
 gem "ffi", "~> 1.16.0"
 
 gem "rails", "~> 7.0.8"
+gem "net-http", "~> 0.4.1"
+gem "net-imap", "~> 0.4.18"
+gem "zeitwerk", "~> 2.6.18" # Support ruby 3.0
 
 gem "mysql2"
 
@@ -71,7 +74,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.39'
-  gem 'selenium-webdriver', '>= 4.14.0'
+  gem 'selenium-webdriver', '~> 4.26.0'
   gem 'rexml' # required by selenium-webdriver
 end
 

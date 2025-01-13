@@ -167,7 +167,7 @@ GEM
     http-form_data (2.3.0)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
-    io-console (0.7.2)
+    io-console (0.8.0)
     irb (1.14.3)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -216,7 +216,7 @@ GEM
     mysql2 (0.5.6)
     net-http (0.4.1)
       uri
-    net-imap (0.4.17)
+    net-imap (0.4.18)
       date
       net-protocol
     net-pop (0.1.2)
@@ -408,6 +408,8 @@ DEPENDENCIES
   jwt
   kaminari
   mysql2
+  net-http (~> 0.4.1)
+  net-imap (~> 0.4.18)
   omniauth (~> 1.9)
   omniauth_openid_connect
   puma
@@ -415,12 +417,13 @@ DEPENDENCIES
   redcarpet
   rexml
   rubyzip
-  selenium-webdriver (>= 4.14.0)
+  selenium-webdriver (~> 4.26.0)
   shakapacker (~> 8.0)
   turbo-rails (= 1.1.0)
   tzinfo-data
   web-console
   wechat!
+  zeitwerk (~> 2.6.18)
 
 RUBY VERSION
    ruby 3.2.2p53
