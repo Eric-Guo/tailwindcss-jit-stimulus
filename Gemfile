@@ -13,7 +13,7 @@ gem "mysql2"
 
 # Use Puma as the app server
 gem 'puma'
-gem "shakapacker", "~> 8.0"
+gem "shakapacker", "~> 8.1"
 
 # https://github.com/hotwired/turbo-rails/pull/335/files
 gem "turbo-rails", '= 1.1.0' # need lock to make cookie works.
