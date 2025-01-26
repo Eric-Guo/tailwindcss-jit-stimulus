@@ -50,6 +50,10 @@ gem "jbuilder"
 gem 'redcarpet'
 gem 'coderay'
 
+group :production do
+  gem 'rorvswild'
+end
+
 group :development, :test do
   # Call "debugger" anywhere in the code to stop execution and get a debugger console
   gem "debug"
