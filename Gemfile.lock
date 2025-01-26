@@ -90,6 +90,7 @@ GEM
     bcrypt_pbkdf (1.1.1)
     bcrypt_pbkdf (1.1.1-arm64-darwin)
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
+    bigdecimal (3.1.9)
     bindata (2.5.0)
     bindex (0.8.1)
     browser (5.3.1)
@@ -214,6 +215,7 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.4)
+    mutex_m (0.3.0)
     mysql2 (0.5.6)
     net-http (0.4.1)
       uri
@@ -395,6 +397,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt_pbkdf
+  bigdecimal
   browser (< 6)
   capistrano
   capistrano-rails
@@ -411,6 +414,7 @@ DEPENDENCIES
   jbuilder
   jwt
   kaminari
+  mutex_m
   mysql2
   net-http (~> 0.4.1)
   net-imap (~> 0.4.18)
