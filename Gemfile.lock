@@ -155,9 +155,6 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
-    honeybadger (5.26.2)
-      logger
-      ostruct
     http (5.2.0)
       addressable (~> 2.8)
       base64 (~> 0.1)
@@ -417,7 +414,6 @@ DEPENDENCIES
   devise
   ed25519
   ffi (~> 1.16.0)
-  honeybadger
   http
   jbuilder
   jwt
