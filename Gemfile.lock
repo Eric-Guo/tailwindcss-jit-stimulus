@@ -89,6 +89,7 @@ GEM
     base64 (0.2.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
+    bcrypt_pbkdf (1.1.1-x86_64-darwin)
     bigdecimal (3.1.9)
     bindata (2.5.0)
     bindex (0.8.1)
@@ -233,6 +234,10 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.17.2)
       mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.17.2-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.17.2-x86_64-linux)
       racc (~> 1.4)
     omniauth (1.9.2)
       hashie (>= 3.4.6)
@@ -382,6 +387,7 @@ PLATFORMS
   arm64-darwin
   arm64-darwin-24
   ruby
+  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
