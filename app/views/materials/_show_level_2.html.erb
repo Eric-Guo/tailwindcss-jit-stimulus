@@ -251,7 +251,7 @@
       'details'
     when @material.parent_material&.qc_constructions.present? && @material.parent_material.qc_constructions.length > 0
       'construction'
-    when @material.parent_material.news.count > 0
+    when @material.parent_material&.news&.count.to_i > 0
       'news'
     else
       'details'
