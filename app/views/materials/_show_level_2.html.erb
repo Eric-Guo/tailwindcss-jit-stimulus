@@ -338,8 +338,8 @@
   <% end %>
 
   <%# 相关新闻 %>
-  <% material_news = @material.parent_material.news.limit(4) %>
-  <% if material_news.length > 0 %>
+  <% material_news = @material.parent_material&.news&.limit(4) %>
+  <% if material_news.present? && material_news.length > 0 %>
     <div class="relative grid grid-cols-2 gap-2.5" style="margin-top: 30px; display: none;" data-tab-name="news" data-tabs-target="tabContent">
       <% if @material.parent_material.news.count > 4 %>
         <a class="more-btn absolute right-0" style="top: -76px;" href="<%= news_index_path %>" target="_blank">MORE+</a>
