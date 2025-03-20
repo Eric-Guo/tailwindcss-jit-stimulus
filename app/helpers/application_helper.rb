@@ -50,11 +50,11 @@ module ApplicationHelper
       when 1
         breadcrumbs.push({ title: material.name, url: material_path(material.parent_material) })
       when 2
-        breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) })
+        breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) }) if material.parent_material.present?
         breadcrumbs.push({ title: material.name, url: material_path(material.parent_material) })
       when 3
-        breadcrumbs.push({ title: material.grandpa_material.name, url: material_path(material.grandpa_material) })
-        breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) })
+        breadcrumbs.push({ title: material.grandpa_material.name, url: material_path(material.grandpa_material) }) if material.grandpa_material.present?
+        breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) }) if material.parent_material.present?
         breadcrumbs.push({ title: material.name, url: material_path(material) })
         breadcrumbs.push({ title: append_title })
       end
@@ -63,11 +63,11 @@ module ApplicationHelper
       when 1
         breadcrumbs.push({ title: material.name })
       when 2
-        breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) })
+        breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) }) if material.parent_material.present?
         breadcrumbs.push({ title: material.name })
       when 3
-        breadcrumbs.push({ title: material.grandpa_material.name, url: material_path(material.grandpa_material) })
-        breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) })
+        breadcrumbs.push({ title: material.grandpa_material.name, url: material_path(material.grandpa_material) }) if material.grandpa_material.present?
+        breadcrumbs.push({ title: material.parent_material.name, url: material_path(material.parent_material) }) if material.parent_material.present?
         breadcrumbs.push({ title: material.name })
       end
     end
