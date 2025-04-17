@@ -2936,9 +2936,9 @@ minimist@^1.2.6:
   integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
 "morphdom@>=2.6.0 <3.0.0":
-  version "2.7.4"
-  resolved "https://registry.npmmirror.com/morphdom/-/morphdom-2.7.4.tgz#c61d511e935cc25ca588dfaa752461f27865865e"
-  integrity sha512-ATTbWMgGa+FaMU3FhnFYB6WgulCqwf6opOll4CBzmVDTLvPMmUPrEv8CudmLPK0MESa64+6B89fWOxP3+YIlxQ==
+  version "2.7.5"
+  resolved "https://registry.npmmirror.com/morphdom/-/morphdom-2.7.5.tgz#1f3942c85df3745a28674c41ddad572910259c05"
+  integrity sha512-z6bfWFMra7kBqDjQGHud1LSXtq5JJC060viEkQFMBX6baIecpkNr2Ywrn2OQfWP3rXiNFQRPoFjD8/TvJcWcDg==
 
 mrujs@^0.7.4:
   version "0.7.4"
