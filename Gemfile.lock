@@ -139,7 +139,7 @@ GEM
     email_validator (2.2.4)
       activemodel
     erubi (1.13.1)
-    faraday (2.13.0)
+    faraday (2.13.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -173,7 +173,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.11.2)
+    json (2.11.3)
     json-jwt (1.16.7)
       activesupport (>= 4.2)
       aes_key_wrap
