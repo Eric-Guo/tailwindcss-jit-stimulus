@@ -217,7 +217,7 @@ GEM
     mysql2 (0.5.6)
     net-http (0.4.1)
       uri
-    net-imap (0.4.20)
+    net-imap (0.4.21)
       date
       net-protocol
     net-pop (0.1.2)
@@ -267,7 +267,7 @@ GEM
     psych (5.2.3)
       date
       stringio
-    public_suffix (6.0.1)
+    public_suffix (6.0.2)
     puma (5.6.9)
       nio4r (~> 2.0)
     racc (1.8.1)
@@ -331,7 +331,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.1.0)
-    shakapacker (8.2.0)
+    shakapacker (8.3.0)
       activesupport (>= 5.2)
       package_json
       rack-proxy (>= 0.6.1)
