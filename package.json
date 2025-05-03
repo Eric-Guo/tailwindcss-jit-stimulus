@@ -50,6 +50,7 @@
   },
   "resolutions": {
     "@types/retry": "^0.12.5",
+    "cookie": "~0.7.2",
     "glob": "~7.2.3",
     "inherits": "~2.0.4",
     "mdn-data": "~2.0.33",
