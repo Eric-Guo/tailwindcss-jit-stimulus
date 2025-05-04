@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/Eric-Guo/wechat.git
-  revision: d2d0faa93ec434a011fcc9fb9ebc32b0c12166f7
+  revision: 1fc6148cef4fbde7e848719609b9e1cbbec973c0
   branch: main
   specs:
     wechat (0.17.7)
@@ -319,7 +319,7 @@ GEM
       psych (>= 4.0.0)
     redcarpet (3.6.1)
     regexp_parser (2.10.0)
-    reline (0.5.12)
+    reline (0.6.1)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
