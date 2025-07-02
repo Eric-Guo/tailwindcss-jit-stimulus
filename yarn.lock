@@ -1810,9 +1810,9 @@ css-tree@^1.1.2, css-tree@^1.1.3:
     source-map "^0.6.1"
 
 css-what@^6.0.1:
-  version "6.2.0"
-  resolved "https://registry.npmmirror.com/css-what/-/css-what-6.2.0.tgz#091a8022f10bc008305477fac788fdda77c7c1e7"
-  integrity sha512-NSY/JWiKu0Fa0cPpOJ16FuRKu9vf+tHYJiUpaz5+QNIDssAz8yJK+G6PWoeVg/2qcfcTHl6oW0ApFLZw9JWRTw==
+  version "6.1.0"
+  resolved "https://registry.npmmirror.com/css-what/-/css-what-6.1.0.tgz#fb5effcf76f1ddea2c81bdfaa4de44e79bac70f4"
+  integrity sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==
 
 cssdb@^4.4.0:
   version "4.4.0"
