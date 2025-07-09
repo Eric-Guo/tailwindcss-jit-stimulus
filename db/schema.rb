@@ -11,6 +11,17 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
+  create_table "analytic_materials", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "level"
+    t.string "name", limit: 191
+    t.bigint "view_count"
+    t.bigint "material_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_analytic_materials_deleted_at"
+  end
+
   create_table "application_sites", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -85,11 +96,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.string "brand_name", limit: 191
-    t.string "logo", limit: 191
+    t.string "logo", limit: 191, comment: "Logo"
     t.string "site", limit: 191
     t.string "product", limit: 191
     t.string "address", limit: 191
-    t.text "description", size: :long
+    t.text "description", size: :long, comment: "Description"
     t.string "region", limit: 191
     t.string "aq_online_id", limit: 191
     t.index ["deleted_at"], name: "idx_brands_deleted_at"
@@ -224,8 +235,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.string "title", limit: 191
-    t.string "path", limit: 191
-    t.string "cover", limit: 191
+    t.string "path"
+    t.string "cover"
     t.string "source_path", limit: 191
     t.string "source_cover", limit: 191
     t.index ["deleted_at"], name: "idx_case_live_photos_deleted_at"
@@ -322,7 +333,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.boolean "is_da"
     t.json "ecm_files"
     t.json "ecm_documents"
-    t.string "ecm_desc", limit: 191
+    t.text "ecm_desc", size: :long
     t.json "live_photos"
     t.json "documents"
     t.string "no", limit: 32, comment: "'案例编号'"
@@ -468,7 +479,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.bigint "case_delegate_record_id", comment: "案例id", unsigned: true
     t.string "sample_image", limit: 191
     t.bigint "application_site_id", unsigned: true
-    t.string "application_site_desc", limit: 191
+    t.string "application_site_desc", limit: 2000
     t.boolean "has_sample"
     t.index ["case_id"], name: "idx_case_id"
     t.index ["deleted_at"], name: "idx_cases_material_deleted_at"
@@ -551,7 +562,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.bigint "manufacturer_id", unsigned: true
     t.binary "body", size: :long
     t.index ["deleted_at"], name: "idx_cl_material_products_deleted_at"
-    t.index ["material_id"], name: "idx_cl_material_products_material_id", unique: true
   end
 
   create_table "cl_materials", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -579,7 +589,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
-    t.string "description", limit: 191
+    t.string "description", limit: 500
     t.index ["deleted_at"], name: "idx_color_systems_deleted_at"
     t.index ["deleted_at"], name: "idx_one_by_ones_deleted_at"
   end
@@ -668,10 +678,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
-    t.string "name", limit: 191, comment: "文件名"
-    t.string "url", limit: 191, comment: "文件地址"
-    t.string "tag", limit: 191, comment: "文件标签"
-    t.string "key", limit: 191, comment: "编号"
+    t.string "name", limit: 191, comment: "'文件名'"
+    t.string "url", limit: 191, comment: "'文件地址'"
+    t.string "tag", limit: 191, comment: "'文件标签'"
+    t.string "key", limit: 191, comment: "'编号'"
     t.bigint "size", comment: "'大小'"
     t.string "thumb", limit: 191, comment: "'封面'"
     t.index ["deleted_at"], name: "idx_exa_file_upload_and_downloads_deleted_at"
@@ -780,6 +790,44 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.string "title", limit: 191
     t.string "description", limit: 191
     t.index ["deleted_at"], name: "idx_inspirations_deleted_at"
+  end
+
+  create_table "inventory_folders", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.string "name", limit: 191
+    t.string "project_no", limit: 191
+    t.string "project_name", limit: 191
+    t.bigint "user_id", unsigned: true
+    t.binary "cover", size: :long
+    t.string "folder_type", limit: 191
+    t.bigint "count"
+    t.boolean "is_cover_manual"
+    t.boolean "recently_used"
+    t.index ["deleted_at"], name: "idx_inventory_folders_deleted_at"
+  end
+
+  create_table "inventory_materials", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "folder_id", unsigned: true
+    t.bigint "material_id", unsigned: true
+    t.bigint "user_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_inventory_materials_deleted_at"
+  end
+
+  create_table "inventory_samples", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "folder_id", unsigned: true
+    t.bigint "user_id", unsigned: true
+    t.bigint "sample_id", unsigned: true
+    t.string "part", limit: 5000
+    t.bigint "inventory_material_id", unsigned: true
+    t.index ["deleted_at"], name: "idx_inventory_samples_deleted_at"
   end
 
   create_table "invitation_codes", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -1030,7 +1078,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.string "brands", limit: 191
     t.string "web_site", limit: 191
     t.bigint "external_user_id", unsigned: true
-    t.string "main_material_remark", limit: 191
+    t.text "main_material_remark"
     t.bigint "is_allow"
     t.integer "is_tho_co", limit: 1, unsigned: true
     t.text "performance_display"
@@ -1054,31 +1102,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
-    t.string "name", limit: 191, comment: "产商名称"
+    t.string "name", limit: 191
     t.string "logo", limit: 191
-    t.text "main_material_remark", comment: "主营描述"
-    t.string "location", limit: 191, comment: "所在地"
+    t.text "main_material_remark"
+    t.string "location", limit: 191
     t.string "contact", limit: 191, comment: "联系人"
-    t.string "contact_information", limit: 191, comment: "联系方式"
-    t.string "address", comment: "联系人"
-    t.string "website", comment: "网址"
-    t.boolean "is_allow", comment: "是否提供样品"
+    t.string "contact_information", limit: 191
+    t.string "address", limit: 191
+    t.string "website", limit: 191
+    t.bigint "is_allow"
     t.bigint "sys_user_id", unsigned: true
-    t.bigint "cl_online_id", unsigned: true
+    t.bigint "cl_online_id", comment: "备注"
     t.string "source", limit: 191
     t.string "main_materials", limit: 191
     t.string "registered_capital", limit: 191
-    t.string "legal_email", limit: 191
+    t.string "legal_email", limit: 191, comment: "legal_email"
     t.string "office_phone", limit: 191
     t.string "aq_online_id", limit: 191
-    t.string "email", limit: 191
+    t.string "email", limit: 191, comment: "email"
     t.string "legal", limit: 191
     t.string "position", limit: 191
     t.text "cases", size: :long
     t.datetime "top_at", precision: nil
-    t.json "performance_display"
-    t.integer "is_tho_co", limit: 1, default: 0
-    t.bigint "display", comment: "'分类/产品id'"
+    t.text "performance_display"
+    t.integer "is_tho_co", limit: 1, unsigned: true
+    t.bigint "display"
     t.string "company_email", limit: 191
     t.string "staff_size", limit: 191
     t.string "brand_list", limit: 191
@@ -1106,10 +1154,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.bigint "material_id", unsigned: true
-    t.string "scope", limit: 191, comment: "适用范围"
+    t.text "scope", comment: "适用范围"
     t.text "common_parameters", comment: "适用范围"
-    t.string "advantage", comment: "优点"
-    t.string "shortcoming", comment: "缺点"
+    t.text "advantage", comment: "优点"
+    t.text "shortcoming", comment: "缺点"
     t.string "high_price", limit: 191, comment: "价格高位"
     t.string "low_price", limit: 191, comment: "价格低位"
     t.text "points", comment: "安装施工要点"
@@ -1198,7 +1246,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "deleted_at", precision: nil
     t.bigint "user_id", unsigned: true
     t.string "name", limit: 191
-    t.text "cover"
+    t.text "cover", size: :long
     t.bigint "level"
     t.string "no", limit: 191
     t.string "en_name", limit: 191
@@ -1209,7 +1257,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.bigint "cl_online_id", unsigned: true
     t.string "source", limit: 191
     t.bigint "display"
-    t.integer "update_status", default: 0
+    t.bigint "update_status"
     t.bigint "aq_sample_id", unsigned: true
     t.bigint "zz_online_id", unsigned: true
     t.index ["deleted_at"], name: "idx_materials_deleted_at"
@@ -1378,21 +1426,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.bigint "external_user_id", unsigned: true
     t.bigint "color_system_id"
     t.binary "cover", size: :long
-    t.string "customized", limit: 191
-    t.string "high_price", limit: 191
+    t.string "customized", limit: 2000
+    t.string "high_price", limit: 2000
     t.boolean "is_common"
     t.boolean "is_customized"
-    t.string "keyword", limit: 191
-    t.string "low_price", limit: 191
+    t.string "keyword", limit: 2000
+    t.string "low_price", limit: 2000
     t.bigint "material_id", unsigned: true
-    t.string "origin", limit: 191
-    t.string "points", limit: 191
-    t.string "sections", limit: 191
+    t.string "origin", limit: 2000
+    t.string "points", limit: 2000
+    t.string "sections", limit: 2000
     t.binary "practical_applications", size: :long
     t.binary "su_picture", size: :long
     t.binary "practice_details", size: :long
     t.binary "source_file", size: :long
-    t.string "name", limit: 191
+    t.string "name", limit: 2000
     t.string "status", limit: 191
     t.bigint "level3_id", unsigned: true
     t.index ["deleted_at"], name: "idx_recommend_material_products_deleted_at"
@@ -1421,32 +1469,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.bigint "visitor_id"
   end
 
-  create_table "report_view_histories_copy1", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "controller_name"
-    t.string "action_name"
-    t.string "clerk_code"
-    t.datetime "created_at", null: false
-    t.text "request_path"
-  end
-
   create_table "sample", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
-    t.string "no", limit: 191, comment: "样品编号"
-    t.bigint "obj_id", comment: "样品编号", unsigned: true
-    t.string "color_code", limit: 191, comment: "色号"
-    t.string "spec_model", limit: 191, comment: "规格型号"
-    t.string "pic", limit: 191, comment: "封面"
-    t.string "position", limit: 191, comment: "位置"
-    t.string "remark", limit: 500, comment: "'备注'"
-    t.string "high_price", limit: 191, comment: "价格高"
-    t.string "low_price", limit: 191, comment: "价格低"
-    t.bigint "manufacturer_id", comment: "价格低", unsigned: true
+    t.string "no", limit: 191
+    t.bigint "obj_id", unsigned: true
+    t.string "color_code", limit: 191
+    t.string "spec_model", limit: 191
+    t.string "pic", limit: 191
+    t.string "position", limit: 191
+    t.string "remark", limit: 191
+    t.string "high_price", limit: 191
+    t.string "low_price", limit: 191
+    t.bigint "manufacturer_id", unsigned: true
     t.bigint "sys_user_id", unsigned: true
     t.bigint "surface_effect_id", unsigned: true
     t.string "source", limit: 191
-    t.bigint "display", comment: "是否显示 1 or 0"
+    t.bigint "display"
     t.bigint "color_system_id", comment: "色系", unsigned: true
     t.string "qr_code", limit: 191
     t.string "aq_online_id", limit: 191
@@ -1458,8 +1498,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.text "feature", size: :long
     t.text "technology", size: :long
     t.text "properties", size: :long
-    t.text "application_site", size: :long
-    t.text "model", size: :long
+    t.string "application_site", limit: 191
+    t.string "model", limit: 191
     t.string "price_unit", limit: 191
     t.bigint "sample_position_picture_id", unsigned: true
     t.string "status", limit: 191
@@ -1467,10 +1507,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.string "aq_vein", limit: 191
     t.string "usage_state", limit: 191
     t.string "aq_name", limit: 191
-    t.string "aq_sample_id"
+    t.string "aq_sample_id", limit: 191
     t.string "created_date", limit: 191
     t.string "brand_alias", limit: 191
     t.string "sample_print_name", limit: 191
+    t.datetime "borrowed_at", precision: nil
     t.index ["deleted_at"], name: "idx_sample_deleted_at"
   end
 
@@ -1495,6 +1536,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.bigint "level2_id", unsigned: true
     t.bigint "level1_id", unsigned: true
     t.index ["deleted_at"], name: "idx_sample_aq_info_deleted_at"
+  end
+
+  create_table "sample_borrows", id: { type: :bigint, unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.bigint "user_id", comment: "借阅人ID", unsigned: true
+    t.bigint "sample_id", comment: "样品ID", unsigned: true
+    t.string "borrow_image_path", limit: 191
+    t.string "return_image_path", limit: 191
+    t.bigint "status", default: 0, comment: "借阅状态"
+    t.datetime "return_at", precision: nil
+    t.string "project_code", limit: 191, comment: "项目编号"
+    t.string "project_name", limit: 191, comment: "项目名称"
+    t.datetime "returned_at", precision: nil
+    t.datetime "three_day_reminded_at", precision: nil
+    t.datetime "one_day_reminded_at", precision: nil
+    t.string "stage_name", limit: 191, comment: "阶段名称"
+    t.string "remark", limit: 191
+    t.index ["deleted_at"], name: "idx_sample_borrows_deleted_at"
   end
 
   create_table "sample_color_systems", primary_key: ["sample_id", "color_systems_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -1572,8 +1633,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.bigint "material_id"
-    t.string "description", limit: 191
-    t.string "path", limit: 191
+    t.string "description", limit: 500
+    t.string "path", limit: 500
     t.index ["deleted_at"], name: "idx_surface_effects_deleted_at"
   end
 
@@ -1581,10 +1642,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
-    t.string "path", limit: 191, comment: "api路径"
-    t.string "description", limit: 191, comment: "api中文描述"
-    t.string "api_group", limit: 191, comment: "api组"
-    t.string "method", limit: 191, default: "POST"
+    t.string "path", limit: 191
+    t.string "description", limit: 191
+    t.string "api_group", limit: 191
+    t.string "method", limit: 191
     t.index ["deleted_at"], name: "idx_sys_apis_deleted_at"
   end
 
@@ -1650,9 +1711,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_065250) do
     t.datetime "updated_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.bigint "sys_base_menu_id", unsigned: true
-    t.string "type", limit: 191, comment: "地址栏携带参数为params还是query"
-    t.string "key", limit: 191, comment: "地址栏携带参数的key"
-    t.string "value", limit: 191, comment: "地址栏携带参数的值"
+    t.string "type", limit: 191
+    t.string "key", limit: 191
+    t.string "value", limit: 191
     t.index ["deleted_at"], name: "idx_sys_base_menu_parameters_deleted_at"
   end
 
