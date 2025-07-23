@@ -140,7 +140,7 @@ GEM
     email_validator (2.2.4)
       activemodel
     erubi (1.13.1)
-    faraday (2.13.2)
+    faraday (2.13.3)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
