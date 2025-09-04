@@ -91,7 +91,7 @@ GEM
     bcrypt_pbkdf (1.1.1)
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
     benchmark (0.4.1)
-    bigdecimal (3.2.2)
+    bigdecimal (3.2.3)
     bindata (2.5.1)
     bindex (0.8.1)
     browser (5.3.1)
