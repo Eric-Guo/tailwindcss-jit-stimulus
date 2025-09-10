@@ -3967,9 +3967,9 @@ rechoir@^0.7.0:
     resolve "^1.9.0"
 
 regenerate-unicode-properties@^10.2.0:
-  version "10.2.0"
-  resolved "https://registry.npmmirror.com/regenerate-unicode-properties/-/regenerate-unicode-properties-10.2.0.tgz#626e39df8c372338ea9b8028d1f99dc3fd9c3db0"
-  integrity sha512-DqHn3DwbmmPVzeKj9woBadqmXxLvQoQIwu7nopMc72ztvxVmVk2SBhSnx67zuye5TP+lJsb/TBQsjLKhnDf3MA==
+  version "10.2.2"
+  resolved "https://registry.npmmirror.com/regenerate-unicode-properties/-/regenerate-unicode-properties-10.2.2.tgz#aa113812ba899b630658c7623466be71e1f86f66"
+  integrity sha512-m03P+zhBeQd1RGnYxrGyDAPpWX/epKirLrp8e3qevZdVkKtnCrjjWczIbYc8+xd6vcTStVlqfycTx1KR4LOr0g==
   dependencies:
     regenerate "^1.4.2"
 
@@ -4199,10 +4199,10 @@ setprototypeof@1.2.0:
   resolved "https://registry.npmmirror.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-shakapacker@=8.3.0:
-  version "8.3.0"
-  resolved "https://registry.npmmirror.com/shakapacker/-/shakapacker-8.3.0.tgz#48b8ce16d551a07f59dd95c418962540480affc9"
-  integrity sha512-eJsSSZDMbwmzVzM+Bn2QxAFhdLfcP5prUiDNPrQBGkFazCKjG4b6ZzpUg3rXQGt2l7SPLHQ8BA78QRvPBeBeFA==
+shakapacker@=8.4.0:
+  version "8.4.0"
+  resolved "https://registry.npmmirror.com/shakapacker/-/shakapacker-8.4.0.tgz#be37a2adba5a090f581811b8c0c1a00f2e227580"
+  integrity sha512-ZfuxfHxy5tdjv7tCdRZHJKJQLDFwvFXOVBVUj150zgNuRKUlOAyXzOBp9/G5hUhu4MLzuPAif/fuKOdjnZeVtw==
   dependencies:
     js-yaml "^4.1.0"
     path-complete-extname "^1.0.0"
@@ -4561,9 +4561,9 @@ unicode-match-property-ecmascript@^2.0.0:
     unicode-property-aliases-ecmascript "^2.0.0"
 
 unicode-match-property-value-ecmascript@^2.1.0:
-  version "2.2.0"
-  resolved "https://registry.npmmirror.com/unicode-match-property-value-ecmascript/-/unicode-match-property-value-ecmascript-2.2.0.tgz#a0401aee72714598f739b68b104e4fe3a0cb3c71"
-  integrity sha512-4IehN3V/+kkr5YeSSDDQG8QLqO26XpL2XP3GQtqwlT/QYSECAwFztxVHjlbh0+gjJ3XmNLS0zDsbgs9jWKExLg==
+  version "2.2.1"
+  resolved "https://registry.npmmirror.com/unicode-match-property-value-ecmascript/-/unicode-match-property-value-ecmascript-2.2.1.tgz#65a7adfad8574c219890e219285ce4c64ed67eaa"
+  integrity sha512-JQ84qTuMg4nVkx8ga4A16a1epI9H6uTXAknqxkGF/aFfRLw1xC/Bp24HNLaZhHSkWd3+84t8iXnp1J0kYcZHhg==
 
 unicode-property-aliases-ecmascript@^2.0.0:
   version "2.1.0"
