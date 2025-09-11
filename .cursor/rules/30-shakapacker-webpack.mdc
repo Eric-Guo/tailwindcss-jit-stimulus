@@ -1,0 +1,13 @@
+---
+description: Shakapacker/Webpack bundling for Rails packs
+globs: config/webpack/**/*.js,app/packs/**/*
+---
+### Shakapacker / Webpack
+
+- Webpack config is generated via Shakapacker and extended in [`config/webpack/webpack.config.js`](mdc:config/webpack/webpack.config.js).
+- Entry points live under `app/packs/entrypoints/**`; images, styles, and controllers are imported from `app/packs/**`.
+- Prefer adding webpack customizations by merging `customConfig` in the exported config.
+
+#### Tips
+- Ensure loaders handle fonts (`@fontsource/*`), images, and CSS imported in the pack.
+- If adding new entrypoints, create files in `app/packs/entrypoints` and reference them in layouts via `javascript_packs_with_chunks_tag`/`stylesheet_packs_with_chunks_tag` (Shakapacker helpers).

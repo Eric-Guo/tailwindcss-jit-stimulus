@@ -1,0 +1,20 @@
+---
+alwaysApply: true
+---
+### Matlib Rails + Shakapacker Project Structure
+
+- The Rails app entry is `config/routes.rb` (draws `config/routes/api.rb`).
+- HTML views are under `app/views/**`; API JSON responses use Jbuilder under `app/views/api/**`.
+- Controllers live in `app/controllers/**` and API controllers in `app/controllers/api/**`.
+- Frontend pack entry: [`app/packs/entrypoints/application.js`](mdc:app/packs/entrypoints/application.js) with Stimulus controllers in `app/packs/controllers/**`.
+- Webpack is configured via [`config/webpack/webpack.config.js`](mdc:config/webpack/webpack.config.js) using Shakapacker.
+
+#### Key files
+- Routes: [`config/routes.rb`](mdc:config/routes.rb), [`config/routes/api.rb`](mdc:config/routes/api.rb)
+- Base controller: [`app/controllers/application_controller.rb`](mdc:app/controllers/application_controller.rb)
+- Stimulus application pack: [`app/packs/entrypoints/application.js`](mdc:app/packs/entrypoints/application.js)
+
+#### Conventions
+- API endpoints return JSON built with Jbuilder templates aligned by controller/action path.
+- Stimulus controllers are auto-registered from `app/packs/controllers/**`.
+- Use `rails routes` to inspect endpoints and match to controllers/views.

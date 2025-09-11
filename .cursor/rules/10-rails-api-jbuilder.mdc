@@ -1,0 +1,17 @@
+---
+description: Rails API and Jbuilder usage in Matlib
+globs: app/controllers/**/*.rb,app/views/api/**/*.jbuilder
+---
+### Rails API + Jbuilder conventions
+
+- API routes are under the `api` namespace in [`config/routes/api.rb`](mdc:config/routes/api.rb) with `defaults: { format: :json }`.
+- Controller actions in `app/controllers/api/**` render matching Jbuilder templates in `app/views/api/**`:
+  - Example: `Api::MaterialsController#show` -> `app/views/api/materials/show.json.jbuilder`.
+  - Collection endpoints use `index.json.jbuilder`; member-specific use files matching action names.
+- Prefer Jbuilder partials for reusable JSON structures; colocate under the resource folder with leading underscore.
+- Keep controllers thin: fetch records, authorize, and let Jbuilder handle shaping JSON.
+
+#### Tips
+- Use `includes` and `select` in controllers to avoid N+1.
+- Return consistent keys and nesting across endpoints.
+- Add tests for serialization shape when changing templates.
