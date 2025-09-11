@@ -1,0 +1,18 @@
+---
+description: Stimulus controllers and frontend conventions
+globs: app/packs/**/*.js
+---
+### Stimulus + Frontend conventions
+
+- Entry point: [`app/packs/entrypoints/application.js`](mdc:app/packs/entrypoints/application.js)
+  - Registers Tailwind Stimulus components: `alert`, `autosave`, `dropdown`, `modal`, `tabs`, `popover`, `toggle`, `slideover`.
+  - Auto-loads controllers from `app/packs/controllers/**` via `definitionsFromContext`.
+- Create controllers in `app/packs/controllers/NAME_controller.js` and export a default Stimulus Controller class.
+- Use `data-controller`, `data-action`, and `data-*-target` attributes in `.erb` views under `app/views/**`.
+- mrujs and Turbo are initialized globally; ensure `window.Turbo` is set before `mrujs.start()`.
+- Images are bundled via `require.context('../images', true)`; CSS imported from `app/packs/stylesheets/application.css`.
+
+#### Tips
+- Keep DOM queries scoped using Stimulus targets.
+- Avoid global event listeners except when necessary (e.g., image contextmenu handler already present).
+- Prefer declarative actions `click->controller#method` in templates.

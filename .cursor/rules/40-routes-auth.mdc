@@ -1,0 +1,15 @@
+---
+description: Routes organization and authentication endpoints
+---
+### Routes & Auth conventions
+
+- Main router: [`config/routes.rb`](mdc:config/routes.rb) with `draw(:api)` to include [`config/routes/api.rb`](mdc:config/routes/api.rb).
+- Devise is configured for `users` and `visitors` with custom sessions controller and limited modules.
+- SSO/OpenID Connect: `GET /auth/openid_connect/callback` handled by `OpenidConnectController#callback`.
+- Visitor auth helpers exist: `visitor_login_path(code)`, `visitor_logout_path`.
+- In development, `DevAuthController` provides `auth/dev_auth/login` and `logout` for quick auth.
+
+#### Tips
+- Use `authenticate_any!` from [`ApplicationController`](mdc:app/controllers/application_controller.rb) to guard actions for both users and visitors.
+- Namespaced `api` routes default to JSON and map to `app/controllers/api/**`.
+- For new API endpoints, add to `config/routes/api.rb` and corresponding controller and Jbuilder views.
