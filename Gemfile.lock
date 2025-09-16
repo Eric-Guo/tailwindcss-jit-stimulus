@@ -318,7 +318,7 @@ GEM
     rdoc (6.13.1)
       psych (>= 4.0.0)
     redcarpet (3.6.1)
-    regexp_parser (2.11.2)
+    regexp_parser (2.11.3)
     reline (0.6.2)
       io-console (~> 0.5)
     responders (3.1.1)
