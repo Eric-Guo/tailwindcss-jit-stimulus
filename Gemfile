@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "~> 3.0"
 gem "ffi", "~> 1.16.0"
 
-gem "rails", "~> 7.0.8"
+gem "rails", "~> 7.1.5"
 gem "benchmark" # required by rails for Ruby 3.5
 gem "nokogiri", "~> 1.17.2"
 gem "net-http", "~> 0.4.1"
