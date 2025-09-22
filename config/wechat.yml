@@ -1,11 +1,11 @@
 ---
 default: &default
-  corpid: <%= Rails.application.credentials.wechat_corpid! %>
-  corpsecret: <%= Rails.application.credentials.wechat_corp_secret! %>
-  agentid: <%= Rails.application.credentials.wechat_corp_agentid! %>
-  token: <%= Rails.application.credentials.wechat_corp_token! %>
+  corpid: <%= Rails.application.credentials.wechat_corpid %>
+  corpsecret: <%= Rails.application.credentials.wechat_corp_secret %>
+  agentid: <%= Rails.application.credentials.wechat_corp_agentid %>
+  token: <%= Rails.application.credentials.wechat_corp_token %>
   encrypt_mode: true
-  encoding_aes_key: <%= Rails.application.credentials.wechat_corp_encoding_aes_key! %>
+  encoding_aes_key: <%= Rails.application.credentials.wechat_corp_encoding_aes_key %>
   access_token: "tmp/wechat_matlib_access_token"
   jsapi_ticket: "tmp/wechat_matlib_jsapi_ticket"
 
