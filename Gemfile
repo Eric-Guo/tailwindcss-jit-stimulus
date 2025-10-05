@@ -19,8 +19,7 @@ gem "mysql2"
 gem 'puma'
 gem "shakapacker", "~> 8.1"
 
-# https://github.com/hotwired/turbo-rails/pull/335/files
-gem "turbo-rails", '= 1.1.0' # need lock to make cookie works.
+gem "turbo-rails"
 
 gem "browser", "< 6", require: "browser/browser" # support ruby 3.0
 

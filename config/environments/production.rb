@@ -4,6 +4,8 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.secret_key_base = Rails.application.credentials.secret_key_base
+  config.turbo.signed_stream_verifier_key = Rails.application.credentials.secret_key_base
 
   # Code is not reloaded between requests.
   config.cache_classes = true

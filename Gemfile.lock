@@ -376,7 +376,7 @@ GEM
       faraday-follow_redirects
     thor (1.4.0)
     timeout (0.4.3)
-    turbo-rails (1.1.0)
+    turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
@@ -449,7 +449,7 @@ DEPENDENCIES
   rubyzip
   selenium-webdriver (~> 4.26.0)
   shakapacker (~> 8.1)
-  turbo-rails (= 1.1.0)
+  turbo-rails
   tzinfo-data
   web-console
   wechat!
