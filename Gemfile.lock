@@ -97,7 +97,7 @@ GEM
     bcrypt_pbkdf (1.1.1)
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
     benchmark (0.4.1)
-    bigdecimal (3.3.0)
+    bigdecimal (3.3.1)
     bindata (2.5.1)
     bindex (0.8.1)
     browser (5.3.1)
@@ -283,7 +283,7 @@ GEM
     puma (6.6.1)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (2.2.19)
+    rack (2.2.20)
     rack-oauth2 (2.2.1)
       activesupport
       attr_required
@@ -342,7 +342,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.4.4)
-    rorvswild (1.9.2)
+    rorvswild (1.10.0)
     rubyzip (2.4.1)
     securerandom (0.3.2)
     selenium-webdriver (4.26.0)
