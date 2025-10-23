@@ -57,6 +57,20 @@
     "mime-db": "~1.54.0",
     "merge-descriptors": "~1.0.3"
   },
+  "pnpm": {
+    "overrides": {
+      "@types/retry": "^0.12.5",
+      "cookie": "~0.7.2",
+      "glob": "~7.2.3",
+      "inherits": "~2.0.4",
+      "mdn-data": "~2.0.33",
+      "mime-db": "~1.54.0",
+      "merge-descriptors": "~1.0.3"
+    },
+    "onlyBuiltDependencies": [
+      "postinstall-postinstall"
+    ]
+  },
   "babel": {
     "presets": [
       "./node_modules/shakapacker/package/babel/preset.js"
@@ -66,5 +80,5 @@
     "defaults",
     "not IE 11"
   ],
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "pnpm@10.19.0"
 }

@@ -8,9 +8,9 @@
 - Custom npm patches applied via `patch-package` are tracked in `patches/`; update these whenever dependencies shift.
 
 ## Build, Test, and Development Commands
-- `bin/setup` provisions Bundler gems, Yarn packages, database schema, and clears caches for a clean workspace.
+- `bin/setup` provisions Bundler gems, pnpm packages, database schema, and clears caches for a clean workspace.
 - `bin/rails server` boots the Rails app; pair it with `bin/shakapacker-dev-server` for live Tailwind JIT recompilation and hot module reloads.
-- `bin/yarn` (or `yarn install`) refreshes JavaScript dependencies; rerun after editing `package.json` or `patches/`.
+- `pnpm install` refreshes JavaScript dependencies; rerun after editing `package.json` or `patches/`.
 - `bin/rails db:migrate` applies schema changes locally; run `bin/rails db:seed` whenever new seed data ships.
 - `bundle exec rake assets:clobber` clears compiled packs before preparing a production build to avoid stale assets.
 
