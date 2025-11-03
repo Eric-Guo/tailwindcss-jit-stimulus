@@ -6,9 +6,9 @@ json.description @sample.material_text
 json.price_range @sample.price_range
 # 材料信息
 json.material do
-  json.id @sample.material.id
-  json.name @sample.material.name
-  json.no @sample.material.no
+  json.id @sample.material&.id
+  json.name @sample.material&.name
+  json.no @sample.material&.no
 end
 json.color_system @sample.color_str # 色系
 json.color_code @sample.color_code # 色号
