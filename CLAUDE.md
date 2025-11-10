@@ -228,7 +228,7 @@ bin/rails assets:precompile
 ## Dependency Management
 
 - **Ruby**: Managed by Bundler (`bundle` commands)
-- **JavaScript**: Managed by pnpm v10.20.0
+- **JavaScript**: Managed by pnpm v10.21.0
 - Custom npm patches tracked in `patches/` directory
 - Package resolutions/overrides in `package.json`
 
