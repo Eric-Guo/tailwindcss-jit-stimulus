@@ -45,7 +45,7 @@
     <span class="text-black"><%= pages[page]&.fetch(:zh, '') %></span>
   </div>
 
-  <div class="flex flex-row justify-between mt-5">
+  <div class="flex flex-row mt-5">
     <div class="material-nav pt-3" data-controller="material-nav">
       <div class="material-nav-item mb-5 <%= page == :projects ? 'active' : '' %>" data-material-nav-target="navItem">
         <div class="material-nav-item-header pb-1" data-action="click->material-nav#navItemClick">
@@ -132,7 +132,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="flex-none">
       <div class="border-b-2 border-gray-100 border-solid pb-3">
         <span class="text-2xl font-bold ml-px mr-2 under-text-border" style="padding-bottom: 0.9rem"><%= pages[page]&.fetch(:zh, '') %></span>
         <span class="text-xl font-light"><%= pages[page]&.fetch(:en, '') %></span>
