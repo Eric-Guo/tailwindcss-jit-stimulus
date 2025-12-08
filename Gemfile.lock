@@ -377,7 +377,7 @@ GEM
       faraday (~> 2.0)
       faraday-follow_redirects
     thor (1.4.0)
-    timeout (0.4.4)
+    timeout (0.5.0)
     tsort (0.2.0)
     turbo-rails (2.0.20)
       actionpack (>= 7.1.0)
