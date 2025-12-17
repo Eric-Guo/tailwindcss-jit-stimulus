@@ -23,7 +23,7 @@
     "css-minimizer-webpack-plugin": "^3.4.1",
     "dayjs": "^1.11.19",
     "filesize": "^10.1.6",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.17.22",
     "mini-css-extract-plugin": "^2.9.4",
     "mrujs": "^0.7.4",
     "patch-package": "^6.5.1",
@@ -38,7 +38,7 @@
     "tailwindcss-stimulus-components": "^3.0.4",
     "terser-webpack-plugin": "^5.3.16",
     "viewerjs": "1.10.5",
-    "webpack": "^5.103.0",
+    "webpack": "^5.104.0",
     "webpack-assets-manifest": "^5.2.1",
     "webpack-cli": "^4.10.0",
     "webpack-sources": "^3.3.3"
