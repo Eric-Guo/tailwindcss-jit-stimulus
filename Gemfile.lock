@@ -356,7 +356,6 @@ GEM
       actionpack (>= 7.0)
       railties (>= 7.0)
     rexml (3.4.4)
-    rorvswild (1.10.1)
     rubyzip (2.4.1)
     securerandom (0.4.1)
     selenium-webdriver (4.26.0)
@@ -457,7 +456,6 @@ DEPENDENCIES
   rails (~> 7.2.2)
   redcarpet
   rexml
-  rorvswild
   rubyzip
   selenium-webdriver (~> 4.26.0)
   shakapacker (~> 8.1)
