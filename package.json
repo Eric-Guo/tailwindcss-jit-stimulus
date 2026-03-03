@@ -27,7 +27,7 @@
     "mini-css-extract-plugin": "^2.10.0",
     "mrujs": "^0.7.4",
     "patch-package": "^6.5.1",
-    "postcss": "^8.5.6",
+    "postcss": "^8.5.8",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^14.1.0",
     "postcss-loader": "^6.2.1",
