@@ -24,7 +24,7 @@
     "dayjs": "^1.11.19",
     "filesize": "^10.1.6",
     "lodash-es": "^4.17.23",
-    "mini-css-extract-plugin": "^2.10.0",
+    "mini-css-extract-plugin": "^2.10.1",
     "mrujs": "^0.7.4",
     "patch-package": "^6.5.1",
     "postcss": "^8.5.8",
@@ -36,7 +36,7 @@
     "shakapacker": "8.4.0",
     "tailwindcss": "^3.4.19",
     "tailwindcss-stimulus-components": "^3.0.4",
-    "terser-webpack-plugin": "^5.3.17",
+    "terser-webpack-plugin": "^5.4.0",
     "viewerjs": "1.10.5",
     "webpack": "^5.105.4",
     "webpack-assets-manifest": "^5.2.1",
@@ -80,5 +80,5 @@
     "defaults",
     "not IE 11"
   ],
-  "packageManager": "pnpm@10.32.0"
+  "packageManager": "pnpm@10.32.1"
 }
