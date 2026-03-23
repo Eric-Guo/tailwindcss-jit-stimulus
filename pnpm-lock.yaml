@@ -2785,8 +2785,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  tapable@2.3.0:
-    resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
+  tapable@2.3.1:
+    resolution: {integrity: sha512-b+u3CEM6FjDHru+nhUSjDofpWSBp2rINziJWgApm72wwGasQ/wKXftZe4tI2Y5HPv6OpzXSZHOFq87H4vfsgsw==}
     engines: {node: '>=6'}
 
   terser-webpack-plugin@5.4.0:
@@ -4438,7 +4438,7 @@ snapshots:
   enhanced-resolve@5.20.1:
     dependencies:
       graceful-fs: 4.2.11
-      tapable: 2.3.0
+      tapable: 2.3.1
 
   entities@2.2.0: {}
 
@@ -4922,7 +4922,7 @@ snapshots:
   mini-css-extract-plugin@2.10.1(webpack@5.105.4):
     dependencies:
       schema-utils: 4.3.3
-      tapable: 2.3.0
+      tapable: 2.3.1
       webpack: 5.105.4(webpack-cli@4.10.0)
 
   mini-svg-data-uri@1.4.4: {}
@@ -5913,7 +5913,7 @@ snapshots:
       - tsx
       - yaml
 
-  tapable@2.3.0: {}
+  tapable@2.3.1: {}
 
   terser-webpack-plugin@5.4.0(webpack@5.105.4):
     dependencies:
@@ -6018,7 +6018,7 @@ snapshots:
       lodash.get: 4.4.2
       lodash.has: 4.5.2
       schema-utils: 3.3.0
-      tapable: 2.3.0
+      tapable: 2.3.1
       webpack: 5.105.4(webpack-cli@4.10.0)
 
   webpack-cli@4.10.0(webpack-dev-server@4.15.2)(webpack@5.105.4):
@@ -6120,7 +6120,7 @@ snapshots:
       mime-types: 2.1.35
       neo-async: 2.6.2
       schema-utils: 4.3.3
-      tapable: 2.3.0
+      tapable: 2.3.1
       terser-webpack-plugin: 5.4.0(webpack@5.105.4)
       watchpack: 2.5.1
       webpack-sources: 3.3.4
