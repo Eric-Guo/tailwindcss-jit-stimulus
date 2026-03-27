@@ -24,7 +24,7 @@
     "dayjs": "^1.11.20",
     "filesize": "^10.1.6",
     "lodash-es": "^4.17.23",
-    "mini-css-extract-plugin": "^2.10.1",
+    "mini-css-extract-plugin": "^2.10.2",
     "mrujs": "^0.7.4",
     "patch-package": "^6.5.1",
     "postcss": "^8.5.8",
