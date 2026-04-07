@@ -170,7 +170,7 @@ GEM
     http (6.0.2)
       http-cookie (~> 1.0)
       llhttp (~> 0.6.1)
-    http-cookie (1.1.3)
+    http-cookie (1.1.4)
       domain_name (~> 0.5)
     httpx (1.7.5)
       http-2 (>= 1.1.3)
