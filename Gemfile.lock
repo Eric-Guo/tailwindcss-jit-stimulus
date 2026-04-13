@@ -172,7 +172,7 @@ GEM
       llhttp (~> 0.6.1)
     http-cookie (1.1.4)
       domain_name (~> 0.5)
-    httpx (1.7.5)
+    httpx (1.7.6)
       http-2 (>= 1.1.3)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
@@ -461,4 +461,4 @@ RUBY VERSION
   ruby 3.4.2p28
 
 BUNDLED WITH
-  4.0.7
+  4.0.10
