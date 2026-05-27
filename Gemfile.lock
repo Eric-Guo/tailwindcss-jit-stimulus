@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/Eric-Guo/wechat.git
-  revision: 3512855286a11e18a22f2b0ed363af013a1d442c
+  revision: e60a4b2d95659b32ea001c28205456eec5059fd6
   branch: main
   specs:
     wechat (1.2.0)
@@ -182,7 +182,7 @@ GEM
       prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    jbuilder (2.15.0)
+    jbuilder (2.15.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     json (2.19.5)
