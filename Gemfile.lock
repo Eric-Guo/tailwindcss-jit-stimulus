@@ -289,7 +289,7 @@ GEM
       faraday-follow_redirects
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
-    rack-proxy (0.8.2)
+    rack-proxy (0.8.3)
       rack
     rack-session (1.0.2)
       rack (< 3)
