@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/Eric-Guo/wechat.git
-  revision: 9454373c8d516c7ce96464c88eb7eee9310e10ac
+  revision: dd2d07aad51dabed8c224e8f8a7cbdb5127bbc21
   branch: main
   specs:
     wechat (1.2.0)
@@ -226,7 +226,7 @@ GEM
       bigdecimal
     net-http (0.4.1)
       uri
-    net-imap (0.4.24)
+    net-imap (0.4.25)
       date
       net-protocol
     net-pop (0.1.2)
