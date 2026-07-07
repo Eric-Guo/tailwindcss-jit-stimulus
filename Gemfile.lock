@@ -164,7 +164,7 @@ GEM
       activesupport (>= 6.1)
     hashie (5.1.0)
       logger
-    http-2 (1.2.0)
+    http-2 (1.2.1)
     http (6.0.3)
       http-cookie (~> 1.0)
       llhttp (~> 0.6.1)
