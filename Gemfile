@@ -1,12 +1,15 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "~> 3.0"
+ruby ">= 3.1"
+gem "rbs", "< 4.2" # require by Ruby 3.2
+gem "parallel", "< 2.0"
 
-gem "rails", "~> 7.1.2"
+gem "rails", "~> 7.2.3.1"
+gem "minitest", "< 6" # rails 7.2 not support minitest 6.0.1
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+gem "sqlite3"
 # Use Puma as the app server
 gem 'puma'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -41,8 +44,8 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
-  gem 'rexml' # required by selenium-webdriver
-  gem 'selenium-webdriver'
+  gem "selenium-webdriver", "~> 4.26.0"
+
   # Easy installation and use of web drivers to run system tests with browsers
   gem "webdrivers"
 end
