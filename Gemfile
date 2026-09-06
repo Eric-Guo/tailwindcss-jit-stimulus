@@ -44,10 +44,8 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
+  # Selenium Manager handles browser drivers without the webdrivers gem.
   gem "selenium-webdriver", "~> 4.26.0"
-
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem "webdrivers"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
