@@ -1,12 +1,13 @@
 ---
 version: 2.1
 orbs:
+  node: circleci/node@7.2.1
   browser-tools: circleci/browser-tools@1.2.1
 
 jobs:
   build:
     docker:
-      - image: circleci/ruby:3.0.2-node-browsers
+      - image: cimg/ruby:3.3.3-browsers
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -17,16 +18,18 @@ jobs:
     working_directory: ~/tailwind-jit
     steps:
       - checkout
+      - node/install:
+          node-version: "22.13.0"
 
       # Which version of bundler? should keep same as Gemfile.lock
       - run:
-          name: install bundler v2.2.27
-          command: gem install bundler:2.2.27 && bundle -v
+          name: Install Bundler
+          command: gem install bundler:4.0.20 && bundle -v
 
       # Restore bundle cache
       - restore_cache:
           keys:
-            - tailwind-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - tailwind-bundle-v3-{{ checksum "Gemfile.lock" }}
 
       - run:
           name: Bundle Install
@@ -34,23 +37,30 @@ jobs:
 
       # Store bundle cache
       - save_cache:
-          key: tailwind-bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: tailwind-bundle-v3-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
-      # Only necessary if app uses webpacker or yarn in some other way
+      - run:
+          name: Install pnpm 12.3.4
+          command: |
+            curl -fsSL https://get.pnpm.io/install.sh -o /tmp/install-pnpm.sh
+            PNPM_VERSION=12.3.4 SHELL=/bin/bash sh /tmp/install-pnpm.sh
+            echo 'export PNPM_HOME="$HOME/.local/share/pnpm"' >> "$BASH_ENV"
+            echo 'export PATH="$PNPM_HOME:$PATH"' >> "$BASH_ENV"
+
       - restore_cache:
           keys:
-            - tailwind-yarn-{{ checksum "yarn.lock" }}
+            - tailwind-pnpm-v1-{{ arch }}-{{ checksum "pnpm-lock.yaml" }}
 
       - run:
-          name: Yarn Install
-          command: yarn install --cache-folder ~/.cache/yarn
+          name: pnpm Install
+          command: bin/pnpm install --frozen-lockfile --store-dir ~/.pnpm-store
 
       - save_cache:
-          key: tailwind-yarn-{{ checksum "yarn.lock" }}
+          key: tailwind-pnpm-v1-{{ arch }}-{{ checksum "pnpm-lock.yaml" }}
           paths:
-            - ~/.cache/yarn
+            - ~/.pnpm-store
 
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
