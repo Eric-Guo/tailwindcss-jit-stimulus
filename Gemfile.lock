@@ -146,7 +146,7 @@ GEM
       railties (>= 7.0)
       responders
       warden (~> 1.2.3)
-    domain_name (0.6.20260829)
+    domain_name (0.6.20260902)
     drb (2.2.3)
     ed25519 (1.4.0)
     erb (6.0.7)
@@ -289,7 +289,7 @@ GEM
       faraday-follow_redirects
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
-    rack-proxy (1.0.2)
+    rack-proxy (2.0.0)
       rack (>= 2.0, < 4)
     rack-session (1.0.2)
       rack (< 3)
