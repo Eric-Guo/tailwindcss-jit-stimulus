@@ -1,0 +1,2 @@
+allowBuilds:
+  postinstall-postinstall: true
