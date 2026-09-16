@@ -19,6 +19,7 @@ gem "mysql2"
 # Use Puma as the app server
 gem 'puma'
 gem "shakapacker", "~> 8.1"
+gem "rack-proxy", "~> 0.8.3" # required by shakapacker 8.x or 9.x
 
 gem "turbo-rails"
 

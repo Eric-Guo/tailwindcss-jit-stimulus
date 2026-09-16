@@ -289,8 +289,8 @@ GEM
       faraday-follow_redirects
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
-    rack-proxy (2.0.1)
-      rack (>= 2.0, < 4)
+    rack-proxy (0.8.3)
+      rack
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.2.0)
@@ -446,6 +446,7 @@ DEPENDENCIES
   omniauth (~> 1.9)
   omniauth_openid_connect
   puma
+  rack-proxy (~> 0.8.3)
   rails (~> 7.2.3.1)
   redcarpet
   rexml
