@@ -151,7 +151,7 @@ GEM
     ed25519 (1.4.0)
     erb (6.0.7)
     erubi (1.13.1)
-    faraday (2.14.3)
+    faraday (2.14.4)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -183,7 +183,7 @@ GEM
     jbuilder (2.15.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (3.0.2)
+    json (2.21.2)
     json-jwt (1.17.2)
       activesupport (>= 4.2)
       aes_key_wrap
@@ -289,7 +289,7 @@ GEM
       faraday-follow_redirects
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
-    rack-proxy (2.0.0)
+    rack-proxy (2.0.1)
       rack (>= 2.0, < 4)
     rack-session (1.0.2)
       rack (< 3)
@@ -435,6 +435,7 @@ DEPENDENCIES
   ffi (~> 1.16.0)
   http
   jbuilder
+  json (< 3)
   jwt
   kaminari
   mutex_m
@@ -462,4 +463,4 @@ RUBY VERSION
   ruby 3.4.2p28
 
 BUNDLED WITH
-  4.0.20
+  4.0.21
