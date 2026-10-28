@@ -271,8 +271,9 @@ GEM
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.1)
-    prism (2.1.0-arm64-darwin)
-    prism (2.1.0-x86_64-linux-gnu)
+    prism (2.0.0)
+    prism (2.0.0-arm64-darwin)
+    prism (2.0.0-x86_64-linux-gnu)
     public_suffix (7.0.5)
     puma (6.6.1)
       nio4r (~> 2.0)
