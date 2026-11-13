@@ -5,6 +5,9 @@ ruby ">= 3.0"
 gem "ffi", "~> 1.16.0"
 
 gem "rails", "~> 7.2.4"
+gem "i18n", "~> 1.14.8"
+gem 'minitest', '5.26.1'
+gem 'securerandom', '0.3.2'
 gem "json", "< 3"
 gem "benchmark" # required by rails for Ruby 3.5
 gem "nokogiri", "~> 1.17.2"

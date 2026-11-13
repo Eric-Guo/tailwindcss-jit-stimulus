@@ -170,7 +170,7 @@ GEM
       domain_name (~> 0.5)
     httpx (1.9.0)
       http-2 (>= 1.2.0)
-    i18n (1.15.2)
+    i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     io-console (0.9.5)
     irb (1.19.0)
@@ -218,7 +218,7 @@ GEM
     matrix (0.4.3)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (5.27.0)
+    minitest (5.26.1)
     mutex_m (0.3.0)
     mysql2 (0.5.7)
       bigdecimal
@@ -273,7 +273,6 @@ GEM
     prettyprint (0.2.1)
     prism (2.0.0)
     prism (2.0.0-arm64-darwin)
-    prism (2.0.0-x86_64-linux-gnu)
     public_suffix (7.0.5)
     puma (6.6.1)
       nio4r (~> 2.0)
@@ -345,7 +344,7 @@ GEM
       railties (>= 7.0)
     rexml (3.4.4)
     rubyzip (2.4.1)
-    securerandom (0.4.1)
+    securerandom (0.3.2)
     selenium-webdriver (4.26.0)
       base64 (~> 0.2)
       logger (~> 1.4)
@@ -427,10 +426,12 @@ DEPENDENCIES
   ed25519
   ffi (~> 1.16.0)
   http
+  i18n (~> 1.14.8)
   jbuilder
   json (< 3)
   jwt
   kaminari
+  minitest (= 5.26.1)
   mutex_m
   mysql2
   net-http (~> 0.4.1)
@@ -444,6 +445,7 @@ DEPENDENCIES
   redcarpet
   rexml
   rubyzip
+  securerandom (= 0.3.2)
   selenium-webdriver (~> 4.26.0)
   shakapacker (~> 8.1)
   tidewave
@@ -457,4 +459,4 @@ RUBY VERSION
   ruby 3.4.2p28
 
 BUNDLED WITH
-  4.0.23
+  2.2.32
