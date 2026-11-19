@@ -144,7 +144,7 @@ GEM
       railties (>= 7.0)
       responders
       warden (~> 1.2.3)
-    domain_name (0.7.20261031)
+    domain_name (0.7.20261117)
     drb (2.2.3)
     ed25519 (1.4.0)
     erb (6.0.7)
